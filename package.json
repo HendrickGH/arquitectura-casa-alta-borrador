@@ -1,0 +1,31 @@
+{
+  "name": "casa-alta-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "predev": "node tools/sync-images.mjs",
+    "dev": "next dev",
+    "prebuild": "node tools/sync-images.mjs",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "check:images": "node tools/check-image-urls.mjs",
+    "images:sync": "node tools/sync-images.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.5",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
