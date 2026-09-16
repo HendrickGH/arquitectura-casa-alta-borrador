@@ -1,0 +1,6 @@
+# Images that must NOT enter the photo rename set.
+# Format: <projectNorm>|<index>|<reason>
+# These are not photographs: leaving them in a portfolio gallery hurts credibility,
+# and naming them like photos would put renders and plan boards in the sitemap.
+casablakeentlalixtac|27|render CGI con logo CASA ALTA
+plazaesmeraldapuertoescondido|01|tablero de planos y renders del centro comercial
