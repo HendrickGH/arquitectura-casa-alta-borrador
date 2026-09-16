@@ -1,18 +1,32 @@
 # Arquitectura Casa Alta — web assets
 
-Image asset repository for the Casa Alta architecture studio website (Oaxaca, Mexico).
-It holds the raw WhatsApp photo dumps, an optimized web-ready set, and the tooling that
-produces one from the other. There is no application code yet.
+Two things live here: the **image asset pipeline** for the Casa Alta studio (raw WhatsApp
+photo dumps in, an optimized web-ready set out), and the **Next.js site** that consumes it.
+
+The site's landing page is built and green. What remains is pages, SEO and deploy config —
+`openspec/changes/casa-alta-web-foundation/` carries the full architecture, the measured
+decisions behind it, and the task list. Read `design.md` before changing anything in the
+image path: several decisions there were reached by measurement after cheaper options
+failed, and it records the evidence so they are not reverted by instinct.
 
 ## Layout
 
 ```
+src/                    the Next.js app. See "Architecture" below.
 images/                 raw source photos, one folder per project. NEVER modified.
-images-optimizado/      generated output. Safe to delete and regenerate.
+  brand/                logo sources
+  hero/                 the landing hero source
+images-optimizado/      generated AVIF output. Safe to delete and regenerate.
   manifest.json         per-photo metadata: dims, variants, srcset, score, note
-tools/                  the pipeline. See "Pipeline" below.
+public/                 served assets. public/images is a generated mirror, gitignored.
+tools/                  the image pipeline plus three site tools. See "Pipeline" below.
+openspec/               SDD artifacts: config, specs, and changes/ with the live change.
 .claude/agents/         agents that operate on this repo
+.claude/hooks/          git guard + formatter. They run automatically.
 ```
+
+Measured sizes: `images/` is 214 files / 74 MB, `images-optimizado/` is 808 files / 125 MB,
+`src/` is 48 files. (Counts drift; re-measure rather than trusting these.)
 
 ## Image contract
 
@@ -73,6 +87,30 @@ URL beneath it and destroys accumulated search ranking. When a new photo outrank
 ones, record its rank in `manifest.json` as data and let the site order by that — do not
 rename files that may already be indexed.
 
+## Architecture
+
+Next.js 16 (App Router, Turbopack) + React 19 + TypeScript strict + Tailwind v4. Tailwind is
+CSS-first: there is no `tailwind.config.js`, and every design token lives in the `@theme` block
+of `src/app/globals.css`. The brand blue is `#0E2D78`, sampled from the logo file rather than
+chosen.
+
+**Atomic design**, strictly layered: `src/components/{atoms,molecules,organisms,templates}`.
+
+**The content seam.** All copy lives in `src/content/*`. `src/lib/content/index.ts` is the only
+module that reads it, and components receive data as props — never imports. That is what makes a
+future Payload CMS migration a change to one file instead of 31 components. When adding UI:
+components take props, and only `src/app/page.tsx` and `src/app/layout.tsx` may reach for
+content.
+
+**The image path.** `next/image` runs with a custom loader (`src/lib/image/loader.ts`) that
+serves the AVIF files the pipeline already encoded. This is not the zero-config path, and the
+reason is measured: Netlify Image CDN negotiates WebP before AVIF, and WebP q82 grows this
+corpus to 100-102% of the original. Two consequences to respect — never reintroduce the default
+loader, and never re-encode the JPEG fallbacks. `next.config.ts` also pins
+`deviceSizes: [480, 960, 1600, 2000]`; Next's defaults start at 640, which makes the 480 tier
+unreachable and doubles what a phone downloads. `tools/check-image-urls.mjs` is the gate that
+catches a computed (rather than looked-up) variant path.
+
 ## Pipeline
 
 Run in order. Each script is idempotent and writes only to `images-optimizado/`.
@@ -89,6 +127,21 @@ Run in order. Each script is idempotent and writes only to `images-optimizado/`.
 `tools/priority.txt` sets project order. `tools/exclusions.txt` lists images that must never
 enter the photo set (CGI renders, plan boards) — currently 2 entries.
 
+### Site tooling (separate from the photo pipeline)
+
+| Tool | Run | Does |
+|---|---|---|
+| `sync-images.mjs` | `pnpm images:sync` — also wired to `predev`/`prebuild` | mirrors the AVIF set into `public/images` and regenerates the loader's variant table |
+| `hero.sh` | `bash tools/hero.sh` | encodes the landing hero to the same contract as the project photos |
+| `check-image-urls.mjs` | `pnpm check:images` | fails if any image URL the built site emits has no file behind it |
+
+`public/images` is gitignored, so **the Netlify build must go through `pnpm build`** for the
+`prebuild` step to materialise it. A build command that bypasses it deploys a site whose images
+all 404, silently.
+
+Package manager is **pnpm** — `node_modules/` links into `.pnpm/`. `package-lock.json` is
+gitignored so it cannot come back by accident; do not run `npm install`.
+
 ### ImageMagick gotchas (these cost a full re-run to discover)
 
 1. **`-font Helvetica` by name does not work on this machine.** `magick -list font` is empty;
@@ -99,9 +152,13 @@ enter the photo set (CGI renders, plan boards) — currently 2 entries.
    without an error. Verify a generated sheet visually before trusting it.
 3. **Bash is 3.2.** No `declare -A`, and `export -f` does not cross into `bash -c`.
 
-## Site-side rules (apply once the app exists)
+## Site-side rules
 
 The optimization above is only half the work. The larger win is markup.
+
+**Status:** the `srcset`/`sizes` and explicit `width`/`height` rules are implemented through the
+`Photo` atom. The remaining bullets — sitemap, JSON-LD, `robots.txt`, `opengraph-image`, clean
+public URLs — are still ahead; see `openspec/changes/casa-alta-web-foundation/tasks.md`.
 
 - **`srcset` + `sizes` on every photo.** Serve from `manifest.json` — it carries a ready-made
   `srcset` string per photo. Measured: a 20-photo gallery drops from 3.4 MB to ~460 KB on mobile.
