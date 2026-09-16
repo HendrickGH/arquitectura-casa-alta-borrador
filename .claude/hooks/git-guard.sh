@@ -106,7 +106,22 @@ fi
 # --- 4. Generated-output churn and weight (warn, do not block) ---------------
 staged_count=$(git diff --cached --name-only 2>/dev/null | wc -l | tr -d ' ')
 opt_count=$(git diff --cached --name-only -- images-optimizado/ 2>/dev/null | wc -l | tr -d ' ')
-added_bytes=$(git diff --cached --numstat 2>/dev/null | awk '{s+=$1} END {print s+0}')
+
+# Byte weight of what is actually staged.
+#
+# NOT `--numstat`: it reports binary files as "-", and awk coerces that to 0, so
+# this check measured text only and could never fire on an image commit. Measured
+# on commit 1618eca, which added 6.6 MB of AVIF and PNG: numstat summed to 7
+# bytes. The one hazard this warning exists to catch -- a stray `git add -A`
+# after a pipeline run -- was exactly the case it was blind to.
+#
+# `--raw` yields the new blob hash per path and `cat-file` reports its real size,
+# binaries included. An unknown hash prints "<sha> missing", which still coerces
+# to 0, so a stale entry cannot inflate the total.
+added_bytes=$(git diff --cached --raw --diff-filter=AM 2>/dev/null \
+  | awk '{print $4}' \
+  | git cat-file --batch-check='%(objectsize)' 2>/dev/null \
+  | awk '{s+=$1} END {print s+0}')
 added_mb=$((added_bytes / 1048576))
 
 notes=""
