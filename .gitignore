@@ -3,3 +3,29 @@
 *.tmp
 *.log
 .atl/
+
+# dependencies
+/node_modules
+
+# npm lockfile deliberately not used: pnpm owns the tree (node_modules/ links
+# into .pnpm/). Keeping both lockfiles untracked risked committing two package
+# managers worth of pins. See openspec/config.yaml package_manager_note.
+package-lock.json
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# netlify
+/.netlify/
+
+# env
+.env*
+
+# Generated mirror of images-optimizado/, rebuilt by tools/sync-images.mjs.
+# The source of truth stays at the repository root so the optimized set is
+# committed exactly once.
+/public/images
