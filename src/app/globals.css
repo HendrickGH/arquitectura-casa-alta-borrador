@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens.
+ *
+ * Every value below was taken from an artifact, not invented: the blues are the
+ * dominant colours sampled from the CASA ALTA logo files, the ink is the black
+ * logo's own line colour, and the bone greys follow Cosentino's warm-neutral
+ * scale rather than a pure grey ramp.
+ *
+ * Tailwind v4 is CSS-first: there is no tailwind.config.js. Everything lives here.
+ */
+
+/* The font variables come from next/font at runtime, so they are inlined
+   rather than resolved at build time. */
+@theme inline {
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-marcellus), ui-serif, Georgia, serif;
+}
+
+@theme {
+  /* Text */
+  --color-ink: #151515;
+  --color-ink-muted: #5a5a57;
+
+  /* Surfaces. The page base is white; bone is only ever an alternating tint. */
+  --color-canvas: #ffffff;
+  --color-bone-50: #f4f3f1;
+  --color-bone-100: #eceae6;
+  --color-bone-200: #e4e2de;
+
+  /* Brand. #0e2d78 is the logo's dominant blue. It is far too dark to use as a
+     background, so it works as type, rules and the CTA fill instead. */
+  --color-brand-900: #0a2159;
+  --color-brand-800: #0e2d78;
+  --color-brand-700: #103583;
+  --color-brand-500: #2a55b0;
+  --color-brand-100: #dce4f5;
+  --color-brand-50: #f1f5fc;
+
+  /* Square corners are a deliberate rule. Overriding the radius scale to zero
+     means an accidental `rounded-md` cannot creep in. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Focus is never removed, only restyled. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background-color: var(--color-brand-100);
+    color: var(--color-brand-900);
+  }
+
+  img {
+    /* next/image supplies width/height, but a hard rule here stops a broken
+       aspect ratio from ever escaping the layout. */
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  /*
+   * The signature display treatment, borrowed from Cosentino's type system:
+   * large, uppercase, and set with leading tighter than the cap height would
+   * normally allow. Cosentino runs 75px at line-height 0.73; the tightness is
+   * the point, so it is a shared class rather than repeated utility strings.
+   */
+  .display {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  /* The serif voice. Marcellus has a single weight, so hierarchy comes from
+     size and colour and nothing else. */
+  .voice {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* Small functional labels: nav, counters, legal. */
+  .label {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

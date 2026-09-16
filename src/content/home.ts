@@ -1,0 +1,93 @@
+import type { HomePage, Photo, Stat } from "@/types/content";
+import { whatsappHref } from "./site";
+
+/** The landing hero. Encoded by tools/hero.sh, served through the image loader. */
+const heroImage: Photo = {
+  src: "/images/hero/vista-aerea-palapas-alberca-playa.avif",
+  alt: "Vista aérea de las villas de El Bicho en Punta Zicatela: tres niveles de palapa triangular, alberca de fondo negro y la playa al frente",
+  width: 1600,
+  height: 900,
+};
+
+/**
+ * Figures the client supplied directly. Left exactly as given -- notably 100%
+ * for on-time delivery, which is a claim about their whole history and should
+ * be re-confirmed before it goes to print.
+ */
+const stats: Stat[] = [
+  { value: "2016", label: "Construyendo desde" },
+  { value: "150+", label: "Obras entregadas" },
+  { value: "50,000", label: "Metros cuadrados construidos" },
+  { value: "100%", label: "Entregas cumplidas" },
+];
+
+/**
+ * Landing copy. Formal register (usted), short sentences, warm rather than
+ * aspirational, per the brief's tone rules. The brand's own line --
+ * "Arquitectura que perdura", already in the logo -- is the through-line.
+ */
+export const home: HomePage = {
+  hero: {
+    // Deliberately not the "100% mexicana" badge: that claim is the utility
+    // bar's job and it sits directly above the hero. This line answers the
+    // question a visitor actually arrives with -- where do you work.
+    eyebrow: "Oaxaca · Sierra, Costa, Istmo y Centro",
+    headline: ["Arquitectura", "y construcción", "civil e industrial"],
+    subheadline:
+      "Proyectos de ingeniería civil y proyectos ejecutivos arquitectónicos.",
+    image: heroImage,
+    primary: { label: "Construcción con Casa Alta", href: whatsappHref },
+    // The contact section anchor, not /contacto: that route does not exist yet.
+    secondary: { label: "Agendar llamada", href: "/#contacto" },
+  },
+
+  stats,
+
+  intro: {
+    eyebrow: "Quiénes somos",
+    heading: "Arquitectura que perdura",
+    body: "Somos una constructora oaxaqueña dedicada a resolver todas las necesidades constructivas de un proyecto, desde los sistemas más vanguardistas hasta la construcción tradicional. Trabajamos con proyectos residenciales, comerciales e industriales, y con obra civil. Cada proyecto que llega a nuestras manos recibe una solución pensada para él: función, carácter y un resultado que se sostiene en el tiempo.",
+  },
+
+  services: {
+    eyebrow: "Servicios",
+    heading: "Lo que construimos",
+    body: "No todos los proyectos se resuelven con el mismo sistema. Estos son los frentes en los que trabajamos y las soluciones que ofrecemos en cada uno.",
+  },
+
+  projects: {
+    eyebrow: "Proyectos",
+    heading: "Obra construida",
+    body: "Una selección de lo que hemos entregado en Oaxaca. Cada proyecto tiene su propia lógica, su propio terreno y su propio clima.",
+  },
+
+  process: {
+    eyebrow: "Proceso",
+    heading: "Cómo trabajamos",
+    body: "Empezamos por escucharlo. De ahí sale un alcance, un presupuesto y un tiempo que después cumplimos.",
+  },
+
+  differentiators: {
+    intro: {
+      eyebrow: "Por qué Casa Alta",
+      heading: "Decisiones que se sostienen",
+      body: "La diferencia no está en lo que prometemos, sino en cómo decidimos cada partida de la obra.",
+    },
+    items: [],
+  },
+
+  testimonials: {
+    intro: {
+      eyebrow: "Clientes",
+      heading: "Lo que dicen de nosotros",
+      body: "",
+    },
+    items: [],
+  },
+
+  closing: {
+    heading: "Construir con Casa Alta es sencillo",
+    body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
+    cta: { label: "Contacto", href: whatsappHref },
+  },
+};

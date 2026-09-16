@@ -1,0 +1,71 @@
+import type { SiteConfig } from "@/types/content";
+
+/**
+ * Company-wide facts. Everything here came from the client brief or from the
+ * assets themselves -- nothing is invented, and fields that could not be
+ * confirmed are left empty with a note rather than guessed.
+ */
+export const site = {
+  name: "Casa Alta",
+  legalName: "Constructora Casa Alta",
+  /** Taken from the logo lockup itself, which already wordmarks it. */
+  tagline: "Arquitectura que perdura",
+  claim: "Empresa 100% mexicana",
+  foundedYear: 2016,
+  coverage: "Sierra, Costa, Istmo y Centro de Oaxaca",
+
+  // Every one of these resolves. The site is a single landing page so far, so
+  // the links point at that page's section anchors rather than at routes that
+  // would 404. They become real routes (/proyectos, /servicios, ...) when those
+  // pages ship; the `/#x` form already works from any future page too.
+  nav: [
+    { label: "Inicio", href: "/" },
+    { label: "Proyectos", href: "/#proyectos" },
+    { label: "Servicios", href: "/#servicios" },
+    { label: "Nosotros", href: "/#nosotros" },
+    { label: "Proceso", href: "/#proceso" },
+    { label: "Contacto", href: "/#contacto" },
+  ],
+
+  cta: { label: "Contacto", href: "/#contacto" },
+
+  // The first entry is the number every WhatsApp CTA points at.
+  contact: [
+    {
+      label: "Puerto Escondido",
+      value: "951 458 1395",
+      href: "tel:+529514581395",
+    },
+    {
+      label: "Salina Cruz",
+      value: "951 165 0678",
+      href: "tel:+529511650678",
+    },
+    {
+      label: "Correo",
+      value: "constructoracasaalta@outlook.com",
+      href: "mailto:constructoracasaalta@outlook.com",
+    },
+  ],
+
+  offices: [
+    { city: "Puerto Escondido", region: "Oaxaca" },
+    { city: "Salina Cruz", region: "Oaxaca" },
+  ],
+
+  // Facebook and TikTok handles were never supplied. They stay here with an
+  // empty href so the layout is already correct; the footer skips blank ones
+  // rather than rendering a dead link.
+  social: [
+    {
+      label: "Instagram",
+      href: "https://www.instagram.com/arquitecturacasaalta/",
+      icon: "instagram",
+    },
+    { label: "Facebook", href: "", icon: "facebook" },
+    { label: "TikTok", href: "", icon: "tiktok" },
+  ],
+} satisfies SiteConfig;
+
+/** Primary WhatsApp target, derived from the first contact line. */
+export const whatsappHref = "https://wa.me/529514581395";
