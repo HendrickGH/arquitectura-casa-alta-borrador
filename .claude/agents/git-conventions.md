@@ -27,11 +27,16 @@ This repo uses conventional commits, in English, with a scope. The scopes actual
 
 | Scope | Covers |
 |---|---|
+| `web` | `src/` — the Next.js app |
 | `images` | anything under `images-optimizado/`, and raw dumps landing in `images/` |
 | `tooling` | `tools/` — the pipeline scripts |
 | `agents` | `.claude/agents/` |
-| `docs` | `CLAUDE.md` and other prose |
+| `hooks` | `.claude/hooks/` |
+| `docs` | `CLAUDE.md`, `openspec/`, and other prose |
 | *(none)* | `chore:` for repo housekeeping, e.g. `.gitignore` |
+
+Keep each commit inside one scope. When a change spans two — say a pipeline script plus the
+images it produces — split it, rather than picking whichever scope seems dominant.
 
 Match the existing history's tone: lowercase, imperative, no trailing period, one line that
 says what changed. `feat(images): add AVIF-optimized set ordered by photographic quality` is

@@ -189,8 +189,10 @@ All are defined in `.claude/agents/`.
 ## Git conventions
 
 Conventional commits, in English, lowercase imperative, one line that says what changed. The
-scopes in use: `images` (both raw dumps and `images-optimizado/`), `tooling`, `agents`, `hooks`,
-`docs`, and bare `chore:` for repo housekeeping.
+scopes in use: `web` (`src/` — the Next.js app), `images` (both raw dumps and
+`images-optimizado/`), `tooling`, `agents`, `hooks`, `docs`, and bare `chore:` for repo
+housekeeping. `web` was added when the app landed; before that there was no scope for
+application code because there was no application.
 
 **Never add `Co-Authored-By`, a "Generated with" footer, or any AI attribution.** This is a
 standing rule for this repository.
