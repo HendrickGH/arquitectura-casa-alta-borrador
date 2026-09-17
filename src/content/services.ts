@@ -8,7 +8,7 @@ import type { ServiceGroup } from "@/types/content";
  * brief's tone rules. Nothing here mentions public-sector clients: that market
  * is a goal, not something the site states.
  *
- * "Arquitectura interior" carries the interiorismo / cocinas / Cosentino work.
+ * "Arquitectura interior" carries the interiorismo and premium-materials work.
  * The partner brand behind it is deliberately never named.
  */
 export const serviceGroups: ServiceGroup[] = [
@@ -40,8 +40,8 @@ export const serviceGroups: ServiceGroup[] = [
           "Cocinas premium",
           "Closets y vestidores",
           "Mobiliario sobre diseño",
-          "Fachadas Cosentino",
-          "Pisos y recubrimientos Cosentino",
+          "Fachadas en porcelánico y cuarzo",
+          "Pisos y recubrimientos en porcelánico",
           "Puertas residenciales",
           "Materiales premium",
         ],

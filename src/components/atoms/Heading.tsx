@@ -6,7 +6,7 @@ interface HeadingProps {
   children: React.ReactNode;
   as?: "h1" | "h2" | "h3" | "h4";
   /**
-   * display: Montserrat, uppercase, tight leading -- the Cosentino treatment.
+   * display: Montserrat, uppercase, tight leading -- the house display voice.
    * serif:   Marcellus, for project titles and the emotional line.
    * plain:   sentence-case sans, for smaller section headings.
    */

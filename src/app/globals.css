@@ -5,8 +5,8 @@
  *
  * Every value below was taken from an artifact, not invented: the blues are the
  * dominant colours sampled from the CASA ALTA logo files, the ink is the black
- * logo's own line colour, and the bone greys follow Cosentino's warm-neutral
- * scale rather than a pure grey ramp.
+ * logo's own line colour, and the bone greys follow a warm-neutral scale rather
+ * than a pure grey ramp.
  *
  * Tailwind v4 is CSS-first: there is no tailwind.config.js. Everything lives here.
  */
@@ -82,10 +82,10 @@
 
 @layer components {
   /*
-   * The signature display treatment, borrowed from Cosentino's type system:
-   * large, uppercase, and set with leading tighter than the cap height would
-   * normally allow. Cosentino runs 75px at line-height 0.73; the tightness is
-   * the point, so it is a shared class rather than repeated utility strings.
+   * The signature display treatment: large, uppercase, and set with leading
+   * tighter than the cap height would normally allow. The reference proportion
+   * is 75px at line-height 0.73; the tightness is the point, so it is a shared
+   * class rather than repeated utility strings.
    */
   .display {
     font-family: var(--font-sans);

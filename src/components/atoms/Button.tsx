@@ -14,9 +14,9 @@ interface ButtonProps {
 /**
  * The only place a filled brand-blue surface appears.
  *
- * Cosentino reserves yellow exclusively for CTAs and uses translucent chrome
- * everywhere else; the equivalent discipline here is that `primary` is the sole
- * user of the solid brand fill, so it always reads as the next action.
+ * One rule keeps the next action unambiguous: `primary` is the sole user of the
+ * solid brand fill, and everything else stays on translucent or bare chrome. A
+ * call to action that is also a background is no longer a call to action.
  */
 const variants: Record<Variant, string> = {
   primary: "bg-brand-800 text-white hover:bg-brand-900",

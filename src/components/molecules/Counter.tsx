@@ -12,9 +12,9 @@ function pad(value: number): string {
 }
 
 /**
- * The pagination treatment borrowed from Cosentino's carousel: a small counter
- * with a hairline progress bar under it. On a static grid the bar encodes how
- * much of the set is on screen, which is the same job it does on the carousel.
+ * The pagination treatment: a small counter with a hairline progress bar under
+ * it. On a static grid the bar encodes how much of the set is on screen, which
+ * is the same job it does on a carousel.
  */
 export function Counter({ current, total, className }: CounterProps) {
   const ratio = total > 0 ? Math.min(Math.max(current / total, 0), 1) : 0;
