@@ -1,10 +1,13 @@
 import { LandingTemplate } from "@/components/templates/LandingTemplate";
 import {
-  getFeaturedProjects,
   getHomePage,
+  getLandingPortfolio,
+  getMasonry,
+  getMomentPhoto,
   getProcessSteps,
   getServiceGroups,
   getSiteConfig,
+  getTiles,
 } from "@/lib/content";
 
 /**
@@ -20,7 +23,10 @@ export default function HomePage() {
   const home = getHomePage();
   const groups = getServiceGroups();
   const steps = getProcessSteps();
-  const projects = getFeaturedProjects();
+  const { featured, remaining } = getLandingPortfolio();
+  const tiles = getTiles();
+  const masonry = getMasonry();
+  const moment = getMomentPhoto();
 
   return (
     <LandingTemplate
@@ -28,7 +34,11 @@ export default function HomePage() {
       home={home}
       groups={groups}
       steps={steps}
-      projects={projects}
+      featured={featured}
+      remaining={remaining}
+      tiles={tiles}
+      masonry={masonry}
+      moment={moment}
     />
   );
 }

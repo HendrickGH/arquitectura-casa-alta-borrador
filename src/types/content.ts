@@ -168,9 +168,44 @@ export interface SectionIntro {
   body: string;
 }
 
+/* ---------- landing composition ---------- */
+
+/**
+ * The authored half of a category tile: which category, and the project whose
+ * work illustrates it. The label is joined in from `categoryLabels` and the
+ * photograph from the manifest, so no string or path is written twice.
+ */
+export interface CategoryTileContent {
+  category: ProjectCategory;
+  /** Manifest directory of the project the tile shows. */
+  projectDir: string;
+  /**
+   * The portfolio anchor until foundation's `/proyectos` route exists. One
+   * target for four categories beats four dead links to a route nobody built.
+   */
+  href: string;
+}
+
+/** A rendered tile: authored label, resolving target, photograph. */
+export interface CategoryTile {
+  label: string;
+  href: string;
+  photo: Photo;
+}
+
+/** One photograph of the masonry, with the project it was drawn from. */
+export interface MasonryItem {
+  photo: Photo;
+  /** Clean public slug; the masonry itself links nowhere yet. */
+  projectSlug: string;
+}
+
 export interface HomePage {
   hero: HeroContent;
   stats: Stat[];
+  /** The client's mission sentence, verbatim: the breath after the tiles. */
+  manifesto: string;
+  tiles: CategoryTileContent[];
   intro: SectionIntro;
   services: SectionIntro;
   projects: SectionIntro;

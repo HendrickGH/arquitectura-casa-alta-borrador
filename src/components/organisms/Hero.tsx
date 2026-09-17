@@ -38,15 +38,28 @@ function isExternal(href: string): boolean {
  * word cannot wrap: measured against the shipped Montserrat 600, "y construcción"
  * sets 9.325em wide. 7vw caps at 4rem, which keeps the whole three-line stack
  * above the fold on a 1440x900 viewport alongside a 48svh photograph.
+ *
+ * The shell is one visual viewport tall, in `svh` and not `vh` -- `vh` measures
+ * the viewport without the collapsed mobile URL bar, so a full-height hero built
+ * on it overflows the area a phone actually shows. `min-h-svh` rather than a
+ * fixed height: the photograph keeps its 48svh band and the block below it takes
+ * the rest, so a short viewport scrolls instead of cropping the type.
+ *
+ * WHAT IS NOT HERE YET. The type still sits on clean ground below the photograph
+ * rather than inside that photograph's clean zone. That placement needs a
+ * photograph chosen by measurement -- a zone large enough for the block, with
+ * the contrast recorded in the rendered composition -- and no candidate has been
+ * measured yet. The shell and the block move together when one passes; until
+ * then the shipped composition stands, and the shell does not pretend otherwise.
  */
 export function Hero({ hero }: HeroProps) {
   return (
-    <section className="bg-canvas">
-      <div className="relative h-[48svh] min-h-[340px] w-full overflow-hidden bg-bone-100">
+    <section className="flex min-h-svh flex-col bg-canvas">
+      <div className="relative h-[48svh] min-h-[340px] w-full shrink-0 overflow-hidden bg-bone-100">
         <Photo photo={hero.image} sizes="100vw" priority />
       </div>
 
-      <Container className="pt-12 pb-16 md:pt-16 md:pb-24">
+      <Container className="flex flex-1 flex-col pt-12 pb-16 md:pt-16 md:pb-24">
         <div className="flex flex-col items-start gap-6">
           {/*
             The kicker answers "where do these people work", which is the first

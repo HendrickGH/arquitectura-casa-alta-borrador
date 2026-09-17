@@ -13,7 +13,21 @@ interface PhotoProps {
   className?: string;
   /** Above the fold only. Sets fetchpriority="high" and drops lazy loading. */
   priority?: boolean;
+  /**
+   * `cover` fills a fixed aspect box and crops; `intrinsic` keeps the photo's
+   * own ratio, which is what a masonry column needs.
+   *
+   * A prop rather than a class the caller appends: `h-full` and `h-auto` land
+   * in the same layer, so which one wins would depend on their order in the
+   * stylesheet rather than on the order they were written.
+   */
+  fit?: "cover" | "intrinsic";
 }
+
+const fits: Record<NonNullable<PhotoProps["fit"]>, string> = {
+  cover: "h-full w-full object-cover",
+  intrinsic: "h-auto w-full",
+};
 
 /**
  * The only component that renders an image.
@@ -27,6 +41,7 @@ export function Photo({
   sizes,
   className,
   priority = false,
+  fit = "cover",
 }: PhotoProps) {
   return (
     <Image
@@ -36,7 +51,7 @@ export function Photo({
       height={photo.height}
       sizes={sizes}
       priority={priority}
-      className={cx("h-full w-full object-cover", className)}
+      className={cx(fits[fit], className)}
     />
   );
 }

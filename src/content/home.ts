@@ -1,4 +1,9 @@
-import type { HomePage, Photo, Stat } from "@/types/content";
+import type {
+  CategoryTileContent,
+  HomePage,
+  Photo,
+  Stat,
+} from "@/types/content";
 import { whatsappHref } from "./site";
 
 /** The landing hero. Encoded by tools/hero.sh, served through the image loader. */
@@ -22,6 +27,40 @@ const stats: Stat[] = [
 ];
 
 /**
+ * The four categories the tiles show, each illustrated by one project that has
+ * the work for it. Only the mapping is authored here: the label comes from
+ * `categoryLabels` in projects.ts and the photograph from the manifest, so the
+ * tile renders whatever the archive holds for that project.
+ *
+ * Four, not seven: `industrial` has no project, `interiorismo` is not a
+ * published project type, and Espacio público is a single project whose
+ * category is better stated by the Capilla than by a tile. The four that
+ * remain are the ones the studio's own portfolios are grouped under.
+ */
+const tiles: CategoryTileContent[] = [
+  {
+    category: "habitacional",
+    projectDir: "07-casa-tarrastro",
+    href: "/#proyectos",
+  },
+  {
+    category: "multifamiliar",
+    projectDir: "10-obra-punta-zicatela",
+    href: "/#proyectos",
+  },
+  {
+    category: "comercial",
+    projectDir: "05-cafe-malagua",
+    href: "/#proyectos",
+  },
+  {
+    category: "obra-civil",
+    projectDir: "11-columnas-c1-c2",
+    href: "/#proyectos",
+  },
+];
+
+/**
  * Landing copy. Formal register (usted), short sentences, warm rather than
  * aspirational, per the brief's tone rules. The brand's own line --
  * "Arquitectura que perdura", already in the logo -- is the through-line.
@@ -42,6 +81,15 @@ export const home: HomePage = {
   },
 
   stats,
+
+  // The client's own sentence from §2 of the brief ("Misión o propósito"),
+  // verbatim, rendered nowhere until now. It replaced §7's "Arquitectura y
+  // construcción que perdura" as the page's emotional line: that one restates
+  // the logo's tagline, already in site.ts and repeated in the intro below.
+  manifesto:
+    "Ser una empresa que solucione todas las soluciones constructivas y dar función y carácter a cada proyecto que llega a nuestras manos.",
+
+  tiles,
 
   intro: {
     eyebrow: "Quiénes somos",

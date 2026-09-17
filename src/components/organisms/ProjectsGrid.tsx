@@ -1,71 +1,53 @@
 import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
-import { Counter } from "@/components/molecules/Counter";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
-import { SectionHeading } from "@/components/molecules/SectionHeading";
-import type { Project, SectionIntro } from "@/types/content";
+import type { Project } from "@/types/content";
 
 interface ProjectsGridProps {
-  intro: SectionIntro;
   projects: Project[];
   tone?: "canvas" | "bone";
-  /** Anchor target, so the header nav can link straight to this section. */
-  id?: string;
 }
 
+/** Three columns from 1200px, two from 768px: the CSS below is what makes it true. */
+const CARD_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
+
 /**
- * The built work, on a two-column grid. The first project is the featured one:
- * it spans both columns and is therefore twice as tall as the single cells
- * under it, which is what makes the grid read as a selection rather than a
- * gallery. Five of six featured projects then land as two, two and one, so the
- * last row is deliberately short.
+ * The portfolio's second row: the projects the featured row did not take, three
+ * up from 1200px. A project appears once, so this renders whatever the seam
+ * left rather than a second copy of the ranking.
  *
- * Two columns rather than four is the measured choice: on a four-column grid a
- * single cell is 200px at 1024px, and a 48px serif project title needs 341px
- * for "Departamentos" alone. Two columns give that cell 432px.
+ * No heading and no top padding of its own. It continues the row above it on
+ * the other tone instead of opening a second portfolio section, which is why
+ * the section that leads the portfolio carries the only projects heading on the
+ * page.
  *
- * `sizes` follows the grid exactly -- full width below 768px, half above it --
- * because the custom loader picks the file from it.
+ * The top padding is zeroed at every breakpoint rather than at the base only:
+ * Tailwind's responsive utilities land after their unprefixed counterparts in
+ * the stylesheet, so a bare `pt-0` would lose to `md:py-28` and `lg:py-36` and
+ * the row would drift away from the one it continues.
+ *
+ * The column chain is written as arbitrary variants at BOTH steps, not as `md:`
+ * plus `min-[1200px]:`, and that is not a style preference. Tailwind emits its
+ * arbitrary-value media variants in an earlier pass than the named breakpoints,
+ * so a bare `md:` rule wins against `min-[1200px]:` on the same property however
+ * the class list is ordered. Measured on the built stylesheet: the 1200px block
+ * sits ~500 bytes before the 48rem block, and the grid rendered two columns wide
+ * at 1440px until both steps were moved into the same bucket. Tailwind's own
+ * `xl` is 1280px and is not the answer either -- the tier says 1200px, and a
+ * layout whose CSS disagrees with its own label mis-serves the loader.
  */
-export function ProjectsGrid({
-  intro,
-  projects,
-  tone = "canvas",
-  id,
-}: ProjectsGridProps) {
-  const [featured, ...rest] = projects;
-  if (!featured) return null;
+export function ProjectsGrid({ projects, tone = "bone" }: ProjectsGridProps) {
+  if (projects.length === 0) return null;
 
   return (
-    <Section id={id} tone={tone}>
+    <Section tone={tone} className="pt-0 md:pt-0 lg:pt-0">
       <Container>
-        <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
-          <SectionHeading
-            eyebrow={intro.eyebrow}
-            heading={intro.heading}
-            body={intro.body}
-          />
-          <Counter current={1} total={projects.length} className="md:pb-2" />
-        </div>
-
-        <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
-          <div className="md:col-span-2">
-            {/* wideCover, not cover: this slot is full width, and four of the
-                six featured covers are portrait -- stretched across ~1310px a
-                1200x1600 photo is being upscaled by the browser. */}
-            <ProjectCard
-              project={featured}
-              photo={featured.wideCover}
-              sizes="100vw"
-              priority
-            />
-          </div>
-
-          {rest.map((project) => (
+        <div className="grid grid-cols-1 gap-x-8 gap-y-14 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
+          {projects.map((project) => (
             <ProjectCard
               key={project.slug}
               project={project}
-              sizes="(min-width: 768px) 50vw, 100vw"
+              sizes={CARD_SIZES}
             />
           ))}
         </div>

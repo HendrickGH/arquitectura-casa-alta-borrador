@@ -27,7 +27,11 @@ type ProjectContent = Omit<
   "cover" | "wideCover" | "photos" | "photoCount"
 >;
 
-const categoryLabels: Record<ProjectCategory, string> = {
+/**
+ * The category labels. Exported so the landing's tiles reuse them instead of
+ * restating four of them, which is how the two drift apart.
+ */
+export const categoryLabels: Record<ProjectCategory, string> = {
   habitacional: "Habitacional",
   multifamiliar: "Multifamiliar",
   comercial: "Comercial",
@@ -143,15 +147,17 @@ export const projectContent: Record<string, ProjectContent> = {
 };
 
 /**
- * Landing order. El Bicho leads because it is the only project with a confirmed
- * story and a hero-grade cover; the rest follow the pipeline's quality ranking,
- * which is what tools/priority.txt encodes.
+ * Landing order. The brief's §0 decision fixes the first three: the numeric
+ * prefix IS the ranking, so Plaza Esmeralda, El Bicho and Casa Blake lead the
+ * portfolio in that order, 01 first. The rest follow the same ranking and fill
+ * the row under them -- the featured three and this tail are split in the seam,
+ * so no project lands on the page twice.
  */
 export const featuredProjectDirs = [
-  "02-el-bicho",
-  "10-obra-punta-zicatela",
-  "03-casa-blake-tlalixtac",
-  "08-rbnb-palmarito",
   "01-plaza-esmeralda-puerto-escondido",
+  "02-el-bicho",
+  "03-casa-blake-tlalixtac",
+  "10-obra-punta-zicatela",
+  "08-rbnb-palmarito",
   "12-vilas-cavan",
 ];
