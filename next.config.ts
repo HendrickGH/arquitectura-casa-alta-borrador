@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   images: {
     // The optimized set already exists and was hand-tuned (AVIF q62, tiers chosen
-    // from measurements recorded in CLAUDE.md). A custom loader serves those exact
+    // from measurements recorded in AGENTS.md). A custom loader serves those exact
     // files instead of letting Netlify Image CDN re-derive them, because Netlify's
     // content negotiation prefers WebP over AVIF and WebP measurably grows this
     // corpus (q82 lands at 100-102% of the original). See src/lib/image/loader.ts.

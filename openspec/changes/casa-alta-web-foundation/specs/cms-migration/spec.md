@@ -1,7 +1,7 @@
 # Delta for CMS Migration
 
 **Change:** `casa-alta-web-foundation` · **Capability:** `cms-migration` · **Delta:** ADDED
-**Status:** the content seam is implemented and verified; the Payload replacement is a named deferred stage that is NOT implemented.
+**Status:** **SUSPENDED.** Requirements 1 to 3 — the content seam — are implemented and verified. The Payload replacement is **suspended until further notice**: it is a possible future, not a committed decision. Do not build toward it, do not reserve scope for it, and do not read the seam's readiness as an argument to schedule it. The seam stays exactly as it is, and that is what keeps the option cheap if it is ever taken.
 
 ## ADDED Requirements
 
@@ -41,7 +41,7 @@ Components MUST receive every value they render through props and MUST NOT read 
 
 The Payload migration MUST change `src/lib/content/index.ts` alone. Accessors MAY become asynchronous; where they do, `src/app/page.tsx` MUST become async and `src/app/layout.tsx` MUST move from a module-scope `metadata` export to `generateMetadata`. All 31 components MUST remain untouched, and `src/content/*.ts` MAY become seed data or be removed.
 
-**This requirement is NOT implemented.** Payload CMS is out of scope for this change; the seam is the deliverable here, and the migration is a later change.
+**This requirement is SUSPENDED.** Payload CMS is not committed to be built, and no other requirement in this change depends on it. Nothing here is scheduled.
 
 #### Scenario: Payload is introduced
 - GIVEN Payload is configured and the seam is rewritten against it

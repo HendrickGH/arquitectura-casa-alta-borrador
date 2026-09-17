@@ -2,7 +2,7 @@
 
 **Change:** `casa-alta-web-foundation` · **Phase:** sdd-propose · **Date:** 2026-09-16
 **Artifact store:** openspec · **Repo:** `/Users/hendrick/Documents/arquitectura-casa-alta-web`
-**Inputs:** `openspec/changes/casa-alta-web-foundation/exploration.md`, `openspec/config.yaml`, `CLAUDE.md`
+**Inputs:** `openspec/changes/casa-alta-web-foundation/exploration.md`, `openspec/config.yaml`, `AGENTS.md`
 
 ## Intent
 
@@ -23,7 +23,7 @@ Stated before scope, per `openspec/config.yaml` → `rules.proposal`.
 | Numeric path prefixes (`01-`…`14-`, photo ordinals) | **Indirectly** | Clean public image URLs are a **routing** change. `01-casa-blake-tlalixtac` maps to `casa-blake-tlalixtac` in code; **no file or folder is renamed.** |
 | `images/` read-only tree | **No** | Nothing in this change writes, renames or deletes under `images/`. `images/hero/` and `images/brand/` were added earlier and are already there. |
 | Pipeline ownership of `images-optimizado/` | **Yes — one item** | Normalising variant widths is a `tools/variants.sh` change that regenerates `images-optimizado/`, which is why it carries the strictest rollback below. |
-| No `git add -A`; binaries are permanent | **Yes** | Any regeneration must be staged deliberately. `.claude/hooks/git-guard.sh` warns above 50 staged files or ≥20 MB. |
+| No `git add -A`; binaries are permanent | **Yes** | Any regeneration must be staged deliberately. `.hermes/hooks/git-guard.sh` warns above 50 staged files or ≥20 MB. |
 
 **Compliance:** this proposal renumbers **no** published project folder and **no** photo
 ordinal, and proposes none. Reordering stays the `order` field in `manifest.json`.
@@ -59,7 +59,7 @@ Ordered by what unblocks the most. **E** = engineering, **C** = needs client inp
 | 9 | Testimonial capture from real clients | C |
 | 10 | Pipeline: normalise variant widths in `tools/variants.sh` | E |
 | 11 | Pipeline: remove 7 hardcoded absolute paths across 6 files | E |
-| 12 | Payload CMS behind the seam — **deferred stage**, see Out of Scope | E |
+| 12 | Payload CMS behind the seam — **SUSPENDED**, not deferred: building it is a possibility, not a decision. See Out of Scope | — |
 
 ## Capabilities
 
@@ -73,7 +73,7 @@ Ordered by what unblocks the most. **E** = engineering, **C** = needs client inp
 - `site-pages`: services, process, about and contact routes.
 - `image-url-routing`: clean public image URLs with no filesystem rename.
 - `editorial-content`: client-confirmed project data and site identity (social, logo).
-- `cms-migration`: Payload CMS replacing `src/lib/content/index.ts` reads only.
+- `cms-migration`: Payload CMS replacing `src/lib/content/index.ts` reads only. **SUSPENDED** — the seam is real and verified, the replacement is only a possibility.
 
 ## Approach
 
@@ -83,8 +83,11 @@ Ordered by what unblocks the most. **E** = engineering, **C** = needs client inp
 3. **Routing before content depth**: detail pages, clean image URLs, `href` on `ProjectCard`.
    The hover states already exist and are dormant (`ProjectCard` takes optional `href`).
 4. **Client-dependent items last**, gated on confirmed input, never on invented copy.
-5. **Payload last of all**, behind the intact seam: 9 accessors become async reads;
-   `src/lib/content/photos.ts` and `src/types/content.ts` stay unchanged.
+5. **Payload out of the plan entirely (SUSPENDED).** It is not the last item — it is not an item.
+   Replacing the content source is a possibility, not a decision, so nothing is sequenced toward
+   it. The seam stays intact regardless: 9 accessors would become async reads, and
+   `src/lib/content/photos.ts` and `src/types/content.ts` would stay unchanged — which is exactly
+   why leaving it suspended costs nothing today.
 
 ## Affected Areas
 
@@ -117,7 +120,7 @@ Named, not resolved. Each needs a human decision.
 4. **`convert.sh` begins with `rm -rf "$OUT"`** and depends on `/tmp/casa-alta-work/plan.txt`,
    which is not durable. A bare single-script re-run fails; the rebuild path is the full
    six-step pipeline.
-5. **`CLAUDE.md` is stale in four places** — it still opens with *"There is no application code
+5. **`AGENTS.md` is stale in four places** — it still opens with *"There is no application code
    yet"*, says *"the site app does not exist yet"*, omits `src/`, `public/`, `openspec/` and
    `next.config.ts` from its layout, and its binary counts have drifted (measured 2026-09-16:
    `images/` 215 files / 74 MB; `images-optimizado/` 808 files / 125 MB).
@@ -158,8 +161,10 @@ The change is staged, so rollback is per stage, not all-or-nothing.
 
 - **A test runner.** `openspec/config.yaml` records `strict_tdd: false` and forbids inventing
   one as a side effect of another change.
-- **Payload CMS in this change.** The seam is ready and the migration surface is one file; it
-  is a named deferred stage, not current scope.
+- **Payload CMS.** **SUSPENDED until further notice**, not deferred-and-planned. Replacing the
+  content source is a possibility, not a committed decision; nothing is scheduled for it and
+  nothing should be shaped around it. The seam is ready and the migration surface is one file,
+  which is what keeps the option cheap — not a reason to take it.
 - Re-encoding the `.jpg` fallbacks, or reintroducing Netlify Image CDN (WebP q82 measures
   100–102% of the original on this corpus).
 - Renaming any path that changes a numeric prefix, or writing under `images/`.

@@ -11,7 +11,7 @@
 
 ## 0. Why this change exists
 
-This change documents work that is **already built and working** alongside the work that remains. The repository crossed a boundary: `CLAUDE.md` still opens with *"There is no application code yet"*, and that is no longer true. A Next.js 16 landing page exists, builds green, and is served through a hand-tuned image pipeline.
+This change documents work that is **already built and working** alongside the work that remains. The repository crossed a boundary: `AGENTS.md` still opens with *"There is no application code yet"*, and that is no longer true. A Next.js 16 landing page exists, builds green, and is served through a hand-tuned image pipeline.
 
 A session is closing. The purpose of this artifact is that the next reader — who was not here, and who cannot rely on this conversation — loses nothing. Everything expensive to rediscover is recorded here, including the measurements that were paid for with failed attempts.
 
@@ -88,7 +88,7 @@ There is exactly one content route. `/_not-found` is generated. This is the mach
 | `exclusions.txt` | 2 entries: a CGI render carrying the CASA ALTA logo, and a plan-board/render sheet | data |
 | `last-plan.txt` | **checked into git** — 206 rows, the ranking provenance (`order\|projSlug\|idx\|slug\|originalPath`) | data |
 
-`priority.txt` order matches the `01`–`14` prefix order recorded in `CLAUDE.md`, and matches `manifest.json`'s per-project `order` exactly (verified project by project).
+`priority.txt` order matches the `01`–`14` prefix order recorded in `AGENTS.md`, and matches `manifest.json`'s per-project `order` exactly (verified project by project).
 
 ### 1.5 `package.json` scripts
 
@@ -140,7 +140,7 @@ Two supporting rules make the seam hold:
 `src/lib/content/photos.ts` is the only place that knows how a photo's on-disk identity maps to a web path (`photoSrc`). It imports `@images/manifest.json` — a `tsconfig.json` path alias onto `./images-optimizado/*`, so the pipeline's own output is the source of truth with no copy step.
 
 It also enforces two policy decisions that would otherwise leak into components:
-- `getProjectPhotos()` filters `photo.score >= 3`, implementing `CLAUDE.md`'s *"never publish the 1/5 and 2/5 photos."*
+- `getProjectPhotos()` filters `photo.score >= 3`, implementing `AGENTS.md`'s *"never publish the 1/5 and 2/5 photos."*
 - `getProjectCover(dir, title, orientation)` prefers a landscape source for full-width slots, because four of the six featured covers are portrait and a 1200x1600 photo stretched across a 1310px card is being upscaled by the browser. Falls back to rank-1 so it never returns `null` for a project that has photos.
 
 `buildProject()` in `index.ts` requires **both halves** — editorial data *and* a manifest entry *and* a cover — and returns `null` otherwise, so a half-configured project renders nothing rather than an empty card.
@@ -335,7 +335,7 @@ No re-encoding happens at request time. No image CDN is involved. The bytes serv
 
 Each row names its provenance. Do not re-derive, and do not silently reverse.
 
-### 4.1 Format and pipeline (`CLAUDE.md`, "Measured facts" — measured on this corpus)
+### 4.1 Format and pipeline (`AGENTS.md`, "Measured facts" — measured on this corpus)
 
 | Fact | Value |
 |---|---|
@@ -368,15 +368,15 @@ Stated conclusion, to be preserved rather than optimisticised: **the format chan
 | Next's default `deviceSizes` start | **640** — makes the 480 tier unreachable and doubles what a phone downloads |
 | Chosen `deviceSizes` | `[480, 960, 1600, 2000]` |
 | Winner's mean delivered/requested ratio | **0.927** — the lowest of the candidate sets measured across the corpus |
-| Independent support (`CLAUDE.md`) | a 20-photo gallery drops from 3.4 MB to ~460 KB on mobile with correct `srcset` + `sizes` |
+| Independent support (`AGENTS.md`) | a 20-photo gallery drops from 3.4 MB to ~460 KB on mobile with correct `srcset` + `sizes` |
 
 ---
 
-## 5. Repository constraints (`CLAUDE.md` — binding)
+## 5. Repository constraints (`AGENTS.md` — binding)
 
 These are not style preferences. Each has a mechanism behind it.
 
-1. **`images/` is read-only, including in git.** Never write to it, never rename inside it, never modify a file already tracked there. Enforced by `.claude/hooks/git-guard.sh`.
+1. **`images/` is read-only, including in git.** Never write to it, never rename inside it, never modify a file already tracked there. Enforced by `.hermes/hooks/git-guard.sh`.
 2. **Never rename a path that changes a numeric prefix.** Both the project folder (`01-`) and the photo ordinal are published URLs. A `git mv` that renumbers breaks the link and discards accumulated search ranking. Also enforced by `git-guard.sh`.
 3. **Reordering is the `order` field in `manifest.json`** (and `tools/priority.txt`) — never a filesystem rename. When a new photo outranks existing ones, record its rank as data and let the site order by it.
 4. **Never `git add -A` after a pipeline run.** Stage deliberately. `git-guard.sh` *warns* (does not block) above 50 staged files in `images-optimizado/` or ≥20 MB of new content.
@@ -385,9 +385,9 @@ These are not style preferences. Each has a mechanism behind it.
 7. **The `.jpg` is never re-encoded**; `images-optimizado/` is generated output — regenerate through `tools/`, never hand-edit.
 8. **Never publish the 1/5 and 2/5 photos.** 62 of 206 sit at the end of each folder. *"A portfolio is judged by its worst photo."* Implemented in `getProjectPhotos()`.
 
-### 5.1 Current binary weight — measured, and drifted from `CLAUDE.md`
+### 5.1 Current binary weight — measured, and drifted from `AGENTS.md`
 
-| Tree | `CLAUDE.md` says | Measured 2026-09-16 |
+| Tree | `AGENTS.md` says | Measured 2026-09-16 |
 |---|---|---|
 | `images/` | 211 files / ~71 MB | **215 files / 74 MB** |
 | `images-optimizado/` | 803 files / ~121 MB | **808 files / 125 MB** |
@@ -400,16 +400,17 @@ Drift is accounted for: `images/brand/` (2 files), `images/hero/` (1 file) are n
 
 | Hook | Event | Behaviour |
 |---|---|---|
-| `.claude/hooks/git-guard.sh` | `PreToolUse` on `Bash(git *)` | **Denies** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** above 50 staged files in `images-optimizado/`, or ≥20 MB of new content |
-| `.claude/hooks/format.sh` | `PostToolUse` on `Write\|Edit` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` **only** — deliberately skips `.json` (would churn `manifest.json` against its owning pipeline) and `.md`. No-ops if no Prettier is found |
+| `.hermes/hooks/git-guard.sh` | `pre_tool_call` on the `terminal` tool | **Denies** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** above 50 staged files in `images-optimizado/`, or ≥20 MB of new content |
+| `.hermes/hooks/format.sh` | `post_tool_call` on `write_file\|patch` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` **only** — deliberately skips `.json` (would churn `manifest.json` against its owning pipeline) and `.md`. No-ops if no Prettier is found |
 
-Both are wired in `.claude/settings.json`. **Hook scripts run in a non-interactive shell** — no aliases, no functions, no nvm-activated `PATH`. `rg`, `bat`, `fd` and `eza` are unavailable inside a hook; use `/usr/bin` tooling only.
+Both are wired in `~/.hermes/config.yaml` under `hooks:`, not in a file inside this repo, and the
+scripts self-scope so they are inert outside it. **Hook scripts run in a non-interactive shell** — no aliases, no functions, no nvm-activated `PATH`. `rg`, `bat`, `fd` and `eza` are unavailable inside a hook; use `/usr/bin` tooling only.
 
-### 5.3 Agents (`.claude/agents/`)
+### 5.3 Project skills (`.hermes/skills/`)
 
 - **`image-pipeline`** — ingests new photos into `images/` and regenerates the optimized set.
 - **`web-build`** — builds gallery markup, SEO metadata, image sitemap and JSON-LD from `manifest.json`.
-- **`git-conventions`** — stages and commits using the repo's conventional-commit vocabulary; guards the git hazards. **Has no `Write`/`Edit` tool on purpose**, so it cannot modify what it commits.
+- **`git-conventions`** — stages and commits using the repo's conventional-commit vocabulary; guards the git hazards. **Must not use `write_file` or `patch`**, so it cannot modify what it commits. Hermes cannot restrict a skill's toolset the way the Claude Code `tools:` line did, so this is a rule the skill carries rather than a harness guarantee.
 
 ---
 
@@ -436,7 +437,7 @@ So a single `git add -A` commits two lockfiles for two different package manager
 
 ### 6.2 No `netlify.toml` — **verified**
 
-Netlify is the deploy target (per `CLAUDE.md`, `openspec/config.yaml`, and the whole rationale for the custom loader avoiding Netlify Image CDN), but no `netlify.toml` exists anywhere in the repository and `.gitignore` only ignores `/.netlify/` (the local build cache). Build command, publish directory, Node version and the `@netlify/plugin-nextjs` requirement are all undeclared.
+Netlify is the deploy target (per `AGENTS.md`, `openspec/config.yaml`, and the whole rationale for the custom loader avoiding Netlify Image CDN), but no `netlify.toml` exists anywhere in the repository and `.gitignore` only ignores `/.netlify/` (the local build cache). Build command, publish directory, Node version and the `@netlify/plugin-nextjs` requirement are all undeclared.
 
 ### 6.3 No test runner — **verified**
 
@@ -486,7 +487,7 @@ The type, the component (`Testimonials` returns `null` on an empty array) and th
 
 Two distinct problems:
 1. `Logo.tsx` states the intent: *"The line art and the wide-tracked wordmark want to be an SVG; until the vector arrives, 354px wide at 2x covers the header."*
-2. **The derivation is unscripted.** No file in `tools/` or `.claude/` produces `public/brand/logo-casa-alta.png`. Its 354×160 aspect (2.21) matches neither source (1.00 and 1.50), so it is a trimmed lockup that came from somewhere outside the repository. It cannot currently be regenerated.
+2. **The derivation is unscripted.** No file in `tools/` or `.hermes/` produces `public/brand/logo-casa-alta.png`. Its 354×160 aspect (2.21) matches neither source (1.00 and 1.50), so it is a trimmed lockup that came from somewhere outside the repository. It cannot currently be regenerated.
 
 ### 6.8 Project detail routes do not exist, and `ProjectCard` is built around that — **verified**
 
@@ -507,11 +508,11 @@ tools/champions.sh:9   tools/build-sheets.sh:11  tools/manifest.pl:9
 
 All are `"/Users/hendrick/Documents/arquitectura-casa-alta-web/..."`. Only `tools/hero.sh` (`cd "$(dirname "$0")/.."`), `tools/sync-images.mjs` and `tools/check-image-urls.mjs` (both `fileURLToPath(import.meta.url)`) are location-independent. **The pipeline cannot currently run from another checkout or another machine.**
 
-Note that the three Node scripts are the *new* ones; the Perl/Bash stages predate them. Also note `variants.sh:72` and `convert.sh:84` call `fd` and `rg` respectively — tools that `CLAUDE.md` warns are absent inside hooks.
+Note that the three Node scripts are the *new* ones; the Perl/Bash stages predate them. Also note `variants.sh:72` and `convert.sh:84` call `fd` and `rg` respectively — tools that `AGENTS.md` warns are absent inside hooks.
 
 ### 6.10 `convert.sh` is destructive by design
 
-`tools/convert.sh:37` runs `rm -rf "$OUT"` before converting. `CLAUDE.md` calls `images-optimizado/` *"Safe to delete and regenerate"*, and that holds — but regeneration requires the pipeline to have run in order (`plan.txt` under `/tmp/casa-alta-work/`), and `/tmp` is not durable. **A bare `convert.sh` run without the plan stages present will fail.** The rebuild path is the full six-step pipeline, not one script.
+`tools/convert.sh:37` runs `rm -rf "$OUT"` before converting. `AGENTS.md` calls `images-optimizado/` *"Safe to delete and regenerate"*, and that holds — but regeneration requires the pipeline to have run in order (`plan.txt` under `/tmp/casa-alta-work/`), and `/tmp` is not durable. **A bare `convert.sh` run without the plan stages present will fail.** The rebuild path is the full six-step pipeline, not one script.
 
 ---
 
@@ -523,12 +524,12 @@ Verified against the route table, the file tree, and the content modules.
 |---|---|---|
 | **Project detail pages** (`/proyectos/<slug>`) | route table shows only `/` and `/_not-found`. `ProjectCard` has a dormant `href` prop waiting | Yes — the portfolio has no depth |
 | **Services / process / about / contact pages** | routes absent; nav links to `/#anchor` instead | Partial — anchors serve today |
-| **Image sitemap (`image:image`)** | no `sitemap.ts`, no `robots.ts`, no sitemap output in the build | Yes — `CLAUDE.md`: *"Architecture firms get real traffic from Google Images"* |
+| **Image sitemap (`image:image`)** | no `sitemap.ts`, no `robots.ts`, no sitemap output in the build | Yes — `AGENTS.md`: *"Architecture firms get real traffic from Google Images"* |
 | **`ImageObject` JSON-LD** | no structured data anywhere in `src/` | Yes — same reason |
-| **Per-photo `alt` as authored copy** | **partially built**: `photos.ts` derives `alt` from the manifest's `note` (a real Spanish description written during ranking) joined to the project title. `CLAUDE.md`'s rule is satisfied in spirit and mechanically | No — but real per-photo prose would be better |
+| **Per-photo `alt` as authored copy** | **partially built**: `photos.ts` derives `alt` from the manifest's `note` (a real Spanish description written during ranking) joined to the project title. `AGENTS.md`'s rule is satisfied in spirit and mechanically | No — but real per-photo prose would be better |
 | **Payload CMS** | not present; the seam is ready (§2.3) | No — deferred by design |
 | **Netlify deploy config** | no `netlify.toml` (§6.2) | Yes — deploy is undeclared |
-| **Clean public image URLs** | files are served at `/images/01-plaza-esmeralda-…/01-….avif`, numeric prefix intact. `CLAUDE.md`: *"Keep the numeric prefix out of public URLs"* | Yes for SEO — and **must not be fixed by renaming files** (§5.2) |
+| **Clean public image URLs** | files are served at `/images/01-plaza-esmeralda-…/01-….avif`, numeric prefix intact. `AGENTS.md`: *"Keep the numeric prefix out of public URLs"* | Yes for SEO — and **must not be fixed by renaming files** (§5.2) |
 | **Test runner** | none (§6.3) | Deferred by policy, not by accident |
 | **`opengraph-image` / social cards** | no `opengraph-image.tsx`, no `twitter:card` | Minor |
 | **SVG logo** | none exists (§6.7) | Cosmetic-but-real |
@@ -560,7 +561,7 @@ Measured against this repository's own build output (§3.10), the label can be *
 
 `next.config.ts:27` records the winner: *"this one has the lowest mean delivered/requested ratio (0.927)."*
 
-**The other three candidates and their scores appear nowhere.** Searched: all source, all tooling, `CLAUDE.md`, `openspec/config.yaml`, all files matching `0.8xx`/`0.9xx`, `git stash list` (empty), and `git log --all -- next.config.ts` — which returns **nothing, because `next.config.ts` is untracked**. It has no history to recover from. The losing candidates are **UNVERIFIED** and must not be reconstructed by inference.
+**The other three candidates and their scores appear nowhere.** Searched: all source, all tooling, `AGENTS.md`, `openspec/config.yaml`, all files matching `0.8xx`/`0.9xx`, `git stash list` (empty), and `git log --all -- next.config.ts` — which returns **nothing, because `next.config.ts` is untracked**. It has no history to recover from. The losing candidates are **UNVERIFIED** and must not be reconstructed by inference.
 
 ### 8.4 `next.config.ts` says "there are 8 other signatures" — **does not reproduce**
 
@@ -578,7 +579,7 @@ pnpm owns the tree (`.pnpm/`, `.modules.yaml`, `pnpm-workspace.yaml`), but npm h
 
 `manifest.json` and the pipeline carry none of these — confirmed. But **project titles and one location do exist in the repository**, hand-authored in `src/content/projects.ts`. The comment inside that very file (*"There is no project title, location, year, client or story anywhere in the repository"*) is now **overstated by its own file's contents** — the pipeline drops them, and the editorial layer supplies them. Worth correcting when that file is next touched.
 
-### 8.7 `CLAUDE.md` is stale in three places
+### 8.7 `AGENTS.md` is stale in three places
 
 1. Opening line: *"There is no application code yet"* — false; 48 source files and a green production build.
 2. Hooks section: *"the site app does not exist yet"* — false; `format.sh`'s no-op fallback is no longer the expected path.
@@ -606,12 +607,12 @@ Ordered by what unblocks the most.
 
 1. **Decide the lockfile question** (§6.1). One package manager, one committed lockfile, the other ignored. Cheap now, expensive after a `git add -A`.
 2. **Add `netlify.toml`** (§6.2) — deploy target, build command, publish directory, Node version, `@netlify/plugin-nextjs`. Nothing can be deployed reproducibly without it.
-3. **Deliver the SEO layer that `CLAUDE.md` already specifies**: image sitemap (`image:image`), `ImageObject` JSON-LD, `robots.txt`, `opengraph-image`. The `.data` already exists in `manifest.json` and has since the pipeline ran. This is the largest unclaimed win in the repository, and the `web-build` agent exists for it.
+3. **Deliver the SEO layer that `AGENTS.md` already specifies**: image sitemap (`image:image`), `ImageObject` JSON-LD, `robots.txt`, `opengraph-image`. The `.data` already exists in `manifest.json` and has since the pipeline ran. This is the largest unclaimed win in the repository, and the `web-build` agent exists for it.
 4. **Clean public image URLs** (§7) — and note the constraint: this is a **routing** change (map `01-casa-blake-tlalixtac` → `casa-blake-tlalixtac`), never a filesystem rename. Renaming discards search ranking and `git-guard.sh` will deny it.
 5. **Project detail pages**, then pass `href` to `ProjectCard` and switch the nav from anchors to routes. The components are already built for this.
 6. **Move the hardcoded paths out of `tools/`** (§6.9) so the pipeline can run on another machine. Follow the pattern already set by `hero.sh` and the two `.mjs` scripts.
 7. **Normalise variant widths in the pipeline** (§3.10) — the real fix for the srcset descriptor, explicitly assigned to the *pipeline*, not to `next.config.ts` or the loader.
-8. **Correct `CLAUDE.md`** (§8.7) so it stops opening with a false statement about the repository it documents.
+8. **Correct `AGENTS.md`** (§8.7) so it stops opening with a false statement about the repository it documents.
 9. **Confirm project editorial data** (§6.4) — 12 projects provisional, 1 with location only, 1 with narrative but no year, and **zero years across the board**. This is client-facing work, not engineering work, and it blocks the detail pages from being worth building.
 10. **Script the logo derivation** (§6.7), and obtain an SVG. `public/brand/logo-casa-alta.png` currently cannot be regenerated from the repository's own sources.
 

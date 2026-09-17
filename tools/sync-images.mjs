@@ -11,7 +11,7 @@
  * because the loader never asks for them.
  *
  * (This comment used to claim "~34 MB". That figure was the primaries alone, and
- * it came from CLAUDE.md's "63.6 MB -> 34.0 MB", which measured primaries too.
+ * it came from AGENTS.md's "63.6 MB -> 34.0 MB", which measured primaries too.
  * An earlier version of this same mistake said the deploy set was "~34 MB" when
  * it is 56.1 MB.)
  *

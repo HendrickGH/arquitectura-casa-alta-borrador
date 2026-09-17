@@ -2,7 +2,7 @@
 
 **Change:** `casa-alta-web-foundation` · **Phase:** sdd-design · **Date:** 2026-09-16
 **Artifact store:** openspec · **Repo:** `/Users/hendrick/Documents/arquitectura-casa-alta-web`
-**Inputs:** `proposal.md`, `exploration.md`, `openspec/config.yaml` (`rules.design`), `CLAUDE.md`
+**Inputs:** `proposal.md`, `exploration.md`, `openspec/config.yaml` (`rules.design`), `AGENTS.md`
 
 **Retrospective framing.** The architecture in §2 already exists on disk and builds green
 (`npx tsc --noEmit`, `npm run lint`, `npx next build`, `npm run check:images`). This design
@@ -22,7 +22,7 @@ every decision below carries the alternative that lost and the measurement that 
 | D5 | Content seam: one reader, props-only components | Payload migration touches 31 components instead of 1 file | `src/lib/content/index.ts:24-35` |
 | D6 | Hero: photograph full bleed, type on clean ground below | Re-opens two failed, measured typographic attempts | `src/components/organisms/Hero.tsx:15-41` |
 | D7 | Atomic layering; `src/content` authored vs `src/lib/content` derived | Editorial data leaks into presentational components | `src/types/content.ts:1-11` |
-| D8 | Three-tier image ownership; `images/` read-only; renumbering forbidden | Published URLs break; search ranking is discarded | `CLAUDE.md`, `.claude/hooks/git-guard.sh` |
+| D8 | Three-tier image ownership; `images/` read-only; renumbering forbidden | Published URLs break; search ranking is discarded | `AGENTS.md`, `.hermes/hooks/git-guard.sh` |
 
 Two items the proposal flags are **already resolved** — see §10.1 and §10.2.
 
@@ -61,7 +61,7 @@ into the filename of an AVIF the pipeline already wrote.
 | `unoptimized: true` | Serves the full-size 2000px AVIF to a phone; the pipeline's variants and the whole `srcset` become dead weight |
 | A self-hosted optimizer (`sharp` in a route handler) | Re-encodes at request time what the pipeline already encoded better; doubles the encode surface and adds a runtime dependency |
 
-**Evidence.** `CLAUDE.md` "Measured facts": WebP q82 vs original = 100–102%; WebP q78 ≈ 90%
+**Evidence.** `AGENTS.md` "Measured facts": WebP q82 vs original = 100–102%; WebP q78 ≈ 90%
 (marginal); AVIF q62 = 26% on camera originals, ~75% on WhatsApp-degraded. Recorded in both
 `next.config.ts:5-9` and the loader's own header (`loader.ts:4-19`). The rejected alternative's
 cost is not an estimate: it is the reason `convert.sh` uses `cp` rather than `magick` for the
@@ -85,7 +85,7 @@ is never re-encoded.
 
 **Evidence.** `next.config.ts:16-17` records the measurement, not a reasoning step: *"with the
 defaults, `/images/02-el-bicho/01-...` at 640w resolved to the -960 AVIF."* Independent
-support in `CLAUDE.md`: a 20-photo gallery drops from 3.4 MB to ~460 KB on mobile with correct
+support in `AGENTS.md`: a 20-photo gallery drops from 3.4 MB to ~460 KB on mobile with correct
 `srcset` + `sizes`.
 
 **Honest gap.** Only the **winner's** score survives: mean delivered/requested ratio **0.927**,
@@ -94,7 +94,7 @@ losing candidate sets were evaluated ad hoc and are recorded nowhere — `next.c
 untracked, so it has no history to recover them from. They are **UNVERIFIED and must not be
 reconstructed**, exactly as `next.config.ts:31-32` instructs.
 
-`CLAUDE.md` also records the *shape* that motivated the scale: *"47 photos are [480, 960, 1600],
+`AGENTS.md` also records the *shape* that motivated the scale: *"47 photos are [480, 960, 1600],
 another 47 are [360, 720, 1200]"*. Both reproduce exactly. Its trailing *"8 other signatures"*
 does not: measured, the corpus has **25** distinct full-srcset signatures (see §10.3).
 
@@ -187,7 +187,7 @@ and `src/lib/content/photos.ts` is the only place that knows a photo's on-disk i
 a web path (`photos.ts:22-24`).
 
 The seam also carries **policy**, not just plumbing, so policy cannot leak into components:
-`getProjectPhotos()` filters `score >= 3` (`photos.ts:57`, implementing `CLAUDE.md`'s *"never
+`getProjectPhotos()` filters `score >= 3` (`photos.ts:57`, implementing `AGENTS.md`'s *"never
 publish the 1/5 and 2/5 photos"*), and `getProjectCover(dir, title, orientation)` prefers a
 landscape source for full-width slots because four of six featured covers are portrait
 (`photos.ts:72-89`). `buildProject()` requires editorial data **and** a manifest entry **and** a
@@ -267,25 +267,28 @@ enforced at the git boundary.
 | Commit `public/images` | Would double-commit ~56 MB of derived bytes and let the mirror drift from its source; `.gitignore` records the reason |
 | Rename files to get clean URLs | A numeric prefix is in a **published URL**. Renaming breaks the link and discards accumulated search ranking. Reordering is the `order` field in `manifest.json` |
 
-**Enforcement** — `.claude/hooks/git-guard.sh` runs `PreToolUse` on `Bash(git *)` and is not
+**Enforcement** — `.hermes/hooks/git-guard.sh` runs on the `pre_tool_call` event and is not
 advisory:
 
 | Guard | Line | Behaviour |
 |---|---|---|
-| AI attribution in the commit | `:59` | **denies** |
-| Staged rename that changes a numeric prefix | `:79-94` | **denies** (compares the two prefixes of the old and new path) |
-| Staged modification/deletion of a file already tracked under `images/` | `:99-104` | **denies** (additions are allowed) |
-| >50 staged files under `images-optimizado/`, or ≥20 MB of new content | `:107-120` | **warns** — the signal that a `git add -A` happened after a pipeline run |
+| AI attribution in the commit | `:77` | **denies** |
+| Staged rename that changes a numeric prefix | `:81-112` | **denies** (compares the two prefixes of the old and new path) |
+| Staged modification/deletion of a file already tracked under `images/` | `:114-122` | **denies** (additions are allowed) |
+| >50 staged files under `images-optimizado/`, or ≥20 MB of new content | `:124-141` | **warns** — the signal that a `git add -A` happened after a pipeline run |
 
 **What the hook cannot do, stated plainly.** It inspects the **staged** set at commit time. It
 cannot stop an unstaged write to `images/`, and it cannot stop a careless `rm` before staging —
 it only catches it once staged for commit. It is a last line, not a sandbox; the binding rule
-lives in `CLAUDE.md`.
+lives in `AGENTS.md`. Under Hermes it also cannot surface a warning into the agent's context:
+`pre_tool_call` has a block channel but no advisory one, so the weight warning goes to stderr and
+to `.hermes/logs/git-guard.log`. The three **denials** are unaffected; only the warning lost its
+in-band delivery.
 
-**Why the hook is the right layer anyway.** `format.sh` (`PostToolUse` on `Write|Edit`)
-deliberately skips `.json` and `.md`, so the generated `manifest.json` is never churned against
-the pipeline that owns it — the same principle as D8's ownership table: **generated output is
-regenerated, never hand-edited** (`openspec/config.yaml` → `rules.apply`).
+**Why the hook is the right layer anyway.** `format.sh` (`post_tool_call` on
+`write_file|patch`) deliberately skips `.json` and `.md`, so the generated `manifest.json` is
+never churned against the pipeline that owns it — the same principle as D8's ownership table:
+**generated output is regenerated, never hand-edited** (`openspec/config.yaml` → `rules.apply`).
 
 ## 3. Data Flow
 
@@ -405,7 +408,7 @@ The normalisation called for in §10.5 changes **this** path — `variants.sh` a
 | `src/lib/content/index.ts`, `photos.ts` | Unchanged | the seam (§D5) |
 | `src/components/**` (31) | Unchanged | props only |
 | `tools/sync-images.mjs`, `check-image-urls.mjs`, `hero.sh` | Unchanged | location-independent tools |
-| `.claude/hooks/git-guard.sh`, `format.sh` | Unchanged | enforcement (§D8) |
+| `.hermes/hooks/git-guard.sh`, `format.sh` | Relocated and ported to the Hermes wire protocol | enforcement (§D8) |
 
 ### 4.2 Forward scope — files this change will touch
 
@@ -513,9 +516,9 @@ false`. The mapped verification for every applicable case above is the gate tabl
 
 Staged, and each stage is independently revertible (proposal → Rollback Plan). Rollout order is
 driven by what unblocks the most: deploy config → SEO layer → routing → client-dependent content
-→ Payload last.
+→ Payload suspended (not last — out of the sequence entirely).
 
-### The Payload CMS stage (deferred, but designed here)
+### The Payload CMS stage (SUSPENDED — designed here only so the option stays cheap)
 
 | File | Change |
 |---|---|
@@ -586,7 +589,7 @@ authoritative.
 
 ### 10.4 Open — the clean public image URL mechanism
 
-`CLAUDE.md` requires the numeric prefix out of public URLs. This is a **routing** change and
+`AGENTS.md` requires the numeric prefix out of public URLs. This is a **routing** change and
 must never be a filesystem rename. Two candidate mechanisms, with the coupling each forces:
 
 | Mechanism | Cost |
@@ -623,7 +626,7 @@ MB"*. Measured on the committed tree on 2026-09-16:
 | JPEG fallbacks (not mirrored) | 206 | 63.6 MB |
 | `images-optimizado/` total | 808 | 125 MB |
 
-The 34.3 MB figure matches `CLAUDE.md`'s *"63.6 MB → 34.0 MB AVIF"* almost exactly, and 63.6 MB
+The 34.3 MB figure matches `AGENTS.md`'s *"63.6 MB → 34.0 MB AVIF"* almost exactly, and 63.6 MB
 matches the fallback total exactly. The reading that fits both measurements: **the 34.0 MB
 figure counted primary AVIFs only, not the variants.** That reading is an inference from the
 decomposition, not a recorded statement — marked here as such. **The decision is unaffected**
@@ -632,7 +635,7 @@ and a future engineer sizing a deploy or a cache budget should use the measured 
 
 ### 10.7 Open — other repository drift
 
-- `CLAUDE.md` is stale in four places (`exploration.md` §8.7): it opens with *"There is no
+- `AGENTS.md` is stale in four places (`exploration.md` §8.7): it opens with *"There is no
   application code yet"*, says *"the site app does not exist yet"*, omits `src/`, `public/`,
   `openspec/` and `next.config.ts` from its layout, and its binary counts have drifted
   (`images/` 215 files / 74 MB; `images-optimizado/` 808 files / 125 MB).
@@ -673,5 +676,5 @@ and a future engineer sizing a deploy or a cache budget should use the measured 
    by variance behind individual glyphs — so the photograph stays full bleed and the type sits
    on clean ground below it.
 5. The mirrored AVIF set is 56.1 MB across 599 files, not the ~34 MB its own comment claims;
-   34.3 MB is the primary AVIFs alone, which is the figure CLAUDE.md's 63.6 MB → 34.0 MB
+   34.3 MB is the primary AVIFs alone, which is the figure AGENTS.md's 63.6 MB → 34.0 MB
    measurement was counting.

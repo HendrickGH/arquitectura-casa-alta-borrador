@@ -66,7 +66,7 @@ rules:
     - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY).
   design:
     - Document architecture decisions with rationale; never silently reverse a decision that
-      CLAUDE.md or a code comment records as measured.
+      AGENTS.md or a code comment records as measured.
     - "Preserve the content seam: src/lib/content/index.ts stays the only reader, and components
       keep receiving props only. A Payload CMS migration is a change to that file, not to components."
     - "Preserve the custom image loader contract in src/lib/image/loader.ts: never reintroduce

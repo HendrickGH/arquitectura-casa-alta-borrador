@@ -22,7 +22,7 @@ U5 pipeline portability — six stages — second checkout — N/A
 
 - [ ] 1.1 Stage the tree deliberately; never `git add -A`.
 - [ ] 1.2 Stage brand and hero additions; `images/` untouched (read-only).
-- [ ] 1.3 `CLAUDE.md`: drop stale claims, add `src/`, fix counts.
+- [ ] 1.3 `AGENTS.md`: drop stale claims, add `src/`, fix counts.
 
 ## Phase 2 — Deploy
 
@@ -68,7 +68,7 @@ U5 pipeline portability — six stages — second checkout — N/A
 - [ ] 7.1 BLOCKED: `location`, `year`, `summary`, `story` for 12 projects.
 - [ ] 7.2 BLOCKED: Facebook and TikTok hrefs; testimonials stay empty.
 - [ ] 7.3 BLOCKED: the Instagram grid's 255 posts need a login.
-- [ ] 7.4 Payload CMS deferred; `design.md` §8 tables it.
+- [ ] 7.4 Payload CMS: **SUSPENDED until further notice** — a possible future, not a committed one. `design.md` §8 tables the shape it would take if it is ever chosen.
 
 ## Phase 8 — Verification
 
