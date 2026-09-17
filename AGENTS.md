@@ -3,10 +3,11 @@
 Two things live here: the **image asset pipeline** for the Casa Alta studio (raw WhatsApp
 photo dumps in, an optimized web-ready set out), and the **Next.js site** that consumes it.
 
-Agent runtime for this repo is **Hermes Agent** on **DeepSeek** (`deepseek-flash`). The
-vendor-specific Claude Code setup — `.claude/agents/`, `.claude/hooks/`, `.claude/settings.json`
-— was migrated to the Hermes equivalents described below. Earlier SDD artifacts still say
-`.claude/` in places; those paths no longer exist.
+Agent runtime for this repo is **opencode** on **DeepSeek** (`deepseek/deepseek-flash`). The
+harness-specific setups it came from — first the Claude Code `.claude/` agent set, then the
+Hermes Agent `.hermes/` skills and hooks — were both migrated to the opencode equivalents
+described below. Earlier SDD artifacts still say `.claude/` or `.hermes/` in places; those paths
+no longer exist.
 
 The site's landing page is built and green. What remains is pages, SEO and deploy config —
 `openspec/changes/casa-alta-web-foundation/` carries the full architecture, the measured
@@ -26,8 +27,9 @@ images-optimizado/      generated AVIF output. Safe to delete and regenerate.
 public/                 served assets. public/images is a generated mirror, gitignored.
 tools/                  the image pipeline plus three site tools. See "Pipeline" below.
 openspec/               SDD artifacts: config, specs, and changes/ with the live change.
-.hermes/skills/         project skills for this repo — loaded automatically in sessions here
-.hermes/hooks/          git guard + formatter. Registered globally; scoped to this repo.
+.opencode/skills/       project skills for this repo — loaded automatically in sessions here
+.opencode/plugins/      git guard + formatter plugin. Project-scoped; loads only in this repo.
+opencode.json           project config. Disables the built-in formatters; see "Plugin and formatter".
 ```
 
 Measured sizes: `images/` is 215 files / 74 MB, `images-optimizado/` is 808 files / 125 MB,
@@ -180,34 +182,33 @@ public URLs — are still ahead; see `openspec/changes/casa-alta-web-foundation/
 
 ## Project skills
 
-Three skills live in `.hermes/skills/` and load automatically in Hermes sessions started inside
-this repo — no invocation needed. They appear in the skill index tagged `[project]`.
+Three skills live in `.opencode/skills/` and load automatically in sessions started inside this
+repo — no invocation needed. opencode scans this directory at startup, so a clone needs no extra
+trust step.
 
 - **`image-pipeline`** — ingests new photos dropped into `images/` and regenerates the optimized
   set. Use when new images appear.
 - **`web-build`** — builds site markup, SEO metadata, sitemap and schema from `manifest.json`.
-  Use once the app exists.
+  Use when the site must consume the optimized image set.
 - **`git-conventions`** — stages and commits work using this repo's conventional-commit
-  vocabulary, and guards the git-level hazards below. **It must not call `write_file` or `patch`**:
-  an agent that both writes the files and judges them has no way to catch its own mistakes, and a
-  commit is the hardest thing here to undo. Claude Code enforced that with a `tools:` line; a
-  Hermes skill cannot restrict its own toolset, so it is a rule the skill carries. Respect it.
+  vocabulary, and guards the git-level hazards below. **It must not call `write` or `edit`**: an
+  agent that both writes the files and judges them has no way to catch its own mistakes, and a
+  commit is the hardest thing here to undo. opencode cannot restrict a skill's toolset the way a
+  dedicated read-only agent could, so it is a rule the skill carries. Respect it.
 
-Project skills are the highest-precedence tier (`project → ~/.hermes/skills/ → external_dirs`), so
-a repo skill overrides a same-named profile skill here. Hermes refuses to load them from an
-untrusted checkout: this repo is already trusted, and a fresh clone needs one `hermes skills trust`
-run from inside it. Project skill directories are repo-owned — the Hermes curator never modifies
-them.
+Project skill directories are repo-owned content, tracked in git like any other file.
 
 ## Git conventions
 
 **Always run the `git-conventions` skill before staging or committing anything here.** Not only
 for large changes: that skill carries the hazard checks, the work-unit grouping and the ban on
-`git add -A`. A commit made without it is an unreviewed commit.
+`git add -A`. A commit made without it is an unreviewed commit. This is **enforced**: the plugin
+blocks `git add` / `commit` / `mv` / `rm` until the skill has been loaded in the session, so a
+mutation cannot happen without it. See "Plugin and formatter".
 
 Conventional commits, in English, lowercase imperative, one line that says what changed. The
 scopes in use: `web` (`src/` — the Next.js app), `images` (both raw dumps and
-`images-optimizado/`), `tooling`, `agents` (`.hermes/skills/`), `hooks` (`.hermes/hooks/`),
+`images-optimizado/`), `tooling`, `agents` (`.opencode/skills/`), `hooks` (`.opencode/plugins/`),
 `docs`, and bare `chore:` for repo housekeeping. `web` was added when the app landed; before that
 there was no scope for application code because there was no application.
 
@@ -226,38 +227,44 @@ Three hazards are specific to this repo and invisible to a generic git workflow:
    history that cannot be un-added without rewriting published history. Stage deliberately;
    never `git add -A` after a pipeline run.
 
-## Hooks
+## Plugin and formatter
 
-Two scripts in `.hermes/hooks/` are registered as Hermes shell hooks in `~/.hermes/config.yaml`.
-They run automatically — they are not advisory. `hermes hooks list` shows their consent state and
-`hermes hooks doctor` checks the exec bit, the allowlist and the timing.
+One TypeScript plugin, `.opencode/plugins/casa-alta.ts`, ports the two shell hooks this repo used
+under Hermes. Project plugins load automatically in opencode sessions started inside this repo,
+so the global scope gate the shell scripts needed is gone. It is not advisory —
+`tool.execute.before` can `throw`, which blocks the tool call before it runs.
 
-| Hook | Event | What it does |
+| Concern | Hook | What it does |
 |---|---|---|
-| `git-guard.sh` | `pre_tool_call` on `terminal` | **Denies** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** (without blocking) above 50 staged files in `images-optimizado/`, or ≥20 MB of new content. |
-| `format.sh` | `post_tool_call` on `write_file\|patch` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` only. |
+| Skill gate | `tool.execute.before` on `bash` | **Blocks** `git add` / `git commit` / `git mv` / `git rm` until the `git-conventions` skill has been loaded in the session. Reading commands (`status`, `diff`, `log`) stay ungated. |
+| Git guard | `tool.execute.before` on `bash` | **Blocks** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** (without blocking) above 50 staged files in `images-optimizado/`, or ≥20 MB of new content. |
+| Formatter | `tool.execute.after` on `edit`/`write` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` only, and no-ops when no Prettier is found. |
+| Tree watchdog | `event` on `session.idle` | **Warns** — a toast plus `.opencode/logs/dirty-tree.log` — when the working tree is not clean. It never commits. |
 
-Four differences from the Claude Code hooks these replace. All four are load-bearing:
+Three properties are load-bearing:
 
-1. **`matcher` is a regex on the Hermes tool NAME, not on the command string.** `Bash(git *)` has
-   no equivalent, so the guard registers for `terminal` and filters the command text itself.
-2. **`pre_tool_call` has no advisory channel** — it can block, not warn. The weight warning
-   therefore goes to stderr and to `.hermes/logs/git-guard.log` (gitignored) instead of into the
-   agent's context. The three denials are unaffected; only the warning lost in-band delivery.
-3. **The hooks are registered globally, not per repo,** because Hermes has no repo-local hooks
-   file. Both scripts therefore self-scope on the `cwd` in the hook payload and exit 0 immediately
-   outside this repo. **Never remove that scope gate.**
-4. **A hook does not run until it is allowlisted**, and that first-use consent is the human's to
-   give. `git-guard.sh` being configured is not the same as it being active — check
-   `hermes hooks list` before trusting the guard to catch anything.
+1. **The skill gate is what makes "always run `git-conventions`" true.** opencode has no
+   automatic skill execution: skills load on demand through the `skill` tool. The plugin records
+   a successful `git-conventions` load per session and refuses any index-mutating git command
+   until then, so the skill's hazard checks and work-unit grouping cannot be skipped by not
+   loading it. The flag is per session and is cleared on restart.
+2. **The git guard cannot surface its warning in-band.** `tool.execute.before` can block but has
+   no advisory channel, so the weight warning goes to stderr and to `.opencode/logs/git-guard.log`
+   (gitignored) instead of into the agent's context. The three denials are unaffected; only the
+   warning lost in-band delivery. Read that log when a large staged change is expected.
+3. **The formatter deliberately skips `.json` and `.md`.** `manifest.json` is generated by
+   `tools/manifest.pl` and reformatting it would create churn against the pipeline that owns it.
+   opencode's built-in formatters are therefore disabled in `opencode.json` (`"formatter": false`)
+   so they cannot touch generated JSON behind the plugin's back. The plugin locates Prettier at
+   `node_modules/.bin/prettier`, then on `PATH`, then in an nvm-managed Node install.
 
-`format.sh` deliberately skips `.json` and `.md`: `manifest.json` is generated by
-`tools/manifest.pl` and reformatting it would create churn against the pipeline that owns it. It
-prefers `node_modules/.bin/prettier`, then any Prettier on `PATH`, then an nvm-managed one, and
-no-ops if none is found. Note that **Prettier is not a declared dependency of this repo** — it is
-being found through an nvm global install, so the formatting is not reproducible from the
-lockfile. Pin it as a devDependency when that starts to matter.
+**On leaving the tree clean.** The watchdog warns; it does not commit. Auto-committing at idle
+would bypass the human's review, swallow permanent binaries, and contradict the deliberate
+staging and work-unit rules that `git-conventions` exists to enforce. The contract is: load the
+skill, commit as coherent work units, and end the session with a clean tree — deliberately, not
+automatically.
 
-**Hook scripts run in a non-interactive shell.** They do not inherit your shell aliases, functions,
-or an nvm-activated `PATH`. `rg`, `bat`, `fd` and `eza` are NOT available inside a hook even
-though they work in your terminal. Stick to `/usr/bin` tooling (`grep`, `awk`, `sed`, `jq`).
+The plugin uses only Node builtins plus a type-only import of `@opencode-ai/plugin`, so it needs
+no `.opencode/package.json`. Note that **Prettier is not a declared dependency of this repo** — it
+is found through an nvm global install, so the formatting is not reproducible from the lockfile.
+Pin it as a devDependency when that starts to matter.

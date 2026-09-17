@@ -376,12 +376,12 @@ Stated conclusion, to be preserved rather than optimisticised: **the format chan
 
 These are not style preferences. Each has a mechanism behind it.
 
-1. **`images/` is read-only, including in git.** Never write to it, never rename inside it, never modify a file already tracked there. Enforced by `.hermes/hooks/git-guard.sh`.
-2. **Never rename a path that changes a numeric prefix.** Both the project folder (`01-`) and the photo ordinal are published URLs. A `git mv` that renumbers breaks the link and discards accumulated search ranking. Also enforced by `git-guard.sh`.
+1. **`images/` is read-only, including in git.** Never write to it, never rename inside it, never modify a file already tracked there. Enforced by `.opencode/plugins/casa-alta.ts`.
+2. **Never rename a path that changes a numeric prefix.** Both the project folder (`01-`) and the photo ordinal are published URLs. A `git mv` that renumbers breaks the link and discards accumulated search ranking. Also enforced by the git guard.
 3. **Reordering is the `order` field in `manifest.json`** (and `tools/priority.txt`) — never a filesystem rename. When a new photo outranks existing ones, record its rank as data and let the site order by it.
-4. **Never `git add -A` after a pipeline run.** Stage deliberately. `git-guard.sh` *warns* (does not block) above 50 staged files in `images-optimizado/` or ≥20 MB of new content.
+4. **Never `git add -A` after a pipeline run.** Stage deliberately. The git guard *warns* (does not block) above 50 staged files in `images-optimizado/` or ≥20 MB of new content.
 5. **Binaries are permanent in history.** There is no `.gitattributes` and no Git LFS, so every raw dump becomes history that cannot be un-added without rewriting published history.
-6. **Never add `Co-Authored-By`, a "Generated with" footer, or any AI attribution.** Standing rule for this repository. Enforced by `git-guard.sh`.
+6. **Never add `Co-Authored-By`, a "Generated with" footer, or any AI attribution.** Standing rule for this repository. Enforced by the git guard.
 7. **The `.jpg` is never re-encoded**; `images-optimizado/` is generated output — regenerate through `tools/`, never hand-edit.
 8. **Never publish the 1/5 and 2/5 photos.** 62 of 206 sit at the end of each folder. *"A portfolio is judged by its worst photo."* Implemented in `getProjectPhotos()`.
 
@@ -396,21 +396,22 @@ Drift is accounted for: `images/brand/` (2 files), `images/hero/` (1 file) are n
 
 `images-optimizado/` decomposes as: 599 `.avif` (596 project + 3 hero), 206 `.jpg` fallbacks, 1 hero `.png`, `hero.json`, `manifest.json`.
 
-### 5.2 Hooks — they run, they are not advisory
+### 5.2 Plugin — it runs, it is not advisory
 
-| Hook | Event | Behaviour |
+| Concern | Hook | Behaviour |
 |---|---|---|
-| `.hermes/hooks/git-guard.sh` | `pre_tool_call` on the `terminal` tool | **Denies** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** above 50 staged files in `images-optimizado/`, or ≥20 MB of new content |
-| `.hermes/hooks/format.sh` | `post_tool_call` on `write_file\|patch` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` **only** — deliberately skips `.json` (would churn `manifest.json` against its owning pipeline) and `.md`. No-ops if no Prettier is found |
+| Git guard, `.opencode/plugins/casa-alta.ts` | `tool.execute.before` on `bash` | **Denies** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** above 50 staged files in `images-optimizado/`, or ≥20 MB of new content |
+| Formatter, same plugin | `tool.execute.after` on `edit`/`write` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` **only** — deliberately skips `.json` (would churn `manifest.json` against its owning pipeline) and `.md`. No-ops if no Prettier is found |
 
-Both are wired in `~/.hermes/config.yaml` under `hooks:`, not in a file inside this repo, and the
-scripts self-scope so they are inert outside it. **Hook scripts run in a non-interactive shell** — no aliases, no functions, no nvm-activated `PATH`. `rg`, `bat`, `fd` and `eza` are unavailable inside a hook; use `/usr/bin` tooling only.
+Both live in one project plugin, so it loads only in this repository — the global self-scope gate
+the Hermes shell hooks needed is gone, and there is no shell-environment limitation to work
+around.
 
-### 5.3 Project skills (`.hermes/skills/`)
+### 5.3 Project skills (`.opencode/skills/`)
 
 - **`image-pipeline`** — ingests new photos into `images/` and regenerates the optimized set.
 - **`web-build`** — builds gallery markup, SEO metadata, image sitemap and JSON-LD from `manifest.json`.
-- **`git-conventions`** — stages and commits using the repo's conventional-commit vocabulary; guards the git hazards. **Must not use `write_file` or `patch`**, so it cannot modify what it commits. Hermes cannot restrict a skill's toolset the way the Claude Code `tools:` line did, so this is a rule the skill carries rather than a harness guarantee.
+- **`git-conventions`** — stages and commits using the repo's conventional-commit vocabulary; guards the git hazards. **Must not use `write` or `edit`**, so it cannot modify what it commits. opencode cannot restrict a skill's toolset the way a dedicated read-only agent could, so this is a rule the skill carries rather than a harness guarantee.
 
 ---
 
@@ -487,7 +488,7 @@ The type, the component (`Testimonials` returns `null` on an empty array) and th
 
 Two distinct problems:
 1. `Logo.tsx` states the intent: *"The line art and the wide-tracked wordmark want to be an SVG; until the vector arrives, 354px wide at 2x covers the header."*
-2. **The derivation is unscripted.** No file in `tools/` or `.hermes/` produces `public/brand/logo-casa-alta.png`. Its 354×160 aspect (2.21) matches neither source (1.00 and 1.50), so it is a trimmed lockup that came from somewhere outside the repository. It cannot currently be regenerated.
+2. **The derivation is unscripted.** No file in `tools/` or `.opencode/` produces `public/brand/logo-casa-alta.png`. Its 354×160 aspect (2.21) matches neither source (1.00 and 1.50), so it is a trimmed lockup that came from somewhere outside the repository. It cannot currently be regenerated.
 
 ### 6.8 Project detail routes do not exist, and `ProjectCard` is built around that — **verified**
 

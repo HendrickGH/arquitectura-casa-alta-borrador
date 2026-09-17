@@ -33,7 +33,7 @@ Stated before scope, per `openspec/config.yaml` → `rules.proposal`.
 | Constraint | Touched? | How |
 |---|---|---|
 | Numeric path prefixes (`01-`…`14-`, photo ordinals) | **Add-only** | Stock sources land in a **new** `images/editorial/<slug>/` subtree. Nothing existing is renamed, renumbered or moved; project order stays the `order` field in `manifest.json`. |
-| `images/` read-only tree | **Add-only** | New files only. Nothing already committed there is written, renamed or deleted; `.hermes/hooks/git-guard.sh` denies the latter. |
+| `images/` read-only tree | **Add-only** | New files only. Nothing already committed there is written, renamed or deleted; `.opencode/plugins/casa-alta.ts` denies the latter. |
 | Pipeline ownership of `images-optimizado/` | **Yes — additive** | New outputs under `images-optimizado/editorial/` plus one sidecar. The 14 project folders, `hero/` and `manifest.json` are not edited; encoding runs through `tools/`, never by hand. |
 | No `git add -A`; binaries are permanent | **Yes** | Stock sources and their AVIF variants become permanent history. Stage deliberately; the guard warns above 50 files or ≥20 MB. |
 | Loader contract, `deviceSizes`, `.jpg` fallbacks, Netlify Image CDN | **No** | `src/lib/image/loader.ts` and `next.config.ts` are not touched. |

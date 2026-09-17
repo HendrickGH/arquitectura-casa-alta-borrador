@@ -23,7 +23,7 @@ Stated before scope, per `openspec/config.yaml` → `rules.proposal`.
 | Numeric path prefixes (`01-`…`14-`, photo ordinals) | **Indirectly** | Clean public image URLs are a **routing** change. `01-casa-blake-tlalixtac` maps to `casa-blake-tlalixtac` in code; **no file or folder is renamed.** |
 | `images/` read-only tree | **No** | Nothing in this change writes, renames or deletes under `images/`. `images/hero/` and `images/brand/` were added earlier and are already there. |
 | Pipeline ownership of `images-optimizado/` | **Yes — one item** | Normalising variant widths is a `tools/variants.sh` change that regenerates `images-optimizado/`, which is why it carries the strictest rollback below. |
-| No `git add -A`; binaries are permanent | **Yes** | Any regeneration must be staged deliberately. `.hermes/hooks/git-guard.sh` warns above 50 staged files or ≥20 MB. |
+| No `git add -A`; binaries are permanent | **Yes** | Any regeneration must be staged deliberately. `.opencode/plugins/casa-alta.ts` warns above 50 staged files or ≥20 MB. |
 
 **Compliance:** this proposal renumbers **no** published project folder and **no** photo
 ordinal, and proposes none. Reordering stays the `order` field in `manifest.json`.

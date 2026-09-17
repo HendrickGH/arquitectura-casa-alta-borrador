@@ -22,7 +22,7 @@ every decision below carries the alternative that lost and the measurement that 
 | D5 | Content seam: one reader, props-only components | Payload migration touches 31 components instead of 1 file | `src/lib/content/index.ts:24-35` |
 | D6 | Hero: photograph full bleed, type on clean ground below | Re-opens two failed, measured typographic attempts | `src/components/organisms/Hero.tsx:15-41` |
 | D7 | Atomic layering; `src/content` authored vs `src/lib/content` derived | Editorial data leaks into presentational components | `src/types/content.ts:1-11` |
-| D8 | Three-tier image ownership; `images/` read-only; renumbering forbidden | Published URLs break; search ranking is discarded | `AGENTS.md`, `.hermes/hooks/git-guard.sh` |
+| D8 | Three-tier image ownership; `images/` read-only; renumbering forbidden | Published URLs break; search ranking is discarded | `AGENTS.md`, `.opencode/plugins/casa-alta.ts` |
 
 Two items the proposal flags are **already resolved** — see §10.1 and §10.2.
 
@@ -267,28 +267,28 @@ enforced at the git boundary.
 | Commit `public/images` | Would double-commit ~56 MB of derived bytes and let the mirror drift from its source; `.gitignore` records the reason |
 | Rename files to get clean URLs | A numeric prefix is in a **published URL**. Renaming breaks the link and discards accumulated search ranking. Reordering is the `order` field in `manifest.json` |
 
-**Enforcement** — `.hermes/hooks/git-guard.sh` runs on the `pre_tool_call` event and is not
-advisory:
+**Enforcement** — `.opencode/plugins/casa-alta.ts` runs on opencode's `tool.execute.before`
+hook for `bash` and is not advisory:
 
-| Guard | Line | Behaviour |
-|---|---|---|
-| AI attribution in the commit | `:77` | **denies** |
-| Staged rename that changes a numeric prefix | `:81-112` | **denies** (compares the two prefixes of the old and new path) |
-| Staged modification/deletion of a file already tracked under `images/` | `:114-122` | **denies** (additions are allowed) |
-| >50 staged files under `images-optimizado/`, or ≥20 MB of new content | `:124-141` | **warns** — the signal that a `git add -A` happened after a pipeline run |
+| Guard | Behaviour |
+|---|---|
+| AI attribution in the commit | **denies** |
+| Staged rename that changes a numeric prefix | **denies** (compares the two prefixes of the old and new path) |
+| Staged modification/deletion of a file already tracked under `images/` | **denies** (additions are allowed) |
+| >50 staged files under `images-optimizado/`, or ≥20 MB of new content | **warns** — the signal that a `git add -A` happened after a pipeline run |
 
-**What the hook cannot do, stated plainly.** It inspects the **staged** set at commit time. It
+**What the guard cannot do, stated plainly.** It inspects the **staged** set at commit time. It
 cannot stop an unstaged write to `images/`, and it cannot stop a careless `rm` before staging —
 it only catches it once staged for commit. It is a last line, not a sandbox; the binding rule
-lives in `AGENTS.md`. Under Hermes it also cannot surface a warning into the agent's context:
-`pre_tool_call` has a block channel but no advisory one, so the weight warning goes to stderr and
-to `.hermes/logs/git-guard.log`. The three **denials** are unaffected; only the warning lost its
-in-band delivery.
+lives in `AGENTS.md`. Like the Hermes hook it replaces, it cannot surface the weight warning into
+the agent's context: `tool.execute.before` has a block channel but no advisory one, so the
+warning goes to stderr and to `.opencode/logs/git-guard.log`. The three **denials** are
+unaffected; only the warning lost its in-band delivery.
 
-**Why the hook is the right layer anyway.** `format.sh` (`post_tool_call` on
-`write_file|patch`) deliberately skips `.json` and `.md`, so the generated `manifest.json` is
-never churned against the pipeline that owns it — the same principle as D8's ownership table:
-**generated output is regenerated, never hand-edited** (`openspec/config.yaml` → `rules.apply`).
+**Why the plugin is the right layer anyway.** The formatter (`tool.execute.after` on `edit` and
+`write`) deliberately skips `.json` and `.md`, so the generated `manifest.json` is never churned
+against the pipeline that owns it — the same principle as D8's ownership table: **generated
+output is regenerated, never hand-edited** (`openspec/config.yaml` → `rules.apply`).
 
 ## 3. Data Flow
 
@@ -408,7 +408,7 @@ The normalisation called for in §10.5 changes **this** path — `variants.sh` a
 | `src/lib/content/index.ts`, `photos.ts` | Unchanged | the seam (§D5) |
 | `src/components/**` (31) | Unchanged | props only |
 | `tools/sync-images.mjs`, `check-image-urls.mjs`, `hero.sh` | Unchanged | location-independent tools |
-| `.hermes/hooks/git-guard.sh`, `format.sh` | Relocated and ported to the Hermes wire protocol | enforcement (§D8) |
+| `.opencode/plugins/casa-alta.ts` | Relocated and ported from the Hermes shell hooks to an opencode plugin | enforcement (§D8) |
 
 ### 4.2 Forward scope — files this change will touch
 
