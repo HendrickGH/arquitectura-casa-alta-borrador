@@ -25,9 +25,10 @@ next-env.d.ts
 # env
 .env*
 
-# Hermes runtime: the git guard's warning log. The hooks and skills themselves
-# under .hermes/ ARE tracked -- they are repo content, not runtime state.
-/.hermes/logs/
+# opencode runtime: the git guard's warning log. The plugin and skills
+# themselves under .opencode/ ARE tracked -- they are repo content, not runtime
+# state.
+/.opencode/logs/
 
 # Generated mirror of images-optimizado/, rebuilt by tools/sync-images.mjs.
 # The source of truth stays at the repository root so the optimized set is
