@@ -54,7 +54,7 @@ function isExternal(href: string): boolean {
  */
 export function Hero({ hero }: HeroProps) {
   return (
-    <section className="flex min-h-svh flex-col bg-canvas">
+    <section id="hero" className="flex min-h-svh flex-col bg-canvas">
       <div className="relative h-[48svh] min-h-[340px] w-full shrink-0 overflow-hidden bg-bone-100">
         <Photo photo={hero.image} sizes="100vw" priority />
       </div>

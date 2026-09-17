@@ -9,6 +9,7 @@ import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { MasonryGallery } from "@/components/organisms/MasonryGallery";
+import { ScrollScene } from "@/components/organisms/MotionShell";
 import { ProcessList } from "@/components/organisms/ProcessList";
 import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
@@ -77,7 +78,7 @@ export function LandingTemplate({
         phone={site.contact[0]}
         social={site.social}
       />
-      <Header site={site} />
+      <Header site={site} chrome={home.hero.chrome?.tone} />
 
       <main>
         <Hero hero={home.hero} />
@@ -103,7 +104,9 @@ export function LandingTemplate({
           tone="canvas"
         />
 
-        <MasonryGallery items={masonry} tone="bone" />
+        <ScrollScene mode="drift">
+          <MasonryGallery items={masonry} tone="bone" />
+        </ScrollScene>
 
         <ProcessList
           id="proceso"
@@ -122,7 +125,9 @@ export function LandingTemplate({
           tone="bone"
         />
 
-        <FullBleedMoment photo={moment} />
+        <ScrollScene mode="breathe">
+          <FullBleedMoment photo={moment} />
+        </ScrollScene>
 
         <ClosingCTA id="contacto" closing={home.closing} />
       </main>

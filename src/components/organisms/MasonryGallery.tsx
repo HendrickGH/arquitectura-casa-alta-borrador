@@ -40,7 +40,11 @@ export function MasonryGallery({ items, tone = "bone" }: MasonryGalleryProps) {
     <Section tone={tone}>
       <div className="columns-1 gap-6 min-[768px]:columns-2 min-[1200px]:columns-3">
         {items.map((item) => (
-          <div key={item.photo.src} className="mb-6 break-inside-avoid">
+          <div
+            key={item.photo.src}
+            data-drift-item
+            className="mb-6 break-inside-avoid"
+          >
             <Photo photo={item.photo} sizes={WALL_SIZES} fit="intrinsic" />
           </div>
         ))}

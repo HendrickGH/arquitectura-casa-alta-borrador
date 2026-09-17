@@ -23,8 +23,8 @@ export function Section({
       className={cx(
         "py-20 md:py-28 lg:py-36",
         tone === "bone" ? "bg-bone-50" : "bg-canvas",
-        // An anchored section must clear the sticky header when jumped to.
-        id && "scroll-mt-28",
+        // Anchored sections clear the sticky header through the global
+        // `scroll-padding-top` in globals.css, which reads `--chrome-h`.
         className,
       )}
     >

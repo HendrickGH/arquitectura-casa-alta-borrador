@@ -28,7 +28,11 @@ export function FullBleedMoment({ photo }: FullBleedMomentProps) {
   return (
     <section className="bg-canvas">
       <div className="relative h-[60svh] min-h-[340px] w-full overflow-hidden bg-bone-100 md:h-[70svh]">
-        <Photo photo={photo} sizes="100vw" />
+        {/* The wrapper is the scroll choreography's target; the parent clips it,
+            so the scrubbed scale and lift never reveal an edge. */}
+        <div data-scene-image className="h-full w-full">
+          <Photo photo={photo} sizes="100vw" />
+        </div>
       </div>
     </section>
   );

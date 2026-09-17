@@ -3,10 +3,17 @@ import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Logo } from "@/components/atoms/Logo";
 import { NavItem } from "@/components/molecules/NavItem";
+import { HeaderShell } from "@/components/organisms/MotionShell";
 import type { SiteConfig } from "@/types/content";
 
 interface HeaderProps {
   site: SiteConfig;
+  /**
+   * The hero's authored chrome polarity, when one has been measured and
+   * authored. Undefined today, which keeps the header filled at every scroll
+   * position; see `home.hero.chrome`.
+   */
+  chrome?: "ink" | "canvas";
 }
 
 /**
@@ -23,10 +30,13 @@ interface HeaderProps {
  * it with `nav.find(link => link.href === "/contacto")`, which returned
  * undefined -- and rendered nothing -- the moment the nav switched to anchors,
  * so the button disappeared without an error.
+ *
+ * Every string and link here is composed on the server; `HeaderShell` only adds
+ * the scroll state and the `--chrome-h` measurement around them.
  */
-export function Header({ site }: HeaderProps) {
+export function Header({ site, chrome }: HeaderProps) {
   return (
-    <header className="sticky top-0 z-50 border-b border-bone-200 bg-canvas/95 backdrop-blur">
+    <HeaderShell chrome={chrome}>
       <Container className="flex items-center justify-between gap-6 py-4">
         <Link href="/" className="shrink-0" aria-label={site.name}>
           <Logo />
@@ -49,6 +59,6 @@ export function Header({ site }: HeaderProps) {
           {site.cta.label}
         </Button>
       </Container>
-    </header>
+    </HeaderShell>
   );
 }

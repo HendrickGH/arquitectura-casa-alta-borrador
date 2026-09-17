@@ -51,8 +51,20 @@
 }
 
 @layer base {
+  :root {
+    /* The floating chrome's height. MotionShell overwrites it with the measured
+       value once the header is laid out; 5.25rem (84px) is the pre-hydration
+       default, within 1px of the measured 83px, which is constant across
+       breakpoints because the CTA button, not the logo, sets the row height. */
+    --chrome-h: 5.25rem;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
+    /* Focus and in-page anchors reserve the chrome's height instead of landing
+       under it. `Section` carries no scroll-mt-* of its own -- the two would
+       add up and double the gap. */
+    scroll-padding-top: calc(var(--chrome-h) + 1rem);
   }
 
   body {
@@ -110,6 +122,37 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
   }
+}
+
+/*
+ * The floating chrome's states.
+ *
+ * Unlayered on purpose: Tailwind's utilities live in the `utilities` layer, and
+ * a rule inside a layer would lose to `text-ink` on the nav entries no matter
+ * how specific it is. Only the transparent states are declared here -- the
+ * filled state is the elements' own colour, so its hover utilities keep working.
+ * The transition itself is neutralised by the reduced-motion block below.
+ */
+[data-surface="page"] {
+  background-color: color-mix(in srgb, var(--color-canvas) 95%, transparent);
+  border-color: var(--color-bone-200);
+}
+
+[data-surface="hero"] {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+[data-surface="hero"][data-chrome="canvas"] .chrome-fg {
+  color: var(--color-canvas);
+}
+
+[data-surface="hero"][data-chrome="ink"] .chrome-fg {
+  color: var(--color-ink);
+}
+
+[data-surface="hero"][data-chrome="canvas"] .chrome-logo {
+  filter: brightness(0) invert(1);
 }
 
 @media (prefers-reduced-motion: reduce) {
