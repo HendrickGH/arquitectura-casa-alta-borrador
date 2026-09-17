@@ -3,6 +3,11 @@
 Two things live here: the **image asset pipeline** for the Casa Alta studio (raw WhatsApp
 photo dumps in, an optimized web-ready set out), and the **Next.js site** that consumes it.
 
+Agent runtime for this repo is **Hermes Agent** on **DeepSeek** (`deepseek-flash`). The
+vendor-specific Claude Code setup — `.claude/agents/`, `.claude/hooks/`, `.claude/settings.json`
+— was migrated to the Hermes equivalents described below. Earlier SDD artifacts still say
+`.claude/` in places; those paths no longer exist.
+
 The site's landing page is built and green. What remains is pages, SEO and deploy config —
 `openspec/changes/casa-alta-web-foundation/` carries the full architecture, the measured
 decisions behind it, and the task list. Read `design.md` before changing anything in the
@@ -21,11 +26,11 @@ images-optimizado/      generated AVIF output. Safe to delete and regenerate.
 public/                 served assets. public/images is a generated mirror, gitignored.
 tools/                  the image pipeline plus three site tools. See "Pipeline" below.
 openspec/               SDD artifacts: config, specs, and changes/ with the live change.
-.claude/agents/         agents that operate on this repo
-.claude/hooks/          git guard + formatter. They run automatically.
+.hermes/skills/         project skills for this repo — loaded automatically in sessions here
+.hermes/hooks/          git guard + formatter. Registered globally; scoped to this repo.
 ```
 
-Measured sizes: `images/` is 214 files / 74 MB, `images-optimizado/` is 808 files / 125 MB,
+Measured sizes: `images/` is 215 files / 74 MB, `images-optimizado/` is 808 files / 125 MB,
 `src/` is 48 files. (Counts drift; re-measure rather than trusting these.)
 
 ## Image contract
@@ -173,26 +178,38 @@ public URLs — are still ahead; see `openspec/changes/casa-alta-web-foundation/
 - **Never publish the 1/5 and 2/5 photos.** 62 of 206 are below portfolio grade and sit at the
   end of each folder. A portfolio is judged by its worst photo.
 
-## Agents
+## Project skills
+
+Three skills live in `.hermes/skills/` and load automatically in Hermes sessions started inside
+this repo — no invocation needed. They appear in the skill index tagged `[project]`.
 
 - **`image-pipeline`** — ingests new photos dropped into `images/` and regenerates the optimized
   set. Use when new images appear.
 - **`web-build`** — builds site markup, SEO metadata, sitemap and schema from `manifest.json`.
   Use once the app exists.
 - **`git-conventions`** — stages and commits work using this repo's conventional-commit
-  vocabulary, and guards the git-level hazards below. Use before committing, or when the working
-  tree has accumulated changes worth splitting. It has no `Write`/`Edit` tool on purpose: it
-  cannot modify what it commits, so it cannot hide its own mistakes.
+  vocabulary, and guards the git-level hazards below. **It must not call `write_file` or `patch`**:
+  an agent that both writes the files and judges them has no way to catch its own mistakes, and a
+  commit is the hardest thing here to undo. Claude Code enforced that with a `tools:` line; a
+  Hermes skill cannot restrict its own toolset, so it is a rule the skill carries. Respect it.
 
-All are defined in `.claude/agents/`.
+Project skills are the highest-precedence tier (`project → ~/.hermes/skills/ → external_dirs`), so
+a repo skill overrides a same-named profile skill here. Hermes refuses to load them from an
+untrusted checkout: this repo is already trusted, and a fresh clone needs one `hermes skills trust`
+run from inside it. Project skill directories are repo-owned — the Hermes curator never modifies
+them.
 
 ## Git conventions
 
+**Always run the `git-conventions` skill before staging or committing anything here.** Not only
+for large changes: that skill carries the hazard checks, the work-unit grouping and the ban on
+`git add -A`. A commit made without it is an unreviewed commit.
+
 Conventional commits, in English, lowercase imperative, one line that says what changed. The
 scopes in use: `web` (`src/` — the Next.js app), `images` (both raw dumps and
-`images-optimizado/`), `tooling`, `agents`, `hooks`, `docs`, and bare `chore:` for repo
-housekeeping. `web` was added when the app landed; before that there was no scope for
-application code because there was no application.
+`images-optimizado/`), `tooling`, `agents` (`.hermes/skills/`), `hooks` (`.hermes/hooks/`),
+`docs`, and bare `chore:` for repo housekeeping. `web` was added when the app landed; before that
+there was no scope for application code because there was no application.
 
 **Never add `Co-Authored-By`, a "Generated with" footer, or any AI attribution.** This is a
 standing rule for this repository.
@@ -204,26 +221,42 @@ Three hazards are specific to this repo and invisible to a generic git workflow:
 2. **Never rename a path that changes a numeric prefix.** Both the project folder (`01-`) and the
    photo ordinal are published URLs. A `git mv` that renumbers breaks the link and discards
    search ranking. Reordering is the `order` field in `manifest.json` — never a filesystem path.
-3. **Binaries are permanent.** 211 files / ~71 MB under `images/`, 803 files / ~121 MB under
+3. **Binaries are permanent.** 215 files / 74 MB under `images/`, 808 files / 125 MB under
    `images-optimizado/`. There is no `.gitattributes` and no Git LFS, so every raw dump becomes
    history that cannot be un-added without rewriting published history. Stage deliberately;
    never `git add -A` after a pipeline run.
 
 ## Hooks
 
-`.claude/settings.json` wires two scripts in `.claude/hooks/`. They run automatically — they are
-not advisory.
+Two scripts in `.hermes/hooks/` are registered as Hermes shell hooks in `~/.hermes/config.yaml`.
+They run automatically — they are not advisory. `hermes hooks list` shows their consent state and
+`hermes hooks doctor` checks the exec bit, the allowlist and the timing.
 
 | Hook | Event | What it does |
 |---|---|---|
-| `git-guard.sh` | `PreToolUse` on `Bash(git *)` | **Denies** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** (without blocking) above 50 staged files in `images-optimizado/`, or ≥20 MB of new content. |
-| `format.sh` | `PostToolUse` on `Write\|Edit` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` only. |
+| `git-guard.sh` | `pre_tool_call` on `terminal` | **Denies** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** (without blocking) above 50 staged files in `images-optimizado/`, or ≥20 MB of new content. |
+| `format.sh` | `post_tool_call` on `write_file\|patch` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` only. |
+
+Four differences from the Claude Code hooks these replace. All four are load-bearing:
+
+1. **`matcher` is a regex on the Hermes tool NAME, not on the command string.** `Bash(git *)` has
+   no equivalent, so the guard registers for `terminal` and filters the command text itself.
+2. **`pre_tool_call` has no advisory channel** — it can block, not warn. The weight warning
+   therefore goes to stderr and to `.hermes/logs/git-guard.log` (gitignored) instead of into the
+   agent's context. The three denials are unaffected; only the warning lost in-band delivery.
+3. **The hooks are registered globally, not per repo,** because Hermes has no repo-local hooks
+   file. Both scripts therefore self-scope on the `cwd` in the hook payload and exit 0 immediately
+   outside this repo. **Never remove that scope gate.**
+4. **A hook does not run until it is allowlisted**, and that first-use consent is the human's to
+   give. `git-guard.sh` being configured is not the same as it being active — check
+   `hermes hooks list` before trusting the guard to catch anything.
 
 `format.sh` deliberately skips `.json` and `.md`: `manifest.json` is generated by
 `tools/manifest.pl` and reformatting it would create churn against the pipeline that owns it. It
-prefers `node_modules/.bin/prettier` when the app exists, then any Prettier on `PATH`, then an
-nvm-managed one, and no-ops if none is found — the site app does not exist yet, and an
-unavailable formatter must not turn every edit into an error.
+prefers `node_modules/.bin/prettier`, then any Prettier on `PATH`, then an nvm-managed one, and
+no-ops if none is found. Note that **Prettier is not a declared dependency of this repo** — it is
+being found through an nvm global install, so the formatting is not reproducible from the
+lockfile. Pin it as a devDependency when that starts to matter.
 
 **Hook scripts run in a non-interactive shell.** They do not inherit your shell aliases, functions,
 or an nvm-activated `PATH`. `rg`, `bat`, `fd` and `eza` are NOT available inside a hook even
