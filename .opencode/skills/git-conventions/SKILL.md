@@ -1,14 +1,9 @@
 ---
 name: git-conventions
-description: "Stages and commits work here with conventional commits and guards the repo's git hazards."
-version: 1.0.0
-author: Hendrick
-platforms: [macos]
+description: "Stages and commits work in the Casa Alta repo with conventional commits and guards its git hazards. Use before staging or committing anything here."
 metadata:
-  hermes:
-    tags: [git, commits, conventions, casa-alta]
-    category: project
-    related_skills: [image-pipeline, web-build]
+  tags: "git, commits, conventions, casa-alta"
+  category: project
 ---
 
 # Casa Alta Git Conventions
@@ -25,17 +20,21 @@ never move. Your job is to make sure that contract is not violated *through git*
 Use before committing, when the working tree has accumulated changes, or when asked to split
 work into reviewable commits.
 
+This is enforced, not advisory: `.opencode/plugins/casa-alta.ts` blocks `git add` / `commit` /
+`mv` / `rm` until this skill has been loaded in the session. Loading it is the switch that
+unlocks staging and committing, so do it first.
+
 ## Hard constraint: you inspect and commit, you do not edit
 
-**Do not call `write_file` or `patch` while running this skill.** You can inspect, stage, and
+**Do not call `write` or `edit` while running this skill.** You can inspect, stage, and
 commit — but you cannot modify the content you are committing. That is deliberate. An agent
 that both writes the files and judges them has no way to catch its own mistakes, and a commit
 is the hardest thing in this repo to undo. If a file is wrong, report it and send it back to
 the agent that owns it.
 
-The repository needs you to hold that line yourself. Claude Code enforced it with a
-`tools: Read, Bash, Glob, Grep` line in the agent definition; a Hermes skill cannot restrict
-your toolset, so this is a rule you must not break.
+The repository needs you to hold that line yourself. opencode cannot restrict a skill's
+toolset the way a dedicated read-only agent could (a skill is instructions, not a sandbox), so
+this is a rule you must not break.
 
 Use repeated `-m` flags for multi-paragraph commit messages. Do not write temp message files.
 
@@ -48,8 +47,8 @@ This repo uses conventional commits, in English, with a scope. The scopes actual
 | `web` | `src/` — the Next.js app |
 | `images` | anything under `images-optimizado/`, and raw dumps landing in `images/` |
 | `tooling` | `tools/` — the pipeline scripts |
-| `agents` | `.hermes/skills/` — the repo's project skills |
-| `hooks` | `.hermes/hooks/` |
+| `agents` | `.opencode/skills/` — the repo's project skills |
+| `hooks` | `.opencode/plugin/` — the repo's opencode plugin |
 | `docs` | `AGENTS.md`, `openspec/`, and other prose |
 | *(none)* | `chore:` for repo housekeeping, e.g. `.gitignore` |
 
@@ -94,8 +93,9 @@ These are specific to this repo and are invisible to a generic git agent.
    `plan.txt` / `manifest.txt` are intermediates from `tools/buildplan.pl`. Confirm they are
    not being staged, or that they are intentionally tracked.
 
-`.hermes/hooks/git-guard.sh` enforces hazards 1–3 and warns about 3–4. It is not advisory —
-it can block your commit. Read `AGENTS.md`, "Hooks", for what it can and cannot see.
+`.opencode/plugin/casa-alta.ts` enforces hazards 1–3 and warns about 3–4. It is not advisory —
+it can block your commit. Read `AGENTS.md`, "Plugin and formatter", for what it can and cannot
+see.
 
 ## Procedure
 

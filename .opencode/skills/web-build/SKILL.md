@@ -1,14 +1,9 @@
 ---
 name: web-build
-description: "Builds gallery markup, SEO metadata, sitemap and JSON-LD from the image manifest."
-version: 1.0.0
-author: Hendrick
-platforms: [macos]
+description: "Builds gallery markup, SEO metadata, sitemap and JSON-LD from the image manifest. Use when the site must consume the optimized image set."
 metadata:
-  hermes:
-    tags: [nextjs, seo, images, jsonld, casa-alta]
-    category: project
-    related_skills: [image-pipeline, git-conventions]
+  tags: "nextjs, seo, images, jsonld, casa-alta"
+  category: project
 ---
 
 # Casa Alta Web Build
@@ -99,7 +94,7 @@ plainly if you could not measure it.
 Measure the **rendered** result through Chrome DevTools Protocol:
 
 ```
-node .hermes/skills/web-build/scripts/cdp-measure.mjs http://localhost:3000/ --width 1440
+node .opencode/skills/web-build/scripts/cdp-measure.mjs http://localhost:3000/ --width 1440
 ```
 
 It reports the photograph count, every `src` appearing twice on the page, the distinct `sizes`

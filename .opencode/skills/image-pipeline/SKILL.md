@@ -1,14 +1,9 @@
 ---
 name: image-pipeline
-description: "Ingests new photos from images/ into the optimized AVIF set without disturbing published files."
-version: 1.0.0
-author: Hendrick
-platforms: [macos]
+description: "Ingests new photos from images/ into the optimized AVIF set without disturbing published files. Use when new images appear in a project folder or optimization must be re-run."
 metadata:
-  hermes:
-    tags: [images, avif, pipeline, imagemagick, casa-alta]
-    category: project
-    related_skills: [git-conventions, web-build]
+  tags: "images, avif, pipeline, imagemagick, casa-alta"
+  category: project
 ---
 
 # Casa Alta Image Pipeline
@@ -29,7 +24,7 @@ re-run image optimization.
 
 ImageMagick (`magick`), and `perl` for the `tools/*.pl` stages. The contact-sheet step needs an
 explicit font path — see the Pitfalls section. Vision is required to score photos: read the
-generated sheet with `vision_analyze`.
+generated sheet with the `read` tool, which returns images as attachments.
 
 ## Hard constraints
 
@@ -49,7 +44,7 @@ generated sheet with `vision_analyze`.
 
 ### 1. Ingest
 
-List every image under `images/` with `search_files target='files'`. Compare against the
+List every image under `images/` with `glob`. Compare against the
 `source` field of every photo in `images-optimizado/manifest.json`. Anything in the tree but
 not in the manifest is new. Also flag sources listed in the manifest whose file no longer
 exists.
@@ -69,7 +64,7 @@ magick montage -font /System/Library/Fonts/Supplemental/Arial.ttf -pointsize 30 
   -tile 4x -geometry 380x380+6+6 /tmp/new-sheet.png
 ```
 
-**Read the sheet image with `vision_analyze` and look at it.** Judge the *photograph* —
+**Read the sheet image with the `read` tool and look at it.** Judge the *photograph* —
 composition, light, focal point, craft (focus, straight verticals), whether it communicates
 the architecture. Ignore resolution and file size; these are WhatsApp-compressed and the
 technical numbers are meaningless. Give each new photo a score 1–5 and a note.
@@ -124,7 +119,7 @@ ImageMagick on this machine has three failure modes that cost a full re-run to d
 
 Confirm every file referenced by the manifest exists on disk, at the stated dimensions.
 Confirm no two photos share a `base` within a project. Confirm nothing under `images/`
-changed — the file count from `search_files target='files'` must equal its prior value.
+changed — the file count from `glob` must equal its prior value.
 Confirm the total AVIF byte weight and report it against the previous figure.
 
 ## Report
