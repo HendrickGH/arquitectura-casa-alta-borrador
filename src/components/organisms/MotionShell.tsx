@@ -7,14 +7,9 @@ type ChromePolarity = "ink" | "canvas";
 
 interface HeaderShellProps {
   /**
-   * The hero's authored chrome polarity. When set, the header is transparent
-   * over the hero and fills once the hero leaves the viewport; when omitted it
-   * stays filled at every scroll position.
-   *
-   * Omitted today: the shipped hero has not passed the chrome-band contrast
-   * gate, so the transparent state is not turned on for it (design D2/D3). It
-   * is a content edit -- `home.hero.chrome` -- plus the hero shell work, and no
-   * component change.
+   * The hero's chrome polarity. When set, the header is transparent over the
+   * hero and turns white once the hero leaves the viewport; when omitted it
+   * stays white at every scroll position.
    */
   chrome?: ChromePolarity;
   /** Server-rendered logo, nav entries and CTA. Never composed here. */
@@ -24,9 +19,9 @@ interface HeaderShellProps {
 /**
  * The single client boundary of the site.
  *
- * It owns exactly two things a server render cannot: the header's scroll state
- * and the height token the scroll padding is built from. It renders no copy, no
- * link and no image -- its children arrive as props from `Header.tsx`, so the
+ * It owns the header's scroll behaviour: transparent over the hero, white past
+ * it, sliding out of the way on the way down and back on the way up. It owns no
+ * copy, link or image -- its children arrive as props from `Header.tsx`, so the
  * emitted header is byte-identical in content with or without this chunk.
  */
 export function HeaderShell({ chrome, children }: HeaderShellProps) {
@@ -34,14 +29,14 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
   const [surface, setSurface] = useState<"hero" | "page">(
     chrome ? "hero" : "page",
   );
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const header = headerRef.current;
     if (!header) return;
 
-    // `--chrome-h` is the measured header height. A ResizeObserver keeps it
-    // honest across breakpoints and reflows; the pre-hydration default in
-    // globals.css is a first-paint stand-in, not a value never revisited.
+    // `--chrome-h` is the measured header height; it feeds the hero's overlap
+    // and the global scroll padding.
     const syncHeight = () => {
       document.documentElement.style.setProperty(
         "--chrome-h",
@@ -52,22 +47,45 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
     const sizeObserver = new ResizeObserver(syncHeight);
     sizeObserver.observe(header);
 
-    // With no declared polarity there is no transparent state to switch to, so
-    // no scroll observer is created and the header keeps its filled state.
-    const hero = chrome ? document.getElementById("hero") : null;
-    if (!hero) return () => sizeObserver.disconnect();
+    // Transparent only while the page is still at its very top, where the hero's
+    // dark top gradient sits under the navbar; white from the first scroll on.
+    //
+    // A transparent navbar held for the whole hero was measured unreadable: once
+    // the page scrolls, the navbar band lands on the bright middle of the
+    // photograph (~2:1 for white). The two options were a uniformly dark hero or
+    // a transparent state confined to the top; the top-only rule keeps the
+    // photograph brighter and still gives the requested transparent start.
+    const TOP = 16;
 
-    // The hero intersects the shrunken root box exactly while some part of it
-    // lies below the header band; when its bottom edge passes the navbar the
-    // fill comes back. Geometry, not a threshold.
-    const scrollObserver = new IntersectionObserver(
-      ([entry]) => setSurface(entry.isIntersecting ? "hero" : "page"),
-      { rootMargin: `-${header.offsetHeight}px 0px 0px 0px`, threshold: 0 },
-    );
-    scrollObserver.observe(hero);
+    // Hide on the way down, reveal on the way up; always shown at the top and
+    // whenever the header itself holds focus. Reduced motion keeps it put --
+    // the state changes, the slide does not happen.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let lastY = window.scrollY;
+    let frame = 0;
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const y = window.scrollY;
+        if (chrome) setSurface(y <= TOP ? "hero" : "page");
+        if (reduce.matches || y <= 8) setVisible(true);
+        else if (y > lastY + 6) setVisible(false);
+        else if (y < lastY - 6) setVisible(true);
+        lastY = y;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const onFocusIn = () => setVisible(true);
+    header.addEventListener("focusin", onFocusIn);
+
     return () => {
       sizeObserver.disconnect();
-      scrollObserver.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      header.removeEventListener("focusin", onFocusIn);
+      if (frame) window.cancelAnimationFrame(frame);
     };
   }, [chrome]);
 
@@ -76,11 +94,56 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
       ref={headerRef}
       data-surface={surface}
       data-chrome={chrome}
-      className="sticky top-0 z-50 border-b backdrop-blur transition-colors duration-300"
+      data-visible={visible ? "true" : "false"}
+      className="sticky top-0 z-50 border-b backdrop-blur"
     >
       {children}
     </header>
   );
+}
+
+/**
+ * Reveals every `[data-reveal]` section that is still below the fold as it
+ * enters the viewport.
+ *
+ * The server HTML carries `data-reveal="idle"`, which is fully visible: with no
+ * JavaScript everything renders. This only adds the start state to elements the
+ * visitor cannot see yet, so nothing that is already on screen is hidden and
+ * nothing flashes. The animation itself is a CSS transition; the observer only
+ * flips the attribute.
+ */
+export function RevealObserver() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          (entry.target as HTMLElement).dataset.reveal = "in";
+          observer.unobserve(entry.target);
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+    );
+
+    // Reduced motion gets no hidden state at all: every section renders in its
+    // final position and nothing waits on an animation to become readable.
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const nodes = document.querySelectorAll<HTMLElement>('[data-reveal="idle"]');
+    for (const el of nodes) {
+      const rect = el.getBoundingClientRect();
+      if (reduce.matches || rect.top < window.innerHeight * 0.9) {
+        el.dataset.reveal = "in";
+        continue;
+      }
+      el.dataset.reveal = "pending";
+      observer.observe(el);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return null;
 }
 
 interface ScrollSceneProps {

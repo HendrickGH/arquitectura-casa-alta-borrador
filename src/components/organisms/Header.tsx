@@ -55,7 +55,7 @@ export function Header({ site, chrome }: HeaderProps) {
           </ul>
         </nav>
 
-        <Button href={site.cta.href} className="shrink-0">
+        <Button href={site.cta.href} className="chrome-cta shrink-0">
           {site.cta.label}
         </Button>
       </Container>

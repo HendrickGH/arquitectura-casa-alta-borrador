@@ -9,7 +9,10 @@ import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { MasonryGallery } from "@/components/organisms/MasonryGallery";
-import { ScrollScene } from "@/components/organisms/MotionShell";
+import {
+  RevealObserver,
+  ScrollScene,
+} from "@/components/organisms/MotionShell";
 import { ProcessList } from "@/components/organisms/ProcessList";
 import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
@@ -73,6 +76,13 @@ export function LandingTemplate({
 }: LandingTemplateProps) {
   return (
     <>
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-canvas focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink"
+      >
+        Saltar al contenido
+      </a>
+
       <UtilityBar
         claim={site.claim}
         phone={site.contact[0]}
@@ -80,7 +90,7 @@ export function LandingTemplate({
       />
       <Header site={site} chrome={home.hero.chrome?.tone} />
 
-      <main>
+      <main id="main">
         <Hero hero={home.hero} />
         <CategoryTiles tiles={tiles} />
         <ManifestoLine line={home.manifesto} tone="bone" />
@@ -133,6 +143,8 @@ export function LandingTemplate({
       </main>
 
       <Footer site={site} />
+
+      <RevealObserver />
     </>
   );
 }

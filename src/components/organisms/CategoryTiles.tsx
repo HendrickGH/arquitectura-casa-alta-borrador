@@ -21,7 +21,10 @@ export function CategoryTiles({ tiles }: CategoryTilesProps) {
   if (tiles.length === 0) return null;
 
   return (
-    <section className="grid w-full grid-cols-1 bg-canvas md:grid-cols-2">
+    <section
+      data-reveal="idle"
+      className="grid w-full grid-cols-1 bg-canvas md:grid-cols-2"
+    >
       {tiles.map((tile) => (
         <CategoryTile key={tile.label} tile={tile} />
       ))}

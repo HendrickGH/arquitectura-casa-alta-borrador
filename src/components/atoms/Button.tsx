@@ -1,6 +1,6 @@
 import { cx } from "@/lib/cx";
 
-type Variant = "primary" | "secondary" | "quiet";
+type Variant = "primary" | "secondary" | "quiet" | "inverse" | "outline";
 
 interface ButtonProps {
   href: string;
@@ -22,6 +22,11 @@ const variants: Record<Variant, string> = {
   primary: "bg-brand-800 text-white hover:bg-brand-900",
   secondary: "border border-ink text-ink hover:bg-ink hover:text-white",
   quiet: "text-brand-700 underline underline-offset-4 hover:text-brand-900",
+  /* For use over a photograph or a dark panel; no brand fill, so the primary
+     action stays unambiguous. */
+  inverse: "bg-canvas text-ink hover:bg-bone-100",
+  outline:
+    "border border-canvas text-canvas hover:bg-canvas hover:text-ink",
 };
 
 export function Button({

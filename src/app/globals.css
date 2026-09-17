@@ -61,10 +61,18 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    /* The site is light-only; this fixes the native scrollbar and form colours. */
+    color-scheme: light;
     /* Focus and in-page anchors reserve the chrome's height instead of landing
        under it. `Section` carries no scroll-mt-* of its own -- the two would
        add up and double the gap. */
     scroll-padding-top: calc(var(--chrome-h) + 1rem);
+  }
+
+  /* Removes the double-tap-zoom delay on touch without disabling pinch zoom. */
+  a,
+  button {
+    touch-action: manipulation;
   }
 
   body {
@@ -125,34 +133,141 @@
 }
 
 /*
- * The floating chrome's states.
+ * Scroll choreography and chrome states.
  *
  * Unlayered on purpose: Tailwind's utilities live in the `utilities` layer, and
  * a rule inside a layer would lose to `text-ink` on the nav entries no matter
- * how specific it is. Only the transparent states are declared here -- the
- * filled state is the elements' own colour, so its hover utilities keep working.
- * The transition itself is neutralised by the reduced-motion block below.
+ * how specific it is. The reduced-motion block at the end neutralises every
+ * transition and animation declared here.
  */
-[data-surface="page"] {
-  background-color: color-mix(in srgb, var(--color-canvas) 95%, transparent);
-  border-color: var(--color-bone-200);
+
+/* --- Header ------------------------------------------------------------- */
+
+header {
+  transition:
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 320ms ease,
+    border-color 320ms ease;
 }
 
-[data-surface="hero"] {
+/* Hiding reads as a purposeful exit (accelerating); showing as a settle
+   (decelerating). The two states carry different curves on purpose. */
+header[data-visible="false"] {
+  transform: translateY(-100%);
+  transition:
+    transform 340ms cubic-bezier(0.4, 0, 1, 1),
+    background-color 320ms ease,
+    border-color 320ms ease;
+}
+
+header[data-surface="page"] {
+  background-color: color-mix(in srgb, var(--color-canvas) 96%, transparent);
+  border-color: var(--color-bone-200);
+  backdrop-filter: blur(10px);
+}
+
+/* At the top the chrome floats on the hero's own overlay: no fill, no border,
+   no blur, so the photograph reads edge to edge behind it. */
+header[data-surface="hero"] {
   background-color: transparent;
   border-color: transparent;
+  backdrop-filter: none;
 }
 
-[data-surface="hero"][data-chrome="canvas"] .chrome-fg {
+/* Only the hero state is declared. The filled state stays on the elements' own
+   `text-ink`, so its `hover:text-brand-700` utility keeps working -- an
+   unlayered page-state rule would outrank it and kill the hover. */
+header[data-surface="hero"] .chrome-fg {
   color: var(--color-canvas);
 }
 
-[data-surface="hero"][data-chrome="ink"] .chrome-fg {
+header[data-surface="hero"] .chrome-fg:hover {
+  color: var(--color-bone-100);
+}
+
+header[data-surface="hero"] .chrome-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* The CTA inverts over the hero: a filled brand button against a dark overlay
+   loses its edge; a white one keeps it. */
+header[data-surface="hero"] .chrome-cta {
+  background-color: var(--color-canvas);
   color: var(--color-ink);
 }
 
-[data-surface="hero"][data-chrome="canvas"] .chrome-logo {
-  filter: brightness(0) invert(1);
+header[data-surface="hero"] .chrome-cta:hover {
+  background-color: var(--color-bone-100);
+}
+
+/* --- Hero --------------------------------------------------------------- */
+
+/* Darkens the top band so the transparent chrome stays legible and the bottom
+   band so the headline has measured contrast; the middle stays light so the
+   photograph is still the subject. */
+.hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 12, 26, 0.85) 0%,
+    rgba(6, 12, 26, 0.6) 12%,
+    rgba(6, 12, 26, 0.25) 26%,
+    rgba(6, 12, 26, 0.5) 38%,
+    rgba(6, 12, 26, 0.85) 48%,
+    rgba(6, 12, 26, 0.93) 62%,
+    rgba(6, 12, 26, 0.98) 100%
+  );
+}
+
+/* The hero's entrance: pure CSS, so it runs with or without JavaScript, and it
+   animates only transform and opacity. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-rise {
+  animation: rise 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero-rise-1 {
+  animation-delay: 60ms;
+}
+.hero-rise-2 {
+  animation-delay: 140ms;
+}
+.hero-rise-3 {
+  animation-delay: 240ms;
+}
+.hero-rise-4 {
+  animation-delay: 340ms;
+}
+
+/* --- Section reveals ---------------------------------------------------- */
+
+/* `data-reveal` is written by the server as "idle", which is fully visible. The
+   observer only downgrades sections that are still below the fold to "pending",
+   then flips them to "in" as they arrive, so content is never hidden without
+   JavaScript and nothing already on screen flashes. */
+[data-reveal] {
+  transition:
+    opacity 720ms ease-out,
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+[data-reveal="in"] {
+  opacity: 1;
+  transform: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -160,6 +275,7 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;

@@ -26,7 +26,7 @@ function ruleClass(index: number): string {
 
 export function StatsBand({ stats }: StatsBandProps) {
   return (
-    <section className="bg-bone-50">
+    <section data-reveal="idle" className="bg-bone-50">
       <Container>
         <div className="grid grid-cols-2 gap-y-10 py-14 md:py-20 lg:grid-cols-4">
           {stats.map((stat, index) => (

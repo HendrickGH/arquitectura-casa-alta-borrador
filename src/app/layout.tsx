@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Marcellus, Montserrat } from "next/font/google";
 import { getSiteConfig } from "@/lib/content";
 import "./globals.css";
@@ -36,6 +36,11 @@ const description = `${site.claim}. ${site.tagline}. ${site.coverage}.`;
 export const metadata: Metadata = {
   title: `${site.name} — ${site.tagline}`,
   description,
+};
+
+/** Matches the brand strip at the top of the page, for the mobile browser chrome. */
+export const viewport: Viewport = {
+  themeColor: "#0e2d78",
 };
 
 export default function RootLayout({

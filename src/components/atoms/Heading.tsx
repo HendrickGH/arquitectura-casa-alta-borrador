@@ -22,7 +22,8 @@ const sizes: Record<Voice, string> = {
 
 const voices: Record<Voice, string> = {
   display: "display",
-  serif: "voice",
+  /* text-balance avoids a one-word last line in the serif headings. */
+  serif: "voice text-balance",
   plain: "font-medium",
 };
 

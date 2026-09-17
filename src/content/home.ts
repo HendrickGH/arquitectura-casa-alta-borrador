@@ -78,6 +78,9 @@ export const home: HomePage = {
     primary: { label: "Construcción con Casa Alta", href: whatsappHref },
     // The contact section anchor, not /contacto: that route does not exist yet.
     secondary: { label: "Agendar llamada", href: "/#contacto" },
+    // White chrome over the hero's dark overlay; the header goes white once the
+    // hero leaves the viewport. Measured against the rendered composition.
+    chrome: { tone: "canvas" },
   },
 
   stats,

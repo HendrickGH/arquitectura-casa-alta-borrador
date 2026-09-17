@@ -20,6 +20,7 @@ export function Section({
   return (
     <section
       id={id}
+      data-reveal="idle"
       className={cx(
         "py-20 md:py-28 lg:py-36",
         tone === "bone" ? "bg-bone-50" : "bg-canvas",

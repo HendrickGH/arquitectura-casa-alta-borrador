@@ -18,7 +18,7 @@ export function ClosingCTA({ closing, id }: ClosingCTAProps) {
   const external = closing.cta.href.startsWith("http");
 
   return (
-    <section id={id} className="scroll-mt-24 bg-bone-50">
+    <section id={id} data-reveal="idle" className="bg-bone-50">
       <Container className="flex flex-col items-center gap-8 py-20 text-center md:py-28">
         <Heading voice="serif" className="max-w-[24ch]">
           {closing.heading}
