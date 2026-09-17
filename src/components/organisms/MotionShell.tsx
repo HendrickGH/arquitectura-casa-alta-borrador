@@ -103,44 +103,75 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
 }
 
 /**
- * Reveals every `[data-reveal]` section that is still below the fold as it
- * enters the viewport.
+ * Reveals every `[data-reveal]` section once its top crosses the fold line.
  *
  * The server HTML carries `data-reveal="idle"`, which is fully visible: with no
  * JavaScript everything renders. This only adds the start state to elements the
  * visitor cannot see yet, so nothing that is already on screen is hidden and
- * nothing flashes. The animation itself is a CSS transition; the observer only
- * flips the attribute.
+ * nothing flashes. The animation itself is a CSS transition; this only flips the
+ * attribute.
+ *
+ * WHY A SCROLL PASS AND NOT AN IntersectionObserver. An observer reports an
+ * element only when it *intersects* the viewport. Any jump -- an in-page anchor
+ * (`/#proyectos`), the End key, a fast wheel, a restored scroll position -- skips
+ * elements entirely, and those never intersect again while they sit above the
+ * viewport, so an observer leaves them hidden permanently. Measured with
+ * Playwright: a jump to the bottom left 11 of 12 sections at `opacity: 0`, above
+ * the fold, unreachable. The pass below reveals anything whose top has crossed
+ * the line, whether it was scrolled through or jumped over.
+ *
+ * Reduced motion gets no hidden state at all: every section renders in its final
+ * position and nothing waits on an animation to become readable.
  */
 export function RevealObserver() {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          (entry.target as HTMLElement).dataset.reveal = "in";
-          observer.unobserve(entry.target);
-        }
-      },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+    const nodes = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-reveal]"),
     );
+    if (nodes.length === 0) return;
 
-    // Reduced motion gets no hidden state at all: every section renders in its
-    // final position and nothing waits on an animation to become readable.
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const nodes = document.querySelectorAll<HTMLElement>('[data-reveal="idle"]');
-    for (const el of nodes) {
-      const rect = el.getBoundingClientRect();
-      if (reduce.matches || rect.top < window.innerHeight * 0.9) {
-        el.dataset.reveal = "in";
-        continue;
-      }
-      el.dataset.reveal = "pending";
-      observer.observe(el);
+    if (reduce.matches) {
+      for (const el of nodes) el.dataset.reveal = "in";
+      return;
     }
 
-    return () => observer.disconnect();
+    // Reveal at 90% of the viewport height: the animation starts as the section
+    // enters, not after it has already arrived.
+    const foldLine = () => window.innerHeight * 0.9;
+
+    // Anything already on screen stays visible; hiding it would be a flash.
+    for (const el of nodes) {
+      el.dataset.reveal =
+        el.getBoundingClientRect().top < foldLine() ? "in" : "pending";
+    }
+
+    let frame = 0;
+    const pass = () => {
+      frame = 0;
+      const line = foldLine();
+      for (const el of nodes) {
+        if (
+          el.dataset.reveal === "pending" &&
+          el.getBoundingClientRect().top < line
+        ) {
+          el.dataset.reveal = "in";
+        }
+      }
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(pass);
+    };
+
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    pass();
+
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
   }, []);
 
   return null;
