@@ -30,7 +30,7 @@ interface HeroProps {
  * destinations are the header CTA and the closing CTA, and the photograph opens
  * the page better without a button pair on it.
  *
- * The overlay is decorative and hidden from assistive tech; the contrast it
+ * The scrim is decorative and hidden from assistive tech; the contrast it
  * produces is measured in the rendered composition, not assumed.
  *
  * The entrance is pure CSS (`hero-rise` in globals.css): it runs with or
