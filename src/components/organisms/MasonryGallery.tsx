@@ -33,8 +33,8 @@ const CELL_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
  * two singles. That tiles the rectangle exactly at both grid tiers -- 3 columns
  * x 8 rows at 1200px, 2 x 8 below it -- because the block covers 6 cells over 2
  * rows at three columns and 4 cells over 2 rows at two. The count is therefore
- * part of the contract: `MASONRY_COUNT` has to stay a multiple of three, or the
- * last block closes half-tiled.
+ * part of the contract: `masonrySlots` in `src/content/masonry.ts` has to stay a
+ * multiple of three, or the last block closes half-tiled.
  *
  * Every other double cell is pinned to the second column, so the doubles
  * alternate sides and each of the three columns carries singles too. Without

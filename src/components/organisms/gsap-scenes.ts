@@ -17,7 +17,7 @@ function registerPlugin() {
 
 /**
  * Refresh once after the landing's images and fonts settle: trigger positions
- * move when the hero's photograph and the masonry's intrinsic boxes land.
+ * move when the hero's photograph and the masonry's boxes land.
  *
  * Resize is ScrollTrigger's own job (debounced 200ms) and is deliberately not
  * handled here.
@@ -35,13 +35,27 @@ function refreshAfterLayout() {
 /**
  * The masonry's photographs drift by column as the wall crosses the viewport.
  *
- * CSS multi-column builds its columns with no elements to select, so the items
- * are grouped by the column the browser placed them in and each group gets its
- * own scrub distance, centred so the extremes move apart. Transform only: no
- * layout property moves and every item keeps its intrinsic ratio.
+ * The wall is a fixed-row grid, so an item's left edge says which column it
+ * starts in, not which columns it occupies. A double cell spans two columns at
+ * the three-column tier, and bucketing it by its left edge would translate it as
+ * if it were a single-column cell -- tearing it out of the row it shares with the
+ * other column, while the cell pinned to the second column gets no translate at
+ * all. So only cells as narrow as the wall's narrowest column move; the spanning
+ * cells anchor the wall, and the singles are grouped by the column the browser
+ * placed them in. Transform only: no layout property moves.
  */
 function buildDrift(scope: HTMLElement) {
-  const items = gsap.utils.toArray<HTMLElement>("[data-drift-item]", scope);
+  const all = gsap.utils.toArray<HTMLElement>("[data-drift-item]", scope);
+  if (all.length === 0) return;
+
+  // A spanning cell is wider than one column; the narrowest cell defines the
+  // column width, so anything meaningfully wider than it is a double.
+  const columnWidth = Math.min(
+    ...all.map((item) => item.getBoundingClientRect().width),
+  );
+  const items = all.filter(
+    (item) => item.getBoundingClientRect().width < columnWidth * 1.5,
+  );
   if (items.length === 0) return;
 
   const columns = new Map<number, HTMLElement[]>();

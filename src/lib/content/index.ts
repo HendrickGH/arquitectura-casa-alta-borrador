@@ -5,6 +5,7 @@ import { home } from "@/content/home";
 import { processSteps } from "@/content/process";
 import { differentiators } from "@/content/differentiators";
 import { testimonials } from "@/content/testimonials";
+import { masonrySlots } from "@/content/masonry";
 import {
   categoryLabels,
   featuredProjectDirs,
@@ -169,17 +170,6 @@ export function getFeaturedProjects(): Project[] {
 /** The number the brief's §0 decision fixes for the leading portfolio row. */
 const FEATURED_COUNT = 3;
 
-/**
- * The masonry's size, and how deep into each project's ranking it draws.
- *
- * Twelve, not nine. The wall's column balance is decided in photos.ts, and the
- * residual gap it cannot close falls from 421px to 176px once the count reaches
- * twelve -- measured against the manifest. The count and the ordering are one
- * decision, not two.
- */
-const MASONRY_COUNT = 12;
-const MASONRY_RANK = 1;
-
 /** A project's display title, for the alt text the manifest cannot supply. */
 function projectTitle(dir: string): string {
   return projectContent[dir]?.title ?? "";
@@ -250,15 +240,14 @@ export function getTiles(): CategoryTile[] {
 
 /**
  * The masonry's photographs: the strongest images the archive holds across
- * projects, which is the one thing the page shows at this density.
+ * projects, in the wall's authored order. See `src/content/masonry.ts` for the
+ * order and why the double cells are where they are.
  */
 export function getMasonry(): MasonryItem[] {
-  return masonryPhotos(MASONRY_COUNT, MASONRY_RANK, projectTitle).map(
-    (entry) => ({
-      photo: entry.photo,
-      projectSlug: projectContent[entry.dir]?.slug ?? entry.dir,
-    }),
-  );
+  return masonryPhotos(masonrySlots, projectTitle).map((entry) => ({
+    photo: entry.photo,
+    projectSlug: projectContent[entry.dir]?.slug ?? entry.dir,
+  }));
 }
 
 /** Every photograph the landing already shows, by src. */
