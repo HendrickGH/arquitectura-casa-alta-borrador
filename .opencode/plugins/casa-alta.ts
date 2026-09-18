@@ -33,6 +33,7 @@ const SKILL_TO_LOAD = "git-conventions"
 // the skill again.
 const skillLoaded = new Set<string>()
 const dirtyWarned = new Map<string, string>()
+const autoCommitting = new Set<string>()
 
 const GIT_GLOBAL_FLAGS_WITH_VALUE = new Set([
   "-C",
@@ -124,6 +125,121 @@ function stagedAddedBytes(root: string): number {
     const n = Number.parseInt(line, 10)
     return sum + (Number.isFinite(n) ? n : 0)
   }, 0)
+}
+
+// Automatic commit, run at session idle.
+//
+// It commits whatever the agent left behind so work does not pile up
+// uncommitted. It is deliberately conservative: it fires only when the index is
+// clean (a non-empty index means the agent is deliberately staging a work unit,
+// and staging on top of it would destroy that intent) and it re-runs the same
+// hazard blockers the manual gate enforces. Anything hazardous is refused and
+// left in the working tree for a human, never enshrined in history.
+//
+// It cannot group changes into work units or infer a commit type; both require
+// the model's understanding of intent. The message is therefore a scope-only
+// `chore(<scope>):`, which is honest about what an automatic commit is.
+
+const SCOPE_BY_PREFIX: ReadonlyArray<readonly [string, string]> = [
+  ["src/", "web"],
+  ["tools/", "tooling"],
+  ["images-optimizado/", "images"],
+  ["images/", "images"],
+  [".opencode/skills/", "agents"],
+  [".opencode/plugins/", "hooks"],
+  [".opencode/plugin/", "hooks"],
+  ["openspec/", "docs"],
+]
+
+function pathScope(path: string): string | null {
+  for (const [prefix, scope] of SCOPE_BY_PREFIX) if (path.startsWith(prefix)) return scope
+  if (path === "AGENTS.md") return "docs"
+  return null
+}
+
+// A scope is only usable when every path agrees on it. Mixed or unknown paths
+// fall back to an unscoped message rather than guessing.
+function deriveScope(paths: string[]): string | null {
+  const scopes = new Set<string>()
+  for (const path of paths) {
+    const scope = pathScope(path)
+    if (!scope) return null
+    scopes.add(scope)
+  }
+  return scopes.size === 1 ? [...scopes][0] : null
+}
+
+function autoMessage(paths: string[]): string {
+  const scope = deriveScope(paths)
+  const count = `${paths.length} file${paths.length === 1 ? "" : "s"}`
+  return scope ? `chore(${scope}): auto-commit ${count}` : `chore: auto-commit ${count}`
+}
+
+// Re-runs the manual gate's blockers against the index. Returns a reason to
+// refuse, or null when the staged set is safe to commit automatically.
+function autoCommitHazard(root: string): string | null {
+  const renames = badRenames(root)
+  if (renames.length) {
+    return "a staged rename changes a published numeric prefix:\n" + renames.join("\n")
+  }
+  const mutations = git(root, [
+    "diff",
+    "--cached",
+    "--name-status",
+    "--diff-filter=MDRT",
+    "--",
+    "images/",
+  ]).trim()
+  if (mutations) {
+    return "a staged change modifies tracked files under images/ (read-only):\n" + mutations
+  }
+  const optimized = stagedNames(root, "images-optimizado/")
+  if (optimized.length > 50) {
+    return `${optimized.length} files staged under images-optimizado/; too broad to commit automatically`
+  }
+  const addedMb = Math.floor(stagedAddedBytes(root) / 1048576)
+  if (addedMb >= 20) {
+    return `~${addedMb} MB of new content staged; too heavy to commit automatically`
+  }
+  return null
+}
+
+type AutoCommitResult = {
+  kind: "clean" | "staged" | "committed" | "refused" | "failed"
+  detail: string
+}
+
+function autoCommit(root: string): AutoCommitResult {
+  if (!git(root, ["status", "--porcelain"]).trim()) return { kind: "clean", detail: "" }
+
+  // An in-progress merge, rebase or conflict is never ours to finish.
+  if (git(root, ["ls-files", "-u"]).trim()) {
+    return { kind: "refused", detail: "unmerged paths present" }
+  }
+
+  // A non-empty index means the agent is mid-commit on purpose. Do not touch it.
+  if (git(root, ["diff", "--cached", "--name-only"]).trim()) {
+    return { kind: "staged", detail: "the index already holds staged changes" }
+  }
+
+  git(root, ["add", "-A"])
+
+  const hazard = autoCommitHazard(root)
+  if (hazard) {
+    // The index was clean before we staged, so undoing the staging leaves the
+    // refusal with no side effects.
+    git(root, ["reset", "-q"])
+    return { kind: "refused", detail: hazard }
+  }
+
+  const subject = autoMessage(stagedNames(root))
+  try {
+    execFileSync("git", ["commit", "-m", subject], { cwd: root, stdio: "ignore" })
+  } catch {
+    // Leave the staged set in place; a human can inspect and commit it.
+    return { kind: "failed", detail: `git commit failed for: ${subject}` }
+  }
+  return { kind: "committed", detail: subject }
 }
 
 function findFormatter(root: string): string | null {
@@ -266,30 +382,64 @@ export const CasaAltaPlugin: Plugin = async ({ worktree, directory, client }) =>
     },
 
     event: async ({ event }) => {
-      // A dirty tree at session idle means work was left uncommitted. This is
-      // a warning, not a block -- it can only run when the session is already
-      // idle -- so it nudges toward a deliberate commit without ever committing
-      // on the human's behalf.
+      // At session idle the plugin commits what the agent left behind, so work
+      // does not accumulate uncommitted. Anything hazardous is refused and the
+      // session is warned instead. See autoCommit() for what "conservative"
+      // means here.
       if (event.type !== "session.idle") return
+      const sessionID = event.properties.sessionID
       const dirty = git(root, ["status", "--porcelain"]).trim()
       if (!dirty) {
-        dirtyWarned.delete(event.properties.sessionID)
+        dirtyWarned.delete(sessionID)
         return
       }
-      // One warning per distinct dirty state, so repeated idle events do not
-      // spam the toast while nothing has changed.
-      if (dirtyWarned.get(event.properties.sessionID) === dirty) return
-      dirtyWarned.set(event.properties.sessionID, dirty)
+      // One attempt per distinct dirty state, so repeated idle events neither
+      // re-commit nor re-warn while nothing has changed.
+      if (dirtyWarned.get(sessionID) === dirty) return
+      if (autoCommitting.has(sessionID)) return
+      autoCommitting.add(sessionID)
+      let result: AutoCommitResult
+      try {
+        result = autoCommit(root)
+      } finally {
+        autoCommitting.delete(sessionID)
+      }
 
+      if (result.kind === "committed") {
+        dirtyWarned.delete(sessionID)
+        const message = `auto-committed: ${result.detail}`
+        logWarning("auto-commit.log", message)
+        try {
+          await client.tui.showToast({
+            body: {
+              title: "Auto-committed",
+              message: result.detail,
+              variant: "info",
+              duration: 5000,
+            },
+          })
+        } catch {}
+        return
+      }
+
+      dirtyWarned.set(sessionID, dirty)
       const count = dirty.split("\n").length
-      const message = `working tree is not clean: ${count} path(s) uncommitted.`
+      const reason =
+        result.kind === "refused"
+          ? `auto-commit refused: ${result.detail}`
+          : result.kind === "failed"
+            ? result.detail
+            : result.kind === "staged"
+              ? "the index holds staged changes awaiting a deliberate commit"
+              : "auto-commit skipped"
+      const message = `${reason} (${count} path(s) uncommitted).`
       logWarning("dirty-tree.log", message)
       console.error(`git-conventions: ${message}`)
       try {
         await client.tui.showToast({
           body: {
             title: "Working tree not clean",
-            message: `${count} uncommitted path(s). Load git-conventions and commit deliberately.`,
+            message: `${count} uncommitted path(s). ${reason}`,
             variant: "warning",
             duration: 8000,
           },
