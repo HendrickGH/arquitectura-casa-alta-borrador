@@ -1,6 +1,4 @@
-import { Fragment } from "react";
 import { Container } from "@/components/atoms/Container";
-import { Rule } from "@/components/atoms/Rule";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ServiceRow } from "@/components/molecules/ServiceRow";
@@ -15,13 +13,17 @@ interface ServicesIndexProps {
 }
 
 /**
- * The service catalogue as a spec sheet: each group leads with its title set in
- * the display face as one line of a stack, then its own introduction, then its
- * entries separated by hairlines.
+ * The service catalogue as four editorial chapters. Each group opens with a
+ * number, its title and its own introduction; its services follow as
+ * alternating photographic panels, so the catalogue reads as a body of work
+ * rather than as a text index.
  *
- * Deliberately not a grid of cards. A card grid would give the four groups and
- * the thirteen services the same visual weight, which is the opposite of what
- * this list is for -- it is an index, read top to bottom.
+ * The earlier linear spec sheet was a deliberate decision, and this replaces it
+ * on purpose: the client read it as a report, not as architecture. The
+ * replacement is recorded in the change's design, not made silently.
+ *
+ * A service without an ingested image still renders, as a plain block; the
+ * section never depends on stock to be complete.
  */
 export function ServicesIndex({
   intro,
@@ -29,6 +31,17 @@ export function ServicesIndex({
   tone = "canvas",
   id,
 }: ServicesIndexProps) {
+  // The 1-based offset of each chapter's first service, so the catalogue is
+  // numbered 01..13 across the four groups without mutating a counter in render.
+  const chapterOffsets = groups.reduce<number[]>((offsets, group, groupIndex) => {
+    offsets.push(
+      groupIndex === 0
+        ? 0
+        : offsets[groupIndex - 1] + groups[groupIndex - 1].services.length,
+    );
+    return offsets;
+  }, []);
+
   return (
     <Section id={id} tone={tone}>
       <Container>
@@ -38,30 +51,48 @@ export function ServicesIndex({
           body={intro.body}
         />
 
-        <div className="mt-16 flex flex-col gap-16 md:mt-20 md:gap-24">
-          {groups.map((group) => (
-            <div key={group.slug}>
-              {/* One line of the stack, at full width. A side column would put
-                  the title in 272px at 1024px, and "Construcción" is 404px at
-                  48px. */}
-              <h3 className="display max-w-[18ch] text-3xl leading-[0.92] md:text-4xl lg:text-5xl">
-                {group.title}
-              </h3>
+        <div className="mt-16 flex flex-col gap-20 md:mt-24 md:gap-28">
+          {groups.map((group, groupIndex) => {
+            const chapter = String(groupIndex + 1).padStart(2, "0");
 
-              <p className="mt-6 max-w-[56ch] text-base leading-relaxed text-ink-muted">
-                {group.intro}
-              </p>
+            return (
+              <div
+                key={group.slug}
+                className="border-t border-bone-200 pt-10 md:pt-12"
+              >
+                <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-10">
+                  <div className="md:col-span-7">
+                    <span className="voice text-xl text-brand-800">
+                      {chapter}
+                    </span>
+                    {/* Full-width line of the stack, as before: at 1024px a side
+                        column would leave "Construcción" 272px wide. */}
+                    <h3 className="voice mt-3 max-w-[18ch] text-3xl leading-[1.08] md:text-[2.5rem]">
+                      {group.title}
+                    </h3>
+                  </div>
 
-              <ul className="mt-10">
-                {group.services.map((service, index) => (
-                  <Fragment key={service.slug}>
-                    {index > 0 ? <Rule /> : null}
-                    <ServiceRow service={service} />
-                  </Fragment>
-                ))}
-              </ul>
-            </div>
-          ))}
+                  <p className="voice max-w-[42ch] text-lg leading-relaxed text-ink-muted md:col-span-5 md:pb-1">
+                    {group.intro}
+                  </p>
+                </div>
+
+                <ul className="mt-14 flex flex-col gap-14 md:mt-20 md:gap-24">
+                  {group.services.map((service, serviceIndex) => {
+                    const index = chapterOffsets[groupIndex] + serviceIndex + 1;
+                    return (
+                      <ServiceRow
+                        key={service.slug}
+                        service={service}
+                        index={index}
+                        flip={index % 2 === 0}
+                      />
+                    );
+                  })}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       </Container>
     </Section>

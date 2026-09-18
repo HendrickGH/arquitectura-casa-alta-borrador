@@ -21,7 +21,7 @@ export function SocialLinkItem({ link }: SocialLinkItemProps) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={link.label}
-      className="block transition-colors duration-200 hover:text-brand-700"
+      className="block transition-opacity duration-200 hover:opacity-60"
     >
       <Icon name={link.icon} />
     </a>

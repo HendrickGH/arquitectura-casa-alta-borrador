@@ -53,10 +53,10 @@
 @layer base {
   :root {
     /* The floating chrome's height. MotionShell overwrites it with the measured
-       value once the header is laid out; 5.25rem (84px) is the pre-hydration
-       default, within 1px of the measured 83px, which is constant across
-       breakpoints because the CTA button, not the logo, sets the row height. */
-    --chrome-h: 5.25rem;
+       value once the header is laid out; 7.5rem (120px) is the pre-hydration
+       default for the two-row chrome (contact strip + navigation), close enough
+       that the hero's overlap does not visibly settle on first paint. */
+    --chrome-h: 7.5rem;
   }
 
   html {
@@ -102,10 +102,10 @@
 
 @layer components {
   /*
-   * The signature display treatment: large, uppercase, and set with leading
-   * tighter than the cap height would normally allow. The reference proportion
-   * is 75px at line-height 0.73; the tightness is the point, so it is a shared
-   * class rather than repeated utility strings.
+   * The monumental voice: large, uppercase, set with leading tighter than the
+   * cap height would normally allow. Kept for the hero's word stack and the
+   * figures, where the block of capitals IS the statement -- headings use the
+   * serif voice instead so the page is spoken in two clearly distinct registers.
    */
   .display {
     font-family: var(--font-sans);
@@ -116,15 +116,34 @@
     text-wrap: balance;
   }
 
-  /* The serif voice. Marcellus has a single weight, so hierarchy comes from
-     size and colour and nothing else. */
+  /*
+   * The editorial voice. Marcellus has a single weight, so hierarchy comes from
+   * size, colour and measure alone -- which is exactly the restraint this
+   * treatment wants. `text-wrap: balance` keeps a two-word last line off the
+   * headings.
+   */
   .voice {
     font-family: var(--font-display);
     font-weight: 400;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
   }
 
-  /* Small functional labels: nav, counters, legal. */
+  /*
+   * The section kicker. It is authored in sentence case, and it stays in
+   * sentence case: a tracked-out all-caps eyebrow over every heading is the
+   * generic default, and the serif face already gives the line its editorial
+   * weight. It labels, it does not shout.
+   */
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    line-height: 1.2;
+    letter-spacing: 0.015em;
+    color: var(--color-brand-800);
+  }
+
+  /* Small functional labels: nav, buttons, legal, card meta. */
   .label {
     font-size: 0.75rem;
     letter-spacing: 0.14em;
@@ -174,6 +193,17 @@ header[data-surface="hero"] {
   backdrop-filter: none;
 }
 
+/* Below lg the contact strip collapses once the page has scrolled, so the
+   sticky header is one row on a phone -- the bar's height is a real share of a
+   844px viewport. It stays put on the wider breakpoints, where the room is
+   there and the phone number is worth keeping in view. The header's height is
+   measured by a ResizeObserver, so `--chrome-h` follows the change. */
+@media (max-width: 1023px) {
+  header[data-surface="page"] .chrome-utility {
+    display: none;
+  }
+}
+
 /* Only the hero state is declared. The filled state stays on the elements' own
    `text-ink`, so its `hover:text-brand-700` utility keeps working -- an
    unlayered page-state rule would outrank it and kill the hover. */
@@ -208,13 +238,13 @@ header[data-surface="hero"] .chrome-cta:hover {
 .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(6, 12, 26, 0.85) 0%,
-    rgba(6, 12, 26, 0.6) 12%,
-    rgba(6, 12, 26, 0.25) 26%,
-    rgba(6, 12, 26, 0.5) 38%,
-    rgba(6, 12, 26, 0.85) 48%,
-    rgba(6, 12, 26, 0.93) 62%,
-    rgba(6, 12, 26, 0.98) 100%
+    rgba(6, 12, 26, 0.86) 0%,
+    rgba(6, 12, 26, 0.52) 12%,
+    rgba(6, 12, 26, 0.18) 28%,
+    rgba(6, 12, 26, 0.4) 42%,
+    rgba(6, 12, 26, 0.78) 54%,
+    rgba(6, 12, 26, 0.9) 68%,
+    rgba(6, 12, 26, 0.97) 100%
   );
 }
 

@@ -59,7 +59,7 @@ export function Hero({ hero }: HeroProps) {
             in the utility bar directly above.
           */}
           {hero.eyebrow ? (
-            <p className="label hero-rise hero-rise-1 text-brand-100">
+            <p className="eyebrow hero-rise hero-rise-1 text-bone-100">
               {hero.eyebrow}
             </p>
           ) : null}

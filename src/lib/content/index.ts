@@ -1,5 +1,6 @@
 import { site } from "@/content/site";
 import { serviceGroups } from "@/content/services";
+import { editorialRefs } from "@/content/editorial";
 import { home } from "@/content/home";
 import { processSteps } from "@/content/process";
 import { differentiators } from "@/content/differentiators";
@@ -18,6 +19,7 @@ import {
   pickUnusedProjectPhoto,
   strongestUnusedLandscapePhoto,
 } from "./photos";
+import editorialDimensions from "@images/editorial/editorial.dimensions.json";
 import type {
   CategoryTile,
   Differentiator,
@@ -26,6 +28,7 @@ import type {
   Photo,
   ProcessStep,
   Project,
+  SectionIntro,
   ServiceGroup,
   SiteConfig,
   Testimonial,
@@ -48,8 +51,50 @@ export function getSiteConfig(): SiteConfig {
   return site;
 }
 
+/** The dimensions sidecar tools/editorial.sh writes, keyed by image slug. */
+type EditorialDimensions = Record<
+  string,
+  { width: number; height: number; fallback: string }
+>;
+
+const editorialDimensionsBySlug =
+  editorialDimensions as unknown as EditorialDimensions;
+
+/**
+ * The editorial (stock) image attached to each service, keyed by service slug.
+ * An image whose dimensions were never ingested drops out rather than rendering
+ * at a guessed size. These images are section texture only; they are not in the
+ * manifest and cannot become a project.
+ */
+export function getEditorial(): Map<string, Photo> {
+  const byService = new Map<string, Photo>();
+  for (const ref of editorialRefs) {
+    const dimensions = editorialDimensionsBySlug[ref.slug];
+    if (!dimensions) continue;
+    byService.set(ref.service, {
+      src: `/images/editorial/${ref.slug}.avif`,
+      alt: ref.alt,
+      width: dimensions.width,
+      height: dimensions.height,
+    });
+  }
+  return byService;
+}
+
+/**
+ * The catalogue with each service's section texture attached. The join happens
+ * here, not in a component: the service and its image arrive as one view model,
+ * and the seam stays the only reader of content.
+ */
 export function getServiceGroups(): ServiceGroup[] {
-  return serviceGroups;
+  const editorial = getEditorial();
+  return serviceGroups.map((group) => ({
+    ...group,
+    services: group.services.map((service) => ({
+      ...service,
+      image: editorial.get(service.slug) ?? null,
+    })),
+  }));
 }
 
 export function getProcessSteps(): ProcessStep[] {
@@ -232,6 +277,19 @@ export function getMomentPhoto(): Photo | null {
   return (
     strongestUnusedLandscapePhoto(landingSources(), projectTitle)?.photo ?? null
   );
+}
+
+/**
+ * The intro the projects index opens with. Reuses the landing's own portfolio
+ * intro rather than restating it, so the two surfaces cannot drift apart.
+ */
+export function getProjectsIntro(): SectionIntro {
+  return home.projects;
+}
+
+/** The closing call to action, shared by the landing and the projects index. */
+export function getClosing(): HomePage["closing"] {
+  return home.closing;
 }
 
 /**

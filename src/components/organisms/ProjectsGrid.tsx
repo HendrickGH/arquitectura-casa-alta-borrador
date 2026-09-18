@@ -17,9 +17,10 @@ const CARD_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
  * left rather than a second copy of the ranking.
  *
  * No heading and no top padding of its own. It continues the row above it on
- * the other tone instead of opening a second portfolio section, which is why
+ * the same canvas instead of opening a second portfolio section, which is why
  * the section that leads the portfolio carries the only projects heading on the
- * page.
+ * page. The shared tone is deliberate: a change of background at the fourth
+ * project read as a new section starting mid-list.
  *
  * The top padding is zeroed at every breakpoint rather than at the base only:
  * Tailwind's responsive utilities land after their unprefixed counterparts in
@@ -36,7 +37,7 @@ const CARD_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
  * `xl` is 1280px and is not the answer either -- the tier says 1200px, and a
  * layout whose CSS disagrees with its own label mis-serves the loader.
  */
-export function ProjectsGrid({ projects, tone = "bone" }: ProjectsGridProps) {
+export function ProjectsGrid({ projects, tone = "canvas" }: ProjectsGridProps) {
   if (projects.length === 0) return null;
 
   return (
@@ -47,6 +48,7 @@ export function ProjectsGrid({ projects, tone = "bone" }: ProjectsGridProps) {
             <ProjectCard
               key={project.slug}
               project={project}
+              href={`/proyectos/${project.slug}`}
               sizes={CARD_SIZES}
             />
           ))}

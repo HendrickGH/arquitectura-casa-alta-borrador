@@ -15,18 +15,21 @@ interface PhotoProps {
   priority?: boolean;
   /**
    * `cover` fills a fixed aspect box and crops; `intrinsic` keeps the photo's
-   * own ratio, which is what a masonry column needs.
+   * own ratio, which is what a masonry column needs; `mosaic` does both, by
+   * tier: the photo keeps its own ratio while the grid leaves the row auto, and
+   * crops to fill its cell once the grid gives that cell a definite height.
    *
    * A prop rather than a class the caller appends: `h-full` and `h-auto` land
    * in the same layer, so which one wins would depend on their order in the
    * stylesheet rather than on the order they were written.
    */
-  fit?: "cover" | "intrinsic";
+  fit?: "cover" | "intrinsic" | "mosaic";
 }
 
 const fits: Record<NonNullable<PhotoProps["fit"]>, string> = {
   cover: "h-full w-full object-cover",
   intrinsic: "h-auto w-full",
+  mosaic: "h-auto w-full min-[768px]:h-full min-[768px]:object-cover",
 };
 
 /**

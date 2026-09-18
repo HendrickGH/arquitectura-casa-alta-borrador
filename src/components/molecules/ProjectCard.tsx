@@ -14,9 +14,9 @@ interface ProjectCardProps {
    */
   photo?: PhotoModel;
   /**
-   * Omit until the project detail pages exist. A card that links to a route
-   * nobody has built is a dead end, so without this the card renders as a plain
-   * article with no hover affordance -- there is nothing to afford.
+   * The card's detail route. Supplied by every current call site now that
+   * `/proyectos/<slug>` exists; the card still renders as a plain article
+   * without it, so a future unlinked slot does not become a dead link.
    */
   href?: string;
   priority?: boolean;
@@ -35,10 +35,6 @@ export function ProjectCard({
   href,
   priority = false,
 }: ProjectCardProps) {
-  const meta = [project.categoryLabel, project.location]
-    .filter(Boolean)
-    .join(" · ");
-
   const body = (
     <>
       <div className="aspect-[4/3] w-full overflow-hidden bg-bone-100">
@@ -48,25 +44,34 @@ export function ProjectCard({
           priority={priority}
           className={
             href
-              ? "transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              ? "transition-transform duration-[900ms] ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
               : undefined
           }
         />
       </div>
 
-      <div className="mt-5 flex flex-col gap-2">
-        <p className="label text-ink-muted">{meta}</p>
+      {/* Category, title, place: three lines, each one job. The place is a
+          sentence, not a tracked caption, so a long Puerto Escondido address
+          reads as a location instead of as a shout. */}
+      <div className="mt-6 flex flex-col gap-2">
+        {project.categoryLabel ? (
+          <p className="label text-brand-800">{project.categoryLabel}</p>
+        ) : null}
         <Heading
           as="h3"
           voice="serif"
+          sizeClassName="text-[1.5rem] leading-[1.15] md:text-[1.75rem]"
           className={
             href
-              ? "transition-colors duration-300 group-hover:text-brand-700"
+              ? "transition-colors duration-300 group-hover:text-brand-800 group-focus-visible:text-brand-800"
               : undefined
           }
         >
           {project.title}
         </Heading>
+        {project.location ? (
+          <p className="text-sm text-ink-muted">{project.location}</p>
+        ) : null}
       </div>
     </>
   );

@@ -41,22 +41,22 @@ const tiles: CategoryTileContent[] = [
   {
     category: "habitacional",
     projectDir: "07-casa-tarrastro",
-    href: "/#proyectos",
+    href: "/proyectos",
   },
   {
     category: "multifamiliar",
     projectDir: "10-obra-punta-zicatela",
-    href: "/#proyectos",
+    href: "/proyectos",
   },
   {
     category: "comercial",
     projectDir: "05-cafe-malagua",
-    href: "/#proyectos",
+    href: "/proyectos",
   },
   {
     category: "obra-civil",
     projectDir: "11-columnas-c1-c2",
-    href: "/#proyectos",
+    href: "/proyectos",
   },
 ];
 
@@ -70,7 +70,7 @@ export const home: HomePage = {
     // Deliberately not the "100% mexicana" badge: that claim is the utility
     // bar's job and it sits directly above the hero. This line answers the
     // question a visitor actually arrives with -- where do you work.
-    eyebrow: "Oaxaca · Sierra, Costa, Istmo y Centro",
+    eyebrow: "Sierra, Costa, Istmo y Centro de Oaxaca",
     headline: ["Arquitectura", "y construcción", "civil e industrial"],
     subheadline:
       "Proyectos de ingeniería civil y proyectos ejecutivos arquitectónicos.",

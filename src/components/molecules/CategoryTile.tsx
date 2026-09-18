@@ -36,8 +36,10 @@ export function CategoryTile({ tile }: CategoryTileProps) {
       </div>
 
       {/* Padded to the Container's own gutter scale, so four labels read as one
-          row instead of drifting against the flush photographs above them. */}
-      <p className="label px-6 pt-4 pb-8 text-ink-muted md:px-10 md:pb-10">
+          row instead of drifting against the flush photographs above them. The
+          caption is set in the editorial serif at a size that earns the space,
+          and warms to the brand on hover so the whole tile reads as one link. */}
+      <p className="voice px-6 pt-5 pb-10 text-xl text-ink transition-colors duration-300 group-hover:text-brand-800 md:px-10 md:pb-14 md:text-2xl">
         {tile.label}
       </p>
     </Link>

@@ -2,23 +2,18 @@ import { CategoryTiles } from "@/components/organisms/CategoryTiles";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { Differentiators } from "@/components/organisms/Differentiators";
 import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
-import { Footer } from "@/components/organisms/Footer";
 import { FullBleedMoment } from "@/components/organisms/FullBleedMoment";
-import { Header } from "@/components/organisms/Header";
 import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { MasonryGallery } from "@/components/organisms/MasonryGallery";
-import {
-  RevealObserver,
-  ScrollScene,
-} from "@/components/organisms/MotionShell";
+import { ScrollScene } from "@/components/organisms/MotionShell";
 import { ProcessList } from "@/components/organisms/ProcessList";
 import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
 import { StatsBand } from "@/components/organisms/StatsBand";
 import { Testimonials } from "@/components/organisms/Testimonials";
-import { UtilityBar } from "@/components/organisms/UtilityBar";
+import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
   CategoryTile,
   HomePage,
@@ -52,7 +47,7 @@ interface LandingTemplateProps {
  * Tone order, top to bottom:
  *   claim strip (brand) - header (canvas) - hero (photo)
  *   tiles (canvas) - manifesto (bone) - intro (canvas) - stats (bone)
- *   featured portfolio (canvas) - rest of the grid (bone) - services (canvas)
+ *   featured portfolio (canvas) - rest of the grid (canvas) - services (canvas)
  *   masonry (bone) - process (canvas) - differentiators (bone)
  *   full-bleed moment (photo) - testimonials (bone, absent today) - closing (bone)
  *   footer (canvas)
@@ -62,6 +57,10 @@ interface LandingTemplateProps {
  * five additions and the sections they sit between have to still alternate after
  * every insert. And the photographic rows sit between runs of text, so the
  * alternation reads as structure rather than as a stripe pattern.
+ *
+ * The two portfolio rows are the exception: both are `canvas`, because the grid
+ * continues the featured row rather than opening a second section, and a tone
+ * change there was read as a new section starting at the fourth project.
  */
 export function LandingTemplate({
   site,
@@ -75,25 +74,11 @@ export function LandingTemplate({
   moment,
 }: LandingTemplateProps) {
   return (
-    <>
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-canvas focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink"
-      >
-        Saltar al contenido
-      </a>
-
-      <UtilityBar
-        claim={site.claim}
-        phone={site.contact[0]}
-        social={site.social}
-      />
-      <Header site={site} chrome={home.hero.chrome?.tone} />
-
+    <SiteChrome site={site} chrome={home.hero.chrome?.tone}>
       <main id="main">
         <Hero hero={home.hero} />
         <CategoryTiles tiles={tiles} />
-        <ManifestoLine line={home.manifesto} tone="bone" />
+        <ManifestoLine line={home.manifesto} />
 
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
         <StatsBand stats={home.stats} />
@@ -105,7 +90,7 @@ export function LandingTemplate({
           total={featured.length + remaining.length}
           tone="canvas"
         />
-        <ProjectsGrid projects={remaining} tone="bone" />
+        <ProjectsGrid projects={remaining} />
 
         <ServicesIndex
           id="servicios"
@@ -141,10 +126,6 @@ export function LandingTemplate({
 
         <ClosingCTA id="contacto" closing={home.closing} />
       </main>
-
-      <Footer site={site} />
-
-      <RevealObserver />
-    </>
+    </SiteChrome>
   );
 }

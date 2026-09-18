@@ -26,9 +26,9 @@ function ruleClass(index: number): string {
 
 export function StatsBand({ stats }: StatsBandProps) {
   return (
-    <section data-reveal="idle" className="bg-bone-50">
+    <section data-reveal="idle" className="border-y border-bone-200 bg-bone-50">
       <Container>
-        <div className="grid grid-cols-2 gap-y-10 py-14 md:py-20 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-12 py-16 md:py-24 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <div key={stat.label} className={cx("py-2", ruleClass(index))}>
               <StatItem value={stat.value} label={stat.label} />

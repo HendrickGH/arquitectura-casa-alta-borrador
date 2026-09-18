@@ -18,17 +18,21 @@ export function ClosingCTA({ closing, id }: ClosingCTAProps) {
   const external = closing.cta.href.startsWith("http");
 
   return (
-    <section id={id} data-reveal="idle" className="bg-bone-50">
-      <Container className="flex flex-col items-center gap-8 py-20 text-center md:py-28">
-        <Heading voice="serif" className="max-w-[24ch]">
+    <section
+      id={id}
+      data-reveal="idle"
+      className="border-t border-bone-200 bg-bone-50"
+    >
+      <Container className="flex flex-col items-center gap-7 py-24 text-center md:py-32 lg:py-40">
+        <Heading voice="serif" className="max-w-[22ch]">
           {closing.heading}
         </Heading>
 
-        <p className="max-w-[58ch] text-lg leading-relaxed text-ink-muted">
+        <p className="max-w-[56ch] text-lg leading-relaxed text-ink-muted">
           {closing.body}
         </p>
 
-        <Button href={closing.cta.href} external={external} className="mt-2">
+        <Button href={closing.cta.href} external={external} className="mt-4">
           {closing.cta.label}
         </Button>
       </Container>

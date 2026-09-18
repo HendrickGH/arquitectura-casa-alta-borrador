@@ -14,13 +14,13 @@ export const site = {
   foundedYear: 2016,
   coverage: "Sierra, Costa, Istmo y Centro de Oaxaca",
 
-  // Every one of these resolves. The site is a single landing page so far, so
-  // the links point at that page's section anchors rather than at routes that
-  // would 404. They become real routes (/proyectos, /servicios, ...) when those
-  // pages ship; the `/#x` form already works from any future page too.
+  // Every one of these resolves. Proyectos is a real route now; the rest still
+  // point at the landing's section anchors rather than at routes that would
+  // 404. They become routes (/servicios, ...) when those pages ship; the `/#x`
+  // form already works from any page.
   nav: [
     { label: "Inicio", href: "/" },
-    { label: "Proyectos", href: "/#proyectos" },
+    { label: "Proyectos", href: "/proyectos" },
     { label: "Servicios", href: "/#servicios" },
     { label: "Nosotros", href: "/#nosotros" },
     { label: "Proceso", href: "/#proceso" },

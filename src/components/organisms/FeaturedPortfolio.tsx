@@ -60,13 +60,19 @@ export function FeaturedPortfolio({
             {/* wideCover, not cover: this slot is full width, and most covers
                 are portrait -- stretched across ~1310px a 1200x1600 photo is
                 being upscaled by the browser. */}
-            <ProjectCard project={lead} photo={lead.wideCover} sizes="100vw" />
+            <ProjectCard
+              project={lead}
+              photo={lead.wideCover}
+              href={`/proyectos/${lead.slug}`}
+              sizes="100vw"
+            />
           </div>
 
           {cells.map((project) => (
             <ProjectCard
               key={project.slug}
               project={project}
+              href={`/proyectos/${project.slug}`}
               sizes={CELL_SIZES}
             />
           ))}

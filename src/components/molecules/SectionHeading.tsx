@@ -9,6 +9,11 @@ interface SectionHeadingProps {
   /** Opening paragraph. The element is dropped when empty. */
   body?: string;
   align?: "left" | "center";
+  /**
+   * The heading's level. `h2` on the landing, where it labels a section under
+   * the hero's `h1`; `h1` on a route that has no hero and must supply its own.
+   */
+  as?: "h1" | "h2";
 }
 
 /**
@@ -23,38 +28,32 @@ export function SectionHeading({
   heading,
   body,
   align = "left",
+  as = "h2",
 }: SectionHeadingProps) {
   const centered = align === "center";
 
   return (
     <div
       className={cx(
-        "flex flex-col gap-5",
+        "flex flex-col gap-4",
         centered && "items-center text-center",
       )}
     >
-      {eyebrow ? <p className="label text-brand-700">{eyebrow}</p> : null}
+      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
 
-      {/*
-        The clamp only ever shrinks the heading, and only below a 417px
-        viewport; from there up it resolves to the atom's own 2.5rem. It is
-        here because the display face is uppercase and cannot break: measured
-        against the shipped Montserrat 600, "Arquitectura" sets 8.171em, which
-        is 327px at 40px -- exactly the 327px a 375px viewport offers, leaving
-        no margin for rendering variance.
-      */}
+      {/* Sentence-case serif, so the heading can wrap on its own and needs no
+          non-breaking measure. The width cap keeps it to a comfortable measure
+          rather than a full-width banner. */}
       <Heading
-        voice="display"
-        className={cx(
-          "max-w-[22ch] text-[clamp(2rem,9.6vw,2.5rem)]",
-          centered && "mx-auto",
-        )}
+        as={as}
+        voice="serif"
+        className={cx("max-w-[26ch]", centered && "mx-auto")}
       >
         {heading}
       </Heading>
 
       {body ? (
-        <Text size="lede" className={cx(centered && "mx-auto")}>
+        <Text size="lede" className={cx("mt-1", centered && "mx-auto")}>
           {body}
         </Text>
       ) : null}

@@ -78,6 +78,12 @@ export interface Service {
   summary: string;
   /** Concrete deliverables listed under the title. */
   items: string[];
+  /**
+   * Section texture for this service, attached by the seam from
+   * `src/content/editorial.ts` + the ingested dimensions sidecar. `null` when no
+   * image has been ingested for it yet. Never the studio's own work.
+   */
+  image?: Photo | null;
 }
 
 export interface ServiceGroup {
@@ -197,8 +203,8 @@ export interface CategoryTileContent {
   /** Manifest directory of the project the tile shows. */
   projectDir: string;
   /**
-   * The portfolio anchor until foundation's `/proyectos` route exists. One
-   * target for four categories beats four dead links to a route nobody built.
+   * The portfolio target. Four categories share one index now that `/proyectos`
+   * is a real route; the landing's `#proyectos` anchor still resolves.
    */
   href: string;
 }

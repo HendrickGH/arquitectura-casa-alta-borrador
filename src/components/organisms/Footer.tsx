@@ -43,11 +43,11 @@ export function Footer({ site }: FooterProps) {
           </div>
 
           <div className="lg:col-span-3">
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-5">
               {site.offices.map((office) => (
                 <li key={office.city} className="flex flex-col gap-1">
-                  <span className="text-sm text-ink">{office.city}</span>
-                  <span className="label text-ink-muted">{office.region}</span>
+                  <span className="voice text-xl text-ink">{office.city}</span>
+                  <span className="text-sm text-ink-muted">{office.region}</span>
                 </li>
               ))}
             </ul>

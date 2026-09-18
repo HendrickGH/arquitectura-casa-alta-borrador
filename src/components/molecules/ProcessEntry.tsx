@@ -17,10 +17,15 @@ export function ProcessEntry({ step }: ProcessEntryProps) {
   return (
     <li className="grid gap-5 py-10 md:grid-cols-12 md:gap-10 md:py-12">
       <div className="flex items-baseline gap-6 md:col-span-5">
-        <span className="display text-3xl leading-[0.92] text-brand-700 md:text-4xl">
+        <span className="voice text-2xl text-brand-800 md:text-3xl">
           {marker}
         </span>
-        <Heading as="h3" voice="plain" className="max-w-[20ch]">
+        <Heading
+          as="h3"
+          voice="serif"
+          sizeClassName="text-[1.5rem] leading-[1.15] md:text-[1.75rem]"
+          className="max-w-[20ch]"
+        >
           {step.title}
         </Heading>
       </div>

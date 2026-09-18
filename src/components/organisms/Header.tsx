@@ -4,6 +4,7 @@ import { Container } from "@/components/atoms/Container";
 import { Logo } from "@/components/atoms/Logo";
 import { NavItem } from "@/components/molecules/NavItem";
 import { HeaderShell } from "@/components/organisms/MotionShell";
+import { UtilityBar } from "@/components/organisms/UtilityBar";
 import type { SiteConfig } from "@/types/content";
 
 interface HeaderProps {
@@ -31,13 +32,24 @@ interface HeaderProps {
  * undefined -- and rendered nothing -- the moment the nav switched to anchors,
  * so the button disappeared without an error.
  *
+ * The contact strip is the top row of the same sticky header rather than a band
+ * above it. That is what lets the hero photograph run to the top edge of the
+ * page: over the hero both rows are transparent, so the image is unbroken
+ * behind them, and both invert to the filled surface together on scroll.
+ *
  * Every string and link here is composed on the server; `HeaderShell` only adds
  * the scroll state and the `--chrome-h` measurement around them.
  */
 export function Header({ site, chrome }: HeaderProps) {
   return (
     <HeaderShell chrome={chrome}>
-      <Container className="flex items-center justify-between gap-6 py-4">
+      <UtilityBar
+        claim={site.claim}
+        phone={site.contact[0]}
+        social={site.social}
+      />
+
+      <Container className="flex items-center justify-between gap-6 pb-4 pt-1">
         <Link href="/" className="shrink-0" aria-label={site.name}>
           <Logo />
         </Link>
