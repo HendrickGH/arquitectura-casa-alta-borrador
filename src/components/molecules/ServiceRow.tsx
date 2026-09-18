@@ -25,12 +25,12 @@ interface ServiceRowProps {
 }
 
 /**
- * A panel is alone in its row, so its image earns the wider slot: 60% of the
- * container from `lg` -- the "20% bigger" the design asks for -- and 50% at
- * `md`, where a narrower text column would squeeze the deliverable list. Below
- * `md` the panel is one column and the image is full width.
+ * A panel is alone in its row, so its image earns the wider slot: 70% of the
+ * container from `lg` and 50% at `md`, where the text column would otherwise
+ * squeeze the deliverable list. Below `md` the panel is one column and the
+ * image is full width.
  */
-const PANEL_SIZES = "(min-width: 1024px) 60vw, (min-width: 768px) 50vw, 100vw";
+const PANEL_SIZES = "(min-width: 1024px) 70vw, (min-width: 768px) 50vw, 100vw";
 
 /**
  * The two-up cards sit inside the capped Container, so each is a little under
@@ -134,8 +134,8 @@ export function ServiceRow({
   // children rather than the grid tracks, the wider track has to move with it:
   // tracking by column alone would hand the extra space to the text.
   const panelGrid = flip
-    ? "md:grid-cols-2 lg:grid-cols-[2fr_3fr]"
-    : "md:grid-cols-2 lg:grid-cols-[3fr_2fr]";
+    ? "md:grid-cols-2 lg:grid-cols-[3fr_7fr]"
+    : "md:grid-cols-2 lg:grid-cols-[7fr_3fr]";
 
   return (
     <li
