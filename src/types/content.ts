@@ -156,6 +156,37 @@ export interface CallToAction {
   href: string;
 }
 
+/* ---------- contact ---------- */
+
+/** One form control: its visible label and its placeholder. */
+export interface ContactField {
+  label: string;
+  placeholder: string;
+}
+
+/**
+ * The contact form's authored copy. Every visible string lives here so the
+ * component ships no copy of its own -- the same seam rule the rest of the
+ * page follows. Field names (the values sent to the mail service) are fixed in
+ * the form, not authored: they are an integration contract, not content.
+ */
+export interface ContactFormContent {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  name: ContactField;
+  email: ContactField;
+  phone: ContactField;
+  message: ContactField;
+  submit: string;
+  /** Label shown on the submit control while the request is in flight. */
+  sending: string;
+  success: string;
+  error: string;
+  /** Label for the secondary action that opens WhatsApp instead. */
+  whatsapp: string;
+}
+
 /**
  * The floating chrome's polarity over a hero photograph.
  *
@@ -240,4 +271,6 @@ export interface HomePage {
     body: string;
     cta: CallToAction;
   };
+  /** The landing's contact form copy, rendered by ContactForm. */
+  contact: ContactFormContent;
 }

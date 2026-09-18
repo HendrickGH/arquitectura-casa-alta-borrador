@@ -1,4 +1,4 @@
-import { site } from "@/content/site";
+import { site, whatsappHref } from "@/content/site";
 import { serviceGroups } from "@/content/services";
 import { editorialRefs } from "@/content/editorial";
 import { home } from "@/content/home";
@@ -49,6 +49,14 @@ import type {
 
 export function getSiteConfig(): SiteConfig {
   return site;
+}
+
+/**
+ * The primary WhatsApp target. Passed to components as a prop so no component
+ * ever reaches into src/content for it -- the seam stays the only reader.
+ */
+export function getWhatsappHref(): string {
+  return whatsappHref;
 }
 
 /** The dimensions sidecar tools/editorial.sh writes, keyed by image slug. */

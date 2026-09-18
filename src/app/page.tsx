@@ -8,6 +8,7 @@ import {
   getServiceGroups,
   getSiteConfig,
   getTiles,
+  getWhatsappHref,
 } from "@/lib/content";
 
 /**
@@ -27,6 +28,7 @@ export default function HomePage() {
   const tiles = getTiles();
   const masonry = getMasonry();
   const moment = getMomentPhoto();
+  const whatsappHref = getWhatsappHref();
 
   return (
     <LandingTemplate
@@ -39,6 +41,7 @@ export default function HomePage() {
       tiles={tiles}
       masonry={masonry}
       moment={moment}
+      whatsappHref={whatsappHref}
     />
   );
 }

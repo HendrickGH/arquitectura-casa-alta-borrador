@@ -43,7 +43,9 @@ export function ProjectsIndexTemplate({
           </Container>
         </Section>
 
-        <ProjectsGrid projects={projects} />
+        <Section tone="canvas" className="pt-0 md:pt-0 lg:pt-0">
+          <ProjectsGrid projects={projects} />
+        </Section>
 
         <ClosingCTA closing={closing} />
       </main>

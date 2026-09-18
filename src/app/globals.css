@@ -248,6 +248,20 @@ header[data-surface="hero"] .chrome-cta:hover {
   );
 }
 
+/* --- Closing call to action over the full-bleed photograph ---------------- */
+
+/* Heavier than the hero's, and flatter through the middle: the closing copy is
+   centred, so all of the type sits over the centre of the image rather than
+   over a graded edge, and the overlay has to hold contrast there. */
+.cta-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 12, 26, 0.74) 0%,
+    rgba(6, 12, 26, 0.68) 45%,
+    rgba(6, 12, 26, 0.82) 100%
+  );
+}
+
 /* The hero's entrance: pure CSS, so it runs with or without JavaScript, and it
    animates only transform and opacity. */
 @keyframes rise {

@@ -1,31 +1,23 @@
 import { Container } from "@/components/atoms/Container";
-import { Section } from "@/components/atoms/Section";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
 import type { Project } from "@/types/content";
 
 interface ProjectsGridProps {
   projects: Project[];
-  tone?: "canvas" | "bone";
+  /** Spacing between this grid and whatever precedes it in the section. */
+  className?: string;
 }
 
 /** Three columns from 1200px, two from 768px: the CSS below is what makes it true. */
 const CARD_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
 
 /**
- * The portfolio's second row: the projects the featured row did not take, three
- * up from 1200px. A project appears once, so this renders whatever the seam
- * left rather than a second copy of the ranking.
+ * The portfolio's grid of cards, with no section of its own.
  *
- * No heading and no top padding of its own. It continues the row above it on
- * the same canvas instead of opening a second portfolio section, which is why
- * the section that leads the portfolio carries the only projects heading on the
- * page. The shared tone is deliberate: a change of background at the fourth
- * project read as a new section starting mid-list.
- *
- * The top padding is zeroed at every breakpoint rather than at the base only:
- * Tailwind's responsive utilities land after their unprefixed counterparts in
- * the stylesheet, so a bare `pt-0` would lose to `md:py-28` and `lg:py-36` and
- * the row would drift away from the one it continues.
+ * On the landing it is handed to `FeaturedPortfolio` as a child and completes
+ * that section's run: the same tone and no heading, so the projects the featured
+ * row did not take read as a continuation rather than a second portfolio. On
+ * `/proyectos` the page wraps it in its own `Section`.
  *
  * The column chain is written as arbitrary variants at BOTH steps, not as `md:`
  * plus `min-[1200px]:`, and that is not a style preference. Tailwind emits its
@@ -37,23 +29,21 @@ const CARD_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
  * `xl` is 1280px and is not the answer either -- the tier says 1200px, and a
  * layout whose CSS disagrees with its own label mis-serves the loader.
  */
-export function ProjectsGrid({ projects, tone = "canvas" }: ProjectsGridProps) {
+export function ProjectsGrid({ projects, className }: ProjectsGridProps) {
   if (projects.length === 0) return null;
 
   return (
-    <Section tone={tone} className="pt-0 md:pt-0 lg:pt-0">
-      <Container>
-        <div className="grid grid-cols-1 gap-x-8 gap-y-14 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              href={`/proyectos/${project.slug}`}
-              sizes={CARD_SIZES}
-            />
-          ))}
-        </div>
-      </Container>
-    </Section>
+    <Container className={className}>
+      <div className="grid grid-cols-1 gap-x-8 gap-y-14 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
+        {projects.map((project) => (
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            href={`/proyectos/${project.slug}`}
+            sizes={CARD_SIZES}
+          />
+        ))}
+      </div>
+    </Container>
   );
 }

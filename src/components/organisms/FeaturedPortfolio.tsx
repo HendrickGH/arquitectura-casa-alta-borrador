@@ -14,6 +14,12 @@ interface FeaturedPortfolioProps {
   tone?: "canvas" | "bone";
   /** Anchor target, so the header nav can link straight to this section. */
   id?: string;
+  /**
+   * The portfolio's later rows. They render inside this section, below the
+   * featured row, so the whole portfolio reveals as one unit instead of a second
+   * independent `[data-reveal]` section starting mid-list.
+   */
+  children?: React.ReactNode;
 }
 
 /** One cell of the two-column grid, so the 2-column tier is the exact slot. */
@@ -39,6 +45,7 @@ export function FeaturedPortfolio({
   total,
   tone = "canvas",
   id,
+  children,
 }: FeaturedPortfolioProps) {
   const [lead, ...cells] = projects;
   if (!lead) return null;
@@ -78,6 +85,7 @@ export function FeaturedPortfolio({
           ))}
         </div>
       </Container>
+      {children}
     </Section>
   );
 }

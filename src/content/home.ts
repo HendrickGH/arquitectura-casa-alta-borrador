@@ -141,4 +141,27 @@ export const home: HomePage = {
     body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
     cta: { label: "Contacto", href: whatsappHref },
   },
+
+  // The form replaced the closing block as the contact section. The closing
+  // copy now rides on the full-bleed photograph above it; this is the working
+  // section a visitor lands on from the header's Contacto link.
+  contact: {
+    eyebrow: "Contacto",
+    heading: "Cuéntenos su proyecto",
+    body: "Déjenos sus datos y le responderemos por correo. Si prefiere una respuesta inmediata, escríbanos por WhatsApp.",
+    name: { label: "Nombre", placeholder: "Su nombre" },
+    email: { label: "Correo", placeholder: "nombre@correo.com" },
+    phone: { label: "Teléfono", placeholder: "951 000 0000" },
+    message: {
+      label: "Mensaje",
+      placeholder:
+        "Cuéntenos qué quiere construir, dónde y para cuándo lo necesita.",
+    },
+    submit: "Enviar mensaje",
+    sending: "Enviando…",
+    success: "Gracias. Recibimos su mensaje y le responderemos a la brevedad.",
+    error:
+      "No pudimos enviar el mensaje. Intente de nuevo o escríbanos por WhatsApp.",
+    whatsapp: "Escribir por WhatsApp",
+  },
 };

@@ -3,12 +3,21 @@ import { cx } from "@/lib/cx";
 type Variant = "primary" | "secondary" | "quiet" | "inverse" | "outline";
 
 interface ButtonProps {
-  href: string;
   children: React.ReactNode;
+  /**
+   * An anchor when present. Omit it to render a real `<button>` -- the submit
+   * control a form needs. The two are exclusive: a link that navigates and a
+   * control that submits are not the same thing, and the variants are shared so
+   * the primary action still has exactly one owner.
+   */
+  href?: string;
   variant?: Variant;
   className?: string;
-  /** Opens in a new tab and gets the matching rel. */
+  /** Opens in a new tab and gets the matching rel. Anchors only. */
   external?: boolean;
+  /** Submit controls only. */
+  type?: "button" | "submit";
+  disabled?: boolean;
 }
 
 /**
@@ -30,26 +39,39 @@ const variants: Record<Variant, string> = {
 };
 
 export function Button({
-  href,
   children,
+  href,
   variant = "primary",
   className,
   external = false,
+  type = "button",
+  disabled = false,
 }: ButtonProps) {
   const isQuiet = variant === "quiet";
 
+  const classes = cx(
+    "label inline-flex items-center justify-center transition-colors duration-200",
+    !isQuiet && "px-9 py-[1.15rem]",
+    variants[variant],
+    disabled && "cursor-not-allowed opacity-60",
+    className,
+  );
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className={classes}
+      >
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <a
-      href={href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={cx(
-        "label inline-flex items-center justify-center transition-colors duration-200",
-        !isQuiet && "px-9 py-[1.15rem]",
-        variants[variant],
-        className,
-      )}
-    >
+    <button type={type} disabled={disabled} className={classes}>
       {children}
-    </a>
+    </button>
   );
 }

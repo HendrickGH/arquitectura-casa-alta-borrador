@@ -1,8 +1,8 @@
 import { CategoryTiles } from "@/components/organisms/CategoryTiles";
-import { ClosingCTA } from "@/components/organisms/ClosingCTA";
+import { ContactForm } from "@/components/organisms/ContactForm";
 import { Differentiators } from "@/components/organisms/Differentiators";
 import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
-import { FullBleedMoment } from "@/components/organisms/FullBleedMoment";
+import { FullBleedCTA } from "@/components/organisms/FullBleedCTA";
 import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
@@ -37,6 +37,8 @@ interface LandingTemplateProps {
   tiles: CategoryTile[];
   masonry: MasonryItem[];
   moment: Photo | null;
+  /** Primary WhatsApp target, for the contact form's secondary action. */
+  whatsappHref: string;
 }
 
 /**
@@ -46,21 +48,34 @@ interface LandingTemplateProps {
  *
  * Tone order, top to bottom:
  *   claim strip (brand) - header (canvas) - hero (photo)
- *   tiles (canvas) - manifesto (bone) - intro (canvas) - stats (bone)
- *   featured portfolio (canvas) - rest of the grid (canvas) - services (canvas)
- *   masonry (bone) - process (canvas) - differentiators (bone)
- *   full-bleed moment (photo) - testimonials (bone, absent today) - closing (bone)
- *   footer (canvas)
+ *   intro (canvas) - stats (bone) - tiles (canvas) - manifesto (brand)
+ *   featured portfolio (canvas) - rest of the grid (canvas) - process (bone)
+ *   services (canvas) - differentiators (bone) - masonry (canvas)
+ *   testimonials (bone, absent today) - full-bleed closing CTA (photo)
+ *   contact form (bone) - footer (canvas)
  *
- * Two adjacency rules are deliberate. Adjacent text sections alternate, which is
- * why the intro sits above the stats rather than under the hero: as a run, the
- * five additions and the sections they sit between have to still alternate after
- * every insert. And the photographic rows sit between runs of text, so the
- * alternation reads as structure rather than as a stripe pattern.
+ * Three adjacency rules are deliberate.
  *
- * The two portfolio rows are the exception: both are `canvas`, because the grid
- * continues the featured row rather than opening a second section, and a tone
- * change there was read as a new section starting at the fourth project.
+ * Adjacent text sections alternate, so the page reads as structure rather than
+ * as a stripe pattern. The intro and the stats now sit directly under the hero
+ * instead of the tiles: the hero is the first photograph, and a four-up tile
+ * band immediately beneath it opened the page on a second wall of images. The
+ * studio says who it is and how much it has built before the next photograph
+ * arrives.
+ *
+ * No two photographic masses are adjacent. The four photographic blocks -- the
+ * tiles, the portfolio, the services and the masonry -- are separated by a text
+ * section each, and the brief's original run (portfolio 6 -> services 13 ->
+ * masonry 12) left thirty-one photographs with nothing but an intro between
+ * them. Process now breaks portfolio from services, and differentiators breaks
+ * services from masonry. The masonry's tone is `canvas`, not `bone`, because
+ * that section follows the bone differentiators and the alternation has to hold
+ * across the pair.
+ *
+ * The two portfolio rows are the exception to the tone alternation: both are
+ * `canvas`, because the grid continues the featured row rather than opening a
+ * second section, and a tone change there was read as a new section starting at
+ * the fourth project.
  */
 export function LandingTemplate({
   site,
@@ -72,16 +87,18 @@ export function LandingTemplate({
   tiles,
   masonry,
   moment,
+  whatsappHref,
 }: LandingTemplateProps) {
   return (
     <SiteChrome site={site} chrome={home.hero.chrome?.tone}>
       <main id="main">
         <Hero hero={home.hero} />
-        <CategoryTiles tiles={tiles} />
-        <ManifestoLine line={home.manifesto} />
 
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
         <StatsBand stats={home.stats} />
+
+        <CategoryTiles tiles={tiles} />
+        <ManifestoLine line={home.manifesto} />
 
         <FeaturedPortfolio
           id="proyectos"
@@ -89,8 +106,21 @@ export function LandingTemplate({
           projects={featured}
           total={featured.length + remaining.length}
           tone="canvas"
+        >
+          {/* The rest of the grid lives inside the projects section, not as a
+              second `[data-reveal]` one starting mid-list. */}
+          <ProjectsGrid
+            projects={remaining}
+            className="mt-20 md:mt-28 lg:mt-36"
+          />
+        </FeaturedPortfolio>
+
+        <ProcessList
+          id="proceso"
+          intro={home.process}
+          steps={steps}
+          tone="bone"
         />
-        <ProjectsGrid projects={remaining} />
 
         <ServicesIndex
           id="servicios"
@@ -99,21 +129,16 @@ export function LandingTemplate({
           tone="canvas"
         />
 
-        <ScrollScene mode="drift">
-          <MasonryGallery items={masonry} tone="bone" />
-        </ScrollScene>
-
-        <ProcessList
-          id="proceso"
-          intro={home.process}
-          steps={steps}
-          tone="canvas"
-        />
         <Differentiators
           intro={home.differentiators.intro}
           items={home.differentiators.items}
           tone="bone"
         />
+
+        <ScrollScene mode="drift">
+          <MasonryGallery items={masonry} tone="canvas" />
+        </ScrollScene>
+
         <Testimonials
           intro={home.testimonials.intro}
           items={home.testimonials.items}
@@ -121,10 +146,14 @@ export function LandingTemplate({
         />
 
         <ScrollScene mode="breathe">
-          <FullBleedMoment photo={moment} />
+          <FullBleedCTA photo={moment} closing={home.closing} />
         </ScrollScene>
 
-        <ClosingCTA id="contacto" closing={home.closing} />
+        <ContactForm
+          id="contacto"
+          contact={home.contact}
+          whatsappHref={whatsappHref}
+        />
       </main>
     </SiteChrome>
   );
