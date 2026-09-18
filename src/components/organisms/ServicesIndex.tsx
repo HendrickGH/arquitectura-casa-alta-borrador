@@ -24,9 +24,11 @@ interface ServicesIndexProps {
  *
  * To keep thirteen services from reading as one treatment repeated thirteen
  * times, each chapter leads with a full editorial panel and its remaining
- * services fall into a two-up grid of lighter cards. The weight still follows
- * the authored order, which already leads with each group's most representative
- * service; no content field was added to say so.
+ * services fall into a two-up grid of lighter cards. When a chapter's compact
+ * count is odd, the leftover card is promoted to a wide panel rather than
+ * stranded alone in half a row. The weight still follows the authored order,
+ * which already leads with each group's most representative service; no content
+ * field was added to say so.
  *
  * A service without an ingested image still renders, as a plain block; the
  * section never depends on stock to be complete.
@@ -89,14 +91,37 @@ export function ServicesIndex({
                 <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:mt-20 md:grid-cols-2 md:gap-x-14 md:gap-y-20">
                   {group.services.map((service, serviceIndex) => {
                     const index = chapterOffsets[groupIndex] + serviceIndex + 1;
-                    const featured = serviceIndex === 0;
+                    const isFeatured = serviceIndex === 0;
+                    // A compact that would sit alone in its two-up row -- the
+                    // last one when the compacts are odd in number -- is
+                    // promoted to a wide panel, so no row is left half empty.
+                    const isLoneCompact =
+                      (group.services.length - 1) % 2 === 1 &&
+                      serviceIndex === group.services.length - 1;
+                    // The chapter's featured panel alternates sides; a promoted
+                    // panel takes the opposite one, so two panels in the same
+                    // chapter never open on the same edge.
+                    const chapterFlip = groupIndex % 2 === 1;
+
                     return (
                       <ServiceRow
                         key={service.slug}
                         service={service}
                         index={index}
-                        variant={featured ? "featured" : "compact"}
-                        flip={featured && groupIndex % 2 === 1}
+                        variant={
+                          isFeatured
+                            ? "featured"
+                            : isLoneCompact
+                              ? "wide"
+                              : "compact"
+                        }
+                        flip={
+                          isFeatured
+                            ? chapterFlip
+                            : isLoneCompact
+                              ? !chapterFlip
+                              : false
+                        }
                       />
                     );
                   })}
