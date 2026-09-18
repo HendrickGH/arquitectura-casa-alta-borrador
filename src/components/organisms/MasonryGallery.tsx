@@ -76,7 +76,11 @@ export function MasonryGallery({ items, tone = "bone" }: MasonryGalleryProps) {
           return (
             <div
               key={item.photo.src}
-              data-drift-item
+              // The drift carries the single cells only. A double spans two
+              // columns at the three-column tier, so translating it pulls it out
+              // of the row it shares with its neighbours; the doubles anchor the
+              // wall instead. See `buildDrift` in gsap-scenes.ts.
+              data-drift-item={doubled ? undefined : ""}
               className={cx(
                 doubled && "min-[768px]:row-span-2",
                 doubled && "min-[1200px]:col-span-2",

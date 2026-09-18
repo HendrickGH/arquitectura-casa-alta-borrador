@@ -2,6 +2,12 @@
 # Builds manifest.json from the variant TSV, ready for a build step to consume.
 #
 # TSV rows:  pn|ps|in|slug|score|note|<w>:<px>:<py>:<file> ...
+#
+# Every input is read as UTF-8, not as raw bytes. The ranking notes carry
+# accented Spanish ("lámparas", "celosía") and the source paths carry names like
+# "Zimatlán (17).jpg". Read as bytes, JSON::PP escapes each byte of a multi-byte
+# character on its own and the manifest ships "lÃ¡mparas" -- which then reaches
+# the alt text. Decoding first makes JSON::PP emit one code point per character.
 use strict;
 use warnings;
 use JSON::PP;
@@ -13,7 +19,7 @@ my $JOIN = "/tmp/casa-alta-work/joined.txt";
 
 # original source path per photo, so ingestion can tell what is already processed
 my %source;
-if (open my $jf, '<', $JOIN) {
+if (open my $jf, '<:encoding(UTF-8)', $JOIN) {
     while (<$jf>) {
         chomp;
         # joined.txt is pn|ps|in|slug|orig|score|note; orig holds no pipes,
@@ -26,7 +32,7 @@ if (open my $jf, '<', $JOIN) {
 
 # full-size dimensions, precomputed with one identify pass
 my %dims;
-if (open my $df, '<', $DIMS) {
+if (open my $df, '<:encoding(UTF-8)', $DIMS) {
     while (<$df>) {
         chomp;
         my ($w, $h, $path) = split /\s+/, $_, 3;
@@ -40,7 +46,7 @@ if (open my $df, '<', $DIMS) {
 my @projects;
 my %proj_index;
 
-open my $tf, '<', $TSV or die "no puedo abrir $TSV: $!";
+open my $tf, '<:encoding(UTF-8)', $TSV or die "no puedo abrir $TSV: $!";
 while (<$tf>) {
     chomp;
     next if /^\s*$/;

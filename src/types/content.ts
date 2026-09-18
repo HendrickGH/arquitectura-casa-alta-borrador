@@ -205,8 +205,6 @@ export interface HeroContent {
   headline: string[];
   subheadline: string;
   image: Photo;
-  primary: CallToAction;
-  secondary: CallToAction;
   /**
    * The transparent chrome over this hero. Omitted until a photograph passes
    * the chrome-band gate, which keeps the header filled today; supplying it is

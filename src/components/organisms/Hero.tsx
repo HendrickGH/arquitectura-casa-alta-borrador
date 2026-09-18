@@ -1,4 +1,3 @@
-import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Photo } from "@/components/atoms/Photo";
 import type { HeroContent } from "@/types/content";
@@ -7,31 +6,36 @@ interface HeroProps {
   hero: HeroContent;
 }
 
-/** Anything leaving the site opens in a new tab; internal routes do not. */
-function isExternal(href: string): boolean {
-  return href.startsWith("http");
-}
-
 /**
- * The landing hero: the photograph fills one visual viewport, a graded dark
- * overlay sits on top of it, and the type is set directly on that overlay.
+ * The landing hero: the photograph fills one visual viewport, a flat dark scrim
+ * sits on top of it, and the type is set directly on that scrim -- the kicker
+ * and the headline bottom-left, the description bottom-right.
  *
- * WHY THE OVERLAY, AND NOT TYPE ON THE BARE PHOTOGRAPH. Two attempts at putting
+ * WHY THE SCRIM, AND NOT TYPE ON THE BARE PHOTOGRAPH. Two attempts at putting
  * type straight on this image were built and measured before, and both failed:
  * white type sampled 1.31:1, and dark type was *less* legible than white because
- * variance, not mean luminance, is what breaks type. The overlay is the fix
- * that keeps the photograph: it is graded rather than flat -- heavier at the top
- * for the floating chrome, heaviest at the bottom where the headline sits -- so
- * the type gets a measured ground while the middle of the image stays the
- * subject. The composition is the client's: dark overlay, type on the image, no
- * boxed panel.
+ * variance, not mean luminance, is what breaks type. The design record is
+ * explicit that the photograph needs a 60-77% dark scrim across the block. The
+ * scrim here is the closing CTA's flat one rather than the graded band this
+ * hero used to carry: near-uniform, with a slightly stronger top stop so the
+ * transparent chrome keeps its edge in the header band.
+ *
+ * The description is small text, not large text, so its band needs 4.5:1 where
+ * the headline only needs 3:1. The bottom stop composites to roughly 5.5:1
+ * against white over this image's recorded 0.74-0.77 luminance, which is why
+ * both type blocks sit at the bottom instead of floating over the middle of the
+ * photograph.
+ *
+ * NO BUTTONS. The hero's two buttons were removed with this layout: their
+ * destinations are the header CTA and the closing CTA, and the photograph opens
+ * the page better without a button pair on it.
  *
  * The overlay is decorative and hidden from assistive tech; the contrast it
  * produces is measured in the rendered composition, not assumed.
  *
  * The entrance is pure CSS (`hero-rise` in globals.css): it runs with or
  * without JavaScript, animates only opacity and transform, is staggered per
- * line, and is neutralised under `prefers-reduced-motion`.
+ * block, and is neutralised under `prefers-reduced-motion`.
  *
  * Size is fluid because the headline is a word stack and a line cannot wrap: the
  * widest line, "civil e industrial", measures ~10.06em in the shipped Montserrat
@@ -51,48 +55,48 @@ export function Hero({ hero }: HeroProps) {
       <div className="hero-overlay absolute inset-0" aria-hidden="true" />
 
       <Container className="relative z-10 pt-32 pb-14 md:pb-20">
-        <div className="flex max-w-[54rem] flex-col items-start gap-5">
-          {/*
-            The kicker answers "where do these people work", which is the first
-            thing a visitor from outside Oaxaca needs. It deliberately does NOT
-            repeat site.claim ("Empresa 100% mexicana"): that badge already sits
-            in the utility bar directly above.
-          */}
-          {hero.eyebrow ? (
-            <p className="eyebrow hero-rise hero-rise-1 text-bone-100">
-              {hero.eyebrow}
-            </p>
-          ) : null}
+        {/*
+          Two columns only from `lg`. The headline is a word stack and a line
+          must not wrap, so the left column needs room for "civil e industrial"
+          at ~10.06em; sharing the row with the description below 1024px breaks
+          that line and the sentence reads as five lines instead of three. The
+          description stacks under the headline until there is room for both.
+        */}
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+          <div className="flex flex-col items-start gap-4">
+            {/*
+              The kicker answers "where do these people work", which is the first
+              thing a visitor from outside Oaxaca needs. It deliberately does NOT
+              repeat site.claim ("Empresa 100% mexicana"): that badge already sits
+              in the utility bar directly above.
+            */}
+            {hero.eyebrow ? (
+              <p className="eyebrow hero-rise hero-rise-1 text-bone-100">
+                {hero.eyebrow}
+              </p>
+            ) : null}
 
-          {/* The word stack: one line per entry, in a single h1. */}
-          <h1 className="display hero-rise hero-rise-2 text-[clamp(1.5rem,5.5vw,4.25rem)] text-white">
-            {hero.headline.map((line) => (
-              <span key={line} className="block">
-                {line}
-              </span>
-            ))}
-          </h1>
+            {/*
+              The word stack: one line per entry, in a single h1. The spans are
+              `whitespace-nowrap` for a structural reason, not a cosmetic one:
+              it makes the widest line the h1's min-content, and a flex item
+              never shrinks below its min-content, so sharing this row with the
+              description can never break a line into two. Without it the title
+              silently became five lines at 1024px, because 34ch of Marcellus is
+              ~428px and the left column had to give ground.
+            */}
+            <h1 className="display hero-rise hero-rise-2 text-[clamp(1.5rem,4.5vw,3.5rem)] text-white">
+              {hero.headline.map((line) => (
+                <span key={line} className="block whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
+            </h1>
+          </div>
 
-          <p className="voice hero-rise hero-rise-3 max-w-[46ch] text-lg text-white/90 md:text-xl">
+          <p className="voice hero-rise hero-rise-3 max-w-[34ch] text-sm leading-relaxed text-white/90 lg:text-right lg:text-base">
             {hero.subheadline}
           </p>
-
-          <div className="hero-rise hero-rise-4 mt-2 flex flex-wrap gap-4">
-            <Button
-              href={hero.primary.href}
-              variant="inverse"
-              external={isExternal(hero.primary.href)}
-            >
-              {hero.primary.label}
-            </Button>
-            <Button
-              href={hero.secondary.href}
-              variant="outline"
-              external={isExternal(hero.secondary.href)}
-            >
-              {hero.secondary.label}
-            </Button>
-          </div>
         </div>
       </Container>
     </section>

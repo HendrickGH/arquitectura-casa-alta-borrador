@@ -33,27 +33,27 @@ function refreshAfterLayout() {
 }
 
 /**
- * The masonry's photographs drift by column as the wall crosses the viewport.
+ * The masonry's single-cell photographs drift by column as the wall crosses the
+ * viewport.
  *
- * The wall is a fixed-row grid, so an item's left edge says which column it
- * starts in, not which columns it occupies. Cells are grouped by that edge so
- * the wall keeps the columns the browser laid out -- and with them the centred
- * travel -- but a double cell spans two columns at the three-column tier and
- * must not drift as if it belonged to the first: translating it tears it out of
- * the row it shares with the other column, while the double pinned to the second
- * column gets no translate at all. The spanning cells therefore anchor the wall
- * and only the single-column cells in each group are tweened. Transform only: no
- * layout property moves.
+ * The double cells are the anchors, and they carry no `data-drift-item`: a
+ * double spans two columns at the three-column tier (and two rows below it), so
+ * any translation pulls it out of the row it shares with its neighbours -- read
+ * as a photograph sitting slightly off its grid position. Only single cells
+ * move, which is why this only ever runs at the three-column tier: below it the
+ * wall's left column is nothing but doubles, and one column cannot drift against
+ * itself.
+ *
+ * The columns are sorted by their left edge before the offsets are handed out.
+ * The grid's dense auto-placement does not walk the DOM column by column -- an
+ * early double pins itself to the second column and the cursor back-fills behind
+ * it -- so the order the columns are first seen in is not their order on screen,
+ * and centring the travel over that order gave one column the whole offset while
+ * the opposite one did not move at all. Transform only: no layout property moves.
  */
 function buildDrift(scope: HTMLElement) {
   const items = gsap.utils.toArray<HTMLElement>("[data-drift-item]", scope);
   if (items.length === 0) return;
-
-  const width = (item: HTMLElement) => item.getBoundingClientRect().width;
-  // The narrowest cell is one column wide; anything meaningfully wider spans
-  // more than one, which is the double at the three-column tier.
-  const columnWidth = Math.min(...items.map(width));
-  const spansColumns = (item: HTMLElement) => width(item) >= columnWidth * 1.5;
 
   const columns = new Map<number, HTMLElement[]>();
   for (const item of items) {
@@ -63,7 +63,9 @@ function buildDrift(scope: HTMLElement) {
     else columns.set(key, [item]);
   }
 
-  const groups = [...columns.values()];
+  const groups = [...columns.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([, elements]) => elements);
   if (groups.length < 2) return;
 
   const TRAVEL = 24;
@@ -79,12 +81,7 @@ function buildDrift(scope: HTMLElement) {
   groups.forEach((elements, index) => {
     const shift = (index - (groups.length - 1) / 2) * TRAVEL;
     if (shift === 0) return;
-    // Every cell is grouped by the column it starts in, so the wall keeps the
-    // columns the browser laid out; only the ones that sit in a single column
-    // actually move.
-    const movers = elements.filter((item) => !spansColumns(item));
-    if (movers.length === 0) return;
-    timeline.fromTo(movers, { y: -shift }, { y: shift, ease: "none" }, 0);
+    timeline.fromTo(elements, { y: -shift }, { y: shift, ease: "none" }, 0);
   });
 }
 
@@ -124,6 +121,13 @@ function buildBreathe(scope: HTMLElement) {
  * at all and every section paints in its settled, visible state; nothing is
  * gated on an animation completing. `media.revert()` in the cleanup kills the
  * timeline and its ScrollTrigger together, so no trigger outlives the wrapper.
+ *
+ * The drift is registered under the motion query *and* the three-column tier.
+ * Its columns are measured once, and the column count changes with the width, so
+ * keying the scene to the tier lets `gsap.matchMedia` revert and rebuild it when
+ * the wall reflows -- otherwise a resize leaves the tweens bound to the columns
+ * of the previous layout. Below 1200px the drift has nothing to move: every
+ * remaining cell is a double and the doubles anchor (see `buildDrift`).
  */
 export function createScenes({
   scope,
@@ -137,9 +141,11 @@ export function createScenes({
 
   const media = gsap.matchMedia();
   media.add(MOTION_OK, () => {
-    if (mode === "drift") buildDrift(scope);
-    else buildBreathe(scope);
+    if (mode === "breathe") buildBreathe(scope);
   });
+  if (mode === "drift") {
+    media.add(`${MOTION_OK} and (min-width: 1200px)`, () => buildDrift(scope));
+  }
 
   return () => media.revert();
 }

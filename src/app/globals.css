@@ -232,19 +232,17 @@ header[data-surface="hero"] .chrome-cta:hover {
 
 /* --- Hero --------------------------------------------------------------- */
 
-/* Darkens the top band so the transparent chrome stays legible and the bottom
-   band so the headline has measured contrast; the middle stays light so the
-   photograph is still the subject. */
+/* The closing CTA's flat shape rather than the graded band this hero used to
+   carry: a slightly heavier top stop so the transparent chrome keeps its edge
+   in the header band, then near-uniform across the block. The bottom stop is
+   the heaviest because that is where both type blocks sit -- and the
+   description is small text, which needs 4.5:1 rather than the headline's 3:1. */
 .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(6, 12, 26, 0.86) 0%,
-    rgba(6, 12, 26, 0.52) 12%,
-    rgba(6, 12, 26, 0.18) 28%,
-    rgba(6, 12, 26, 0.4) 42%,
-    rgba(6, 12, 26, 0.78) 54%,
-    rgba(6, 12, 26, 0.9) 68%,
-    rgba(6, 12, 26, 0.97) 100%
+    rgba(6, 12, 26, 0.8) 0%,
+    rgba(6, 12, 26, 0.68) 45%,
+    rgba(6, 12, 26, 0.82) 100%
   );
 }
 
@@ -287,9 +285,6 @@ header[data-surface="hero"] .chrome-cta:hover {
 }
 .hero-rise-3 {
   animation-delay: 240ms;
-}
-.hero-rise-4 {
-  animation-delay: 340ms;
 }
 
 /* --- Section reveals ---------------------------------------------------- */
