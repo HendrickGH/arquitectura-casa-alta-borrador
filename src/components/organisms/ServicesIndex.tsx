@@ -15,12 +15,18 @@ interface ServicesIndexProps {
 /**
  * The service catalogue as four editorial chapters. Each group opens with a
  * number, its title and its own introduction; its services follow as
- * alternating photographic panels, so the catalogue reads as a body of work
- * rather than as a text index.
+ * photographic panels, so the catalogue reads as a body of work rather than as
+ * a text index.
  *
  * The earlier linear spec sheet was a deliberate decision, and this replaces it
  * on purpose: the client read it as a report, not as architecture. The
  * replacement is recorded in the change's design, not made silently.
+ *
+ * To keep thirteen services from reading as one treatment repeated thirteen
+ * times, each chapter leads with a full editorial panel and its remaining
+ * services fall into a two-up grid of lighter cards. The weight still follows
+ * the authored order, which already leads with each group's most representative
+ * service; no content field was added to say so.
  *
  * A service without an ingested image still renders, as a plain block; the
  * section never depends on stock to be complete.
@@ -33,14 +39,17 @@ export function ServicesIndex({
 }: ServicesIndexProps) {
   // The 1-based offset of each chapter's first service, so the catalogue is
   // numbered 01..13 across the four groups without mutating a counter in render.
-  const chapterOffsets = groups.reduce<number[]>((offsets, group, groupIndex) => {
-    offsets.push(
-      groupIndex === 0
-        ? 0
-        : offsets[groupIndex - 1] + groups[groupIndex - 1].services.length,
-    );
-    return offsets;
-  }, []);
+  const chapterOffsets = groups.reduce<number[]>(
+    (offsets, group, groupIndex) => {
+      offsets.push(
+        groupIndex === 0
+          ? 0
+          : offsets[groupIndex - 1] + groups[groupIndex - 1].services.length,
+      );
+      return offsets;
+    },
+    [],
+  );
 
   return (
     <Section id={id} tone={tone}>
@@ -77,15 +86,17 @@ export function ServicesIndex({
                   </p>
                 </div>
 
-                <ul className="mt-14 flex flex-col gap-14 md:mt-20 md:gap-24">
+                <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:mt-20 md:grid-cols-2 md:gap-x-14 md:gap-y-20">
                   {group.services.map((service, serviceIndex) => {
                     const index = chapterOffsets[groupIndex] + serviceIndex + 1;
+                    const featured = serviceIndex === 0;
                     return (
                       <ServiceRow
                         key={service.slug}
                         service={service}
                         index={index}
-                        flip={index % 2 === 0}
+                        variant={featured ? "featured" : "compact"}
+                        flip={featured && groupIndex % 2 === 1}
                       />
                     );
                   })}
