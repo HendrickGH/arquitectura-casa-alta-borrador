@@ -111,6 +111,21 @@ try {
   // No hero encoded yet; the landing simply has nothing to show.
 }
 
+// Editorial (stock) images follow the same pattern but are structurally isolated
+// from obra: they are not in the manifest, and tools/editorial.sh writes them
+// under their own namespace. Keys are `editorial/<slug>`, which cannot collide
+// with the manifest's `<NN>-<project>/<base>` keys.
+try {
+  Object.assign(
+    variants,
+    JSON.parse(
+      readFileSync(join(source, "editorial", "editorial.json"), "utf8"),
+    ),
+  );
+} catch {
+  // No editorial set ingested yet; the services section renders without images.
+}
+
 mkdirSync(dirname(tablePath), { recursive: true });
 writeFileSync(tablePath, JSON.stringify(variants, null, 2) + "\n");
 
