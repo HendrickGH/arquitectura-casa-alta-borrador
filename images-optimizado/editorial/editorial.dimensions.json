@@ -1,0 +1,67 @@
+{
+  "servicios-albercas-villa-exterior": {
+    "width": 2000,
+    "height": 1334,
+    "fallback": "servicios-albercas-villa-exterior.jpg"
+  },
+  "servicios-arquitectura-interior-cocina": {
+    "width": 2000,
+    "height": 1125,
+    "fallback": "servicios-arquitectura-interior-cocina.jpg"
+  },
+  "servicios-construccion-comercial-nave-industrial": {
+    "width": 2000,
+    "height": 1333,
+    "fallback": "servicios-construccion-comercial-nave-industrial.jpg"
+  },
+  "servicios-construccion-estructura-gruas": {
+    "width": 2000,
+    "height": 1332,
+    "fallback": "servicios-construccion-estructura-gruas.jpg"
+  },
+  "servicios-eco-sustentables-paneles-solares": {
+    "width": 2000,
+    "height": 1244,
+    "fallback": "servicios-eco-sustentables-paneles-solares.jpg"
+  },
+  "servicios-espacios-publicos-estadio": {
+    "width": 2000,
+    "height": 1333,
+    "fallback": "servicios-espacios-publicos-estadio.jpg"
+  },
+  "servicios-estructura-metalica-trabes": {
+    "width": 2000,
+    "height": 1333,
+    "fallback": "servicios-estructura-metalica-trabes.jpg"
+  },
+  "servicios-exterior-pista-skate": {
+    "width": 2000,
+    "height": 1333,
+    "fallback": "servicios-exterior-pista-skate.jpg"
+  },
+  "servicios-instalaciones-electricas-subestacion": {
+    "width": 2000,
+    "height": 1500,
+    "fallback": "servicios-instalaciones-electricas-subestacion.jpg"
+  },
+  "servicios-instalaciones-tratamiento-agua": {
+    "width": 2000,
+    "height": 1125,
+    "fallback": "servicios-instalaciones-tratamiento-agua.jpg"
+  },
+  "servicios-landscape-sendero-jardin": {
+    "width": 2000,
+    "height": 1250,
+    "fallback": "servicios-landscape-sendero-jardin.jpg"
+  },
+  "servicios-obra-civil-asfalto": {
+    "width": 2000,
+    "height": 1333,
+    "fallback": "servicios-obra-civil-asfalto.jpg"
+  },
+  "servicios-proyecto-planos-arquitectonicos": {
+    "width": 2000,
+    "height": 1346,
+    "fallback": "servicios-proyecto-planos-arquitectonicos.jpg"
+  }
+}

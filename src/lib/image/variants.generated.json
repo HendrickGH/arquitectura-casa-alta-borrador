@@ -2808,5 +2808,187 @@
       1600,
       "vista-aerea-palapas-alberca-playa.avif"
     ]
+  ],
+  "editorial/servicios-albercas-villa-exterior": [
+    [
+      480,
+      "servicios-albercas-villa-exterior-480.avif"
+    ],
+    [
+      960,
+      "servicios-albercas-villa-exterior-960.avif"
+    ],
+    [
+      2000,
+      "servicios-albercas-villa-exterior.avif"
+    ]
+  ],
+  "editorial/servicios-arquitectura-interior-cocina": [
+    [
+      480,
+      "servicios-arquitectura-interior-cocina-480.avif"
+    ],
+    [
+      960,
+      "servicios-arquitectura-interior-cocina-960.avif"
+    ],
+    [
+      2000,
+      "servicios-arquitectura-interior-cocina.avif"
+    ]
+  ],
+  "editorial/servicios-construccion-comercial-nave-industrial": [
+    [
+      480,
+      "servicios-construccion-comercial-nave-industrial-480.avif"
+    ],
+    [
+      960,
+      "servicios-construccion-comercial-nave-industrial-960.avif"
+    ],
+    [
+      2000,
+      "servicios-construccion-comercial-nave-industrial.avif"
+    ]
+  ],
+  "editorial/servicios-construccion-estructura-gruas": [
+    [
+      480,
+      "servicios-construccion-estructura-gruas-480.avif"
+    ],
+    [
+      960,
+      "servicios-construccion-estructura-gruas-960.avif"
+    ],
+    [
+      2000,
+      "servicios-construccion-estructura-gruas.avif"
+    ]
+  ],
+  "editorial/servicios-eco-sustentables-paneles-solares": [
+    [
+      480,
+      "servicios-eco-sustentables-paneles-solares-480.avif"
+    ],
+    [
+      960,
+      "servicios-eco-sustentables-paneles-solares-960.avif"
+    ],
+    [
+      2000,
+      "servicios-eco-sustentables-paneles-solares.avif"
+    ]
+  ],
+  "editorial/servicios-espacios-publicos-estadio": [
+    [
+      480,
+      "servicios-espacios-publicos-estadio-480.avif"
+    ],
+    [
+      960,
+      "servicios-espacios-publicos-estadio-960.avif"
+    ],
+    [
+      2000,
+      "servicios-espacios-publicos-estadio.avif"
+    ]
+  ],
+  "editorial/servicios-estructura-metalica-trabes": [
+    [
+      480,
+      "servicios-estructura-metalica-trabes-480.avif"
+    ],
+    [
+      960,
+      "servicios-estructura-metalica-trabes-960.avif"
+    ],
+    [
+      2000,
+      "servicios-estructura-metalica-trabes.avif"
+    ]
+  ],
+  "editorial/servicios-exterior-pista-skate": [
+    [
+      480,
+      "servicios-exterior-pista-skate-480.avif"
+    ],
+    [
+      960,
+      "servicios-exterior-pista-skate-960.avif"
+    ],
+    [
+      2000,
+      "servicios-exterior-pista-skate.avif"
+    ]
+  ],
+  "editorial/servicios-instalaciones-electricas-subestacion": [
+    [
+      480,
+      "servicios-instalaciones-electricas-subestacion-480.avif"
+    ],
+    [
+      960,
+      "servicios-instalaciones-electricas-subestacion-960.avif"
+    ],
+    [
+      2000,
+      "servicios-instalaciones-electricas-subestacion.avif"
+    ]
+  ],
+  "editorial/servicios-instalaciones-tratamiento-agua": [
+    [
+      480,
+      "servicios-instalaciones-tratamiento-agua-480.avif"
+    ],
+    [
+      960,
+      "servicios-instalaciones-tratamiento-agua-960.avif"
+    ],
+    [
+      2000,
+      "servicios-instalaciones-tratamiento-agua.avif"
+    ]
+  ],
+  "editorial/servicios-landscape-sendero-jardin": [
+    [
+      480,
+      "servicios-landscape-sendero-jardin-480.avif"
+    ],
+    [
+      960,
+      "servicios-landscape-sendero-jardin-960.avif"
+    ],
+    [
+      2000,
+      "servicios-landscape-sendero-jardin.avif"
+    ]
+  ],
+  "editorial/servicios-obra-civil-asfalto": [
+    [
+      480,
+      "servicios-obra-civil-asfalto-480.avif"
+    ],
+    [
+      960,
+      "servicios-obra-civil-asfalto-960.avif"
+    ],
+    [
+      2000,
+      "servicios-obra-civil-asfalto.avif"
+    ]
+  ],
+  "editorial/servicios-proyecto-planos-arquitectonicos": [
+    [
+      480,
+      "servicios-proyecto-planos-arquitectonicos-480.avif"
+    ],
+    [
+      960,
+      "servicios-proyecto-planos-arquitectonicos-960.avif"
+    ],
+    [
+      2000,
+      "servicios-proyecto-planos-arquitectonicos.avif"
+    ]
   ]
 }
