@@ -36,27 +36,24 @@ function refreshAfterLayout() {
  * The masonry's photographs drift by column as the wall crosses the viewport.
  *
  * The wall is a fixed-row grid, so an item's left edge says which column it
- * starts in, not which columns it occupies. A double cell spans two columns at
- * the three-column tier, and bucketing it by its left edge would translate it as
- * if it were a single-column cell -- tearing it out of the row it shares with the
- * other column, while the cell pinned to the second column gets no translate at
- * all. So only cells as narrow as the wall's narrowest column move; the spanning
- * cells anchor the wall, and the singles are grouped by the column the browser
- * placed them in. Transform only: no layout property moves.
+ * starts in, not which columns it occupies. Cells are grouped by that edge so
+ * the wall keeps the columns the browser laid out -- and with them the centred
+ * travel -- but a double cell spans two columns at the three-column tier and
+ * must not drift as if it belonged to the first: translating it tears it out of
+ * the row it shares with the other column, while the double pinned to the second
+ * column gets no translate at all. The spanning cells therefore anchor the wall
+ * and only the single-column cells in each group are tweened. Transform only: no
+ * layout property moves.
  */
 function buildDrift(scope: HTMLElement) {
-  const all = gsap.utils.toArray<HTMLElement>("[data-drift-item]", scope);
-  if (all.length === 0) return;
-
-  // A spanning cell is wider than one column; the narrowest cell defines the
-  // column width, so anything meaningfully wider than it is a double.
-  const columnWidth = Math.min(
-    ...all.map((item) => item.getBoundingClientRect().width),
-  );
-  const items = all.filter(
-    (item) => item.getBoundingClientRect().width < columnWidth * 1.5,
-  );
+  const items = gsap.utils.toArray<HTMLElement>("[data-drift-item]", scope);
   if (items.length === 0) return;
+
+  const width = (item: HTMLElement) => item.getBoundingClientRect().width;
+  // The narrowest cell is one column wide; anything meaningfully wider spans
+  // more than one, which is the double at the three-column tier.
+  const columnWidth = Math.min(...items.map(width));
+  const spansColumns = (item: HTMLElement) => width(item) >= columnWidth * 1.5;
 
   const columns = new Map<number, HTMLElement[]>();
   for (const item of items) {
@@ -82,7 +79,12 @@ function buildDrift(scope: HTMLElement) {
   groups.forEach((elements, index) => {
     const shift = (index - (groups.length - 1) / 2) * TRAVEL;
     if (shift === 0) return;
-    timeline.fromTo(elements, { y: -shift }, { y: shift, ease: "none" }, 0);
+    // Every cell is grouped by the column it starts in, so the wall keeps the
+    // columns the browser laid out; only the ones that sit in a single column
+    // actually move.
+    const movers = elements.filter((item) => !spansColumns(item));
+    if (movers.length === 0) return;
+    timeline.fromTo(movers, { y: -shift }, { y: shift, ease: "none" }, 0);
   });
 }
 

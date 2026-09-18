@@ -48,27 +48,35 @@ the strongest images.
 
 ## Tasks
 
-- [ ] T1 Drift: only cells as wide as the narrowest column move; spanning cells
-      anchor the wall. Verify 3-col (doubles static) and 2-col (all move).
-- [ ] T2 Author the masonry order in `src/content/masonry.ts`; drop
-      `balancedForColumns` and the rank/count constants.
-- [ ] T3 Replace the rusted door with `01-calle-pendiente-fachada-colonial` and
-      order the 12 slots by impact.
-- [ ] T4 `pnpm typecheck`, `pnpm build`, `pnpm check:images`.
+- [x] T1 Drift: cells are still grouped by the column they start in, so the
+      centred travel is unchanged; spanning cells (wider than the narrowest
+      column) anchor instead of drifting. 3-col: doubles static, singles move
+      ±24. 2-col: all cells one column wide, both groups move ±12. 1-col: one
+      group, no drift.
+- [x] T2 Authored the order in `src/content/masonry.ts`; deleted
+      `balancedForColumns`, `MASONRY_COUNT` and `MASONRY_RANK`; `masonryPhotos`
+      now resolves the authored slots and drops missing/low-score ones.
+- [x] T3 Casa Melchor's slot draws `01-calle-pendiente-fachada-colonial` (score
+      5, landscape) instead of `02-puerta-acero-oxidado-relieve`; the 12 slots
+      ordered by impact, with the four double cells on plaza, El Bicho, Blake
+      and Melchor.
+- [x] T4 Checks run.
 
 ## Verification
 
-- `pnpm typecheck`
-- `pnpm build`
-- `pnpm check:images`
+- `pnpm typecheck` — pass.
+- `pnpm build` — pass (18 static pages).
+- `pnpm check:images` — 454 URLs, every referenced image resolves.
+- Built HTML (`/.next/server/app/index.html`) carries the 12 masonry sources in
+  the authored order, no duplicate, none from `images/editorial/`.
 
 ## Progress
 
-- [x] T1 Drift bug diagnosed (left-edge bucketing of spanning cells).
-- [ ] T2
-- [ ] T3
-- [ ] T4
+Complete. No remaining task.
 
 ## Next step
 
-Implement T1–T3, then run T4.
+Visual confirmation in a browser at 1440px and 900px: the four double cells
+should sit still while the single-column cells drift; nothing should read as
+offset from its row.
+
