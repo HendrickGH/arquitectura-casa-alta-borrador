@@ -239,15 +239,15 @@ so the global scope gate the shell scripts needed is gone. It is not advisory �
 | Skill gate | `tool.execute.before` on `bash` | **Blocks** `git add` / `git commit` / `git mv` / `git rm` until the `git-conventions` skill has been loaded in the session. Reading commands (`status`, `diff`, `log`) stay ungated. |
 | Git guard | `tool.execute.before` on `bash` | **Blocks** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** (without blocking) above 50 staged files in `images-optimizado/`, or ≥20 MB of new content. |
 | Formatter | `tool.execute.after` on `edit`/`write` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` only, and no-ops when no Prettier is found. |
-| Tree watchdog | `event` on `session.idle` | **Warns** — a toast plus `.opencode/logs/dirty-tree.log` — when the working tree is not clean. It never commits. |
+| Auto-commit | `event` on `session.idle` | **Commits** the working tree as `chore(<scope>): auto-commit N files` when the index is clean. **Refuses** (and warns via a toast plus `.opencode/logs/dirty-tree.log`) when it would touch a hazard: unmerged paths, a numeric-prefix rename, a tracked `images/` modification, >50 files under `images-optimizado/`, or ≥20 MB of new content. |
 
-Three properties are load-bearing:
+Four properties are load-bearing:
 
 1. **The skill gate is what makes "always run `git-conventions`" true.** opencode has no
    automatic skill execution: skills load on demand through the `skill` tool. The plugin records
-   a successful `git-conventions` load per session and refuses any index-mutating git command
-   until then, so the skill's hazard checks and work-unit grouping cannot be skipped by not
-   loading it. The flag is per session and is cleared on restart.
+   a successful `git-conventions` load per session and refuses any *agent-issued* index-mutating
+   git command until then, so the skill's hazard checks and work-unit grouping cannot be skipped
+   by not loading it. The flag is per session and is cleared on restart.
 2. **The git guard cannot surface its warning in-band.** `tool.execute.before` can block but has
    no advisory channel, so the weight warning goes to stderr and to `.opencode/logs/git-guard.log`
    (gitignored) instead of into the agent's context. The three denials are unaffected; only the
@@ -257,12 +257,20 @@ Three properties are load-bearing:
    opencode's built-in formatters are therefore disabled in `opencode.json` (`"formatter": false`)
    so they cannot touch generated JSON behind the plugin's back. The plugin locates Prettier at
    `node_modules/.bin/prettier`, then on `PATH`, then in an nvm-managed Node install.
+4. **The auto-commit bypasses the skill gate on purpose, and re-checks the hazards itself.** It
+   is plugin-internal, so no `tool.execute.before` hook fires and no skill load unlocks it; that
+   is why `autoCommitHazard()` re-runs the manual gate's blockers against the index before
+   committing. It does **not** get work-unit grouping or type inference — that lives in the
+   model, not the plugin — so the message is always a scope-only `chore(...)`. It also fires only
+   when the index is clean: a non-empty index belongs to the agent mid-commit.
 
-**On leaving the tree clean.** The watchdog warns; it does not commit. Auto-committing at idle
-would bypass the human's review, swallow permanent binaries, and contradict the deliberate
-staging and work-unit rules that `git-conventions` exists to enforce. The contract is: load the
-skill, commit as coherent work units, and end the session with a clean tree — deliberately, not
-automatically.
+**On leaving the tree clean.** The auto-commit is the deliberate exception to "the human commits
+deliberately": the session ends uncommitted only when a hazard was refused, and then it warns
+instead of committing. It cannot replace `git-conventions` for anything that matters — it cannot
+tell a feature from a fix, group a change into work units, or describe intent — so its history is
+explicitly machine-authored (`chore(<scope>): auto-commit`). Load the skill and commit meaningful
+work units yourself; let the auto-commit be the safety net for what is left over, not the
+narrative of the repository.
 
 The plugin uses only Node builtins plus a type-only import of `@opencode-ai/plugin`, so it needs
 no `.opencode/package.json`. Note that **Prettier is not a declared dependency of this repo** — it
