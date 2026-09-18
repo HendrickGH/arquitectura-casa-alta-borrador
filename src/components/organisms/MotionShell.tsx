@@ -103,6 +103,69 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
 }
 
 /**
+ * A figure the reveal script counts up: the numeric target, its trailing unit
+ * ("+", "%") and whether the authored string grouped thousands.
+ */
+interface Figure {
+  target: number;
+  suffix: string;
+  grouped: boolean;
+}
+
+/**
+ * Reads the target out of an authored figure such as "2016", "150+", "50,000"
+ * or "100%". The string owns its formatting, so the count can reproduce it
+ * exactly instead of guessing: "50,000" re-groups and "2016" stays a year.
+ */
+function parseFigure(raw: string): Figure | null {
+  const match = raw.match(/^([\d.,]+)\s*(.*)$/);
+  if (!match) return null;
+  const [, digits, suffix] = match;
+  const target = Number(digits.replace(/,/g, ""));
+  if (!Number.isFinite(target)) return null;
+  return { target, suffix, grouped: digits.includes(",") };
+}
+
+function formatFigure(value: number, grouped: boolean, suffix: string): string {
+  const rounded = Math.round(value);
+  return `${grouped ? rounded.toLocaleString("en-US") : String(rounded)}${suffix}`;
+}
+
+/** Runs once per figure; the WeakSet keeps a re-reveal from counting twice. */
+const counted = new WeakSet<HTMLElement>();
+
+/**
+ * Counts one figure from zero to its authored value, fast and decelerating, the
+ * first time its section is revealed. The text is rewritten in place, so no
+ * layout shifts; `tabular-nums` on the figure keeps the width steady as it runs.
+ */
+function countUp(el: HTMLElement): void {
+  if (counted.has(el)) return;
+  const raw = el.dataset.count;
+  if (!raw) return;
+  const figure = parseFigure(raw);
+  if (!figure) return;
+  counted.add(el);
+
+  const { target, grouped, suffix } = figure;
+  const duration = 900;
+  const start = performance.now();
+  const tick = (now: number) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = formatFigure(target * eased, grouped, suffix);
+    if (progress < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+function countFigures(scope: HTMLElement): void {
+  for (const el of scope.querySelectorAll<HTMLElement>("[data-count]")) {
+    countUp(el);
+  }
+}
+
+/**
  * Reveals every `[data-reveal]` section once its top crosses the fold line.
  *
  * The server HTML carries `data-reveal="idle"`, which is fully visible: with no
@@ -110,6 +173,9 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
  * visitor cannot see yet, so nothing that is already on screen is hidden and
  * nothing flashes. The animation itself is a CSS transition; this only flips the
  * attribute.
+ *
+ * It also starts the `[data-count]` figures inside a section as it reveals, so
+ * the ledger counts up once, on arrival, and never twice.
  *
  * WHY A SCROLL PASS AND NOT AN IntersectionObserver. An observer reports an
  * element only when it *intersects* the viewport. Any jump -- an in-page anchor
@@ -132,6 +198,8 @@ export function RevealObserver() {
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduce.matches) {
+      // No hidden state and no count: every figure is already at its final value
+      // in the server HTML.
       for (const el of nodes) el.dataset.reveal = "in";
       return;
     }
@@ -142,8 +210,12 @@ export function RevealObserver() {
 
     // Anything already on screen stays visible; hiding it would be a flash.
     for (const el of nodes) {
-      el.dataset.reveal =
-        el.getBoundingClientRect().top < foldLine() ? "in" : "pending";
+      if (el.getBoundingClientRect().top < foldLine()) {
+        el.dataset.reveal = "in";
+        countFigures(el);
+      } else {
+        el.dataset.reveal = "pending";
+      }
     }
 
     let frame = 0;
@@ -156,6 +228,7 @@ export function RevealObserver() {
           el.getBoundingClientRect().top < line
         ) {
           el.dataset.reveal = "in";
+          countFigures(el);
         }
       }
     };
