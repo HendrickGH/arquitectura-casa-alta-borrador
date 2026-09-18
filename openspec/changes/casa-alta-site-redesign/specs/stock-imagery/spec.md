@@ -1,7 +1,7 @@
 # Delta for Stock Imagery
 
 **Change:** `casa-alta-site-redesign` · **Capability:** `stock-imagery` · **Delta:** ADDED
-**Status:** **NOT implemented.** No `images/editorial/` namespace exists. The only piece of the contract in place is the `hero/hero.json` sidecar precedent, merged into the loader's variant table by `tools/sync-images.mjs:103-112`.
+**Status:** **Implemented for the namespace, encoder, sidecars, provenance gate and isolation; the services presentation renders one image per service.** `images/editorial/` holds thirteen ingested sources, each with a provenance record; `tools/editorial.sh` encodes them into `images-optimizado/editorial/` and writes `editorial.json` + `editorial.dimensions.json`; `tools/sync-images.mjs` merges the loader sidecar; the only reader is `getEditorial()` in `src/lib/content/index.ts`, rendered per service by `EditorialImage` inside `ServiceRow`. The `hero/hero.json` sidecar is the shape both follow. **Amended 2026-09-17:** the design allows one editorial image per service (thirteen), widening from an original single-band cap of two and then one per group; the amendment is a design cap, not a requirement of this spec.
 **Bindings:** inherits `image-url-routing` (loader contract, `check:images`, repository safety around `images/`) and `seo-discovery` (authored `alt`, sitemap image entries); the second corpus constraint in `references/README.md` — intentional imagery rather than arbitrary stock assets — is adopted here as a requirement.
 
 ## ADDED Requirements

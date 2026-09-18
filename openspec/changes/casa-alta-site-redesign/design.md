@@ -73,14 +73,15 @@ Anything in this table appearing in the change's diff is out of scope, not a bon
 | No publishing of score 1–2 photographs, and no renumbering of any published path | `AGENTS.md`; `photos.ts:52-60`; `git-guard.sh:81-112` |
 | No write, rename or deletion of a file already tracked under `images/` | `git-guard.sh:114-122` |
 | No carousel client component and no horizontal GSAP pin | Proposal Open Inconsistency #3's default: zero-JS CSS scroll-snap |
-| No stock anywhere except the one services texture band (cap: two images) | `references/README.md:38-42`; §D7 |
+| No stock anywhere except the services section (one image per service, thirteen today) | `references/README.md:38-42`; §D7 |
 | No choice of hero photograph in this phase, and no merge of the full-viewport shell before the rendered measurement passes | §D3.3–D3.4: the measurement decides, and `Hero.tsx:15-41` records what skipping it cost |
 
 **Four things are genuinely the client's to decide, and this design ships the stated default until
 they do:** the nav label (`portafolio` vs `proyectos` → ships `Proyectos`, `site.ts:23`); the
 service-group names (→ ship as authored, `brief-cliente.md:313`); the closing line (→ the shipped
-authored heading stands, `brief-cliente.md:306`); and the subject of the second editorial image
-(→ only one is required, for the services band). Each is a content edit with no component change.
+authored heading stands, `brief-cliente.md:306`); and the subjects of the thirteen editorial images
+(→ one per service, the section's own texture, amended 2026-09-17: originally one band of two, then
+one per group, now one per service). Each is a content edit with no component change.
 
 ---
 
@@ -406,7 +407,8 @@ three values are the spec's, unmodified; **no fourth value is introduced**
 | Masonry (9 images) | 1 / 2 / 3 | `(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw` | `columns-1 md:columns-2 min-[1200px]:columns-3` |
 | Portfolio index `/proyectos` | 1 / 2 / 3 | `(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw` | same grid classes |
 | Project gallery | 1 / 2 / 2 | `(min-width: 768px) 50vw, 100vw` | `grid-cols-1 md:grid-cols-2` |
-| Full-bleed moments (hero, 2nd moment, editorial band) | 1 / 1 / 1 | `100vw` | a `w-full` block **outside** `Container`, height in `svh`, photo `object-cover` |
+| Full-bleed moments (hero, 2nd moment) | 1 / 1 / 1 | `100vw` | a `w-full` block **outside** `Container`, height in `svh`, photo `object-cover` |
+| Services panel image (one per service) | 1 / 2 / 2 | `(min-width: 768px) 50vw, 100vw` | the image half of a two-column alternating panel (`ServiceRow`) |
 
 Two properties of this table are load-bearing:
 
@@ -500,7 +502,7 @@ reviewer can check them):
    stock slug has none of the three, so it cannot become a `Project`.
 3. The landing's portfolio, the masonry and the grid consume `Project`/`Photo` view models; the
    editorial images arrive through a *different* accessor (`getEditorial()`) with a different view
-   model, used by exactly one section (the texture band).
+   model, used by exactly one section (the services catalogue).
 4. Foundation's image sitemap derives `<image:image>` entries from project galleries, which
    derive from the same manifest path as (1) and (2).
 5. The on-disk namespaces differ (`images/editorial/` versus `images/<NN>-<project>/`), so a
@@ -508,16 +510,26 @@ reviewer can check them):
    for ("MUST be structural … not a site-side exclusion list").
 
 Checks in §6 turn three of those into command output: no `/images/editorial/` URL inside the
-portfolio or masonry markup, `grep -r "editorial" src/components` limited to the texture band, and
+portfolio or masonry markup, `grep -r "editorial" src/components` limited to the services section, and
 the sitemap entries audited once foundation ships.
 
 **Staging.** Add-only, and the guard is the tripwire this change leans on: it **denies** any staged
 modification or deletion of a tracked file under `images/` (`git-guard.sh:114-122`) and **warns**
 above 50 staged files under `images-optimizado/` or ≥20 MB of new content
-(`git-guard.sh:149-156`). The change ingests **at most two** editorial images; if a future ingest
-wants more, the warning is the signal to ask, not to proceed.
+(`git-guard.sh:149-156`). The change ingests **one editorial image per service — thirteen today**;
+at that count the ingest lands within reach of the 20 MB warning, so the staging is checked, not
+assumed. If a future ingest wants more, the warning is the signal to ask, not to proceed.
 
 ### D8 — Services presentation: the two-level grid over 4 / 13 / 63
+
+> **Amended 2026-09-17 — what shipped is not this grid.** The client read the linear index as a
+> report, not as architecture ("parece más un informe"). The catalogue now renders as **four
+> editorial chapters**: a chapter number, the group title and its intro, then each service as an
+> **alternating photographic panel** (`ServiceRow`) carrying one editorial image per service. The
+> invariants this section protected are unchanged — 4 groups, 13 services and 63 items all render
+> in the authored order, the heading levels stay `h2`/`h3`/`h4`, and nothing sits behind an
+> interaction. What changed is the arrangement and the imagery (one image per service, not per
+> group). The grid below is kept as the record of the decision it replaces.
 
 **Choice.** One section, two levels, no interaction gate:
 
@@ -532,9 +544,10 @@ ServicesIndex (h2 "Lo que construimos" — unchanged)
             └── <ul> items, `grid-cols-1 sm:grid-cols-2 max-w-[56rem]`
 ```
 
-**What this changes and what it keeps.** The linear index becomes a two-level grid over the *same*
-data: 4 groups and 13 services still render, in the authored order, none merged or moved
-(`specs/services-presentation/spec.md`, Requirement: The catalogue renders as a two-level grid).
+**What this changes and what it keeps.** The linear index becomes a chaptered, photographic
+catalogue over the *same* data: 4 groups and 13 services still render, in the authored order, none
+merged or moved (`specs/services-presentation/spec.md`, Requirement: The catalogue renders as
+chapters with one panel per service).
 The heading levels are exactly as specified — section `h2`, groups `h3`, services `h4`
 (`ServicesIndex.tsx:47` already sets the group titles as `h3`; `ServiceRow.tsx:17-19` already sets
 the service title as `h4`) — so the structural change is the *arrangement*, not the semantics.
@@ -580,7 +593,7 @@ section stays):
 | 7 | `StatsBand` | text | bone | unchanged content (`home.ts:17-22`) |
 | 8 | **Featured three** (`#proyectos`) | photo (archive) | canvas | carries the authored projects intro (`home.ts:58-62`) |
 | 9 | `ProjectsGrid` (remaining 3) | photo (archive) | bone | no second `h2`; continuation of #8 |
-| 10 | `ServicesIndex` two-level (`#servicios`) | text | canvas | §D8, plus one editorial texture band (§D9 photography) |
+| 10 | `ServicesIndex` chapters (`#servicios`) | text + photo | canvas | §D8, plus one editorial image per service (§D9 photography) |
 | 11 | **Masonry** (9 images) | photo (archive) | bone | §D5 |
 | 12 | `ProcessList` (`#proceso`) | text | canvas | unchanged content |
 | 13 | `Differentiators` | text | bone | unchanged content (`differentiators.ts`) |
@@ -599,7 +612,7 @@ is met from the archive first, stock last:
 | Section | Imagery | Source |
 |---|---|---|
 | Hero, tiles, featured three, remaining grid, masonry, second full-bleed | archive | `manifest.projects` via the seam |
-| Services (the one section with no photograph of its own) | **stock texture**, one full-bleed band | `images/editorial/<slug>/`, alt authored |
+| Services (the one section with no photograph of its own) | **stock texture**, one image per service | `images/editorial/<slug>/`, alt authored |
 | Manifesto line, stats, process, differentiators | none | recorded exceptions — two of them |
 
 The two recorded exceptions are the manifesto line (it *is* the breath; an image inside it
@@ -607,7 +620,8 @@ contradicts the thing it exists for) and `Differentiators` (a claims argument in
 stock there would be texture with no job — exactly what the corpus warns against,
 `references/README.md:38-42`). Process needs no stock: the archive holds in-progress photographs
 (cimentación, colado, armado) and they may be used if the section grows a band, which is optional
-and not required by any spec. The **cap is two** editorial images for this change.
+and not required by any spec. The **cap is one editorial image per service** (thirteen for this
+change); each renders inside its service's panel in the chaptered catalogue.
 
 **Copy: what may be added, and the two decisions that close proposal Open Inconsistencies #2, #3
 and #8.**
@@ -667,8 +681,8 @@ sequenceDiagram
     participant Opt as images-optimizado/editorial/
     participant Sync as tools/sync-images.mjs
     participant Table as variants.generated.json
-    participant Seam as src/lib/content/editorial.ts
-    participant Band as EditorialBand (server)
+    participant Seam as src/lib/content/index.ts (getEditorial)
+    participant Panel as EditorialImage / ServiceRow (server)
 
     Op->>Src: download the authorised image (add-only; nothing under images/ is modified)
     Op->>Prov: write sourceUrl, photographer, licence, retrieved, sha256
@@ -725,7 +739,7 @@ sequenceDiagram
 | `src/components/organisms/FeaturedPortfolio.tsx` | the featured three; carries the authored projects intro |
 | `src/components/organisms/MasonryGallery.tsx` | CSS multi-column photo wall (§D5) |
 | `src/components/organisms/FullBleedMoment.tsx` | the second full-bleed band; wrapped by `ScrollScene` |
-| `src/components/organisms/EditorialBand.tsx` | the one stock texture band inside the services section |
+| `src/components/organisms/EditorialImage.tsx` | one stock texture image per service panel; `sizes` required |
 | `src/lib/content/editorial.ts` | the seam's reader for the editorial namespace (never the manifest) |
 | `src/content/editorial.ts` | authored alt text + the band's caption-free model |
 | `tools/editorial.sh` | the stock encoder, `hero.sh`-shaped (§D7) |
@@ -743,8 +757,8 @@ sequenceDiagram
 | `src/components/molecules/NavItem.tsx` | gains the chrome-foreground class hook (`chrome-fg`), no logic |
 | `src/components/atoms/Logo.tsx` | the same hook, plus the `chrome-logo` filter class |
 | `src/components/organisms/ProjectsGrid.tsx` | renders only the non-featured projects; no second `h2`; 3-column tier |
-| `src/components/organisms/ServicesIndex.tsx` | two-level grid; `min-[1200px]` sub-grid; hosts `EditorialBand` |
-| `src/components/molecules/ServiceRow.tsx` | fits the two-level cell; item list unchanged in content |
+| `src/components/organisms/ServicesIndex.tsx` | four editorial chapters; catalogue numbered 01..13; hosts the panels |
+| `src/components/molecules/ServiceRow.tsx` | one service as an alternating image/text panel |
 | `src/content/projects.ts` | `featuredProjectDirs` reordered to the brief's ranking (§D9) |
 | `src/content/home.ts` | `hero.placement` + `hero.chrome`; the manifesto line; the tiles' mapping (project dir per category) |
 | `src/lib/content/index.ts` | new accessors: `getTiles()`, `getMasonry()`, `getEditorial()` |
@@ -853,7 +867,7 @@ verification, and every decision above is mapped to one of them.
 | D4 | GSAP scope + cleanup | bundle inspection, reduced-motion pass, console | `npx next build` then grep the emitted chunks for the scene chunk's size (expect ≈47 KB gz, lazily fetched) · emulate `prefers-reduced-motion: reduce` and scroll the landing: no scrubbed motion, every section visible · console shows no ScrollTrigger and no debug markers |
 | D5 | masonry | server HTML, layout shift, aspect ratios | every masonry item present with `loading="lazy"`, `width`/`height` set; `document.scrollWidth === innerWidth` at 320/375/768/1199/1200/2560; CLS measured on a throttled load |
 | D6 | `sizes` | the emitted values, and the measured slots | collect `<img sizes>` **and** `<link imageSizes>` from the built HTML: the set must be exactly the three spec values; measure each layout's card width at 375 / 768 / 1199 / 1200 and compare to the declared fraction |
-| D7 | stock | the pipeline, the gate, the isolation | `bash tools/editorial.sh <slug>` with an incomplete `provenance.json` → non-zero exit and no output written · `pnpm images:sync` → `editorial/<slug>` present in `variants.generated.json` · `npm run check:images` exits 0 · `grep -o '/images/editorial/[^"]*' .next/server/app/index.html` appears only in the services band · `grep -rl 'editorial' src/components` → only the band |
+| D7 | stock | the pipeline, the gate, the isolation | `bash tools/editorial.sh <slug>` with an incomplete `provenance.json` → non-zero exit and no output written · `pnpm images:sync` → `editorial/<slug>` present in `variants.generated.json` · `npm run check:images` exits 0 · `grep -o '/images/editorial/[^"]*' .next/server/app/index.html` appears only in the services section · `grep -rl 'editorial' src/components` → only the services presentation |
 | D8 | services | the rendered structure | 4 `h3` group titles and 13 `h4` service titles in the emitted HTML; rendered items == 63 (count the `<li>` under the section) · scroll width at 320px |
 | D9 | composition, tone, copy | the emitted order and the copy audit | read the section order out of the HTML and compare to §D9 · confirm the manifesto line is the brief's sentence verbatim · confirm the closing heading equals `home.ts:89` · confirm no project appears twice |
 | — | all | the four standing gates | `npx tsc --noEmit` · `npm run lint` · `npx next build` · `npm run check:images` · overflow at 320 / 375 / 2560 px · count distinct manifest-backed photographs on the landing (≥ 12; pre-change baseline 6) · `grep -ri` for the source's brand string in `src/` and in the built HTML → 0 |
@@ -899,11 +913,11 @@ Three slices, matching the proposal's split and its independence in content and 
 |---|---|---|
 | **S1** landing composition + `sizes` | tiles, manifesto, featured three, remaining grid, masonry, second full-bleed, `min-[1200px]` tiers, `Photo.fit` | `LandingTemplate` back to the 12-section order; delete the additive components; `sizes` props revert to the two shipped values |
 | **S2** navigation shell + motion layer | `MotionShell`, `gsap-scenes`, `gsap` + `@gsap/react`, `--chrome-h`, `scroll-padding-top`, the `[data-surface]` rules | restore `Header.tsx`'s `bg-canvas/95` bar, delete the two new files, remove both dependencies — motion is additive, so the server markup is unchanged without it |
-| **S3** services grid + stock ingestion | the two-level grid, `EditorialBand`, `tools/editorial.sh`, the sidecar merge, `images/editorial/**` | revert `ServicesIndex`/`ServiceRow` to the linear index; remove the band and its accessor. **Sources under `images/editorial/` stay on disk** — rollback unpublishes, it does not delete originals, and regenerating the outputs is idempotent |
+| **S3** services chapters + stock ingestion | the chaptered catalogue, the per-service `EditorialImage` panels, `tools/editorial.sh`, the sidecar merge, `images/editorial/**` | revert `ServicesIndex`/`ServiceRow` to the linear index; remove the images and their accessor. **Sources under `images/editorial/` stay on disk** — rollback unpublishes, it does not delete originals, and regenerating the outputs is idempotent |
 
 **No data migration, no feature flags, no schema.** The only irreversible act in the whole change
 is committing binaries: the ingested sources and their variants become permanent history, which is
-why the cap is two images and the guard's 20 MB / 50-file warning is treated as a stop sign, not
+why the cap is one image per service and the guard's 20 MB / 50-file warning is treated as a stop sign, not
 a notice (`git-guard.sh:149-156`).
 
 **Sequencing.** `src/content/site.ts` and `ProjectsGrid.tsx`/`ProjectCard.tsx` are shared with
@@ -996,7 +1010,7 @@ Stated as MUST NOT, so a reviewer can reject a diff quickly. Each traces to a de
 | The header hides keyboard focus while floating | Low | `scroll-padding-top: calc(var(--chrome-h) + 1rem)` plus the spec's tab check; with JS off the header is in flow, so nothing can be obscured |
 | Stock leaks into obra | Low | Structural separation, five independent reasons (§D7), plus the grep checks in §6 |
 | A stock image's provenance record is incomplete | Low | The encoder refuses to write bytes without a complete record, and the refusal is a §6 check |
-| New binaries become permanent history | Low | A cap of two images, deliberate staging, and the guard's warning as the tripwire |
+| New binaries become permanent history | Low | A cap of one image per service (thirteen), deliberate staging, and the guard's warning as the tripwire |
 | Unapproved copy or the source's brand string reappears | Low | §D9's copy table names the only string this change adds; the brand-string grep is a §6 gate |
 | Cross-change collision on `site.ts`, `ProjectsGrid.tsx`, `ProjectCard.tsx` | Med | Explicit sequencing in §8; the small shared edits land once |
 | Foundation is abandoned; the presentation half has no routes | Med | The landing half (tiles, manifesto, masonry, services, chrome, motion) ships alone; the presentation half is additive |
