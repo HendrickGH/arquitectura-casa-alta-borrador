@@ -92,7 +92,9 @@ export function LandingTemplate({
   return (
     <SiteChrome site={site} chrome={home.hero.chrome?.tone}>
       <main id="main">
-        <Hero hero={home.hero} />
+        <ScrollScene mode="lift">
+          <Hero hero={home.hero} />
+        </ScrollScene>
 
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
         <StatsBand stats={home.stats} />

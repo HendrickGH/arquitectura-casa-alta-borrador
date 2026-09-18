@@ -37,6 +37,12 @@ interface HeroProps {
  * without JavaScript, animates only opacity and transform, is staggered per
  * block, and is neutralised under `prefers-reduced-motion`.
  *
+ * The photograph carries `data-scene-image`, which the ScrollScene wrapper
+ * (`mode="lift"`) hands to the scroll choreography: a scrubbed translation that
+ * makes the image lag the page, the `background-attachment: fixed` look without
+ * the property. The wrapper is the only JS here, and the section is fully
+ * visible whether or not its chunk arrives.
+ *
  * Size is fluid because the headline is a word stack and a line cannot wrap: the
  * widest line, "civil e industrial", measures ~10.06em in the shipped Montserrat
  * 600, so the clamp is capped to keep three lines from 320px up.
@@ -45,10 +51,10 @@ export function Hero({ hero }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative flex min-h-svh flex-col justify-end bg-ink"
+      className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink"
       style={{ marginTop: "calc(var(--chrome-h, 5.25rem) * -1)" }}
     >
-      <div className="absolute inset-0 overflow-hidden bg-ink">
+      <div className="absolute inset-0 overflow-hidden bg-ink" data-scene-image>
         <Photo photo={hero.image} sizes="100vw" priority />
       </div>
 
