@@ -2,7 +2,7 @@ import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ServiceRow } from "@/components/molecules/ServiceRow";
-import type { SectionIntro, ServiceGroup } from "@/types/content";
+import type { SectionIntro, Service, ServiceGroup } from "@/types/content";
 
 interface ServicesIndexProps {
   intro: SectionIntro;
@@ -22,36 +22,76 @@ interface ServicesIndexProps {
  * on purpose: the client read it as a report, not as architecture. The
  * replacement is recorded in the change's design, not made silently.
  *
- * To keep thirteen services from reading as one treatment repeated thirteen
- * times, each chapter leads with a full editorial panel and its remaining
- * services fall into a two-up grid of lighter cards. When a chapter's compact
- * count is odd, the leftover card is promoted to a wide panel rather than
- * stranded alone in half a row. The weight still follows the authored order,
- * which already leads with each group's most representative service; no content
- * field was added to say so.
+ * To keep the catalogue from reading as one treatment repeated for every
+ * service, a service alone in its row gets the full panel with the larger
+ * image, and services that share a row fall into lighter cards. What is alone
+ * is decided by the grid, not by a content flag: the chapter's leading service
+ * always is, and a two-up row whose count is odd strands its last one. The rule
+ * scales to any number of services.
  *
  * A service without an ingested image still renders, as a plain block; the
  * section never depends on stock to be complete.
  */
+
+interface PlacedService {
+  service: Service;
+  /** Catalogue position, 1-based, rendered as the two-digit index. */
+  number: number;
+  variant: "panel" | "card";
+  flip: boolean;
+}
+
+interface PlacedChapter {
+  group: ServiceGroup;
+  chapter: string;
+  services: PlacedService[];
+}
+
+/**
+ * Resolves the whole catalogue into rows once: the running number, which
+ * services are alone in their row, and the panel side. Both the number and the
+ * side depend on everything before them, so they are carried through a single
+ * ordered pass instead of a counter mutated during render.
+ */
+function placeServices(groups: ServiceGroup[]): PlacedChapter[] {
+  let number = 0;
+  let panels = 0;
+
+  return groups.map((group, groupIndex) => {
+    const last = group.services.length - 1;
+    // Compacts pair up two per row after the leading panel; an odd count
+    // strands the last one.
+    const strandsLast = last % 2 === 1;
+
+    return {
+      group,
+      chapter: String(groupIndex + 1).padStart(2, "0"),
+      services: group.services.map((service, serviceIndex) => {
+        number += 1;
+
+        const alone =
+          serviceIndex === 0 || (strandsLast && serviceIndex === last);
+
+        return {
+          service,
+          number,
+          variant: alone ? "panel" : "card",
+          // Consecutive panels alternate sides, so two services alone in their
+          // rows never open on the same edge.
+          flip: alone ? panels++ % 2 === 1 : false,
+        };
+      }),
+    };
+  });
+}
+
 export function ServicesIndex({
   intro,
   groups,
   tone = "canvas",
   id,
 }: ServicesIndexProps) {
-  // The 1-based offset of each chapter's first service, so the catalogue is
-  // numbered 01..13 across the four groups without mutating a counter in render.
-  const chapterOffsets = groups.reduce<number[]>(
-    (offsets, group, groupIndex) => {
-      offsets.push(
-        groupIndex === 0
-          ? 0
-          : offsets[groupIndex - 1] + groups[groupIndex - 1].services.length,
-      );
-      return offsets;
-    },
-    [],
-  );
+  const chapters = placeServices(groups);
 
   return (
     <Section id={id} tone={tone}>
@@ -63,72 +103,41 @@ export function ServicesIndex({
         />
 
         <div className="mt-16 flex flex-col gap-20 md:mt-24 md:gap-28">
-          {groups.map((group, groupIndex) => {
-            const chapter = String(groupIndex + 1).padStart(2, "0");
-
-            return (
-              <div
-                key={group.slug}
-                className="border-t border-bone-200 pt-10 md:pt-12"
-              >
-                <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-10">
-                  <div className="md:col-span-7">
-                    <span className="voice text-xl text-brand-800">
-                      {chapter}
-                    </span>
-                    {/* Full-width line of the stack, as before: at 1024px a side
-                        column would leave "Construcción" 272px wide. */}
-                    <h3 className="voice mt-3 max-w-[18ch] text-3xl leading-[1.08] md:text-[2.5rem]">
-                      {group.title}
-                    </h3>
-                  </div>
-
-                  <p className="voice max-w-[42ch] text-lg leading-relaxed text-ink-muted md:col-span-5 md:pb-1">
-                    {group.intro}
-                  </p>
+          {chapters.map(({ group, chapter, services }) => (
+            <div
+              key={group.slug}
+              className="border-t border-bone-200 pt-10 md:pt-12"
+            >
+              <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-10">
+                <div className="md:col-span-7">
+                  <span className="voice text-xl text-brand-800">
+                    {chapter}
+                  </span>
+                  {/* Full-width line of the stack, as before: at 1024px a side
+                      column would leave "Construcción" 272px wide. */}
+                  <h3 className="voice mt-3 max-w-[18ch] text-3xl leading-[1.08] md:text-[2.5rem]">
+                    {group.title}
+                  </h3>
                 </div>
 
-                <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:mt-20 md:grid-cols-2 md:gap-x-14 md:gap-y-20">
-                  {group.services.map((service, serviceIndex) => {
-                    const index = chapterOffsets[groupIndex] + serviceIndex + 1;
-                    const isFeatured = serviceIndex === 0;
-                    // A compact that would sit alone in its two-up row -- the
-                    // last one when the compacts are odd in number -- is
-                    // promoted to a wide panel, so no row is left half empty.
-                    const isLoneCompact =
-                      (group.services.length - 1) % 2 === 1 &&
-                      serviceIndex === group.services.length - 1;
-                    // The chapter's featured panel alternates sides; a promoted
-                    // panel takes the opposite one, so two panels in the same
-                    // chapter never open on the same edge.
-                    const chapterFlip = groupIndex % 2 === 1;
-
-                    return (
-                      <ServiceRow
-                        key={service.slug}
-                        service={service}
-                        index={index}
-                        variant={
-                          isFeatured
-                            ? "featured"
-                            : isLoneCompact
-                              ? "wide"
-                              : "compact"
-                        }
-                        flip={
-                          isFeatured
-                            ? chapterFlip
-                            : isLoneCompact
-                              ? !chapterFlip
-                              : false
-                        }
-                      />
-                    );
-                  })}
-                </ul>
+                <p className="voice max-w-[42ch] text-lg leading-relaxed text-ink-muted md:col-span-5 md:pb-1">
+                  {group.intro}
+                </p>
               </div>
-            );
-          })}
+
+              <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:mt-20 md:grid-cols-2 md:gap-x-14 md:gap-y-20">
+                {services.map(({ service, number, variant, flip }) => (
+                  <ServiceRow
+                    key={service.slug}
+                    service={service}
+                    index={number}
+                    variant={variant}
+                    flip={flip}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </Container>
     </Section>

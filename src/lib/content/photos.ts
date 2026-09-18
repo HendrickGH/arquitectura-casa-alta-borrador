@@ -4,7 +4,7 @@ import type {
   ManifestPhoto,
   ManifestProject,
 } from "@/types/manifest";
-import type { Photo } from "@/types/content";
+import type { MasonrySlot, Photo } from "@/types/content";
 
 /**
  * Bridges the pipeline's manifest into the view models components consume.
@@ -107,36 +107,6 @@ export function pickUnusedProjectPhoto(
   return free ? toPhoto(dir, free, projectTitle) : null;
 }
 
-/**
- * Reorders the wall so the browser's column balancer lands even.
- *
- * CSS multi-column cannot split an item, so it fills in document order toward
- * an equal-height target and leaves the last column whatever the run did not
- * take. At nine photographs that residual is structural, not a tuning problem:
- * computed against the manifest's own dimensions it floors at 421px at the
- * three-column tier and 377px at two, and no assignment of nine closes it.
- * Feeding the balancer a tall/short alternation brings it to 176px and 105px at
- * twelve, which is why the count and this order are one change and not two.
- *
- * Sorting uses the manifest's dimensions, so this costs no measurement at build
- * time and holds at every column tier the wall reflows into.
- */
-function balancedForColumns(items: ProjectPhoto[]): ProjectPhoto[] {
-  const byHeight = [...items].sort(
-    (a, b) => b.photo.height / b.photo.width - a.photo.height / a.photo.width,
-  );
-  const half = Math.floor(byHeight.length / 2);
-  const tall = byHeight.slice(0, half);
-  const rest = byHeight.slice(half);
-
-  const interleaved: ProjectPhoto[] = [];
-  for (let index = 0; index < tall.length; index += 1) {
-    interleaved.push(tall[index]);
-    if (rest[index]) interleaved.push(rest[index]);
-  }
-  return [...interleaved, ...rest.slice(tall.length)];
-}
-
 /** Manifest entry for a project directory, or undefined if it has none. */
 export function findManifestProject(dir: string) {
   return data.projects.find((project) => project.dir === dir);
@@ -160,35 +130,33 @@ export function getProjectPhotos(dir: string, projectTitle = ""): Photo[] {
 }
 
 /**
- * One photograph per project for the masonry, in manifest order.
+ * The masonry's photographs, in the wall's authored display order.
  *
- * `rank` is 0-based over each project's publishable set. The masonry asks for
- * rank 1 rather than the cover: the covers already appear in the tiles and the
- * two portfolio rows, and a wall that repeats them spends the same photograph
- * twice on one page.
+ * The order lives in `src/content/masonry.ts`, not here: the wall's double cells
+ * sit at fixed positions, so the order decides which photographs get the four
+ * largest cells, and that is an editorial call rather than one the manifest's
+ * dimensions should make. An earlier version interleaved tall and short photos
+ * to feed CSS multi-column's height balancer; the wall is a fixed-row grid now,
+ * which packs its own rows, so the balancing had nothing left to balance.
  *
- * A project with nothing at that depth is skipped rather than back-filled, so
- * every image the wall shows really is one of that project's leading photos.
+ * A slot whose project or photograph is missing, or whose photograph scores
+ * below the portfolio floor, drops out rather than rendering a guessed image.
  */
 export function masonryPhotos(
-  count: number,
-  rank: number,
+  slots: readonly MasonrySlot[],
   resolveTitle: (dir: string) => string,
 ): ProjectPhoto[] {
-  const picked = orderedProjects()
-    .map((project) => {
-      const photo = rankedPhotos(project)[rank];
-      return photo
-        ? {
-            dir: project.dir,
-            photo: toPhoto(project.dir, photo, resolveTitle(project.dir)),
-          }
-        : null;
-    })
-    .filter((entry): entry is ProjectPhoto => entry !== null)
-    .slice(0, count);
-
-  return balancedForColumns(picked);
+  return slots.flatMap((slot) => {
+    const project = findManifestProject(slot.dir);
+    const photo = project?.photos.find((entry) => entry.base === slot.base);
+    if (!project || !photo || photo.score < SCORE_FLOOR) return [];
+    return [
+      {
+        dir: slot.dir,
+        photo: toPhoto(slot.dir, photo, resolveTitle(slot.dir)),
+      },
+    ];
+  });
 }
 
 /**

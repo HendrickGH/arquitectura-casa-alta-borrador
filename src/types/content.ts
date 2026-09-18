@@ -254,6 +254,16 @@ export interface MasonryItem {
   projectSlug: string;
 }
 
+/**
+ * One authored slot of the masonry: a project and the photograph to draw from
+ * it, named by the manifest's own `base` slug so a re-rank cannot silently swap
+ * the photograph for a different one.
+ */
+export interface MasonrySlot {
+  dir: string;
+  base: string;
+}
+
 export interface HomePage {
   hero: HeroContent;
   stats: Stat[];

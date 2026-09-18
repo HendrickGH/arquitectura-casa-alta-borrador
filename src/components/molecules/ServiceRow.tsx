@@ -5,46 +5,37 @@ import { Text } from "@/components/atoms/Text";
 import { cx } from "@/lib/cx";
 import type { Service } from "@/types/content";
 
-type ServiceRowVariant = "featured" | "compact" | "wide";
+type ServiceRowVariant = "panel" | "card";
 
 interface ServiceRowProps {
   service: Service;
   /** Position in the whole catalogue, 1-based, rendered as a two-digit index. */
   index: number;
-  /** Flip the panel: image right at md+ for every other chapter. */
+  /** Flip the panel: image on the right once it is alone in its row. */
   flip?: boolean;
   /**
-   * Visual weight. `featured` is the full editorial panel that used to be the
-   * only treatment; `compact` is the lighter card the rest of the catalogue
-   * falls into, so one treatment is no longer repeated thirteen times. `wide`
-   * is a compact that would have been left alone in its two-up row: it is
-   * promoted back to a panel, on the opposite side to the chapter's featured
-   * one, so the row is never half empty.
+   * `panel` for a service that occupies a whole row on its own -- the leading
+   * service of a chapter, and any compact the two-up grid would strand. Its
+   * image is the larger one. `card` for the two-up services that share a row.
    *
-   * All three carry the photo -- the tier changes its size and framing, never
-   * its presence.
+   * Both carry the photo; the variant changes its size and framing, never its
+   * presence.
    */
   variant?: ServiceRowVariant;
 }
 
 /**
- * `50vw` from `md` is the shipped tier and it is exact here: the featured panel
- * is a two-column grid, so the image slot is half the viewport from 768px up.
- * Below that it is one column and the image is full width.
+ * A panel is alone in its row, so its image earns the wider slot: 60% of the
+ * container from `lg` -- the "20% bigger" the design asks for -- and 50% at
+ * `md`, where a narrower text column would squeeze the deliverable list. Below
+ * `md` the panel is one column and the image is full width.
  */
-const PANEL_SIZES = "(min-width: 768px) 50vw, 100vw";
+const PANEL_SIZES = "(min-width: 1024px) 60vw, (min-width: 768px) 50vw, 100vw";
 
 /**
- * The wide panel keeps the 50/50 split through `md`, where a narrower text
- * column would squeeze the deliverable list, and only grows the image to 60%
- * (the "20% bigger" the design asks for) once `lg` has room for it.
- */
-const WIDE_SIZES = "(min-width: 1024px) 60vw, (min-width: 768px) 50vw, 100vw";
-
-/**
- * The compact cards sit two up from `md` inside the capped Container, so each
- * card is a little under half the viewport. Declaring `sizes` honestly is what
- * lets the loader pick a tier that exists and matches the rendered slot.
+ * The two-up cards sit inside the capped Container, so each is a little under
+ * half the viewport. Declaring `sizes` honestly is what lets the loader pick a
+ * tier that exists and matches the rendered slot.
  */
 const CARD_SIZES = "(min-width: 768px) 45vw, 100vw";
 
@@ -67,30 +58,29 @@ function ServiceItems({
 }
 
 /**
- * One service. The `featured` and `wide` tiers are the editorial panel: a
- * photograph on one side at its own ratio, the index, the title, the summary
- * and the deliverable list on the other; `wide` is the same panel with the
- * image grown from `lg`. The `compact` tier is the lighter card the catalogue's
- * remaining services share: a fixed-ratio crop so a two-up grid keeps its rows
- * aligned, then the same content at a smaller scale.
+ * One service. The `panel` tier is the editorial layout: a photograph on one
+ * side at its own ratio, the index, the title, the summary and the deliverable
+ * list on the other. The `card` tier is the lighter layout the services sharing
+ * a two-up row fall into: a fixed-ratio crop so the row stays aligned, then the
+ * same content at a smaller scale.
  *
- * Any tier renders without an ingested image: the photo is texture, never a
+ * Either tier renders without an ingested image: the photo is texture, never a
  * dependency, so a service without one is still complete.
  */
 export function ServiceRow({
   service,
   index,
   flip = false,
-  variant = "featured",
+  variant = "panel",
 }: ServiceRowProps) {
   const label = String(index).padStart(2, "0");
 
-  if (variant === "compact") {
+  if (variant === "card") {
     return (
       <li className="flex flex-col">
         {service.image ? (
-          // Cropped to a common ratio, unlike the featured panel's own ratio:
-          // in a two-up grid, ragged heights would break the card rhythm.
+          // Cropped to a common ratio, unlike the panel's own ratio: in a two-up
+          // grid, ragged heights would break the card rhythm.
           <div className="aspect-[4/3] w-full overflow-hidden bg-bone-100">
             <Photo photo={service.image} sizes={CARD_SIZES} fit="cover" />
           </div>
@@ -143,12 +133,9 @@ export function ServiceRow({
   // The image column is always the one that grows. Because `flip` reorders the
   // children rather than the grid tracks, the wider track has to move with it:
   // tracking by column alone would hand the extra space to the text.
-  const panelGrid =
-    variant === "wide"
-      ? flip
-        ? "md:grid-cols-2 lg:grid-cols-[2fr_3fr]"
-        : "md:grid-cols-2 lg:grid-cols-[3fr_2fr]"
-      : "md:grid-cols-2";
+  const panelGrid = flip
+    ? "md:grid-cols-2 lg:grid-cols-[2fr_3fr]"
+    : "md:grid-cols-2 lg:grid-cols-[3fr_2fr]";
 
   return (
     <li
@@ -159,7 +146,7 @@ export function ServiceRow({
     >
       <EditorialImage
         photo={service.image}
-        sizes={variant === "wide" ? WIDE_SIZES : PANEL_SIZES}
+        sizes={PANEL_SIZES}
         className={cx(flip && "md:order-2")}
       />
       <div className={cx(flip && "md:order-1")}>{body}</div>
