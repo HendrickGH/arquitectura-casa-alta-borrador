@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { REVEAL_IN, REVEAL_PENDING } from "@/lib/reveal";
-import type { SceneMode } from "./gsap-scenes";
 
 type ChromePolarity = "ink" | "canvas";
 
@@ -252,21 +251,22 @@ export function RevealObserver() {
 }
 
 interface ScrollSceneProps {
-  mode: SceneMode;
   /** A server-rendered section. Nothing here hides it or gates it on JS. */
   children: React.ReactNode;
 }
 
 /**
- * Wraps a photographic section and hands it to the scroll choreography.
+ * Wraps the masonry wall and hands it to the scroll choreography.
  *
- * It renders a plain `div` with one data attribute in the server HTML: no class
- * hides content, no inline style is written for a reveal. GSAP is imported
- * lazily inside the effect, so it never reaches the eager chunk of the routes
- * that render the header -- and the section is fully visible whether or not the
- * chunk ever arrives.
+ * It renders a plain `div` in the server HTML: no class hides content, no inline
+ * style is written for a reveal. GSAP is imported lazily inside the effect, so
+ * it never reaches the eager chunk of the routes that render the header -- and
+ * the wall is fully visible whether or not the chunk ever arrives.
+ *
+ * Since the hero's and the closing CTA's photo parallax were removed, the wall
+ * is the only section that still gets a scene.
  */
-export function ScrollScene({ mode, children }: ScrollSceneProps) {
+export function ScrollScene({ children }: ScrollSceneProps) {
   const scopeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -279,7 +279,7 @@ export function ScrollScene({ mode, children }: ScrollSceneProps) {
     void import("./gsap-scenes")
       .then(({ createScenes }) => {
         if (cancelled) return;
-        revert = createScenes({ scope, mode });
+        revert = createScenes({ scope });
       })
       .catch(() => {
         // A failed chunk is not a content failure: the section is already in
@@ -290,11 +290,7 @@ export function ScrollScene({ mode, children }: ScrollSceneProps) {
       cancelled = true;
       revert?.();
     };
-  }, [mode]);
+  }, []);
 
-  return (
-    <div ref={scopeRef} data-scene={mode}>
-      {children}
-    </div>
-  );
+  return <div ref={scopeRef}>{children}</div>;
 }

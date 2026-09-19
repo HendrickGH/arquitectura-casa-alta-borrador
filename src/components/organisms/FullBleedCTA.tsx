@@ -38,9 +38,7 @@ export function FullBleedCTA({ photo, closing }: FullBleedCTAProps) {
   return (
     <section {...revealAttrs()} className="bg-canvas">
       <div className="relative flex h-[70svh] min-h-[420px] w-full items-center justify-center overflow-hidden bg-bone-100 md:h-[80svh]">
-        {/* The wrapper is the scroll choreography's target; the parent clips it,
-            so the scrubbed scale and lift never reveal an edge. */}
-        <div data-scene-image className="absolute inset-0 h-full w-full">
+        <div className="absolute inset-0 h-full w-full">
           <Photo photo={photo} sizes="100vw" />
         </div>
 

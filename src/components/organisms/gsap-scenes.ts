@@ -1,8 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export type SceneMode = "drift" | "breathe" | "lift";
-
 const MOTION_OK = "(prefers-reduced-motion: no-preference)";
 
 let pluginRegistered = false;
@@ -86,93 +84,20 @@ function buildDrift(scope: HTMLElement) {
 }
 
 /**
- * The photograph inside a full-bleed band drifts against the page as the band
- * crosses the viewport.
+ * Builds the scroll choreography for the masonry wall and returns its cleanup.
  *
- * THE BAND'S OWN TRAVEL IS THE EFFECT. A scrubbed translation on the image
- * makes it cover less ground per pixel of scroll than the type in front of it:
- * the frame slides, the photograph lags, and the block reads as a window rather
- * than a picture scrolling by. That is the `background-attachment: fixed` look
- * without the property -- which this site cannot use, because it would take the
- * photograph out of next/image and put a single unoptimised asset back on the
- * page, and because the property is unreliable on mobile Safari.
- *
- * WHY IT IS SCALED UP. `data-scene-image` is exactly the wrapper's size, so any
- * translation would expose an edge; the scale is the headroom that pays for it.
- * The bound is `|yPercent| <= 50 * (scale - 1)`: below that bound no edge shows
- * at either end of the scrub. The values here keep a margin rather than sit on
- * the limit, and the scale stays a constant-ish value so the crop does not
- * breathe as it moves.
- *
- * A pin is deliberately avoided: no spacer is inserted and the sticky chrome is
- * untouched. Only transform moves -- no layout property, no opacity.
- *
- * The travel is authored to be SEEN THROUGH THE SCRIM. The band's overlay sits
- * at 0.68-0.82 alpha so the centred copy holds contrast, and an earlier 2%
- * travel was invisible beneath it. The percentage below is what reads through
- * that much dark.
- */
-function buildBreathe(scope: HTMLElement) {
-  const image = scope.querySelector<HTMLElement>("[data-scene-image]");
-  if (!image) return;
-
-  gsap.fromTo(
-    image,
-    { yPercent: -20, scale: 1.45 },
-    {
-      yPercent: 20,
-      scale: 1.42,
-      ease: "none",
-      scrollTrigger: {
-        trigger: scope,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    },
-  );
-}
-
-/**
- * The hero's photograph drifts against the page as the opening viewport scrolls
- * away. Same choreography as the closing band (`buildBreathe`); the only
- * difference is the range.
- *
- * The hero starts at the top of the document, so its own height is the whole
- * range: `top top` to `bottom top`. That makes the parallax begin with the very
- * first scroll instead of only once the block has fully entered, which is what
- * a viewport that is already on screen needs.
- */
-function buildLift(scope: HTMLElement) {
-  const image = scope.querySelector<HTMLElement>("[data-scene-image]");
-  if (!image) return;
-
-  gsap.fromTo(
-    image,
-    { yPercent: -16, scale: 1.4 },
-    {
-      yPercent: 16,
-      scale: 1.36,
-      ease: "none",
-      scrollTrigger: {
-        trigger: scope,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    },
-  );
-}
-
-/**
- * Builds the scroll choreography for one wrapped section and returns its
- * cleanup.
+ * THE WALL IS THE ONLY SCENE LEFT. The hero's and the closing CTA's photo
+ * parallax were removed after being measured against a reference: at rest the
+ * hero painted its 1600x900 AVIF at 2016x1260 -- a 1.26x upscale behind a 1.4x
+ * crop -- and then drifted at 0.32px per scroll px, while the reference site
+ * uses no parallax at all and only one-shot reveals. The wall's drift is a
+ * different device (per-column, horizontal-free, never scaled) and stays.
  *
  * Everything is created inside `gsap.matchMedia()` under
- * `prefers-reduced-motion: no-preference`, so the reduced path ships no tween
- * at all and every section paints in its settled, visible state; nothing is
- * gated on an animation completing. `media.revert()` in the cleanup kills the
- * timeline and its ScrollTrigger together, so no trigger outlives the wrapper.
+ * `prefers-reduced-motion: no-preference`, so the reduced path ships no tween at
+ * all and the wall paints in its settled, visible state; nothing is gated on an
+ * animation completing. `media.revert()` in the cleanup kills the timeline and
+ * its ScrollTrigger together, so no trigger outlives the wrapper.
  *
  * The drift is registered under the motion query *and* the three-column tier.
  * Its columns are measured once, and the column count changes with the width, so
@@ -181,24 +106,12 @@ function buildLift(scope: HTMLElement) {
  * of the previous layout. Below 1200px the drift has nothing to move: every
  * remaining cell is a double and the doubles anchor (see `buildDrift`).
  */
-export function createScenes({
-  scope,
-  mode,
-}: {
-  scope: HTMLElement;
-  mode: SceneMode;
-}): () => void {
+export function createScenes({ scope }: { scope: HTMLElement }): () => void {
   registerPlugin();
   refreshAfterLayout();
 
   const media = gsap.matchMedia();
-  media.add(MOTION_OK, () => {
-    if (mode === "breathe") buildBreathe(scope);
-    if (mode === "lift") buildLift(scope);
-  });
-  if (mode === "drift") {
-    media.add(`${MOTION_OK} and (min-width: 1200px)`, () => buildDrift(scope));
-  }
+  media.add(`${MOTION_OK} and (min-width: 1200px)`, () => buildDrift(scope));
 
   return () => media.revert();
 }

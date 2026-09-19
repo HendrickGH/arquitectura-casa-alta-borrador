@@ -37,11 +37,11 @@ interface HeroProps {
  * without JavaScript, animates only opacity and transform, is staggered per
  * block, and is neutralised under `prefers-reduced-motion`.
  *
- * The photograph carries `data-scene-image`, which the ScrollScene wrapper
- * (`mode="lift"`) hands to the scroll choreography: a scrubbed translation that
- * makes the image lag the page, the `background-attachment: fixed` look without
- * the property. The wrapper is the only JS here, and the section is fully
- * visible whether or not its chunk arrives.
+ * The photograph is a plain full-bleed cover and carries no scroll choreography
+ * of its own: its parallax was removed after measurement against a reference.
+ * At rest it had painted the 1600x900 hero AVIF at 2016x1260 -- a 1.26x upscale
+ * behind a 1.4x crop -- and then drifted at 0.32px per scroll px, while the
+ * reference uses no parallax at all and only one-shot reveals.
  *
  * Size is fluid because the headline is a word stack and a line cannot wrap: the
  * widest line, "civil e industrial", measures ~10.06em in the shipped Montserrat
@@ -54,7 +54,7 @@ export function Hero({ hero }: HeroProps) {
       className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink"
       style={{ marginTop: "calc(var(--chrome-h, 5.25rem) * -1)" }}
     >
-      <div className="absolute inset-0 overflow-hidden bg-ink" data-scene-image>
+      <div className="absolute inset-0 overflow-hidden bg-ink">
         <Photo photo={hero.image} sizes="100vw" priority />
       </div>
 

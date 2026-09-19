@@ -92,9 +92,7 @@ export function LandingTemplate({
   return (
     <SiteChrome site={site} chrome={home.hero.chrome?.tone}>
       <main id="main">
-        <ScrollScene mode="lift">
-          <Hero hero={home.hero} />
-        </ScrollScene>
+        <Hero hero={home.hero} />
 
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
         <StatsBand stats={home.stats} />
@@ -137,7 +135,7 @@ export function LandingTemplate({
           tone="bone"
         />
 
-        <ScrollScene mode="drift">
+        <ScrollScene>
           <MasonryGallery items={masonry} tone="canvas" />
         </ScrollScene>
 
@@ -147,9 +145,7 @@ export function LandingTemplate({
           tone="bone"
         />
 
-        <ScrollScene mode="breathe">
-          <FullBleedCTA photo={moment} closing={home.closing} />
-        </ScrollScene>
+        <FullBleedCTA photo={moment} closing={home.closing} />
 
         <ContactForm
           id="contacto"
