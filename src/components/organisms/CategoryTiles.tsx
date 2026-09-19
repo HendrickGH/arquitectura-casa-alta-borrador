@@ -1,4 +1,5 @@
 import { CategoryTile } from "@/components/molecules/CategoryTile";
+import { revealAttrs } from "@/lib/reveal";
 import type { CategoryTile as CategoryTileModel } from "@/types/content";
 
 interface CategoryTilesProps {
@@ -22,7 +23,7 @@ export function CategoryTiles({ tiles }: CategoryTilesProps) {
 
   return (
     <section
-      data-reveal="idle"
+      {...revealAttrs()}
       className="grid w-full grid-cols-1 bg-canvas md:grid-cols-2"
     >
       {tiles.map((tile) => (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { REVEAL_IN, REVEAL_PENDING } from "@/lib/reveal";
 import type { SceneMode } from "./gsap-scenes";
 
 type ChromePolarity = "ink" | "canvas";
@@ -200,7 +201,7 @@ export function RevealObserver() {
     if (reduce.matches) {
       // No hidden state and no count: every figure is already at its final value
       // in the server HTML.
-      for (const el of nodes) el.dataset.reveal = "in";
+      for (const el of nodes) el.dataset.reveal = REVEAL_IN;
       return;
     }
 
@@ -211,10 +212,10 @@ export function RevealObserver() {
     // Anything already on screen stays visible; hiding it would be a flash.
     for (const el of nodes) {
       if (el.getBoundingClientRect().top < foldLine()) {
-        el.dataset.reveal = "in";
+        el.dataset.reveal = REVEAL_IN;
         countFigures(el);
       } else {
-        el.dataset.reveal = "pending";
+        el.dataset.reveal = REVEAL_PENDING;
       }
     }
 
@@ -224,10 +225,10 @@ export function RevealObserver() {
       const line = foldLine();
       for (const el of nodes) {
         if (
-          el.dataset.reveal === "pending" &&
+          el.dataset.reveal === REVEAL_PENDING &&
           el.getBoundingClientRect().top < line
         ) {
-          el.dataset.reveal = "in";
+          el.dataset.reveal = REVEAL_IN;
           countFigures(el);
         }
       }

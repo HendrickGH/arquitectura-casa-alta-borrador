@@ -1,4 +1,5 @@
 import { cx } from "@/lib/cx";
+import { revealAttrs } from "@/lib/reveal";
 import { Container } from "@/components/atoms/Container";
 import { StatItem } from "@/components/molecules/StatItem";
 import type { Stat } from "@/types/content";
@@ -26,7 +27,7 @@ function ruleClass(index: number): string {
 
 export function StatsBand({ stats }: StatsBandProps) {
   return (
-    <section data-reveal="idle" className="border-y border-bone-200 bg-bone-50">
+    <section {...revealAttrs()} className="border-y border-bone-200 bg-bone-50">
       <Container>
         <div className="grid grid-cols-2 gap-y-12 py-16 md:py-24 lg:grid-cols-4">
           {stats.map((stat, index) => (

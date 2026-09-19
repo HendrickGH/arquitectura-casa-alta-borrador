@@ -1,4 +1,5 @@
 import { Container } from "@/components/atoms/Container";
+import { revealAttrs } from "@/lib/reveal";
 
 interface ManifestoLineProps {
   line: string;
@@ -20,7 +21,7 @@ interface ManifestoLineProps {
  */
 export function ManifestoLine({ line }: ManifestoLineProps) {
   return (
-    <section data-reveal="idle" className="bg-brand-900 text-white">
+    <section {...revealAttrs()} className="bg-brand-900 text-white">
       <Container className="py-20 md:py-32 lg:py-40">
         <p className="voice max-w-[34ch] text-[1.75rem] leading-[1.28] md:text-[2.5rem] md:leading-[1.22] lg:text-[3rem] lg:leading-[1.16]">
           {line}

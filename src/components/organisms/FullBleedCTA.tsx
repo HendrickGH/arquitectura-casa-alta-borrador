@@ -2,6 +2,7 @@ import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
+import { revealAttrs } from "@/lib/reveal";
 import type { HomePage, Photo as PhotoModel } from "@/types/content";
 
 interface FullBleedCTAProps {
@@ -35,7 +36,7 @@ export function FullBleedCTA({ photo, closing }: FullBleedCTAProps) {
   const external = closing.cta.href.startsWith("http");
 
   return (
-    <section data-reveal="idle" className="bg-canvas">
+    <section {...revealAttrs()} className="bg-canvas">
       <div className="relative flex h-[70svh] min-h-[420px] w-full items-center justify-center overflow-hidden bg-bone-100 md:h-[80svh]">
         {/* The wrapper is the scroll choreography's target; the parent clips it,
             so the scrubbed scale and lift never reveal an edge. */}

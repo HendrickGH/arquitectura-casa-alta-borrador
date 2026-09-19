@@ -1,4 +1,5 @@
 import { cx } from "@/lib/cx";
+import { revealAttrs, type RevealVariant } from "@/lib/reveal";
 
 type Tone = "canvas" | "bone";
 
@@ -9,6 +10,12 @@ interface SectionProps {
   /** Anchor target for in-page navigation. */
   id?: string;
   className?: string;
+  /**
+   * How this section joins the scroll reveal. `fade` (default) transitions the
+   * section as one block; `stagger` hands the gesture to its children; `none`
+   * opts out entirely. See `src/lib/reveal.ts`.
+   */
+  reveal?: RevealVariant;
 }
 
 export function Section({
@@ -16,11 +23,12 @@ export function Section({
   tone = "canvas",
   id,
   className,
+  reveal = "fade",
 }: SectionProps) {
   return (
     <section
       id={id}
-      data-reveal="idle"
+      {...revealAttrs(reveal)}
       className={cx(
         "py-20 md:py-28 lg:py-36",
         tone === "bone" ? "bg-bone-50" : "bg-canvas",
