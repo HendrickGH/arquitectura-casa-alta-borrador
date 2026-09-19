@@ -55,32 +55,64 @@ any change to `gsap-scenes.ts` and the three parallax modes.
 
 ## Tasks
 
-- [ ] T1 `src/lib/reveal.ts`: `RevealVariant` (`fade | stagger | none`), the
+- [x] T1 `src/lib/reveal.ts`: `RevealVariant` (`fade | stagger | none`), the
       state constants (`idle | pending | in`), and `revealAttrs(variant)`.
       `fade` emits `data-reveal="idle"`; `stagger` adds
       `data-reveal-variant="stagger"`; `none` emits nothing.
-- [ ] T2 `Section.tsx` exposes `reveal?: RevealVariant` (default `fade`) and
+- [x] T2 `Section.tsx` exposes `reveal?: RevealVariant` (default `fade`) and
       spreads `revealAttrs(reveal)`.
-- [ ] T3 `RevealObserver` uses the shared constants instead of the string
+- [x] T3 `RevealObserver` uses the shared constants instead of the string
       literals. No behaviour change.
-- [ ] T4 The four hand-rolled landing sections spread `revealAttrs()` in place of
+- [x] T4 The four hand-rolled landing sections spread `revealAttrs()` in place of
       the hardcoded `data-reveal="idle"`. Output attribute is identical; the
       gesture now has one source.
-- [ ] T5 Checks.
+- [x] T5 Checks.
 
 ## Verification
 
 - `pnpm typecheck` — pass.
-- `pnpm lint` — pass.
-- `pnpm build` — pass, and the landing's section attributes unchanged in the
-  built HTML (`data-reveal="idle"` still present on the same elements).
-- `reveal="none"` emits no `data-reveal` (unit-level read of `revealAttrs`).
+- `pnpm lint` — pass, 0 errors. 1 pre-existing warning in
+  `.opencode/skills/web-build/scripts/cdp-measure.mjs:140`, a file this phase did
+  not touch.
+- `pnpm build` — pass, 18 static pages.
+- Landing built HTML (`.next/server/app/index.html`): 11 `data-reveal="idle"`,
+  0 `data-reveal-variant`. There are 12 `<section>` elements; the 12th is the
+  Hero, which carries no reveal by design.
+- `/proyectos` built HTML: 0 `data-reveal-variant`, so the other route is
+  untouched.
+- Native RDD review: lineage `review-7f45ca4837bc28e7`, target
+  `sha256:3c9b30dd…c41`, state `approved`, authority `burned`. Two non-blocking
+  advisory findings (below).
+
+## Advisory findings (non-blocking)
+
+The approved review raised two findings. Neither opened a correction, and
+neither is a reason to re-run the review on this candidate.
+
+- **R3-001 (WARNING)** — `src/lib/reveal.ts:33-38`. `revealAttrs` is the only
+  runtime implementation of the `none` opt-out and the `stagger` shape, and this
+  phase adds no unit test for it. There is no test runner configured in the repo
+  today, so the boundary is currently proved by the phase-2 observer consuming
+  it rather than by a test. Add a runner before this gets a second consumer.
+- **R3-002 (SUGGESTION)** — `src/components/atoms/Section.tsx:11-16`. `stagger`
+  is exposed on `Section` before `RevealObserver` reads `data-reveal-variant`, so
+  a consumer opting in today silently gets the whole-section fade plus an unused
+  attribute. Phase 2 closes this by making the observer consume the variant; if
+  Phase 2 slips, the prop should be marked reserved.
 
 ## Progress
 
-Phase 1 in flight.
+Phase 1 complete. One process hazard observed and worth recording: the repo's
+auto-commit plugin (`.opencode/plugins/casa-alta.ts`, `session.idle`) committed
+the whole phase as `46ff5da chore: auto-commit 8 files` before the native RDD
+preflight could see it as the current-changes candidate. The review was still run
+by selecting `HEAD~1` as the base ref with `--committed-only`, so the change was
+reviewed, but the candidate was consumed before the preflight that should have
+frozen it. Every future delegated phase will hit the same ordering.
 
 ## Next step
 
 Phase 2: the stagger CSS and the child-delay assignment in `RevealObserver`, then
-opt the landing's list sections into `stagger`.
+opt the landing's list sections into `stagger` (closing R3-002). Resolve the
+auto-commit/RDD ordering before the next delegated write, or the same base-ref
+detour repeats.
