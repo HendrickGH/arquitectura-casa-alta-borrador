@@ -2,6 +2,7 @@ import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ServiceRow } from "@/components/molecules/ServiceRow";
+import { revealStep } from "@/lib/reveal";
 import type { SectionIntro, Service, ServiceGroup } from "@/types/content";
 
 interface ServicesIndexProps {
@@ -37,6 +38,8 @@ interface PlacedService {
   service: Service;
   /** Catalogue position, 1-based, rendered as the two-digit index. */
   number: number;
+  /** Zero-based position in the `stagger` cascade. */
+  revealIndex: number;
   variant: "panel" | "card";
   flip: boolean;
 }
@@ -44,6 +47,8 @@ interface PlacedService {
 interface PlacedChapter {
   group: ServiceGroup;
   chapter: string;
+  /** Reveal index of the chapter's header, one step before its first service. */
+  headerIndex: number;
   services: PlacedService[];
 }
 
@@ -56,6 +61,9 @@ interface PlacedChapter {
 function placeServices(groups: ServiceGroup[]): PlacedChapter[] {
   let number = 0;
   let panels = 0;
+  // The heading takes steps 0-2, so the catalogue's own cascade starts at 3 and
+  // walks chapter headers and services in one continuous order.
+  let revealIndex = 3;
 
   return groups.map((group, groupIndex) => {
     const last = group.services.length - 1;
@@ -66,6 +74,7 @@ function placeServices(groups: ServiceGroup[]): PlacedChapter[] {
     return {
       group,
       chapter: String(groupIndex + 1).padStart(2, "0"),
+      headerIndex: revealIndex++,
       services: group.services.map((service, serviceIndex) => {
         number += 1;
 
@@ -75,6 +84,7 @@ function placeServices(groups: ServiceGroup[]): PlacedChapter[] {
         return {
           service,
           number,
+          revealIndex: revealIndex++,
           variant: alone ? "panel" : "card",
           // Consecutive panels alternate sides, so two services alone in their
           // rows never open on the same edge.
@@ -94,7 +104,7 @@ export function ServicesIndex({
   const chapters = placeServices(groups);
 
   return (
-    <Section id={id} tone={tone}>
+    <Section id={id} tone={tone} reveal="stagger">
       <Container>
         <SectionHeading
           eyebrow={intro.eyebrow}
@@ -103,9 +113,10 @@ export function ServicesIndex({
         />
 
         <div className="mt-16 flex flex-col gap-20 md:mt-24 md:gap-28">
-          {chapters.map(({ group, chapter, services }) => (
+          {chapters.map(({ group, chapter, headerIndex, services }) => (
             <div
               key={group.slug}
+              {...revealStep(headerIndex)}
               className="border-t border-bone-200 pt-10 md:pt-12"
             >
               <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-10">
@@ -126,15 +137,18 @@ export function ServicesIndex({
               </div>
 
               <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:mt-20 md:grid-cols-2 md:gap-x-14 md:gap-y-20">
-                {services.map(({ service, number, variant, flip }) => (
-                  <ServiceRow
-                    key={service.slug}
-                    service={service}
-                    index={number}
-                    variant={variant}
-                    flip={flip}
-                  />
-                ))}
+                {services.map(
+                  ({ service, number, revealIndex, variant, flip }) => (
+                    <ServiceRow
+                      key={service.slug}
+                      service={service}
+                      index={number}
+                      revealIndex={revealIndex}
+                      variant={variant}
+                      flip={flip}
+                    />
+                  ),
+                )}
               </ul>
             </div>
           ))}

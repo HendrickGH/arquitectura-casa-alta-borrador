@@ -2,7 +2,7 @@ import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
-import { revealAttrs } from "@/lib/reveal";
+import { revealAttrs, revealStep } from "@/lib/reveal";
 import type { HomePage, Photo as PhotoModel } from "@/types/content";
 
 interface FullBleedCTAProps {
@@ -36,7 +36,7 @@ export function FullBleedCTA({ photo, closing }: FullBleedCTAProps) {
   const external = closing.cta.href.startsWith("http");
 
   return (
-    <section {...revealAttrs()} className="bg-canvas">
+    <section {...revealAttrs("stagger")} className="bg-canvas">
       <div className="relative flex h-[70svh] min-h-[420px] w-full items-center justify-center overflow-hidden bg-bone-100 md:h-[80svh]">
         <div className="absolute inset-0 h-full w-full">
           <Photo photo={photo} sizes="100vw" />
@@ -46,22 +46,28 @@ export function FullBleedCTA({ photo, closing }: FullBleedCTAProps) {
 
         <Container className="relative z-10 py-20">
           <div className="mx-auto flex max-w-[46rem] flex-col items-center gap-7 text-center">
-            <Heading voice="serif" className="max-w-[22ch] text-white">
-              {closing.heading}
-            </Heading>
+            <div {...revealStep(0)}>
+              <Heading voice="serif" className="max-w-[22ch] text-white">
+                {closing.heading}
+              </Heading>
+            </div>
 
-            <p className="max-w-[56ch] text-lg leading-relaxed text-white/90">
-              {closing.body}
-            </p>
+            <div {...revealStep(1)}>
+              <p className="max-w-[56ch] text-lg leading-relaxed text-white/90">
+                {closing.body}
+              </p>
+            </div>
 
-            <Button
-              href={closing.cta.href}
-              variant="inverse"
-              external={external}
-              className="mt-4"
-            >
-              {closing.cta.label}
-            </Button>
+            <div {...revealStep(2)}>
+              <Button
+                href={closing.cta.href}
+                variant="inverse"
+                external={external}
+                className="mt-4"
+              >
+                {closing.cta.label}
+              </Button>
+            </div>
           </div>
         </Container>
       </div>

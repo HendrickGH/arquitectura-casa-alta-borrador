@@ -51,7 +51,7 @@ export function FeaturedPortfolio({
   if (!lead) return null;
 
   return (
-    <Section id={id} tone={tone}>
+    <Section id={id} tone={tone} reveal="stagger">
       <Container>
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <SectionHeading
@@ -72,15 +72,17 @@ export function FeaturedPortfolio({
               photo={lead.wideCover}
               href={`/proyectos/${lead.slug}`}
               sizes="100vw"
+              revealIndex={3}
             />
           </div>
 
-          {cells.map((project) => (
+          {cells.map((project, index) => (
             <ProjectCard
               key={project.slug}
               project={project}
               href={`/proyectos/${project.slug}`}
               sizes={CELL_SIZES}
+              revealIndex={4 + index}
             />
           ))}
         </div>

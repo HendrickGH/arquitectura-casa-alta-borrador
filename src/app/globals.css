@@ -309,6 +309,36 @@ header[data-surface="hero"] .chrome-cta:hover {
   transform: none;
 }
 
+/* `stagger`: the shell stops fading as one block and hands the gesture to its
+   marked children, which step in on an index-scaled delay. The shell stays
+   visible in every state so the children own the hidden state; the observer's
+   scroll pass is unchanged. */
+[data-reveal-variant="stagger"][data-reveal] {
+  transition: none;
+}
+
+[data-reveal-variant="stagger"][data-reveal="pending"] {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal-variant="stagger"] [data-reveal-step] {
+  transition:
+    opacity 720ms ease-out,
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--reveal-index, 0) * 80ms);
+}
+
+[data-reveal-variant="stagger"][data-reveal="pending"] [data-reveal-step] {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+[data-reveal-variant="stagger"][data-reveal="in"] [data-reveal-step] {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -317,6 +347,7 @@ header[data-surface="hero"] .chrome-cta:hover {
     animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
 }

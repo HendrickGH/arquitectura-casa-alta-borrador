@@ -1,6 +1,7 @@
 import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
+import { revealStep } from "@/lib/reveal";
 import type { SectionIntro, Testimonial } from "@/types/content";
 
 interface TestimonialsProps {
@@ -25,7 +26,7 @@ export function Testimonials({
   if (items.length === 0) return null;
 
   return (
-    <Section tone={tone}>
+    <Section tone={tone} reveal="stagger">
       <Container>
         <SectionHeading
           eyebrow={intro.eyebrow}
@@ -34,8 +35,12 @@ export function Testimonials({
         />
 
         <div className="mt-16 grid gap-x-16 gap-y-14 md:mt-20 md:grid-cols-2">
-          {items.map((item) => (
-            <figure key={item.projectName} className="max-w-[52ch]">
+          {items.map((item, index) => (
+            <figure
+              key={item.projectName}
+              {...revealStep(3 + index)}
+              className="max-w-[52ch]"
+            >
               <blockquote className="voice text-2xl leading-snug md:text-3xl">
                 &ldquo;{item.quote}&rdquo;
               </blockquote>

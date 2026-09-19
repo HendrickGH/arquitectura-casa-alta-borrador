@@ -15,9 +15,13 @@ interface IntroSectionProps {
  * by the lede's own cap, so the paragraph never runs wider than a comfortable
  * read even on a 1440px canvas.
  */
-export function IntroSection({ intro, tone = "canvas", id }: IntroSectionProps) {
+export function IntroSection({
+  intro,
+  tone = "canvas",
+  id,
+}: IntroSectionProps) {
   return (
-    <Section id={id} tone={tone}>
+    <Section id={id} tone={tone} reveal="stagger">
       <Container>
         <div className="max-w-[62rem]">
           <SectionHeading

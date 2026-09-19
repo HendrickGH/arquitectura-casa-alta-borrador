@@ -2,6 +2,7 @@ import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ContactFormFields } from "@/components/organisms/ContactFormFields";
+import { revealStep } from "@/lib/reveal";
 import type { ContactFormContent } from "@/types/content";
 
 interface ContactFormProps {
@@ -22,7 +23,7 @@ interface ContactFormProps {
  */
 export function ContactForm({ contact, whatsappHref, id }: ContactFormProps) {
   return (
-    <Section id={id} tone="bone">
+    <Section id={id} tone="bone" reveal="stagger">
       <Container>
         <div className="mx-auto max-w-3xl">
           <SectionHeading
@@ -32,11 +33,8 @@ export function ContactForm({ contact, whatsappHref, id }: ContactFormProps) {
             align="center"
           />
 
-          <div className="mt-12">
-            <ContactFormFields
-              contact={contact}
-              whatsappHref={whatsappHref}
-            />
+          <div {...revealStep(3)} className="mt-12">
+            <ContactFormFields contact={contact} whatsappHref={whatsappHref} />
           </div>
         </div>
       </Container>

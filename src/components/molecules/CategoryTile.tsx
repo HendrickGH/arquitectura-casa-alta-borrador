@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { Photo } from "@/components/atoms/Photo";
+import { revealStep } from "@/lib/reveal";
 import type { CategoryTile as CategoryTileModel } from "@/types/content";
 
 interface CategoryTileProps {
   tile: CategoryTileModel;
+  /** Zero-based position in the `stagger` cascade; omitted when unstaggered. */
+  revealIndex?: number;
 }
 
 /**
@@ -24,9 +27,13 @@ const TILE_SIZES = "(min-width: 768px) 50vw, 100vw";
  * The hover scale repeats on focus: the whole tile is the link, so a keyboard
  * visitor gets the same affordance a pointer does.
  */
-export function CategoryTile({ tile }: CategoryTileProps) {
+export function CategoryTile({ tile, revealIndex }: CategoryTileProps) {
   return (
-    <Link href={tile.href} className="group flex flex-col">
+    <Link
+      href={tile.href}
+      {...revealStep(revealIndex)}
+      className="group flex flex-col"
+    >
       <div className="aspect-[4/3] w-full overflow-hidden bg-bone-100">
         <Photo
           photo={tile.photo}

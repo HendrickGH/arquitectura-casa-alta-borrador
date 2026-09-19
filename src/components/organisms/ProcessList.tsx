@@ -25,7 +25,7 @@ export function ProcessList({
   id,
 }: ProcessListProps) {
   return (
-    <Section id={id} tone={tone}>
+    <Section id={id} tone={tone} reveal="stagger">
       <Container>
         <SectionHeading
           eyebrow={intro.eyebrow}
@@ -37,7 +37,7 @@ export function ProcessList({
           {steps.map((step, index) => (
             <Fragment key={step.order}>
               {index > 0 ? <Rule /> : null}
-              <ProcessEntry step={step} />
+              <ProcessEntry step={step} revealIndex={3 + index} />
             </Fragment>
           ))}
         </ol>

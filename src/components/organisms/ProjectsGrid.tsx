@@ -6,6 +6,11 @@ interface ProjectsGridProps {
   projects: Project[];
   /** Spacing between this grid and whatever precedes it in the section. */
   className?: string;
+  /**
+   * Zero-based reveal index of the first card, for the `stagger` cascade. When
+   * omitted the cards carry no reveal markers, so a `fade` section is unchanged.
+   */
+  revealBase?: number;
 }
 
 /** Three columns from 1200px, two from 768px: the CSS below is what makes it true. */
@@ -29,18 +34,25 @@ const CARD_SIZES = "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
  * `xl` is 1280px and is not the answer either -- the tier says 1200px, and a
  * layout whose CSS disagrees with its own label mis-serves the loader.
  */
-export function ProjectsGrid({ projects, className }: ProjectsGridProps) {
+export function ProjectsGrid({
+  projects,
+  className,
+  revealBase,
+}: ProjectsGridProps) {
   if (projects.length === 0) return null;
 
   return (
     <Container className={className}>
       <div className="grid grid-cols-1 gap-x-8 gap-y-14 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <ProjectCard
             key={project.slug}
             project={project}
             href={`/proyectos/${project.slug}`}
             sizes={CARD_SIZES}
+            revealIndex={
+              revealBase === undefined ? undefined : revealBase + index
+            }
           />
         ))}
       </div>

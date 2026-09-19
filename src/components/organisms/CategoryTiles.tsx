@@ -23,11 +23,11 @@ export function CategoryTiles({ tiles }: CategoryTilesProps) {
 
   return (
     <section
-      {...revealAttrs()}
+      {...revealAttrs("stagger")}
       className="grid w-full grid-cols-1 bg-canvas md:grid-cols-2"
     >
-      {tiles.map((tile) => (
-        <CategoryTile key={tile.label} tile={tile} />
+      {tiles.map((tile, index) => (
+        <CategoryTile key={tile.label} tile={tile} revealIndex={index} />
       ))}
     </section>
   );

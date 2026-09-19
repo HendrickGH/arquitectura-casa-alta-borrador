@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 /**
  * The reveal vocabulary, shared by the server-rendered producers (the `Section`
  * atom and the landing's hand-rolled sections) and the client script that runs
@@ -26,13 +28,33 @@ export interface RevealAttrs {
 
 /**
  * `fade` (default) transitions the whole section as one block; `stagger` hands
- * the gesture to the section's children; `none` opts out of the state machine
- * entirely, so the section is never hidden. `stagger` is declared here but not
- * yet consumed -- the hierarchy lands in a later phase.
+ * the gesture to the section's marked children; `none` opts out of the state
+ * machine entirely, so the section is never hidden.
  */
 export function revealAttrs(variant: RevealVariant = "fade"): RevealAttrs {
   if (variant === "none") return {};
   const attrs: RevealAttrs = { "data-reveal": REVEAL_IDLE };
   if (variant === "stagger") attrs["data-reveal-variant"] = "stagger";
   return attrs;
+}
+
+/** Props to spread onto one staggerable child of a `stagger` section. */
+export interface RevealStepAttrs {
+  "data-reveal-step"?: string;
+  style?: CSSProperties;
+}
+
+/**
+ * Marks one child of a `stagger` section as a reveal step and hands it its
+ * zero-based position. The stylesheet turns `--reveal-index` into the child's
+ * `transition-delay`, so the server writes only an integer and the timing stays
+ * a CSS concern. Returns `{}` when no index is given, so an unstaggered call
+ * site can spread it unconditionally.
+ */
+export function revealStep(index: number | undefined): RevealStepAttrs {
+  if (index === undefined) return {};
+  return {
+    "data-reveal-step": "",
+    style: { "--reveal-index": index } as CSSProperties,
+  };
 }

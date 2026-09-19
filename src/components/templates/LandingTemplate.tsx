@@ -112,6 +112,7 @@ export function LandingTemplate({
           <ProjectsGrid
             projects={remaining}
             className="mt-20 md:mt-28 lg:mt-36"
+            revealBase={3 + featured.length}
           />
         </FeaturedPortfolio>
 

@@ -3,6 +3,7 @@ import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
 import { Text } from "@/components/atoms/Text";
 import { cx } from "@/lib/cx";
+import { revealStep } from "@/lib/reveal";
 import type { Service } from "@/types/content";
 
 type ServiceRowVariant = "panel" | "card";
@@ -22,6 +23,8 @@ interface ServiceRowProps {
    * presence.
    */
   variant?: ServiceRowVariant;
+  /** Zero-based position in the `stagger` cascade; omitted when unstaggered. */
+  revealIndex?: number;
 }
 
 /**
@@ -72,12 +75,13 @@ export function ServiceRow({
   index,
   flip = false,
   variant = "panel",
+  revealIndex,
 }: ServiceRowProps) {
   const label = String(index).padStart(2, "0");
 
   if (variant === "card") {
     return (
-      <li className="flex flex-col">
+      <li {...revealStep(revealIndex)} className="flex flex-col">
         {service.image ? (
           // Cropped to a common ratio, unlike the panel's own ratio: in a two-up
           // grid, ragged heights would break the card rhythm.
@@ -127,7 +131,11 @@ export function ServiceRow({
   );
 
   if (!service.image) {
-    return <li className="max-w-[62ch] md:col-span-2">{body}</li>;
+    return (
+      <li {...revealStep(revealIndex)} className="max-w-[62ch] md:col-span-2">
+        {body}
+      </li>
+    );
   }
 
   // The image column is always the one that grows. Because `flip` reorders the
@@ -139,6 +147,7 @@ export function ServiceRow({
 
   return (
     <li
+      {...revealStep(revealIndex)}
       className={cx(
         "grid items-center gap-8 md:col-span-2 md:gap-14",
         panelGrid,

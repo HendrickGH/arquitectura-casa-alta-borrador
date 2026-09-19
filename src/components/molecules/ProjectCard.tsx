@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
+import { revealStep } from "@/lib/reveal";
 import type { Photo as PhotoModel, Project } from "@/types/content";
 
 interface ProjectCardProps {
@@ -20,6 +21,8 @@ interface ProjectCardProps {
    */
   href?: string;
   priority?: boolean;
+  /** Zero-based position in the `stagger` cascade; omitted when unstaggered. */
+  revealIndex?: number;
 }
 
 /**
@@ -34,6 +37,7 @@ export function ProjectCard({
   photo,
   href,
   priority = false,
+  revealIndex,
 }: ProjectCardProps) {
   const body = (
     <>
@@ -77,11 +81,11 @@ export function ProjectCard({
   );
 
   if (!href) {
-    return <article>{body}</article>;
+    return <article {...revealStep(revealIndex)}>{body}</article>;
   }
 
   return (
-    <Link href={href} className="group block">
+    <Link href={href} {...revealStep(revealIndex)} className="group block">
       {body}
     </Link>
   );
