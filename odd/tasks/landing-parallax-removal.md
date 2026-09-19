@@ -83,6 +83,15 @@ Out of scope: the reveal hierarchy (separate feature), the masonry drift, the
 
 Complete.
 
+Native RDD review: lineage `review-9376a0038a1e5e8f`, medium, single lens
+`review-reliability`, state `approved` with **zero findings**, authority burned.
+
+This candidate kept its uncommitted state through the whole review because the
+edit was done in the orchestrator thread. Delegating the write would have let the
+repo's auto-commit plugin consume the candidate on the sub-agent's
+`session.idle` before the preflight -- the ordering that forced a
+`--committed-only` base-ref detour in the reveal-vocabulary phase.
+
 ## Next step
 
 Optional follow-up: the hero `srcset` still emits the same 1600px file twice, as
