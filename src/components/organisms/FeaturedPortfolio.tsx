@@ -72,7 +72,7 @@ export function FeaturedPortfolio({
               photo={lead.wideCover}
               href={`/proyectos/${lead.slug}`}
               sizes="100vw"
-              revealIndex={3}
+              revealIndex={0}
             />
           </div>
 
@@ -82,7 +82,7 @@ export function FeaturedPortfolio({
               project={project}
               href={`/proyectos/${project.slug}`}
               sizes={CELL_SIZES}
-              revealIndex={4 + index}
+              revealIndex={1 + index}
             />
           ))}
         </div>

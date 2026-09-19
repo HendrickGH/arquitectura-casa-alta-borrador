@@ -166,16 +166,23 @@ function countFigures(scope: HTMLElement): void {
 }
 
 /**
- * Reveals every `[data-reveal]` section once its top crosses the fold line.
+ * Reveals content as it crosses the fold line, in two granularities.
  *
- * The server HTML carries `data-reveal="idle"`, which is fully visible: with no
- * JavaScript everything renders. This only adds the start state to elements the
- * visitor cannot see yet, so nothing that is already on screen is hidden and
- * nothing flashes. The animation itself is a CSS transition; this only flips the
- * attribute.
+ * A `fade` section (`[data-reveal]` without a stagger variant) reveals as one
+ * block, the way it always has. A `stagger` section never fades as a block:
+ * each `[data-reveal-step]` child carries its own `data-reveal-step` state and
+ * is flipped individually as its own top crosses the line, so the cascade stays
+ * visible element by element as the visitor scrolls instead of firing all at
+ * once when the section's leading edge arrives.
  *
- * It also starts the `[data-count]` figures inside a section as it reveals, so
- * the ledger counts up once, on arrival, and never twice.
+ * The server HTML carries the starting state "idle", which is fully visible:
+ * with no JavaScript everything renders. This only adds the start state to
+ * elements the visitor cannot see yet, so nothing that is already on screen is
+ * hidden and nothing flashes. The animation itself is a CSS transition; this
+ * only flips the attribute.
+ *
+ * It also starts the `[data-count]` figures inside a revealed element as it
+ * reveals, so the ledger counts up once, on arrival, and never twice.
  *
  * WHY A SCROLL PASS AND NOT AN IntersectionObserver. An observer reports an
  * element only when it *intersects* the viewport. Any jump -- an in-page anchor
@@ -186,49 +193,73 @@ function countFigures(scope: HTMLElement): void {
  * the fold, unreachable. The pass below reveals anything whose top has crossed
  * the line, whether it was scrolled through or jumped over.
  *
- * Reduced motion gets no hidden state at all: every section renders in its final
- * position and nothing waits on an animation to become readable.
+ * Reduced motion gets no hidden state at all: every section and step renders in
+ * its final position and nothing waits on an animation to become readable.
  */
 export function RevealObserver() {
   useEffect(() => {
-    const nodes = Array.from(
-      document.querySelectorAll<HTMLElement>("[data-reveal]"),
+    const sections = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        "[data-reveal]:not([data-reveal-variant='stagger'])",
+      ),
     );
-    if (nodes.length === 0) return;
+    const steps = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        "[data-reveal-variant='stagger'] [data-reveal-step]",
+      ),
+    );
+    if (sections.length === 0 && steps.length === 0) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduce.matches) {
       // No hidden state and no count: every figure is already at its final value
       // in the server HTML.
-      for (const el of nodes) el.dataset.reveal = REVEAL_IN;
+      for (const el of sections) el.dataset.reveal = REVEAL_IN;
+      for (const el of steps) el.dataset.revealStep = REVEAL_IN;
       return;
     }
 
-    // Reveal at 90% of the viewport height: the animation starts as the section
+    // Reveal at 90% of the viewport height: the animation starts as the element
     // enters, not after it has already arrived.
     const foldLine = () => window.innerHeight * 0.9;
 
+    const showSection = (el: HTMLElement) => {
+      el.dataset.reveal = REVEAL_IN;
+      countFigures(el);
+    };
+    const showStep = (el: HTMLElement) => {
+      el.dataset.revealStep = REVEAL_IN;
+      countFigures(el);
+    };
+
     // Anything already on screen stays visible; hiding it would be a flash.
-    for (const el of nodes) {
-      if (el.getBoundingClientRect().top < foldLine()) {
-        el.dataset.reveal = REVEAL_IN;
-        countFigures(el);
-      } else {
-        el.dataset.reveal = REVEAL_PENDING;
-      }
+    for (const el of sections) {
+      if (el.getBoundingClientRect().top < foldLine()) showSection(el);
+      else el.dataset.reveal = REVEAL_PENDING;
+    }
+    for (const el of steps) {
+      if (el.getBoundingClientRect().top < foldLine()) showStep(el);
+      else el.dataset.revealStep = REVEAL_PENDING;
     }
 
     let frame = 0;
     const pass = () => {
       frame = 0;
       const line = foldLine();
-      for (const el of nodes) {
+      for (const el of sections) {
         if (
           el.dataset.reveal === REVEAL_PENDING &&
           el.getBoundingClientRect().top < line
         ) {
-          el.dataset.reveal = REVEAL_IN;
-          countFigures(el);
+          showSection(el);
+        }
+      }
+      for (const el of steps) {
+        if (
+          el.dataset.revealStep === REVEAL_PENDING &&
+          el.getBoundingClientRect().top < line
+        ) {
+          showStep(el);
         }
       }
     };

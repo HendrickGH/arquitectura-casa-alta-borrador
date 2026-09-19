@@ -37,7 +37,7 @@ export function ProcessList({
           {steps.map((step, index) => (
             <Fragment key={step.order}>
               {index > 0 ? <Rule /> : null}
-              <ProcessEntry step={step} revealIndex={3 + index} />
+              <ProcessEntry step={step} revealIndex={index} />
             </Fragment>
           ))}
         </ol>

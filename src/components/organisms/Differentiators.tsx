@@ -35,7 +35,7 @@ export function Differentiators({
           {items.map((item, index) => (
             <div
               key={item.title}
-              {...revealStep(3 + index)}
+              {...revealStep(index)}
               className="max-w-[46ch]"
             >
               <h3 className="voice text-2xl md:text-3xl">{item.title}</h3>

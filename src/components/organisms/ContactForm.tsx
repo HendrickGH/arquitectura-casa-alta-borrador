@@ -33,7 +33,7 @@ export function ContactForm({ contact, whatsappHref, id }: ContactFormProps) {
             align="center"
           />
 
-          <div {...revealStep(3)} className="mt-12">
+          <div {...revealStep(0)} className="mt-12">
             <ContactFormFields contact={contact} whatsappHref={whatsappHref} />
           </div>
         </div>

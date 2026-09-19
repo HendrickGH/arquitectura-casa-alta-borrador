@@ -38,7 +38,7 @@ export function Testimonials({
           {items.map((item, index) => (
             <figure
               key={item.projectName}
-              {...revealStep(3 + index)}
+              {...revealStep(index)}
               className="max-w-[52ch]"
             >
               <blockquote className="voice text-2xl leading-snug md:text-3xl">

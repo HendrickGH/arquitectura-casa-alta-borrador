@@ -46,15 +46,18 @@ export interface RevealStepAttrs {
 
 /**
  * Marks one child of a `stagger` section as a reveal step and hands it its
- * zero-based position. The stylesheet turns `--reveal-index` into the child's
- * `transition-delay`, so the server writes only an integer and the timing stays
- * a CSS concern. Returns `{}` when no index is given, so an unstaggered call
- * site can spread it unconditionally.
+ * local position within its list or heading block. The element carries its own
+ * reveal state (`data-reveal-step` starts "idle" and the observer flips each
+ * one individually to "pending"/"in" as it crosses the fold line), and the
+ * stylesheet turns `--reveal-index` into the child's `transition-delay` -- the
+ * server writes only an integer and the timing stays a CSS concern. Returns
+ * `{}` when no index is given, so an unstaggered call site can spread it
+ * unconditionally.
  */
 export function revealStep(index: number | undefined): RevealStepAttrs {
   if (index === undefined) return {};
   return {
-    "data-reveal-step": "",
+    "data-reveal-step": REVEAL_IDLE,
     style: { "--reveal-index": index } as CSSProperties,
   };
 }
