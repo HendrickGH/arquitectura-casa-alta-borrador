@@ -182,8 +182,15 @@ header[data-visible="false"] {
 }
 
 header[data-surface="page"] {
-  background-color: color-mix(in srgb, var(--color-canvas) 96%, transparent);
+  /* 96% canvas, written as a plain rgb() rather than color-mix(): Safari before
+     ~16.2 has no color-mix() and drops the whole declaration, leaving the
+     header transparent. The fill is near-opaque so the blur below is polish,
+     not structure -- where backdrop-filter is unsupported the header still
+     reads as solid white. The -webkit- prefix is what older Safari needs to
+     run the blur at all. */
+  background-color: rgb(255 255 255 / 0.96);
   border-color: var(--color-bone-200);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 

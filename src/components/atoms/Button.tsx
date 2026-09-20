@@ -18,6 +18,8 @@ interface ButtonProps {
   /** Submit controls only. */
   type?: "button" | "submit";
   disabled?: boolean;
+  /** Runs on activation; e.g. to close a menu that hosts the button. */
+  onClick?: () => void;
 }
 
 /**
@@ -29,7 +31,8 @@ interface ButtonProps {
  */
 const variants: Record<Variant, string> = {
   primary: "bg-brand-800 text-white hover:bg-ink",
-  secondary: "border border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-white",
+  secondary:
+    "border border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-white",
   quiet: "text-brand-700 underline underline-offset-4 hover:text-brand-900",
   /* For use over a photograph or a dark panel; no brand fill, so the primary
      action stays unambiguous. */
@@ -46,6 +49,7 @@ export function Button({
   external = false,
   type = "button",
   disabled = false,
+  onClick,
 }: ButtonProps) {
   const isQuiet = variant === "quiet";
 
@@ -62,6 +66,7 @@ export function Button({
       <a
         href={href}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        onClick={onClick}
         className={classes}
       >
         {children}
@@ -70,7 +75,12 @@ export function Button({
   }
 
   return (
-    <button type={type} disabled={disabled} className={classes}>
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={classes}
+    >
       {children}
     </button>
   );
