@@ -48,7 +48,7 @@ interface LandingTemplateProps {
  *
  * Tone order, top to bottom:
  *   claim strip (brand) - header (canvas) - hero (photo)
- *   intro (canvas) - stats (bone) - tiles (canvas) - manifesto (brand)
+ *   intro (canvas) - stats (bone) - tiles (canvas) - manifesto (bone)
  *   featured portfolio (canvas) - rest of the grid (canvas) - process (bone)
  *   services (canvas) - differentiators (bone) - masonry (canvas)
  *   testimonials (bone, absent today) - full-bleed closing CTA (photo)
