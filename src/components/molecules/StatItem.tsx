@@ -17,8 +17,8 @@ interface StatItemProps {
  *
  * `data-count` carries the authored value to the reveal script, which counts it
  * up from zero the first time the band enters. The text stays the final value in
- * the server HTML, so the figure is correct before any script runs and under
- * reduced motion; the count only rewrites it while the section animates in.
+ * the server HTML, so the figure is correct before any script runs; the count
+ * only rewrites it while the section animates in.
  */
 export function StatItem({ value, label }: StatItemProps) {
   return (

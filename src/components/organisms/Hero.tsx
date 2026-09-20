@@ -34,8 +34,8 @@ interface HeroProps {
  * produces is measured in the rendered composition, not assumed.
  *
  * The entrance is pure CSS (`hero-rise` in globals.css): it runs with or
- * without JavaScript, animates only opacity and transform, is staggered per
- * block, and is neutralised under `prefers-reduced-motion`.
+ * without JavaScript, animates only opacity and transform, and is staggered per
+ * block.
  *
  * The photograph is a plain full-bleed cover and carries no scroll choreography
  * of its own: its parallax was removed after measurement against a reference.

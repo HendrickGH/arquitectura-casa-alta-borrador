@@ -1,8 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const MOTION_OK = "(prefers-reduced-motion: no-preference)";
-
 let pluginRegistered = false;
 let refreshScheduled = false;
 
@@ -93,25 +91,23 @@ function buildDrift(scope: HTMLElement) {
  * uses no parallax at all and only one-shot reveals. The wall's drift is a
  * different device (per-column, horizontal-free, never scaled) and stays.
  *
- * Everything is created inside `gsap.matchMedia()` under
- * `prefers-reduced-motion: no-preference`, so the reduced path ships no tween at
- * all and the wall paints in its settled, visible state; nothing is gated on an
- * animation completing. `media.revert()` in the cleanup kills the timeline and
- * its ScrollTrigger together, so no trigger outlives the wrapper.
+ * Everything is created inside `gsap.matchMedia()`. `media.revert()` in the
+ * cleanup kills the timeline and its ScrollTrigger together, so no trigger
+ * outlives the wrapper, and nothing is gated on an animation completing.
  *
- * The drift is registered under the motion query *and* the three-column tier.
- * Its columns are measured once, and the column count changes with the width, so
- * keying the scene to the tier lets `gsap.matchMedia` revert and rebuild it when
- * the wall reflows -- otherwise a resize leaves the tweens bound to the columns
- * of the previous layout. Below 1200px the drift has nothing to move: every
- * remaining cell is a double and the doubles anchor (see `buildDrift`).
+ * The drift is registered under the three-column tier. Its columns are measured
+ * once, and the column count changes with the width, so keying the scene to the
+ * tier lets `gsap.matchMedia` revert and rebuild it when the wall reflows --
+ * otherwise a resize leaves the tweens bound to the columns of the previous
+ * layout. Below 1200px the drift has nothing to move: every remaining cell is a
+ * double and the doubles anchor (see `buildDrift`).
  */
 export function createScenes({ scope }: { scope: HTMLElement }): () => void {
   registerPlugin();
   refreshAfterLayout();
 
   const media = gsap.matchMedia();
-  media.add(`${MOTION_OK} and (min-width: 1200px)`, () => buildDrift(scope));
+  media.add("(min-width: 1200px)", () => buildDrift(scope));
 
   return () => media.revert();
 }

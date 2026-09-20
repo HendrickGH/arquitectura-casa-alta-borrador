@@ -58,9 +58,7 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
     const TOP = 16;
 
     // Hide on the way down, reveal on the way up; always shown at the top and
-    // whenever the header itself holds focus. Reduced motion keeps it put --
-    // the state changes, the slide does not happen.
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    // whenever the header itself holds focus.
     let lastY = window.scrollY;
     let frame = 0;
     const onScroll = () => {
@@ -69,7 +67,7 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
         frame = 0;
         const y = window.scrollY;
         if (chrome) setSurface(y <= TOP ? "hero" : "page");
-        if (reduce.matches || y <= 8) setVisible(true);
+        if (y <= 8) setVisible(true);
         else if (y > lastY + 6) setVisible(false);
         else if (y < lastY - 6) setVisible(true);
         lastY = y;
@@ -192,9 +190,6 @@ function countFigures(scope: HTMLElement): void {
  * Playwright: a jump to the bottom left 11 of 12 sections at `opacity: 0`, above
  * the fold, unreachable. The pass below reveals anything whose top has crossed
  * the line, whether it was scrolled through or jumped over.
- *
- * Reduced motion gets no hidden state at all: every section and step renders in
- * its final position and nothing waits on an animation to become readable.
  */
 export function RevealObserver() {
   useEffect(() => {
@@ -209,15 +204,6 @@ export function RevealObserver() {
       ),
     );
     if (sections.length === 0 && steps.length === 0) return;
-
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (reduce.matches) {
-      // No hidden state and no count: every figure is already at its final value
-      // in the server HTML.
-      for (const el of sections) el.dataset.reveal = REVEAL_IN;
-      for (const el of steps) el.dataset.revealStep = REVEAL_IN;
-      return;
-    }
 
     // Reveal at 90% of the viewport height: the animation starts as the element
     // enters, not after it has already arrived.

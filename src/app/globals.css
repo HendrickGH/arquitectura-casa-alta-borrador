@@ -156,8 +156,10 @@
  *
  * Unlayered on purpose: Tailwind's utilities live in the `utilities` layer, and
  * a rule inside a layer would lose to `text-ink` on the nav entries no matter
- * how specific it is. The reduced-motion block at the end neutralises every
- * transition and animation declared here.
+ * how specific it is.
+ *
+ * Animations and transitions run unconditionally: `prefers-reduced-motion` is
+ * deliberately NOT honoured (client decision, 2026-09-20).
  */
 
 /* --- Header ------------------------------------------------------------- */
@@ -362,17 +364,4 @@ header[data-surface="hero"] .chrome-cta:hover {
   [data-reveal-step="in"][data-reveal-motion="fade"] {
   opacity: 1;
   transform: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-delay: 0ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    transition-delay: 0ms !important;
-    scroll-behavior: auto !important;
-  }
 }
