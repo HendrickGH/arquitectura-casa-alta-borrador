@@ -1,33 +1,23 @@
 import Link from "next/link";
-import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Logo } from "@/components/atoms/Logo";
-import { NavItem } from "@/components/molecules/NavItem";
 import { HeaderShell } from "@/components/organisms/MotionShell";
-import { NavToggle } from "@/components/organisms/NavToggle";
+import { SiteNav } from "@/components/organisms/SiteNav";
 import { UtilityBar } from "@/components/organisms/UtilityBar";
 import type { SiteConfig } from "@/types/content";
 
 interface HeaderProps {
   site: SiteConfig;
-  /**
-   * The hero's authored chrome polarity, when one has been measured and
-   * authored. Undefined today, which keeps the header filled at every scroll
-   * position; see `home.hero.chrome`.
-   */
-  chrome?: "ink" | "canvas";
 }
 
 /**
  * Sticky header: logo, navigation, primary CTA.
  *
- * The inline nav is shown only from `xl` rather than `lg`, and that is a
- * measurement, not a preference: the six tracked labels plus the logo plus the
- * CTA do not fit the ~896px available at exactly 1024px -- the set sat within a
- * few pixels of the limit and Safari's wider type metrics pushed it over, so
- * the labels clipped. `xl` leaves real slack, and below it a burger toggle
- * (NavToggle) carries the whole navigation instead, so the header never clips
- * its links.
+ * The navigation is a single component (`SiteNav`) that owns the inline links,
+ * the CTA and the burger toggle. It shows the links inline from `xl` -- below
+ * that, six tracked labels plus the logo plus the CTA do not fit, so the same
+ * links live behind a burger. There is exactly one nav definition, so the two
+ * presentations cannot drift apart.
  *
  * The CTA comes from `site.cta`, not from a nav entry. An earlier version found
  * it with `nav.find(link => link.href === "/contacto")`, which returned
@@ -35,16 +25,15 @@ interface HeaderProps {
  * so the button disappeared without an error.
  *
  * The contact strip is the top row of the same sticky header rather than a band
- * above it. That is what lets the hero photograph run to the top edge of the
- * page: over the hero both rows are transparent, so the image is unbroken
- * behind them, and both invert to the filled surface together on scroll.
+ * above it. The header is a filled surface at every scroll position, so the
+ * photograph starts beneath it rather than running behind it.
  *
  * Every string and link here is composed on the server; `HeaderShell` only adds
  * the scroll state and the `--chrome-h` measurement around them.
  */
-export function Header({ site, chrome }: HeaderProps) {
+export function Header({ site }: HeaderProps) {
   return (
-    <HeaderShell chrome={chrome}>
+    <HeaderShell>
       <UtilityBar
         claim={site.claim}
         phone={site.contact[0]}
@@ -56,28 +45,12 @@ export function Header({ site, chrome }: HeaderProps) {
           <Logo />
         </Link>
 
-        <nav className="hidden xl:block">
-          <ul className="flex items-center gap-7">
-            {site.nav.map((link) => (
-              <li key={link.href}>
-                <NavItem link={link} />
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        <div className="flex items-center gap-5">
-          <Button href={site.cta.href} className="chrome-cta shrink-0">
-            {site.cta.label}
-          </Button>
-
-          <NavToggle
-            nav={site.nav}
-            cta={site.cta}
-            phone={site.contact[0]}
-            social={site.social}
-          />
-        </div>
+        <SiteNav
+          nav={site.nav}
+          cta={site.cta}
+          phone={site.contact[0]}
+          social={site.social}
+        />
       </Container>
     </HeaderShell>
   );

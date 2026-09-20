@@ -15,16 +15,14 @@ interface UtilityBarProps {
  * The contact strip above the navigation: the claim on the left, the phone and
  * the social profiles on the right.
  *
- * It carries no surface of its own. It is the top row of the floating chrome,
- * so over the hero it renders in light type directly on the photograph and
- * every element below it inherits through `chrome-fg` -- which is what lets the
- * hero own the very top edge of the page instead of starting under a solid
- * strip. The phone number is dropped below `sm`: at 375px the claim and the
- * number cannot share a line without one of them being clipped.
+ * It carries no surface of its own. It is the top row of the header: the claim
+ * on the left, the phone and the social profiles on the right, all on the
+ * header's filled surface. The phone number is dropped below `sm`: at 375px the
+ * claim and the number cannot share a line without one of them being clipped.
  */
 export function UtilityBar({ claim, phone, social }: UtilityBarProps) {
   return (
-    <div className="chrome-fg chrome-utility">
+    <div className="chrome-utility">
       <Container className="flex items-center justify-between gap-4 py-2">
         <p className="label opacity-90">{claim}</p>
 

@@ -90,7 +90,7 @@ export function LandingTemplate({
   whatsappHref,
 }: LandingTemplateProps) {
   return (
-    <SiteChrome site={site} chrome={home.hero.chrome?.tone}>
+    <SiteChrome site={site}>
       <main id="main">
         <Hero hero={home.hero} />
 

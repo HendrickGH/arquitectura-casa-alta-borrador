@@ -5,11 +5,6 @@ import type { SiteConfig } from "@/types/content";
 
 interface SiteChromeProps {
   site: SiteConfig;
-  /**
-   * The hero's chrome polarity, when the page opens on a photograph the header
-   * can float over. Omitted on every page that starts on a clean ground.
-   */
-  chrome?: "ink" | "canvas";
   /** The page's `<main>`, plus anything that must sit beside it. */
   children: React.ReactNode;
 }
@@ -20,12 +15,9 @@ interface SiteChromeProps {
  *
  * It exists so the routes compose the chrome once instead of each page
  * restating the same elements in the same order. The contact strip lives inside
- * the header, so the header is the single sticky element and the hero can run
- * under both of its rows. The landing passes its measured hero polarity; the
- * projects pages leave it undefined, which keeps the header filled at every
- * scroll position.
+ * the header, so the header is the single sticky element.
  */
-export function SiteChrome({ site, chrome, children }: SiteChromeProps) {
+export function SiteChrome({ site, children }: SiteChromeProps) {
   return (
     <>
       <a
@@ -35,7 +27,7 @@ export function SiteChrome({ site, chrome, children }: SiteChromeProps) {
         Saltar al contenido
       </a>
 
-      <Header site={site} chrome={chrome} />
+      <Header site={site} />
 
       {children}
 

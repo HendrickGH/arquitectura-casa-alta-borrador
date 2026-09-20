@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Icon } from "@/components/atoms/Icon";
+import { NavItem } from "@/components/molecules/NavItem";
 import { SocialLinkItem } from "@/components/molecules/SocialLinkItem";
 import type {
   CallToAction,
@@ -14,8 +15,7 @@ import type {
   SocialLink,
 } from "@/types/content";
 
-interface NavToggleProps {
-  /** The full navigation, exactly the links the inline nav would have shown. */
+interface SiteNavProps {
   nav: NavLink[];
   cta: CallToAction;
   /** The primary phone line; the first entry of the site's contact list. */
@@ -23,33 +23,42 @@ interface NavToggleProps {
   social: SocialLink[];
 }
 
+/** Tailwind's `xl` breakpoint. The burger owns the nav below this width. */
+const XL_QUERY = "(min-width: 1280px)";
+
 /**
- * The burger toggle and its panel.
+ * The site's single navigation.
  *
- * Below `xl` the inline nav overflows (six tracked labels plus the logo and the
- * CTA do not fit between 1024px and 1280px), so this owns the navigation there.
- * The panel holds everything the collapsed header leaves out: the nav links,
- * the CTA, the phone and the social profiles.
+ * One component owns the whole nav so there is exactly one definition of the
+ * links: inline from `xl`, behind a burger below it. The burger reveals the
+ * same links plus the phone and social profiles that the collapsed header drops.
  *
- * The panel is portalled to `document.body`, not rendered inside the `<header>`:
- * the header's `backdrop-filter` makes it a containing block for fixed
- * descendants, so an in-place `fixed` panel would be positioned against the
- * header instead of the viewport and scroll away with it.
+ * The overlay is portalled to `document.body` rather than rendered inside the
+ * `<header>`: a `fixed` descendant of a `position: sticky` ancestor would
+ * position against the header (which also carries a `transform` while it hides
+ * on scroll) instead of the viewport.
  */
-export function NavToggle({ nav, cta, phone, social }: NavToggleProps) {
+export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
   const [open, setOpen] = useState(false);
 
-  // Lock scroll while open and close on Escape. Restored on close/unmount.
+  // Lock scroll while open, close on Escape, and close if the viewport crosses
+  // into `xl` (where the inline nav takes over).
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
+    const media = window.matchMedia(XL_QUERY);
+    const onMedia = (e: MediaQueryListEvent) => {
+      if (e.matches) setOpen(false);
+    };
     document.addEventListener("keydown", onKey);
+    media.addEventListener("change", onMedia);
     const previous = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
+      media.removeEventListener("change", onMedia);
       document.documentElement.style.overflow = previous;
     };
   }, [open]);
@@ -63,9 +72,9 @@ export function NavToggle({ nav, cta, phone, social }: NavToggleProps) {
     setOpen(false);
   };
 
-  const panel = open ? (
+  const overlay = open ? (
     <div
-      id="site-nav-panel"
+      id="site-nav"
       className="fixed inset-x-0 bottom-0 z-40 overflow-y-auto bg-canvas xl:hidden"
       style={{ top: "var(--chrome-h)" }}
     >
@@ -85,10 +94,6 @@ export function NavToggle({ nav, cta, phone, social }: NavToggleProps) {
             ))}
           </ul>
         </nav>
-
-        <Button href={cta.href} className="w-full" onClick={close}>
-          {cta.label}
-        </Button>
 
         <div className="flex flex-col gap-6">
           <a
@@ -113,18 +118,34 @@ export function NavToggle({ nav, cta, phone, social }: NavToggleProps) {
 
   return (
     <>
-      <button
-        type="button"
-        aria-expanded={open}
-        aria-controls="site-nav-panel"
-        aria-label={open ? "Cerrar menú" : "Abrir menú"}
-        onClick={() => setOpen((value) => !value)}
-        className="chrome-fg -m-2 p-2 transition-opacity duration-200 hover:opacity-70 xl:hidden"
-      >
-        <Icon name={open ? "close" : "menu"} className="h-6 w-6" />
-      </button>
+      <div className="flex items-center gap-7">
+        <nav className="hidden xl:block" aria-label="Principal">
+          <ul className="flex items-center gap-7">
+            {nav.map((link) => (
+              <li key={link.href}>
+                <NavItem link={link} />
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      {open ? createPortal(panel, document.body) : null}
+        <Button href={cta.href} className="shrink-0">
+          {cta.label}
+        </Button>
+
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls="site-nav"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          onClick={() => setOpen((value) => !value)}
+          className="-m-2 p-2 text-ink transition-opacity duration-200 hover:opacity-70 xl:hidden"
+        >
+          <Icon name={open ? "close" : "menu"} className="h-6 w-6" />
+        </button>
+      </div>
+
+      {open ? createPortal(overlay, document.body) : null}
     </>
   );
 }

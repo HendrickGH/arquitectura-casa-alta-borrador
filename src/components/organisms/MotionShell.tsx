@@ -3,15 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { REVEAL_IN, REVEAL_PENDING } from "@/lib/reveal";
 
-type ChromePolarity = "ink" | "canvas";
-
 interface HeaderShellProps {
-  /**
-   * The hero's chrome polarity. When set, the header is transparent over the
-   * hero and turns white once the hero leaves the viewport; when omitted it
-   * stays white at every scroll position.
-   */
-  chrome?: ChromePolarity;
   /** Server-rendered logo, nav entries and CTA. Never composed here. */
   children: React.ReactNode;
 }
@@ -19,16 +11,15 @@ interface HeaderShellProps {
 /**
  * The single client boundary of the site.
  *
- * It owns the header's scroll behaviour: transparent over the hero, white past
- * it, sliding out of the way on the way down and back on the way up. It owns no
- * copy, link or image -- its children arrive as props from `Header.tsx`, so the
- * emitted header is byte-identical in content with or without this chunk.
+ * It owns the header's scroll behaviour: hiding on the way down and coming back
+ * on the way up, and collapsing the contact strip on a phone once the page has
+ * scrolled. It owns no copy, link or image -- its children arrive as props from
+ * `Header.tsx`, so the emitted header is byte-identical in content with or
+ * without this chunk.
  */
-export function HeaderShell({ chrome, children }: HeaderShellProps) {
+export function HeaderShell({ children }: HeaderShellProps) {
   const headerRef = useRef<HTMLElement>(null);
-  const [surface, setSurface] = useState<"hero" | "page">(
-    chrome ? "hero" : "page",
-  );
+  const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -47,16 +38,6 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
     const sizeObserver = new ResizeObserver(syncHeight);
     sizeObserver.observe(header);
 
-    // Transparent only while the page is still at its very top, where the hero's
-    // dark top gradient sits under the navbar; white from the first scroll on.
-    //
-    // A transparent navbar held for the whole hero was measured unreadable: once
-    // the page scrolls, the navbar band lands on the bright middle of the
-    // photograph (~2:1 for white). The two options were a uniformly dark hero or
-    // a transparent state confined to the top; the top-only rule keeps the
-    // photograph brighter and still gives the requested transparent start.
-    const TOP = 16;
-
     // Hide on the way down, reveal on the way up; always shown at the top and
     // whenever the header itself holds focus.
     let lastY = window.scrollY;
@@ -66,7 +47,7 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
       frame = window.requestAnimationFrame(() => {
         frame = 0;
         const y = window.scrollY;
-        if (chrome) setSurface(y <= TOP ? "hero" : "page");
+        setScrolled(y > 16);
         if (y <= 8) setVisible(true);
         else if (y > lastY + 6) setVisible(false);
         else if (y < lastY - 6) setVisible(true);
@@ -85,15 +66,14 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
       header.removeEventListener("focusin", onFocusIn);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [chrome]);
+  }, []);
 
   return (
     <header
       ref={headerRef}
-      data-surface={surface}
-      data-chrome={chrome}
+      data-scrolled={scrolled ? "true" : "false"}
       data-visible={visible ? "true" : "false"}
-      className="sticky top-0 z-50 border-b backdrop-blur"
+      className="sticky top-0 z-50 border-b"
     >
       {children}
     </header>
