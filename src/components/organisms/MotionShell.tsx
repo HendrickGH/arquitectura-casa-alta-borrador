@@ -26,8 +26,9 @@ export function HeaderShell({ children }: HeaderShellProps) {
     const header = headerRef.current;
     if (!header) return;
 
-    // `--chrome-h` is the measured header height; it feeds the hero's overlap
-    // and the global scroll padding.
+    // `--chrome-h` is the measured header height; it feeds the hero's height
+    // (so the photograph fills the viewport beneath the header) and the global
+    // scroll padding.
     const syncHeight = () => {
       document.documentElement.style.setProperty(
         "--chrome-h",

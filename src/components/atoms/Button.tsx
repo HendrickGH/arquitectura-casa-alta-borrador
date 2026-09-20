@@ -18,8 +18,6 @@ interface ButtonProps {
   /** Submit controls only. */
   type?: "button" | "submit";
   disabled?: boolean;
-  /** Runs on activation; e.g. to close a menu that hosts the button. */
-  onClick?: () => void;
 }
 
 /**
@@ -49,7 +47,6 @@ export function Button({
   external = false,
   type = "button",
   disabled = false,
-  onClick,
 }: ButtonProps) {
   const isQuiet = variant === "quiet";
 
@@ -66,7 +63,6 @@ export function Button({
       <a
         href={href}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        onClick={onClick}
         className={classes}
       >
         {children}
@@ -75,12 +71,7 @@ export function Button({
   }
 
   return (
-    <button
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-      className={classes}
-    >
+    <button type={type} disabled={disabled} className={classes}>
       {children}
     </button>
   );

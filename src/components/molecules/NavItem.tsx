@@ -10,7 +10,7 @@ export function NavItem({ link }: NavItemProps) {
   return (
     <Link
       href={link.href}
-      className="label chrome-fg text-ink transition-colors duration-200 hover:text-brand-700"
+      className="label text-ink transition-colors duration-200 hover:text-brand-700"
     >
       {link.label}
     </Link>

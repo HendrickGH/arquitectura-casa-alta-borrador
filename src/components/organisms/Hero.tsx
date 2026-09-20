@@ -17,8 +17,8 @@ interface HeroProps {
  * variance, not mean luminance, is what breaks type. The design record is
  * explicit that the photograph needs a 60-77% dark scrim across the block. The
  * scrim here is the closing CTA's flat one rather than the graded band this
- * hero used to carry: near-uniform, with a slightly stronger top stop so the
- * transparent chrome keeps its edge in the header band.
+ * hero used to carry: near-uniform, with a slightly stronger top stop that
+ * reads as a graded entry from the solid header above.
  *
  * The description is small text, not large text, so its band needs 4.5:1 where
  * the headline only needs 3:1. The bottom stop composites to roughly 5.5:1
@@ -51,8 +51,8 @@ export function Hero({ hero }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink"
-      style={{ marginTop: "calc(var(--chrome-h, 5.25rem) * -1)" }}
+      className="relative flex flex-col justify-end overflow-hidden bg-ink"
+      style={{ minHeight: "calc(100svh - var(--chrome-h, 7.5rem))" }}
     >
       <div className="absolute inset-0 overflow-hidden bg-ink">
         <Photo photo={hero.image} sizes="100vw" priority />
