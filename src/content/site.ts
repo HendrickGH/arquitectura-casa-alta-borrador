@@ -14,6 +14,14 @@ export const site = {
   foundedYear: 2016,
   coverage: "Sierra, Costa, Istmo y Centro de Oaxaca",
 
+  // The principal behind the studio, named on the landing's manifesto. Supplied
+  // by the client; held here rather than in home.ts because it is a company fact,
+  // not a section's copy.
+  architect: {
+    name: "Felipe Humberto Hernández Bejarano",
+    role: "Arquitecto",
+  },
+
   // Every one of these resolves. Proyectos is a real route now; the rest still
   // point at the landing's section anchors rather than at routes that would
   // 404. They become routes (/servicios, ...) when those pages ship; the `/#x`

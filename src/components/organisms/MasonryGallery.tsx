@@ -1,6 +1,7 @@
 import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
 import { cx } from "@/lib/cx";
+import { revealStep } from "@/lib/reveal";
 import type { MasonryItem } from "@/types/content";
 
 interface MasonryGalleryProps {
@@ -61,7 +62,7 @@ export function MasonryGallery({ items, tone = "bone" }: MasonryGalleryProps) {
   if (items.length === 0) return null;
 
   return (
-    <Section tone={tone}>
+    <Section tone={tone} reveal="stagger">
       <div
         className={cx(
           "grid grid-flow-row-dense grid-cols-1 gap-6",
@@ -76,6 +77,11 @@ export function MasonryGallery({ items, tone = "bone" }: MasonryGalleryProps) {
           return (
             <div
               key={item.photo.src}
+              {...revealStep(index)}
+              // The wall reveals by opacity only, never translate: the drift
+              // owns each single cell's `transform`, so a translate reveal would
+              // fight it. See `buildDrift` in gsap-scenes.ts.
+              data-reveal-motion="fade"
               // The drift carries the single cells only. A double spans two
               // columns at the three-column tier, so translating it pulls it out
               // of the row it shares with its neighbours; the doubles anchor the

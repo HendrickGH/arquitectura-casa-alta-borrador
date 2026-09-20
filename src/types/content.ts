@@ -46,6 +46,12 @@ export interface Office {
   region: string;
 }
 
+/** The studio's principal, named for the manifesto's attribution. */
+export interface Architect {
+  name: string;
+  role: string;
+}
+
 export interface SiteConfig {
   name: string;
   /** Registered company name, used in the footer's legal row. */
@@ -56,6 +62,8 @@ export interface SiteConfig {
   foundedYear: number;
   /** Human list of the areas served, for the contact block. */
   coverage: string;
+  /** The studio's principal, attributed on the landing's manifesto. */
+  architect: Architect;
   nav: NavLink[];
   /**
    * The header's primary call to action. Held separately from `nav` on purpose:

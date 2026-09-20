@@ -98,7 +98,7 @@ export function LandingTemplate({
         <StatsBand stats={home.stats} />
 
         <CategoryTiles tiles={tiles} />
-        <ManifestoLine line={home.manifesto} />
+        <ManifestoLine line={home.manifesto} architect={site.architect} />
 
         <FeaturedPortfolio
           id="proyectos"
