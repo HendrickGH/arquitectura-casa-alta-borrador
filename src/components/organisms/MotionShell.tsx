@@ -1,9 +1,36 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { REVEAL_IN, REVEAL_PENDING } from "@/lib/reveal";
 
 type ChromePolarity = "ink" | "canvas";
+
+/** The mobile menu's open state, shared between `HeaderShell` and `SiteNav`. */
+interface NavOpenState {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const NavOpenContext = createContext<NavOpenState | null>(null);
+
+/**
+ * Reads the shared mobile-menu state. Only `SiteNav` consumes it, and only
+ * while mounted inside `HeaderShell`, which is its provider.
+ */
+export function useNavOpen(): NavOpenState {
+  const state = useContext(NavOpenContext);
+  if (!state) {
+    throw new Error("useNavOpen must be used inside <HeaderShell>.");
+  }
+  return state;
+}
 
 interface HeaderShellProps {
   /**
@@ -30,6 +57,8 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
     chrome ? "hero" : "page",
   );
   const [visible, setVisible] = useState(true);
+  const [open, setOpen] = useState(false);
+  const navOpen = useMemo(() => ({ open, setOpen }), [open]);
 
   useEffect(() => {
     const header = headerRef.current;
@@ -87,16 +116,23 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
     };
   }, [chrome]);
 
+  // A white (filled) chrome while the mobile menu is open: the overlay below it
+  // is canvas, so a transparent header would render white-on-white. The
+  // scroll-derived surface is kept underneath and restored when the menu closes.
+  const effectiveSurface = open ? "page" : surface;
+
   return (
-    <header
-      ref={headerRef}
-      data-surface={surface}
-      data-chrome={chrome}
-      data-visible={visible ? "true" : "false"}
-      className="sticky top-0 z-50 border-b"
-    >
-      {children}
-    </header>
+    <NavOpenContext.Provider value={navOpen}>
+      <header
+        ref={headerRef}
+        data-surface={effectiveSurface}
+        data-chrome={chrome}
+        data-visible={visible ? "true" : "false"}
+        className="sticky top-0 z-50 border-b"
+      >
+        {children}
+      </header>
+    </NavOpenContext.Provider>
   );
 }
 

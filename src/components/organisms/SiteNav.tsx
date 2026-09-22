@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Icon } from "@/components/atoms/Icon";
+import { useNavOpen } from "@/components/organisms/MotionShell";
 import { NavItem } from "@/components/molecules/NavItem";
 import { SocialLinkItem } from "@/components/molecules/SocialLinkItem";
 import type {
@@ -39,7 +40,7 @@ const XL_QUERY = "(min-width: 1280px)";
  * on scroll) instead of the viewport.
  */
 export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useNavOpen();
 
   // Lock scroll while open, close on Escape, and close if the viewport crosses
   // into `xl` (where the inline nav takes over).
@@ -61,7 +62,7 @@ export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
       media.removeEventListener("change", onMedia);
       document.documentElement.style.overflow = previous;
     };
-  }, [open]);
+  }, [open, setOpen]);
 
   // Closes and releases the scroll lock synchronously. A link click navigates
   // (to a route or a hash) in the same event, before React flushes the effect
