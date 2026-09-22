@@ -63,6 +63,9 @@
     -webkit-text-size-adjust: 100%;
     /* The site is light-only; this fixes the native scrollbar and form colours. */
     color-scheme: light;
+    /* Smooth in-page anchor scrolling. Deliberately unconditional, like every
+       other animation here -- `prefers-reduced-motion` is not honoured. */
+    scroll-behavior: smooth;
     /* Focus and in-page anchors reserve the chrome's height instead of landing
        under it. `Section` carries no scroll-mt-* of its own -- the two would
        add up and double the gap. */

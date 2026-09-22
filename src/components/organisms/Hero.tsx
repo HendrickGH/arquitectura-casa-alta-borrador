@@ -1,4 +1,6 @@
+import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
+import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import type { HeroContent } from "@/types/content";
 
@@ -26,9 +28,11 @@ interface HeroProps {
  * both type blocks sit at the bottom instead of floating over the middle of the
  * photograph.
  *
- * NO BUTTONS. The hero's two buttons were removed with this layout: their
- * destinations are the header CTA and the closing CTA, and the photograph opens
- * the page better without a button pair on it.
+ * ONE BUTTON, AT MOST. The hero once carried a button pair, then none; the
+ * single CTA that remains is WhatsApp (authored as `hero.cta`), the studio's
+ * fastest contact channel, and it sits under the headline rather than over the
+ * photograph's middle. The contact anchor that used to ride here survives in
+ * the header and the closing CTA.
  *
  * The scrim is decorative and hidden from assistive tech; the contrast it
  * produces is measured in the rendered composition, not assumed.
@@ -98,6 +102,18 @@ export function Hero({ hero }: HeroProps) {
                 </span>
               ))}
             </h1>
+
+            {hero.cta ? (
+              <Button
+                href={hero.cta.href}
+                variant="inverse"
+                external={hero.cta.href.startsWith("http")}
+                className="hero-rise hero-rise-3 mt-2 gap-2"
+              >
+                <Icon name="whatsapp" className="h-4 w-4" />
+                {hero.cta.label}
+              </Button>
+            ) : null}
           </div>
 
           <p className="voice hero-rise hero-rise-3 max-w-[34ch] text-sm leading-relaxed text-white/90 lg:text-right lg:text-base">

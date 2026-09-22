@@ -5,6 +5,10 @@ import type { SiteConfig } from "@/types/content";
  * assets themselves -- nothing is invented, and fields that could not be
  * confirmed are left empty with a note rather than guessed.
  */
+
+/** Primary WhatsApp target, derived from the first contact line. */
+export const whatsappHref = "https://wa.me/529514581395";
+
 export const site = {
   name: "Casa Alta",
   legalName: "Constructora Casa Alta",
@@ -61,19 +65,22 @@ export const site = {
     { city: "Salina Cruz", region: "Oaxaca" },
   ],
 
-  // Facebook and TikTok handles were never supplied. They stay here with an
-  // empty href so the layout is already correct; the footer skips blank ones
-  // rather than rendering a dead link.
+  // The Facebook handle arrived after the brief; TikTok was never supplied and
+  // stays with an empty href so the layout is already correct -- the footer
+  // skips blank ones rather than rendering a dead link. WhatsApp rides here too:
+  // it is the studio's primary contact channel, so it sits beside the profiles.
   social: [
     {
       label: "Instagram",
       href: "https://www.instagram.com/arquitecturacasaalta/",
       icon: "instagram",
     },
-    { label: "Facebook", href: "", icon: "facebook" },
+    {
+      label: "Facebook",
+      href: "https://www.facebook.com/arquitecturacasaalta",
+      icon: "facebook",
+    },
+    { label: "WhatsApp", href: whatsappHref, icon: "whatsapp" },
     { label: "TikTok", href: "", icon: "tiktok" },
   ],
 } satisfies SiteConfig;
-
-/** Primary WhatsApp target, derived from the first contact line. */
-export const whatsappHref = "https://wa.me/529514581395";

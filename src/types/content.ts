@@ -38,7 +38,7 @@ export interface SocialLink {
   label: string;
   href: string;
   /** Key into the icon set in components/atoms/Icon. */
-  icon: "facebook" | "instagram" | "tiktok";
+  icon: "facebook" | "instagram" | "tiktok" | "whatsapp";
 }
 
 export interface Office {
@@ -223,6 +223,11 @@ export interface HeroContent {
    * a content edit with no component change.
    */
   chrome?: HeroChrome;
+  /**
+   * Optional call to action under the headline. The hero ships without buttons
+   * by default; supplying one (the WhatsApp link today) renders a single button.
+   */
+  cta?: CallToAction;
 }
 
 export interface SectionIntro {

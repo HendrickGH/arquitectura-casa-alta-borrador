@@ -75,9 +75,10 @@ export const home: HomePage = {
     subheadline:
       "Proyectos de ingeniería civil y proyectos ejecutivos arquitectónicos.",
     image: heroImage,
-    // The hero carries no buttons: it is the photograph, the kicker, the
-    // headline and the description. The two CTAs it used to offer (WhatsApp and
-    // the contact anchor) survive in the header and the closing CTA.
+    // The single hero CTA is WhatsApp, the studio's fastest contact channel.
+    // The contact anchor that used to ride here survives in the header and the
+    // closing CTA.
+    cta: { label: "Escríbanos por WhatsApp", href: whatsappHref },
     // White chrome over the hero's dark overlay; the header goes white once the
     // hero leaves the viewport. Measured against the rendered composition.
     chrome: { tone: "canvas" },
