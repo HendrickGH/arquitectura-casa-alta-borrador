@@ -205,16 +205,13 @@ header[data-surface="hero"] {
   backdrop-filter: none;
 }
 
-/* Below lg the contact strip collapses once the page has scrolled, so the
-   sticky header is one row on a phone -- the bar's height is a real share of a
-   844px viewport. It stays put on the wider breakpoints, where the room is
-   there and the phone number is worth keeping in view. The header's height is
-   measured by a ResizeObserver, so `--chrome-h` follows the change. */
-@media (max-width: 1023px) {
-  header[data-surface="page"] .chrome-utility {
-    display: none;
-  }
-}
+/* The contact strip stays in flow at every breakpoint. An earlier version
+   collapsed it below lg once the page had scrolled, to leave the sticky header
+   one row on a phone. That made the header change height mid-scroll, and
+   `--chrome-h` (measured by a ResizeObserver) jumped with it at the same 16px
+   threshold where the surface flips -- shifting the hero's overlap and the
+   global scroll padding. Keeping the bar in flow keeps the header's height, and
+   therefore `--chrome-h`, constant, so nothing jumps on the first scroll. */
 
 /* Only the hero state is declared. The filled state stays on the elements' own
    `text-ink`, so its `hover:text-brand-700` utility keeps working -- an

@@ -9,9 +9,10 @@ import type { SiteConfig } from "@/types/content";
 interface HeaderProps {
   site: SiteConfig;
   /**
-   * The hero's authored chrome polarity, when one has been measured and
-   * authored. Undefined today, which keeps the header filled at every scroll
-   * position; see `home.hero.chrome`.
+   * The hero's authored chrome polarity. It is `"canvas"` today, from
+   * `home.hero.chrome.tone`, which lets the header float transparent over the
+   * hero's dark top gradient and turn white from the first scroll on. When
+   * omitted, the header stays filled at every scroll position.
    */
   chrome?: "ink" | "canvas";
 }
