@@ -8,6 +8,12 @@ import type { SiteConfig } from "@/types/content";
 
 interface HeaderProps {
   site: SiteConfig;
+  /**
+   * The hero's authored chrome polarity, when one has been measured and
+   * authored. Undefined today, which keeps the header filled at every scroll
+   * position; see `home.hero.chrome`.
+   */
+  chrome?: "ink" | "canvas";
 }
 
 /**
@@ -31,16 +37,16 @@ interface HeaderProps {
  * Every string and link here is composed on the server; `HeaderShell` only adds
  * the scroll state and the `--chrome-h` measurement around them.
  */
-export function Header({ site }: HeaderProps) {
+export function Header({ site, chrome }: HeaderProps) {
   return (
-    <HeaderShell>
+    <HeaderShell chrome={chrome}>
       <UtilityBar
         claim={site.claim}
         phone={site.contact[0]}
         social={site.social}
       />
 
-      <Container className="flex items-center justify-between gap-6 pb-4 pt-1">
+      <Container className="flex items-center justify-between gap-4 pb-4 pt-1">
         <Link href="/" className="shrink-0" aria-label={site.name}>
           <Logo />
         </Link>

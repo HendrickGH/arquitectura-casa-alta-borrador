@@ -78,6 +78,9 @@ export const home: HomePage = {
     // The hero carries no buttons: it is the photograph, the kicker, the
     // headline and the description. The two CTAs it used to offer (WhatsApp and
     // the contact anchor) survive in the header and the closing CTA.
+    // White chrome over the hero's dark overlay; the header goes white once the
+    // hero leaves the viewport. Measured against the rendered composition.
+    chrome: { tone: "canvas" },
   },
 
   stats,

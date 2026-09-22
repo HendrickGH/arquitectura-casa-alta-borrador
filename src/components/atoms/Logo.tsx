@@ -19,7 +19,7 @@ export function Logo({ className }: LogoProps) {
       width={354}
       height={160}
       priority
-      className={cx("h-9 w-auto md:h-11", className)}
+      className={cx("chrome-fg chrome-logo h-9 w-auto md:h-11", className)}
     />
   );
 }

@@ -196,6 +196,17 @@ export interface ContactFormContent {
 }
 
 /**
+ * The floating chrome's polarity over a hero photograph.
+ *
+ * Authored per photograph and decided by measurement, never chosen by eye: the
+ * chrome band's worst-case contrast against the image's top strip must clear
+ * 4.5:1 for the chosen tone (design D2/D3).
+ */
+export interface HeroChrome {
+  tone: "ink" | "canvas";
+}
+
+/**
  * The landing hero's content: the kicker, the word-stack headline, the
  * description and the full-bleed photograph behind them.
  */
@@ -206,6 +217,12 @@ export interface HeroContent {
   headline: string[];
   subheadline: string;
   image: Photo;
+  /**
+   * The transparent chrome over this hero. Omitted until a photograph passes
+   * the chrome-band gate, which keeps the header filled today; supplying it is
+   * a content edit with no component change.
+   */
+  chrome?: HeroChrome;
 }
 
 export interface SectionIntro {

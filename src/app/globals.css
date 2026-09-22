@@ -164,21 +164,42 @@
 
 /* --- Header ------------------------------------------------------------- */
 
-/* The header is always a filled surface, never transparent over the hero. A
-   persistent background is what keeps the navigation readable against any
-   photograph -- and it means no `backdrop-filter`, so the header never becomes
-   a containing block for fixed descendants. */
 header {
-  background-color: var(--color-canvas);
-  border-color: var(--color-bone-200);
-  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 320ms ease,
+    border-color 320ms ease;
 }
 
 /* Hiding reads as a purposeful exit (accelerating); showing as a settle
    (decelerating). The two states carry different curves on purpose. */
 header[data-visible="false"] {
   transform: translateY(-100%);
-  transition: transform 340ms cubic-bezier(0.4, 0, 1, 1);
+  transition:
+    transform 340ms cubic-bezier(0.4, 0, 1, 1),
+    background-color 320ms ease,
+    border-color 320ms ease;
+}
+
+/* The filled state. 96% canvas, written as a plain rgb() rather than
+   color-mix(): Safari before ~16.2 has no color-mix() and drops the whole
+   declaration, leaving the header transparent. The fill is near-opaque so the
+   blur below is polish, not structure. The -webkit- prefix is what older Safari
+   needs to run the blur at all. */
+header[data-surface="page"] {
+  background-color: rgb(255 255 255 / 0.96);
+  border-color: var(--color-bone-200);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* At the very top the header floats on the hero's own overlay: no fill, no
+   border, no blur, so the photograph reads edge to edge behind it. */
+header[data-surface="hero"] {
+  background-color: transparent;
+  border-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 /* Below lg the contact strip collapses once the page has scrolled, so the
@@ -187,9 +208,35 @@ header[data-visible="false"] {
    there and the phone number is worth keeping in view. The header's height is
    measured by a ResizeObserver, so `--chrome-h` follows the change. */
 @media (max-width: 1023px) {
-  header[data-scrolled="true"] .chrome-utility {
+  header[data-surface="page"] .chrome-utility {
     display: none;
   }
+}
+
+/* Only the hero state is declared. The filled state stays on the elements' own
+   `text-ink`, so its `hover:text-brand-700` utility keeps working -- an
+   unlayered page-state rule would outrank it and kill the hover. */
+header[data-surface="hero"] .chrome-fg {
+  color: var(--color-canvas);
+}
+
+header[data-surface="hero"] .chrome-fg:hover {
+  color: var(--color-bone-100);
+}
+
+header[data-surface="hero"] .chrome-logo {
+  filter: brightness(0) invert(1);
+}
+
+/* The CTA inverts over the hero: a filled brand button against a dark overlay
+   loses its edge; a white one keeps it. */
+header[data-surface="hero"] .chrome-cta {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+header[data-surface="hero"] .chrome-cta:hover {
+  background-color: var(--color-bone-100);
 }
 
 /* --- Hero --------------------------------------------------------------- */

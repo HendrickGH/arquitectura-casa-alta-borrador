@@ -118,7 +118,7 @@ export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
 
   return (
     <>
-      <div className="flex items-center gap-7">
+      <div className="flex items-center gap-2 xl:gap-7">
         <nav className="hidden xl:block" aria-label="Principal">
           <ul className="flex items-center gap-7">
             {nav.map((link) => (
@@ -129,17 +129,21 @@ export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
           </ul>
         </nav>
 
-        <Button href={cta.href} className="shrink-0">
+        <Button href={cta.href} className="chrome-cta shrink-0 max-sm:px-4">
           {cta.label}
         </Button>
 
+        {/* A clean 44px target with no `:hover` state: on iOS Safari a hover
+            style that changes appearance makes the first tap "hover" and
+            demands a second to fire, and a negative-margin target mis-hits.
+            44px is Apple's minimum touch target. */}
         <button
           type="button"
           aria-expanded={open}
           aria-controls="site-nav"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           onClick={() => setOpen((value) => !value)}
-          className="-m-2 p-2 text-ink transition-opacity duration-200 hover:opacity-70 xl:hidden"
+          className="chrome-fg flex h-11 w-11 items-center justify-center text-ink xl:hidden"
         >
           <Icon name={open ? "close" : "menu"} className="h-6 w-6" />
         </button>
