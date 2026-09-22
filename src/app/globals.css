@@ -184,6 +184,16 @@ header[data-visible="false"] {
     border-color 320ms ease;
 }
 
+/* The menu's filled state lands instantly. Its overlay is already canvas the
+   moment it mounts, and the header's own text flips at once, so a 320ms
+   background fade would leave dark type sitting on the still-transparent chrome
+   over the dark hero. `transition: none` is read from the destination state, so
+   opening snaps in one step; closing still fades back over the hero, matching
+   the scroll-up reveal. */
+header[data-nav-open="true"] {
+  transition: none;
+}
+
 /* The filled state. 96% canvas, written as a plain rgb() rather than
    color-mix(): Safari before ~16.2 has no color-mix() and drops the whole
    declaration, leaving the header transparent. The fill is near-opaque so the

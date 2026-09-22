@@ -128,6 +128,7 @@ export function HeaderShell({ chrome, children }: HeaderShellProps) {
         data-surface={effectiveSurface}
         data-chrome={chrome}
         data-visible={visible ? "true" : "false"}
+        data-nav-open={open ? "true" : "false"}
         className="sticky top-0 z-50 border-b"
       >
         {children}
