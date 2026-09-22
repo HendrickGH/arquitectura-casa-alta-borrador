@@ -46,7 +46,7 @@ export function Header({ site, chrome }: HeaderProps) {
         social={site.social}
       />
 
-      <Container className="flex items-center justify-between gap-4 pb-4 pt-1">
+      <Container className="flex items-center justify-between gap-4 py-4">
         <Link href="/" className="shrink-0" aria-label={site.name}>
           <Logo />
         </Link>
