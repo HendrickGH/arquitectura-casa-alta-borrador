@@ -14,10 +14,9 @@ interface ServicesIndexProps {
 }
 
 /**
- * The service catalogue as four editorial chapters. Each group opens with a
- * number, its title and its own introduction; its services follow as
- * photographic panels, so the catalogue reads as a body of work rather than as
- * a text index.
+ * The service catalogue as four editorial chapters. Each group opens with its
+ * title and its own introduction; its services follow as photographic panels,
+ * so the catalogue reads as a body of work rather than as a text index.
  *
  * The earlier linear spec sheet was a deliberate decision, and this replaces it
  * on purpose: the client read it as a report, not as architecture. The
@@ -36,29 +35,25 @@ interface ServicesIndexProps {
 
 interface PlacedService {
   service: Service;
-  /** Catalogue position, 1-based, rendered as the two-digit index. */
-  number: number;
   variant: "panel" | "card";
   flip: boolean;
 }
 
 interface PlacedChapter {
   group: ServiceGroup;
-  chapter: string;
   services: PlacedService[];
 }
 
 /**
- * Resolves the whole catalogue into rows once: the running number, which
- * services are alone in their row, and the panel side. Both the number and the
- * side depend on everything before them, so they are carried through a single
- * ordered pass instead of a counter mutated during render.
+ * Resolves the whole catalogue into rows once: which services are alone in
+ * their row, and the panel side. Both depend on everything before them, so
+ * they are carried through a single ordered pass instead of a counter mutated
+ * during render.
  */
 function placeServices(groups: ServiceGroup[]): PlacedChapter[] {
-  let number = 0;
   let panels = 0;
 
-  return groups.map((group, groupIndex) => {
+  return groups.map((group) => {
     const last = group.services.length - 1;
     // Compacts pair up two per row after the leading panel; an odd count
     // strands the last one.
@@ -66,16 +61,12 @@ function placeServices(groups: ServiceGroup[]): PlacedChapter[] {
 
     return {
       group,
-      chapter: String(groupIndex + 1).padStart(2, "0"),
       services: group.services.map((service, serviceIndex) => {
-        number += 1;
-
         const alone =
           serviceIndex === 0 || (strandsLast && serviceIndex === last);
 
         return {
           service,
-          number,
           variant: alone ? "panel" : "card",
           // Consecutive panels alternate sides, so two services alone in their
           // rows never open on the same edge.
@@ -104,7 +95,7 @@ export function ServicesIndex({
         />
 
         <div className="mt-16 flex flex-col gap-20 md:mt-24 md:gap-28">
-          {chapters.map(({ group, chapter, services }) => (
+          {chapters.map(({ group, services }) => (
             <div
               key={group.slug}
               {...revealStep(0)}
@@ -112,12 +103,9 @@ export function ServicesIndex({
             >
               <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-10">
                 <div className="md:col-span-7">
-                  <span className="voice text-xl text-brand-800">
-                    {chapter}
-                  </span>
                   {/* Full-width line of the stack, as before: at 1024px a side
                       column would leave "Construcción" 272px wide. */}
-                  <h3 className="voice mt-3 max-w-[18ch] text-3xl leading-[1.08] md:text-[2.5rem]">
+                  <h3 className="voice text-3xl leading-[1.08] md:text-[2.5rem]">
                     {group.title}
                   </h3>
                 </div>
@@ -128,18 +116,15 @@ export function ServicesIndex({
               </div>
 
               <ul className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:mt-20 md:grid-cols-2 md:gap-x-14 md:gap-y-20">
-                {services.map(
-                  ({ service, number, variant, flip }, serviceIndex) => (
-                    <ServiceRow
-                      key={service.slug}
-                      service={service}
-                      index={number}
-                      revealIndex={serviceIndex}
-                      variant={variant}
-                      flip={flip}
-                    />
-                  ),
-                )}
+                {services.map(({ service, variant, flip }, serviceIndex) => (
+                  <ServiceRow
+                    key={service.slug}
+                    service={service}
+                    revealIndex={serviceIndex}
+                    variant={variant}
+                    flip={flip}
+                  />
+                ))}
               </ul>
             </div>
           ))}

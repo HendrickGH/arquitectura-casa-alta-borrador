@@ -104,7 +104,6 @@ export function LandingTemplate({
           id="proyectos"
           intro={home.projects}
           projects={featured}
-          total={featured.length + remaining.length}
           tone="canvas"
         >
           {/* The rest of the grid lives inside the projects section, not as a

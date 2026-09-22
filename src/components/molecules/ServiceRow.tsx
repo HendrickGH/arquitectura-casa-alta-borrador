@@ -10,8 +10,6 @@ type ServiceRowVariant = "panel" | "card";
 
 interface ServiceRowProps {
   service: Service;
-  /** Position in the whole catalogue, 1-based, rendered as a two-digit index. */
-  index: number;
   /** Flip the panel: image on the right once it is alone in its row. */
   flip?: boolean;
   /**
@@ -62,9 +60,9 @@ function ServiceItems({
 
 /**
  * One service. The `panel` tier is the editorial layout: a photograph on one
- * side at its own ratio, the index, the title, the summary and the deliverable
- * list on the other. The `card` tier is the lighter layout the services sharing
- * a two-up row fall into: a fixed-ratio crop so the row stays aligned, then the
+ * side at its own ratio, the title, the summary and the deliverable list on
+ * the other. The `card` tier is the lighter layout the services sharing a
+ * two-up row fall into: a fixed-ratio crop so the row stays aligned, then the
  * same content at a smaller scale.
  *
  * Either tier renders without an ingested image: the photo is texture, never a
@@ -72,13 +70,10 @@ function ServiceItems({
  */
 export function ServiceRow({
   service,
-  index,
   flip = false,
   variant = "panel",
   revealIndex,
 }: ServiceRowProps) {
-  const label = String(index).padStart(2, "0");
-
   if (variant === "card") {
     return (
       <li {...revealStep(revealIndex)} className="flex flex-col">
@@ -91,12 +86,11 @@ export function ServiceRow({
         ) : null}
 
         <div className="mt-5">
-          <span className="label text-brand-800">{label}</span>
           <Heading
             as="h4"
             voice="plain"
             sizeClassName="text-xl leading-snug md:text-[1.375rem]"
-            className="mt-2 max-w-[20ch]"
+            className="max-w-[20ch]"
           >
             {service.title}
           </Heading>
@@ -114,8 +108,7 @@ export function ServiceRow({
 
   const body = (
     <>
-      <span className="label text-brand-800">{label}</span>
-      <Heading as="h4" voice="plain" className="mt-3 max-w-[24ch]">
+      <Heading as="h4" voice="plain" className="max-w-[24ch]">
         {service.title}
       </Heading>
       <Text className="voice mt-4 max-w-[52ch] text-lg leading-relaxed text-ink-muted">
