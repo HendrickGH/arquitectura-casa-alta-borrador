@@ -14,6 +14,7 @@ import {
 import {
   findManifestProject,
   getProjectCover,
+  getProjectGallery,
   getProjectPhotoCount,
   getProjectPhotos,
   masonryPhotos,
@@ -132,6 +133,11 @@ function buildProject(dir: string): Project | null {
     ...editorial,
     cover,
     wideCover: getProjectCover(dir, editorial.title, "landscape") ?? cover,
+    gallery: getProjectGallery(
+      dir,
+      editorial?.title ?? "",
+      editorial?.images ?? [],
+    ),
     photos: getProjectPhotos(dir, editorial.title),
     photoCount: getProjectPhotoCount(dir),
   };
@@ -211,11 +217,10 @@ export function getTiles(): CategoryTile[] {
   const { featured, remaining } = getLandingPortfolio();
   const claimed = new Set<string>([
     ...home.hero.slides.map((slide) => slide.photo.src),
-    ...featured.flatMap((project) => [
-      project.wideCover.src,
-      project.cover.src,
-    ]),
-    ...remaining.map((project) => project.cover.src),
+    ...featured.flatMap((project) => project.gallery.map((photo) => photo.src)),
+    ...remaining.flatMap((project) =>
+      project.gallery.map((photo) => photo.src),
+    ),
     ...getMasonry().map((item) => item.photo.src),
   ]);
 
@@ -256,13 +261,12 @@ function landingSources(): Set<string> {
   const { featured, remaining } = getLandingPortfolio();
   return new Set([
     ...home.hero.slides.map((slide) => slide.photo.src),
+    ...featured.flatMap((project) => project.gallery.map((photo) => photo.src)),
+    ...remaining.flatMap((project) =>
+      project.gallery.map((photo) => photo.src),
+    ),
     ...getTiles().map((tile) => tile.photo.src),
     ...getMasonry().map((item) => item.photo.src),
-    ...featured.flatMap((project) => [
-      project.wideCover.src,
-      project.cover.src,
-    ]),
-    ...remaining.map((project) => project.cover.src),
   ]);
 }
 

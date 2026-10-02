@@ -12,6 +12,7 @@ interface ButtonProps {
    */
   href?: string;
   variant?: Variant;
+  size?: "md" | "sm";
   className?: string;
   /** Opens in a new tab and gets the matching rel. Anchors only. */
   external?: boolean;
@@ -39,10 +40,16 @@ const variants: Record<Variant, string> = {
     "border border-canvas/70 text-canvas hover:border-canvas hover:bg-canvas hover:text-ink",
 };
 
+const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
+  md: "px-9 py-[1.15rem]",
+  sm: "px-6 py-3",
+};
+
 export function Button({
   children,
   href,
   variant = "primary",
+  size = "md",
   className,
   external = false,
   type = "button",
@@ -52,7 +59,7 @@ export function Button({
 
   const classes = cx(
     "label inline-flex items-center justify-center transition-colors duration-200",
-    !isQuiet && "px-9 py-[1.15rem]",
+    !isQuiet && sizes[size],
     variants[variant],
     disabled && "cursor-not-allowed opacity-60",
     className,

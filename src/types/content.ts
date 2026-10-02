@@ -132,6 +132,11 @@ export interface Project {
    * `cover` when the project has no landscape shot.
    */
   wideCover: Photo;
+  /**
+   * The card gallery, best first: the principal is `gallery[0]`. Authored as
+   * manifest `base` slugs and resolved by the seam.
+   */
+  gallery: Photo[];
   photos: Photo[];
   photoCount: number;
 }

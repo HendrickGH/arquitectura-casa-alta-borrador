@@ -7,6 +7,7 @@ export type IconName =
   | "whatsapp"
   | "phone"
   | "mail"
+  | "arrow-left"
   | "arrow-right"
   | "menu"
   | "close";
@@ -92,6 +93,16 @@ const glyphs: Record<IconName, React.ReactNode> = {
         strokeWidth="1.6"
       />
     </>
+  ),
+  "arrow-left": (
+    <path
+      d="M20 12H5m6-6-6 6 6 6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   ),
   "arrow-right": (
     <path

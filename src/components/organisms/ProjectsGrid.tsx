@@ -39,7 +39,6 @@ export function ProjectsGrid({ projects, className }: ProjectsGridProps) {
           <ProjectCard
             key={project.slug}
             project={project}
-            href={`/proyectos/${project.slug}`}
             sizes={CARD_SIZES}
             revealIndex={index}
           />

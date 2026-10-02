@@ -130,6 +130,41 @@ export function getProjectPhotos(dir: string, projectTitle = ""): Photo[] {
 }
 
 /**
+ * A project's curated card gallery: the authored `bases` resolved to photographs,
+ * best first. Bases that are unknown or below the portfolio floor are dropped.
+ * Falls back to the ranked top 3 when nothing is authored, so the card never
+ * renders empty.
+ */
+export function getProjectGallery(
+  dir: string,
+  projectTitle: string,
+  bases: readonly string[] = [],
+): Photo[] {
+  const project = findManifestProject(dir);
+  if (!project) return [];
+
+  const available = new Map(
+    rankedPhotos(project).map((photo) => [photo.base, photo]),
+  );
+  const picked: Photo[] = [];
+  const seen = new Set<string>();
+  for (const base of bases) {
+    const photo = available.get(base);
+    if (!photo || seen.has(base)) continue;
+    seen.add(base);
+    picked.push(toPhoto(dir, photo, projectTitle));
+  }
+
+  if (picked.length === 0) {
+    return rankedPhotos(project)
+      .slice(0, 3)
+      .map((photo) => toPhoto(dir, photo, projectTitle));
+  }
+
+  return picked;
+}
+
+/**
  * The masonry's photographs, in the wall's authored display order.
  *
  * The order lives in `src/content/masonry.ts`, not here: the wall's double cells

@@ -57,23 +57,13 @@ export function FeaturedPortfolio({
 
         <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
           <div className="md:col-span-2">
-            {/* wideCover, not cover: this slot is full width, and most covers
-                are portrait -- stretched across ~1310px a 1200x1600 photo is
-                being upscaled by the browser. */}
-            <ProjectCard
-              project={lead}
-              photo={lead.wideCover}
-              href={`/proyectos/${lead.slug}`}
-              sizes="100vw"
-              revealIndex={0}
-            />
+            <ProjectCard project={lead} sizes="100vw" revealIndex={0} />
           </div>
 
           {cells.map((project, index) => (
             <ProjectCard
               key={project.slug}
               project={project}
-              href={`/proyectos/${project.slug}`}
               sizes={CELL_SIZES}
               revealIndex={1 + index}
             />
