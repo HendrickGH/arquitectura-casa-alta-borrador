@@ -14,144 +14,144 @@
 /* The font variables come from next/font at runtime, so they are inlined
    rather than resolved at build time. */
 @theme inline {
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-marcellus), ui-serif, Georgia, serif;
+	--font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+	--font-display: var(--font-marcellus), ui-serif, Georgia, serif;
 }
 
 @theme {
-  /* Text */
-  --color-ink: #151515;
-  --color-ink-muted: #5a5a57;
+	/* Text */
+	--color-ink: #151515;
+	--color-ink-muted: #5a5a57;
 
-  /* Surfaces. The page base is white; bone is only ever an alternating tint. */
-  --color-canvas: #ffffff;
-  --color-bone-50: #f4f3f1;
-  --color-bone-100: #eceae6;
-  --color-bone-200: #e4e2de;
+	/* Surfaces. The page base is white; bone is only ever an alternating tint. */
+	--color-canvas: #ffffff;
+	--color-bone-50: #f4f3f1;
+	--color-bone-100: #eceae6;
+	--color-bone-200: #e4e2de;
 
-  /* Brand. #0e2d78 is the logo's dominant blue. It is far too dark to use as a
+	/* Brand. #0e2d78 is the logo's dominant blue. It is far too dark to use as a
      background, so it works as type, rules and the CTA fill instead. */
-  --color-brand-900: #0a2159;
-  --color-brand-800: #0e2d78;
-  --color-brand-700: #103583;
-  --color-brand-500: #2a55b0;
-  --color-brand-100: #dce4f5;
-  --color-brand-50: #f1f5fc;
+	--color-brand-900: #0a2159;
+	--color-brand-800: #0e2d78;
+	--color-brand-700: #103583;
+	--color-brand-500: #2a55b0;
+	--color-brand-100: #dce4f5;
+	--color-brand-50: #f1f5fc;
 
-  /* Square corners are a deliberate rule. Overriding the radius scale to zero
+	/* Square corners are a deliberate rule. Overriding the radius scale to zero
      means an accidental `rounded-md` cannot creep in. */
-  --radius-xs: 0px;
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-3xl: 0px;
-  --radius-4xl: 0px;
+	--radius-xs: 0px;
+	--radius-sm: 0px;
+	--radius-md: 0px;
+	--radius-lg: 0px;
+	--radius-xl: 0px;
+	--radius-2xl: 0px;
+	--radius-3xl: 0px;
+	--radius-4xl: 0px;
 }
 
 @layer base {
-  :root {
-    /* The floating chrome's height. MotionShell overwrites it with the measured
+	:root {
+		/* The floating chrome's height. MotionShell overwrites it with the measured
        value once the header is laid out; 7.5rem (120px) is the pre-hydration
        default for the two-row chrome (contact strip + navigation), close enough
        that the hero's overlap does not visibly settle on first paint. */
-    --chrome-h: 7.5rem;
-  }
+		--chrome-h: 7.5rem;
+	}
 
-  html {
-    -webkit-text-size-adjust: 100%;
-    /* The site is light-only; this fixes the native scrollbar and form colours. */
-    color-scheme: light;
-    /* Smooth in-page anchor scrolling. Deliberately unconditional, like every
+	html {
+		-webkit-text-size-adjust: 100%;
+		/* The site is light-only; this fixes the native scrollbar and form colours. */
+		color-scheme: light;
+		/* Smooth in-page anchor scrolling. Deliberately unconditional, like every
        other animation here -- `prefers-reduced-motion` is not honoured. */
-    scroll-behavior: smooth;
-    /* Focus and in-page anchors reserve the chrome's height instead of landing
+		scroll-behavior: smooth;
+		/* Focus and in-page anchors reserve the chrome's height instead of landing
        under it. `Section` carries no scroll-mt-* of its own -- the two would
        add up and double the gap. */
-    scroll-padding-top: calc(var(--chrome-h) + 1rem);
-  }
+		scroll-padding-top: calc(var(--chrome-h) + 1rem);
+	}
 
-  /* Removes the double-tap-zoom delay on touch without disabling pinch zoom. */
-  a,
-  button {
-    touch-action: manipulation;
-  }
+	/* Removes the double-tap-zoom delay on touch without disabling pinch zoom. */
+	a,
+	button {
+		touch-action: manipulation;
+	}
 
-  body {
-    background-color: var(--color-canvas);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
-  }
+	body {
+		background-color: var(--color-canvas);
+		color: var(--color-ink);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+	}
 
-  /* Focus is never removed, only restyled. */
-  :focus-visible {
-    outline: 2px solid var(--color-brand-500);
-    outline-offset: 3px;
-  }
+	/* Focus is never removed, only restyled. */
+	:focus-visible {
+		outline: 2px solid var(--color-brand-500);
+		outline-offset: 3px;
+	}
 
-  ::selection {
-    background-color: var(--color-brand-100);
-    color: var(--color-brand-900);
-  }
+	::selection {
+		background-color: var(--color-brand-100);
+		color: var(--color-brand-900);
+	}
 
-  img {
-    /* next/image supplies width/height, but a hard rule here stops a broken
+	img {
+		/* next/image supplies width/height, but a hard rule here stops a broken
        aspect ratio from ever escaping the layout. */
-    max-width: 100%;
-  }
+		max-width: 100%;
+	}
 }
 
 @layer components {
-  /*
+	/*
    * The monumental voice: large, uppercase, set with leading tighter than the
    * cap height would normally allow. Kept for the hero's word stack and the
    * figures, where the block of capitals IS the statement -- headings use the
    * serif voice instead so the page is spoken in two clearly distinct registers.
    */
-  .display {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    text-transform: uppercase;
-    line-height: 0.92;
-    letter-spacing: -0.01em;
-    text-wrap: balance;
-  }
+	.display {
+		font-family: var(--font-sans);
+		font-weight: 600;
+		text-transform: uppercase;
+		line-height: 0.92;
+		letter-spacing: -0.01em;
+		text-wrap: balance;
+	}
 
-  /*
+	/*
    * The editorial voice. Marcellus has a single weight, so hierarchy comes from
    * size, colour and measure alone -- which is exactly the restraint this
    * treatment wants. `text-wrap: balance` keeps a two-word last line off the
    * headings.
    */
-  .voice {
-    font-family: var(--font-display);
-    font-weight: 400;
-    letter-spacing: 0.005em;
-    text-wrap: balance;
-  }
+	.voice {
+		font-family: var(--font-display);
+		font-weight: 400;
+		letter-spacing: 0.005em;
+		text-wrap: balance;
+	}
 
-  /*
+	/*
    * The section kicker. It is authored in sentence case, and it stays in
    * sentence case: a tracked-out all-caps eyebrow over every heading is the
    * generic default, and the serif face already gives the line its editorial
    * weight. It labels, it does not shout.
    */
-  .eyebrow {
-    font-family: var(--font-display);
-    font-size: 1.0625rem;
-    line-height: 1.2;
-    letter-spacing: 0.015em;
-    color: var(--color-brand-800);
-  }
+	.eyebrow {
+		font-family: var(--font-display);
+		font-size: 1.0625rem;
+		line-height: 1.2;
+		letter-spacing: 0.015em;
+		color: var(--color-brand-800);
+	}
 
-  /* Small functional labels: nav, buttons, legal, card meta. */
-  .label {
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
+	/* Small functional labels: nav, buttons, legal, card meta. */
+	.label {
+		font-size: 0.75rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+	}
 }
 
 /*
@@ -168,20 +168,20 @@
 /* --- Header ------------------------------------------------------------- */
 
 header {
-  transition:
-    transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 320ms ease,
-    border-color 320ms ease;
+	transition:
+		transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+		background-color 320ms ease,
+		border-color 320ms ease;
 }
 
 /* Hiding reads as a purposeful exit (accelerating); showing as a settle
    (decelerating). The two states carry different curves on purpose. */
 header[data-visible="false"] {
-  transform: translateY(-100%);
-  transition:
-    transform 340ms cubic-bezier(0.4, 0, 1, 1),
-    background-color 320ms ease,
-    border-color 320ms ease;
+	transform: translateY(-100%);
+	transition:
+		transform 340ms cubic-bezier(0.4, 0, 1, 1),
+		background-color 320ms ease,
+		border-color 320ms ease;
 }
 
 /* The menu's filled state lands instantly. Its overlay is already canvas the
@@ -191,7 +191,7 @@ header[data-visible="false"] {
    opening snaps in one step; closing still fades back over the hero, matching
    the scroll-up reveal. */
 header[data-nav-open="true"] {
-  transition: none;
+	transition: none;
 }
 
 /* The filled state. 96% canvas, written as a plain rgb() rather than
@@ -200,19 +200,19 @@ header[data-nav-open="true"] {
    blur below is polish, not structure. The -webkit- prefix is what older Safari
    needs to run the blur at all. */
 header[data-surface="page"] {
-  background-color: rgb(255 255 255 / 0.96);
-  border-color: var(--color-bone-200);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+	background-color: rgb(255 255 255 / 0.96);
+	border-color: var(--color-bone-200);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
 }
 
 /* At the very top the header floats on the hero's own overlay: no fill, no
    border, no blur, so the photograph reads edge to edge behind it. */
 header[data-surface="hero"] {
-  background-color: transparent;
-  border-color: transparent;
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
+	background-color: transparent;
+	border-color: transparent;
+	-webkit-backdrop-filter: none;
+	backdrop-filter: none;
 }
 
 /* The contact strip stays in flow at every breakpoint. An earlier version
@@ -227,26 +227,26 @@ header[data-surface="hero"] {
    `text-ink`, so its `hover:text-brand-700` utility keeps working -- an
    unlayered page-state rule would outrank it and kill the hover. */
 header[data-surface="hero"] .chrome-fg {
-  color: var(--color-canvas);
+	color: var(--color-canvas);
 }
 
 header[data-surface="hero"] .chrome-fg:hover {
-  color: var(--color-bone-100);
+	color: var(--color-bone-100);
 }
 
 header[data-surface="hero"] .chrome-logo {
-  filter: brightness(0) invert(1);
+	filter: brightness(0) invert(1);
 }
 
 /* The CTA inverts over the hero: a filled brand button against a dark overlay
    loses its edge; a white one keeps it. */
 header[data-surface="hero"] .chrome-cta {
-  background-color: var(--color-canvas);
-  color: var(--color-ink);
+	background-color: var(--color-canvas);
+	color: var(--color-ink);
 }
 
 header[data-surface="hero"] .chrome-cta:hover {
-  background-color: var(--color-bone-100);
+	background-color: var(--color-bone-100);
 }
 
 /* --- Hero --------------------------------------------------------------- */
@@ -257,12 +257,12 @@ header[data-surface="hero"] .chrome-cta:hover {
    the heaviest because that is where both type blocks sit -- and the
    description is small text, which needs 4.5:1 rather than the headline's 3:1. */
 .hero-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(6, 12, 26, 0.8) 0%,
-    rgba(6, 12, 26, 0.68) 45%,
-    rgba(6, 12, 26, 0.82) 100%
-  );
+	background: linear-gradient(
+		180deg,
+		rgba(6, 12, 26, 0.8) 0%,
+		rgba(6, 12, 26, 0.68) 45%,
+		rgba(6, 12, 26, 0.82) 100%
+	);
 }
 
 /* --- Closing call to action over the full-bleed photograph ---------------- */
@@ -271,39 +271,39 @@ header[data-surface="hero"] .chrome-cta:hover {
    centred, so all of the type sits over the centre of the image rather than
    over a graded edge, and the overlay has to hold contrast there. */
 .cta-overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(6, 12, 26, 0.74) 0%,
-    rgba(6, 12, 26, 0.68) 45%,
-    rgba(6, 12, 26, 0.82) 100%
-  );
+	background: linear-gradient(
+		180deg,
+		rgba(6, 12, 26, 0.74) 0%,
+		rgba(6, 12, 26, 0.68) 45%,
+		rgba(6, 12, 26, 0.82) 100%
+	);
 }
 
 /* The hero's entrance: pure CSS, so it runs with or without JavaScript, and it
    animates only transform and opacity. */
 @keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+	from {
+		opacity: 0;
+		transform: translateY(24px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
 }
 
 .hero-rise {
-  animation: rise 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+	animation: rise 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .hero-rise-1 {
-  animation-delay: 60ms;
+	animation-delay: 60ms;
 }
 .hero-rise-2 {
-  animation-delay: 140ms;
+	animation-delay: 140ms;
 }
 .hero-rise-3 {
-  animation-delay: 240ms;
+	animation-delay: 240ms;
 }
 
 /* --- Section reveals ---------------------------------------------------- */
@@ -313,19 +313,19 @@ header[data-surface="hero"] .chrome-cta:hover {
    then flips them to "in" as they arrive, so content is never hidden without
    JavaScript and nothing already on screen flashes. */
 [data-reveal] {
-  transition:
-    opacity 720ms ease-out,
-    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+	transition:
+		opacity 720ms ease-out,
+		transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-reveal="pending"] {
-  opacity: 0;
-  transform: translateY(28px);
+	opacity: 0;
+	transform: translateY(28px);
 }
 
 [data-reveal="in"] {
-  opacity: 1;
-  transform: none;
+	opacity: 1;
+	transform: none;
 }
 
 /* `stagger`: the shell never fades -- it stays visible and hands the gesture to
@@ -335,31 +335,31 @@ header[data-surface="hero"] .chrome-cta:hover {
    all at once when a whole section enters. The index-scaled delay only staggers
    elements that arrive together (a row), never deep vertical content. */
 [data-reveal-variant="stagger"][data-reveal] {
-  transition: none;
+	transition: none;
 }
 
 [data-reveal-variant="stagger"][data-reveal="pending"] {
-  opacity: 1;
-  transform: none;
+	opacity: 1;
+	transform: none;
 }
 
 [data-reveal-variant="stagger"] [data-reveal-step] {
-  transition:
-    opacity 720ms ease-out,
-    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
-  /* The delay staggers a row's siblings; `min(..., 3)` keeps deep vertical
+	transition:
+		opacity 720ms ease-out,
+		transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+	/* The delay staggers a row's siblings; `min(..., 3)` keeps deep vertical
      content from inheriting a long lag the scroll position already provides. */
-  transition-delay: calc(min(var(--reveal-index, 0), 3) * 90ms);
+	transition-delay: calc(min(var(--reveal-index, 0), 3) * 90ms);
 }
 
 [data-reveal-variant="stagger"] [data-reveal-step="pending"] {
-  opacity: 0;
-  transform: translateY(32px);
+	opacity: 0;
+	transform: translateY(32px);
 }
 
 [data-reveal-variant="stagger"] [data-reveal-step="in"] {
-  opacity: 1;
-  transform: none;
+	opacity: 1;
+	transform: none;
 }
 
 /* Opacity-only reveal for content that already owns its `transform` elsewhere:
@@ -367,18 +367,22 @@ header[data-surface="hero"] .chrome-cta:hover {
    its reveal fades but never translates and the two never fight over the same
    property. */
 [data-reveal-variant="stagger"] [data-reveal-step][data-reveal-motion="fade"] {
-  transition: opacity 720ms ease-out;
-  transition-delay: calc(min(var(--reveal-index, 0), 3) * 90ms);
+	transition: opacity 720ms ease-out;
+	transition-delay: calc(min(var(--reveal-index, 0), 3) * 90ms);
 }
 
 [data-reveal-variant="stagger"]
-  [data-reveal-step="pending"][data-reveal-motion="fade"] {
-  opacity: 0;
-  transform: none;
+	[data-reveal-step="pending"][data-reveal-motion="fade"] {
+	opacity: 0;
+	transform: none;
 }
 
 [data-reveal-variant="stagger"]
-  [data-reveal-step="in"][data-reveal-motion="fade"] {
-  opacity: 1;
-  transform: none;
+	[data-reveal-step="in"][data-reveal-motion="fade"] {
+	opacity: 1;
+	transform: none;
+}
+
+iframe {
+	display: none !important;
 }
