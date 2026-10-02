@@ -73,29 +73,29 @@ photographs that read as civil/industrial work:
 
 ## Tasks
 
-- [ ] T1 `src/types/content.ts`: replace `HeroContent.headline`/`image`/`cta`
+- [x] T1 `src/types/content.ts`: replace `HeroContent.headline`/`image`/`cta`
       with `slides: HeroSlide[]` (`{ title, photo }`); add `whatsapp: CallToAction`
       to `SiteConfig`.
-- [ ] T2 `src/content/home.ts`: eyebrow -> "Puerto Escondido, Oaxaca centro y
+- [x] T2 `src/content/home.ts`: eyebrow -> "Puerto Escondido, Oaxaca centro y
       Salina Cruz"; headline -> ["Arquitectura", "Construccion civil",
       "Construccion industrial"]; author the three slides with real alts; remove
       `cta`.
-- [ ] T3 `src/content/site.ts`: add `whatsapp: { label: "Escribanos por WhatsApp",
+- [x] T3 `src/content/site.ts`: add `whatsapp: { label: "Escribanos por WhatsApp",
       href: whatsappHref }`.
-- [ ] T4 `src/components/organisms/Hero.tsx`: make it a client component; render
+- [x] T4 `src/components/organisms/Hero.tsx`: make it a client component; render
       stacked slide layers (inline initial opacity/zIndex so the first shows
       without JS) and the h1 with one `data-hero-title` span per slide; remove
       the CTA/Button/Icon; lazy-import GSAP and call `createHeroCarousel`.
       Adjust the clamp so "Construccion industrial" (~12.9em in Montserrat 600)
       fits 320px width.
-- [ ] T5 `src/components/organisms/gsap-scenes.ts`: add `createHeroCarousel({
+- [x] T5 `src/components/organisms/gsap-scenes.ts`: add `createHeroCarousel({
       scope })` -- crossfade every 4s, active title opacity 1 and others ~0.4;
       returns cleanup.
-- [ ] T6 `src/components/organisms/WhatsAppFloat.tsx`: new fixed bottom-right
+- [x] T6 `src/components/organisms/WhatsAppFloat.tsx`: new fixed bottom-right
       WhatsApp anchor; render it in `SiteChrome`.
-- [ ] T7 `src/lib/content/index.ts`: include the hero slide photos in the
+- [x] T7 `src/lib/content/index.ts`: include the hero slide photos in the
       `getTiles()` claimed set and in `landingSources()`.
-- [ ] T8 Checks: `pnpm typecheck`, `pnpm lint`, `pnpm build`.
+- [x] T8 Checks: `pnpm typecheck`, `pnpm lint`, `pnpm build`.
 
 ## Acceptance criteria
 
@@ -118,8 +118,41 @@ photographs that read as civil/industrial work:
 
 ## Progress
 
-- [ ] T1..T8 pending.
+- [x] T1..T8 complete, plus two post-review corrections from the client.
+
+### Corrections after the client's first review (2026-10-02)
+
+- The dark scrim was rendering **below** the photograph: the carousel's first
+  slide layer carried `zIndex: 1`, so it escaped above the sibling
+  `.hero-overlay` (z-index auto). Fixed by giving the slide box `z-0` (which
+  creates a stacking context) and the scrim `z-[1]`, under the content's `z-10`.
+- The floating WhatsApp button was adapted to the brand palette: `bg-brand-800
+  text-white hover:bg-ink` instead of WhatsApp green.
 
 ## Verification evidence
 
-(recorded during apply)
+- `pnpm typecheck` -- pass (no output).
+- `pnpm lint` -- pass, 0 errors; 1 pre-existing warning in
+  `.opencode/skills/web-build/scripts/cdp-measure.mjs` (unrelated).
+- `pnpm build` -- pass; 18/18 pages generated, TypeScript finished.
+- CDP measurement (`cdp-measure.mjs`, production build):
+  - width 375: `scrollWidth 375`, no horizontal overflow (the clamp fix holds
+    for "Construcción industrial").
+  - width 1440: `scrollWidth 1440`, no overflow.
+  - `duplicated: []` -- no photograph repeats across the page (the hero's
+    `11-columnas/01` did not collide with the obra-civil tile).
+  - `broken: 0`, `h1: 1`.
+- Visual capture of the top viewport confirmed: scrim over the photograph,
+  active title at full opacity with the other two dimmed, new eyebrow, and the
+  brand-blue floating button. The capture happened mid-cycle on slide 3, which
+  also confirms the carousel is cycling.
+
+## Notes
+
+- The repo's `.opencode/plugins/casa-alta.ts` auto-commit fired when the
+  delegated writer's session went idle and committed the first version as
+  `ad98b4b chore: auto-commit 9 files`. The native RDD review candidate then had
+  to be re-based on `HEAD~1` (`--base-ref ... --committed-only`); the client
+  declined that review (candidate-scoped) and chose to review manually.
+- The CDP masonry `wall.items` came back 0 in both runs; that is a measurement
+  selector mismatch unrelated to this change.

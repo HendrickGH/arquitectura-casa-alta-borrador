@@ -65,7 +65,9 @@ export function Hero({ hero }: HeroProps) {
       className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink"
       style={{ marginTop: "calc(var(--chrome-h, 5.25rem) * -1)" }}
     >
-      <div className="absolute inset-0 overflow-hidden bg-ink">
+      {/* `z-0` keeps the slide layers' own z-index inside this box, so the scrim
+          below still paints above the photograph (see the overlay). */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-ink">
         {hero.slides.map((slide, index) => (
           <div
             key={slide.photo.src}
@@ -81,7 +83,9 @@ export function Hero({ hero }: HeroProps) {
         ))}
       </div>
 
-      <div className="hero-overlay absolute inset-0" aria-hidden="true" />
+      {/* Above the photographs (z-1) and below the content (z-10): the dark
+          scrim is what keeps white type legible on every slide. */}
+      <div className="hero-overlay absolute inset-0 z-[1]" aria-hidden="true" />
 
       <Container className="relative z-10 pt-32 pb-14 md:pb-20">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
