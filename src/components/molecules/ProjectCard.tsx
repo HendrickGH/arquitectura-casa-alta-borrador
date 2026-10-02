@@ -77,7 +77,7 @@ export function ProjectCard({
       </div>
 
       {/* Category, title, place: three lines, each one job. */}
-      <div className="mt-6 flex flex-col gap-2">
+      <div className="mt-6 flex flex-1 flex-col gap-2">
         {project.categoryLabel ? (
           <p className="label text-brand-800">{project.categoryLabel}</p>
         ) : null}

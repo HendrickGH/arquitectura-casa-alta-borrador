@@ -52,15 +52,15 @@ Out:
 
 ## Tasks
 
-- [ ] T1 Curate, per project, an ordered best-3 (`gallery`) with the principal
+- [x] T1 Curate, per project, an ordered best-3 (`gallery`) with the principal
       first; store as editorial data and resolve in the seam.
-- [ ] T2 Extend the `Project` view model with `gallery: Photo[]`.
-- [ ] T3 `ProjectCard`: client manual carousel (arrows overlaid on the images,
+- [x] T2 Extend the `Project` view model with `gallery: Photo[]`.
+- [x] T3 `ProjectCard`: client manual carousel (arrows overlaid on the images,
       vertically centred, a few px from each edge, responsive), caption and a
       "Conoce más sobre {title}" button. Not a whole-card link.
-- [ ] T4 Add a left-arrow glyph to the Icon atom.
-- [ ] T5 Wire both surfaces; keep the reveal-step behaviour.
-- [ ] T6 Checks: typecheck, lint, build, CDP measure.
+- [x] T4 Add a left-arrow glyph to the Icon atom.
+- [x] T5 Wire both surfaces; keep the reveal-step behaviour.
+- [x] T6 Checks: typecheck, lint, build, CDP measure.
 
 ## Acceptance criteria
 
@@ -75,8 +75,33 @@ Out:
 
 ## Progress
 
-- [ ] pending.
+- [x] T1..T6 complete.
+
+### Decisions worth recording
+
+- The curation was a separate visual pass (contact sheets) and is authored as
+  `curatedGalleries` in `src/content/projects.ts`, resolved by
+  `getProjectGallery()` in the seam.
+- The 6 featured projects' galleries avoid the photograph their masonry slot
+  uses, so the landing never renders one file twice.
+- Projects 10 and 12 show 2 images, not 3: `10` leaves one publishable photo for
+  the multifamiliar tile (its only 4 photos are shared with the card, masonry
+  and tile), and `12`'s only exterior is the masonry photo.
+- 4 principals are portrait (03 Casa Blake, 06 Capilla, 09 Santa Rosa,
+  10 Punta Zicatela) because those projects have no publishable landscape that
+  shows the whole project; the 4:3 box crops them. Known, not an oversight.
+- `ProjectCard` moved the CTA alignment fix: the caption is `flex-1` so the
+  button sits on the row's baseline.
 
 ## Verification evidence
 
-(recorded during apply)
+- `pnpm typecheck` -- pass.
+- `pnpm lint` -- pass, 0 errors (1 pre-existing unrelated warning).
+- `pnpm build` -- pass, 18/18 pages.
+- `pnpm check:images` -- all referenced images resolve.
+- CDP measure (`/proyectos` at 1280 and 375): `scrollWidth` equals the viewport
+  (no overflow), `broken: 0`, `duplicated: []`.
+- CDP measure (`/` at 1280): `duplicated: []`; built HTML carries 49 `<img>`,
+  49 unique; the four category tiles survive; the curated principals appear.
+- Screenshot of `/proyectos`: arrows render vertically centred, flush to the
+  left/right edges, and the "Conoce más sobre {project}" buttons align per row.
