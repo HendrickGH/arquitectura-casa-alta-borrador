@@ -111,3 +111,60 @@ export function createScenes({ scope }: { scope: HTMLElement }): () => void {
 
   return () => media.revert();
 }
+
+/**
+ * Drives the hero carousel: every four seconds the next slide crossfades in over
+ * the current one while its headline line rises to full opacity and the other
+ * lines dim.
+ *
+ * The incoming layer is raised above the outgoing one and faded from 0 to 1, so
+ * the previous photograph stays fully painted underneath during the crossfade.
+ * Fading both at once would let the dark backdrop show through at the midpoint.
+ * After the new layer is opaque it becomes the base for the next step.
+ *
+ * The first slide and all three titles are already in the server HTML (see
+ * Hero.tsx), so this only animates. A missing chunk leaves a legible static hero.
+ */
+export function createHeroCarousel({
+  scope,
+}: {
+  scope: HTMLElement;
+}): () => void {
+  const images = gsap.utils.toArray<HTMLElement>("[data-hero-slide]", scope);
+  const titles = gsap.utils.toArray<HTMLElement>("[data-hero-title]", scope);
+  if (images.length < 2) return () => {};
+
+  const DIM = 0.4;
+  const INTERVAL = 4000;
+  let active = 0;
+
+  const advance = () => {
+    if (document.hidden) return;
+    const next = (active + 1) % images.length;
+
+    images.forEach((el, i) => {
+      if (i === active || i === next) return;
+      gsap.set(el, { opacity: 0, zIndex: 0 });
+    });
+    gsap.set(images[active], { zIndex: 0 });
+    gsap.set(images[next], { zIndex: 1 });
+    gsap.fromTo(
+      images[next],
+      { opacity: 0 },
+      { opacity: 1, duration: 1.1, ease: "power2.inOut" },
+    );
+
+    titles.forEach((title, i) =>
+      gsap.to(title, {
+        opacity: i === next ? 1 : DIM,
+        duration: 0.7,
+        ease: "power2.out",
+      }),
+    );
+
+    active = next;
+  };
+
+  const timer = window.setInterval(advance, INTERVAL);
+  return () => window.clearInterval(timer);
+}

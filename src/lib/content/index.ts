@@ -210,6 +210,7 @@ export function getLandingPortfolio(): {
 export function getTiles(): CategoryTile[] {
   const { featured, remaining } = getLandingPortfolio();
   const claimed = new Set<string>([
+    ...home.hero.slides.map((slide) => slide.photo.src),
     ...featured.flatMap((project) => [
       project.wideCover.src,
       project.cover.src,
@@ -254,7 +255,7 @@ export function getMasonry(): MasonryItem[] {
 function landingSources(): Set<string> {
   const { featured, remaining } = getLandingPortfolio();
   return new Set([
-    home.hero.image.src,
+    ...home.hero.slides.map((slide) => slide.photo.src),
     ...getTiles().map((tile) => tile.photo.src),
     ...getMasonry().map((item) => item.photo.src),
     ...featured.flatMap((project) => [

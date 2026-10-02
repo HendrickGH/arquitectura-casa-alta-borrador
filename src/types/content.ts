@@ -72,6 +72,8 @@ export interface SiteConfig {
    * broke silently the moment the nav switched to anchors.
    */
   cta: CallToAction;
+  /** The floating WhatsApp button's link; label is its accessible name. */
+  whatsapp: CallToAction;
   /** Primary phone first; the first entry is the WhatsApp target. */
   contact: ContactLine[];
   offices: Office[];
@@ -207,27 +209,31 @@ export interface HeroChrome {
 }
 
 /**
- * The landing hero's content: the kicker, the word-stack headline, the
- * description and the full-bleed photograph behind them.
+ * One slide of the landing hero: a discipline line and the photograph that
+ * illustrates it. The carousel pairs each headline line with its image.
+ */
+export interface HeroSlide {
+  /** One line of the word-stack headline. */
+  title: string;
+  photo: Photo;
+}
+
+/**
+ * The landing hero's content: the kicker, the word-stack slides (title plus
+ * photograph) and the description.
  */
 export interface HeroContent {
   /** Short kicker above the headline. Not the company claim -- see Hero.tsx. */
   eyebrow: string;
-  /** Rendered as a stack, one line per entry. */
-  headline: string[];
+  /** Rendered as a stack, one line per entry, each with its own photograph. */
+  slides: HeroSlide[];
   subheadline: string;
-  image: Photo;
   /**
    * The transparent chrome over this hero. Omitted until a photograph passes
    * the chrome-band gate, which keeps the header filled today; supplying it is
    * a content edit with no component change.
    */
   chrome?: HeroChrome;
-  /**
-   * Optional call to action under the headline. The hero ships without buttons
-   * by default; supplying one (the WhatsApp link today) renders a single button.
-   */
-  cta?: CallToAction;
 }
 
 export interface SectionIntro {

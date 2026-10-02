@@ -41,6 +41,10 @@ export const site = {
 
   cta: { label: "Contacto", href: "/#contacto" },
 
+  // The persistent floating button every page carries. It replaced the hero's
+  // own WhatsApp CTA; the label is its accessible name.
+  whatsapp: { label: "Escríbanos por WhatsApp", href: whatsappHref },
+
   // The first entry is the number every WhatsApp CTA points at.
   contact: [
     {

@@ -1,6 +1,7 @@
 import { Footer } from "@/components/organisms/Footer";
 import { Header } from "@/components/organisms/Header";
 import { RevealObserver } from "@/components/organisms/MotionShell";
+import { WhatsAppFloat } from "@/components/organisms/WhatsAppFloat";
 import type { SiteConfig } from "@/types/content";
 
 interface SiteChromeProps {
@@ -40,6 +41,8 @@ export function SiteChrome({ site, chrome, children }: SiteChromeProps) {
       {children}
 
       <Footer site={site} />
+
+      <WhatsAppFloat link={site.whatsapp} />
 
       <RevealObserver />
     </>

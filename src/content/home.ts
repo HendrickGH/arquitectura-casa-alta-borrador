@@ -14,6 +14,22 @@ const heroImage: Photo = {
   height: 900,
 };
 
+/** Civil works: the crane hoisting a precast column in the columns project. */
+const civilImage: Photo = {
+  src: "/images/11-columnas-c1-c2/01-izado-columna-grua-jacaranda.avif",
+  alt: "Grúa izando una columna prefabricada de concreto junto a un jacarandá en flor, en una obra civil al borde de la carretera",
+  width: 1600,
+  height: 1200,
+};
+
+/** Industrial works: a concrete mixer over fresh pavement. */
+const industrialImage: Photo = {
+  src: "/images/14-pavimentacion/01-revolvedora-concreto-sobre-pavimento.avif",
+  alt: "Revolvedora de concreto sobre el pavimento recién tendido, bajo un cielo con nubes",
+  width: 2000,
+  height: 1500,
+};
+
 /**
  * Figures the client supplied directly. Left exactly as given -- notably 100%
  * for on-time delivery, which is a claim about their whole history and should
@@ -67,18 +83,18 @@ const tiles: CategoryTileContent[] = [
  */
 export const home: HomePage = {
   hero: {
-    // Deliberately not the "100% mexicana" badge: that claim is the utility
-    // bar's job and it sits directly above the hero. This line answers the
-    // question a visitor actually arrives with -- where do you work.
-    eyebrow: "Sierra, Costa, Istmo y Centro de Oaxaca",
-    headline: ["Arquitectura", "y construcción", "civil e industrial"],
+    // Names the studio's actual offices plus the capital, instead of the broad
+    // geographic list of the sierra, costa, istmo and centro.
+    eyebrow: "Puerto Escondido, Oaxaca centro y Salina Cruz",
+    // One line per discipline, one photograph each: the carousel highlights the
+    // line whose image is active.
+    slides: [
+      { title: "Arquitectura", photo: heroImage },
+      { title: "Construcción civil", photo: civilImage },
+      { title: "Construcción industrial", photo: industrialImage },
+    ],
     subheadline:
       "Proyectos de ingeniería civil y proyectos ejecutivos arquitectónicos.",
-    image: heroImage,
-    // The single hero CTA is WhatsApp, the studio's fastest contact channel.
-    // The contact anchor that used to ride here survives in the header and the
-    // closing CTA.
-    cta: { label: "Escríbanos por WhatsApp", href: whatsappHref },
     // White chrome over the hero's dark overlay; the header goes white once the
     // hero leaves the viewport. Measured against the rendered composition.
     chrome: { tone: "canvas" },

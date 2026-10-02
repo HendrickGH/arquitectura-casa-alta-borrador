@@ -1,6 +1,7 @@
-import { Button } from "@/components/atoms/Button";
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Container } from "@/components/atoms/Container";
-import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import type { HeroContent } from "@/types/content";
 
@@ -9,111 +10,100 @@ interface HeroProps {
 }
 
 /**
- * The landing hero: the photograph fills one visual viewport, a flat dark scrim
- * sits on top of it, and the type is set directly on that scrim -- the kicker
- * and the headline bottom-left, the description bottom-right.
+ * The landing hero: a photograph fills one visual viewport behind a flat dark
+ * scrim, and the type sits directly on that scrim.
  *
  * WHY THE SCRIM, AND NOT TYPE ON THE BARE PHOTOGRAPH. Two attempts at putting
- * type straight on this image were built and measured before, and both failed:
+ * type straight on the image were built and measured before, and both failed:
  * white type sampled 1.31:1, and dark type was *less* legible than white because
- * variance, not mean luminance, is what breaks type. The design record is
- * explicit that the photograph needs a 60-77% dark scrim across the block. The
- * scrim here is the closing CTA's flat one rather than the graded band this
- * hero used to carry: near-uniform, with a slightly stronger top stop so the
- * transparent chrome keeps its edge in the header band.
+ * variance, not mean luminance, is what breaks type. The photograph needs a
+ * 60-77% dark scrim across the block, which is what `.hero-overlay` carries.
  *
- * The description is small text, not large text, so its band needs 4.5:1 where
- * the headline only needs 3:1. The bottom stop composites to roughly 5.5:1
- * against white over this image's recorded 0.74-0.77 luminance, which is why
- * both type blocks sit at the bottom instead of floating over the middle of the
- * photograph.
+ * THE CAROUSEL. One photograph per headline line, crossfading every four
+ * seconds; the active line sits at full opacity while the others dim. The first
+ * slide is painted by the server HTML (inline opacity/zIndex), so without
+ * JavaScript the hero still shows a photograph and all three titles. Motion is
+ * added by `createHeroCarousel` in gsap-scenes.ts, imported lazily so GSAP never
+ * reaches the eager chunk -- the same pattern as the masonry's ScrollScene.
  *
- * ONE BUTTON, AT MOST. The hero once carried a button pair, then none; the
- * single CTA that remains is WhatsApp (authored as `hero.cta`), the studio's
- * fastest contact channel, and it sits under the headline rather than over the
- * photograph's middle. The contact anchor that used to ride here survives in
- * the header and the closing CTA.
- *
- * The scrim is decorative and hidden from assistive tech; the contrast it
- * produces is measured in the rendered composition, not assumed.
- *
- * The entrance is pure CSS (`hero-rise` in globals.css): it runs with or
- * without JavaScript, animates only opacity and transform, and is staggered per
- * block.
- *
- * The photograph is a plain full-bleed cover and carries no scroll choreography
- * of its own: its parallax was removed after measurement against a reference.
- * At rest it had painted the 1600x900 hero AVIF at 2016x1260 -- a 1.26x upscale
- * behind a 1.4x crop -- and then drifted at 0.32px per scroll px, while the
- * reference uses no parallax at all and only one-shot reveals.
- *
- * Size is fluid because the headline is a word stack and a line cannot wrap: the
- * widest line, "civil e industrial", measures ~10.06em in the shipped Montserrat
- * 600, so the clamp is capped to keep three lines from 320px up.
+ * The h1 is a word stack: one span per line, `whitespace-nowrap` so the widest
+ * line is the h1's min-content and a flex item cannot shrink below it, which
+ * keeps the line from wrapping when it shares the row with the description.
+ * The clamp floor is low enough that "Construcción industrial" (~12.9em in the
+ * shipped Montserrat 600) fits a 320px viewport.
  */
 export function Hero({ hero }: HeroProps) {
+  const scopeRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const scope = scopeRef.current;
+    if (!scope) return;
+
+    let cancelled = false;
+    let revert: (() => void) | undefined;
+
+    void import("./gsap-scenes")
+      .then(({ createHeroCarousel }) => {
+        if (cancelled) return;
+        revert = createHeroCarousel({ scope });
+      })
+      .catch(() => {
+        // A failed chunk is not a content failure: the first slide and all
+        // three titles are already in the server HTML and stay legible.
+      });
+
+    return () => {
+      cancelled = true;
+      revert?.();
+    };
+  }, []);
+
   return (
     <section
       id="hero"
+      ref={scopeRef}
       className="relative flex min-h-svh flex-col justify-end overflow-hidden bg-ink"
       style={{ marginTop: "calc(var(--chrome-h, 5.25rem) * -1)" }}
     >
       <div className="absolute inset-0 overflow-hidden bg-ink">
-        <Photo photo={hero.image} sizes="100vw" priority />
+        {hero.slides.map((slide, index) => (
+          <div
+            key={slide.photo.src}
+            data-hero-slide
+            className="absolute inset-0"
+            style={{
+              opacity: index === 0 ? 1 : 0,
+              zIndex: index === 0 ? 1 : 0,
+            }}
+          >
+            <Photo photo={slide.photo} sizes="100vw" priority={index === 0} />
+          </div>
+        ))}
       </div>
 
       <div className="hero-overlay absolute inset-0" aria-hidden="true" />
 
       <Container className="relative z-10 pt-32 pb-14 md:pb-20">
-        {/*
-          Two columns only from `lg`. The headline is a word stack and a line
-          must not wrap, so the left column needs room for "civil e industrial"
-          at ~10.06em; sharing the row with the description below 1024px breaks
-          that line and the sentence reads as five lines instead of three. The
-          description stacks under the headline until there is room for both.
-        */}
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
           <div className="flex flex-col items-start gap-4">
-            {/*
-              The kicker answers "where do these people work", which is the first
-              thing a visitor from outside Oaxaca needs. It deliberately does NOT
-              repeat site.claim ("Empresa 100% mexicana"): that badge already sits
-              in the utility bar directly above.
-            */}
             {hero.eyebrow ? (
               <p className="eyebrow hero-rise hero-rise-1 text-bone-100">
                 {hero.eyebrow}
               </p>
             ) : null}
 
-            {/*
-              The word stack: one line per entry, in a single h1. The spans are
-              `whitespace-nowrap` for a structural reason, not a cosmetic one:
-              it makes the widest line the h1's min-content, and a flex item
-              never shrinks below its min-content, so sharing this row with the
-              description can never break a line into two. Without it the title
-              silently became five lines at 1024px, because 34ch of Marcellus is
-              ~428px and the left column had to give ground.
-            */}
-            <h1 className="display hero-rise hero-rise-2 text-[clamp(1.5rem,4.5vw,3.5rem)] text-white">
-              {hero.headline.map((line) => (
-                <span key={line} className="block whitespace-nowrap">
-                  {line}
+            <h1 className="display hero-rise hero-rise-2 text-[clamp(1.25rem,4.5vw,3.5rem)] text-white">
+              {hero.slides.map((slide, index) => (
+                <span
+                  key={slide.title}
+                  data-hero-title
+                  className="block whitespace-nowrap"
+                  style={{ opacity: index === 0 ? 1 : 0.4 }}
+                >
+                  {slide.title}
                 </span>
               ))}
             </h1>
-
-            {hero.cta ? (
-              <Button
-                href={hero.cta.href}
-                variant="inverse"
-                external={hero.cta.href.startsWith("http")}
-                className="hero-rise hero-rise-3 mt-2 gap-2"
-              >
-                <Icon name="whatsapp" className="h-4 w-4" />
-                {hero.cta.label}
-              </Button>
-            ) : null}
           </div>
 
           <p className="voice hero-rise hero-rise-3 max-w-[34ch] text-sm leading-relaxed text-white/90 lg:text-right lg:text-base">
