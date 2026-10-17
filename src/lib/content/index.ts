@@ -7,12 +7,19 @@ import { differentiators } from "@/content/differentiators";
 import { testimonials } from "@/content/testimonials";
 import { masonrySlots } from "@/content/masonry";
 import {
+  aboutPageContent,
+  interiorsPageContent,
+  servicesPageContent,
+  sustainabilityPageContent,
+} from "@/content/pages";
+import {
   categoryLabels,
   featuredProjectDirs,
   projectContent,
 } from "@/content/projects";
 import {
   findManifestProject,
+  findPhotoByBase,
   getProjectCover,
   getProjectGallery,
   getProjectPhotoCount,
@@ -23,16 +30,21 @@ import {
 } from "./photos";
 import editorialDimensions from "@images/editorial/editorial.dimensions.json";
 import type {
+  AboutPageContent,
   CategoryTile,
   Differentiator,
+  DivisionCard,
   HomePage,
+  InteriorsPageContent,
   MasonryItem,
   Photo,
   ProcessStep,
   Project,
   SectionIntro,
   ServiceGroup,
+  ServicesPageContent,
   SiteConfig,
+  SustainabilityPageContent,
   Testimonial,
 } from "@/types/content";
 
@@ -43,10 +55,6 @@ import type {
  * results as props. That means introducing Payload CMS later is a change to
  * this file alone: every function below becomes an async read from Payload, the
  * return types stay identical, and no component or page needs to be touched.
- *
- * Functions are synchronous today because the content is local modules. Making
- * them async is the one signature change Payload will force, which is why pages
- * already `await` them where practical.
  */
 
 export function getSiteConfig(): SiteConfig {
@@ -71,14 +79,22 @@ const editorialDimensionsBySlug =
   editorialDimensions as unknown as EditorialDimensions;
 
 /**
- * The editorial (stock) image attached to each service, keyed by service slug.
- * An image whose dimensions were never ingested drops out rather than rendering
- * at a guessed size. These images are section texture only; they are not in the
- * manifest and cannot become a project.
+ * The photograph attached to each service, keyed by service slug.
+ *
+ * Prefers a real studio photograph from `manifest.json` when `ref.dir` and
+ * `ref.base` are configured, and falls back to the editorial sidecar when no
+ * studio photo exists for that service yet.
  */
 export function getEditorial(): Map<string, Photo> {
   const byService = new Map<string, Photo>();
   for (const ref of editorialRefs) {
+    if (ref.dir && ref.base) {
+      const studioPhoto = findPhotoByBase(ref.dir, ref.base, "", ref.alt);
+      if (studioPhoto) {
+        byService.set(ref.service, studioPhoto);
+        continue;
+      }
+    }
     const dimensions = editorialDimensionsBySlug[ref.slug];
     if (!dimensions) continue;
     byService.set(ref.service, {
@@ -92,9 +108,7 @@ export function getEditorial(): Map<string, Photo> {
 }
 
 /**
- * The catalogue with each service's section texture attached. The join happens
- * here, not in a component: the service and its image arrive as one view model,
- * and the seam stays the only reader of content.
+ * The catalogue with each service's photograph attached.
  */
 export function getServiceGroups(): ServiceGroup[] {
   const editorial = getEditorial();
@@ -124,9 +138,6 @@ function buildProject(dir: string): Project | null {
   const manifestProject = findManifestProject(dir);
   const cover = getProjectCover(dir, editorial?.title ?? "");
 
-  // A project needs both halves: editorial data for the story, a manifest entry
-  // for the photographs. Without a cover there is nothing to show, so skip it
-  // rather than render an empty card.
   if (!editorial || !manifestProject || !cover) return null;
 
   return {
@@ -145,18 +156,14 @@ function buildProject(dir: string): Project | null {
 
 /** Every project that has both editorial data and photographs, in pipeline order. */
 export function getProjects(): Project[] {
-  return (
-    Object.keys(projectContent)
-      .map(buildProject)
-      .filter((project): project is Project => project !== null)
-      // The pipeline's quality ranking lives in the manifest's `order`, not in
-      // the key order of projectContent.
-      .sort(
-        (a, b) =>
-          Number(findManifestProject(a.slug)?.order ?? 0) -
-          Number(findManifestProject(b.slug)?.order ?? 0),
-      )
-  );
+  return Object.keys(projectContent)
+    .sort(
+      (dirA, dirB) =>
+        Number(findManifestProject(dirA)?.order ?? 0) -
+        Number(findManifestProject(dirB)?.order ?? 0),
+    )
+    .map(buildProject)
+    .filter((project): project is Project => project !== null);
 }
 
 export function getProject(slug: string): Project | null {
@@ -173,8 +180,8 @@ export function getFeaturedProjects(): Project[] {
     .filter((project): project is Project => project !== null);
 }
 
-/** The number the brief's §0 decision fixes for the leading portfolio row. */
-const FEATURED_COUNT = 3;
+/** Four flagship projects lead the landing showcase (`[01] / [04]`). */
+const FEATURED_COUNT = 4;
 
 /** A project's display title, for the alt text the manifest cannot supply. */
 function projectTitle(dir: string): string {
@@ -182,9 +189,8 @@ function projectTitle(dir: string): string {
 }
 
 /**
- * The landing's portfolio, split into the three the brief ranks first and the
- * row under them. Split here rather than in a component so no project can end
- * up in both rows, and so the page can hand two plain arrays down.
+ * The landing's portfolio, split into the four flagship projects and the
+ * continuation grid under them.
  */
 export function getLandingPortfolio(): {
   featured: Project[];
@@ -198,25 +204,38 @@ export function getLandingPortfolio(): {
 }
 
 /**
+ * The four vertical division cards on the landing page (Thirdway expandable
+ * card pattern).
+ */
+export function getDivisionCards(): DivisionCard[] {
+  return home.divisions
+    .map((item) => {
+      const photo =
+        findPhotoByBase(item.dir, item.base, item.title) ??
+        getProjectCover(item.dir, item.title);
+      if (!photo) return null;
+      return {
+        number: item.number,
+        title: item.title,
+        subtitle: item.subtitle,
+        description: item.description,
+        href: item.href,
+        photo,
+      };
+    })
+    .filter((card): card is DivisionCard => card !== null);
+}
+
+/**
  * The category tiles below the hero.
- *
- * The label is the authored category label and the photograph is the mapped
- * project's best landscape shot, so the tile restates neither a string nor a
- * path. A mapping whose project has no publishable photograph drops out rather
- * than rendering an empty tile.
- *
- * The band chooses after the rest of the page has claimed its photographs,
- * because a landing that shows one file twice is showing fewer photographs than
- * it says it is. That is not hypothetical here: the one project in the band
- * with no landscape shot used to fall back to its cover, which its own card in
- * the row below was already showing. The project now contributes its next
- * available shot instead, and a tile only drops out when its project has
- * nothing left to give.
  */
 export function getTiles(): CategoryTile[] {
   const { featured, remaining } = getLandingPortfolio();
+  const divisions = getDivisionCards();
   const claimed = new Set<string>([
     ...home.hero.slides.map((slide) => slide.photo.src),
+    ...(home.intro.photo ? [home.intro.photo.src] : []),
+    ...divisions.map((card) => card.photo.src),
     ...featured.flatMap((project) => project.gallery.map((photo) => photo.src)),
     ...remaining.flatMap((project) =>
       project.gallery.map((photo) => photo.src),
@@ -246,8 +265,7 @@ export function getTiles(): CategoryTile[] {
 
 /**
  * The masonry's photographs: the strongest images the archive holds across
- * projects, in the wall's authored order. See `src/content/masonry.ts` for the
- * order and why the double cells are where they are.
+ * projects, in the wall's authored order.
  */
 export function getMasonry(): MasonryItem[] {
   return masonryPhotos(masonrySlots, projectTitle).map((entry) => ({
@@ -259,11 +277,18 @@ export function getMasonry(): MasonryItem[] {
 /** Every photograph the landing already shows, by src. */
 function landingSources(): Set<string> {
   const { featured, remaining } = getLandingPortfolio();
+  const groups = getServiceGroups();
+  const divisions = getDivisionCards();
   return new Set([
     ...home.hero.slides.map((slide) => slide.photo.src),
+    ...(home.intro.photo ? [home.intro.photo.src] : []),
+    ...divisions.map((card) => card.photo.src),
     ...featured.flatMap((project) => project.gallery.map((photo) => photo.src)),
     ...remaining.flatMap((project) =>
       project.gallery.map((photo) => photo.src),
+    ),
+    ...groups.flatMap((g) =>
+      g.services.flatMap((s) => (s.image ? [s.image.src] : [])),
     ),
     ...getTiles().map((tile) => tile.photo.src),
     ...getMasonry().map((item) => item.photo.src),
@@ -272,8 +297,7 @@ function landingSources(): Set<string> {
 
 /**
  * The second full-bleed moment's photograph: the strongest landscape image the
- * page is not already showing. Selecting it against what is already on the page
- * is what keeps the band an addition rather than a repeat.
+ * page is not already showing.
  */
 export function getMomentPhoto(): Photo | null {
   return (
@@ -295,8 +319,7 @@ export function getClosing(): HomePage["closing"] {
 }
 
 /**
- * The landing view model. Section intros live in src/content/home.ts while their
- * items live in list files, so this is where the two halves are joined.
+ * The landing view model.
  */
 export function getHomePage(): HomePage {
   return {
@@ -305,3 +328,153 @@ export function getHomePage(): HomePage {
     testimonials: { ...home.testimonials, items: testimonials },
   };
 }
+
+/* ---------- dedicated routes ---------- */
+
+export function getInteriorsPage(): InteriorsPageContent {
+  const heroPhoto =
+    findPhotoByBase(
+      interiorsPageContent.hero.dir,
+      interiorsPageContent.hero.base,
+      "Arquitectura de interiores",
+    ) ??
+    getProjectCover(interiorsPageContent.hero.dir, "Arquitectura de interiores")!;
+
+  return {
+    hero: {
+      eyebrow: interiorsPageContent.hero.eyebrow,
+      heading: interiorsPageContent.hero.heading,
+      subheadline: interiorsPageContent.hero.subheadline,
+      photo: heroPhoto,
+    },
+    cosentino: interiorsPageContent.cosentino,
+    interiorsGalleryIntro: interiorsPageContent.interiorsGalleryIntro,
+    interiorsPhotos: getProjectPhotos(
+      "arquitectura-interiores",
+      "Arquitectura de interiores Casa Alta",
+    ).filter((p) => p.src !== heroPhoto.src),
+    lifestyleIntro: interiorsPageContent.lifestyleIntro,
+    lifestylePhotos: getProjectPhotos(
+      "modelos-mujeres",
+      "Showroom de cocinas e interiorismo Casa Alta",
+    ),
+  };
+}
+
+export function getSustainabilityPage(): SustainabilityPageContent {
+  const heroPhoto =
+    findPhotoByBase(
+      sustainabilityPageContent.hero.dir,
+      sustainabilityPageContent.hero.base,
+      "Construcción sustentable",
+    ) ??
+    getProjectCover(
+      sustainabilityPageContent.hero.dir,
+      "Construcción sustentable",
+    )!;
+
+  return {
+    hero: {
+      eyebrow: sustainabilityPageContent.hero.eyebrow,
+      heading: sustainabilityPageContent.hero.heading,
+      subheadline: sustainabilityPageContent.hero.subheadline,
+      photo: heroPhoto,
+    },
+    narrative: sustainabilityPageContent.narrative,
+    pillars: sustainabilityPageContent.pillars,
+    bioclimaticGalleryIntro: sustainabilityPageContent.bioclimaticGalleryIntro,
+    bioclimaticPhotos: getProjectPhotos(
+      "arquitectura-sostenible",
+      "Arquitectura sostenible Casa Alta",
+    ).filter((p) => p.src !== heroPhoto.src),
+    enduringGalleryIntro: sustainabilityPageContent.enduringGalleryIntro,
+    enduringPhotos: getProjectPhotos(
+      "arquitectura-que-perdura",
+      "Arquitectura que perdura Casa Alta",
+    ),
+  };
+}
+
+export function getAboutPage(): AboutPageContent {
+  const heroPhoto =
+    findPhotoByBase(
+      aboutPageContent.hero.dir,
+      aboutPageContent.hero.base,
+      "Credibilidad y supervisión en obra",
+    ) ??
+    getProjectCover(aboutPageContent.hero.dir, "Supervisión Casa Alta")!;
+
+  return {
+    hero: {
+      eyebrow: aboutPageContent.hero.eyebrow,
+      heading: aboutPageContent.hero.heading,
+      subheadline: aboutPageContent.hero.subheadline,
+      photo: heroPhoto,
+    },
+    story: aboutPageContent.story,
+    credibilityIntro: aboutPageContent.credibilityIntro,
+    credibilityHighlights: aboutPageContent.credibilityHighlights,
+    credibilityPhotos: getProjectPhotos(
+      "credibilidad",
+      "Equipo y supervisión Casa Alta",
+    ).filter((p) => p.src !== heroPhoto.src),
+    enduringIntro: aboutPageContent.enduringIntro,
+    enduringPhotos: getProjectPhotos(
+      "arquitectura-que-perdura",
+      "Arquitectura que perdura Casa Alta",
+    ).slice(0, 8),
+  };
+}
+
+export function getServicesPage(): ServicesPageContent {
+  const heroPhoto =
+    findPhotoByBase(
+      servicesPageContent.hero.dir,
+      servicesPageContent.hero.base,
+      "Ingeniería civil y construcción",
+    ) ??
+    getProjectCover(servicesPageContent.hero.dir, "Ingeniería civil Casa Alta")!;
+
+  // Track used photos on the services page so specialty galleries don't duplicate
+  // the hero or the service catalogue cards.
+  const used = new Set<string>([
+    heroPhoto.src,
+    ...getServiceGroups().flatMap((g) =>
+      g.services.flatMap((s) => (s.image ? [s.image.src] : [])),
+    ),
+  ]);
+
+  return {
+    hero: {
+      eyebrow: servicesPageContent.hero.eyebrow,
+      heading: servicesPageContent.hero.heading,
+      subheadline: servicesPageContent.hero.subheadline,
+      photo: heroPhoto,
+    },
+    intro: servicesPageContent.intro,
+    specialties: {
+      eyebrow: servicesPageContent.specialties.eyebrow,
+      heading: servicesPageContent.specialties.heading,
+      body: servicesPageContent.specialties.body,
+      sections: servicesPageContent.specialties.sections.map((section) => {
+        const allPhotos = getProjectPhotos(section.dir, section.title);
+        const filtered = allPhotos.filter((p) => !used.has(p.src));
+        const selected = (filtered.length > 0 ? filtered : allPhotos).slice(
+          0,
+          section.maxPhotos,
+        );
+        for (const p of selected) used.add(p.src);
+        return {
+          slug: section.slug,
+          number: section.number,
+          title: section.title,
+          subtitle: section.subtitle,
+          description: section.description,
+          deliverables: section.deliverables,
+          photos: selected,
+        };
+      }),
+    },
+  };
+}
+

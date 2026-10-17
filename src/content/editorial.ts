@@ -16,45 +16,65 @@ export interface EditorialRef {
   service: string;
   /** The image slug, i.e. the directory name under `images/editorial/`. */
   slug: string;
-  /** Authored alt text. Never describes the image as the studio's work. */
+  /** Authored alt text. */
   alt: string;
+  /**
+   * Optional manifest directory and photo base when the studio's own archive
+   * now provides a real photograph for this service (`images-optimizado/`).
+   */
+  dir?: string;
+  base?: string;
 }
 
 export const editorialRefs: EditorialRef[] = [
   {
     service: "proyectos-arquitectonicos-integrales",
     slug: "servicios-proyecto-planos-arquitectonicos",
-    alt: "Planos arquitectónicos y herramientas de dibujo sobre una mesa de trabajo",
+    dir: "proyectos-integrales",
+    base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
+    alt: "Dos arquitectos de Casa Alta trabajando y haciendo anotaciones sobre planos ejecutivos en mesa de juntas de madera",
   },
   {
     service: "arquitectura-interior",
     slug: "servicios-arquitectura-interior-cocina",
-    alt: "Cocina contemporánea con isla de mármol y mobiliario a medida",
+    dir: "arquitectura-interiores",
+    base: "03-cocina-comedor-muro-terracota-techo-bambu-isla",
+    alt: "Cocina y comedor de diseño con isla monolítica en piedra de importación, mesa de madera, muro terracota y cubierta de bambú",
   },
   {
     service: "proyectos-eco-sustentables",
     slug: "servicios-eco-sustentables-paneles-solares",
-    alt: "Paneles solares instalados sobre una cubierta, vistos desde el aire",
+    dir: "arquitectura-sostenible",
+    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
+    alt: "Arquitectura bioclimática en tonos tierra con amplios vanos para ventilación cruzada, terraza sombreada y alberca",
   },
   {
     service: "construccion-habitacional",
     slug: "servicios-construccion-estructura-gruas",
-    alt: "Estructura de concreto en construcción junto a una grúa torre",
+    dir: "remodelacion",
+    base: "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
+    alt: "Residencia de dos niveles con fachada blanca contemporánea, balcones y amplios ventanales",
   },
   {
     service: "construccion-comercial-industrial",
     slug: "servicios-construccion-comercial-nave-industrial",
-    alt: "Fachada de una nave industrial con accesos y patio de maniobras",
+    dir: "naves-industriales",
+    base: "01-maniobra-gruas-izado-muros-prefabricados-concreto",
+    alt: "Dos grúas realizando maniobra de izado y montaje de muros prefabricados de concreto de gran altura para nave industrial",
   },
   {
     service: "construccion-y-obra-civil",
     slug: "servicios-obra-civil-asfalto",
-    alt: "Aplicación de asfalto caliente durante la pavimentación de una vialidad",
+    dir: "obra-civil",
+    base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+    alt: "Panorámica de construcción de puente vehicular de concreto sobre el cauce de un río operando con dos grúas",
   },
   {
     service: "presforzado-y-estructura-metalica",
     slug: "servicios-estructura-metalica-trabes",
-    alt: "Trabes de acero de una estructura metálica vistas a contraluz",
+    dir: "obra-civil",
+    base: "11-conjunto-porticos-columnas-trabes-prefabricadas-obra",
+    alt: "Vista general de pórticos estructurales armados con columnas y trabes prefabricadas de concreto presforzado",
   },
   {
     service: "espacios-publicos-y-deportivos",
@@ -69,12 +89,16 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "landscape",
     slug: "servicios-landscape-sendero-jardin",
-    alt: "Sendero entre áreas verdes y palmeras en un jardín",
+    dir: "arquitectura-sostenible",
+    base: "02-jardines-nativos-alberca-cubiertas-palma-natural",
+    alt: "Integración de vegetación nativa, espejo de agua y cubiertas de palma natural en jardín costero",
   },
   {
     service: "albercas-y-espacios-exteriores",
     slug: "servicios-albercas-villa-exterior",
-    alt: "Alberca de una villa moderna con área de descanso exterior",
+    dir: "arquitectura-que-perdura",
+    base: "09-alberca-central-reflejos-edificio-chukum-palmeras",
+    alt: "Perspectiva frontal de alberca central reflejando las palmeras y la arquitectura en acabado chukum natural",
   },
   {
     service: "instalaciones-electricas",
@@ -87,3 +111,4 @@ export const editorialRefs: EditorialRef[] = [
     alt: "Vista aérea de tanques circulares de sedimentación de agua",
   },
 ];
+

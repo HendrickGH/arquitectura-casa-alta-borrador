@@ -114,6 +114,11 @@ export type ProjectCategory =
   | "espacios-publicos"
   | "interiorismo";
 
+export interface ProjectSpec {
+  label: string;
+  value: string;
+}
+
 export interface Project {
   /** Clean public slug, with the pipeline's numeric prefix stripped. */
   slug: string;
@@ -125,6 +130,10 @@ export interface Project {
   year: string;
   summary: string;
   story: string;
+  /** Optional multi-paragraph verbatim narrative (e.g. Casa Charco Seco). */
+  paragraphs?: string[];
+  /** Optional technical specifications for the project sheet. */
+  specs?: ProjectSpec[];
   outcome: string;
   cover: Photo;
   /**
@@ -153,6 +162,8 @@ export interface ProcessStep {
   order: number;
   title: string;
   description: string;
+  /** Optional concrete deliverables or guarantees for this stage. */
+  deliverables?: string[];
 }
 
 export interface Differentiator {
@@ -246,6 +257,12 @@ export interface SectionIntro {
   eyebrow: string;
   heading: string;
   body: string;
+  /** Optional additional paragraphs for extended editorial introductions. */
+  paragraphs?: string[];
+  /** Optional featured photograph displayed alongside the introduction. */
+  photo?: Photo;
+  /** Optional caption for the featured introduction photograph. */
+  photoCaption?: string;
 }
 
 /* ---------- landing composition ---------- */
@@ -273,6 +290,30 @@ export interface CategoryTile {
   photo: Photo;
 }
 
+/**
+ * Authored content for a studio division card on the landing page (Thirdway
+ * vertical expandable card pattern).
+ */
+export interface DivisionCardContent {
+  number: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  href: string;
+  dir: string;
+  base: string;
+}
+
+/** Rendered division card with resolved manifest photo. */
+export interface DivisionCard {
+  number: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  href: string;
+  photo: Photo;
+}
+
 /** One photograph of the masonry, with the project it was drawn from. */
 export interface MasonryItem {
   photo: Photo;
@@ -293,9 +334,13 @@ export interface MasonrySlot {
 export interface HomePage {
   hero: HeroContent;
   stats: Stat[];
-  /** The client's mission sentence, verbatim: the breath after the tiles. */
+  /** The architect's philosophical quote on the landing page. */
   manifesto: string;
+  /** The studio's mission statement from the brief. */
+  mission: string;
   tiles: CategoryTileContent[];
+  divisionsIntro: SectionIntro;
+  divisions: DivisionCardContent[];
   intro: SectionIntro;
   services: SectionIntro;
   projects: SectionIntro;
@@ -310,3 +355,103 @@ export interface HomePage {
   /** The landing's contact form copy, rendered by ContactForm. */
   contact: ContactFormContent;
 }
+
+/* ---------- dedicated pages ---------- */
+
+export interface ThematicPillar {
+  number: string;
+  title: string;
+  description: string;
+  items?: string[];
+}
+
+export interface InteriorsPageContent {
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheadline: string;
+    photo: Photo;
+  };
+  cosentino: {
+    eyebrow: string;
+    heading: string;
+    /** Verbatim client claim for Cosentino / imported residential materials. */
+    claim: string;
+    body: string;
+    badges: string[];
+    pillars: ThematicPillar[];
+  };
+  interiorsGalleryIntro: SectionIntro;
+  interiorsPhotos: Photo[];
+  lifestyleIntro: SectionIntro;
+  lifestylePhotos: Photo[];
+}
+
+export interface SustainabilityPageContent {
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheadline: string;
+    photo: Photo;
+  };
+  narrative: {
+    eyebrow: string;
+    heading: string;
+    /** Verbatim tropical climate & thermal/acoustic narrative from the client. */
+    verbatimQuote: string;
+    paragraphs: string[];
+  };
+  pillars: ThematicPillar[];
+  bioclimaticGalleryIntro: SectionIntro;
+  bioclimaticPhotos: Photo[];
+  enduringGalleryIntro: SectionIntro;
+  enduringPhotos: Photo[];
+}
+
+export interface AboutPageContent {
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheadline: string;
+    photo: Photo;
+  };
+  story: {
+    eyebrow: string;
+    heading: string;
+    paragraphs: string[];
+    missionTitle: string;
+    mission: string;
+    visionTitle: string;
+    vision: string;
+  };
+  credibilityIntro: SectionIntro;
+  credibilityHighlights: ThematicPillar[];
+  credibilityPhotos: Photo[];
+  enduringIntro: SectionIntro;
+  enduringPhotos: Photo[];
+}
+
+export interface ServicesPageContent {
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheadline: string;
+    photo: Photo;
+  };
+  intro: SectionIntro;
+  specialties: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    sections: {
+      slug: string;
+      number: string;
+      title: string;
+      subtitle: string;
+      description: string;
+      deliverables: string[];
+      photos: Photo[];
+    }[];
+  };
+}
+

@@ -33,13 +33,14 @@ export const site = {
   nav: [
     { label: "Inicio", href: "/" },
     { label: "Proyectos", href: "/proyectos" },
-    { label: "Servicios", href: "/#servicios" },
-    { label: "Nosotros", href: "/#nosotros" },
-    { label: "Proceso", href: "/#proceso" },
-    { label: "Contacto", href: "/#contacto" },
+    { label: "Servicios", href: "/servicios" },
+    { label: "Interiores", href: "/arquitectura-interiores" },
+    { label: "Sustentable", href: "/construccion-sustentable" },
+    { label: "Nosotros", href: "/nosotros" },
+    { label: "Contacto", href: "/contacto" },
   ],
 
-  cta: { label: "Contacto", href: "/#contacto" },
+  cta: { label: "Contacto", href: "/contacto" },
 
   // The persistent floating button every page carries. It replaced the hero's
   // own WhatsApp CTA; the label is its accessible name.
@@ -69,10 +70,6 @@ export const site = {
     { city: "Salina Cruz", region: "Oaxaca" },
   ],
 
-  // The Facebook handle arrived after the brief; TikTok was never supplied and
-  // stays with an empty href so the layout is already correct -- the footer
-  // skips blank ones rather than rendering a dead link. WhatsApp rides here too:
-  // it is the studio's primary contact channel, so it sits beside the profiles.
   social: [
     {
       label: "Instagram",
@@ -84,7 +81,11 @@ export const site = {
       href: "https://www.facebook.com/arquitecturacasaalta",
       icon: "facebook",
     },
+    {
+      label: "TikTok",
+      href: "https://www.tiktok.com/@arquitecturacasaalta",
+      icon: "tiktok",
+    },
     { label: "WhatsApp", href: whatsappHref, icon: "whatsapp" },
-    { label: "TikTok", href: "", icon: "tiktok" },
   ],
 } satisfies SiteConfig;

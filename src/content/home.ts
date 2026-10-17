@@ -1,5 +1,6 @@
 import type {
   CategoryTileContent,
+  DivisionCardContent,
   HomePage,
   Photo,
   Stat,
@@ -14,26 +15,32 @@ const heroImage: Photo = {
   height: 900,
 };
 
-/** Civil works: the crane hoisting a precast column in the columns project. */
+/** Civil works: heavy crane hoisting a precast structural concrete frame. */
 const civilImage: Photo = {
-  src: "/images/11-columnas-c1-c2/01-izado-columna-grua-jacaranda.avif",
-  alt: "Grúa izando una columna prefabricada de concreto junto a un jacarandá en flor, en una obra civil al borde de la carretera",
-  width: 1600,
-  height: 1200,
+  src: "/images/obra-civil/05-montaje-pieza-especial-concreto-estructura-puente.avif",
+  alt: "Maniobra de izado con grúa de elemento prefabricado de concreto sobre superestructura de puente bajo cielo despejado",
+  width: 1280,
+  height: 960,
 };
 
-/** Industrial works: a concrete mixer over fresh pavement. */
-const industrialImage: Photo = {
-  src: "/images/14-pavimentacion/01-revolvedora-concreto-sobre-pavimento.avif",
-  alt: "Revolvedora de concreto sobre el pavimento recién tendido, bajo un cielo con nubes",
-  width: 2000,
-  height: 1500,
+/** Sustainable coastal construction: palm roofs facing the Pacific in Punta Zicatela. */
+const sustainableImage: Photo = {
+  src: "/images/02-el-bicho/58-toma-aerea-posterior-techos-palma-mar.avif",
+  alt: "Vista aérea posterior de las cubiertas de palma natural frente al océano Pacífico en Punta Zicatela, Puerto Escondido",
+  width: 1280,
+  height: 720,
+};
+
+/** Full-color aerial reference photo of Punta Zicatela placed after Quiénes somos (PDF p. 2). */
+const introAerialPhoto: Photo = {
+  src: "/images/02-el-bicho/57-panoramica-aerea-conjunto-costero-zicatela.avif",
+  alt: "Panorámica aérea a color del conjunto arquitectónico con cubiertas de palma en Punta Zicatela, Puerto Escondido, con la costa y las montañas de Oaxaca al fondo",
+  width: 1280,
+  height: 720,
 };
 
 /**
- * Figures the client supplied directly. Left exactly as given -- notably 100%
- * for on-time delivery, which is a claim about their whole history and should
- * be re-confirmed before it goes to print.
+ * Figures the client supplied directly.
  */
 const stats: Stat[] = [
   { value: "2016", label: "Construyendo desde" },
@@ -42,17 +49,6 @@ const stats: Stat[] = [
   { value: "100%", label: "Entregas cumplidas" },
 ];
 
-/**
- * The four categories the tiles show, each illustrated by one project that has
- * the work for it. Only the mapping is authored here: the label comes from
- * `categoryLabels` in projects.ts and the photograph from the manifest, so the
- * tile renders whatever the archive holds for that project.
- *
- * Four, not seven: `industrial` has no project, `interiorismo` is not a
- * published project type, and Espacio público is a single project whose
- * category is better stated by the Capilla than by a tile. The four that
- * remain are the ones the studio's own portfolios are grouped under.
- */
 const tiles: CategoryTileContent[] = [
   {
     category: "habitacional",
@@ -76,70 +72,118 @@ const tiles: CategoryTileContent[] = [
   },
 ];
 
-/**
- * Landing copy. Formal register (usted), short sentences, warm rather than
- * aspirational, per the brief's tone rules. The brand's own line --
- * "Arquitectura que perdura", already in the logo -- is the through-line.
- */
+const divisions: DivisionCardContent[] = [
+  {
+    number: "01",
+    title: "Arquitectura Residencial y Turística",
+    subtitle: "Vivienda · Hotelería · Airbnb",
+    description:
+      "Proyectos ejecutivos y construcción integral de casas de descanso, villas costeras y desarrollos multifamiliares pensados para la plusvalía y el clima de Oaxaca.",
+    href: "/proyectos",
+    dir: "arquitectura-que-perdura",
+    base: "05-volumen-tres-niveles-chukum-remate-palapa",
+  },
+  {
+    number: "02",
+    title: "Ingeniería y Obra Civil",
+    subtitle: "Estructuras · Puentes · Naves",
+    description:
+      "Concreto armado y presforzado, montaje con grúas de gran capacidad, puentes vehiculares y peatonales, pavimentación hidráulica y naves industriales.",
+    href: "/servicios",
+    dir: "obra-civil",
+    base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
+  },
+  {
+    number: "03",
+    title: "Arquitectura de Interiores / Cosentino",
+    subtitle: "Materiales de Importación · Cocinas",
+    description:
+      "Materiales de importación para proyectos residenciales con instalación certificada y garantizada: islas monolíticas, cuarzo, piedra sinterizada y carpintería a medida.",
+    href: "/arquitectura-interiores",
+    dir: "arquitectura-interiores",
+    base: "01-isla-cocina-piedra-parrilla-horno-muro-terracota",
+  },
+  {
+    number: "04",
+    title: "Construcción Sustentable",
+    subtitle: "Bioclimática · Confort Térmico",
+    description:
+      "Arquitectura para clima tropical que optimiza la carga térmica y acústica mediante vientos cruzados, celosías, chukum, palma natural y energías limpias.",
+    href: "/construccion-sustentable",
+    dir: "arquitectura-sostenible",
+    base: "05-materiales-locales-chukum-madera-palapa-costera",
+  },
+];
+
 export const home: HomePage = {
   hero: {
-    // Names the studio's actual offices plus the capital, instead of the broad
-    // geographic list of the sierra, costa, istmo and centro.
     eyebrow: "Puerto Escondido, Oaxaca centro y Salina Cruz",
-    // One line per discipline, one photograph each: the carousel highlights the
-    // line whose image is active.
     slides: [
       { title: "Arquitectura", photo: heroImage },
-      { title: "Construcción civil", photo: civilImage },
-      { title: "Construcción industrial", photo: industrialImage },
+      { title: "Ingeniería y obra civil", photo: civilImage },
+      { title: "Construcción sustentable", photo: sustainableImage },
     ],
     subheadline:
-      "Proyectos de ingeniería civil y proyectos ejecutivos arquitectónicos.",
-    // White chrome over the hero's dark overlay; the header goes white once the
-    // hero leaves the viewport. Measured against the rendered composition.
+      "Proyectos ejecutivos de arquitectura residencial e ingeniería civil.",
     chrome: { tone: "canvas" },
   },
 
   stats,
 
-  // The client's own sentence from §2 of the brief ("Misión o propósito"),
-  // verbatim, rendered nowhere until now. It replaced §7's "Arquitectura y
-  // construcción que perdura" as the page's emotional line: that one restates
-  // the logo's tagline, already in site.ts and repeated in the intro below.
+  // The architect's philosophical statement from the client brief (PDF p. 4).
   manifesto:
+    "La arquitectura es el medio de expresión donde se crea el espacio íntimo que envuelve al ser para su desarrollo.",
+
+  // The studio's mission statement from the client brief.
+  mission:
     "Ser una empresa que solucione todas las soluciones constructivas y dar función y carácter a cada proyecto que llega a nuestras manos.",
 
   tiles,
 
+  divisionsIntro: {
+    eyebrow: "Divisiones especializadas",
+    heading: "Cuatro frentes bajo una misma firma",
+    body: "Integramos diseño arquitectónico, ingeniería pesada, interiorismo certificado y bioclimática tropical para resolver su proyecto de principio a fin sin intermediarios.",
+  },
+
+  divisions,
+
   intro: {
     eyebrow: "Quiénes somos",
-    heading: "Arquitectura que perdura",
-    body: "Somos una constructora oaxaqueña dedicada a resolver todas las necesidades constructivas de un proyecto, desde los sistemas más vanguardistas hasta la construcción tradicional. Trabajamos con proyectos residenciales, comerciales e industriales, y con obra civil. Cada proyecto que llega a nuestras manos recibe una solución pensada para él: función, carácter y un resultado que se sostiene en el tiempo.",
+    heading: "CASA ALTA · Arquitectura que perdura",
+    body: "Somos una constructora oaxaqueña dedicada a resolver todas las necesidades constructivas de un proyecto, desde los sistemas más vanguardistas hasta la construcción tradicional. Trabajamos con proyectos residenciales, comerciales e industriales, y con obra civil.",
+    paragraphs: [
+      "Cada proyecto que llega a nuestras manos recibe una solución pensada para él: cálculo estructural, selección de materiales según el clima real de la costa, la sierra o el valle, y un resultado que se sostiene en el tiempo.",
+      "Nuestra misión es dar función, carácter y certeza técnica y legal a cada espacio que construimos, respaldando su patrimonio desde el primer trazo hasta la garantía post-entrega.",
+    ],
+    photo: introAerialPhoto,
+    photoCaption:
+      "Conjunto arquitectónico en Punta Zicatela, Puerto Escondido — Vista aérea en su versión original a color.",
   },
 
   services: {
-    eyebrow: "Servicios",
-    heading: "Lo que construimos",
-    body: "No todos los proyectos se resuelven con el mismo sistema. Estos son los frentes en los que trabajamos y las soluciones que ofrecemos en cada uno.",
+    eyebrow: "Catálogo de servicios",
+    heading: "Soluciones constructivas e ingeniería",
+    body: "No todos los proyectos se resuelven con el mismo sistema. Validamos cada partida con cálculo estructural y ejecutamos con personal y maquinaria propia en todo Oaxaca.",
   },
 
   projects: {
-    eyebrow: "Proyectos",
+    eyebrow: "Portafolio seleccionado",
     heading: "Obra construida",
-    body: "Una selección de lo que hemos entregado en Oaxaca. Cada proyecto tiene su propia lógica, su propio terreno y su propio clima.",
+    body: "Una selección de lo que hemos proyectado y entregado en Oaxaca. Cada obra responde a su propio terreno, a su clima y al propósito de quien la habita.",
   },
 
   process: {
-    eyebrow: "Proceso",
+    eyebrow: "Metodología Casa Alta",
     heading: "Cómo trabajamos",
-    body: "Empezamos por escucharlo. De ahí sale un alcance, un presupuesto y un tiempo que después cumplimos.",
+    body: "Empezamos por escucharlo sin costo. De ahí nace un paquete ejecutivo completo, certeza legal por contrato, supervisión permanente en obra y garantía por escrito.",
   },
 
   differentiators: {
     intro: {
       eyebrow: "Por qué Casa Alta",
       heading: "Decisiones que se sostienen",
-      body: "La diferencia no está en lo que prometemos, sino en cómo decidimos cada partida de la obra.",
+      body: "La diferencia no está en lo que prometemos, sino en cómo calculamos, supervisamos y respaldamos cada partida de la obra.",
     },
     items: [],
   },
@@ -156,29 +200,27 @@ export const home: HomePage = {
   closing: {
     heading: "Construir con Casa Alta es sencillo",
     body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
-    cta: { label: "Contacto", href: whatsappHref },
+    cta: { label: "Agendar primera reunión", href: whatsappHref },
   },
 
-  // The form replaced the closing block as the contact section. The closing
-  // copy now rides on the full-bleed photograph above it; this is the working
-  // section a visitor lands on from the header's Contacto link.
   contact: {
-    eyebrow: "Contacto",
+    eyebrow: "Contacto directo",
     heading: "Cuéntenos su proyecto",
-    body: "Déjenos sus datos y le responderemos por correo. Si prefiere una respuesta inmediata, escríbanos por WhatsApp.",
-    name: { label: "Nombre", placeholder: "Su nombre" },
-    email: { label: "Correo", placeholder: "nombre@correo.com" },
-    phone: { label: "Teléfono", placeholder: "951 000 0000" },
+    body: "Agende su primera reunión sin costo por Zoom o en nuestras oficinas de Puerto Escondido y Salina Cruz. Si prefiere atención inmediata, escríbanos por WhatsApp.",
+    name: { label: "Nombre", placeholder: "Su nombre completo" },
+    email: { label: "Correo electrónico", placeholder: "nombre@correo.com" },
+    phone: { label: "Teléfono / WhatsApp", placeholder: "951 000 0000" },
     message: {
-      label: "Mensaje",
+      label: "Sobre su proyecto",
       placeholder:
-        "Cuéntenos qué quiere construir, dónde y para cuándo lo necesita.",
+        "Cuéntenos qué desea construir o remodelar, en qué localidad y para cuándo lo proyecta.",
     },
     submit: "Enviar mensaje",
     sending: "Enviando…",
     success: "Gracias. Recibimos su mensaje y le responderemos a la brevedad.",
     error:
-      "No pudimos enviar el mensaje. Intente de nuevo o escríbanos por WhatsApp.",
+      "No pudimos enviar el mensaje. Intente de nuevo o escríbanos directamente por WhatsApp.",
     whatsapp: "Escribir por WhatsApp",
   },
 };
+

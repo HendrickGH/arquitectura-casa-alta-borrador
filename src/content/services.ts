@@ -34,18 +34,18 @@ export const serviceGroups: ServiceGroup[] = [
       },
       {
         slug: "arquitectura-interior",
-        title: "Arquitectura interior",
+        title: "Arquitectura de interiores / Cosentino",
         summary:
-          "Interiorismo y mobiliario a medida, con materiales premium y acabados de importación. Espacios que se sienten terminados desde el primer día.",
+          "Materiales de importación para proyectos residenciales, instalación certificada y garantizada. Interiorismo integral y mobiliario a medida que entregan espacios terminados desde el primer día.",
         items: [
-          "Interiorismo integral",
-          "Cocinas premium",
-          "Closets y vestidores",
-          "Mobiliario sobre diseño",
-          "Fachadas en porcelánico y cuarzo",
-          "Pisos y recubrimientos en porcelánico",
-          "Puertas residenciales",
-          "Materiales premium",
+          "Materiales de importación Cosentino (Dekton, Silestone, Sensa)",
+          "Instalación certificada y garantizada",
+          "Cocinas residenciales premium e islas monolíticas",
+          "Closets, vestidores y mobiliario sobre diseño",
+          "Fachadas y cubiertas en porcelánico, piedra sinterizada y cuarzo",
+          "Pisos, baños y recubrimientos de gran formato",
+          "Puertas residenciales y carpintería arquitectónica",
+          "Iluminación arquitectónica e interiorismo integral",
         ],
       },
       {

@@ -113,6 +113,24 @@ export function findManifestProject(dir: string) {
 }
 
 /**
+ * Resolves a single manifest photograph by its directory and `base` slug.
+ * Optionally overrides the alt text when an editorial description is provided.
+ */
+export function findPhotoByBase(
+  dir: string,
+  base: string,
+  projectTitle = "",
+  customAlt?: string,
+): Photo | null {
+  const project = findManifestProject(dir);
+  const entry = project?.photos.find((photo) => photo.base === base);
+  if (!project || !entry || entry.score < SCORE_FLOOR) return null;
+  const resolved = toPhoto(dir, entry, projectTitle);
+  return customAlt ? { ...resolved, alt: customAlt } : resolved;
+}
+
+
+/**
  * Photos for a project, best first.
  *
  * Ordered by the manifest's own `order`, which is the human quality ranking.
