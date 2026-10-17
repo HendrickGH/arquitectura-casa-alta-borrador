@@ -1,4 +1,14 @@
 {
+  "hero/maniobra-gruas-nave-industrial-prefabricados": [
+    [480, "maniobra-gruas-nave-industrial-prefabricados-480.avif"],
+    [960, "maniobra-gruas-nave-industrial-prefabricados-960.avif"],
+    [1280, "maniobra-gruas-nave-industrial-prefabricados.avif"]
+  ],
+  "hero/montaje-estructura-puente-grua-obra-civil": [
+    [480, "montaje-estructura-puente-grua-obra-civil-480.avif"],
+    [960, "montaje-estructura-puente-grua-obra-civil-960.avif"],
+    [1280, "montaje-estructura-puente-grua-obra-civil.avif"]
+  ],
   "hero/vista-aerea-palapas-alberca-playa": [
     [480, "vista-aerea-palapas-alberca-playa-480.avif"],
     [960, "vista-aerea-palapas-alberca-playa-960.avif"],
