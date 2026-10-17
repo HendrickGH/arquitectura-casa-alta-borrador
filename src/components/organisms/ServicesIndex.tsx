@@ -109,8 +109,8 @@ export function ServicesIndex({
           </div>
         </div>
 
-        {/* Chapter Switcher Tabs */}
-        <div className="flex flex-wrap items-center gap-2 border-b border-bone-200 pb-5">
+        {/* Chapter Switcher Tabs (Borderless) */}
+        <div className="flex flex-wrap items-center gap-2 pb-2">
           {groups.map((group, gIdx) => {
             const isCurrent = gIdx === activeGroupIndex;
             return (
@@ -122,10 +122,10 @@ export function ServicesIndex({
                   setActiveServiceIndex(0);
                 }}
                 className={cx(
-                  "group flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-medium uppercase tracking-wider transition-all duration-300 cursor-pointer",
+                  "group flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer",
                   isCurrent
                     ? "bg-brand-800 text-white shadow-xs"
-                    : "bg-bone-100/70 text-ink-muted hover:bg-bone-200 hover:text-ink",
+                    : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
                 )}
               >
                 <span
@@ -142,7 +142,7 @@ export function ServicesIndex({
                     "rounded-full px-1.5 py-0.5 text-[0.62rem]",
                     isCurrent
                       ? "bg-white/20 text-white"
-                      : "bg-bone-200/90 text-ink-muted",
+                      : "bg-bone-200 text-ink-muted",
                   )}
                 >
                   {group.services.length}
@@ -153,7 +153,7 @@ export function ServicesIndex({
         </div>
 
         {/* Active Chapter Intro Strip */}
-        <div className="mt-8 mb-12 flex flex-col justify-between gap-4 border-b border-bone-200/80 pb-6 lg:flex-row lg:items-end">
+        <div className="mt-8 mb-12 flex flex-col justify-between gap-4 pb-4 lg:flex-row lg:items-end">
           <div className="max-w-[46rem]">
             <div className="mb-2 flex items-center gap-2.5">
               <span className="number-pill">
@@ -171,9 +171,7 @@ export function ServicesIndex({
             </p>
           </div>
           <div className="shrink-0 text-xs text-ink-muted">
-            <span className="number-pill bg-white">
-              {`${currentGroup.services.length} ESPECIALIDADES EN ESTE FRENTE`}
-            </span>
+            <span>{`${currentGroup.services.length} ESPECIALIDADES EN ESTE FRENTE`}</span>
           </div>
         </div>
 
@@ -182,7 +180,7 @@ export function ServicesIndex({
           ref={scopeRef}
           className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14"
         >
-          {/* Left Column: Services list with active indicators and deliverable grids */}
+          {/* Left Column: Services list without heavy borders */}
           <div className="space-y-16 lg:col-span-7 lg:space-y-20 pb-12">
             {currentGroup.services.map((service, sIdx) => {
               const isActive = sIdx === activeServiceIndex;
@@ -196,10 +194,8 @@ export function ServicesIndex({
                   }}
                   onClick={() => setActiveServiceIndex(sIdx)}
                   className={cx(
-                    "group flex flex-col justify-center border-l-2 pl-5 sm:pl-8 transition-all duration-400 cursor-pointer pt-2",
-                    isActive
-                      ? "border-brand-800 opacity-100"
-                      : "border-bone-200 opacity-80 hover:opacity-100 hover:border-ink/40",
+                    "group flex flex-col justify-center transition-all duration-300 cursor-pointer pt-2",
+                    isActive ? "opacity-100" : "opacity-60 hover:opacity-100",
                   )}
                 >
                   {/* Top metadata tags */}
@@ -220,7 +216,7 @@ export function ServicesIndex({
                   </div>
 
                   {/* Service Title */}
-                  <h4 className="voice text-2xl leading-snug text-ink md:text-[1.75rem]">
+                  <h4 className="voice text-2xl leading-snug text-ink md:text-3xl">
                     {service.title}
                   </h4>
 
@@ -229,32 +225,18 @@ export function ServicesIndex({
                     {service.summary}
                   </p>
 
-                  {/* Technical Deliverables List */}
-                  <div className="mt-5 space-y-2 border-t border-bone-200/70 pt-4">
-                    <span className="label text-[0.65rem] tracking-wider text-ink block mb-2 font-semibold">
-                      ALCANCES Y ENTREGABLES EJECUTIVOS:
+                  {/* Technical Deliverables List (Unboxed) */}
+                  <div className="mt-5 space-y-2">
+                    <span className="label text-[0.65rem] tracking-wider text-ink-muted block mb-2 font-semibold uppercase">
+                      Alcances y entregables ejecutivos:
                     </span>
-                    <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                    <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 text-xs text-ink/85">
                       {service.items.map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-2 text-xs sm:text-[0.8125rem] text-ink/90 leading-snug"
+                          className="flex items-start gap-2 leading-relaxed"
                         >
-                          <span className="mt-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-800">
-                            <svg
-                              viewBox="0 0 16 16"
-                              className="h-2 w-2"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2.5"
-                            >
-                              <path
-                                d="M3 8.5l3.5 3.5 6.5-7"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
+                          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-800" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -270,9 +252,9 @@ export function ServicesIndex({
                           sizes="(max-width: 1024px) 95vw, 45vw"
                           className="h-full w-full object-cover"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent pointer-events-none" />
-                        <div className="absolute bottom-3 left-3 right-3 text-white">
-                          <span className="number-pill-inverse !text-[0.62rem]">
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
+                        <div className="absolute right-3 bottom-3 left-3 text-white">
+                          <span className="text-xs font-medium">
                             {service.title}
                           </span>
                         </div>
@@ -281,42 +263,15 @@ export function ServicesIndex({
                   ) : null}
 
                   {/* Bottom Action Link */}
-                  <div className="mt-6 pt-2">
+                  <div className="mt-6 pt-1">
                     <a
                       href="#contacto"
-                      className="group/link inline-flex items-center gap-3 text-xs font-semibold uppercase tracking-wider text-brand-800 hover:text-brand-900 transition-colors"
+                      className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-800 hover:text-ink transition-colors"
                     >
-                      <span className="underline decoration-brand-800/40 underline-offset-4 group-hover/link:decoration-brand-800">
+                      <span className="underline decoration-brand-800/40 underline-offset-4">
                         Consultar alcances y presupuesto de esta partida
                       </span>
-                      <span aria-hidden="true" className="arrow-pill arrow-pill-ink">
-                        <svg
-                          viewBox="0 0 16 16"
-                          className="arrow-pill-out h-3 w-3"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.8"
-                        >
-                          <path
-                            d="M2.5 8h11m-4-4 4 4-4 4"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        <svg
-                          viewBox="0 0 16 16"
-                          className="arrow-pill-in h-3 w-3"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.8"
-                        >
-                          <path
-                            d="M2.5 8h11m-4-4 4 4-4 4"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
+                      <span>→</span>
                     </a>
                   </div>
                 </div>
@@ -324,112 +279,44 @@ export function ServicesIndex({
             })}
           </div>
 
-          {/* Right Column: Sticky Media Stage (Desktop lg+) */}
+          {/* Right Column: Monumental Sticky Media Stage (Desktop lg+) */}
           <div className="hidden lg:col-span-5 lg:block relative">
-            <div ref={stickyStageRef} className="sticky top-28 space-y-4 pb-12">
-              <div className="overflow-hidden border border-bone-200 bg-white p-4 shadow-sm transition-all duration-300">
-                {/* Primary Photograph Container with HUD */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
-                  {activeService?.image ? (
-                    <Photo
-                      key={activeService.slug}
-                      photo={activeService.image}
-                      sizes="(min-width: 1024px) 38vw, 90vw"
-                      className="h-full w-full object-cover transition-transform duration-700 hover:scale-103"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-bone-100 text-xs text-ink-muted">
-                      <span>Registro fotográfico de obra en archivo</span>
-                    </div>
-                  )}
-
-                  {/* Gradient vignette */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent pointer-events-none" />
-
-                  {/* Active HUD text */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none space-y-1">
-                    <div className="flex items-center gap-2 text-[0.68rem] uppercase tracking-wider text-concha-nacar/90">
-                      <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
-                      <span>PARTIDA SELECCIONADA EN OBRA</span>
-                    </div>
-                    <h4 className="voice text-xl font-normal leading-snug text-white line-clamp-1">
-                      {activeService?.title}
-                    </h4>
+            <div ref={stickyStageRef} className="sticky top-28 space-y-3 pb-12">
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
+                {activeService?.image ? (
+                  <Photo
+                    key={activeService.slug}
+                    photo={activeService.image}
+                    sizes="(min-width: 1024px) 38vw, 90vw"
+                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-102"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-bone-100 text-xs text-ink-muted">
+                    <span>Registro fotográfico de obra en archivo</span>
                   </div>
-                </div>
+                )}
 
-                {/* Chapter Thumbnails Strip */}
-                <div className="mt-3.5 space-y-2 border-t border-bone-200/80 pt-3">
-                  <div className="flex items-center justify-between text-[0.68rem] uppercase tracking-wider text-ink-muted">
-                    <span className="font-semibold text-ink">
-                      Partidas del capítulo ({currentGroup.services.length})
-                    </span>
-                    <span>Click para alternar</span>
-                  </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
 
-                  <div className="grid grid-cols-3 gap-2">
-                    {currentGroup.services.map((srv, sIdx) => {
-                      const isSelected = sIdx === activeServiceIndex;
-                      return (
-                        <button
-                          key={srv.slug}
-                          type="button"
-                          onClick={() => setActiveServiceIndex(sIdx)}
-                          className={cx(
-                            "relative aspect-[16/11] overflow-hidden border text-left transition-all duration-200 cursor-pointer group focus:outline-none",
-                            isSelected
-                              ? "border-brand-800 ring-2 ring-brand-800/30"
-                              : "border-bone-200 opacity-65 hover:opacity-100 hover:border-ink/40",
-                          )}
-                          title={srv.title}
-                        >
-                          {srv.image ? (
-                            <Photo
-                              photo={srv.image}
-                              sizes="12vw"
-                              className="h-full w-full object-cover"
-                            />
-                          ) : (
-                            <div className="h-full w-full bg-bone-100 flex items-center justify-center text-[0.6rem] text-ink-muted p-1">
-                              {srv.title.slice(0, 14)}
-                            </div>
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
-                          <span className="absolute bottom-1 left-1.5 right-1 text-[0.62rem] font-medium text-white line-clamp-1 leading-tight">
-                            {srv.title}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Action Footer */}
-                <div className="mt-4 flex items-center justify-between border-t border-bone-200/80 pt-3">
-                  <span className="number-pill !py-0.5 !px-2.5 !text-[0.62rem]">
-                    {`${activeService?.items.length ?? 0} ALCANCES`}
+                <div className="absolute right-4 bottom-4 left-4 text-white">
+                  <span className="text-[0.65rem] uppercase tracking-widest text-concha-nacar/90">
+                    Registro de obra en Oaxaca
                   </span>
-
-                  <a
-                    href="#contacto"
-                    className="arrow-pill arrow-pill-ink group/btn inline-flex items-center gap-2 !w-auto !px-4 !h-8 text-xs font-semibold tracking-wide uppercase transition-all duration-300 hover:bg-brand-900"
-                  >
-                    <span>Cotizar partida</span>
-                    <svg
-                      viewBox="0 0 16 16"
-                      className="h-3 w-3"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        d="M2.5 8h11m-4-4 4 4-4 4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </a>
+                  <h4 className="voice text-xl font-normal leading-snug text-white line-clamp-1">
+                    {activeService?.title}
+                  </h4>
                 </div>
+              </div>
+
+              {/* Minimal caption & direct action - NO boxes, NO borders */}
+              <div className="flex items-center justify-between text-xs text-ink-muted pt-1">
+                <span>{`Partida ${String(activeServiceIndex + 1).padStart(2, "0")} de ${String(currentGroup.services.length).padStart(2, "0")}`}</span>
+                <a
+                  href="#contacto"
+                  className="font-semibold text-brand-800 underline underline-offset-4 hover:text-ink transition-colors"
+                >
+                  Cotizar partida →
+                </a>
               </div>
             </div>
           </div>
