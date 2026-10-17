@@ -94,7 +94,7 @@ export function ProjectsIndexTemplate({
   const leadHeroPhoto = projects[0]?.wideCover ?? projects[0]?.cover;
 
   return (
-    <SiteChrome site={site}>
+    <SiteChrome site={site} chrome="canvas">
       <main id="main">
         {leadHeroPhoto ? (
           <PageHero

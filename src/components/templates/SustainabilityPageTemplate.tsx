@@ -38,7 +38,7 @@ export function SustainabilityPageTemplate({
   closing,
 }: SustainabilityPageTemplateProps) {
   return (
-    <SiteChrome site={site}>
+    <SiteChrome site={site} chrome="canvas">
       <main id="main">
         <PageHero
           badge="(DIVISIÓN 04 · BIOCLIMÁTICA)"

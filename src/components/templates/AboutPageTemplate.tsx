@@ -57,7 +57,7 @@ export function AboutPageTemplate({
   closing,
 }: AboutPageTemplateProps) {
   return (
-    <SiteChrome site={site}>
+    <SiteChrome site={site} chrome="canvas">
       <main id="main">
         <PageHero
           badge="(NOSOTROS · CASA ALTA)"

@@ -14,12 +14,11 @@ interface PageHeroProps {
 }
 
 /**
- * Shared Thirdway-style architectural hero for the 6 dedicated routes.
+ * Shared 100vw × 100vh Full-Bleed Architectural Hero for the 6 dedicated routes.
  *
- * Displays the photograph in its natural aspect ratio (`w-full h-auto`) inside
- * a framed architectural mat on `--color-concha-nacar` (`#f7f1e9`) alongside
- * monumental typography and oval capsule pills — so neither portrait nor
- * landscape studio photographs are ever cropped or obscured by text.
+ * Implements the full-bleed photographic background running behind the transparent
+ * header, with top-right watermark logo, monumental typography and clean Cosentino
+ * scroll indicator.
  */
 export function PageHero({
   badge = "(01)",
@@ -29,12 +28,12 @@ export function PageHero({
   photo,
 }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const frame = frameRef.current;
-    if (!section || !frame) return;
+    const bg = bgRef.current;
+    if (!section || !bg) return;
 
     let cancelled = false;
     let cleanup: (() => void) | undefined;
@@ -45,21 +44,17 @@ export function PageHero({
       gsap.registerPlugin(ScrollTrigger);
 
       const ctx = gsap.context(() => {
-        gsap.fromTo(
-          frame,
-          { y: 18, scale: 0.96 },
-          {
-            y: -14,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top top+=96",
-              end: "bottom top",
-              scrub: 0.5,
-            },
+        gsap.to(bg, {
+          yPercent: 12,
+          scale: 1.05,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.5,
           },
-        );
+        });
       }, section);
 
       cleanup = () => ctx.revert();
@@ -74,63 +69,60 @@ export function PageHero({
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden border-b border-ink/12 bg-concha-nacar py-12 text-ink md:py-16 lg:py-20"
+      className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-ink text-white"
     >
-      <Container>
-        {/* Top Thirdway architectural ruler bar */}
-        <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-ink/15 pb-4">
+      {/* Full-bleed background photo with subtle parallax */}
+      <div ref={bgRef} className="absolute inset-0 z-0 h-full w-full">
+        <Photo
+          photo={photo}
+          priority
+          fit="cover"
+          sizes="100vw"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/45 to-ink/65" />
+      </div>
+
+      {/* Watermark Logo */}
+      <img
+        src="/brand/logo-casa-alta-blanco.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute right-4 top-24 z-10 w-48 select-none opacity-70 sm:w-60 md:right-10 md:top-28 md:w-72 lg:right-16 lg:top-32 lg:w-96"
+      />
+
+      {/* Content Container */}
+      <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
+        {/* Top metadata strip */}
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/20 pb-4">
           <div className="flex items-center gap-2.5">
-            <span className="number-pill">{badge}</span>
-            <p className="label text-brand-800">{eyebrow}</p>
+            <span className="number-pill-inverse">{badge}</span>
+            <p className="label tracking-widest text-white/90">{eyebrow}</p>
           </div>
-          <span className="font-mono text-[0.68rem] tracking-widest text-ink-muted uppercase">
-            {`CASA ALTA · OAXACA (${photo.width}×${photo.height})`}
+          <span className="hidden font-mono text-[0.68rem] tracking-widest text-white/60 uppercase sm:inline">
+            CASA ALTA · OAXACA
           </span>
         </div>
 
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
-          {/* Left column: Monumental editorial typography */}
-          <div className="flex flex-col justify-between gap-8 lg:col-span-6">
-            <div>
-              <h1 className="voice text-[clamp(2.15rem,4.4vw,3.85rem)] leading-[1.06] text-ink">
-                {heading}
-              </h1>
-              <p className="mt-6 max-w-[46ch] text-base leading-relaxed text-ink-muted md:text-lg">
-                {subheadline}
-              </p>
-            </div>
-
-            <div className="ruler-top flex flex-wrap items-center justify-between gap-4 pt-5">
-              <div className="flex items-center gap-2">
-                <span className="number-pill">PUERTO ESCONDIDO</span>
-                <span className="number-pill">OAXACA CENTRO</span>
-                <span className="number-pill">SALINA CRUZ</span>
-              </div>
-            </div>
+        {/* Monumental typography grid */}
+        <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <h1 className="voice text-[clamp(2.2rem,4.8vw,4.2rem)] leading-[1.04] text-white">
+              {heading}
+            </h1>
           </div>
-
-          {/* Right column: 100% uncropped studio photograph in its natural aspect ratio */}
-          <div className="lg:col-span-6">
-            <div
-              ref={frameRef}
-              className="mx-auto overflow-hidden"
-            >
-              <div className="relative overflow-hidden">
-                <Photo
-                  photo={photo}
-                  sizes="(min-width: 1024px) 48vw, 95vw"
-                  priority
-                  className="block max-h-[68svh] w-full object-contain"
-                />
-              </div>
-              <div className="mt-3 flex items-center justify-between gap-3 text-xs text-ink-muted">
-                <span className="line-clamp-1">{photo.alt}</span>
-                <span className="shrink-0 font-mono text-[0.68rem] uppercase">
-                  OBRA REAL
-                </span>
-              </div>
-            </div>
+          <div className="flex flex-col justify-end lg:col-span-4">
+            <p className="voice max-w-[42ch] text-sm leading-relaxed text-white/80 md:text-base">
+              {subheadline}
+            </p>
           </div>
+        </div>
+
+        {/* Bottom center Cosentino scroll cue */}
+        <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/60">
+          <span className="font-mono text-[0.65rem] tracking-widest uppercase">
+            ( · )
+          </span>
         </div>
       </Container>
     </section>

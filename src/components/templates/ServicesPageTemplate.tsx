@@ -48,7 +48,7 @@ export function ServicesPageTemplate({
   closing,
 }: ServicesPageTemplateProps) {
   return (
-    <SiteChrome site={site}>
+    <SiteChrome site={site} chrome="canvas">
       <main id="main">
         <PageHero
           badge="(DIVISIÓN 02)"

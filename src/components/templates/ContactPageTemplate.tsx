@@ -46,7 +46,7 @@ export function ContactPageTemplate({
   whatsappHref,
 }: ContactPageTemplateProps) {
   return (
-    <SiteChrome site={site}>
+    <SiteChrome site={site} chrome="canvas">
       <main id="main">
         <PageHero
           badge="(PRIMERA REUNIÓN SIN COSTO)"
