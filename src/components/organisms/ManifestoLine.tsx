@@ -1,58 +1,132 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Container } from "@/components/atoms/Container";
+import { Photo } from "@/components/atoms/Photo";
 import { revealAttrs, revealStep } from "@/lib/reveal";
-import type { Architect } from "@/types/content";
+import type { Architect, Photo as PhotoModel } from "@/types/content";
 
 interface ManifestoLineProps {
   line: string;
   architect: Architect;
+  photo?: PhotoModel;
 }
 
 /**
- * The breath, spoken as a quote: the studio's mission sentence, set larger than
- * anything else on the page, on a quiet bone plate, with the architect's name
- * beneath it as the attribution.
+ * Thirdway architectural manifesto spread on `--color-concha-nacar`.
  *
- * The plate never animates -- it is structure, not content. The quote mark, the
- * sentence and the signature are the reveal steps, so the words fade in on top
- * of an already-present background instead of the whole band fading as a block.
- * The hierarchy is carried by colour and size now that the dark plate is gone:
- * the sentence is the loudest line in the brand's deepest blue, the signature is
- * a whisper beneath it.
- *
- * Deliberately not a heading. It opens no section and lists nothing, so it stays
- * a `figure` + `blockquote` rather than adding a page-structure `h2`. No
- * photograph either: an image inside the pause contradicts the pause.
+ * Pairs the principal architect's statement with a framed real studio
+ * photograph (`arquitectura-que-perdura`) and a GSAP scroll-scrubbed reveal.
  */
-export function ManifestoLine({ line, architect }: ManifestoLineProps) {
+export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const photoWrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const photoWrap = photoWrapRef.current;
+    if (!section || !photoWrap) return;
+
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
+
+    void import("gsap").then(async ({ gsap }) => {
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      if (cancelled) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          photoWrap,
+          { y: 24, scale: 0.96 },
+          {
+            y: -18,
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          },
+        );
+      }, section);
+
+      cleanup = () => ctx.revert();
+    });
+
+    return () => {
+      cancelled = true;
+      cleanup?.();
+    };
+  }, []);
+
   return (
-    <section {...revealAttrs("stagger")} className="bg-bone-50">
-      <Container className="py-24 md:py-36 lg:py-44">
-        <figure className="max-w-[56rem]">
-          {/* The quote's own signifier, larger than the sentence and faded back
-              so it decorates without competing. */}
-          <span
-            aria-hidden="true"
-            {...revealStep(0)}
-            className="voice pointer-events-none block select-none text-[4.5rem] leading-[0.75] text-brand-500/30 md:text-[6rem]"
+    <section
+      ref={sectionRef}
+      {...revealAttrs("stagger")}
+      className="ruler-top border-b border-ink/12 bg-concha-nacar"
+    >
+      <Container className="py-20 md:py-28 lg:py-32">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
+          {photo ? (
+            <div {...revealStep(0)} className="lg:col-span-5">
+              <div
+                ref={photoWrapRef}
+                className="overflow-hidden border border-ink/15 bg-canvas p-3 shadow-sm md:p-4"
+              >
+                <div className="relative aspect-[3/4] w-full overflow-hidden bg-bone-100">
+                  <Photo
+                    photo={photo}
+                    sizes="(min-width: 1024px) 38vw, 90vw"
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between gap-3 px-1 text-xs text-ink-muted">
+                  <span>Arquitectura que perdura · Costa de Oaxaca</span>
+                  <span className="number-pill">(MANIFIESTO)</span>
+                </div>
+              </div>
+            </div>
+          ) : null}
+
+          <figure
+            className={photo ? "lg:col-span-7" : "lg:col-span-12 max-w-[56rem]"}
           >
-            &ldquo;
-          </span>
+            <div
+              {...revealStep(0)}
+              className="mb-4 flex items-center gap-2.5"
+            >
+              <span className="number-pill">(03)</span>
+              <span className="eyebrow">Visión arquitectónica</span>
+            </div>
 
-          <blockquote {...revealStep(1)} className="mt-2 md:mt-4">
-            <p className="voice max-w-[34ch] text-[1.75rem] leading-[1.28] text-brand-900 md:text-[2.5rem] md:leading-[1.22] lg:text-[3rem] lg:leading-[1.16]">
-              {line}
-            </p>
-          </blockquote>
-
-          <figcaption {...revealStep(2)} className="mt-12 md:mt-16">
             <span
               aria-hidden="true"
-              className="block h-px w-14 bg-brand-800/30"
-            />
-            <p className="label mt-6 text-brand-800">{architect.name}</p>
-            <p className="label mt-2 text-ink-muted">{architect.role}</p>
-          </figcaption>
-        </figure>
+              {...revealStep(0)}
+              className="voice pointer-events-none block select-none text-[4.25rem] leading-[0.72] text-brand-800/35 md:text-[5.5rem]"
+            >
+              &ldquo;
+            </span>
+
+            <blockquote {...revealStep(1)} className="mt-2">
+              <p className="voice max-w-[30ch] text-[1.75rem] leading-[1.24] text-ink md:text-[2.4rem] lg:text-[2.85rem] lg:leading-[1.16]">
+                {line}
+              </p>
+            </blockquote>
+
+            <figcaption
+              {...revealStep(2)}
+              className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-ink/15 pt-6"
+            >
+              <div>
+                <p className="label text-brand-800">{architect.name}</p>
+                <p className="label mt-1.5 text-ink-muted">{architect.role}</p>
+              </div>
+              <span className="number-pill">FIRMA TITULAR · CASA ALTA</span>
+            </figcaption>
+          </figure>
+        </div>
       </Container>
     </section>
   );

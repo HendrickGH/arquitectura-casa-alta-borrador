@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
@@ -14,22 +17,66 @@ interface IntroSectionProps {
   id?: string;
 }
 
-const PHOTO_SIZES = "(min-width: 1024px) 46vw, 100vw";
+const PHOTO_SIZES = "(min-width: 1024px) 44vw, 100vw";
+const SECONDARY_SIZES = "(min-width: 1024px) 24vw, 60vw";
 
 /**
- * The opening statement: where the studio says who it is (`CASA ALTA ·
- * Arquitectura que perdura`), paired with the full-color aerial photograph of
- * the Punta Zicatela coastal ensemble and tighter top padding so there is no
- * dead white gap beneath the Hero.
+ * Thirdway asymmetric editorial introduction (`Quiénes somos`), pairing the
+ * studio narrative with a dual-photograph architectural composition:
+ * 1. The full-color aerial photograph of the Punta Zicatela coastal ensemble.
+ * 2. The on-site coastal structural supervision photograph (`credibilidad`),
+ *    gently scrubbed on scroll via GSAP ScrollTrigger.
  */
 export function IntroSection({
   intro,
   tone = "canvas",
   id,
 }: IntroSectionProps) {
+  const scopeRef = useRef<HTMLDivElement>(null);
+  const secondaryRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const scope = scopeRef.current;
+    const secondary = secondaryRef.current;
+    if (!scope || !secondary) return;
+
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
+
+    void import("gsap").then(async ({ gsap }) => {
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      if (cancelled) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          secondary,
+          { y: 26 },
+          {
+            y: -22,
+            ease: "none",
+            scrollTrigger: {
+              trigger: scope,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.6,
+            },
+          },
+        );
+      }, scope);
+
+      cleanup = () => ctx.revert();
+    });
+
+    return () => {
+      cancelled = true;
+      cleanup?.();
+    };
+  }, []);
+
   const paragraphs =
     intro.paragraphs && intro.paragraphs.length > 0
-      ? intro.paragraphs
+      ? [intro.body, ...intro.paragraphs]
       : intro.body
         ? [intro.body]
         : [];
@@ -39,20 +86,28 @@ export function IntroSection({
       id={id}
       tone={tone}
       reveal="stagger"
-      className="!pt-10 !pb-14 md:!pt-14 md:!pb-20 lg:!pt-16 lg:!pb-24"
+      className="!pt-14 !pb-16 md:!pt-20 md:!pb-24"
     >
       <Container>
-        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="flex flex-col gap-5 lg:col-span-7">
+        <div
+          ref={scopeRef}
+          className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-12"
+        >
+          {/* Left column: Thirdway monumental statement */}
+          <div className="flex flex-col gap-6 lg:col-span-6">
             {intro.eyebrow ? (
-              <div {...revealStep(0)} className="flex items-center gap-3">
-                <span className="number-pill">01</span>
+              <div {...revealStep(0)} className="flex items-center gap-2.5">
+                <span className="number-pill">(01)</span>
                 <p className="eyebrow">{intro.eyebrow}</p>
               </div>
             ) : null}
 
             <div {...revealStep(1)}>
-              <Heading as="h2" voice="serif" className="max-w-[26ch]">
+              <Heading
+                as="h2"
+                voice="serif"
+                sizeClassName="text-[clamp(2rem,3.6vw,3.35rem)] leading-[1.08]"
+              >
                 {intro.heading}
               </Heading>
             </div>
@@ -69,28 +124,59 @@ export function IntroSection({
               ))}
             </div>
 
-            <div {...revealStep(3)} className="mt-2">
+            <div
+              {...revealStep(3)}
+              className="ruler-top mt-3 flex flex-wrap items-center justify-between gap-4 pt-5"
+            >
               <Button href="/nosotros" variant="secondary" size="sm" arrow>
                 Conocer la firma y trayectoria
               </Button>
+              <span className="number-pill">DESDE 2016 · OAXACA</span>
             </div>
           </div>
 
+          {/* Right column: Dual studio photograph spread (Aerial + Supervision) */}
           {intro.photo ? (
-            <figure
+            <div
               {...revealStep(2)}
-              className="flex flex-col gap-3 lg:col-span-5 lg:mt-2"
+              className="relative flex flex-col gap-5 lg:col-span-6"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden border border-bone-200 bg-bone-100">
-                <Photo photo={intro.photo} sizes={PHOTO_SIZES} />
-              </div>
-              {intro.photoCaption ? (
-                <figcaption className="flex items-center justify-between gap-4 border-b border-bone-200 pb-2.5 text-xs text-ink-muted">
-                  <span>{intro.photoCaption}</span>
-                  <span className="number-pill">OAX · MX</span>
-                </figcaption>
+              <figure className="overflow-hidden border border-ink/15 bg-concha-nacar p-3 shadow-sm md:p-4">
+                <div className="relative overflow-hidden bg-bone-100">
+                  <Photo
+                    photo={intro.photo}
+                    sizes={PHOTO_SIZES}
+                    className="block h-auto w-full object-contain"
+                  />
+                </div>
+                {intro.photoCaption ? (
+                  <figcaption className="mt-3 flex items-center justify-between gap-4 px-1 text-xs text-ink-muted">
+                    <span>{intro.photoCaption}</span>
+                    <span className="number-pill">(01.A)</span>
+                  </figcaption>
+                ) : null}
+              </figure>
+
+              {intro.secondaryPhoto ? (
+                <figure
+                  ref={secondaryRef}
+                  className="ml-auto w-full max-w-[22rem] overflow-hidden border border-ink/15 bg-canvas p-3 shadow-md sm:w-3/4 lg:-mt-14 lg:mr-4"
+                >
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                    <Photo
+                      photo={intro.secondaryPhoto}
+                      sizes={SECONDARY_SIZES}
+                    />
+                  </div>
+                  {intro.secondaryPhotoCaption ? (
+                    <figcaption className="mt-2.5 flex items-center justify-between gap-2 text-[0.72rem] text-ink-muted">
+                      <span>{intro.secondaryPhotoCaption}</span>
+                      <span className="number-pill">(01.B)</span>
+                    </figcaption>
+                  ) : null}
+                </figure>
               ) : null}
-            </figure>
+            </div>
           ) : null}
         </div>
       </Container>

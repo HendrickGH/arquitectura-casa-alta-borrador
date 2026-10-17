@@ -38,10 +38,10 @@ export function InteriorsPageTemplate({
   closing,
 }: InteriorsPageTemplateProps) {
   return (
-    <SiteChrome site={site} chrome="canvas">
+    <SiteChrome site={site}>
       <main id="main">
         <PageHero
-          badge="DIVISIÓN 03 · COSENTINO"
+          badge="(DIVISIÓN 03 · COSENTINO)"
           eyebrow={page.hero.eyebrow}
           heading={page.hero.heading}
           subheadline={page.hero.subheadline}
@@ -57,7 +57,7 @@ export function InteriorsPageTemplate({
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="flex flex-col gap-5 lg:col-span-6">
                 <div {...revealStep(0)} className="flex items-center gap-3">
-                  <span className="number-pill">COSENTINO</span>
+                  <span className="number-pill">(COSENTINO)</span>
                   <p className="eyebrow">{page.cosentino.eyebrow}</p>
                 </div>
 
@@ -69,7 +69,7 @@ export function InteriorsPageTemplate({
 
                 <blockquote
                   {...revealStep(2)}
-                  className="border-l-2 border-brand-800 bg-concha-nacar/60 p-5"
+                  className="border-l-2 border-brand-800 bg-concha-nacar p-5"
                 >
                   <p className="voice text-lg leading-relaxed text-brand-900 md:text-xl">
                     &ldquo;{page.cosentino.claim}&rdquo;
@@ -82,13 +82,27 @@ export function InteriorsPageTemplate({
                     {page.cosentino.badges.map((badge) => (
                       <li
                         key={badge}
-                        className="border border-bone-200 bg-bone-50 px-3 py-1 text-xs font-medium text-brand-900"
+                        className="rounded-full border border-ink/20 bg-concha-nacar px-3 py-1 text-xs font-medium text-ink"
                       >
                         {badge}
                       </li>
                     ))}
                   </ul>
                 </div>
+
+                {page.interiorsPhotos[0] ? (
+                  <div
+                    {...revealStep(3)}
+                    className="mt-2 overflow-hidden border border-ink/15 bg-concha-nacar p-3"
+                  >
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-100">
+                      <Photo
+                        photo={page.interiorsPhotos[0]}
+                        sizes="(min-width: 1024px) 44vw, 95vw"
+                      />
+                    </div>
+                  </div>
+                ) : null}
 
                 <div {...revealStep(4)} className="mt-2">
                   <Button href="/contacto" arrow>
@@ -102,10 +116,10 @@ export function InteriorsPageTemplate({
                   <div
                     key={pillar.number}
                     {...revealStep(index)}
-                    className="ruler-top flex flex-col justify-between border border-bone-200 bg-bone-50 p-6"
+                    className="ruler-top flex flex-col justify-between border border-ink/15 bg-concha-nacar p-6"
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="number-pill">{pillar.number}</span>
+                      <span className="number-pill">{`(${pillar.number})`}</span>
                       <span className="label text-brand-800">GARANTIZADO</span>
                     </div>
                     <div className="mt-6">

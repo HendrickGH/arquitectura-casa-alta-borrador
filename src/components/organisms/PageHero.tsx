@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Container } from "@/components/atoms/Container";
 import { Photo } from "@/components/atoms/Photo";
 import type { Photo as PhotoModel } from "@/types/content";
@@ -11,57 +14,123 @@ interface PageHeroProps {
 }
 
 /**
- * Shared architectural hero for the dedicated division routes (`/servicios`,
- * `/arquitectura-interiores`, `/construccion-sustentable`, `/nosotros`).
+ * Shared Thirdway-style architectural hero for the 6 dedicated routes.
  *
- * Uses `fit="contain"` inside a midnight architectural coordinate frame so the
- * photograph is never cropped aggressively, while `.hero-overlay` keeps the
- * floating header and white typography legible at every breakpoint.
+ * Displays the photograph in its natural aspect ratio (`w-full h-auto`) inside
+ * a framed architectural mat on `--color-concha-nacar` (`#f7f1e9`) alongside
+ * monumental typography and oval capsule pills — so neither portrait nor
+ * landscape studio photographs are ever cropped or obscured by text.
  */
 export function PageHero({
-  badge = "CASA ALTA",
+  badge = "(01)",
   eyebrow,
   heading,
   subheadline,
   photo,
 }: PageHeroProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const frameRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const frame = frameRef.current;
+    if (!section || !frame) return;
+
+    let cancelled = false;
+    let cleanup: (() => void) | undefined;
+
+    void import("gsap").then(async ({ gsap }) => {
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      if (cancelled) return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ctx = gsap.context(() => {
+        gsap.fromTo(
+          frame,
+          { y: 18, scale: 0.96 },
+          {
+            y: -14,
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: section,
+              start: "top top+=96",
+              end: "bottom top",
+              scrub: 0.5,
+            },
+          },
+        );
+      }, section);
+
+      cleanup = () => ctx.revert();
+    });
+
+    return () => {
+      cancelled = true;
+      cleanup?.();
+    };
+  }, []);
+
   return (
     <section
-      className="relative flex min-h-[64svh] flex-col justify-end overflow-hidden bg-[#081124] sm:min-h-[70svh] lg:min-h-[76svh]"
-      style={{ marginTop: "calc(var(--chrome-h, 7.5rem) * -1)" }}
+      ref={sectionRef}
+      className="relative overflow-hidden border-b border-ink/12 bg-concha-nacar py-12 text-ink md:py-16 lg:py-20"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 opacity-25"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)",
-          backgroundSize: "6rem 6rem",
-        }}
-      />
+      <Container>
+        {/* Top Thirdway architectural ruler bar */}
+        <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-ink/15 pb-4">
+          <div className="flex items-center gap-2.5">
+            <span className="number-pill">{badge}</span>
+            <p className="label text-brand-800">{eyebrow}</p>
+          </div>
+          <span className="font-mono text-[0.68rem] tracking-widest text-ink-muted uppercase">
+            {`CASA ALTA · OAXACA (${photo.width}×${photo.height})`}
+          </span>
+        </div>
 
-      <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden pt-[var(--chrome-h,7.5rem)]">
-        <Photo photo={photo} sizes="100vw" priority fit="contain" />
-      </div>
-
-      <div className="hero-overlay absolute inset-0 z-[1]" aria-hidden="true" />
-
-      <Container className="relative z-10 pt-36 pb-12 md:pb-16">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-14">
-          <div className="flex flex-col items-start gap-4">
-            <div className="hero-rise hero-rise-1 flex items-center gap-3">
-              <span className="number-pill-inverse">{badge}</span>
-              <p className="eyebrow text-bone-100">{eyebrow}</p>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+          {/* Left column: Monumental editorial typography */}
+          <div className="flex flex-col justify-between gap-8 lg:col-span-6">
+            <div>
+              <h1 className="voice text-[clamp(2.15rem,4.4vw,3.85rem)] leading-[1.06] text-ink">
+                {heading}
+              </h1>
+              <p className="mt-6 max-w-[46ch] text-base leading-relaxed text-ink-muted md:text-lg">
+                {subheadline}
+              </p>
             </div>
 
-            <h1 className="voice hero-rise hero-rise-2 max-w-[22ch] text-[clamp(1.85rem,4.2vw,3.5rem)] leading-[1.1] text-white">
-              {heading}
-            </h1>
+            <div className="ruler-top flex flex-wrap items-center justify-between gap-4 pt-5">
+              <div className="flex items-center gap-2">
+                <span className="number-pill">PUERTO ESCONDIDO</span>
+                <span className="number-pill">OAXACA CENTRO</span>
+                <span className="number-pill">SALINA CRUZ</span>
+              </div>
+            </div>
           </div>
 
-          <p className="hero-rise hero-rise-3 max-w-[42ch] text-sm leading-relaxed text-white/90 lg:text-right lg:text-base">
-            {subheadline}
-          </p>
+          {/* Right column: 100% uncropped studio photograph in its natural aspect ratio */}
+          <div className="lg:col-span-6">
+            <div
+              ref={frameRef}
+              className="mx-auto overflow-hidden border border-ink/15 bg-canvas p-3 shadow-sm md:p-4"
+            >
+              <div className="relative overflow-hidden bg-bone-100">
+                <Photo
+                  photo={photo}
+                  sizes="(min-width: 1024px) 48vw, 95vw"
+                  priority
+                  className="block max-h-[68svh] w-full object-contain"
+                />
+              </div>
+              <div className="mt-3 flex items-center justify-between gap-3 px-1 text-xs text-ink-muted">
+                <span className="line-clamp-1">{photo.alt}</span>
+                <span className="shrink-0 font-mono text-[0.68rem] uppercase">
+                  OBRA REAL
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

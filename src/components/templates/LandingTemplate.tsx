@@ -1,4 +1,3 @@
-import { CategoryTiles } from "@/components/organisms/CategoryTiles";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { Differentiators } from "@/components/organisms/Differentiators";
 import { DivisionCards } from "@/components/organisms/DivisionCards";
@@ -10,7 +9,6 @@ import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { MasonryGallery } from "@/components/organisms/MasonryGallery";
 import { ScrollScene } from "@/components/organisms/MotionShell";
 import { ProcessList } from "@/components/organisms/ProcessList";
-import { ProjectsGrid } from "@/components/organisms/ProjectsGrid";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
 import { StatsBand } from "@/components/organisms/StatsBand";
 import { Testimonials } from "@/components/organisms/Testimonials";
@@ -52,13 +50,12 @@ export function LandingTemplate({
   steps,
   featured,
   remaining,
-  tiles,
   masonry,
   moment,
   whatsappHref,
 }: LandingTemplateProps) {
   return (
-    <SiteChrome site={site} chrome={home.hero.chrome?.tone}>
+    <SiteChrome site={site}>
       <main id="main">
         <Hero hero={home.hero} />
 
@@ -70,21 +67,21 @@ export function LandingTemplate({
           divisions={divisions}
           tone="canvas"
         />
-        <ManifestoLine line={home.manifesto} architect={site.architect} />
+
+        <ManifestoLine
+          line={home.manifesto}
+          architect={site.architect}
+          photo={home.manifestoPhoto}
+        />
 
         <FeaturedPortfolio
           id="proyectos"
           intro={home.projects}
           projects={featured}
+          remaining={remaining}
           tone="canvas"
-        >
-          {/* The rest of the grid lives inside the projects section, not as a
-              second `[data-reveal]` one starting mid-list. */}
-          <ProjectsGrid
-            projects={remaining}
-            className="mt-20 md:mt-28 lg:mt-36"
-          />
-        </FeaturedPortfolio>
+          whatsappHref={whatsappHref}
+        />
 
         <ProcessList
           id="proceso"
@@ -122,6 +119,7 @@ export function LandingTemplate({
           id="contacto"
           contact={home.contact}
           whatsappHref={whatsappHref}
+          photo={home.contactPhoto}
         />
       </main>
     </SiteChrome>

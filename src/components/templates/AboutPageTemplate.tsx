@@ -57,10 +57,10 @@ export function AboutPageTemplate({
   closing,
 }: AboutPageTemplateProps) {
   return (
-    <SiteChrome site={site} chrome="canvas">
+    <SiteChrome site={site}>
       <main id="main">
         <PageHero
-          badge="NOSOTROS · CASA ALTA"
+          badge="(NOSOTROS · CASA ALTA)"
           eyebrow={page.hero.eyebrow}
           heading={page.hero.heading}
           subheadline={page.hero.subheadline}
@@ -78,7 +78,7 @@ export function AboutPageTemplate({
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="flex flex-col gap-5 lg:col-span-7">
                 <div {...revealStep(0)} className="flex items-center gap-3">
-                  <span className="number-pill">HISTORIA</span>
+                  <span className="number-pill">(HISTORIA)</span>
                   <p className="eyebrow">{page.story.eyebrow}</p>
                 </div>
 
@@ -99,16 +99,30 @@ export function AboutPageTemplate({
                     </Text>
                   ))}
                 </div>
+
+                {page.credibilityPhotos[0] ? (
+                  <div
+                    {...revealStep(3)}
+                    className="mt-2 overflow-hidden border border-ink/15 bg-concha-nacar p-3"
+                  >
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-100">
+                      <Photo
+                        photo={page.credibilityPhotos[0]}
+                        sizes="(min-width: 1024px) 50vw, 95vw"
+                      />
+                    </div>
+                  </div>
+                ) : null}
               </div>
 
               <div className="flex flex-col gap-5 lg:col-span-5">
                 <div
                   {...revealStep(2)}
-                  className="ruler-top border border-bone-200 bg-bone-50 p-6 md:p-8"
+                  className="ruler-top border border-ink/15 bg-concha-nacar p-6 md:p-8"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="label text-brand-800">Misión</span>
-                    <span className="number-pill">01</span>
+                    <span className="number-pill">(01)</span>
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-ink">
                     {page.story.mission}
@@ -117,11 +131,11 @@ export function AboutPageTemplate({
 
                 <div
                   {...revealStep(3)}
-                  className="ruler-top border border-bone-200 bg-concha-nacar/60 p-6 md:p-8"
+                  className="ruler-top border border-ink/15 bg-concha-nacar p-6 md:p-8"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="label text-brand-800">Visión</span>
-                    <span className="number-pill">02</span>
+                    <span className="number-pill">(02)</span>
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-ink">
                     {page.story.vision}
@@ -132,7 +146,11 @@ export function AboutPageTemplate({
           </Container>
         </Section>
 
-        <ManifestoLine line={manifesto} architect={site.architect} />
+        <ManifestoLine
+          line={manifesto}
+          architect={site.architect}
+          photo={page.enduringPhotos[0]}
+        />
 
         <Section tone="canvas" reveal="stagger">
           <Container>

@@ -154,47 +154,47 @@
 		text-transform: uppercase;
 	}
 
-	/* Thirdway-inspired architectural index pill (01, 02, 17). */
+	/* Thirdway signature oval capsule index pill: (01), (04), (17). */
 	.number-pill {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.18rem 0.5rem;
-		border-radius: 2px;
+		padding: 0.24rem 0.68rem;
+		border-radius: 9999px;
 		font-family: var(--font-sans);
 		font-size: 0.6875rem;
-		font-weight: 600;
+		font-weight: 500;
 		line-height: 1;
-		letter-spacing: 0.14em;
+		letter-spacing: 0.1em;
 		font-variant-numeric: tabular-nums;
-		background-color: var(--color-bone-100);
-		color: var(--color-brand-800);
-		border: 1px solid var(--color-bone-200);
+		background-color: transparent;
+		color: var(--color-ink);
+		border: 1px solid rgb(21 21 21 / 0.32);
 	}
 
 	.number-pill-inverse {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.18rem 0.5rem;
-		border-radius: 2px;
+		padding: 0.24rem 0.68rem;
+		border-radius: 9999px;
 		font-family: var(--font-sans);
 		font-size: 0.6875rem;
-		font-weight: 600;
+		font-weight: 500;
 		line-height: 1;
-		letter-spacing: 0.14em;
+		letter-spacing: 0.1em;
 		font-variant-numeric: tabular-nums;
-		background-color: rgba(255, 255, 255, 0.14);
+		background-color: rgba(21, 21, 21, 0.36);
 		color: var(--color-canvas);
-		border: 1px solid rgba(255, 255, 255, 0.28);
+		border: 1px solid rgba(255, 255, 255, 0.42);
 		-webkit-backdrop-filter: blur(8px);
 		backdrop-filter: blur(8px);
 	}
 
-	/* Architectural blueprint ruler hairline with 8px tick marks. */
+	/* Architectural blueprint ruler hairline with tick marks. */
 	.ruler-top {
 		position: relative;
-		border-top: 1px solid var(--color-bone-200);
+		border-top: 1px solid rgb(21 21 21 / 0.16);
 	}
 
 	.ruler-top::before {
@@ -206,31 +206,58 @@
 		height: 5px;
 		background-image: repeating-linear-gradient(
 			to right,
-			var(--color-bone-200) 0,
-			var(--color-bone-200) 1px,
+			rgb(21 21 21 / 0.22) 0,
+			rgb(21 21 21 / 0.22) 1px,
 			transparent 1px,
 			transparent 48px
 		);
 		pointer-events: none;
 	}
 
-	/* Double-arrow pill micro-interaction (Thirdway signature). */
+	/* Thirdway vertical architectural ruler along the left edge of dark sections. */
+	.ruler-y {
+		background-image:
+			repeating-linear-gradient(
+				to bottom,
+				rgba(247, 241, 233, 0.45) 0,
+				rgba(247, 241, 233, 0.45) 1px,
+				transparent 1px,
+				transparent 40px
+			),
+			repeating-linear-gradient(
+				to bottom,
+				rgba(247, 241, 233, 0.2) 0,
+				rgba(247, 241, 233, 0.2) 1px,
+				transparent 1px,
+				transparent 8px
+			);
+		background-size: 14px 100%, 7px 100%;
+		background-repeat: no-repeat;
+		background-position: left top;
+	}
+
+	/* Double-arrow oval pill micro-interaction (Thirdway signature). */
 	.arrow-pill {
 		position: relative;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 1.9375rem;
-		height: 1.375rem;
-		border-radius: 2px;
+		width: 2.25rem;
+		height: 1.45rem;
+		border-radius: 9999px;
 		overflow: hidden;
-		background-color: rgba(255, 255, 255, 0.16);
-		transition: background-color 280ms cubic-bezier(0.22, 1, 0.36, 1);
+		background-color: rgba(255, 255, 255, 0.18);
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		transition:
+			background-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+			color 280ms cubic-bezier(0.22, 1, 0.36, 1),
+			border-color 280ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
 	.arrow-pill-ink {
-		background-color: var(--color-bone-100);
-		color: var(--color-ink);
+		background-color: var(--color-ink);
+		color: var(--color-concha-nacar);
+		border: 1px solid var(--color-ink);
 	}
 
 	.arrow-pill-out,

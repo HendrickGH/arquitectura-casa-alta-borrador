@@ -32,19 +32,20 @@ interface ButtonProps {
  */
 const variants: Record<Variant, string> = {
   primary: "bg-brand-800 text-white hover:bg-ink",
+  /* Thirdway signature inline underlined CTA with oval arrow pill — never a generic boxy border */
   secondary:
-    "border border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-white",
+    "text-ink underline decoration-ink/40 underline-offset-[6px] hover:text-brand-800 hover:decoration-brand-800",
   quiet: "text-brand-700 underline underline-offset-4 hover:text-brand-900",
   /* For use over a photograph or a dark panel; no brand fill, so the primary
      action stays unambiguous. */
   inverse: "bg-canvas text-ink hover:bg-bone-100",
   outline:
-    "border border-canvas/70 text-canvas hover:border-canvas hover:bg-canvas hover:text-ink",
+    "text-canvas underline decoration-canvas/50 underline-offset-[6px] hover:text-concha-nacar hover:decoration-concha-nacar",
 };
 
 const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
-  md: "px-9 py-[1.15rem]",
-  sm: "px-6 py-3",
+  md: "px-8 py-4",
+  sm: "px-5 py-2.5",
 };
 
 export function Button({
@@ -58,11 +59,12 @@ export function Button({
   disabled = false,
   arrow = false,
 }: ButtonProps) {
-  const isQuiet = variant === "quiet";
+  const isInlineLink =
+    variant === "quiet" || variant === "secondary" || variant === "outline";
 
   const classes = cx(
     "group label inline-flex items-center justify-center gap-3 transition-colors duration-200",
-    !isQuiet && sizes[size],
+    !isInlineLink ? sizes[size] : "py-1.5",
     variants[variant],
     disabled && "cursor-not-allowed opacity-60",
     className,
@@ -73,7 +75,9 @@ export function Button({
       aria-hidden="true"
       className={cx(
         "arrow-pill",
-        (variant === "inverse" || variant === "secondary" || isQuiet) &&
+        (variant === "inverse" ||
+          variant === "secondary" ||
+          variant === "quiet") &&
           "arrow-pill-ink",
       )}
     >

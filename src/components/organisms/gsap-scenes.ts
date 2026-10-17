@@ -5,7 +5,7 @@ let pluginRegistered = false;
 let refreshScheduled = false;
 
 /** Register ScrollTrigger once, no matter how many scenes mount. */
-function registerPlugin() {
+export function registerGsapPlugins() {
   if (pluginRegistered) return;
   gsap.registerPlugin(ScrollTrigger);
   pluginRegistered = true;
@@ -14,11 +14,8 @@ function registerPlugin() {
 /**
  * Refresh once after the landing's images and fonts settle: trigger positions
  * move when the hero's photograph and the masonry's boxes land.
- *
- * Resize is ScrollTrigger's own job (debounced 200ms) and is deliberately not
- * handled here.
  */
-function refreshAfterLayout() {
+export function refreshAfterLayout() {
   if (refreshScheduled) return;
   refreshScheduled = true;
 
@@ -31,21 +28,6 @@ function refreshAfterLayout() {
 /**
  * The masonry's single-cell photographs drift by column as the wall crosses the
  * viewport.
- *
- * The double cells are the anchors, and they carry no `data-drift-item`: a
- * double spans two columns at the three-column tier (and two rows below it), so
- * any translation pulls it out of the row it shares with its neighbours -- read
- * as a photograph sitting slightly off its grid position. Only single cells
- * move, which is why this only ever runs at the three-column tier: below it the
- * wall's left column is nothing but doubles, and one column cannot drift against
- * itself.
- *
- * The columns are sorted by their left edge before the offsets are handed out.
- * The grid's dense auto-placement does not walk the DOM column by column -- an
- * early double pins itself to the second column and the cursor back-fills behind
- * it -- so the order the columns are first seen in is not their order on screen,
- * and centring the travel over that order gave one column the whole offset while
- * the opposite one did not move at all. Transform only: no layout property moves.
  */
 function buildDrift(scope: HTMLElement) {
   const items = gsap.utils.toArray<HTMLElement>("[data-drift-item]", scope);
@@ -64,7 +46,7 @@ function buildDrift(scope: HTMLElement) {
     .map(([, elements]) => elements);
   if (groups.length < 2) return;
 
-  const TRAVEL = 24;
+  const TRAVEL = 28;
   const timeline = gsap.timeline({
     scrollTrigger: {
       trigger: scope,
@@ -81,29 +63,8 @@ function buildDrift(scope: HTMLElement) {
   });
 }
 
-/**
- * Builds the scroll choreography for the masonry wall and returns its cleanup.
- *
- * THE WALL IS THE ONLY SCENE LEFT. The hero's and the closing CTA's photo
- * parallax were removed after being measured against a reference: at rest the
- * hero painted its 1600x900 AVIF at 2016x1260 -- a 1.26x upscale behind a 1.4x
- * crop -- and then drifted at 0.32px per scroll px, while the reference site
- * uses no parallax at all and only one-shot reveals. The wall's drift is a
- * different device (per-column, horizontal-free, never scaled) and stays.
- *
- * Everything is created inside `gsap.matchMedia()`. `media.revert()` in the
- * cleanup kills the timeline and its ScrollTrigger together, so no trigger
- * outlives the wrapper, and nothing is gated on an animation completing.
- *
- * The drift is registered under the three-column tier. Its columns are measured
- * once, and the column count changes with the width, so keying the scene to the
- * tier lets `gsap.matchMedia` revert and rebuild it when the wall reflows --
- * otherwise a resize leaves the tweens bound to the columns of the previous
- * layout. Below 1200px the drift has nothing to move: every remaining cell is a
- * double and the doubles anchor (see `buildDrift`).
- */
 export function createScenes({ scope }: { scope: HTMLElement }): () => void {
-  registerPlugin();
+  registerGsapPlugins();
   refreshAfterLayout();
 
   const media = gsap.matchMedia();
@@ -113,31 +74,88 @@ export function createScenes({ scope }: { scope: HTMLElement }): () => void {
 }
 
 /**
- * Drives the hero carousel: every four seconds the next slide crossfades in over
- * the current one while its headline line rises to full opacity and the other
- * lines dim.
+ * Thirdway scroll-driven expanding Hero + interactive 3-discipline carousel.
  *
- * The incoming layer is raised above the outgoing one and faded from 0 to 1, so
- * the previous photograph stays fully painted underneath during the crossfade.
- * Fading both at once would let the dark backdrop show through at the midpoint.
- * After the new layer is opaque it becomes the base for the next step.
- *
- * The first slide and all three titles are already in the server HTML (see
- * Hero.tsx), so this only animates. A missing chunk leaves a legible static hero.
+ * 1. At `y = 0`, the uncropped photograph sits framed in the center of the
+ *    `--color-concha-nacar` sheet with a central `(CA)` architectural seal.
+ * 2. As the visitor scrolls down, GSAP ScrollTrigger pins the stage and scrubs
+ *    the frame open (`clipPath` / `scale` / caption reveal) before releasing
+ *    into the `Quiénes somos` spread.
+ * 3. Visitors can also click any of the 3 discipline pills or titles to switch
+ *    the active photograph on demand.
  */
 export function createHeroCarousel({
   scope,
 }: {
   scope: HTMLElement;
 }): () => void {
+  registerGsapPlugins();
+  refreshAfterLayout();
+
+  const ctx = gsap.context(() => {
+    const stage = scope.querySelector<HTMLElement>("[data-hero-stage]");
+    const frame = scope.querySelector<HTMLElement>("[data-hero-frame]");
+    const seal = scope.querySelector<HTMLElement>("[data-hero-seal]");
+    const scrubBar = scope.querySelector<HTMLElement>("[data-hero-scrub-bar]");
+    const captionCard = scope.querySelector<HTMLElement>("[data-hero-caption]");
+
+    if (stage && frame) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: stage,
+          start: "top top+=88",
+          end: "+=85%",
+          pin: true,
+          scrub: 0.6,
+          anticipatePin: 1,
+        },
+      });
+
+      tl.fromTo(
+        frame,
+        { scale: 0.88 },
+        { scale: 1, ease: "none", duration: 1 },
+        0,
+      );
+
+      if (seal) {
+        tl.to(
+          seal,
+          { scale: 0.72, opacity: 0, ease: "power1.out", duration: 0.5 },
+          0,
+        );
+      }
+
+      if (captionCard) {
+        tl.fromTo(
+          captionCard,
+          { y: 24, opacity: 0.75 },
+          { y: 0, opacity: 1, ease: "power2.out", duration: 0.8 },
+          0.1,
+        );
+      }
+
+      if (scrubBar) {
+        tl.fromTo(
+          scrubBar,
+          { scaleX: 0.15 },
+          { scaleX: 1, ease: "none", duration: 1 },
+          0,
+        );
+      }
+    }
+  }, scope);
+
   const images = gsap.utils.toArray<HTMLElement>("[data-hero-slide]", scope);
   const titles = gsap.utils.toArray<HTMLElement>("[data-hero-title]", scope);
   const pills = gsap.utils.toArray<HTMLElement>("[data-hero-pill]", scope);
   const counter = scope.querySelector<HTMLElement>("[data-hero-counter]");
-  if (images.length < 2) return () => {};
+  if (images.length < 2) {
+    return () => ctx.revert();
+  }
 
-  const DIM = 0.42;
-  const INTERVAL = 4500;
+  const DIM = 0.38;
+  const INTERVAL = 5000;
   let active = 0;
 
   const goTo = (next: number) => {
@@ -151,15 +169,15 @@ export function createHeroCarousel({
     gsap.set(images[next], { zIndex: 1 });
     gsap.fromTo(
       images[next],
-      { opacity: 0 },
-      { opacity: 1, duration: 1.0, ease: "power2.inOut" },
+      { opacity: 0, scale: 1.02 },
+      { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" },
     );
 
     titles.forEach((title, i) =>
       gsap.to(title, {
         opacity: i === next ? 1 : DIM,
         x: i === next ? 6 : 0,
-        duration: 0.55,
+        duration: 0.5,
         ease: "power2.out",
       }),
     );
@@ -169,7 +187,7 @@ export function createHeroCarousel({
     });
 
     if (counter) {
-      counter.textContent = `${String(next + 1).padStart(2, "0")} / ${String(images.length).padStart(2, "0")}`;
+      counter.textContent = `(${String(next + 1).padStart(2, "0")}) / (${String(images.length).padStart(2, "0")})`;
     }
 
     active = next;
@@ -210,5 +228,6 @@ export function createHeroCarousel({
   return () => {
     window.clearInterval(timer);
     cleanups.forEach((fn) => fn());
+    ctx.revert();
   };
 }

@@ -48,10 +48,10 @@ export function ServicesPageTemplate({
   closing,
 }: ServicesPageTemplateProps) {
   return (
-    <SiteChrome site={site} chrome="canvas">
+    <SiteChrome site={site}>
       <main id="main">
         <PageHero
-          badge="DIVISIÓN 02"
+          badge="(DIVISIÓN 02)"
           eyebrow={page.hero.eyebrow}
           heading={page.hero.heading}
           subheadline={page.hero.subheadline}
@@ -64,34 +64,50 @@ export function ServicesPageTemplate({
           className="!pt-12 !pb-16 md:!pt-16 md:!pb-20"
         >
           <Container>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-              <div className="lg:col-span-5">
-                <div {...revealStep(0)} className="flex items-center gap-3">
-                  <span className="number-pill">01</span>
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+              <div className="flex flex-col gap-4 lg:col-span-7">
+                <div {...revealStep(0)} className="flex items-center gap-2.5">
+                  <span className="number-pill">(01)</span>
                   <p className="eyebrow">{page.intro.eyebrow}</p>
                 </div>
-                <div {...revealStep(1)} className="mt-4">
-                  <Heading as="h2" voice="serif" className="max-w-[22ch]">
+                <div {...revealStep(1)}>
+                  <Heading as="h2" voice="serif" className="max-w-[24ch]">
                     {page.intro.heading}
                   </Heading>
                 </div>
+                <div {...revealStep(2)} className="mt-2 flex flex-col gap-4">
+                  {(page.intro.paragraphs ?? [page.intro.body]).map(
+                    (paragraph, index) => (
+                      <Text
+                        key={paragraph}
+                        size={index === 0 ? "lede" : undefined}
+                        className={index === 0 ? "text-ink" : "text-ink-muted"}
+                      >
+                        {paragraph}
+                      </Text>
+                    ),
+                  )}
+                </div>
               </div>
 
-              <div
-                {...revealStep(2)}
-                className="flex flex-col gap-4 lg:col-span-7"
-              >
-                {(page.intro.paragraphs ?? [page.intro.body]).map(
-                  (paragraph, index) => (
-                    <Text
-                      key={paragraph}
-                      size={index === 0 ? "lede" : undefined}
-                      className={index === 0 ? "text-ink" : "text-ink-muted"}
-                    >
-                      {paragraph}
-                    </Text>
-                  ),
-                )}
+              <div {...revealStep(2)} className="lg:col-span-5">
+                <div className="overflow-hidden border border-ink/15 bg-concha-nacar p-3 shadow-sm md:p-4">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                    <Photo
+                      photo={{
+                        src: "/images/proyectos-integrales/01-arquitectos-revisando-planos-estructurales-mesa-madera.avif",
+                        alt: "Arquitectos e ingenieros de Casa Alta revisando planos ejecutivos y cálculo estructural",
+                        width: 960,
+                        height: 1280,
+                      }}
+                      sizes="(min-width: 1024px) 40vw, 95vw"
+                    />
+                  </div>
+                  <div className="mt-3 flex items-center justify-between gap-2 px-1 text-xs text-ink-muted">
+                    <span>Ingeniería y proyecto ejecutivo en gabinete</span>
+                    <span className="number-pill">(CÁLCULO)</span>
+                  </div>
+                </div>
               </div>
             </div>
           </Container>

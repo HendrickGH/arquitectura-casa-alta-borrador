@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/atoms/Button";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
@@ -15,16 +14,17 @@ interface ProjectCardProps {
   priority?: boolean;
   /** Zero-based position in the `stagger` cascade; omitted when unstaggered. */
   revealIndex?: number;
-  /** Optional interactive drawer trigger used on the /proyectos explorer. */
+  /** Interactive dossier modal trigger. */
   onSelect?: (project: Project) => void;
 }
 
 /**
- * One project card with a MANUAL image carousel.
+ * Thirdway-style editorial project card (`cards-insights-carousel` plate).
  *
- * The card is no longer a single link: the arrows are controls, and a link
- * wrapping them would navigate on every click. The only link is the explicit
- * "Conoce más sobre {title}" button at the end.
+ * Framed on a warm `concha-nacar` plate with oval capsule metadata tags
+ * `(01) (TIPOLOGÍA) (UBICACIÓN)`, a manual multi-photo carousel, and an
+ * inline underlined action with an oval arrow pill that opens the full
+ * architectural dossier modal — never a generic rectangular bordered button.
  */
 export function ProjectCard({
   project,
@@ -40,120 +40,146 @@ export function ProjectCard({
   const move = (step: number) =>
     setIndex((current) => (current + step + total) % total);
 
+  const ordinal =
+    typeof revealIndex === "number"
+      ? String(revealIndex + 1).padStart(2, "0")
+      : "01";
+
   return (
-    <article {...revealStep(revealIndex)} className="flex flex-col">
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
-        <div
-          className="flex h-full transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${index * 100}%)` }}
-        >
-          {images.map((photo, i) => (
-            <div key={photo.src} className="relative h-full w-full shrink-0">
-              <Photo
-                photo={photo}
-                sizes={sizes}
-                priority={priority && i === 0}
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="pointer-events-none absolute top-3 left-3 z-10 flex items-center gap-2">
-          <span className="number-pill-inverse">
-            {`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`}
-          </span>
-        </div>
-
-        {total > 1 ? (
-          <>
-            <CarouselArrow
-              label="Imagen anterior"
-              side="left"
-              onClick={() => move(-1)}
-            />
-            <CarouselArrow
-              label="Imagen siguiente"
-              side="right"
-              onClick={() => move(1)}
-            />
-          </>
-        ) : null}
-      </div>
-
-      {/* Category, title, place: three lines, each one job. */}
-      <div className="mt-5 flex flex-1 flex-col gap-2">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          {project.categoryLabel ? (
-            <p className="label text-brand-800">{project.categoryLabel}</p>
-          ) : null}
+    <article
+      {...revealStep(revealIndex)}
+      className="group flex flex-col justify-between border border-ink/12 bg-concha-nacar p-5 transition-colors duration-300 hover:border-ink/35 md:p-6"
+    >
+      <div>
+        {/* Top Thirdway oval capsule metadata bar */}
+        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="number-pill">{`(${ordinal})`}</span>
+            {project.categoryLabel ? (
+              <span className="number-pill">{project.categoryLabel}</span>
+            ) : null}
+          </div>
           {project.location ? (
-            <p className="text-xs text-ink-muted">{project.location}</p>
+            <span className="text-[0.7rem] tracking-wider text-ink-muted uppercase">
+              {project.location}
+            </span>
           ) : null}
         </div>
 
-        <Heading
-          as="h3"
-          voice="serif"
-          sizeClassName="text-[1.5rem] leading-[1.15] md:text-[1.75rem]"
+        {/* Title & concise summary above the photograph (Thirdway plate order) */}
+        <div
+          onClick={() => onSelect?.(project)}
+          className={onSelect ? "cursor-pointer" : undefined}
         >
-          {project.title}
-        </Heading>
+          <Heading
+            as="h3"
+            voice="serif"
+            sizeClassName="text-[1.45rem] leading-[1.12] md:text-[1.7rem] transition-colors group-hover:text-brand-800"
+          >
+            {project.title}
+          </Heading>
 
-        {project.summary ? (
-          <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-ink-muted">
-            {project.summary}
-          </p>
-        ) : null}
+          {project.summary ? (
+            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-muted">
+              {project.summary}
+            </p>
+          ) : null}
+        </div>
       </div>
 
-      <div className="mt-5 flex flex-wrap items-center gap-3">
-        {onSelect ? (
-          <button
-            type="button"
-            onClick={() => onSelect(project)}
-            className="group label inline-flex items-center justify-center gap-3 border border-ink/30 px-6 py-3 text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-white"
+      {/* Framed photograph carousel */}
+      <div className="mt-5">
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+          <div
+            className="flex h-full transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${index * 100}%)` }}
           >
-            <span>{`Explorar ${project.title}`}</span>
-            <span aria-hidden="true" className="arrow-pill arrow-pill-ink">
-              <svg
-                viewBox="0 0 16 16"
-                className="arrow-pill-out h-3.5 w-3.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
+            {images.map((photo, i) => (
+              <div
+                key={photo.src}
+                onClick={() => onSelect?.(project)}
+                className={`relative h-full w-full shrink-0 ${
+                  onSelect ? "cursor-pointer" : ""
+                }`}
               >
-                <path
-                  d="M2.5 8h11m-4-4 4 4-4 4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                <Photo
+                  photo={photo}
+                  sizes={sizes}
+                  priority={priority && i === 0}
+                  className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
-              </svg>
-              <svg
-                viewBox="0 0 16 16"
-                className="arrow-pill-in h-3.5 w-3.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              >
-                <path
-                  d="M2.5 8h11m-4-4 4 4-4 4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              </div>
+            ))}
+          </div>
+
+          <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex items-center gap-1.5">
+            <span className="number-pill-inverse">
+              {`(${String(index + 1).padStart(2, "0")}) / (${String(total).padStart(2, "0")})`}
             </span>
-          </button>
-        ) : (
-          <Button
-            href={`/proyectos/${project.slug}`}
-            variant="secondary"
-            size="sm"
-            arrow
-            className="max-w-full"
-          >
-            {`Conoce más sobre ${project.title}`}
-          </Button>
-        )}
+          </div>
+
+          {total > 1 ? (
+            <>
+              <CarouselArrow
+                label="Imagen anterior"
+                side="left"
+                onClick={() => move(-1)}
+              />
+              <CarouselArrow
+                label="Imagen siguiente"
+                side="right"
+                onClick={() => move(1)}
+              />
+            </>
+          ) : null}
+        </div>
+
+        {/* Bottom inline Thirdway action bar */}
+        <div className="mt-4 flex items-center justify-between gap-4 border-t border-ink/12 pt-3.5">
+          <span className="text-xs text-ink-muted">
+            {`${project.photoCount} fotografías de obra`}
+          </span>
+
+          {onSelect ? (
+            <button
+              type="button"
+              onClick={() => onSelect(project)}
+              className="group/btn label inline-flex items-center gap-2.5 text-ink transition-colors hover:text-brand-800"
+            >
+              <span className="underline decoration-ink/40 underline-offset-[5px] group-hover/btn:decoration-brand-800">
+                Ver expediente
+              </span>
+              <span aria-hidden="true" className="arrow-pill arrow-pill-ink">
+                <svg
+                  viewBox="0 0 16 16"
+                  className="arrow-pill-out h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                >
+                  <path
+                    d="M2.5 8h11m-4-4 4 4-4 4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <svg
+                  viewBox="0 0 16 16"
+                  className="arrow-pill-in h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                >
+                  <path
+                    d="M2.5 8h11m-4-4 4 4-4 4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
+          ) : null}
+        </div>
       </div>
     </article>
   );
@@ -165,23 +191,21 @@ interface CarouselArrowProps {
   onClick: () => void;
 }
 
-/**
- * One carousel arrow: centred vertically over the photograph, a few pixels in
- * from the edge, translucent so it stays legible on any image and never hides
- * it. The inset grows a little on wider cards.
- */
 function CarouselArrow({ label, side, onClick }: CarouselArrowProps) {
-  const position = side === "left" ? "left-2 md:left-3" : "right-2 md:right-3";
+  const position = side === "left" ? "left-2.5" : "right-2.5";
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
       aria-label={label}
-      className={`absolute top-1/2 z-10 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-ink/55 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-ink/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${position}`}
+      className={`absolute top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-ink/55 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${position}`}
     >
       <Icon
         name={side === "left" ? "arrow-left" : "arrow-right"}
-        className="h-5 w-5"
+        className="h-4 w-4"
       />
     </button>
   );
