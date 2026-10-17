@@ -54,6 +54,27 @@ export function ContactForm({
                 <span>Puerto Escondido · Oaxaca Centro · Salina Cruz</span>
                 <span className="number-pill">SIN COSTO</span>
               </div>
+
+              {/* Consultation Checklist */}
+              <div className="mt-6 border border-bone-200/90 bg-white p-5 text-xs shadow-xs">
+                <p className="label font-semibold text-brand-800 uppercase tracking-wider mb-2.5 text-[0.6875rem]">
+                  Qué incluye su primera sesión técnica:
+                </p>
+                <ul className="space-y-2 text-ink/80">
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-800 shrink-0" />
+                    <span>Evaluación técnica de predio, mecánica preliminar y orientación bioclimática.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-800 shrink-0" />
+                    <span>Estimación de partidas, volumetría y catálogo paramétrico de inversión.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-brand-800 shrink-0" />
+                    <span>Ruta crítica de proyecto ejecutivo, trámites y supervisión DRO.</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
 
