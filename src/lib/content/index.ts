@@ -28,7 +28,6 @@ import {
   pickUnusedProjectPhoto,
   strongestUnusedLandscapePhoto,
 } from "./photos";
-import editorialDimensions from "@images/editorial/editorial.dimensions.json";
 import type {
   AboutPageContent,
   CategoryTile,
@@ -69,21 +68,11 @@ export function getWhatsappHref(): string {
   return whatsappHref;
 }
 
-/** The dimensions sidecar tools/editorial.sh writes, keyed by image slug. */
-type EditorialDimensions = Record<
-  string,
-  { width: number; height: number; fallback: string }
->;
-
-const editorialDimensionsBySlug =
-  editorialDimensions as unknown as EditorialDimensions;
-
 /**
  * The photograph attached to each service, keyed by service slug.
  *
- * Prefers a real studio photograph from `manifest.json` when `ref.dir` and
- * `ref.base` are configured, and falls back to the editorial sidecar when no
- * studio photo exists for that service yet.
+ * Resolves 100% from real studio photographs in `manifest.json` — zero stock
+ * images are ever used.
  */
 export function getEditorial(): Map<string, Photo> {
   const byService = new Map<string, Photo>();
@@ -92,17 +81,8 @@ export function getEditorial(): Map<string, Photo> {
       const studioPhoto = findPhotoByBase(ref.dir, ref.base, "", ref.alt);
       if (studioPhoto) {
         byService.set(ref.service, studioPhoto);
-        continue;
       }
     }
-    const dimensions = editorialDimensionsBySlug[ref.slug];
-    if (!dimensions) continue;
-    byService.set(ref.service, {
-      src: `/images/editorial/${ref.slug}.avif`,
-      alt: ref.alt,
-      width: dimensions.width,
-      height: dimensions.height,
-    });
   }
   return byService;
 }
@@ -122,11 +102,23 @@ export function getServiceGroups(): ServiceGroup[] {
 }
 
 export function getProcessSteps(): ProcessStep[] {
-  return processSteps;
+  return processSteps.map((step) => ({
+    ...step,
+    photo:
+      step.dir && step.base
+        ? (findPhotoByBase(step.dir, step.base, step.title) ?? undefined)
+        : undefined,
+  }));
 }
 
 export function getDifferentiators(): Differentiator[] {
-  return differentiators;
+  return differentiators.map((item) => ({
+    ...item,
+    photo:
+      item.dir && item.base
+        ? (findPhotoByBase(item.dir, item.base, item.title) ?? undefined)
+        : undefined,
+  }));
 }
 
 export function getTestimonials(): Testimonial[] {
@@ -279,10 +271,17 @@ function landingSources(): Set<string> {
   const { featured, remaining } = getLandingPortfolio();
   const groups = getServiceGroups();
   const divisions = getDivisionCards();
+  const steps = getProcessSteps();
+  const diffs = getDifferentiators();
   return new Set([
     ...home.hero.slides.map((slide) => slide.photo.src),
     ...(home.intro.photo ? [home.intro.photo.src] : []),
+    ...(home.intro.secondaryPhoto ? [home.intro.secondaryPhoto.src] : []),
+    ...(home.manifestoPhoto ? [home.manifestoPhoto.src] : []),
+    ...(home.contactPhoto ? [home.contactPhoto.src] : []),
     ...divisions.map((card) => card.photo.src),
+    ...steps.flatMap((s) => (s.photo ? [s.photo.src] : [])),
+    ...diffs.flatMap((d) => (d.photo ? [d.photo.src] : [])),
     ...featured.flatMap((project) => project.gallery.map((photo) => photo.src)),
     ...remaining.flatMap((project) =>
       project.gallery.map((photo) => photo.src),
@@ -324,7 +323,10 @@ export function getClosing(): HomePage["closing"] {
 export function getHomePage(): HomePage {
   return {
     ...home,
-    differentiators: { ...home.differentiators, items: differentiators },
+    differentiators: {
+      ...home.differentiators,
+      items: getDifferentiators(),
+    },
     testimonials: { ...home.testimonials, items: testimonials },
   };
 }

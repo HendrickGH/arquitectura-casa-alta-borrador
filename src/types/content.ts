@@ -164,11 +164,23 @@ export interface ProcessStep {
   description: string;
   /** Optional concrete deliverables or guarantees for this stage. */
   deliverables?: string[];
+  /** Manifest directory for this step's real studio photograph. */
+  dir?: string;
+  /** Manifest base slug for this step's real studio photograph. */
+  base?: string;
+  /** Resolved studio photograph attached by the content seam. */
+  photo?: Photo;
 }
 
 export interface Differentiator {
   title: string;
   description: string;
+  /** Manifest directory for this differentiator's real studio photograph. */
+  dir?: string;
+  /** Manifest base slug for this differentiator's real studio photograph. */
+  base?: string;
+  /** Resolved studio photograph attached by the content seam. */
+  photo?: Photo;
 }
 
 export interface Testimonial {
@@ -263,6 +275,10 @@ export interface SectionIntro {
   photo?: Photo;
   /** Optional caption for the featured introduction photograph. */
   photoCaption?: string;
+  /** Optional secondary photograph for dual-image architectural spreads. */
+  secondaryPhoto?: Photo;
+  /** Optional caption for the secondary photograph. */
+  secondaryPhotoCaption?: string;
 }
 
 /* ---------- landing composition ---------- */
@@ -336,6 +352,8 @@ export interface HomePage {
   stats: Stat[];
   /** The architect's philosophical quote on the landing page. */
   manifesto: string;
+  /** Real studio photograph paired with the manifesto editorial spread. */
+  manifestoPhoto?: Photo;
   /** The studio's mission statement from the brief. */
   mission: string;
   tiles: CategoryTileContent[];
@@ -354,6 +372,8 @@ export interface HomePage {
   };
   /** The landing's contact form copy, rendered by ContactForm. */
   contact: ContactFormContent;
+  /** Real studio photograph paired with the contact section. */
+  contactPhoto?: Photo;
 }
 
 /* ---------- dedicated pages ---------- */

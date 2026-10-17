@@ -79,12 +79,16 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "espacios-publicos-y-deportivos",
     slug: "servicios-espacios-publicos-estadio",
-    alt: "Graderío de un estadio vacío visto desde la cancha",
+    dir: "06-capilla-el-tule",
+    base: "01-capilla-cantera-jacaranda-flor",
+    alt: "Espacio público y equipamiento comunitario en cantera verde bajo jacaranda en flor en Santa María del Tule, Oaxaca",
   },
   {
     service: "skateparks",
     slug: "servicios-exterior-pista-skate",
-    alt: "Rampa y barandal de concreto en una pista de skate al aire libre",
+    dir: "13-puente-cd-administrativa",
+    base: "01-puente-peatonal-crucero-malla",
+    alt: "Infraestructura urbana, concreto expuesto y equipamiento exterior en Ciudad Administrativa, Tlalixtac de Cabrera",
   },
   {
     service: "landscape",
@@ -103,12 +107,17 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "instalaciones-electricas",
     slug: "servicios-instalaciones-electricas-subestacion",
-    alt: "Transformador de una subestación eléctrica al aire libre",
+    dir: "11-columnas-c1-c2",
+    base: "01-izado-columna-grua-jacaranda",
+    alt: "Infraestructura e ingeniería de soporte en obra civil e industrial ejecutada por Casa Alta en Oaxaca",
   },
   {
     service: "instalaciones-hidrosanitarias",
     slug: "servicios-instalaciones-tratamiento-agua",
-    alt: "Vista aérea de tanques circulares de sedimentación de agua",
+    dir: "14-pavimentacion",
+    base: "01-revolvedora-concreto-sobre-pavimento",
+    alt: "Ejecución de infraestructura vial, drenaje e instalaciones hidrosanitarias con concreto hidráulico",
   },
 ];
+
 

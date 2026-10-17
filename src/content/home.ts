@@ -39,6 +39,30 @@ const introAerialPhoto: Photo = {
   height: 720,
 };
 
+/** Secondary studio photograph for Quiénes somos: on-site coastal construction supervision. */
+const introSupervisionPhoto: Photo = {
+  src: "/images/credibilidad/02-trabajador-uniforme-casa-alta-armado-acero-playa.avif",
+  alt: "Personal técnico de Casa Alta con uniforme institucional armando estructura de acero frente al mar en la costa de Oaxaca",
+  width: 1200,
+  height: 1600,
+};
+
+/** Studio photograph for the Architect Manifesto section. */
+const manifestoStudioPhoto: Photo = {
+  src: "/images/arquitectura-que-perdura/01-comedor-exterior-madera-bajo-palapa-lamparas-tejidas.avif",
+  alt: "Comedor exterior bajo estructura de palapa con mesa de madera parota y lámparas tejidas artesanales en la costa de Oaxaca",
+  width: 829,
+  height: 1280,
+};
+
+/** Studio photograph for the Contact section. */
+const contactStudioPhoto: Photo = {
+  src: "/images/arquitectura-interiores/02-comedor-madera-integrado-isla-cocina-cuadro-arte.avif",
+  alt: "Estancia y comedor de madera tropical integrados con isla de cocina en piedra de importación y muro terracota",
+  width: 960,
+  height: 1280,
+};
+
 /**
  * Figures the client supplied directly.
  */
@@ -133,6 +157,7 @@ export const home: HomePage = {
   // The architect's philosophical statement from the client brief (PDF p. 4).
   manifesto:
     "La arquitectura es el medio de expresión donde se crea el espacio íntimo que envuelve al ser para su desarrollo.",
+  manifestoPhoto: manifestoStudioPhoto,
 
   // The studio's mission statement from the client brief.
   mission:
@@ -159,6 +184,9 @@ export const home: HomePage = {
     photo: introAerialPhoto,
     photoCaption:
       "Conjunto arquitectónico en Punta Zicatela, Puerto Escondido — Vista aérea en su versión original a color.",
+    secondaryPhoto: introSupervisionPhoto,
+    secondaryPhotoCaption:
+      "Supervisión técnica permanente y armado estructural en obra costera.",
   },
 
   services: {
@@ -222,5 +250,7 @@ export const home: HomePage = {
       "No pudimos enviar el mensaje. Intente de nuevo o escríbanos directamente por WhatsApp.",
     whatsapp: "Escribir por WhatsApp",
   },
+  contactPhoto: contactStudioPhoto,
 };
+
 

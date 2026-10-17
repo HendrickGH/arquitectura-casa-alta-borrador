@@ -19,6 +19,8 @@ export const processSteps: ProcessStep[] = [
       "Asesoría inicial sin costo (Zoom o presencial)",
       "Diagnóstico de terreno, clima y viabilidad",
     ],
+    dir: "proyectos-integrales",
+    base: "03-sesion-trabajo-revision-proyecto-ejecutivo-oficina",
   },
   {
     order: 2,
@@ -29,6 +31,8 @@ export const processSteps: ProcessStep[] = [
       "Alcance por escrito y catálogo de conceptos",
       "Programa de obra y estimación económica transparente",
     ],
+    dir: "proyectos-integrales",
+    base: "02-detalle-revision-plano-ingenieria-detalle-constructivo",
   },
   {
     order: 3,
@@ -41,6 +45,8 @@ export const processSteps: ProcessStep[] = [
       "Cálculo estructural y validación de sistemas",
       "Renders y visualización de alta calidad",
     ],
+    dir: "arquitectura-que-perdura",
+    base: "08-acceso-doble-altura-celosia-circular-palmas",
   },
   {
     order: 4,
@@ -51,6 +57,8 @@ export const processSteps: ProcessStep[] = [
       "Contrato con especificaciones y plazos firmados",
       "Certeza jurídica sobre alcances y materiales",
     ],
+    dir: "credibilidad",
+    base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
   },
   {
     order: 5,
@@ -62,6 +70,8 @@ export const processSteps: ProcessStep[] = [
       "Control de calidad de materiales y procesos",
       "Reportes fotográficos y técnicos de avance",
     ],
+    dir: "credibilidad",
+    base: "06-armado-acero-estructural-zapata-trabajador-casa-alta",
   },
   {
     order: 6,
@@ -72,6 +82,8 @@ export const processSteps: ProcessStep[] = [
       "Pruebas de funcionamiento e instalaciones",
       "Recorrido de recepción y entrega de llaves",
     ],
+    dir: "arquitectura-que-perdura",
+    base: "02-fachada-tierra-camastros-madera-alberca-palmeras",
   },
   {
     order: 7,
@@ -82,6 +94,9 @@ export const processSteps: ProcessStep[] = [
       "Garantía de obra y vicios ocultos por escrito",
       "Acompañamiento y mantenimiento post-entrega",
     ],
+    dir: "arquitectura-que-perdura",
+    base: "04-patio-hamacas-huellas-piedra-alberca-palmeras",
   },
 ];
+
 
