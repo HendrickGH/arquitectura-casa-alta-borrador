@@ -29,17 +29,21 @@ export function StatsBand({ stats }: StatsBandProps) {
   return (
     <section
       {...revealAttrs("stagger")}
-      className="border-y border-bone-200 bg-bone-50"
+      className="ruler-top border-b border-bone-200 bg-bone-50"
     >
       <Container>
-        <div className="grid grid-cols-2 gap-y-12 py-16 md:py-24 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-8 py-7 md:py-9 lg:grid-cols-4">
           {stats.map((stat, index) => (
             <div
               key={stat.label}
               {...revealStep(index)}
-              className={cx("py-2", ruleClass(index))}
+              className={cx("py-1", ruleClass(index))}
             >
-              <StatItem value={stat.value} label={stat.label} />
+              <StatItem
+                value={stat.value}
+                label={stat.label}
+                index={index + 1}
+              />
             </div>
           ))}
         </div>

@@ -1,6 +1,7 @@
 import { CategoryTiles } from "@/components/organisms/CategoryTiles";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { Differentiators } from "@/components/organisms/Differentiators";
+import { DivisionCards } from "@/components/organisms/DivisionCards";
 import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
 import { FullBleedCTA } from "@/components/organisms/FullBleedCTA";
 import { Hero } from "@/components/organisms/Hero";
@@ -16,6 +17,7 @@ import { Testimonials } from "@/components/organisms/Testimonials";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
   CategoryTile,
+  DivisionCard,
   HomePage,
   MasonryItem,
   Photo,
@@ -28,9 +30,10 @@ import type {
 interface LandingTemplateProps {
   site: SiteConfig;
   home: HomePage;
+  divisions: DivisionCard[];
   groups: ServiceGroup[];
   steps: ProcessStep[];
-  /** The brief's three, lead first. */
+  /** The brief's four flagship projects. */
   featured: Project[];
   /** The projects the featured row did not take, continuing it. */
   remaining: Project[];
@@ -41,45 +44,10 @@ interface LandingTemplateProps {
   whatsappHref: string;
 }
 
-/**
- * The landing, composed. Nothing here decides anything: it places the sections
- * and alternates their tone, so the page has a rhythm instead of being one
- * unbroken white column.
- *
- * Tone order, top to bottom:
- *   claim strip (brand) - header (canvas) - hero (photo)
- *   intro (canvas) - stats (bone) - tiles (canvas) - manifesto (bone)
- *   featured portfolio (canvas) - rest of the grid (canvas) - process (bone)
- *   services (canvas) - differentiators (bone) - masonry (canvas)
- *   testimonials (bone, absent today) - full-bleed closing CTA (photo)
- *   contact form (bone) - footer (canvas)
- *
- * Three adjacency rules are deliberate.
- *
- * Adjacent text sections alternate, so the page reads as structure rather than
- * as a stripe pattern. The intro and the stats now sit directly under the hero
- * instead of the tiles: the hero is the first photograph, and a four-up tile
- * band immediately beneath it opened the page on a second wall of images. The
- * studio says who it is and how much it has built before the next photograph
- * arrives.
- *
- * No two photographic masses are adjacent. The four photographic blocks -- the
- * tiles, the portfolio, the services and the masonry -- are separated by a text
- * section each, and the brief's original run (portfolio 6 -> services 13 ->
- * masonry 12) left thirty-one photographs with nothing but an intro between
- * them. Process now breaks portfolio from services, and differentiators breaks
- * services from masonry. The masonry's tone is `canvas`, not `bone`, because
- * that section follows the bone differentiators and the alternation has to hold
- * across the pair.
- *
- * The two portfolio rows are the exception to the tone alternation: both are
- * `canvas`, because the grid continues the featured row rather than opening a
- * second section, and a tone change there was read as a new section starting at
- * the fourth project.
- */
 export function LandingTemplate({
   site,
   home,
+  divisions,
   groups,
   steps,
   featured,
@@ -97,7 +65,11 @@ export function LandingTemplate({
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
         <StatsBand stats={home.stats} />
 
-        <CategoryTiles tiles={tiles} />
+        <DivisionCards
+          intro={home.divisionsIntro}
+          divisions={divisions}
+          tone="canvas"
+        />
         <ManifestoLine line={home.manifesto} architect={site.architect} />
 
         <FeaturedPortfolio

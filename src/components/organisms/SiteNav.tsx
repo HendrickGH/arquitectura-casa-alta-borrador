@@ -19,8 +19,8 @@ import type {
 interface SiteNavProps {
   nav: NavLink[];
   cta: CallToAction;
-  /** The primary phone line; the first entry of the site's contact list. */
-  phone: ContactLine;
+  /** Phone lines from the site's contact list. */
+  phones: ContactLine[];
   social: SocialLink[];
 }
 
@@ -32,14 +32,14 @@ const XL_QUERY = "(min-width: 1280px)";
  *
  * One component owns the whole nav so there is exactly one definition of the
  * links: inline from `xl`, behind a burger below it. The burger reveals the
- * same links plus the phone and social profiles that the collapsed header drops.
+ * same links plus the phones and social profiles that the collapsed header drops.
  *
  * The overlay is portalled to `document.body` rather than rendered inside the
  * `<header>`: a `fixed` descendant of a `position: sticky` ancestor would
  * position against the header (which also carries a `transform` while it hides
  * on scroll) instead of the viewport.
  */
-export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
+export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
   const { open, setOpen } = useNavOpen();
 
   // Lock scroll while open, close on Escape, and close if the viewport crosses
@@ -97,13 +97,18 @@ export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
         </nav>
 
         <div className="flex flex-col gap-6">
-          <a
-            href={phone.href}
-            className="flex items-center gap-3 text-ink transition-colors duration-200 hover:text-brand-700"
-          >
-            <Icon name="phone" className="h-5 w-5 shrink-0" />
-            <span className="text-sm">{phone.value}</span>
-          </a>
+          <div className="flex flex-col gap-3">
+            {phones.map((phone) => (
+              <a
+                key={phone.href}
+                href={phone.href}
+                className="flex items-center gap-3 text-ink transition-colors duration-200 hover:text-brand-700"
+              >
+                <Icon name="phone" className="h-5 w-5 shrink-0" />
+                <span className="text-sm tabular-nums">{phone.value}</span>
+              </a>
+            ))}
+          </div>
 
           <ul className="flex items-center gap-5">
             {social.map((link) => (
@@ -119,9 +124,9 @@ export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
 
   return (
     <>
-      <div className="flex items-center gap-2 xl:gap-7">
+      <div className="flex items-center gap-2 xl:gap-5 2xl:gap-7">
         <nav className="hidden xl:block" aria-label="Principal">
-          <ul className="flex items-center gap-7">
+          <ul className="flex items-center gap-5 2xl:gap-7">
             {nav.map((link) => (
               <li key={link.href}>
                 <NavItem link={link} />
@@ -130,7 +135,7 @@ export function SiteNav({ nav, cta, phone, social }: SiteNavProps) {
           </ul>
         </nav>
 
-        <Button href={cta.href} className="chrome-cta shrink-0 max-sm:px-4">
+        <Button href={cta.href} size="sm" className="chrome-cta shrink-0 max-sm:px-4">
           {cta.label}
         </Button>
 

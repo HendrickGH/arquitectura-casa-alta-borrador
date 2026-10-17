@@ -28,6 +28,7 @@
 	--color-bone-50: #f4f3f1;
 	--color-bone-100: #eceae6;
 	--color-bone-200: #e4e2de;
+	--color-concha-nacar: #f7f1e9;
 
 	/* Brand. #0e2d78 is the logo's dominant blue. It is far too dark to use as a
      background, so it works as type, rules and the CTA fill instead. */
@@ -151,6 +152,111 @@
 		font-size: 0.75rem;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
+	}
+
+	/* Thirdway-inspired architectural index pill (01, 02, 17). */
+	.number-pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.18rem 0.5rem;
+		border-radius: 2px;
+		font-family: var(--font-sans);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: 0.14em;
+		font-variant-numeric: tabular-nums;
+		background-color: var(--color-bone-100);
+		color: var(--color-brand-800);
+		border: 1px solid var(--color-bone-200);
+	}
+
+	.number-pill-inverse {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.18rem 0.5rem;
+		border-radius: 2px;
+		font-family: var(--font-sans);
+		font-size: 0.6875rem;
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: 0.14em;
+		font-variant-numeric: tabular-nums;
+		background-color: rgba(255, 255, 255, 0.14);
+		color: var(--color-canvas);
+		border: 1px solid rgba(255, 255, 255, 0.28);
+		-webkit-backdrop-filter: blur(8px);
+		backdrop-filter: blur(8px);
+	}
+
+	/* Architectural blueprint ruler hairline with 8px tick marks. */
+	.ruler-top {
+		position: relative;
+		border-top: 1px solid var(--color-bone-200);
+	}
+
+	.ruler-top::before {
+		content: "";
+		position: absolute;
+		top: -1px;
+		left: 0;
+		right: 0;
+		height: 5px;
+		background-image: repeating-linear-gradient(
+			to right,
+			var(--color-bone-200) 0,
+			var(--color-bone-200) 1px,
+			transparent 1px,
+			transparent 48px
+		);
+		pointer-events: none;
+	}
+
+	/* Double-arrow pill micro-interaction (Thirdway signature). */
+	.arrow-pill {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.9375rem;
+		height: 1.375rem;
+		border-radius: 2px;
+		overflow: hidden;
+		background-color: rgba(255, 255, 255, 0.16);
+		transition: background-color 280ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.arrow-pill-ink {
+		background-color: var(--color-bone-100);
+		color: var(--color-ink);
+	}
+
+	.arrow-pill-out,
+	.arrow-pill-in {
+		transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.arrow-pill-out {
+		transform: translateX(0);
+	}
+
+	.arrow-pill-in {
+		position: absolute;
+		transform: translateX(-150%);
+	}
+
+	.group:hover .arrow-pill-out,
+	a:hover > .arrow-pill .arrow-pill-out,
+	button:hover > .arrow-pill .arrow-pill-out {
+		transform: translateX(150%);
+	}
+
+	.group:hover .arrow-pill-in,
+	a:hover > .arrow-pill .arrow-pill-in,
+	button:hover > .arrow-pill .arrow-pill-in {
+		transform: translateX(0);
 	}
 }
 

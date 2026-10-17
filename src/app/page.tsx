@@ -1,5 +1,6 @@
 import { LandingTemplate } from "@/components/templates/LandingTemplate";
 import {
+  getDivisionCards,
   getHomePage,
   getLandingPortfolio,
   getMasonry,
@@ -22,6 +23,7 @@ import {
 export default function HomePage() {
   const site = getSiteConfig();
   const home = getHomePage();
+  const divisions = getDivisionCards();
   const groups = getServiceGroups();
   const steps = getProcessSteps();
   const { featured, remaining } = getLandingPortfolio();
@@ -34,6 +36,7 @@ export default function HomePage() {
     <LandingTemplate
       site={site}
       home={home}
+      divisions={divisions}
       groups={groups}
       steps={steps}
       featured={featured}

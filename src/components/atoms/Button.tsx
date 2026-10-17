@@ -19,6 +19,8 @@ interface ButtonProps {
   /** Submit controls only. */
   type?: "button" | "submit";
   disabled?: boolean;
+  /** Renders the Thirdway-style double-arrow pill alongside the label. */
+  arrow?: boolean;
 }
 
 /**
@@ -54,16 +56,47 @@ export function Button({
   external = false,
   type = "button",
   disabled = false,
+  arrow = false,
 }: ButtonProps) {
   const isQuiet = variant === "quiet";
 
   const classes = cx(
-    "label inline-flex items-center justify-center transition-colors duration-200",
+    "group label inline-flex items-center justify-center gap-3 transition-colors duration-200",
     !isQuiet && sizes[size],
     variants[variant],
     disabled && "cursor-not-allowed opacity-60",
     className,
   );
+
+  const arrowPill = arrow ? (
+    <span
+      aria-hidden="true"
+      className={cx(
+        "arrow-pill",
+        (variant === "inverse" || variant === "secondary" || isQuiet) &&
+          "arrow-pill-ink",
+      )}
+    >
+      <svg
+        viewBox="0 0 16 16"
+        className="arrow-pill-out h-3.5 w-3.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      >
+        <path d="M2.5 8h11m-4-4 4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <svg
+        viewBox="0 0 16 16"
+        className="arrow-pill-in h-3.5 w-3.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      >
+        <path d="M2.5 8h11m-4-4 4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </span>
+  ) : null;
 
   if (href) {
     return (
@@ -72,14 +105,16 @@ export function Button({
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className={classes}
       >
-        {children}
+        <span>{children}</span>
+        {arrowPill}
       </a>
     );
   }
 
   return (
     <button type={type} disabled={disabled} className={classes}>
-      {children}
+      <span>{children}</span>
+      {arrowPill}
     </button>
   );
 }

@@ -39,11 +39,13 @@ interface HeaderProps {
  * the scroll state and the `--chrome-h` measurement around them.
  */
 export function Header({ site, chrome }: HeaderProps) {
+  const phones = site.contact.filter((c) => c.href.startsWith("tel:"));
+
   return (
     <HeaderShell chrome={chrome}>
       <UtilityBar
         claim={site.claim}
-        phone={site.contact[0]}
+        phones={phones}
         social={site.social}
       />
 
@@ -55,7 +57,7 @@ export function Header({ site, chrome }: HeaderProps) {
         <SiteNav
           nav={site.nav}
           cta={site.cta}
-          phone={site.contact[0]}
+          phones={phones}
           social={site.social}
         />
       </Container>

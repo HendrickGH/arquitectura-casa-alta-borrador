@@ -20,23 +20,36 @@ export function ProcessEntry({ step, revealIndex }: ProcessEntryProps) {
   return (
     <li
       {...revealStep(revealIndex)}
-      className="grid gap-5 py-10 md:grid-cols-12 md:gap-10 md:py-12"
+      className="grid gap-5 py-9 md:grid-cols-12 md:gap-10 md:py-11"
     >
-      <div className="flex items-baseline gap-6 md:col-span-5">
-        <span className="voice text-2xl text-brand-800 md:text-3xl">
-          {marker}
-        </span>
+      <div className="flex items-baseline gap-5 md:col-span-5">
+        <span className="number-pill shrink-0">{marker}</span>
         <Heading
           as="h3"
           voice="serif"
-          sizeClassName="text-[1.5rem] leading-[1.15] md:text-[1.75rem]"
-          className="max-w-[20ch]"
+          sizeClassName="text-[1.35rem] leading-[1.2] md:text-[1.6rem]"
+          className="max-w-[24ch]"
         >
           {step.title}
         </Heading>
       </div>
 
-      <Text className="text-ink-muted md:col-span-7">{step.description}</Text>
+      <div className="flex flex-col gap-4 md:col-span-7">
+        <Text className="text-ink-muted">{step.description}</Text>
+
+        {step.deliverables && step.deliverables.length > 0 ? (
+          <ul className="flex flex-wrap gap-2 pt-1">
+            {step.deliverables.map((item) => (
+              <li
+                key={item}
+                className="border border-bone-200 bg-canvas px-3 py-1 text-xs font-medium text-brand-900"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
     </li>
   );
 }

@@ -1,3 +1,4 @@
+import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { ProjectCard } from "@/components/molecules/ProjectCard";
@@ -23,18 +24,10 @@ interface FeaturedPortfolioProps {
 const CELL_SIZES = "(min-width: 768px) 50vw, 100vw";
 
 /**
- * The portfolio's first row: the three projects the brief ranks first, the
- * leading one across both columns so the row reads as a selection rather than
- * as a gallery.
- *
- * This section carries the projects heading, and the grid under it carries
- * neither: the two rows are one run, and the same heading twice would be one
- * heading too many.
- *
- * The lead card is no longer `priority`. It used to sit directly under the
- * hero; the tiles, the manifesto and the intro now stand above it, so it is
- * several screens down and an eager fetch would take bandwidth from the hero --
- * the page's own LCP image -- to pay for it.
+ * The portfolio's flagship row: the four projects the brief ranks first
+ * (Conjunto Zicatela, Casa Charco Seco, Plaza Esmeralda, Casa Blake),
+ * followed by the studio's remaining featured works and a direct link to the
+ * interactive `/proyectos` explorer.
  */
 export function FeaturedPortfolio({
   intro,
@@ -43,29 +36,31 @@ export function FeaturedPortfolio({
   id,
   children,
 }: FeaturedPortfolioProps) {
-  const [lead, ...cells] = projects;
-  if (!lead) return null;
+  if (projects.length === 0) return null;
 
   return (
     <Section id={id} tone={tone} reveal="stagger">
       <Container>
-        <SectionHeading
-          eyebrow={intro.eyebrow}
-          heading={intro.heading}
-          body={intro.body}
-        />
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+          <SectionHeading
+            eyebrow={intro.eyebrow}
+            heading={intro.heading}
+            body={intro.body}
+          />
+          <div className="shrink-0">
+            <Button href="/proyectos" variant="secondary" size="sm" arrow>
+              Explorar los 17 proyectos
+            </Button>
+          </div>
+        </div>
 
         <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-14 md:grid-cols-2">
-          <div className="md:col-span-2">
-            <ProjectCard project={lead} sizes="100vw" revealIndex={0} />
-          </div>
-
-          {cells.map((project, index) => (
+          {projects.map((project, index) => (
             <ProjectCard
               key={project.slug}
               project={project}
               sizes={CELL_SIZES}
-              revealIndex={1 + index}
+              revealIndex={index}
             />
           ))}
         </div>

@@ -3,6 +3,7 @@ import { Text } from "@/components/atoms/Text";
 interface StatItemProps {
   value: string;
   label: string;
+  index?: number;
 }
 
 /**
@@ -10,26 +11,28 @@ interface StatItemProps {
  * size and the label is a plain sentence underneath it, so the band reads as a
  * record of work rather than as four cards.
  *
- * lg, not md: the band is four columns from lg up, and the widest figure
- * ("50,000", 3.46em) needs 166px at 48px, which four columns of a 1024px
- * viewport cannot give at 60px. tabular-nums because the four figures are read
- * as a set and compared, so their digits should align.
- *
  * `data-count` carries the authored value to the reveal script, which counts it
- * up from zero the first time the band enters. The text stays the final value in
- * the server HTML, so the figure is correct before any script runs; the count
- * only rewrites it while the section animates in.
+ * up from zero the first time the band enters.
  */
-export function StatItem({ value, label }: StatItemProps) {
+export function StatItem({ value, label, index }: StatItemProps) {
   return (
-    <div className="flex flex-col gap-4">
-      <p
-        data-count={value}
-        className="voice text-4xl leading-[1] tabular-nums md:text-5xl lg:text-6xl"
-      >
-        {value}
-      </p>
-      <Text size="sm">{label}</Text>
+    <div className="flex flex-col gap-2">
+      <div className="flex items-baseline justify-between gap-2 pr-4">
+        <p
+          data-count={value}
+          className="voice text-3xl leading-[1] text-brand-900 tabular-nums md:text-4xl lg:text-5xl"
+        >
+          {value}
+        </p>
+        {index !== undefined ? (
+          <span className="number-pill">
+            {String(index).padStart(2, "0")}
+          </span>
+        ) : null}
+      </div>
+      <Text size="sm" className="text-ink-muted">
+        {label}
+      </Text>
     </div>
   );
 }

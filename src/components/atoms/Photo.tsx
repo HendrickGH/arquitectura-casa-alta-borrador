@@ -23,11 +23,12 @@ interface PhotoProps {
    * in the same layer, so which one wins would depend on their order in the
    * stylesheet rather than on the order they were written.
    */
-  fit?: "cover" | "intrinsic" | "mosaic";
+  fit?: "cover" | "contain" | "intrinsic" | "mosaic";
 }
 
 const fits: Record<NonNullable<PhotoProps["fit"]>, string> = {
   cover: "h-full w-full object-cover",
+  contain: "h-full w-full object-contain",
   intrinsic: "h-auto w-full",
   mosaic: "h-auto w-full min-[768px]:h-full min-[768px]:object-cover",
 };

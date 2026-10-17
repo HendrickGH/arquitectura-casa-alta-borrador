@@ -132,15 +132,16 @@ export function createHeroCarousel({
 }): () => void {
   const images = gsap.utils.toArray<HTMLElement>("[data-hero-slide]", scope);
   const titles = gsap.utils.toArray<HTMLElement>("[data-hero-title]", scope);
+  const pills = gsap.utils.toArray<HTMLElement>("[data-hero-pill]", scope);
+  const counter = scope.querySelector<HTMLElement>("[data-hero-counter]");
   if (images.length < 2) return () => {};
 
-  const DIM = 0.4;
-  const INTERVAL = 4000;
+  const DIM = 0.42;
+  const INTERVAL = 4500;
   let active = 0;
 
-  const advance = () => {
-    if (document.hidden) return;
-    const next = (active + 1) % images.length;
+  const goTo = (next: number) => {
+    if (next === active || next < 0 || next >= images.length) return;
 
     images.forEach((el, i) => {
       if (i === active || i === next) return;
@@ -151,20 +152,63 @@ export function createHeroCarousel({
     gsap.fromTo(
       images[next],
       { opacity: 0 },
-      { opacity: 1, duration: 1.1, ease: "power2.inOut" },
+      { opacity: 1, duration: 1.0, ease: "power2.inOut" },
     );
 
     titles.forEach((title, i) =>
       gsap.to(title, {
         opacity: i === next ? 1 : DIM,
-        duration: 0.7,
+        x: i === next ? 6 : 0,
+        duration: 0.55,
         ease: "power2.out",
       }),
     );
 
+    pills.forEach((pill, i) => {
+      pill.setAttribute("data-active", i === next ? "true" : "false");
+    });
+
+    if (counter) {
+      counter.textContent = `${String(next + 1).padStart(2, "0")} / ${String(images.length).padStart(2, "0")}`;
+    }
+
     active = next;
   };
 
-  const timer = window.setInterval(advance, INTERVAL);
-  return () => window.clearInterval(timer);
+  const advance = () => {
+    if (document.hidden) return;
+    goTo((active + 1) % images.length);
+  };
+
+  let timer = window.setInterval(advance, INTERVAL);
+
+  const resetTimer = () => {
+    window.clearInterval(timer);
+    timer = window.setInterval(advance, INTERVAL);
+  };
+
+  const cleanups: Array<() => void> = [];
+
+  titles.forEach((title, index) => {
+    const onClick = () => {
+      goTo(index);
+      resetTimer();
+    };
+    title.addEventListener("click", onClick);
+    cleanups.push(() => title.removeEventListener("click", onClick));
+  });
+
+  pills.forEach((pill, index) => {
+    const onClick = () => {
+      goTo(index);
+      resetTimer();
+    };
+    pill.addEventListener("click", onClick);
+    cleanups.push(() => pill.removeEventListener("click", onClick));
+  });
+
+  return () => {
+    window.clearInterval(timer);
+    cleanups.forEach((fn) => fn());
+  };
 }

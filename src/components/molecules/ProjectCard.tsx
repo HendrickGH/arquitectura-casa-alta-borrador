@@ -15,6 +15,8 @@ interface ProjectCardProps {
   priority?: boolean;
   /** Zero-based position in the `stagger` cascade; omitted when unstaggered. */
   revealIndex?: number;
+  /** Optional interactive drawer trigger used on the /proyectos explorer. */
+  onSelect?: (project: Project) => void;
 }
 
 /**
@@ -23,17 +25,13 @@ interface ProjectCardProps {
  * The card is no longer a single link: the arrows are controls, and a link
  * wrapping them would navigate on every click. The only link is the explicit
  * "Conoce más sobre {title}" button at the end.
- *
- * The carousel is manual on purpose -- two overlaid arrows, no timer -- so the
- * visitor decides which photograph is shown. A project with a single
- * publishable photograph renders no arrows. The images slide on a flex track,
- * which avoids a crossfade flashing the empty frame between two photographs.
  */
 export function ProjectCard({
   project,
   sizes,
   priority = false,
   revealIndex,
+  onSelect,
 }: ProjectCardProps) {
   const images = project.gallery.length > 0 ? project.gallery : [project.cover];
   const [index, setIndex] = useState(0);
@@ -60,6 +58,12 @@ export function ProjectCard({
           ))}
         </div>
 
+        <div className="pointer-events-none absolute top-3 left-3 z-10 flex items-center gap-2">
+          <span className="number-pill-inverse">
+            {`${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`}
+          </span>
+        </div>
+
         {total > 1 ? (
           <>
             <CarouselArrow
@@ -77,10 +81,16 @@ export function ProjectCard({
       </div>
 
       {/* Category, title, place: three lines, each one job. */}
-      <div className="mt-6 flex flex-1 flex-col gap-2">
-        {project.categoryLabel ? (
-          <p className="label text-brand-800">{project.categoryLabel}</p>
-        ) : null}
+      <div className="mt-5 flex flex-1 flex-col gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          {project.categoryLabel ? (
+            <p className="label text-brand-800">{project.categoryLabel}</p>
+          ) : null}
+          {project.location ? (
+            <p className="text-xs text-ink-muted">{project.location}</p>
+          ) : null}
+        </div>
+
         <Heading
           as="h3"
           voice="serif"
@@ -88,19 +98,63 @@ export function ProjectCard({
         >
           {project.title}
         </Heading>
-        {project.location ? (
-          <p className="text-sm text-ink-muted">{project.location}</p>
+
+        {project.summary ? (
+          <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-ink-muted">
+            {project.summary}
+          </p>
         ) : null}
       </div>
 
-      <Button
-        href={`/proyectos/${project.slug}`}
-        variant="secondary"
-        size="sm"
-        className="mt-5 max-w-full"
-      >
-        {`Conoce más sobre ${project.title}`}
-      </Button>
+      <div className="mt-5 flex flex-wrap items-center gap-3">
+        {onSelect ? (
+          <button
+            type="button"
+            onClick={() => onSelect(project)}
+            className="group label inline-flex items-center justify-center gap-3 border border-ink/30 px-6 py-3 text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-white"
+          >
+            <span>{`Explorar ${project.title}`}</span>
+            <span aria-hidden="true" className="arrow-pill arrow-pill-ink">
+              <svg
+                viewBox="0 0 16 16"
+                className="arrow-pill-out h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              >
+                <path
+                  d="M2.5 8h11m-4-4 4 4-4 4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <svg
+                viewBox="0 0 16 16"
+                className="arrow-pill-in h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+              >
+                <path
+                  d="M2.5 8h11m-4-4 4 4-4 4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+        ) : (
+          <Button
+            href={`/proyectos/${project.slug}`}
+            variant="secondary"
+            size="sm"
+            arrow
+            className="max-w-full"
+          >
+            {`Conoce más sobre ${project.title}`}
+          </Button>
+        )}
+      </div>
     </article>
   );
 }
