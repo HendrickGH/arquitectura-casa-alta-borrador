@@ -35,18 +35,16 @@ export function StatsBand({ stats }: StatsBandProps) {
     >
       <Container>
         {/* Subtle architectural ledger header */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-bone-200/80 pb-3 text-[0.7rem] uppercase tracking-wider text-ink-muted">
-          <div className="flex items-center gap-2.5">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-[0.7rem] uppercase tracking-wider text-ink-muted">
+          <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-800" />
             <span className="font-semibold text-ink">Registro técnico de obra</span>
-            <span className="text-bone-200">·</span>
+            <span>·</span>
             <span>Costa y Valles Centrales de Oaxaca</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="number-pill !py-0.5 !px-2 !text-[0.65rem] !border-brand-800/30 text-brand-800 bg-white/60">
-              BITÁCORA AUDITABLE
-            </span>
-          </div>
+          <span className="text-[0.6875rem] font-medium text-brand-800">
+            Bitácora de obra
+          </span>
         </div>
 
         <div className="grid grid-cols-2 gap-y-10 py-2 lg:grid-cols-4">

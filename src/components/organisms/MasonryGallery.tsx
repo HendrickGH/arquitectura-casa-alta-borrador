@@ -124,16 +124,16 @@ export function MasonryGallery({ items, tone = "bone" }: MasonryGalleryProps) {
             return (
               <div
                 key={item.photo.src}
-                className="w-[84vw] shrink-0 snap-center border border-bone-200/90 bg-white p-3 shadow-xs"
+                className="w-[85vw] shrink-0 snap-center"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
                   <Photo
                     photo={item.photo}
                     sizes={MOBILE_SIZES}
                     className="h-full w-full object-cover"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
-                  <div className="absolute right-3 bottom-2 left-3 flex items-center justify-between text-[0.625rem] font-medium tracking-wider text-white uppercase">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/65 via-transparent to-transparent" />
+                  <div className="absolute right-3 bottom-2.5 left-3 flex items-center justify-between text-[0.625rem] font-medium tracking-wider text-white uppercase">
                     <span>{cleanProjectName}</span>
                     <span>{`(${numStr} / ${String(items.length).padStart(2, "0")})`}</span>
                   </div>

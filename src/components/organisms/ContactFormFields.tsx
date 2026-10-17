@@ -90,9 +90,9 @@ export function ContactFormFields({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-      {/* 1. Specialty Selection Chips */}
-      <div className="border-b border-bone-200/80 pb-6">
-        <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-ink-muted">
+      {/* 1. Specialty Selection Chips (Borderless) */}
+      <div>
+        <label className="mb-2.5 block text-xs font-semibold uppercase tracking-wider text-ink-muted">
           1. Especialidad de su proyecto
         </label>
         <div className="flex flex-wrap gap-2">
@@ -107,7 +107,7 @@ export function ContactFormFields({
                   "cursor-pointer px-3.5 py-2 text-xs font-medium tracking-wide transition-all duration-200",
                   isSelected
                     ? "bg-brand-800 text-white shadow-xs"
-                    : "border border-bone-200 bg-white text-ink/75 hover:border-brand-800 hover:text-ink",
+                    : "bg-bone-100 text-ink/80 hover:bg-bone-200 hover:text-ink",
                 )}
               >
                 {spec}
@@ -117,9 +117,9 @@ export function ContactFormFields({
         </div>
       </div>
 
-      {/* 2. Locality Selection Chips */}
-      <div className="border-b border-bone-200/80 pb-6">
-        <label className="mb-3 block text-xs font-semibold uppercase tracking-wider text-ink-muted">
+      {/* 2. Locality Selection Chips (Borderless) */}
+      <div>
+        <label className="mb-2.5 block text-xs font-semibold uppercase tracking-wider text-ink-muted">
           2. Ubicación o plaza de ejecución
         </label>
         <div className="flex flex-wrap gap-2">
@@ -134,7 +134,7 @@ export function ContactFormFields({
                   "cursor-pointer px-3.5 py-2 text-xs font-medium tracking-wide transition-all duration-200",
                   isSelected
                     ? "bg-brand-800 text-white shadow-xs"
-                    : "border border-bone-200 bg-white text-ink/75 hover:border-brand-800 hover:text-ink",
+                    : "bg-bone-100 text-ink/80 hover:bg-bone-200 hover:text-ink",
                 )}
               >
                 {loc}

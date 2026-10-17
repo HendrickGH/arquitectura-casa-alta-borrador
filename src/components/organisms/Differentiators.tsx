@@ -11,15 +11,14 @@ interface DifferentiatorsProps {
   tone?: "canvas" | "bone";
 }
 
-const DIFF_PHOTO_SIZES = "(min-width: 768px) 46vw, 95vw";
+const DIFF_PHOTO_SIZES = "(min-width: 768px) 48vw, 95vw";
 
 const DIFF_METADATA: Record<
   number,
-  { tag: string; badge: string; points: string[] }
+  { tag: string; points: string[] }
 > = {
   0: {
     tag: "CÁLCULO ESTRUCTURAL Y SISTEMAS",
-    badge: "MEMORIA TÉCNICA AUDITABLE",
     points: [
       "Validación de losas, marcos y cimentación con cálculo estructural",
       "Adaptación térmica y sísmica para costa, valles o sierra oaxaqueña",
@@ -28,7 +27,6 @@ const DIFF_METADATA: Record<
   },
   1: {
     tag: "CERTEZA CONTRACTUAL Y PLAZOS",
-    badge: "CONTRATO CON GARANTÍA",
     points: [
       "Entrega rigurosa en tiempo y catálogo de conceptos firmado",
       "Supervisión continua en sitio registrada en bitácora de obra",
@@ -37,7 +35,6 @@ const DIFF_METADATA: Record<
   },
   2: {
     tag: "COBERTURA LOGÍSTICA EN OAXACA",
-    badge: "EQUIPO Y MAQUINARIA PROPIA",
     points: [
       "Operación en Puerto Escondido, Oaxaca Centro, Salina Cruz e Istmo",
       "Conocimiento de logística, normativas y proveeduría regional",
@@ -46,7 +43,6 @@ const DIFF_METADATA: Record<
   },
   3: {
     tag: "DISEÑO VANGUARDISTA Y TRADICIÓN",
-    badge: "BIOCLIMÁTICA INTEGRADA",
     points: [
       "Renders hiperrealistas y proyecto ejecutivo completo en gabinete",
       "Uso de maderas tropicales parota, chukum y palapa artesanal",
@@ -56,12 +52,12 @@ const DIFF_METADATA: Record<
 };
 
 /**
- * Thirdway architectural differentiator plates (`Por qué Casa Alta`).
+ * Architectural differentiator plates (`Por qué Casa Alta`).
  *
- * Upgraded from flat cards into architectural technical dossiers:
- * - Specific engineering tags and certification badges per plate.
- * - Key technical commitments with custom checkmarks.
- * - Framed studio photograph with hover scale and audit signatures.
+ * Clean architectural presentation:
+ * - Completely borderless, no "box-inside-box" card frames.
+ * - Ample whitespace letting massive studio photographs and typography breathe.
+ * - Direct tectonic layout on the section tone.
  */
 export function Differentiators({
   intro,
@@ -71,10 +67,10 @@ export function Differentiators({
   if (items.length === 0) return null;
 
   return (
-    <Section tone={tone} reveal="stagger" className="!py-16 md:!py-24">
+    <Section tone={tone} reveal="stagger" className="!py-16 md:!py-28">
       <Container>
         {/* Section Heading */}
-        <div className="mb-12 flex flex-col justify-between gap-6 border-b border-ink/15 pb-8 md:mb-16 lg:flex-row lg:items-end">
+        <div className="mb-14 flex flex-col justify-between gap-6 pb-6 md:mb-20 lg:flex-row lg:items-end">
           <div className="max-w-[46rem]">
             <div className="mb-3 flex items-center gap-2.5">
               <span className="number-pill">(07)</span>
@@ -82,20 +78,17 @@ export function Differentiators({
             </div>
             <SectionHeading heading={intro.heading} body={intro.body} />
           </div>
-          <div className="shrink-0">
-            <span className="number-pill bg-white">
-              RIGOR TÉCNICO EN CADA PARTIDA
-            </span>
+          <div className="shrink-0 text-xs tracking-wider uppercase text-ink-muted">
+            <span>Rigor técnico en cada partida</span>
           </div>
         </div>
 
-        {/* 2-Column Grid of Architectural Blueprint Cards */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-12">
+        {/* 2-Column Unbounded Editorial Vignettes */}
+        <div className="grid grid-cols-1 gap-14 md:grid-cols-2 md:gap-x-16 md:gap-y-20">
           {items.map((item, index) => {
             const numStr = String(index + 1).padStart(2, "0");
             const meta = DIFF_METADATA[index] ?? {
               tag: "RIGOR TÉCNICO CASA ALTA",
-              badge: "GARANTÍA DE EJECUCIÓN",
               points: [
                 "Cálculo y memoria técnica por ingenieros certificados",
                 "Supervisión permanente y control de calidad en obra",
@@ -106,85 +99,49 @@ export function Differentiators({
               <article
                 key={item.title}
                 {...revealStep(index)}
-                className="group flex flex-col justify-between border border-bone-200/90 bg-white p-6 sm:p-8 shadow-xs hover:border-brand-800 transition-all duration-300"
+                className="group flex flex-col justify-between"
               >
                 <div>
-                  {/* Top Header Strip with Discipline Pill and Badge */}
-                  <div className="mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-bone-200/70 pb-3">
-                    <div className="flex items-center gap-2">
-                      <span className="number-pill group-hover:border-brand-800 group-hover:bg-brand-800 group-hover:text-white transition-colors duration-300">
-                        {`(${numStr})`}
-                      </span>
-                      <span className="label text-[0.6875rem] font-semibold text-brand-800">
-                        {meta.tag}
-                      </span>
-                    </div>
-                    <span className="number-pill !text-[0.6rem] !py-0.5 !px-2 bg-bone-50 text-ink-muted">
-                      {meta.badge}
-                    </span>
-                  </div>
-
-                  {/* Title & Description */}
-                  <h3 className="voice text-2xl leading-snug text-ink md:text-[1.85rem]">
-                    {item.title}
-                  </h3>
-
-                  <p className="voice mt-3 text-base leading-relaxed text-ink-muted">
-                    {item.description}
-                  </p>
-
-                  {/* Checkpoints */}
-                  <ul className="mt-5 space-y-2.5 border-t border-bone-200/60 pt-4">
-                    {meta.points.map((pt, pIdx) => (
-                      <li
-                        key={pIdx}
-                        className="flex items-start gap-2.5 text-xs text-ink/85 leading-snug"
-                      >
-                        <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-800">
-                          <svg
-                            viewBox="0 0 16 16"
-                            className="h-2.5 w-2.5"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2.5"
-                          >
-                            <path
-                              d="M3 8.5l3.5 3.5 6.5-7"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </span>
-                        <span className="font-medium">{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Framed Studio Photograph */}
-                {item.photo ? (
-                  <div className="mt-7 overflow-hidden border border-bone-200/80 bg-bone-100">
-                    <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  {/* Photograph Leads First (Monumental, No Border) */}
+                  {item.photo ? (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-200">
                       <Photo
                         photo={item.photo}
                         sizes={DIFF_PHOTO_SIZES}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-102"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute bottom-2.5 left-3 right-3 flex items-center justify-between text-white text-[0.65rem] tracking-wider uppercase font-medium">
-                        <span>Registro fotográfico de obra</span>
-                        <span>Casa Alta</span>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
+                      <div className="absolute right-3 bottom-2.5 left-3 flex items-center justify-between text-[0.625rem] font-medium tracking-wider text-white uppercase">
+                        <span>{meta.tag}</span>
+                        <span>{`(${numStr})`}</span>
                       </div>
                     </div>
-                  </div>
-                ) : null}
+                  ) : null}
 
-                {/* Bottom Signature Line */}
-                <div className="mt-5 flex items-center justify-between border-t border-bone-200/70 pt-3 text-[0.6875rem] text-ink-muted">
-                  <span>Placa de rigor y supervisión</span>
-                  <span className="number-pill !py-0.2 !px-1.5 !text-[0.6rem] text-brand-800">
-                    Vigente
-                  </span>
+                  {/* Editorial Text */}
+                  <div className="mt-6">
+                    <span className="label text-[0.6875rem] font-semibold text-brand-800">
+                      {`(${numStr}) · ${meta.tag}`}
+                    </span>
+
+                    <h3 className="voice mt-2 text-2xl font-normal leading-snug text-ink md:text-3xl">
+                      {item.title}
+                    </h3>
+
+                    <p className="voice mt-3 text-base leading-relaxed text-ink-muted">
+                      {item.description}
+                    </p>
+
+                    {/* Unboxed Technical Checkpoints */}
+                    <ul className="mt-5 space-y-2 text-xs text-ink/80">
+                      {meta.points.map((pt, pIdx) => (
+                        <li key={pIdx} className="flex items-start gap-2">
+                          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-800" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </article>
             );
@@ -194,3 +151,4 @@ export function Differentiators({
     </Section>
   );
 }
+
