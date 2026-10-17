@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
@@ -48,6 +48,20 @@ export function CosentinoInspirationExperience({
 }: CosentinoExperienceProps) {
   const [activeCategory, setActiveCategory] = useState<SpaceCategory>("all");
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoModel | null>(null);
+
+  useEffect(() => {
+    if (!selectedPhoto) return;
+    const prev = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedPhoto(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.documentElement.style.overflow = prev;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [selectedPhoto]);
 
   // Curate all meaningful design items mapped from real project and showroom photography
   const allCards: SpaceCard[] = useMemo(() => {
@@ -130,10 +144,7 @@ export function CosentinoInspirationExperience({
           {/* Section Header */}
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div className="max-w-[48ch]">
-              <div className="flex items-center gap-3">
-                <span className="number-pill">(COSENTINO & CASA ALTA)</span>
-                <p className="eyebrow">Meaningful Design to Inspire People’s Lives</p>
-              </div>
+              <p className="eyebrow">Meaningful Design to Inspire People’s Lives</p>
               <Heading as="h2" voice="serif" className="mt-4 text-3xl md:text-5xl">
                 Diseño con propósito para inspirar la vida de las personas.
               </Heading>
@@ -184,8 +195,17 @@ export function CosentinoInspirationExperience({
             {filteredCards.map((card) => (
               <div
                 key={card.id}
+                role="button"
+                tabIndex={0}
                 onClick={() => setSelectedPhoto(card.photo)}
-                className="group relative aspect-[3/4.2] w-full cursor-pointer overflow-hidden bg-ink"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedPhoto(card.photo);
+                  }
+                }}
+                aria-label={`Ver detalle de espacio: ${card.title}`}
+                className="group relative aspect-[3/4.2] w-full cursor-pointer overflow-hidden bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 {/* Background Photo */}
                 <div className="absolute inset-0 h-full w-full">
@@ -263,10 +283,7 @@ export function CosentinoInspirationExperience({
         <Container>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="flex flex-col gap-6 lg:col-span-5">
-              <div className="flex items-center gap-3">
-                <span className="number-pill">(ALIANZA TÉCNICA)</span>
-                <p className="eyebrow">{cosentino.eyebrow}</p>
-              </div>
+              <p className="eyebrow">{cosentino.eyebrow}</p>
 
               <Heading as="h2" voice="serif" className="max-w-[20ch]">
                 {cosentino.heading}
@@ -306,7 +323,6 @@ export function CosentinoInspirationExperience({
                 >
                   <div className="flex items-center justify-between gap-4">
                     <span className="number-pill">{`(${pillar.number})`}</span>
-                    <span className="label text-brand-800">GARANTÍA POR ESCRITO</span>
                   </div>
                   <h3 className="voice mt-4 text-2xl text-ink">
                     {pillar.title}
@@ -339,10 +355,7 @@ export function CosentinoInspirationExperience({
         <Container>
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div className="max-w-[48ch]">
-              <div className="flex items-center gap-3">
-                <span className="number-pill">(CATÁLOGO DE INSPIRACIÓN)</span>
-                <p className="eyebrow">Galerías de inspiración</p>
-              </div>
+              <p className="eyebrow">Galerías de inspiración</p>
               <Heading as="h2" voice="serif" className="mt-4 text-3xl md:text-5xl">
                 Espacios habitados, superficies que perduran.
               </Heading>
@@ -362,8 +375,17 @@ export function CosentinoInspirationExperience({
             {allCards.map((card) => (
               <figure
                 key={card.id}
+                role="button"
+                tabIndex={0}
                 onClick={() => setSelectedPhoto(card.photo)}
-                className="group relative aspect-[4/3] w-full cursor-pointer overflow-hidden bg-ink"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setSelectedPhoto(card.photo);
+                  }
+                }}
+                aria-label={`Ver fotografía ampliada: ${card.title}`}
+                className="group relative aspect-[4/3] w-full cursor-pointer overflow-hidden bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 <Photo
                   photo={card.photo}
@@ -392,6 +414,7 @@ export function CosentinoInspirationExperience({
         <div
           role="dialog"
           aria-modal="true"
+          aria-label={selectedPhoto.alt || "Visor de fotografía"}
           onClick={() => setSelectedPhoto(null)}
           className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 p-4 backdrop-blur-md"
         >
@@ -415,7 +438,8 @@ export function CosentinoInspirationExperience({
               <button
                 type="button"
                 onClick={() => setSelectedPhoto(null)}
-                className="label rounded-full border border-white/40 px-3.5 py-1 text-xs text-white hover:bg-white hover:text-ink"
+                aria-label="Cerrar visor de fotografía"
+                className="label inline-flex min-h-[44px] items-center rounded-full border border-white/40 px-4 py-2 text-xs text-white transition-colors hover:bg-white hover:text-ink focus-visible:outline-2 focus-visible:outline-white"
               >
                 Cerrar ✕
               </button>

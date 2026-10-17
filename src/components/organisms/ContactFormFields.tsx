@@ -60,6 +60,7 @@ export function ContactFormFields({
         name="name"
         label={contact.name.label}
         placeholder={contact.name.placeholder}
+        autoComplete="name"
         required
       />
       <FormField
@@ -68,6 +69,7 @@ export function ContactFormFields({
         type="email"
         label={contact.email.label}
         placeholder={contact.email.placeholder}
+        autoComplete="email"
         required
       />
       <FormField
@@ -76,6 +78,7 @@ export function ContactFormFields({
         type="tel"
         label={contact.phone.label}
         placeholder={contact.phone.placeholder}
+        autoComplete="tel"
         className="md:col-span-2"
       />
       <FormField

@@ -77,8 +77,7 @@ export function AboutPageTemplate({
           <Container>
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="flex flex-col gap-5 lg:col-span-7">
-                <div {...revealStep(0)} className="flex items-center gap-3">
-                  <span className="number-pill">(HISTORIA)</span>
+                <div {...revealStep(0)}>
                   <p className="eyebrow">{page.story.eyebrow}</p>
                 </div>
 
@@ -122,7 +121,6 @@ export function AboutPageTemplate({
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="label text-brand-800">Misión</span>
-                    <span className="number-pill">(01)</span>
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-ink">
                     {page.story.mission}
@@ -135,7 +133,6 @@ export function AboutPageTemplate({
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="label text-brand-800">Visión</span>
-                    <span className="number-pill">(02)</span>
                   </div>
                   <p className="mt-4 text-sm leading-relaxed text-ink">
                     {page.story.vision}
@@ -160,9 +157,6 @@ export function AboutPageTemplate({
                 heading={page.credibilityIntro.heading}
                 body={page.credibilityIntro.body}
               />
-              <span className="number-pill self-start lg:self-auto">
-                SUPERVISIÓN DIRECTA EN CAMPO
-              </span>
             </div>
 
             <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -220,9 +214,6 @@ export function AboutPageTemplate({
                 heading={page.enduringIntro.heading}
                 body={page.enduringIntro.body}
               />
-              <span className="number-pill self-start lg:self-auto">
-                ESTRUCTURA Y PERMANENCIA
-              </span>
             </div>
 
             <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-4">

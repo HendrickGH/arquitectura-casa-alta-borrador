@@ -152,7 +152,6 @@ export function IntroSection({
                 {intro.photoCaption ? (
                   <figcaption className="mt-3 flex items-center justify-between gap-4 text-xs text-ink-muted">
                     <span>{intro.photoCaption}</span>
-                    <span className="number-pill">(01.A)</span>
                   </figcaption>
                 ) : null}
               </figure>
@@ -171,7 +170,6 @@ export function IntroSection({
                   {intro.secondaryPhotoCaption ? (
                     <figcaption className="mt-2.5 flex items-center justify-between gap-2 text-[0.72rem] text-ink-muted">
                       <span>{intro.secondaryPhotoCaption}</span>
-                      <span className="number-pill">(01.B)</span>
                     </figcaption>
                   ) : null}
                 </figure>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Container } from "@/components/atoms/Container";
 import { Photo } from "@/components/atoms/Photo";
 import type { HeroContent } from "@/types/content";
@@ -9,189 +9,166 @@ interface HeroProps {
   hero: HeroContent;
 }
 
+const INTERVAL_MS = 5500;
+
 /**
- * 100vw × 100vh Full-Bleed Architectural Hero.
+ * 100vw × 100vh Full-Bleed Minimalist Architectural Hero.
  *
- * Implements the edge-to-edge cinematic format matching the client specification:
- * - Full bleed photographic background (100vw × 100vh / 100svh) running behind
- *   the transparent header.
- * - Architectural white watermark logo anchored top-right.
- * - Monumental stacked discipline titles ("ARQUITECTURA / CONSTRUCCIÓN CIVIL / CONSTRUCCIÓN INDUSTRIAL").
- * - Location eyebrow and narrative description.
- * - Interactive discipline switching tabs and subtle Cosentino-style scroll indicator.
+ * Preserves the pure essence of Casa Alta:
+ * - Edge-to-edge photographic canvas at 100vh / 100vw running under the transparent header.
+ * - Natural, sunlit illumination with subtle legibility gradients only at top/bottom edges.
+ * - Watermark logo anchored at top right.
+ * - The monumental typography stack IS the interactive discipline selector:
+ *   ARQUITECTURA / CONSTRUCCIÓN CIVIL / CONSTRUCCIÓN INDUSTRIAL.
+ *   The active discipline stays at full opacity (1.0) while inactive lines settle at 0.40.
+ * - Smooth crossfade transitions between all hero carousel images.
+ * - Subtle minimalist progress bars at bottom right and Cosentino scroll cue `( · )` at bottom center.
  */
 export function Hero({ hero }: HeroProps) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % hero.slides.length);
+    }, INTERVAL_MS);
+  }, [hero.slides.length]);
+
+  const goToSlide = (index: number) => {
+    setActiveSlide(index);
+    resetTimer();
+  };
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const bg = bgRef.current;
-    if (!section || !bg) return;
-
-    let cancelled = false;
-    let cleanup: (() => void) | undefined;
-
-    void import("gsap").then(async ({ gsap }) => {
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      if (cancelled) return;
-      gsap.registerPlugin(ScrollTrigger);
-
-      const ctx = gsap.context(() => {
-        gsap.to(bg, {
-          yPercent: 12,
-          scale: 1.05,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.5,
-          },
-        });
-      }, section);
-
-      cleanup = () => ctx.revert();
-    });
-
+    resetTimer();
     return () => {
-      cancelled = true;
-      cleanup?.();
+      if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, []);
+  }, [resetTimer]);
 
   return (
     <section
       id="hero"
-      ref={sectionRef}
-      className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-ink text-white"
+      className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-[#060c1a] text-white"
     >
-      {/* Full-bleed photographic background slides with subtle parallax */}
-      <div ref={bgRef} className="absolute inset-0 z-0 h-full w-full">
-        {hero.slides.map((slide, index) => (
-          <div
-            key={slide.title}
-            className="absolute inset-0 h-full w-full transition-opacity duration-1000 ease-in-out"
-            style={{
-              opacity: index === activeSlide ? 1 : 0,
-              zIndex: index === activeSlide ? 1 : 0,
-            }}
-          >
-            <Photo
-              photo={slide.photo}
-              sizes="100vw"
-              priority={index === 0}
-              fit="cover"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        ))}
-        {/* Dark architectural gradient ensuring crisp contrast for white type & transparent header */}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/40 to-ink/60" />
+      {/* Full-bleed photographic background carousel */}
+      <div className="absolute inset-0 z-0 h-full w-full">
+        {hero.slides.map((slide, index) => {
+          const isActive = index === activeSlide;
+          return (
+            <div
+              key={slide.photo.src}
+              className="absolute inset-0 h-full w-full transition-opacity duration-1000 ease-in-out"
+              style={{
+                opacity: isActive ? 1 : 0,
+                zIndex: isActive ? 1 : 0,
+              }}
+            >
+              <Photo
+                photo={slide.photo}
+                sizes="100vw"
+                priority={index === 0}
+                fit="cover"
+                className={`h-full w-full object-cover transition-transform duration-[6000ms] ease-out ${
+                  isActive ? "scale-105" : "scale-100"
+                }`}
+              />
+            </div>
+          );
+        })}
+
+        {/* Top subtle scrim for transparent header legibility */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/60 to-transparent z-[2]"
+        />
+
+        {/* Bottom subtle architectural gradient for typography contrast without darkening the center */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-[2]"
+        />
       </div>
 
-      {/* Architectural watermark logo (white) at top right */}
+      {/* Architectural white watermark logo at top-right */}
       <img
         src="/brand/logo-casa-alta-blanco.png"
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-24 z-10 w-48 select-none opacity-75 sm:w-60 md:right-10 md:top-28 md:w-80 lg:right-16 lg:top-32 lg:w-[440px]"
+        className="pointer-events-none absolute right-4 top-24 z-10 w-48 select-none opacity-70 sm:w-60 md:right-10 md:top-28 md:w-80 lg:right-16 lg:top-32 lg:w-[440px]"
       />
 
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
-        {/* Top discipline switcher pills */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/20 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="number-pill-inverse">
-              {`(0${activeSlide + 1}) / (0${hero.slides.length})`}
-            </span>
-            <p className="label tracking-widest text-white/90">
-              {hero.eyebrow}
-            </p>
-          </div>
-
-          <div
-            className="flex flex-wrap items-center gap-2"
-            role="group"
-            aria-label="Seleccionar disciplina principal"
-          >
-            {hero.slides.map((slide, index) => (
-              <button
-                key={slide.title}
-                type="button"
-                onClick={() => setActiveSlide(index)}
-                aria-pressed={index === activeSlide}
-                className={`label inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[0.68rem] transition-all duration-300 ${
-                  index === activeSlide
-                    ? "border-white bg-white text-ink"
-                    : "border-white/35 bg-ink/30 text-white/90 backdrop-blur-sm hover:border-white hover:text-white"
-                }`}
-              >
-                <span>{`(${String(index + 1).padStart(2, "0")})`}</span>
-                <span className="hidden sm:inline">{slide.title}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Monumental stacked title & narrative row matching client design */}
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+          {/* Left Column: Eyebrow + Monumental Word Stack */}
+          <div className="flex flex-col items-start gap-3 lg:col-span-8">
+            {hero.eyebrow ? (
+              <p className="eyebrow !text-white/90 text-xs tracking-widest uppercase font-sans">
+                {hero.eyebrow}
+              </p>
+            ) : null}
+
             <h1 className="display text-[clamp(2.1rem,5.6vw,4.5rem)] font-bold uppercase tracking-tight text-white leading-[0.92]">
-              ARQUITECTURA
-              <br />
-              <span className="text-white/95">CONSTRUCCIÓN CIVIL</span>
-              <br />
-              <span className="text-white/85">CONSTRUCCIÓN INDUSTRIAL</span>
+              {hero.slides.map((slide, index) => {
+                const isActive = index === activeSlide;
+                return (
+                  <span
+                    key={slide.title}
+                    onClick={() => goToSlide(index)}
+                    aria-label={`Ver ${slide.title}`}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        goToSlide(index);
+                      }
+                    }}
+                    className="block cursor-pointer whitespace-nowrap transition-all duration-500 hover:opacity-100"
+                    style={{
+                      opacity: isActive ? 1 : 0.38,
+                    }}
+                  >
+                    {slide.title}
+                  </span>
+                );
+              })}
             </h1>
           </div>
 
-          <div className="flex flex-col items-start justify-end gap-5 lg:col-span-4 lg:items-end">
+          {/* Right Column: Narrative Subheadline + Minimalist Line Indicators */}
+          <div className="flex flex-col items-start justify-end gap-4 lg:col-span-4 lg:items-end">
             <p className="voice max-w-[34ch] text-sm leading-relaxed text-white/85 md:text-base lg:text-right">
               {hero.subheadline}
             </p>
 
-            <a
-              href="#proyectos"
-              className="group label inline-flex items-center gap-3 text-white transition-colors hover:text-white/80"
+            {/* Clean minimal dash indicator */}
+            <div
+              className="flex items-center gap-2 pt-1"
+              role="group"
+              aria-label="Seleccionar diapositiva"
             >
-              <span className="underline decoration-white/40 underline-offset-[5px] group-hover:decoration-white">
-                Explorar obra construida
-              </span>
-              <span
-                aria-hidden="true"
-                className="arrow-pill border-white/40 bg-white/10 text-white"
-              >
-                <svg
-                  viewBox="0 0 16 16"
-                  className="arrow-pill-out h-3.5 w-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                >
-                  <path
-                    d="M2.5 8h11m-4-4 4 4-4 4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+              {hero.slides.map((slide, index) => {
+                const isActive = index === activeSlide;
+                return (
+                  <button
+                    key={slide.title}
+                    type="button"
+                    onClick={() => goToSlide(index)}
+                    aria-label={`Ir a ${slide.title}`}
+                    aria-current={isActive}
+                    className="h-[3px] rounded-full transition-all duration-500 focus:outline-none"
+                    style={{
+                      width: isActive ? "2.5rem" : "1.25rem",
+                      backgroundColor: isActive
+                        ? "rgba(255,255,255,0.95)"
+                        : "rgba(255,255,255,0.35)",
+                    }}
                   />
-                </svg>
-                <svg
-                  viewBox="0 0 16 16"
-                  className="arrow-pill-in h-3.5 w-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                >
-                  <path
-                    d="M2.5 8h11m-4-4 4 4-4 4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </a>
+                );
+              })}
+            </div>
           </div>
         </div>
 

@@ -242,9 +242,9 @@ export function RevealObserver() {
     );
     if (sections.length === 0 && steps.length === 0) return;
 
-    // Reveal at 90% of the viewport height: the animation starts as the element
-    // enters, not after it has already arrived.
-    const foldLine = () => window.innerHeight * 0.9;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     const showSection = (el: HTMLElement) => {
       el.dataset.reveal = REVEAL_IN;
@@ -254,6 +254,16 @@ export function RevealObserver() {
       el.dataset.revealStep = REVEAL_IN;
       countFigures(el);
     };
+
+    if (prefersReducedMotion) {
+      for (const el of sections) showSection(el);
+      for (const el of steps) showStep(el);
+      return;
+    }
+
+    // Reveal at 90% of the viewport height: the animation starts as the element
+    // enters, not after it has already arrived.
+    const foldLine = () => window.innerHeight * 0.9;
 
     // Anything already on screen stays visible; hiding it would be a flash.
     for (const el of sections) {

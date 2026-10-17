@@ -105,7 +105,6 @@ export function ServicesPageTemplate({
                   </div>
                   <div className="mt-3 flex items-center justify-between gap-2 text-xs text-ink-muted">
                     <span>Ingeniería y proyecto ejecutivo en gabinete</span>
-                    <span className="number-pill">(CÁLCULO)</span>
                   </div>
                 </div>
               </div>

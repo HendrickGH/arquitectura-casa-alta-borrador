@@ -111,9 +111,6 @@ export function ProcessList({
             </div>
             <SectionHeading heading={intro.heading} body={intro.body} />
           </div>
-          <span className="number-pill self-start lg:self-end">
-            (07 ETAPAS VERIFICABLES)
-          </span>
         </div>
 
         <div
@@ -186,23 +183,18 @@ export function ProcessList({
                     isActive ? "opacity-100" : "opacity-60 hover:opacity-100"
                   }`}
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex items-center gap-2.5">
-                      <span
-                        className={`number-pill ${
-                          isActive
-                            ? "!border-brand-800 !bg-brand-800 !text-white"
-                            : ""
-                        }`}
-                      >
-                        {`(${num})`}
-                      </span>
-                      <span className="label text-brand-800">
-                        {`Etapa ${num} de ${String(steps.length).padStart(2, "0")}`}
-                      </span>
-                    </div>
-                    <span className="font-mono text-[0.68rem] tracking-widest text-ink-muted uppercase">
-                      PROTOCOLO CASA ALTA
+                  <div className="flex items-center gap-2.5">
+                    <span
+                      className={`number-pill ${
+                        isActive
+                          ? "!border-brand-800 !bg-brand-800 !text-white"
+                          : ""
+                      }`}
+                    >
+                      {`(${num})`}
+                    </span>
+                    <span className="label text-brand-800 font-medium">
+                      {`Etapa ${num} de ${String(steps.length).padStart(2, "0")}`}
                     </span>
                   </div>
 
@@ -213,19 +205,6 @@ export function ProcessList({
                   <p className="mt-3 text-base leading-relaxed text-ink-muted">
                     {step.description}
                   </p>
-
-                  {step.deliverables && step.deliverables.length > 0 ? (
-                    <ul className="mt-5 flex flex-wrap gap-2 border-t border-ink/10 pt-4">
-                      {step.deliverables.map((item) => (
-                        <li
-                          key={item}
-                          className="rounded-full border border-ink/20 px-3 py-1 text-xs text-ink"
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
 
                   {/* Mobile/tablet inline real studio photograph */}
                   {step.photo ? (

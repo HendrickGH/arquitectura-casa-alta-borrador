@@ -28,15 +28,22 @@ export function Footer({ site }: FooterProps) {
   const [metersScrolled, setMetersScrolled] = useState("2.40");
 
   useEffect(() => {
+    let ticking = false;
     const updateDistance = () => {
-      const maxScroll = Math.max(
-        document.documentElement.scrollHeight - window.innerHeight,
-        window.scrollY,
-        1200,
-      );
-      // 96 CSS px = 1 inch = 0.0254 m
-      const meters = (maxScroll * 0.0254) / 96;
-      setMetersScrolled(meters.toFixed(2));
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const maxScroll = Math.max(
+            document.documentElement.scrollHeight - window.innerHeight,
+            window.scrollY,
+            1200,
+          );
+          // 96 CSS px = 1 inch = 0.0254 m
+          const meters = (maxScroll * 0.0254) / 96;
+          setMetersScrolled(meters.toFixed(2));
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     updateDistance();
     window.addEventListener("scroll", updateDistance, { passive: true });
@@ -168,12 +175,13 @@ export function Footer({ site }: FooterProps) {
               <button
                 type="button"
                 onClick={scrollToTop}
-                className="group label inline-flex items-center gap-2.5 text-concha-nacar transition-colors hover:text-white"
+                aria-label="Volver arriba al inicio de la página"
+                className="group label inline-flex min-h-[44px] items-center gap-2.5 text-concha-nacar transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-white"
               >
                 <span className="underline decoration-concha-nacar/40 underline-offset-4 group-hover:decoration-white">
                   Volver arriba
                 </span>
-                <span className="inline-flex h-6 w-9 items-center justify-center rounded-full border border-concha-nacar/40 bg-concha-nacar text-ink transition-transform duration-300 group-hover:-translate-y-0.5">
+                <span className="inline-flex h-7 w-9 items-center justify-center rounded-full border border-concha-nacar/40 bg-concha-nacar text-ink transition-transform duration-300 group-hover:-translate-y-0.5">
                   ↑
                 </span>
               </button>

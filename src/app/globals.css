@@ -64,13 +64,16 @@
 		-webkit-text-size-adjust: 100%;
 		/* The site is light-only; this fixes the native scrollbar and form colours. */
 		color-scheme: light;
-		/* Smooth in-page anchor scrolling. Deliberately unconditional, like every
-       other animation here -- `prefers-reduced-motion` is not honoured. */
-		scroll-behavior: smooth;
 		/* Focus and in-page anchors reserve the chrome's height instead of landing
        under it. `Section` carries no scroll-mt-* of its own -- the two would
        add up and double the gap. */
 		scroll-padding-top: calc(var(--chrome-h) + 1rem);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		:has(:target) {
+			scroll-behavior: smooth;
+		}
 	}
 
 	/* Removes the double-tap-zoom delay on touch without disabling pinch zoom. */
@@ -518,4 +521,25 @@ header[data-surface="hero"] .chrome-cta:hover {
 
 iframe {
 	display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto !important;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	[data-reveal="pending"],
+	[data-reveal-variant="stagger"] [data-reveal-step="pending"] {
+		opacity: 1 !important;
+		transform: none !important;
+	}
 }

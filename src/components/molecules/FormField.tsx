@@ -8,6 +8,8 @@ interface FormFieldProps {
   placeholder: string;
   /** Defaults to a single-line text input. */
   type?: "text" | "email" | "tel";
+  /** Optional standard autocomplete attribute. */
+  autoComplete?: string;
   /** Switches the control to a textarea. */
   multiline?: boolean;
   required?: boolean;
@@ -31,13 +33,14 @@ export function FormField({
   label,
   placeholder,
   type = "text",
+  autoComplete,
   multiline = false,
   required = false,
   className,
 }: FormFieldProps) {
   const control = cx(
-    "w-full border border-bone-200 bg-canvas px-4 py-3 text-base text-ink",
-    "placeholder:text-ink-muted/60 focus:border-brand-500 focus:outline-none",
+    "w-full border border-bone-200 bg-canvas px-4 py-3 text-base text-ink transition-colors",
+    "placeholder:text-ink-muted/60 focus:border-brand-800 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand-800",
   );
 
   return (
@@ -60,6 +63,7 @@ export function FormField({
           id={id}
           name={name}
           type={type}
+          autoComplete={autoComplete}
           placeholder={placeholder}
           required={required}
           className={control}

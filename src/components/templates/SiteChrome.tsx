@@ -1,3 +1,4 @@
+import { RouteScrollReset } from "@/components/atoms/RouteScrollReset";
 import { Footer } from "@/components/organisms/Footer";
 import { Header } from "@/components/organisms/Header";
 import { RevealObserver } from "@/components/organisms/MotionShell";
@@ -29,6 +30,8 @@ interface SiteChromeProps {
 export function SiteChrome({ site, chrome, children }: SiteChromeProps) {
   return (
     <>
+      <RouteScrollReset />
+
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-canvas focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-ink"

@@ -80,15 +80,12 @@ export function PageHero({
           sizes="100vw"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/45 to-ink/65" />
       </div>
 
-      {/* Watermark Logo */}
-      <img
-        src="/brand/logo-casa-alta-blanco.png"
-        alt=""
+      {/* Dark architectural hero overlay ensuring crisp contrast for white type & transparent header */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink/95 via-ink/55 to-ink/75"
         aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-24 z-10 w-48 select-none opacity-70 sm:w-60 md:right-10 md:top-28 md:w-72 lg:right-16 lg:top-32 lg:w-96"
       />
 
       {/* Content Container */}
@@ -116,13 +113,6 @@ export function PageHero({
               {subheadline}
             </p>
           </div>
-        </div>
-
-        {/* Bottom center Cosentino scroll cue */}
-        <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/60">
-          <span className="font-mono text-[0.65rem] tracking-widest uppercase">
-            ( · )
-          </span>
         </div>
       </Container>
     </section>

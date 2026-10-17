@@ -36,19 +36,6 @@ export function ProcessEntry({ step, revealIndex }: ProcessEntryProps) {
 
       <div className="flex flex-col gap-4 md:col-span-7">
         <Text className="text-ink-muted">{step.description}</Text>
-
-        {step.deliverables && step.deliverables.length > 0 ? (
-          <ul className="flex flex-wrap gap-2 pt-1">
-            {step.deliverables.map((item) => (
-              <li
-                key={item}
-                className="border border-bone-200 bg-canvas px-3 py-1 text-xs font-medium text-brand-900"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        ) : null}
       </div>
     </li>
   );

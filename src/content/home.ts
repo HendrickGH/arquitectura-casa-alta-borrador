@@ -17,18 +17,18 @@ const heroImage: Photo = {
 
 /** Civil works: heavy crane hoisting a precast structural concrete frame. */
 const civilImage: Photo = {
-  src: "/images/obra-civil/05-montaje-pieza-especial-concreto-estructura-puente.avif",
+  src: "/images/hero/montaje-estructura-puente-grua-obra-civil.avif",
   alt: "Maniobra de izado con grúa de elemento prefabricado de concreto sobre superestructura de puente bajo cielo despejado",
   width: 1280,
   height: 960,
 };
 
-/** Sustainable coastal construction: palm roofs facing the Pacific in Punta Zicatela. */
-const sustainableImage: Photo = {
-  src: "/images/02-el-bicho/58-toma-aerea-posterior-techos-palma-mar.avif",
-  alt: "Vista aérea posterior de las cubiertas de palma natural frente al océano Pacífico en Punta Zicatela, Puerto Escondido",
+/** Industrial construction: crane operations hoisting precast concrete walls for industrial building. */
+const industrialImage: Photo = {
+  src: "/images/hero/maniobra-gruas-nave-industrial-prefabricados.avif",
+  alt: "Maniobra de grúas para izado de muros y estructura prefabricada de concreto en nave industrial",
   width: 1280,
-  height: 720,
+  height: 960,
 };
 
 /** Full-color aerial reference photo of Punta Zicatela placed after Quiénes somos (PDF p. 2). */
@@ -144,11 +144,11 @@ export const home: HomePage = {
     eyebrow: "Puerto Escondido, Oaxaca centro y Salina Cruz",
     slides: [
       { title: "Arquitectura", photo: heroImage },
-      { title: "Ingeniería y obra civil", photo: civilImage },
-      { title: "Construcción sustentable", photo: sustainableImage },
+      { title: "Construcción civil", photo: civilImage },
+      { title: "Construcción industrial", photo: industrialImage },
     ],
     subheadline:
-      "Proyectos ejecutivos de arquitectura residencial e ingeniería civil.",
+      "Proyectos de ingeniería civil y proyectos ejecutivos arquitectónicos.",
     chrome: { tone: "canvas" },
   },
 

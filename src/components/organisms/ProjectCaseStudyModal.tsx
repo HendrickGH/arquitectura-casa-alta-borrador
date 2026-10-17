@@ -33,12 +33,41 @@ export function ProjectCaseStudyModal({
 }: ProjectCaseStudyModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const triggerElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!project) return;
 
+    triggerElementRef.current = document.activeElement as HTMLElement | null;
+
+    const timer = window.setTimeout(() => {
+      closeButtonRef.current?.focus();
+    }, 40);
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        onClose();
+        return;
+      }
+      if (e.key === "Tab" && overlayRef.current) {
+        const focusable = overlayRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     const prevOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
@@ -58,8 +87,10 @@ export function ProjectCaseStudyModal({
     }
 
     return () => {
+      window.clearTimeout(timer);
       document.documentElement.style.overflow = prevOverflow;
       window.removeEventListener("keydown", onKey);
+      triggerElementRef.current?.focus();
     };
   }, [project, onClose]);
 
@@ -91,15 +122,17 @@ export function ProjectCaseStudyModal({
           </div>
 
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            className="group label inline-flex items-center gap-3 text-ink transition-colors hover:text-brand-800"
+            aria-label="Cerrar expediente de proyecto"
+            className="group label inline-flex min-h-[44px] items-center gap-3 text-ink transition-colors hover:text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-800"
           >
             <span className="underline decoration-ink/40 underline-offset-4 group-hover:decoration-brand-800">
               Cerrar expediente
             </span>
-            <span className="inline-flex h-7 w-10 items-center justify-center rounded-full border border-ink/30 bg-ink text-concha-nacar transition-transform duration-300 group-hover:scale-105">
-              <Icon name="close" className="h-3.5 w-3.5" />
+            <span className="inline-flex h-8 w-11 items-center justify-center rounded-full border border-ink/30 bg-ink text-concha-nacar transition-transform duration-300 group-hover:scale-105">
+              <Icon name="close" className="h-4 w-4" />
             </span>
           </button>
         </Container>
@@ -271,7 +304,7 @@ export function ProjectCaseStudyModal({
                   </div>
                   <figcaption className="mt-3 flex items-center justify-between gap-3 text-xs text-ink-muted">
                     <span className="line-clamp-1">{photo.alt}</span>
-                    <span className="shrink-0 font-mono text-[0.68rem] uppercase">
+                    <span className="shrink-0 font-mono text-xs uppercase">
                       {`${photo.width}×${photo.height}`}
                     </span>
                   </figcaption>

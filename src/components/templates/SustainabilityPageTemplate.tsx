@@ -56,8 +56,7 @@ export function SustainabilityPageTemplate({
           <Container>
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="flex flex-col gap-5 lg:col-span-6">
-                <div {...revealStep(0)} className="flex items-center gap-3">
-                  <span className="number-pill">(TRÓPICO OAXAQUEÑO)</span>
+                <div {...revealStep(0)}>
                   <p className="eyebrow">{page.narrative.eyebrow}</p>
                 </div>
 
@@ -114,7 +113,6 @@ export function SustainabilityPageTemplate({
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="number-pill">{`(${pillar.number})`}</span>
-                      <span className="label text-brand-800">PASIVO</span>
                     </div>
                     <div className="mt-6">
                       <h3 className="voice text-xl leading-snug text-ink">

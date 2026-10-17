@@ -45,9 +45,6 @@ export function DivisionCards({
               </div>
               <SectionHeading heading={intro.heading} body={intro.body} />
             </div>
-            <span className="number-pill self-start lg:self-end">
-              (04 DIVISIONES INTEGRADAS)
-            </span>
           </div>
         ) : null}
 

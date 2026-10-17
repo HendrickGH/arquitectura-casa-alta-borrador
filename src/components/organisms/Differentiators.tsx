@@ -37,9 +37,6 @@ export function Differentiators({
             </div>
             <SectionHeading heading={intro.heading} body={intro.body} />
           </div>
-          <span className="number-pill self-start lg:self-end">
-            (INGENIERÍA + SUPERVISIÓN DIRECTA)
-          </span>
         </div>
 
         <div className="grid gap-12 md:grid-cols-2">
@@ -50,12 +47,9 @@ export function Differentiators({
               className="group flex flex-col justify-between"
             >
               <div>
-                <div className="mb-4 flex items-center justify-between gap-2">
+                <div className="mb-4">
                   <span className="number-pill">
                     {`(${String(index + 1).padStart(2, "0")})`}
-                  </span>
-                  <span className="font-mono text-[0.68rem] tracking-widest text-ink-muted uppercase">
-                    GARANTÍA DE OBRA
                   </span>
                 </div>
 

@@ -51,7 +51,6 @@ export function ClosingCTA({
 
           <div className="flex flex-col items-start gap-5 lg:col-span-7">
             <div className="flex items-center gap-2.5">
-              <span className="number-pill">(CASA ALTA)</span>
               <span className="eyebrow">Primera reunión sin costo</span>
             </div>
 

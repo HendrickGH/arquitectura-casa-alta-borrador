@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
@@ -36,9 +36,25 @@ export function ProjectCard({
   const images = project.gallery.length > 0 ? project.gallery : [project.cover];
   const [index, setIndex] = useState(0);
   const total = images.length;
+  const touchStartX = useRef<number | null>(null);
 
   const move = (step: number) =>
     setIndex((current) => (current + step + total) % total);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const endX = e.changedTouches[0]?.clientX ?? null;
+    if (endX === null) return;
+    const diff = touchStartX.current - endX;
+    touchStartX.current = null;
+    if (Math.abs(diff) > 40) {
+      move(diff > 0 ? 1 : -1);
+    }
+  };
 
   const ordinal =
     typeof revealIndex === "number"
@@ -60,7 +76,7 @@ export function ProjectCard({
             ) : null}
           </div>
           {project.location ? (
-            <span className="text-[0.7rem] tracking-wider text-ink-muted uppercase">
+            <span className="text-xs tracking-wider text-ink-muted uppercase">
               {project.location}
             </span>
           ) : null}
@@ -68,8 +84,22 @@ export function ProjectCard({
 
         {/* Title & concise summary above the photograph (Thirdway plate order) */}
         <div
-          onClick={() => onSelect?.(project)}
-          className={onSelect ? "cursor-pointer" : undefined}
+          {...(onSelect
+            ? {
+                role: "button",
+                tabIndex: 0,
+                onClick: () => onSelect(project),
+                onKeyDown: (e: React.KeyboardEvent) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onSelect(project);
+                  }
+                },
+                "aria-label": `Ver expediente completo de ${project.title}`,
+                className:
+                  "cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-800",
+              }
+            : {})}
         >
           <Heading
             as="h3"
@@ -87,9 +117,13 @@ export function ProjectCard({
         </div>
       </div>
 
-      {/* Framed photograph carousel */}
+      {/* Framed photograph carousel with touch swipe support */}
       <div className="mt-5">
-        <div className="relative aspect-[4/3] w-full overflow-hidden">
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          className="relative aspect-[4/3] w-full overflow-hidden"
+        >
           <div
             className="flex h-full transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${index * 100}%)` }}
@@ -201,7 +235,7 @@ function CarouselArrow({ label, side, onClick }: CarouselArrowProps) {
         onClick();
       }}
       aria-label={label}
-      className={`absolute top-1/2 z-10 inline-flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-ink/55 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${position}`}
+      className={`absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-ink/55 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${position}`}
     >
       <Icon
         name={side === "left" ? "arrow-left" : "arrow-right"}

@@ -84,7 +84,6 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-3 text-xs text-ink-muted">
                   <span>Arquitectura que perdura · Costa de Oaxaca</span>
-                  <span className="number-pill">(MANIFIESTO)</span>
                 </div>
               </div>
             </div>
@@ -97,7 +96,6 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
               {...revealStep(0)}
               className="mb-4 flex items-center gap-2.5"
             >
-              <span className="number-pill">(03)</span>
               <span className="eyebrow">Visión arquitectónica</span>
             </div>
 
@@ -123,7 +121,6 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
                 <p className="label text-brand-800">{architect.name}</p>
                 <p className="label mt-1.5 text-ink-muted">{architect.role}</p>
               </div>
-              <span className="number-pill">FIRMA TITULAR · CASA ALTA</span>
             </figcaption>
           </figure>
         </div>

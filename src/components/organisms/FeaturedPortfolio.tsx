@@ -202,10 +202,6 @@ export function FeaturedPortfolio({
                     </span>
                   ) : null}
                 </div>
-
-                <span className="font-mono text-[0.68rem] tracking-widest text-white/75 uppercase">
-                  DESPLAZA PARA CAMBIAR OBRA · SCROLL PINNED
-                </span>
               </div>
 
               {/* Thirdway 1px horizontal scrub progress bar */}
@@ -286,7 +282,6 @@ export function FeaturedPortfolio({
           <div className="bg-canvas py-20 md:py-28">
             <Container className="mb-10 flex flex-wrap items-center justify-between gap-4 border-b border-ink/15 pb-5">
               <div className="flex items-center gap-2.5">
-                <span className="number-pill">(04.B)</span>
                 <p className="label text-brand-800">
                   Más obras residenciales, comerciales y civiles en Oaxaca
                 </p>
