@@ -1,0 +1,202 @@
+import { Button } from "@/components/atoms/Button";
+import { Container } from "@/components/atoms/Container";
+import { Heading } from "@/components/atoms/Heading";
+import { Photo } from "@/components/atoms/Photo";
+import { Section } from "@/components/atoms/Section";
+import { Text } from "@/components/atoms/Text";
+import { SectionHeading } from "@/components/molecules/SectionHeading";
+import { ClosingCTA } from "@/components/organisms/ClosingCTA";
+import { PageHero } from "@/components/organisms/PageHero";
+import { ProcessList } from "@/components/organisms/ProcessList";
+import { ServicesIndex } from "@/components/organisms/ServicesIndex";
+import { SiteChrome } from "@/components/templates/SiteChrome";
+import { revealStep } from "@/lib/reveal";
+import type {
+  HomePage,
+  ProcessStep,
+  SectionIntro,
+  ServiceGroup,
+  ServicesPageContent,
+  SiteConfig,
+} from "@/types/content";
+
+interface ServicesPageTemplateProps {
+  site: SiteConfig;
+  page: ServicesPageContent;
+  groups: ServiceGroup[];
+  processIntro: SectionIntro;
+  steps: ProcessStep[];
+  closing: HomePage["closing"];
+}
+
+const SPECIALTY_PHOTO_SIZES =
+  "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
+
+/**
+ * `/servicios` — Ingeniería, Proyectos Ejecutivos y Construcción.
+ *
+ * Showcases the studio's four field execution specialties (`proyectos-integrales`,
+ * `obra-civil`, `naves-industriales`, `remodelacion`), the complete 13-service
+ * technical catalog (`ServicesIndex`), and the 7-step methodology (`ProcessList`).
+ */
+export function ServicesPageTemplate({
+  site,
+  page,
+  groups,
+  processIntro,
+  steps,
+  closing,
+}: ServicesPageTemplateProps) {
+  return (
+    <SiteChrome site={site} chrome="canvas">
+      <main id="main">
+        <PageHero
+          badge="DIVISIÓN 02"
+          eyebrow={page.hero.eyebrow}
+          heading={page.hero.heading}
+          subheadline={page.hero.subheadline}
+          photo={page.hero.photo}
+        />
+
+        <Section
+          tone="canvas"
+          reveal="stagger"
+          className="!pt-12 !pb-16 md:!pt-16 md:!pb-20"
+        >
+          <Container>
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+              <div className="lg:col-span-5">
+                <div {...revealStep(0)} className="flex items-center gap-3">
+                  <span className="number-pill">01</span>
+                  <p className="eyebrow">{page.intro.eyebrow}</p>
+                </div>
+                <div {...revealStep(1)} className="mt-4">
+                  <Heading as="h2" voice="serif" className="max-w-[22ch]">
+                    {page.intro.heading}
+                  </Heading>
+                </div>
+              </div>
+
+              <div
+                {...revealStep(2)}
+                className="flex flex-col gap-4 lg:col-span-7"
+              >
+                {(page.intro.paragraphs ?? [page.intro.body]).map(
+                  (paragraph, index) => (
+                    <Text
+                      key={paragraph}
+                      size={index === 0 ? "lede" : undefined}
+                      className={index === 0 ? "text-ink" : "text-ink-muted"}
+                    >
+                      {paragraph}
+                    </Text>
+                  ),
+                )}
+              </div>
+            </div>
+          </Container>
+        </Section>
+
+        <Section tone="bone" reveal="stagger">
+          <Container>
+            <SectionHeading
+              eyebrow={page.specialties.eyebrow}
+              heading={page.specialties.heading}
+              body={page.specialties.body}
+            />
+
+            <div className="mt-14 flex flex-col gap-16 md:gap-24">
+              {page.specialties.sections.map((specialty, sIdx) => (
+                <article
+                  key={specialty.slug}
+                  id={specialty.slug}
+                  {...revealStep(sIdx)}
+                  className="ruler-top pt-10"
+                >
+                  <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+                    <div className="flex flex-col gap-4 lg:col-span-5">
+                      <div className="flex items-center gap-3">
+                        <span className="number-pill">{specialty.number}</span>
+                        <span className="label text-brand-800">
+                          {specialty.subtitle}
+                        </span>
+                      </div>
+
+                      <Heading
+                        as="h3"
+                        voice="serif"
+                        sizeClassName="text-[1.6rem] leading-[1.15] md:text-[2rem]"
+                      >
+                        {specialty.title}
+                      </Heading>
+
+                      <Text className="text-ink-muted">
+                        {specialty.description}
+                      </Text>
+
+                      <ul className="mt-2 flex flex-wrap gap-2">
+                        {specialty.deliverables.map((item) => (
+                          <li
+                            key={item}
+                            className="border border-bone-200 bg-canvas px-3 py-1 text-xs font-medium text-brand-900"
+                          >
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-3">
+                        <Button
+                          href="/contacto"
+                          variant="secondary"
+                          size="sm"
+                          arrow
+                        >
+                          Solicitar asesoría técnica
+                        </Button>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-4 min-[768px]:grid-cols-2 lg:col-span-7">
+                      {specialty.photos.slice(0, 4).map((photo) => (
+                        <div
+                          key={photo.src}
+                          className="relative aspect-[4/3] overflow-hidden border border-bone-200 bg-bone-100"
+                        >
+                          <Photo
+                            photo={photo}
+                            sizes={SPECIALTY_PHOTO_SIZES}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </Section>
+
+        <ServicesIndex
+          id="catalogo-servicios"
+          intro={{
+            eyebrow: "Catálogo técnico",
+            heading: "Alcances por etapa de proyecto y construcción.",
+            body: "Contrate el desarrollo integral llave en mano o la especialidad técnica que su obra requiera.",
+          }}
+          groups={groups}
+          tone="canvas"
+        />
+
+        <ProcessList
+          id="proceso"
+          intro={processIntro}
+          steps={steps}
+          tone="bone"
+        />
+
+        <ClosingCTA closing={closing} />
+      </main>
+    </SiteChrome>
+  );
+}
