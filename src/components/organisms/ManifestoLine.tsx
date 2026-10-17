@@ -74,15 +74,15 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
             <div {...revealStep(0)} className="lg:col-span-5">
               <div
                 ref={photoWrapRef}
-                className="overflow-hidden border border-ink/15 bg-canvas p-3 shadow-sm md:p-4"
+                className="overflow-hidden"
               >
-                <div className="relative aspect-[3/4] w-full overflow-hidden bg-bone-100">
+                <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <Photo
                     photo={photo}
                     sizes="(min-width: 1024px) 38vw, 90vw"
                   />
                 </div>
-                <div className="mt-3 flex items-center justify-between gap-3 px-1 text-xs text-ink-muted">
+                <div className="mt-3 flex items-center justify-between gap-3 text-xs text-ink-muted">
                   <span>Arquitectura que perdura · Costa de Oaxaca</span>
                   <span className="number-pill">(MANIFIESTO)</span>
                 </div>

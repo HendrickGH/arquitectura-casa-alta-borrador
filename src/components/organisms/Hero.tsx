@@ -85,14 +85,14 @@ export function Hero({ hero }: HeroProps) {
           {/* Framed uncropped photograph stage (expands smoothly on scroll via GSAP) */}
           <div
             data-hero-frame
-            className="relative mx-auto w-full origin-center overflow-hidden border border-ink/15 bg-bone-100 p-2 shadow-sm md:p-3.5"
+            className="relative mx-auto w-full origin-center overflow-hidden"
           >
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-bone-200/60">
+            <div className="relative aspect-[16/9] w-full overflow-hidden">
               {hero.slides.map((slide, index) => (
                 <div
                   key={slide.photo.src}
                   data-hero-slide
-                  className="absolute inset-0 flex items-center justify-center bg-bone-100"
+                  className="absolute inset-0 flex items-center justify-center"
                   style={{
                     opacity: index === 0 ? 1 : 0,
                     zIndex: index === 0 ? 1 : 0,

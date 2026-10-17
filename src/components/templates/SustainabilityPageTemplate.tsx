@@ -69,7 +69,7 @@ export function SustainabilityPageTemplate({
 
                 <blockquote
                   {...revealStep(2)}
-                  className="border-l-2 border-brand-800 bg-concha-nacar p-6"
+                  className="border-l-2 border-brand-800 pl-6 py-2"
                 >
                   <p className="voice text-lg leading-relaxed text-brand-900 md:text-xl">
                     &ldquo;{page.narrative.verbatimQuote}&rdquo;
@@ -87,9 +87,9 @@ export function SustainabilityPageTemplate({
                 {page.bioclimaticPhotos[0] ? (
                   <div
                     {...revealStep(3)}
-                    className="mt-2 overflow-hidden border border-ink/15 bg-concha-nacar p-3"
+                    className="mt-2 overflow-hidden"
                   >
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-100">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
                       <Photo
                         photo={page.bioclimaticPhotos[0]}
                         sizes="(min-width: 1024px) 44vw, 95vw"
@@ -105,12 +105,12 @@ export function SustainabilityPageTemplate({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-6">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-6">
                 {page.pillars.map((pillar, index) => (
                   <div
                     key={pillar.number}
                     {...revealStep(index)}
-                    className="ruler-top flex flex-col justify-between border border-ink/15 bg-concha-nacar p-6"
+                    className="ruler-top flex flex-col justify-between border-t border-ink/15 pt-6"
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="number-pill">{`(${pillar.number})`}</span>
@@ -144,14 +144,14 @@ export function SustainabilityPageTemplate({
               </span>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
               {page.bioclimaticPhotos.map((photo, index) => (
                 <figure
                   key={photo.src}
                   {...revealStep(index)}
-                  className="overflow-hidden border border-bone-200 bg-canvas"
+                  className="overflow-hidden"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Photo photo={photo} sizes={GALLERY_SIZES} />
                   </div>
                 </figure>
@@ -173,14 +173,14 @@ export function SustainabilityPageTemplate({
               </span>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
               {page.enduringPhotos.map((photo, index) => (
                 <figure
                   key={photo.src}
                   {...revealStep(index)}
-                  className="overflow-hidden border border-bone-200 bg-bone-50"
+                  className="overflow-hidden"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Photo photo={photo} sizes={GALLERY_SIZES} />
                   </div>
                 </figure>

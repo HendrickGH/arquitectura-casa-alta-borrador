@@ -39,9 +39,9 @@ export function ClosingCTA({
       className="ruler-top border-t border-ink/15 bg-concha-nacar py-20 md:py-28"
     >
       <Container>
-        <div className="grid grid-cols-1 items-center gap-10 border border-ink/15 bg-canvas p-6 shadow-sm md:p-10 lg:grid-cols-12 lg:gap-12">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/3] w-full overflow-hidden border border-ink/12 bg-bone-100">
+            <div className="relative aspect-[4/3] w-full overflow-hidden">
               <Photo
                 photo={photo}
                 sizes="(min-width: 1024px) 40vw, 95vw"

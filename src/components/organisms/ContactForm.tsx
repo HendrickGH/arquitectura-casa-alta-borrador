@@ -39,12 +39,12 @@ export function ContactForm({
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
           {/* Left column: Real studio photograph + direct consultation summary */}
           <div {...revealStep(0)} className="lg:col-span-5">
-            <div className="overflow-hidden border border-ink/15 bg-canvas p-3 shadow-sm md:p-4">
+            <div className="overflow-hidden">
               <div className="mb-3 flex items-center justify-between gap-2">
                 <span className="number-pill">(10)</span>
                 <span className="label text-brand-800">ATENCIÓN DIRECTA</span>
               </div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <Photo
                   photo={photo}
                   sizes="(min-width: 1024px) 40vw, 95vw"

@@ -57,50 +57,50 @@ export function DivisionCards({
               key={card.href}
               href={card.href}
               {...revealStep(index)}
-              className="group relative flex aspect-[3/4.2] flex-col justify-between overflow-hidden border border-ink/15 bg-ink p-4 text-white"
+              className="group relative flex aspect-[3/4.4] flex-col justify-between overflow-hidden bg-ink text-white"
             >
               <div className="absolute inset-0 z-0 overflow-hidden">
                 <Photo
                   photo={card.photo}
                   sizes={CARD_SIZES}
-                  className="transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  className="transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
               </div>
 
               <div
                 aria-hidden="true"
-                className="absolute inset-0 z-[1] bg-gradient-to-t from-ink/85 via-ink/25 to-ink/40 transition-opacity duration-500"
+                className="absolute inset-0 z-[1] bg-gradient-to-t from-ink/95 via-ink/50 to-transparent transition-opacity duration-500"
               />
 
               {/* Top oval capsule header */}
-              <div className="relative z-10 flex items-center justify-between gap-2 p-2">
+              <div className="relative z-10 flex items-center justify-between gap-2 p-5">
                 <span className="number-pill-inverse">{`(${card.number})`}</span>
-                <span className="rounded-full border border-white/30 bg-ink/35 px-3 py-1 text-[0.65rem] tracking-wider text-white/90 uppercase backdrop-blur-sm">
+                <span className="rounded-full border border-white/25 bg-ink/40 px-3 py-1 text-[0.65rem] tracking-wider text-white/90 uppercase backdrop-blur-sm">
                   {card.subtitle}
                 </span>
               </div>
 
-              {/* Thirdway warm concha-nacar slide-up card drawer */}
-              <div className="relative z-10 mt-auto overflow-hidden border border-ink/12 bg-concha-nacar p-5 text-ink shadow-lg transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
-                <h3 className="voice text-xl leading-[1.14] text-ink md:text-[1.35rem]">
+              {/* Minimalist editorial text directly on the photograph */}
+              <div className="relative z-10 mt-auto p-5 text-white">
+                <h3 className="voice text-xl leading-[1.14] text-white md:text-[1.35rem]">
                   {card.title}
                 </h3>
 
                 <div className="grid grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:grid-rows-[0fr] lg:group-hover:grid-rows-[1fr] lg:group-focus-within:grid-rows-[1fr]">
                   <div className="overflow-hidden">
-                    <p className="mt-2.5 text-xs leading-relaxed text-ink-muted md:text-sm">
+                    <p className="mt-2 text-xs leading-relaxed text-white/80 md:text-sm">
                       {card.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between border-t border-ink/12 pt-3">
-                  <span className="label text-ink underline decoration-ink/35 underline-offset-4 group-hover:text-brand-800 group-hover:decoration-brand-800">
+                <div className="mt-4 flex items-center justify-between border-t border-white/20 pt-3">
+                  <span className="label text-white/90 underline decoration-white/35 underline-offset-4 group-hover:text-white group-hover:decoration-white">
                     Explorar división
                   </span>
                   <span
                     aria-hidden="true"
-                    className="arrow-pill arrow-pill-ink"
+                    className="arrow-pill"
                   >
                     <svg
                       viewBox="0 0 16 16"

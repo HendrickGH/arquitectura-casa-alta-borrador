@@ -48,7 +48,7 @@ export function ProjectCard({
   return (
     <article
       {...revealStep(revealIndex)}
-      className="group flex flex-col justify-between border border-ink/12 bg-concha-nacar p-5 transition-colors duration-300 hover:border-ink/35 md:p-6"
+      className="group flex flex-col justify-between"
     >
       <div>
         {/* Top Thirdway oval capsule metadata bar */}
@@ -89,7 +89,7 @@ export function ProjectCard({
 
       {/* Framed photograph carousel */}
       <div className="mt-5">
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+        <div className="relative aspect-[4/3] w-full overflow-hidden">
           <div
             className="flex h-full transition-transform duration-500 ease-out"
             style={{ transform: `translateX(-${index * 100}%)` }}

@@ -85,9 +85,9 @@ export function ContactPageTemplate({
 
                 <div
                   {...revealStep(2)}
-                  className="overflow-hidden border border-ink/15 bg-concha-nacar p-3"
+                  className="overflow-hidden"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Photo
                       photo={OFFICE_STUDIO_PHOTO}
                       sizes="(min-width: 1024px) 38vw, 95vw"
@@ -115,12 +115,12 @@ export function ContactPageTemplate({
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-7">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-7">
                 {site.offices.map((office, idx) => (
                   <div
                     key={office.city}
                     {...revealStep(idx)}
-                    className="ruler-top flex flex-col justify-between border border-ink/15 bg-concha-nacar p-6"
+                    className="ruler-top flex flex-col justify-between border-t border-ink/15 pt-6"
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="number-pill">
@@ -140,7 +140,7 @@ export function ContactPageTemplate({
 
                 <div
                   {...revealStep(2)}
-                  className="ruler-top border border-ink/15 bg-concha-nacar p-6 sm:col-span-2"
+                  className="ruler-top border-t border-ink/15 pt-8 sm:col-span-2"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-4 border-b border-ink/15 pb-4">
                     <p className="label text-brand-800">
@@ -155,12 +155,12 @@ export function ContactPageTemplate({
                     </ul>
                   </div>
 
-                  <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-3">
                     {site.contact.map((line) => (
                       <a
                         key={line.href}
                         href={line.href}
-                        className="flex flex-col gap-1 border border-ink/15 bg-canvas p-4 transition-colors hover:border-brand-800"
+                        className="flex flex-col gap-1 border-b border-ink/15 pb-3 transition-colors hover:border-brand-800"
                       >
                         <span className="label text-ink-muted">
                           {line.label}

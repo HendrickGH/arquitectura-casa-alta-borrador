@@ -64,7 +64,7 @@ export function Button({
 
   const classes = cx(
     "group label inline-flex items-center justify-center gap-3 transition-colors duration-200",
-    !isInlineLink ? sizes[size] : "py-1.5",
+    !isInlineLink ? cx(sizes[size], "rounded-full") : "py-1.5",
     variants[variant],
     disabled && "cursor-not-allowed opacity-60",
     className,

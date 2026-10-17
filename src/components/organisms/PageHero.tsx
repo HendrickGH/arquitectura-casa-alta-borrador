@@ -113,9 +113,9 @@ export function PageHero({
           <div className="lg:col-span-6">
             <div
               ref={frameRef}
-              className="mx-auto overflow-hidden border border-ink/15 bg-canvas p-3 shadow-sm md:p-4"
+              className="mx-auto overflow-hidden"
             >
-              <div className="relative overflow-hidden bg-bone-100">
+              <div className="relative overflow-hidden">
                 <Photo
                   photo={photo}
                   sizes="(min-width: 1024px) 48vw, 95vw"
@@ -123,7 +123,7 @@ export function PageHero({
                   className="block max-h-[68svh] w-full object-contain"
                 />
               </div>
-              <div className="mt-3 flex items-center justify-between gap-3 px-1 text-xs text-ink-muted">
+              <div className="mt-3 flex items-center justify-between gap-3 text-xs text-ink-muted">
                 <span className="line-clamp-1">{photo.alt}</span>
                 <span className="shrink-0 font-mono text-[0.68rem] uppercase">
                   OBRA REAL

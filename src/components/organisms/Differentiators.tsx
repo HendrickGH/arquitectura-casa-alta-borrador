@@ -42,12 +42,12 @@ export function Differentiators({
           </span>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-12 md:grid-cols-2">
           {items.map((item, index) => (
             <article
               key={item.title}
               {...revealStep(index)}
-              className="group flex flex-col justify-between border border-ink/15 bg-canvas p-6 transition-colors duration-300 hover:border-ink/35 md:p-8"
+              className="group flex flex-col justify-between"
             >
               <div>
                 <div className="mb-4 flex items-center justify-between gap-2">
@@ -68,7 +68,7 @@ export function Differentiators({
               </div>
 
               {item.photo ? (
-                <div className="mt-6 overflow-hidden border border-ink/10 bg-bone-100">
+                <div className="mt-6 overflow-hidden">
                   <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Photo
                       photo={item.photo}

@@ -128,14 +128,14 @@ export function ProjectCaseStudyModal({
             </div>
           </div>
 
-          {/* Uncropped lead cover photograph framed on warm concha-nacar */}
-          <div className="mt-10 overflow-hidden border border-ink/12 bg-bone-100 p-3 md:p-6">
+          {/* Uncropped lead cover photograph */}
+          <div className="mt-10 overflow-hidden">
             <div className="relative mx-auto overflow-hidden">
               <Photo
                 photo={project.wideCover ?? project.cover}
                 sizes={MODAL_HERO_SIZES}
                 priority
-                className="max-h-[78svh] w-full object-contain bg-ink/5"
+                className="max-h-[78svh] w-full object-contain"
               />
             </div>
           </div>
@@ -177,7 +177,7 @@ export function ProjectCaseStudyModal({
               )}
             </div>
 
-            <aside className="flex flex-col justify-between border border-ink/15 bg-canvas p-6 md:p-8 lg:col-span-5">
+            <aside className="flex flex-col justify-between border-t border-ink/15 pt-8 lg:col-span-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
               <div>
                 <div className="flex items-center justify-between gap-2">
                   <p className="label text-brand-800">Ficha técnica</p>
@@ -252,13 +252,13 @@ export function ProjectCaseStudyModal({
                 {`${String(photos.length).padStart(2, "0")} IMÁGENES`}
               </span>
             </div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {photos.map((photo, index) => (
                 <figure
                   key={photo.src}
-                  className="group relative overflow-hidden border border-ink/12 bg-canvas p-3"
+                  className="group relative overflow-hidden"
                 >
-                  <div className="relative overflow-hidden bg-bone-100">
+                  <div className="relative overflow-hidden">
                     <Photo
                       photo={photo}
                       sizes={MODAL_PHOTO_SIZES}
@@ -269,7 +269,7 @@ export function ProjectCaseStudyModal({
                       {`(${String(index + 1).padStart(2, "0")})`}
                     </span>
                   </div>
-                  <figcaption className="mt-3 flex items-center justify-between gap-3 px-1 text-xs text-ink-muted">
+                  <figcaption className="mt-3 flex items-center justify-between gap-3 text-xs text-ink-muted">
                     <span className="line-clamp-1">{photo.alt}</span>
                     <span className="shrink-0 font-mono text-[0.68rem] uppercase">
                       {`${photo.width}×${photo.height}`}

@@ -141,8 +141,8 @@ export function IntroSection({
               {...revealStep(2)}
               className="relative flex flex-col gap-5 lg:col-span-6"
             >
-              <figure className="overflow-hidden border border-ink/15 bg-concha-nacar p-3 shadow-sm md:p-4">
-                <div className="relative overflow-hidden bg-bone-100">
+              <figure className="overflow-hidden">
+                <div className="relative overflow-hidden">
                   <Photo
                     photo={intro.photo}
                     sizes={PHOTO_SIZES}
@@ -150,7 +150,7 @@ export function IntroSection({
                   />
                 </div>
                 {intro.photoCaption ? (
-                  <figcaption className="mt-3 flex items-center justify-between gap-4 px-1 text-xs text-ink-muted">
+                  <figcaption className="mt-3 flex items-center justify-between gap-4 text-xs text-ink-muted">
                     <span>{intro.photoCaption}</span>
                     <span className="number-pill">(01.A)</span>
                   </figcaption>
@@ -160,9 +160,9 @@ export function IntroSection({
               {intro.secondaryPhoto ? (
                 <figure
                   ref={secondaryRef}
-                  className="ml-auto w-full max-w-[22rem] overflow-hidden border border-ink/15 bg-canvas p-3 shadow-md sm:w-3/4 lg:-mt-14 lg:mr-4"
+                  className="ml-auto w-full max-w-[22rem] overflow-hidden sm:w-3/4 lg:-mt-14 lg:mr-4"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Photo
                       photo={intro.secondaryPhoto}
                       sizes={SECONDARY_SIZES}

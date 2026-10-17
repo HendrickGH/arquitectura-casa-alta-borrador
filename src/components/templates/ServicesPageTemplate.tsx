@@ -91,8 +91,8 @@ export function ServicesPageTemplate({
               </div>
 
               <div {...revealStep(2)} className="lg:col-span-5">
-                <div className="overflow-hidden border border-ink/15 bg-concha-nacar p-3 shadow-sm md:p-4">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                <div className="overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Photo
                       photo={{
                         src: "/images/proyectos-integrales/01-arquitectos-revisando-planos-estructurales-mesa-madera.avif",
@@ -103,7 +103,7 @@ export function ServicesPageTemplate({
                       sizes="(min-width: 1024px) 40vw, 95vw"
                     />
                   </div>
-                  <div className="mt-3 flex items-center justify-between gap-2 px-1 text-xs text-ink-muted">
+                  <div className="mt-3 flex items-center justify-between gap-2 text-xs text-ink-muted">
                     <span>Ingeniería y proyecto ejecutivo en gabinete</span>
                     <span className="number-pill">(CÁLCULO)</span>
                   </div>
@@ -154,7 +154,7 @@ export function ServicesPageTemplate({
                         {specialty.deliverables.map((item) => (
                           <li
                             key={item}
-                            className="border border-bone-200 bg-canvas px-3 py-1 text-xs font-medium text-brand-900"
+                            className="rounded-full border border-ink/20 px-3 py-1 text-xs font-medium text-ink"
                           >
                             {item}
                           </li>
@@ -177,7 +177,7 @@ export function ServicesPageTemplate({
                       {specialty.photos.slice(0, 4).map((photo) => (
                         <div
                           key={photo.src}
-                          className="relative aspect-[4/3] overflow-hidden border border-bone-200 bg-bone-100"
+                          className="relative aspect-[4/3] overflow-hidden"
                         >
                           <Photo
                             photo={photo}

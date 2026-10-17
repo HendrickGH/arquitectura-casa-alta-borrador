@@ -122,7 +122,7 @@ export function ProcessList({
         >
           {/* Left column: GSAP ScrollTrigger Pinned Studio Photograph Stage (lg+) */}
           <div ref={pinColumnRef} className="hidden lg:col-span-5 lg:block">
-            <div className="overflow-hidden border border-ink/15 bg-canvas p-4 shadow-sm">
+            <div className="overflow-hidden">
               <div className="mb-3 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2">
                   <span className="number-pill">
@@ -134,7 +134,7 @@ export function ProcessList({
                 </div>
               </div>
 
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
                 {steps.map((step, index) =>
                   step.photo ? (
                     <div
@@ -172,7 +172,7 @@ export function ProcessList({
           {/* Right column: Scrollable 7-step architectural ledger */}
           <ol
             ref={listRef}
-            className="flex flex-col gap-6 lg:col-span-7"
+            className="flex flex-col divide-y divide-ink/15 border-t border-b border-ink/15 lg:col-span-7"
           >
             {steps.map((step, index) => {
               const isActive = index === activeStep;
@@ -182,10 +182,8 @@ export function ProcessList({
                   key={step.order}
                   data-process-step-card
                   onMouseEnter={() => setActiveStep(index)}
-                  className={`border p-6 transition-colors duration-300 md:p-8 ${
-                    isActive
-                      ? "border-ink/40 bg-canvas shadow-sm"
-                      : "border-ink/12 bg-concha-nacar/70 hover:border-ink/25"
+                  className={`py-8 transition-opacity duration-300 ${
+                    isActive ? "opacity-100" : "opacity-60 hover:opacity-100"
                   }`}
                 >
                   <div className="flex flex-wrap items-center justify-between gap-3">
@@ -221,7 +219,7 @@ export function ProcessList({
                       {step.deliverables.map((item) => (
                         <li
                           key={item}
-                          className="rounded-full border border-ink/20 bg-concha-nacar px-3 py-1 text-xs text-ink"
+                          className="rounded-full border border-ink/20 px-3 py-1 text-xs text-ink"
                         >
                           {item}
                         </li>
@@ -231,7 +229,7 @@ export function ProcessList({
 
                   {/* Mobile/tablet inline real studio photograph */}
                   {step.photo ? (
-                    <div className="mt-5 overflow-hidden border border-ink/12 bg-bone-100 lg:hidden">
+                    <div className="mt-5 overflow-hidden lg:hidden">
                       <div className="relative aspect-[16/10] w-full overflow-hidden">
                         <Photo photo={step.photo} sizes="95vw" />
                       </div>

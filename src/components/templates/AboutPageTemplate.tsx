@@ -103,9 +103,9 @@ export function AboutPageTemplate({
                 {page.credibilityPhotos[0] ? (
                   <div
                     {...revealStep(3)}
-                    className="mt-2 overflow-hidden border border-ink/15 bg-concha-nacar p-3"
+                    className="mt-2 overflow-hidden"
                   >
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-100">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden">
                       <Photo
                         photo={page.credibilityPhotos[0]}
                         sizes="(min-width: 1024px) 50vw, 95vw"
@@ -115,10 +115,10 @@ export function AboutPageTemplate({
                 ) : null}
               </div>
 
-              <div className="flex flex-col gap-5 lg:col-span-5">
+              <div className="flex flex-col gap-8 lg:col-span-5">
                 <div
                   {...revealStep(2)}
-                  className="ruler-top border border-ink/15 bg-concha-nacar p-6 md:p-8"
+                  className="ruler-top border-t border-ink/15 pt-6"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="label text-brand-800">Misión</span>
@@ -131,7 +131,7 @@ export function AboutPageTemplate({
 
                 <div
                   {...revealStep(3)}
-                  className="ruler-top border border-ink/15 bg-concha-nacar p-6 md:p-8"
+                  className="ruler-top border-t border-ink/15 pt-6"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="label text-brand-800">Visión</span>
@@ -165,12 +165,12 @@ export function AboutPageTemplate({
               </span>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {page.credibilityHighlights.map((item, idx) => (
                 <div
                   key={item.number}
                   {...revealStep(idx)}
-                  className="ruler-top border border-bone-200 bg-bone-50 p-6"
+                  className="ruler-top border-t border-ink/15 pt-6"
                 >
                   <span className="number-pill">{item.number}</span>
                   <h3 className="voice mt-5 text-lg leading-snug text-ink">
@@ -183,14 +183,14 @@ export function AboutPageTemplate({
               ))}
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
+            <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
               {page.credibilityPhotos.map((photo, index) => (
                 <figure
                   key={photo.src}
                   {...revealStep(index)}
-                  className="overflow-hidden border border-bone-200 bg-bone-50"
+                  className="overflow-hidden"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Photo photo={photo} sizes={GALLERY_SIZES} />
                   </div>
                 </figure>
@@ -225,14 +225,14 @@ export function AboutPageTemplate({
               </span>
             </div>
 
-            <div className="mt-12 grid grid-cols-1 gap-6 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-4">
+            <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-4">
               {page.enduringPhotos.map((photo, index) => (
                 <figure
                   key={photo.src}
                   {...revealStep(index)}
-                  className="overflow-hidden border border-bone-200 bg-canvas"
+                  className="overflow-hidden"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden">
                     <Photo photo={photo} sizes={GALLERY_SIZES} />
                   </div>
                 </figure>
