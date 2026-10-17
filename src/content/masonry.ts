@@ -18,30 +18,60 @@ import type { MasonrySlot } from "@/types/content";
  * length is a multiple of three. Keep it so.
  */
 export const masonrySlots: MasonrySlot[] = [
-  // Double cell: the wall's strongest photograph opens it.
+  // Double cell: Casa Charco Seco terracotta perspective against open sky (Score 5)
+  {
+    dir: "15-casa-charco-seco",
+    base: "08-perspectiva-fachada-terracota-vegetacion-cielo",
+  },
+  // Singles: Tropical chukum facade and bioclimatic pool terrace (Score 5)
+  {
+    dir: "17-el-tomatal",
+    base: "02-fachada-principal-chukum-celosia-ladrillo-palmeras",
+  },
+  {
+    dir: "arquitectura-sostenible",
+    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
+  },
+  // Double cell: El Bicho iconic illuminated evening pool and palapas (Score 5)
+  {
+    dir: "02-el-bicho",
+    base: "54-fachada-nocturna-alberca-iluminada-palapas",
+  },
+  // Singles: Parota wood outdoor dining and illuminated reading lounge (Score 5)
+  {
+    dir: "arquitectura-que-perdura",
+    base: "01-comedor-exterior-madera-bajo-palapa-lamparas-tejidas",
+  },
+  {
+    dir: "15-casa-charco-seco",
+    base: "01-sillon-lectura-bajo-escalera-celosia-iluminada",
+  },
+  // Double cell: Plaza Esmeralda evening wood terrace and city overlook
   {
     dir: "01-plaza-esmeralda-puerto-escondido",
-    base: "02-terraza-anochecer-planta-jardinera",
+    base: "07-terraza-madera-cristal-ciudad",
   },
-  // Singles.
-  { dir: "06-capilla-el-tule", base: "02-cornisa-cantera-contrapicado" },
-  { dir: "09-casa-santa-rosa", base: "02-fachada-blanca-macetas-patios" },
-  // Double cell: the client-confirmed project.
-  { dir: "02-el-bicho", base: "02-fachada-palapas-alberca-palmeras" },
-  // Singles.
-  { dir: "07-casa-tarrastro", base: "02-terraza-celosia-madera-encino" },
-  { dir: "05-cafe-malagua", base: "02-barra-central-lamparas-encendidas" },
-  // Double cell: the storm-lit gate.
-  { dir: "03-casa-blake-tlalixtac", base: "02-porton-negro-pilares-ladrillo" },
-  // Singles.
-  { dir: "11-columnas-c1-c2", base: "02-columna-suspendida-plataforma" },
-  { dir: "08-rbnb-palmarito", base: "02-cielo-palapa-barra-mar" },
-  // Double cell: replaces the rusted door with the project's bright street frame.
+  // Singles: Monolithic stone kitchen island and monumental bridge hoist (Score 5)
   {
-    dir: "04-casa-melchor-ocampo",
-    base: "01-calle-pendiente-fachada-colonial",
+    dir: "arquitectura-interiores",
+    base: "01-isla-cocina-piedra-parrilla-horno-muro-terracota",
   },
-  // Singles.
-  { dir: "10-obra-punta-zicatela", base: "02-banqueta-concreto-camino-grava" },
-  { dir: "12-vilas-cavan", base: "02-fachada-chimenea-tabique-teja" },
+  {
+    dir: "obra-civil",
+    base: "04-izado-cabezal-columna-puente-grua-cielo-azul",
+  },
+  // Double cell: El Bicho iconic daytime three-palapas and black pool (Score 5)
+  {
+    dir: "02-el-bicho",
+    base: "01-fachada-tres-palapas-alberca",
+  },
+  // Singles: Overhead pool patio with clay lattice and contemporary white villa (Score 5)
+  {
+    dir: "15-casa-charco-seco",
+    base: "05-vista-cenital-patio-alberca-muro-celosia-barro",
+  },
+  {
+    dir: "remodelacion",
+    base: "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
+  },
 ];

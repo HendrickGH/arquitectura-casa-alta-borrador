@@ -76,22 +76,22 @@ const stats: Stat[] = [
 const tiles: CategoryTileContent[] = [
   {
     category: "habitacional",
-    projectDir: "07-casa-tarrastro",
+    projectDir: "15-casa-charco-seco",
     href: "/proyectos",
   },
   {
     category: "multifamiliar",
-    projectDir: "10-obra-punta-zicatela",
+    projectDir: "17-el-tomatal",
     href: "/proyectos",
   },
   {
     category: "comercial",
-    projectDir: "05-cafe-malagua",
+    projectDir: "01-plaza-esmeralda-puerto-escondido",
     href: "/proyectos",
   },
   {
     category: "obra-civil",
-    projectDir: "11-columnas-c1-c2",
+    projectDir: "03-casa-blake-tlalixtac",
     href: "/proyectos",
   },
 ];

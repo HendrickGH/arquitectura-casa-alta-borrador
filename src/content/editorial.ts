@@ -86,9 +86,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "skateparks",
     slug: "servicios-exterior-pista-skate",
-    dir: "13-puente-cd-administrativa",
-    base: "01-puente-peatonal-crucero-malla",
-    alt: "Infraestructura urbana, concreto expuesto y equipamiento exterior en Ciudad Administrativa, Tlalixtac de Cabrera",
+    dir: "17-el-tomatal",
+    base: "03-acceso-vehicular-adoquin-barro-fachada-celosia",
+    alt: "Infraestructura urbana, concreto expuesto y pavimentos exteriores ejecutados por Casa Alta en Oaxaca",
   },
   {
     service: "landscape",
@@ -100,23 +100,23 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "albercas-y-espacios-exteriores",
     slug: "servicios-albercas-villa-exterior",
-    dir: "arquitectura-que-perdura",
-    base: "09-alberca-central-reflejos-edificio-chukum-palmeras",
-    alt: "Perspectiva frontal de alberca central reflejando las palmeras y la arquitectura en acabado chukum natural",
+    dir: "arquitectura-sostenible",
+    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
+    alt: "Perspectiva de alberca y asoleadero integrados a la arquitectura bioclimática costera",
   },
   {
     service: "instalaciones-electricas",
     slug: "servicios-instalaciones-electricas-subestacion",
-    dir: "11-columnas-c1-c2",
-    base: "01-izado-columna-grua-jacaranda",
+    dir: "obra-civil",
+    base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
     alt: "Infraestructura e ingeniería de soporte en obra civil e industrial ejecutada por Casa Alta en Oaxaca",
   },
   {
     service: "instalaciones-hidrosanitarias",
     slug: "servicios-instalaciones-tratamiento-agua",
-    dir: "14-pavimentacion",
-    base: "01-revolvedora-concreto-sobre-pavimento",
-    alt: "Ejecución de infraestructura vial, drenaje e instalaciones hidrosanitarias con concreto hidráulico",
+    dir: "arquitectura-sostenible",
+    base: "03-espejo-agua-alberca-sombra-palmeras-microclima",
+    alt: "Ingeniería de manejo de agua, sistemas hidráulicos y recirculación en albercas y terrazas costeras",
   },
 ];
 

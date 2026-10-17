@@ -11,28 +11,28 @@ export const differentiators: Differentiator[] = [
     description:
       "Losa aligerada, concreto armado, presforzado o estructura metálica: validamos cada opción con cálculo estructural y decidimos según precio, tiempo de ejecución y la zona de la obra. El clima de la sierra no resiste lo mismo que el de la costa, y eso cambia el proyecto.",
     dir: "obra-civil",
-    base: "02-montaje-columna-prefabricada-en-candelero-cimentacion",
+    base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
   },
   {
     title: "Se entrega lo que se firmó",
     description:
       "Nuestro compromiso es entregar en el tiempo acordado y con las especificaciones del contrato inicial. Es la razón por la que nos vuelven a llamar.",
     dir: "credibilidad",
-    base: "05-director-obra-chaleco-casa-alta-bajo-palapa",
+    base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
   },
   {
     title: "Experiencia en todo Oaxaca",
     description:
       "Hemos construido en la sierra, en la costa, en el Istmo y en el centro del estado. Conocemos el terreno, la logística y los proveedores de cada región.",
-    dir: "credibilidad",
-    base: "03-camioneta-constructora-casa-alta-frente-obra",
+    dir: "arquitectura-sostenible",
+    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
   },
   {
     title: "Experiencia local, diseño actual",
     description:
       "Desde una casa habitación hasta obra de mayor complejidad. Diseño vanguardista, renders de alta calidad y supervisión cuidada en el detalle.",
     dir: "arquitectura-que-perdura",
-    base: "07-fachada-interior-alberca-palapas-vegetacion-costera",
+    base: "02-fachada-tierra-camastros-madera-alberca-palmeras",
   },
 ];
 
