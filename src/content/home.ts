@@ -7,28 +7,89 @@ import type {
 } from "@/types/content";
 import { whatsappHref } from "./site";
 
-/** The landing hero. Encoded by tools/hero.sh, served through the image loader. */
+/** The landing hero lead photo: El Bicho facade and aerial pool context. */
 const heroImage: Photo = {
   src: "/images/hero/vista-aerea-palapas-alberca-playa.avif",
-  alt: "Vista aérea de las villas de El Bicho en Punta Zicatela: tres niveles de palapa triangular, alberca de fondo negro y la playa al frente",
+  alt: "Vista aérea de las villas de El Bicho en Punta Zicatela: tres niveles de palapa triangular, alberca y costa de Puerto Escondido",
   width: 1600,
   height: 900,
 };
 
-/** Civil works: heavy crane hoisting a precast structural concrete frame. */
-const civilImage: Photo = {
-  src: "/images/hero/montaje-estructura-puente-grua-obra-civil.avif",
-  alt: "Maniobra de izado con grúa de elemento prefabricado de concreto sobre superestructura de puente bajo cielo despejado",
-  width: 1280,
-  height: 960,
+const columnasCivilPhoto: Photo = {
+  src: "/images/hero/columnas-prefabricadas-grua-obra-civil.avif",
+  alt: "Montaje con grúa de columnas prefabricadas de concreto con ménsulas para obra vial",
+  width: 1600,
+  height: 1200,
 };
 
-/** Industrial construction: crane operations hoisting precast concrete walls for industrial building. */
-const industrialImage: Photo = {
-  src: "/images/hero/maniobra-gruas-nave-industrial-prefabricados.avif",
-  alt: "Maniobra de grúas para izado de muros y estructura prefabricada de concreto en nave industrial",
+const villasCavanFachadaPhoto: Photo = {
+  src: "/images/hero/villas-cavan-fachada-cantera-letreros.avif",
+  alt: "Fachada de villas residenciales en cantera clara con letreros y cubiertas de teja",
+  width: 1719,
+  height: 2000,
+};
+
+const villasCavanPorticoPhoto: Photo = {
+  src: "/images/hero/villas-cavan-portico-cantera-escalones.avif",
+  alt: "Pórtico de acceso con columna en cantera clara, escalinata y jardinería exterior",
+  width: 1290,
+  height: 1747,
+};
+
+const supervisionObraPhoto: Photo = {
+  src: "/images/hero/supervision-residencia-obra-chaleco-casa-alta.avif",
+  alt: "Arquitecto de Casa Alta con chaleco institucional supervisando estructura de madera y palapa",
+  width: 960,
+  height: 1280,
+};
+
+const casaBlakePhoto: Photo = {
+  src: "/images/hero/casa-blake-fachada-dos-niveles-herreria-negra.avif",
+  alt: "Fachada de dos niveles con cancelería geométrica negra, muros blancos y terraza con vigas de madera",
+  width: 1200,
+  height: 1600,
+};
+
+const casaMelchorOcampoPhoto: Photo = {
+  src: "/images/hero/casa-melchor-ocampo-balcon-herreria-celosia.avif",
+  alt: "Fachada colonial en tono amarillo con balcón de herrería artesanal, farol y celosía de barro",
   width: 1280,
-  height: 960,
+  height: 854,
+};
+
+const casaCharcoSecoFachadaPhoto: Photo = {
+  src: "/images/hero/casa-charco-seco-fachada-terracota-enredadera.avif",
+  alt: "Fachada residencial en acabado mineral terracota con portones de madera y balcón con enredadera",
+  width: 768,
+  height: 1280,
+};
+
+const casaCharcoSecoPatioPhoto: Photo = {
+  src: "/images/hero/casa-charco-seco-patio-alberca-cenital.avif",
+  alt: "Vista cenital del patio privado con alberca, sillas Acapulco, huellas de cantera y muro de celosía",
+  width: 960,
+  height: 1600,
+};
+
+const casaLaBarraPhoto: Photo = {
+  src: "/images/hero/casa-la-barra-fachada-chukum-porton-palapa.avif",
+  alt: "Residencia costera en acabado chukum con portón de listones de madera, celosías de barro y palapa",
+  width: 829,
+  height: 1280,
+};
+
+const elBichoTerrazaPhoto: Photo = {
+  src: "/images/hero/el-bicho-terraza-hamaca-jardin-costero.avif",
+  alt: "Terraza exterior con hamaca, ventanales de cristal y jardín tropical frente a la alberca",
+  width: 1280,
+  height: 720,
+};
+
+const elBichoAtardecerPhoto: Photo = {
+  src: "/images/hero/el-bicho-fachada-palapas-atardecer.avif",
+  alt: "Fachada de tres palapas al atardecer con iluminación cálida interior, alberca y palmeras",
+  width: 1280,
+  height: 720,
 };
 
 /** Full-color aerial reference photo of Punta Zicatela placed after Quiénes somos (PDF p. 2). */
@@ -143,12 +204,21 @@ export const home: HomePage = {
   hero: {
     eyebrow: "Puerto Escondido, Oaxaca centro y Salina Cruz",
     slides: [
-      { title: "Arquitectura", photo: heroImage },
-      { title: "Construcción civil", photo: civilImage },
-      { title: "Construcción industrial", photo: industrialImage },
+      { title: "El Bicho · Punta Zicatela", photo: heroImage },
+      { title: "Columnas C1 - C2 · Infraestructura", photo: columnasCivilPhoto },
+      { title: "Vilas Cavan · Villas Residenciales", photo: villasCavanFachadaPhoto },
+      { title: "Vilas Cavan · Pórtico y Cantera", photo: villasCavanPorticoPhoto },
+      { title: "Supervisión y Control de Obra", photo: supervisionObraPhoto },
+      { title: "Casa Blake · Tlalixtac", photo: casaBlakePhoto },
+      { title: "Casa Melchor Ocampo · Oaxaca Centro", photo: casaMelchorOcampoPhoto },
+      { title: "Casa Charco Seco · Fachada Terracota", photo: casaCharcoSecoFachadaPhoto },
+      { title: "Casa Charco Seco · Patio y Alberca", photo: casaCharcoSecoPatioPhoto },
+      { title: "Casa La Barra · Chukum y Palapa", photo: casaLaBarraPhoto },
+      { title: "El Bicho · Terraza y Jardín", photo: elBichoTerrazaPhoto },
+      { title: "El Bicho · Atardecer en la Costa", photo: elBichoAtardecerPhoto },
     ],
     subheadline:
-      "Proyectos de ingeniería civil y proyectos ejecutivos arquitectónicos.",
+      "Estudio de arquitectura, proyectos ejecutivos y dirección integral de obra en Oaxaca.",
     chrome: { tone: "canvas" },
   },
 

@@ -27,6 +27,7 @@ const INTERVAL_MS = 5500;
 export function Hero({ hero }: HeroProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const touchStartX = useRef<number | null>(null);
 
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -40,6 +41,23 @@ export function Hero({ hero }: HeroProps) {
     resetTimer();
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(deltaX) > 40) {
+      if (deltaX < 0) {
+        goToSlide((activeSlide + 1) % hero.slides.length);
+      } else {
+        goToSlide((activeSlide - 1 + hero.slides.length) % hero.slides.length);
+      }
+    }
+    touchStartX.current = null;
+  };
+
   useEffect(() => {
     resetTimer();
     return () => {
@@ -50,6 +68,8 @@ export function Hero({ hero }: HeroProps) {
   return (
     <section
       id="hero"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-[#060c1a] text-white"
     >
       {/* Full-bleed photographic background carousel */}
@@ -100,72 +120,108 @@ export function Hero({ hero }: HeroProps) {
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          {/* Left Column: Eyebrow + Monumental Word Stack */}
+          {/* Left Column: Eyebrow + Counter Capsule + Monumental Title */}
           <div className="flex flex-col items-start gap-3 lg:col-span-8">
-            {hero.eyebrow ? (
-              <p className="eyebrow !text-white/90 text-xs tracking-widest uppercase font-sans">
-                {hero.eyebrow}
-              </p>
-            ) : null}
+            <div className="flex items-center gap-3">
+              <span className="number-pill-inverse text-[0.68rem]">
+                {`(${String(activeSlide + 1).padStart(2, "0")}) / (${String(hero.slides.length).padStart(2, "0")})`}
+              </span>
+              {hero.eyebrow ? (
+                <p className="eyebrow !text-white/90 text-xs tracking-widest uppercase font-sans">
+                  {hero.eyebrow}
+                </p>
+              ) : null}
+            </div>
 
             <h1 className="display text-[clamp(2.1rem,5.6vw,4.5rem)] font-bold uppercase tracking-tight text-white leading-[0.92]">
-              {hero.slides.map((slide, index) => {
-                const isActive = index === activeSlide;
-                return (
-                  <span
-                    key={slide.title}
-                    onClick={() => goToSlide(index)}
-                    aria-label={`Ver ${slide.title}`}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        goToSlide(index);
-                      }
-                    }}
-                    className="block cursor-pointer whitespace-nowrap transition-all duration-500 hover:opacity-100"
-                    style={{
-                      opacity: isActive ? 1 : 0.38,
-                    }}
-                  >
-                    {slide.title}
-                  </span>
-                );
-              })}
+              <span className="block transition-all duration-700 ease-out">
+                {hero.slides[activeSlide]?.title}
+              </span>
             </h1>
           </div>
 
-          {/* Right Column: Narrative Subheadline + Minimalist Line Indicators */}
+          {/* Right Column: Narrative Subheadline + Minimalist Navigation Arrows & Dash Indicators */}
           <div className="flex flex-col items-start justify-end gap-4 lg:col-span-4 lg:items-end">
             <p className="voice max-w-[34ch] text-sm leading-relaxed text-white/85 md:text-base lg:text-right">
               {hero.subheadline}
             </p>
 
-            {/* Clean minimal dash indicator */}
-            <div
-              className="flex items-center gap-2 pt-1"
-              role="group"
-              aria-label="Seleccionar diapositiva"
-            >
-              {hero.slides.map((slide, index) => {
-                const isActive = index === activeSlide;
-                return (
-                  <button
-                    key={slide.title}
-                    type="button"
-                    onClick={() => goToSlide(index)}
-                    aria-label={`Ir a ${slide.title}`}
-                    aria-current={isActive}
-                    className="h-[3px] rounded-full transition-all duration-500 focus:outline-none"
-                    style={{
-                      width: isActive ? "2.5rem" : "1.25rem",
-                      backgroundColor: isActive
-                        ? "rgba(255,255,255,0.95)"
-                        : "rgba(255,255,255,0.35)",
-                    }}
-                  />
-                );
-              })}
+            {/* Dash indicator line + Prev/Next controls */}
+            <div className="flex items-center gap-3 pt-1">
+              <div
+                className="flex items-center gap-1.5 flex-wrap justify-end max-w-xs"
+                role="group"
+                aria-label="Seleccionar diapositiva"
+              >
+                {hero.slides.map((slide, index) => {
+                  const isActive = index === activeSlide;
+                  return (
+                    <button
+                      key={slide.photo.src}
+                      type="button"
+                      onClick={() => goToSlide(index)}
+                      aria-label={`Ver diapositiva ${index + 1}: ${slide.title}`}
+                      aria-current={isActive}
+                      className="h-[3px] rounded-full transition-all duration-500 focus:outline-none"
+                      style={{
+                        width: isActive ? "2rem" : "0.75rem",
+                        backgroundColor: isActive
+                          ? "rgba(255,255,255,0.95)"
+                          : "rgba(255,255,255,0.35)",
+                      }}
+                    />
+                  );
+                })}
+              </div>
+
+              <div className="flex items-center gap-1.5 pl-2">
+                <button
+                  type="button"
+                  onClick={() =>
+                    goToSlide(
+                      (activeSlide - 1 + hero.slides.length) % hero.slides.length,
+                    )
+                  }
+                  aria-label="Diapositiva anterior"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white/25 focus:outline-none"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <path
+                      d="M10 3L5 8l5 5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    goToSlide((activeSlide + 1) % hero.slides.length)
+                  }
+                  aria-label="Diapositiva siguiente"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white/25 focus:outline-none"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                  >
+                    <path
+                      d="M6 3l5 5-5 5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
