@@ -78,26 +78,24 @@ export function Hero({ hero }: HeroProps) {
           );
         })}
 
+        {/* Full dark architectural overlay for unified contrast and dark mood */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[#060c1a]/55 z-[2]"
+        />
+
         {/* Top subtle scrim for transparent header legibility */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/60 to-transparent z-[2]"
+          className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/70 to-transparent z-[3]"
         />
 
-        {/* Bottom subtle architectural gradient for typography contrast without darkening the center */}
+        {/* Bottom subtle architectural gradient for typography contrast */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-black/85 via-black/40 to-transparent z-[2]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-[3]"
         />
       </div>
-
-      {/* Architectural white watermark logo at top-right */}
-      <img
-        src="/brand/logo-casa-alta-blanco.png"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none absolute right-4 top-24 z-10 w-48 select-none opacity-70 sm:w-60 md:right-10 md:top-28 md:w-80 lg:right-16 lg:top-32 lg:w-[440px]"
-      />
 
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">

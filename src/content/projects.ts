@@ -110,29 +110,35 @@ const curatedGalleries: Record<string, string[]> = {
     "05-interior-banca-madera-ventanas",
   ],
   "07-casa-tarrastro": [
-    "01-fachada-piedra-pergola-jardin",
-    "04-celosia-madera-contrapicado",
+    "06-fachada-principal-dos-niveles-pergola-piedra",
+    "08-terraza-techada-pergola-madera-muro-cantera",
+    "10-fachada-frontal-pergola-superior-ventanales",
+    "09-escalera-interior-barandal-geometrico-doble-altura",
   ],
   "08-rbnb-palmarito": [
-    "03-marco-concreto-vista-playa",
-    "09-atardecer-maquinaria-silueta",
     "01-trabajadores-barra-techo-palapa",
+    "02-cielo-palapa-barra-mar",
+    "03-marco-concreto-vista-playa",
   ],
   "09-casa-santa-rosa": [
     "01-pergola-madera-terraza-piso",
     "03-puerta-madera-acceso-interior",
   ],
   "10-obra-punta-zicatela": [
-    "01-ventana-circular-sombra-follaje",
-    "03-ventana-circular-celosia-bambu",
+    "09-fachada-chukum-ventana-circular-barra-concreto",
+    "12-modulo-terminado-bajo-sombra-arboles-zicatela",
+    "10-escalones-acceso-vano-trapezoidal-recamara",
+    "13-recamara-muros-chukum-cama-madera-lampara-halo",
   ],
   "11-columnas-c1-c2": [
     "03-columna-prefabricada-terreno-jacaranda",
     "01-izado-columna-grua-jacaranda",
   ],
   "12-vilas-cavan": [
-    "01-interior-sala-cocina-chimenea",
-    "03-sala-ventanal-montana",
+    "10-fachada-frontal-chimenea-ladrillo-techo-teja",
+    "09-portico-acceso-columnas-cantera-ventanal",
+    "14-cancel-corredizo-negro-terraza-vista-montana",
+    "11-estancia-chimenea-ladrillo-barra-cocina",
   ],
   "13-puente-cd-administrativa": [
     "02-puente-peatonal-avenida-rampas",
@@ -152,6 +158,11 @@ const curatedGalleries: Record<string, string[]> = {
     "02-fachada-principal-chukum-celosia-ladrillo-palmeras",
     "01-detalle-celosia-vertical-macetas-monstera-helecho",
     "03-acceso-vehicular-adoquin-barro-fachada-celosia",
+  ],
+  remodelacion: [
+    "01-vista-frontal-residencia-modernizada-cochera-acceso",
+    "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
+    "06-patio-frontal-pavimentado-fachada-blanca-remodelada",
   ],
 };
 
@@ -427,6 +438,26 @@ export const projectContent: Record<string, ProjectContent> = {
     ],
     images: curatedGalleries["17-el-tomatal"],
   },
+
+  remodelacion: {
+    slug: "remodelacion-residencial",
+    title: "Remodelación Residencial",
+    category: "habitacional",
+    categoryLabel: categoryLabels.habitacional,
+    location: "Oaxaca",
+    year: "",
+    summary:
+      "Modernización integral de residencia de dos niveles: ampliación de áreas sociales, balcones con cancelería contemporánea y fachada en acabado blanco minimalista.",
+    story:
+      "Transformación volumétrica y funcional de una residencia unifamiliar existente, incorporando nueva cochera techada, cancelería de cristal, balcones contemporáneos y acabados de alta durabilidad.",
+    outcome: "",
+    specs: [
+      { label: "Tipología", value: "Remodelación y ampliación habitacional" },
+      { label: "Ubicación", value: "Oaxaca" },
+      { label: "Materialidad", value: "Estructura de concreto, herrería y cancelería contemporánea" },
+    ],
+    images: curatedGalleries.remodelacion,
+  },
 };
 
 /**
@@ -440,7 +471,8 @@ export const featuredProjectDirs = [
   "01-plaza-esmeralda-puerto-escondido",
   "03-casa-blake-tlalixtac",
   "10-obra-punta-zicatela",
-  "08-rbnb-palmarito",
+  "07-casa-tarrastro",
+  "remodelacion",
   "16-casa-la-barra",
   "17-el-tomatal",
   "12-vilas-cavan",
