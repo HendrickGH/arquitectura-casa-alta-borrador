@@ -1,4 +1,44 @@
 {
+  "hero/casa-blake-fachada-dos-niveles-herreria-negra": [
+    [360, "casa-blake-fachada-dos-niveles-herreria-negra-480.avif"],
+    [720, "casa-blake-fachada-dos-niveles-herreria-negra-960.avif"],
+    [1200, "casa-blake-fachada-dos-niveles-herreria-negra.avif"]
+  ],
+  "hero/casa-charco-seco-fachada-terracota-enredadera": [
+    [288, "casa-charco-seco-fachada-terracota-enredadera-480.avif"],
+    [576, "casa-charco-seco-fachada-terracota-enredadera-960.avif"],
+    [768, "casa-charco-seco-fachada-terracota-enredadera.avif"]
+  ],
+  "hero/casa-charco-seco-patio-alberca-cenital": [
+    [288, "casa-charco-seco-patio-alberca-cenital-480.avif"],
+    [576, "casa-charco-seco-patio-alberca-cenital-960.avif"],
+    [960, "casa-charco-seco-patio-alberca-cenital.avif"]
+  ],
+  "hero/casa-la-barra-fachada-chukum-porton-palapa": [
+    [311, "casa-la-barra-fachada-chukum-porton-palapa-480.avif"],
+    [622, "casa-la-barra-fachada-chukum-porton-palapa-960.avif"],
+    [829, "casa-la-barra-fachada-chukum-porton-palapa.avif"]
+  ],
+  "hero/casa-melchor-ocampo-balcon-herreria-celosia": [
+    [480, "casa-melchor-ocampo-balcon-herreria-celosia-480.avif"],
+    [960, "casa-melchor-ocampo-balcon-herreria-celosia-960.avif"],
+    [1280, "casa-melchor-ocampo-balcon-herreria-celosia.avif"]
+  ],
+  "hero/columnas-prefabricadas-grua-obra-civil": [
+    [480, "columnas-prefabricadas-grua-obra-civil-480.avif"],
+    [960, "columnas-prefabricadas-grua-obra-civil-960.avif"],
+    [1600, "columnas-prefabricadas-grua-obra-civil.avif"]
+  ],
+  "hero/el-bicho-fachada-palapas-atardecer": [
+    [480, "el-bicho-fachada-palapas-atardecer-480.avif"],
+    [960, "el-bicho-fachada-palapas-atardecer-960.avif"],
+    [1280, "el-bicho-fachada-palapas-atardecer.avif"]
+  ],
+  "hero/el-bicho-terraza-hamaca-jardin-costero": [
+    [480, "el-bicho-terraza-hamaca-jardin-costero-480.avif"],
+    [960, "el-bicho-terraza-hamaca-jardin-costero-960.avif"],
+    [1280, "el-bicho-terraza-hamaca-jardin-costero.avif"]
+  ],
   "hero/maniobra-gruas-nave-industrial-prefabricados": [
     [480, "maniobra-gruas-nave-industrial-prefabricados-480.avif"],
     [960, "maniobra-gruas-nave-industrial-prefabricados-960.avif"],
@@ -8,6 +48,21 @@
     [480, "montaje-estructura-puente-grua-obra-civil-480.avif"],
     [960, "montaje-estructura-puente-grua-obra-civil-960.avif"],
     [1280, "montaje-estructura-puente-grua-obra-civil.avif"]
+  ],
+  "hero/supervision-residencia-obra-chaleco-casa-alta": [
+    [360, "supervision-residencia-obra-chaleco-casa-alta-480.avif"],
+    [720, "supervision-residencia-obra-chaleco-casa-alta-960.avif"],
+    [960, "supervision-residencia-obra-chaleco-casa-alta.avif"]
+  ],
+  "hero/villas-cavan-fachada-cantera-letreros": [
+    [413, "villas-cavan-fachada-cantera-letreros-480.avif"],
+    [825, "villas-cavan-fachada-cantera-letreros-960.avif"],
+    [1719, "villas-cavan-fachada-cantera-letreros.avif"]
+  ],
+  "hero/villas-cavan-portico-cantera-escalones": [
+    [354, "villas-cavan-portico-cantera-escalones-480.avif"],
+    [709, "villas-cavan-portico-cantera-escalones-960.avif"],
+    [1290, "villas-cavan-portico-cantera-escalones.avif"]
   ],
   "hero/vista-aerea-palapas-alberca-playa": [
     [480, "vista-aerea-palapas-alberca-playa-480.avif"],
