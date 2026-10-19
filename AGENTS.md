@@ -13,13 +13,17 @@ The site's landing page is built and green. What remains is pages, SEO and deplo
 `openspec/changes/casa-alta-web-foundation/` carries the full architecture, the measured
 decisions behind it, and the task list. Read `design.md` before changing anything in the
 image path: several decisions there were reached by measurement after cheaper options
-failed, and it records the evidence so they are not reverted by instinct.
+failed, and it records the evidence so they are not reverted by instinct. **Always read
+`DESIGN.md` before designing, creating, or modifying any UI component or stylesheet** — it
+is the canonical contract for visual direction, `0px` geometry, typography, component visual
+order, and Atomic Design layering.
 
 ## Layout
 
 ```
+DESIGN.md               canonical visual direction & Atomic Design contract. Read before any UI work.
 src/                    the Next.js app. See "Architecture" below.
-images/                 raw source photos, one folder per project. NEVER modified.
+images/                 raw source photos, one folder per project. NEVER modified and NEVER consumed directly by the web app.
   brand/                logo sources
   hero/                 the landing hero source
 images-optimizado/      generated AVIF output. Safe to delete and regenerate.
@@ -55,7 +59,10 @@ Rules:
   (composition, light, craft), never by resolution or file size.
 - **The `.jpg` is never re-encoded.** It is a byte copy of the original. Re-encoding an
   already-degraded JPEG makes it larger and worse — see "Measured facts".
-- **`images/` is read-only.** Never write to it, never rename inside it.
+- **`images/` is read-only and never consumed by the web runtime.** Never write to it, never
+  rename inside it, and never import or link it from the application. The Next.js site exclusively
+  consumes images from `images-optimizado/` (mirrored to `public/images/`). `images/` is strictly
+  the upstream uncompressed source material for the encoding pipeline (`tools/`).
 
 ## Measured facts (do not re-derive these)
 
@@ -101,13 +108,19 @@ CSS-first: there is no `tailwind.config.js`, and every design token lives in the
 of `src/app/globals.css`. The brand blue is `#0E2D78`, sampled from the logo file rather than
 chosen.
 
-**Atomic design**, strictly layered: `src/components/{atoms,molecules,organisms,templates}`.
+**Visual direction & Atomic Design contract (`DESIGN.md`).** Always read `DESIGN.md` before
+designing, building, or refactoring any UI component. It defines the **Cosentino Architectural
+Editorial** direction: strict `0px` orthogonal geometry (zero capsules or pills; `WhatsAppFloat`
+is the sole circular exception), the two-font hierarchy (`Marcellus` for editorial headings/quotes
+and `Montserrat` for body/`.label` with `tabular-nums`, banning `font-mono`), the canonical
+clean-ground visual order for cards and `<SectionHeading>`, and the strict downward dependency
+across `src/components/{atoms,molecules,organisms,templates}`.
 
 **The content seam.** All copy lives in `src/content/*`. `src/lib/content/index.ts` is the only
 module that reads it, and components receive data as props — never imports. That is what makes a
 future Payload CMS migration a change to one file instead of 31 components. When adding UI:
-components take props, and only `src/app/page.tsx` and `src/app/layout.tsx` may reach for
-content.
+components take props, and only route pages (`src/app/**/page.tsx`) and `src/app/layout.tsx`
+may reach for content.
 
 **The image path.** `next/image` runs with a custom loader (`src/lib/image/loader.ts`) that
 serves the AVIF files the pipeline already encoded. This is not the zero-config path, and the
