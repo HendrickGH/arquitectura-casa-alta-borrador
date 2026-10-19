@@ -21,11 +21,8 @@ const PHOTO_SIZES = "(min-width: 1024px) 44vw, 100vw";
 const SECONDARY_SIZES = "(min-width: 1024px) 24vw, 60vw";
 
 /**
- * Thirdway asymmetric editorial introduction (`Quiénes somos`), pairing the
- * studio narrative with a dual-photograph architectural composition:
- * 1. The full-color aerial photograph of the Punta Zicatela coastal ensemble.
- * 2. The on-site coastal structural supervision photograph (`credibilidad`),
- *    gently scrubbed on scroll via GSAP ScrollTrigger.
+ * Asymmetric editorial introduction (`Quiénes somos`), pairing the
+ * studio narrative with a dual-photograph architectural composition.
  */
 export function IntroSection({
   intro,
@@ -39,6 +36,10 @@ export function IntroSection({
     const scope = scopeRef.current;
     const secondary = secondaryRef.current;
     if (!scope || !secondary) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
     let cancelled = false;
     let cleanup: (() => void) | undefined;
@@ -82,22 +83,16 @@ export function IntroSection({
         : [];
 
   return (
-    <Section
-      id={id}
-      tone={tone}
-      reveal="stagger"
-      className="!pt-14 !pb-16 md:!pt-20 md:!pb-24"
-    >
+    <Section id={id} tone={tone} density="compact" reveal="stagger">
       <Container>
         <div
           ref={scopeRef}
           className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-12"
         >
-          {/* Left column: Thirdway monumental statement */}
+          {/* Left column: Monumental statement */}
           <div className="flex flex-col gap-6 lg:col-span-6">
             {intro.eyebrow ? (
-              <div {...revealStep(0)} className="flex items-center gap-2.5">
-                <span className="number-pill">(01)</span>
+              <div {...revealStep(0)}>
                 <p className="eyebrow">{intro.eyebrow}</p>
               </div>
             ) : null}
@@ -126,12 +121,14 @@ export function IntroSection({
 
             <div
               {...revealStep(3)}
-              className="ruler-top mt-3 flex flex-wrap items-center justify-between gap-4 pt-5"
+              className="mt-3 flex flex-wrap items-center justify-between gap-4 border-t border-bone-200 pt-5"
             >
               <Button href="/nosotros" variant="secondary" size="sm" arrow>
                 Conocer la firma y trayectoria
               </Button>
-              <span className="number-pill">DESDE 2016 · OAXACA</span>
+              <span className="label text-ink-muted tabular-nums">
+                Desde 2016 · Oaxaca
+              </span>
             </div>
           </div>
 

@@ -13,7 +13,7 @@ interface ManifestoLineProps {
 }
 
 /**
- * Thirdway architectural manifesto spread on `--color-concha-nacar`.
+ * Architectural manifesto spread on `--color-concha-nacar`.
  *
  * Pairs the principal architect's statement with a framed real studio
  * photograph (`arquitectura-que-perdura`) and a GSAP scroll-scrubbed reveal.
@@ -26,6 +26,10 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
     const section = sectionRef.current;
     const photoWrap = photoWrapRef.current;
     if (!section || !photoWrap) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
     let cancelled = false;
     let cleanup: (() => void) | undefined;
@@ -66,16 +70,13 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
     <section
       ref={sectionRef}
       {...revealAttrs("stagger")}
-      className="ruler-top border-b border-ink/12 bg-concha-nacar"
+      className="border-t border-b border-bone-200 bg-concha-nacar"
     >
       <Container className="py-20 md:py-28 lg:py-32">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
           {photo ? (
             <div {...revealStep(0)} className="lg:col-span-5">
-              <div
-                ref={photoWrapRef}
-                className="overflow-hidden"
-              >
+              <div ref={photoWrapRef} className="overflow-hidden">
                 <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <Photo
                     photo={photo}
@@ -92,10 +93,7 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
           <figure
             className={photo ? "lg:col-span-7" : "lg:col-span-12 max-w-[56rem]"}
           >
-            <div
-              {...revealStep(0)}
-              className="mb-4 flex items-center gap-2.5"
-            >
+            <div {...revealStep(0)} className="mb-4 flex items-center gap-2.5">
               <span className="eyebrow">Visión arquitectónica</span>
             </div>
 

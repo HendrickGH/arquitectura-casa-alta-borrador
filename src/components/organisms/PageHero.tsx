@@ -6,7 +6,6 @@ import { Photo } from "@/components/atoms/Photo";
 import type { Photo as PhotoModel } from "@/types/content";
 
 interface PageHeroProps {
-  badge?: string;
   eyebrow: string;
   heading: string;
   subheadline: string;
@@ -14,14 +13,12 @@ interface PageHeroProps {
 }
 
 /**
- * Shared 100vw × 100vh Full-Bleed Architectural Hero for the 6 dedicated routes.
+ * Shared 100vw × 100vh Full-Bleed Architectural Hero for internal routes.
  *
  * Implements the full-bleed photographic background running behind the transparent
- * header, with top-right watermark logo, monumental typography and clean Cosentino
- * scroll indicator.
+ * header, with sentence-case Marcellus eyebrow and heading, and Montserrat subheadline.
  */
 export function PageHero({
-  badge = "(01)",
   eyebrow,
   heading,
   subheadline,
@@ -34,6 +31,10 @@ export function PageHero({
     const section = sectionRef.current;
     const bg = bgRef.current;
     if (!section || !bg) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
     let cancelled = false;
     let cleanup: (() => void) | undefined;
@@ -84,7 +85,7 @@ export function PageHero({
 
       {/* Dark architectural hero overlay ensuring crisp contrast for white type & transparent header */}
       <div
-        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink/95 via-ink/55 to-ink/75"
+        className="hero-overlay pointer-events-none absolute inset-0 z-10"
         aria-hidden="true"
       />
 
@@ -92,12 +93,9 @@ export function PageHero({
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
         {/* Top metadata strip */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/20 pb-4">
-          <div className="flex items-center gap-2.5">
-            <span className="number-pill-inverse">{badge}</span>
-            <p className="label tracking-widest text-white/90">{eyebrow}</p>
-          </div>
-          <span className="hidden font-mono text-[0.68rem] tracking-widest text-white/60 uppercase sm:inline">
-            CASA ALTA · OAXACA
+          <p className="eyebrow !text-white/85">{eyebrow}</p>
+          <span className="label hidden text-white/65 sm:inline">
+            Casa Alta · Oaxaca
           </span>
         </div>
 
@@ -109,7 +107,7 @@ export function PageHero({
             </h1>
           </div>
           <div className="flex flex-col justify-end lg:col-span-4">
-            <p className="voice max-w-[42ch] text-sm leading-relaxed text-white/80 md:text-base">
+            <p className="max-w-[42ch] text-sm leading-relaxed text-white/85 md:text-base">
               {subheadline}
             </p>
           </div>

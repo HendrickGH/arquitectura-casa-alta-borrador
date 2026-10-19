@@ -78,6 +78,8 @@ export interface SiteConfig {
   contact: ContactLine[];
   offices: Office[];
   social: SocialLink[];
+  /** Institutional studio photograph rendered in the footer specification block. */
+  footerPhoto: Photo;
 }
 
 /* ---------- services ---------- */
@@ -155,6 +157,10 @@ export interface Project {
 export interface Stat {
   value: string;
   label: string;
+  /** Discipline tag displayed above the figure. */
+  tag?: string;
+  /** Concise subtitle displayed below the label. */
+  sub?: string;
 }
 
 export interface ProcessStep {
@@ -175,6 +181,10 @@ export interface ProcessStep {
 export interface Differentiator {
   title: string;
   description: string;
+  /** Technical discipline tag for this differentiator. */
+  tag?: string;
+  /** Concrete engineering/execution checkpoints. */
+  points?: string[];
   /** Manifest directory for this differentiator's real studio photograph. */
   dir?: string;
   /** Manifest base slug for this differentiator's real studio photograph. */
@@ -187,6 +197,19 @@ export interface Testimonial {
   /** Named for the project, not the client, as requested. */
   projectName: string;
   quote: string;
+}
+
+export interface InstitutionalDossier {
+  id: string;
+  code: string;
+  title: string;
+  location: string;
+  typology: string;
+  surface: string;
+  year: string;
+  commitment: string;
+  points: string[];
+  seal: string;
 }
 
 export interface CallToAction {
@@ -212,6 +235,12 @@ export interface ContactFormContent {
   eyebrow: string;
   heading: string;
   body: string;
+  specialtiesLabel: string;
+  specialties: string[];
+  localitiesLabel: string;
+  localities: string[];
+  consultationTitle: string;
+  consultationChecklist: string[];
   name: ContactField;
   email: ContactField;
   phone: ContactField;
@@ -307,8 +336,7 @@ export interface CategoryTile {
 }
 
 /**
- * Authored content for a studio division card on the landing page (Thirdway
- * vertical expandable card pattern).
+ * Authored content for a studio division card on the landing page.
  */
 export interface DivisionCardContent {
   number: string;
@@ -364,11 +392,17 @@ export interface HomePage {
   projects: SectionIntro;
   process: SectionIntro;
   differentiators: { intro: SectionIntro; items: Differentiator[] };
-  testimonials: { intro: SectionIntro; items: Testimonial[] };
+  testimonials: {
+    intro: SectionIntro;
+    items: Testimonial[];
+    dossiers: InstitutionalDossier[];
+  };
   closing: {
+    eyebrow?: string;
     heading: string;
     body: string;
     cta: CallToAction;
+    photo: Photo;
   };
   /** The landing's contact form copy, rendered by ContactForm. */
   contact: ContactFormContent;
@@ -385,12 +419,35 @@ export interface ThematicPillar {
   items?: string[];
 }
 
+export type SpaceCategory =
+  | "all"
+  | "cocinas"
+  | "banos"
+  | "interiores"
+  | "showroom";
+
+export interface SpaceCard {
+  id: string;
+  category: SpaceCategory;
+  categoryLabel: string;
+  title: string;
+  materials: string;
+  photo: Photo;
+}
+
 export interface InteriorsPageContent {
   hero: {
     eyebrow: string;
     heading: string;
     subheadline: string;
     photo: Photo;
+  };
+  inspiration: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    tabs: Array<{ id: SpaceCategory; label: string }>;
+    spaces: SpaceCard[];
   };
   cosentino: {
     eyebrow: string;
@@ -474,4 +531,20 @@ export interface ServicesPageContent {
     }[];
   };
 }
+
+export interface ContactPageContent {
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheadline: string;
+    photo: Photo;
+  };
+  officesIntro: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    photo: Photo;
+  };
+}
+
 

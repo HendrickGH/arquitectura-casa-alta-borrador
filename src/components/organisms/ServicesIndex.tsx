@@ -1,12 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Container } from "@/components/atoms/Container";
+import { Heading } from "@/components/atoms/Heading";
+import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
+import { Text } from "@/components/atoms/Text";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import { cx } from "@/lib/cx";
-import type { SectionIntro, ServiceGroup } from "@/types/content";
+import { Tabs } from "@/components/molecules/Tabs";
+import { ServiceScopeModal } from "@/components/organisms/ServiceScopeModal";
+import type { SectionIntro, Service, ServiceGroup } from "@/types/content";
 
 interface ServicesIndexProps {
   intro: SectionIntro;
@@ -14,350 +18,262 @@ interface ServicesIndexProps {
   tone?: "canvas" | "bone";
   /** Anchor target, so the header nav can link straight to this section. */
   id?: string;
+  /** Direct WhatsApp contact link */
+  whatsappHref?: string;
 }
 
+const CARD_SIZES =
+  "(min-width: 1280px) 480px, (min-width: 1024px) 420px, (min-width: 640px) 50vw, 85vw";
+
 /**
- * Interactive 2-Column Sticky Architectural Catalogue (`ServicesIndex`).
+ * Editorial Architectural Carousel (`ServicesIndex`).
  *
- * Replaces the static sequential list with an interactive architectural stage:
- * - Chapter tabs at the top for instant switching between the studio's 4 technical divisions.
- * - On desktop (`lg+`), the left column scrolls through the chapter's services while the right
- *   column remains sticky (`sticky top-28`), showcasing the primary studio photograph, active
- *   HUD specs, and a clickable thumbnail gallery to inspect sister services.
- * - GSAP ScrollTrigger tracks the centered service to synchronize the sticky media stage.
- * - On mobile/tablet (`< lg`), each service renders an inline framed photograph and deliverable chips.
+ * Implements the Cosentino Architectural Editorial reference:
+ * - 0px Cosentino catalogue tabs at the top for switching between the studio's technical divisions.
+ * - Top-right orthogonal carousel navigation controls (← / →).
+ * - Horizontal scroll-snap track with expansive monolith cards matching DivisionCards proportions
+ *   (h-[580px] to h-[680px], w-[85vw] to w-[480px]). Requires horizontal scrolling whenever 3 or more items exist.
+ * - Tall full-bleed photograph cards with subtle legibility scrims, title in top-left, and deliverable summary + CTA in bottom.
+ * - Interactive modal (ServiceScopeModal) that reveals technical deliverables, executive scope checklist,
+ *   and dual conversion buttons (form scroll + WhatsApp).
  */
 export function ServicesIndex({
   intro,
   groups,
   tone = "canvas",
   id,
+  whatsappHref,
 }: ServicesIndexProps) {
   const [activeGroupIndex, setActiveGroupIndex] = useState(0);
-  const [activeServiceIndex, setActiveServiceIndex] = useState(0);
+  const [selectedService, setSelectedService] = useState<{
+    service: Service;
+    index: number;
+  } | null>(null);
 
-  const scopeRef = useRef<HTMLDivElement>(null);
-  const serviceItemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const stickyStageRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const currentGroup = groups[activeGroupIndex] ?? groups[0];
-  const activeService =
-    currentGroup.services[activeServiceIndex] ?? currentGroup.services[0];
 
-  // GSAP ScrollTrigger tracking for desktop sticky stage synchronization
+  const groupTabs = useMemo(
+    () =>
+      groups.map((group, idx) => ({
+        id: String(idx),
+        label: group.title,
+        count: group.services.length,
+      })),
+    [groups],
+  );
+
+  const updateScrollButtons = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const { scrollLeft, scrollWidth, clientWidth } = track;
+    setCanScrollLeft(scrollLeft > 6);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 6);
+  };
+
   useEffect(() => {
-    const scope = scopeRef.current;
-    if (!scope || currentGroup.services.length === 0) return;
+    const track = trackRef.current;
+    if (!track) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (prefersReducedMotion) return;
+    // Reset scroll position on group change
+    track.scrollTo({ left: 0, behavior: "instant" as ScrollBehavior });
+    updateScrollButtons();
 
-    let cancelled = false;
-    let cleanup: (() => void) | undefined;
-
-    void import("gsap").then(async ({ gsap }) => {
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      if (cancelled) return;
-      gsap.registerPlugin(ScrollTrigger);
-
-      const ctx = gsap.context(() => {
-        const mm = gsap.matchMedia();
-
-        mm.add("(min-width: 1024px)", () => {
-          serviceItemRefs.current.forEach((itemEl, idx) => {
-            if (!itemEl) return;
-            ScrollTrigger.create({
-              trigger: itemEl,
-              start: "top center+=80",
-              end: "bottom center+=80",
-              onEnter: () => setActiveServiceIndex(idx),
-              onEnterBack: () => setActiveServiceIndex(idx),
-            });
-          });
-        });
-      }, scope);
-
-      cleanup = () => ctx.revert();
-    });
+    const handleScroll = () => updateScrollButtons();
+    track.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
 
     return () => {
-      cancelled = true;
-      cleanup?.();
+      track.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
-  }, [activeGroupIndex, currentGroup.services.length]);
+  }, [activeGroupIndex]);
 
-  if (groups.length === 0) return null;
+  const handleScroll = (direction: "left" | "right") => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const firstCard = track.firstElementChild as HTMLElement | null;
+    const cardWidth = firstCard ? firstCard.offsetWidth : 440;
+    const scrollAmount = cardWidth + 24; // card width + gap-6
+
+    track.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  if (groups.length === 0 || !currentGroup) return null;
 
   return (
-    <Section id={id} tone={tone} className="!py-16 md:!py-24">
+    <Section id={id} tone={tone}>
       <Container>
         {/* Section Heading */}
-        <div className="mb-10 flex flex-col justify-between gap-6 border-b border-ink/15 pb-8 md:mb-14 lg:flex-row lg:items-end">
-          <div className="max-w-[46rem]">
-            <div className="mb-3 flex items-center gap-2.5">
-              <span className="number-pill">(06)</span>
-              <p className="eyebrow">{intro.eyebrow}</p>
-            </div>
-            <SectionHeading heading={intro.heading} body={intro.body} />
-          </div>
-          <div className="shrink-0">
-            <span className="number-pill bg-white">
-              {`${groups.reduce((acc, g) => acc + g.services.length, 0)} PARTIDAS EN CATÁLOGO`}
-            </span>
+        <SectionHeading
+          eyebrow={intro.eyebrow}
+          heading={intro.heading}
+          body={intro.body}
+        />
+
+        {/* Cosentino Top Bar: Left Tabs and Right Carousel Navigation Arrows */}
+        <div className="mt-10 flex flex-col justify-between gap-6 border-b border-bone-200 sm:flex-row sm:items-end">
+          <Tabs
+            tabs={groupTabs}
+            activeId={String(activeGroupIndex)}
+            onChange={(nextId) => {
+              setActiveGroupIndex(Number(nextId));
+            }}
+            ariaLabel="Seleccionar división técnica"
+            className="border-b-0 pb-0"
+          />
+
+          {/* Orthogonal Carousel Navigation Arrows (0px) */}
+          <div className="hidden sm:flex items-center gap-2 pb-3">
+            <button
+              type="button"
+              onClick={() => handleScroll("left")}
+              disabled={!canScrollLeft}
+              aria-label="Ver partidas anteriores"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              <Icon name="arrow-left" className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScroll("right")}
+              disabled={!canScrollRight}
+              aria-label="Ver partidas siguientes"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+            >
+              <Icon name="arrow-right" className="h-4 w-4" />
+            </button>
           </div>
         </div>
 
-        {/* Chapter Switcher Tabs (Borderless) */}
-        <div className="flex flex-wrap items-center gap-2 pb-2">
-          {groups.map((group, gIdx) => {
-            const isCurrent = gIdx === activeGroupIndex;
+        {/* Carousel Track: Horizontal Snap Slider */}
+        <div
+          ref={trackRef}
+          role="region"
+          aria-label={`Carrusel de partidas para ${currentGroup.title}`}
+          tabIndex={0}
+          className="mt-8 sm:mt-10 flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none pb-4 pt-1 focus-visible:outline-2 focus-visible:outline-brand-800"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
+          {currentGroup.services.map((service, sIdx) => {
+            const hasPhoto = Boolean(service.image);
+
             return (
               <button
-                key={group.slug}
+                key={service.slug}
                 type="button"
-                onClick={() => {
-                  setActiveGroupIndex(gIdx);
-                  setActiveServiceIndex(0);
-                }}
-                className={cx(
-                  "group flex items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-medium uppercase tracking-wider transition-all duration-200 cursor-pointer",
-                  isCurrent
-                    ? "bg-brand-800 text-white shadow-xs"
-                    : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
-                )}
+                onClick={() => setSelectedService({ service, index: sIdx })}
+                aria-label={`Ver alcances y entregables de ${service.title}`}
+                className="group relative flex h-[580px] w-[85vw] shrink-0 snap-start flex-col justify-between overflow-hidden border border-white/10 bg-ink p-7 text-left text-white transition-colors duration-300 hover:border-white/25 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500 cursor-pointer sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] lg:p-9"
               >
-                <span
-                  className={cx(
-                    "font-mono text-[0.6875rem] font-semibold transition-colors",
-                    isCurrent ? "text-white/80" : "text-brand-800",
+                {/* Full-bleed Photo Background */}
+                <div className="absolute inset-0 z-0 overflow-hidden bg-bone-100">
+                  {hasPhoto && service.image ? (
+                    <Photo
+                      photo={service.image}
+                      sizes={CARD_SIZES}
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-bone-200 text-xs text-ink-muted p-4 text-center">
+                      <span>Fotografía de archivo en proceso</span>
+                    </div>
                   )}
-                >
-                  {`(${String(gIdx + 1).padStart(2, "0")})`}
-                </span>
-                <span>{group.title}</span>
-                <span
-                  className={cx(
-                    "rounded-full px-1.5 py-0.5 text-[0.62rem]",
-                    isCurrent
-                      ? "bg-white/20 text-white"
-                      : "bg-bone-200 text-ink-muted",
-                  )}
-                >
-                  {group.services.length}
-                </span>
+                </div>
+
+                {/* Scrim gradients: subtle top, deep bottom for contrast */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-44 bg-gradient-to-b from-ink/85 via-ink/35 to-transparent"
+                />
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-80 bg-gradient-to-t from-ink via-ink/85 to-transparent"
+                />
+
+                {/* Top: Service Title */}
+                <div className="relative z-10">
+                  <Heading
+                    as="h3"
+                    voice="serif"
+                    sizeClassName="text-2xl md:text-3xl lg:text-[2rem] text-white font-normal leading-[1.14] drop-shadow-sm transition-colors group-hover:text-concha-nacar"
+                  >
+                    {service.title}
+                  </Heading>
+                </div>
+
+                {/* Bottom: Summary & CTA */}
+                <div className="relative z-10 flex flex-col gap-5">
+                  {service.summary ? (
+                    <Text
+                      size="base"
+                      className="leading-relaxed text-white/90 drop-shadow-sm font-normal max-w-[42ch]"
+                    >
+                      {service.summary}
+                    </Text>
+                  ) : null}
+
+                  <div className="flex items-center gap-3 pt-1 text-white transition-colors group-hover:text-concha-nacar">
+                    <span className="label text-sm tracking-wider text-white transition-colors group-hover:text-concha-nacar">
+                      Ver alcances y entregables
+                    </span>
+                    <Icon
+                      name="arrow-right"
+                      className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-2 group-hover:text-concha-nacar"
+                    />
+                  </div>
+                </div>
               </button>
             );
           })}
         </div>
 
-        {/* Active Chapter Intro Strip */}
-        <div className="mt-8 mb-12 flex flex-col justify-between gap-4 pb-4 lg:flex-row lg:items-end">
-          <div className="max-w-[46rem]">
-            <div className="mb-2 flex items-center gap-2.5">
-              <span className="number-pill">
-                {`CAPÍTULO ${String(activeGroupIndex + 1).padStart(2, "0")} / 04`}
-              </span>
-              <span className="label text-brand-800 font-semibold">
-                DIVISIÓN TÉCNICA CASA ALTA
-              </span>
-            </div>
-            <h3 className="voice text-2xl leading-tight text-ink md:text-3xl lg:text-[2.25rem]">
-              {currentGroup.title}
-            </h3>
-            <p className="mt-3 text-base leading-relaxed text-ink-muted">
-              {currentGroup.intro}
-            </p>
-          </div>
-          <div className="shrink-0 text-xs text-ink-muted">
-            <span>{`${currentGroup.services.length} ESPECIALIDADES EN ESTE FRENTE`}</span>
-          </div>
-        </div>
-
-        {/* 2-Column Stage: Left Column scrolls, Right Column remains sticky */}
-        <div
-          ref={scopeRef}
-          className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14"
-        >
-          {/* Left Column: Services list without heavy borders */}
-          <div className="space-y-16 lg:col-span-7 lg:space-y-20 pb-12">
-            {currentGroup.services.map((service, sIdx) => {
-              const isActive = sIdx === activeServiceIndex;
-              const numStr = String(sIdx + 1).padStart(2, "0");
-
-              return (
-                <div
-                  key={service.slug}
-                  ref={(el) => {
-                    serviceItemRefs.current[sIdx] = el;
-                  }}
-                  onClick={() => setActiveServiceIndex(sIdx)}
-                  className={cx(
-                    "group flex flex-col justify-center transition-all duration-300 cursor-pointer pt-2",
-                    isActive ? "opacity-100" : "opacity-60 hover:opacity-100",
-                  )}
-                >
-                  {/* Top metadata tags */}
-                  <div className="mb-3 flex items-center gap-2.5">
-                    <span
-                      className={cx(
-                        "number-pill transition-colors duration-300",
-                        isActive
-                          ? "!border-brand-800 !bg-brand-800 !text-white"
-                          : "",
-                      )}
-                    >
-                      {`(${numStr})`}
-                    </span>
-                    <span className="label text-brand-800 font-semibold">
-                      {`PARTIDA ${numStr} · ${service.items.length} ALCANCES`}
-                    </span>
-                  </div>
-
-                  {/* Service Title */}
-                  <h4 className="voice text-2xl leading-snug text-ink md:text-3xl">
-                    {service.title}
-                  </h4>
-
-                  {/* Summary */}
-                  <p className="voice mt-3 text-base leading-relaxed text-ink-muted">
-                    {service.summary}
-                  </p>
-
-                  {/* Technical Deliverables List (Unboxed) */}
-                  <div className="mt-5 space-y-2">
-                    <span className="label text-[0.65rem] tracking-wider text-ink-muted block mb-2 font-semibold uppercase">
-                      Alcances y entregables ejecutivos:
-                    </span>
-                    <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 text-xs text-ink/85">
-                      {service.items.map((item) => (
-                        <li
-                          key={item}
-                          className="flex items-start gap-2 leading-relaxed"
-                        >
-                          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-800" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Mobile & Tablet Inline Photograph (hidden on lg+) */}
-                  {service.image ? (
-                    <div className="mt-6 overflow-hidden lg:hidden">
-                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-100">
-                        <Photo
-                          photo={service.image}
-                          sizes="(max-width: 1024px) 95vw, 45vw"
-                          className="h-full w-full object-cover"
-                        />
-                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
-                        <div className="absolute right-3 bottom-3 left-3 text-white">
-                          <span className="text-xs font-medium">
-                            {service.title}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  ) : null}
-
-                  {/* Bottom Action Link */}
-                  <div className="mt-6 pt-1">
-                    <a
-                      href="#contacto"
-                      className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-800 hover:text-ink transition-colors"
-                    >
-                      <span className="underline decoration-brand-800/40 underline-offset-4">
-                        Consultar alcances y presupuesto de esta partida
-                      </span>
-                      <span>→</span>
-                    </a>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Right Column: Monumental Sticky Media Stage (Desktop lg+) */}
-          <div className="hidden lg:col-span-5 lg:block relative">
-            <div ref={stickyStageRef} className="sticky top-28 space-y-3 pb-12">
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
-                {activeService?.image ? (
-                  <Photo
-                    key={activeService.slug}
-                    photo={activeService.image}
-                    sizes="(min-width: 1024px) 38vw, 90vw"
-                    className="h-full w-full object-cover transition-transform duration-700 hover:scale-102"
-                  />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-bone-100 text-xs text-ink-muted">
-                    <span>Registro fotográfico de obra en archivo</span>
-                  </div>
-                )}
-
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />
-
-                <div className="absolute right-4 bottom-4 left-4 text-white">
-                  <span className="text-[0.65rem] uppercase tracking-widest text-concha-nacar/90">
-                    Registro de obra en Oaxaca
-                  </span>
-                  <h4 className="voice text-xl font-normal leading-snug text-white line-clamp-1">
-                    {activeService?.title}
-                  </h4>
-                </div>
-              </div>
-
-              {/* Minimal caption & direct action - NO boxes, NO borders */}
-              <div className="flex items-center justify-between text-xs text-ink-muted pt-1">
-                <span>{`Partida ${String(activeServiceIndex + 1).padStart(2, "0")} de ${String(currentGroup.services.length).padStart(2, "0")}`}</span>
-                <a
-                  href="#contacto"
-                  className="font-semibold text-brand-800 underline underline-offset-4 hover:text-ink transition-colors"
-                >
-                  Cotizar partida →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Next Chapter Quick Stepper at bottom */}
-        {activeGroupIndex < groups.length - 1 ? (
-          <div className="mt-12 flex items-center justify-between border-t border-bone-200 pt-6">
-            <span className="text-xs text-ink-muted">
-              {`Continuar con la siguiente división técnica (${groups[activeGroupIndex + 1].title})`}
-            </span>
+        {/* Mobile Navigation Helper Indicator */}
+        <div className="mt-4 flex items-center justify-between sm:hidden">
+          <span className="text-xs text-ink-muted">
+            Deslizá para explorar partidas
+          </span>
+          <div className="flex items-center gap-2">
             <button
               type="button"
-              onClick={() => {
-                setActiveGroupIndex(activeGroupIndex + 1);
-                setActiveServiceIndex(0);
-                const catalogElem = document.getElementById(id || "servicios");
-                if (catalogElem) {
-                  catalogElem.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-800 hover:text-brand-900 transition-colors cursor-pointer"
+              onClick={() => handleScroll("left")}
+              disabled={!canScrollLeft}
+              aria-label="Ver anterior"
+              className="inline-flex h-9 w-9 items-center justify-center border border-bone-200 bg-canvas text-ink disabled:opacity-30"
             >
-              <span>{`Siguiente: ${groups[activeGroupIndex + 1].title}`}</span>
-              <svg
-                viewBox="0 0 16 16"
-                className="h-3.5 w-3.5"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  d="M2.5 8h11m-4-4 4 4-4 4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Icon name="arrow-left" className="h-3.5 w-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScroll("right")}
+              disabled={!canScrollRight}
+              aria-label="Ver siguiente"
+              className="inline-flex h-9 w-9 items-center justify-center border border-bone-200 bg-canvas text-ink disabled:opacity-30"
+            >
+              <Icon name="arrow-right" className="h-3.5 w-3.5" />
             </button>
           </div>
-        ) : null}
+        </div>
       </Container>
+
+      {/* Scope and Deliverables Modal Dialog */}
+      {selectedService ? (
+        <ServiceScopeModal
+          service={selectedService.service}
+          partidaIndex={selectedService.index}
+          totalPartidas={currentGroup.services.length}
+          onClose={() => setSelectedService(null)}
+          whatsappHref={whatsappHref}
+          contactAnchorId="contacto"
+        />
+      ) : null}
     </Section>
   );
 }

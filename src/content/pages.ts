@@ -1,4 +1,4 @@
-import type { SectionIntro, ThematicPillar } from "@/types/content";
+import type { SectionIntro, SpaceCategory, ThematicPillar } from "@/types/content";
 
 /**
  * Authored content for the dedicated interior routes:
@@ -6,6 +6,7 @@ import type { SectionIntro, ThematicPillar } from "@/types/content";
  *   - /construccion-sustentable
  *   - /nosotros
  *   - /servicios
+ *   - /contacto
  *
  * Joined with manifest photographs in `src/lib/content/index.ts` so components
  * receive ready-to-render view models.
@@ -19,6 +20,18 @@ export const interiorsPageContent = {
       "Materiales de importación para proyectos residenciales, instalación certificada y garantizada.",
     dir: "arquitectura-interiores",
     base: "03-cocina-comedor-muro-terracota-techo-bambu-isla",
+  },
+  inspiration: {
+    eyebrow: "Diseño arquitectónico de interiores",
+    heading: "Diseño con propósito para inspirar la vida de las personas",
+    body: "Materiales de importación para proyectos residenciales, instalación certificada y garantizada. Cada superficie y espacio está concebido para resistir el tiempo, el clima costero y enriquecer la convivencia cotidiana.",
+    tabs: [
+      { id: "all", label: "Todos los espacios" },
+      { id: "cocinas", label: "Cocinas e islas" },
+      { id: "banos", label: "Baños residenciales" },
+      { id: "interiores", label: "Comedores y galerías" },
+      { id: "showroom", label: "Showroom y convivencia" },
+    ] satisfies Array<{ id: SpaceCategory; label: string }>,
   },
   cosentino: {
     eyebrow: "Alianza y certificación técnica",
@@ -216,7 +229,10 @@ export const servicesPageContent = {
     eyebrow: "Frentes de trabajo",
     heading: "Elegimos el sistema constructivo por cálculo, no por costumbre",
     body: "Cada terreno en Oaxaca plantea un reto distinto. Validamos con cálculo estructural si el proyecto requiere concreto armado, presforzado, estructura metálica, losa aligerada o sistemas vernáculos mejorados.",
-  } satisfies SectionIntro,
+    dir: "proyectos-integrales",
+    base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
+    photoCaption: "Ingeniería y proyecto ejecutivo en gabinete",
+  },
   specialties: {
     eyebrow: "Evidencia técnica en sitio",
     heading: "Nuestras divisiones en ejecución real",
@@ -287,5 +303,24 @@ export const servicesPageContent = {
         maxPhotos: 6,
       },
     ],
+  },
+};
+
+export const contactPageContent = {
+  hero: {
+    eyebrow: "Contacto directo · Puerto Escondido y Salina Cruz",
+    heading:
+      "Hablemos de su proyecto en la costa, el valle o el Istmo de Oaxaca",
+    subheadline:
+      "En nuestra primera sesión gratuita por Zoom o en oficina revisamos ubicación, programa arquitectónico, viabilidad estructural y presupuesto estimado.",
+    dir: "proyectos-integrales",
+    base: "03-sesion-trabajo-revision-proyecto-ejecutivo-oficina",
+  },
+  officesIntro: {
+    eyebrow: "Sedes y cobertura regional",
+    heading: "Presencia directa en obra en las 8 regiones de Oaxaca",
+    body: "Atendemos de manera directa desde nuestras oficinas en Puerto Escondido y Salina Cruz, coordinando topografía, cálculo estructural, licencias y ejecución llave en mano.",
+    dir: "credibilidad",
+    base: "03-camioneta-constructora-casa-alta-frente-obra",
   },
 };

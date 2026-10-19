@@ -28,6 +28,8 @@ export default function ServicesRoutePage() {
       processIntro={home.process}
       steps={getProcessSteps()}
       closing={getClosing()}
+      contact={home.contact}
+      whatsappHref={site.whatsapp.href}
     />
   );
 }

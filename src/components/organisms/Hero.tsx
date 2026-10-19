@@ -12,17 +12,12 @@ interface HeroProps {
 const INTERVAL_MS = 5500;
 
 /**
- * 100vw × 100vh Full-Bleed Minimalist Architectural Hero.
+ * 100vw × 100vh Full-Bleed Architectural Hero.
  *
- * Preserves the pure essence of Casa Alta:
- * - Edge-to-edge photographic canvas at 100vh / 100vw running under the transparent header.
- * - Natural, sunlit illumination with subtle legibility gradients only at top/bottom edges.
- * - Watermark logo anchored at top right.
- * - The monumental typography stack IS the interactive discipline selector:
- *   ARQUITECTURA / CONSTRUCCIÓN CIVIL / CONSTRUCCIÓN INDUSTRIAL.
- *   The active discipline stays at full opacity (1.0) while inactive lines settle at 0.40.
- * - Smooth crossfade transitions between all hero carousel images.
- * - Subtle minimalist progress bars at bottom right and Cosentino scroll cue `( · )` at bottom center.
+ * - Edge-to-edge photographic canvas at 100svh running under the transparent header.
+ * - Automatic crossfade transitions between hero slides with touch-swipe support.
+ * - Sentence-case Marcellus eyebrow, monumental display title, and Montserrat
+ *   subheadline with 0px geometry and tabular numerals.
  */
 export function Hero({ hero }: HeroProps) {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -70,7 +65,7 @@ export function Hero({ hero }: HeroProps) {
       id="hero"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-[#060c1a] text-white"
+      className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-ink text-white"
     >
       {/* Full-bleed photographic background carousel */}
       <div className="absolute inset-0 z-0 h-full w-full">
@@ -98,139 +93,59 @@ export function Hero({ hero }: HeroProps) {
           );
         })}
 
-        {/* Full dark architectural overlay for unified contrast and dark mood */}
+        {/* Full dark architectural overlay (--color-ink) */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[#060c1a]/55 z-[2]"
-        />
-
-        {/* Top subtle scrim for transparent header legibility */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/70 to-transparent z-[3]"
-        />
-
-        {/* Bottom subtle architectural gradient for typography contrast */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-[3]"
+          className="hero-overlay pointer-events-none absolute inset-0 z-[2]"
         />
       </div>
 
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
-        <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          {/* Left Column: Eyebrow + Counter Capsule + Monumental Title */}
-          <div className="flex flex-col items-start gap-3 lg:col-span-8">
-            <div className="flex items-center gap-3">
-              <span className="number-pill-inverse text-[0.68rem]">
-                {`(${String(activeSlide + 1).padStart(2, "0")}) / (${String(hero.slides.length).padStart(2, "0")})`}
-              </span>
-              {hero.eyebrow ? (
-                <p className="eyebrow !text-white/90 text-xs tracking-widest uppercase font-sans">
-                  {hero.eyebrow}
-                </p>
-              ) : null}
-            </div>
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/20 pb-4">
+          {hero.eyebrow ? (
+            <p className="eyebrow !text-white/85">{hero.eyebrow}</p>
+          ) : (
+            <span />
+          )}
+          <span className="label text-white/75 tabular-nums">
+            {`${String(activeSlide + 1).padStart(2, "0")} / ${String(hero.slides.length).padStart(2, "0")}`}
+          </span>
+        </div>
 
-            <h1 className="display text-[clamp(2.1rem,5.6vw,4.5rem)] font-bold uppercase tracking-tight text-white leading-[0.92]">
+        <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
+          {/* Left Column: Monumental Title */}
+          <div className="flex flex-col items-start gap-3 lg:col-span-8">
+            <h1 className="display text-[clamp(2.1rem,5.4vw,4.4rem)] leading-[0.95] text-white">
               <span className="block transition-all duration-700 ease-out">
                 {hero.slides[activeSlide]?.title}
               </span>
             </h1>
           </div>
 
-          {/* Right Column: Narrative Subheadline + Minimalist Navigation Arrows & Dash Indicators */}
-          <div className="flex flex-col items-start justify-end gap-4 lg:col-span-4 lg:items-end">
-            <p className="voice max-w-[34ch] text-sm leading-relaxed text-white/85 md:text-base lg:text-right">
+          {/* Right Column: Narrative Subheadline + 0px Linear Progress Track */}
+          <div className="flex flex-col items-start justify-end gap-5 lg:col-span-4 lg:items-end">
+            <p className="max-w-[36ch] text-sm leading-relaxed text-white/85 md:text-base lg:text-right">
               {hero.subheadline}
             </p>
 
-            {/* Dash indicator line + Prev/Next controls */}
-            <div className="flex items-center gap-3 pt-1">
-              <div
-                className="flex items-center gap-1.5 flex-wrap justify-end max-w-xs"
-                role="group"
-                aria-label="Seleccionar diapositiva"
-              >
-                {hero.slides.map((slide, index) => {
-                  const isActive = index === activeSlide;
-                  return (
-                    <button
-                      key={slide.photo.src}
-                      type="button"
-                      onClick={() => goToSlide(index)}
-                      aria-label={`Ver diapositiva ${index + 1}: ${slide.title}`}
-                      aria-current={isActive}
-                      className="h-[3px] rounded-full transition-all duration-500 focus:outline-none"
-                      style={{
-                        width: isActive ? "2rem" : "0.75rem",
-                        backgroundColor: isActive
-                          ? "rgba(255,255,255,0.95)"
-                          : "rgba(255,255,255,0.35)",
-                      }}
-                    />
-                  );
-                })}
-              </div>
-
-              <div className="flex items-center gap-1.5 pl-2">
-                <button
-                  type="button"
-                  onClick={() =>
-                    goToSlide(
-                      (activeSlide - 1 + hero.slides.length) % hero.slides.length,
-                    )
-                  }
-                  aria-label="Diapositiva anterior"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white/25 focus:outline-none"
-                >
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="h-3.5 w-3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  >
-                    <path
-                      d="M10 3L5 8l5 5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onClick={() =>
-                    goToSlide((activeSlide + 1) % hero.slides.length)
-                  }
-                  aria-label="Diapositiva siguiente"
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white/25 focus:outline-none"
-                >
-                  <svg
-                    viewBox="0 0 16 16"
-                    className="h-3.5 w-3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                  >
-                    <path
-                      d="M6 3l5 5-5 5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
+            <div
+              aria-hidden="true"
+              className="flex w-full max-w-[14rem] items-center gap-1.5"
+            >
+              {hero.slides.map((slide, index) => {
+                const isActive = index === activeSlide;
+                return (
+                  <span
+                    key={slide.photo.src}
+                    className={`h-[2px] flex-1 transition-colors duration-500 ${
+                      isActive ? "bg-white" : "bg-white/25"
+                    }`}
+                  />
+                );
+              })}
             </div>
           </div>
-        </div>
-
-        {/* Bottom center Cosentino scroll cue */}
-        <div className="pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/60">
-          <span className="font-mono text-[0.65rem] tracking-widest uppercase">
-            ( · )
-          </span>
         </div>
       </Container>
     </section>

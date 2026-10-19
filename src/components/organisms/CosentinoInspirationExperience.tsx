@@ -1,285 +1,177 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
+import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
-import { Button } from "@/components/atoms/Button";
-import type { Photo as PhotoModel, ThematicPillar } from "@/types/content";
+import { SectionHeading } from "@/components/molecules/SectionHeading";
+import { Tabs } from "@/components/molecules/Tabs";
+import type {
+  InteriorsPageContent,
+  Photo as PhotoModel,
+  SpaceCategory,
+} from "@/types/content";
 
 interface CosentinoExperienceProps {
-  cosentino: {
-    eyebrow: string;
-    heading: string;
-    claim: string;
-    body: string;
-    badges: string[];
-    pillars: ThematicPillar[];
-  };
-  interiorsPhotos: PhotoModel[];
-  lifestylePhotos: PhotoModel[];
+  inspiration: InteriorsPageContent["inspiration"];
+  cosentino: InteriorsPageContent["cosentino"];
 }
-
-type SpaceCategory = "all" | "cocinas" | "banos" | "interiores" | "showroom";
-
-interface SpaceCard {
-  id: string;
-  category: SpaceCategory;
-  categoryLabel: string;
-  title: string;
-  materials: string;
-  photo: PhotoModel;
-}
-
-const CATEGORY_TABS: Array<{ id: SpaceCategory; label: string }> = [
-  { id: "all", label: "Todos los espacios" },
-  { id: "cocinas", label: "Cocinas e Islas" },
-  { id: "banos", label: "Baños residenciales" },
-  { id: "interiores", label: "Comedores y galerías" },
-  { id: "showroom", label: "Showroom y Convivencia" },
-];
 
 export function CosentinoInspirationExperience({
+  inspiration,
   cosentino,
-  interiorsPhotos,
-  lifestylePhotos,
 }: CosentinoExperienceProps) {
   const [activeCategory, setActiveCategory] = useState<SpaceCategory>("all");
   const [selectedPhoto, setSelectedPhoto] = useState<PhotoModel | null>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  const openLightbox = (photo: PhotoModel) => {
+    if (document.activeElement instanceof HTMLElement) {
+      lastTriggerRef.current = document.activeElement;
+    }
+    setSelectedPhoto(photo);
+  };
 
   useEffect(() => {
     if (!selectedPhoto) return;
     const prev = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
+    closeBtnRef.current?.focus();
+
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedPhoto(null);
+      if (e.key === "Escape") {
+        setSelectedPhoto(null);
+        return;
+      }
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
       document.documentElement.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
+      lastTriggerRef.current?.focus();
     };
   }, [selectedPhoto]);
 
-  // Curate all meaningful design items mapped from real project and showroom photography
-  const allCards: SpaceCard[] = useMemo(() => {
-    const list: SpaceCard[] = [];
-
-    // Categorize interior architecture photos
-    interiorsPhotos.forEach((photo, idx) => {
-      const src = photo.src;
-      if (src.includes("bano") || src.includes("lavabo")) {
-        list.push({
-          id: `bano-${idx}`,
-          category: "banos",
-          categoryLabel: "Baño residencial",
-          title: src.includes("marmol")
-            ? "Baño principal en mármol con luz perimetral"
-            : "Lavabo flotante negro mate y monomando",
-          materials: "Mármol importado · Herrajes y monomando negro mate",
-          photo,
-        });
-      } else if (
-        src.includes("isla") ||
-        src.includes("cocina") ||
-        src.includes("cubierta")
-      ) {
-        list.push({
-          id: `cocina-${idx}`,
-          category: "cocinas",
-          categoryLabel: "Cocina e Isla",
-          title: src.includes("piedra")
-            ? "Isla monolítica en piedra sinterizada"
-            : src.includes("ventanal")
-              ? "Cocina integral integrada a patio interior"
-              : "Cubierta continua con veta lineal",
-          materials: "Superficie ultracompacta Cosentino · Veta continua",
-          photo,
-        });
-      } else {
-        list.push({
-          id: `interior-${idx}`,
-          category: "interiores",
-          categoryLabel: "Comedor y estancia",
-          title: src.includes("galeria")
-            ? "Pasillo galería con muro terracota"
-            : "Comedor residencial en parota con vista a jardín",
-          materials: "Madera tropical certificada · Acabado concha nácar",
-          photo,
-        });
-      }
-    });
-
-    // Add curated showroom lifestyle photos
-    lifestylePhotos.slice(0, 6).forEach((photo, idx) => {
-      list.push({
-        id: `lifestyle-${idx}`,
-        category: "showroom",
-        categoryLabel: "Showroom Casa Alta",
-        title: idx === 0
-          ? "Convivencia diaria en isla de piedra natural"
-          : idx === 1
-            ? "Barra contemporánea con iluminación cálida"
-            : "Cocina integral negro mate en showroom",
-        materials: "Superficies Cosentino de importación · Mobiliario sobre diseño",
-        photo,
-      });
-    });
-
-    return list;
-  }, [interiorsPhotos, lifestylePhotos]);
-
   const filteredCards = useMemo(() => {
-    if (activeCategory === "all") return allCards;
-    return allCards.filter((card) => card.category === activeCategory);
-  }, [allCards, activeCategory]);
+    if (activeCategory === "all") return inspiration.spaces;
+    return inspiration.spaces.filter(
+      (card) => card.category === activeCategory,
+    );
+  }, [inspiration.spaces, activeCategory]);
+
+  const tabsWithCounts = useMemo(
+    () =>
+      inspiration.tabs.map((tab) => ({
+        ...tab,
+        count:
+          tab.id === "all"
+            ? inspiration.spaces.length
+            : inspiration.spaces.filter((s) => s.category === tab.id).length,
+      })),
+    [inspiration.tabs, inspiration.spaces],
+  );
 
   return (
     <>
-      {/* ---------------- SECTION 1: Meaningful Design to Inspire People's Lives ---------------- */}
-      <Section tone="canvas" className="!pt-16 !pb-20 md:!pt-24 md:!pb-28">
+      {/* ---------------- SECTION 1: Catálogo de Espacios ---------------- */}
+      <Section tone="canvas">
         <Container>
-          {/* Section Header */}
-          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-            <div className="max-w-[48ch]">
-              <p className="eyebrow">Meaningful Design to Inspire People’s Lives</p>
-              <Heading as="h2" voice="serif" className="mt-4 text-3xl md:text-5xl">
-                Diseño con propósito para inspirar la vida de las personas.
-              </Heading>
-              <Text className="mt-4 text-ink-muted">
-                {cosentino.claim} Cada superficie y espacio está concebido para resistir el tiempo,
-                el clima costero y enriquecer la convivencia cotidiana.
-              </Text>
-            </div>
+          <SectionHeading
+            eyebrow={inspiration.eyebrow}
+            heading={inspiration.heading}
+            body={inspiration.body}
+          />
 
-            <div className="flex items-center gap-2">
-              <span className="number-pill">
-                {`${String(filteredCards.length).padStart(2, "0")} ESPACIOS`}
-              </span>
-            </div>
-          </div>
+          <Tabs
+            tabs={tabsWithCounts}
+            activeId={activeCategory}
+            onChange={setActiveCategory}
+            ariaLabel="Filtrar por tipología de espacio"
+            className="mt-10"
+          />
 
-          {/* Cosentino-style horizontal category tabs */}
-          <div className="mt-10 border-b border-ink/15 pb-4">
-            <div
-              role="tablist"
-              aria-label="Filtrar por tipología de espacio"
-              className="flex flex-wrap items-center gap-2 sm:gap-3"
-            >
-              {CATEGORY_TABS.map((tab) => {
-                const active = activeCategory === tab.id;
-                return (
-                  <button
-                    key={tab.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={active}
-                    onClick={() => setActiveCategory(tab.id)}
-                    className={`label inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs transition-all duration-300 ${
-                      active
-                        ? "border-ink bg-ink text-white"
-                        : "border-ink/20 bg-transparent text-ink hover:border-ink"
-                    }`}
-                  >
-                    <span>{tab.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Tall portrait cards (Cosentino layout: aspect-[3/4.2], pure minimalism) */}
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Canonical Clean-Ground Space Cards */}
+          <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {filteredCards.map((card) => (
-              <div
+              <article
                 key={card.id}
-                role="button"
-                tabIndex={0}
-                onClick={() => setSelectedPhoto(card.photo)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setSelectedPhoto(card.photo);
-                  }
-                }}
-                aria-label={`Ver detalle de espacio: ${card.title}`}
-                className="group relative aspect-[3/4.2] w-full cursor-pointer overflow-hidden bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="group flex flex-col justify-between"
               >
-                {/* Background Photo */}
-                <div className="absolute inset-0 h-full w-full">
-                  <Photo
-                    photo={card.photo}
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    fit="cover"
-                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  />
-                  {/* Subtle dark gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/25 to-ink/40 opacity-85 transition-opacity duration-300 group-hover:opacity-95" />
-                </div>
+                <div>
+                  {/* 1° Photo */}
+                  <div
+                    onClick={() => openLightbox(card.photo)}
+                    className="aspect-[4/3] w-full cursor-pointer overflow-hidden bg-bone-100"
+                  >
+                    <Photo
+                      photo={card.photo}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      fit="cover"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
+                  </div>
 
-                {/* Top badge */}
-                <div className="absolute left-6 top-6 z-10">
-                  <span className="label rounded-full border border-white/40 bg-ink/40 px-3 py-1 text-[0.65rem] text-white/95 backdrop-blur-md">
+                  {/* 2° Metadata */}
+                  <span className="label mt-4 block text-brand-800">
                     {card.categoryLabel}
                   </span>
-                </div>
 
-                {/* Bottom metadata */}
-                <div className="absolute inset-x-6 bottom-6 z-10 flex flex-col gap-2">
-                  <h3 className="voice text-xl leading-snug text-white transition-colors group-hover:text-white">
+                  {/* 3° Title */}
+                  <Heading
+                    as="h3"
+                    voice="serif"
+                    sizeClassName="mt-2 text-[1.35rem] leading-[1.15] md:text-[1.5rem] transition-colors group-hover:text-brand-800"
+                  >
                     {card.title}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-white/75">
-                    {card.materials}
-                  </p>
+                  </Heading>
 
-                  <div className="mt-2 flex items-center justify-between pt-2 border-t border-white/15">
-                    <span className="label text-[0.68rem] text-white/70">
-                      Explorar detalle
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="arrow-pill border-white/40 bg-white/10 text-white group-hover:border-white group-hover:bg-white group-hover:text-ink"
-                    >
-                      <svg
-                        viewBox="0 0 16 16"
-                        className="arrow-pill-out h-3.5 w-3.5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                      >
-                        <path
-                          d="M2.5 8h11m-4-4 4 4-4 4"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <svg
-                        viewBox="0 0 16 16"
-                        className="arrow-pill-in h-3.5 w-3.5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                      >
-                        <path
-                          d="M2.5 8h11m-4-4 4 4-4 4"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </span>
-                  </div>
+                  {/* 4° Summary */}
+                  <Text size="sm" className="mt-2 text-ink-muted">
+                    {card.materials}
+                  </Text>
                 </div>
-              </div>
+
+                {/* 5° Action */}
+                <div className="mt-5 flex items-center justify-between border-t border-bone-200 pt-3.5">
+                  <span className="label text-ink-muted">Alta gama</span>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    arrow
+                    onClick={() => openLightbox(card.photo)}
+                  >
+                    Ampliar fotografía
+                  </Button>
+                </div>
+              </article>
             ))}
           </div>
         </Container>
       </Section>
 
       {/* ---------------- SECTION 2: Technical Certification Pillars ---------------- */}
-      <Section tone="bone" className="!pt-16 !pb-20 md:!pt-20 md:!pb-24">
+      <Section tone="bone">
         <Container>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
             <div className="flex flex-col gap-6 lg:col-span-5">
@@ -289,7 +181,7 @@ export function CosentinoInspirationExperience({
                 {cosentino.heading}
               </Heading>
 
-              <blockquote className="border-l-2 border-brand-800 pl-6 py-2">
+              <blockquote className="border-l-2 border-brand-800 py-2 pl-6">
                 <p className="voice text-lg leading-relaxed text-brand-900 md:text-xl">
                   &ldquo;{cosentino.claim}&rdquo;
                 </p>
@@ -301,7 +193,7 @@ export function CosentinoInspirationExperience({
                 {cosentino.badges.map((badge) => (
                   <li
                     key={badge}
-                    className="rounded-full border border-ink/20 px-3 py-1 text-xs font-medium text-ink"
+                    className="label border border-bone-200 bg-canvas px-3 py-1.5 text-ink"
                   >
                     {badge}
                   </li>
@@ -319,25 +211,29 @@ export function CosentinoInspirationExperience({
               {cosentino.pillars.map((pillar) => (
                 <div
                   key={pillar.number}
-                  className="ruler-top border-t border-ink/20 pt-6"
+                  className="border-t border-bone-200 pt-6"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <span className="number-pill">{`(${pillar.number})`}</span>
-                  </div>
-                  <h3 className="voice mt-4 text-2xl text-ink">
+                  <span className="label text-brand-800 tabular-nums">
+                    {pillar.number}
+                  </span>
+                  <Heading
+                    as="h3"
+                    voice="serif"
+                    sizeClassName="mt-3 text-2xl leading-snug"
+                  >
                     {pillar.title}
-                  </h3>
-                  <p className="mt-3 text-base leading-relaxed text-ink-muted">
+                  </Heading>
+                  <Text className="mt-3 text-ink-muted">
                     {pillar.description}
-                  </p>
+                  </Text>
                   {pillar.items && pillar.items.length > 0 ? (
                     <ul className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                       {pillar.items.map((item) => (
                         <li
                           key={item}
-                          className="flex items-start gap-2 text-sm text-ink/80"
+                          className="flex items-start gap-2.5 text-sm text-ink/85"
                         >
-                          <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-800" />
+                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-brand-800" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -350,68 +246,10 @@ export function CosentinoInspirationExperience({
         </Container>
       </Section>
 
-      {/* ---------------- SECTION 3: Galerías de Inspiración ---------------- */}
-      <Section tone="canvas" className="!pt-16 !pb-24 md:!pt-24 md:!pb-32">
-        <Container>
-          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-            <div className="max-w-[48ch]">
-              <p className="eyebrow">Galerías de inspiración</p>
-              <Heading as="h2" voice="serif" className="mt-4 text-3xl md:text-5xl">
-                Espacios habitados, superficies que perduran.
-              </Heading>
-              <Text className="mt-4 text-ink-muted">
-                Explore nuestra colección fotográfica de obra concluida: piedra veteada, carpintería
-                en maderas tropicales, iluminación integrada y el showroom en escala real.
-              </Text>
-            </div>
-
-            <span className="number-pill self-start lg:self-auto">
-              {`${String(allCards.length).padStart(2, "0")} OBRAS TOTALES`}
-            </span>
-          </div>
-
-          {/* Clean architectural photo gallery (zero box borders, pure photography) */}
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {allCards.map((card) => (
-              <figure
-                key={card.id}
-                role="button"
-                tabIndex={0}
-                onClick={() => setSelectedPhoto(card.photo)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    setSelectedPhoto(card.photo);
-                  }
-                }}
-                aria-label={`Ver fotografía ampliada: ${card.title}`}
-                className="group relative aspect-[4/3] w-full cursor-pointer overflow-hidden bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <Photo
-                  photo={card.photo}
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  fit="cover"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                <figcaption className="absolute inset-x-4 bottom-4 z-10 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <p className="label text-[0.65rem] text-white/80">
-                    {card.categoryLabel}
-                  </p>
-                  <p className="voice text-base text-white">
-                    {card.title}
-                  </p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </Container>
-      </Section>
-
       {/* Fullscreen Photo Lightbox Modal */}
       {selectedPhoto ? (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={selectedPhoto.alt || "Visor de fotografía"}
@@ -431,17 +269,17 @@ export function CosentinoInspirationExperience({
               />
             </div>
 
-            <div className="mt-3 flex items-center justify-between text-white">
-              <p className="voice text-sm md:text-base">
-                {selectedPhoto.alt}
-              </p>
+            <div className="mt-4 flex items-center justify-between gap-4 border-t border-white/20 pt-3 text-white">
+              <p className="voice text-sm md:text-base">{selectedPhoto.alt}</p>
               <button
+                ref={closeBtnRef}
                 type="button"
                 onClick={() => setSelectedPhoto(null)}
                 aria-label="Cerrar visor de fotografía"
-                className="label inline-flex min-h-[44px] items-center rounded-full border border-white/40 px-4 py-2 text-xs text-white transition-colors hover:bg-white hover:text-ink focus-visible:outline-2 focus-visible:outline-white"
+                className="label inline-flex min-h-[44px] cursor-pointer items-center gap-2 border border-white/40 px-4 py-2 text-white transition-colors hover:bg-white hover:text-ink focus-visible:outline-2 focus-visible:outline-white"
               >
-                Cerrar ✕
+                <span>Cerrar</span>
+                <Icon name="close" className="h-3.5 w-3.5" />
               </button>
             </div>
           </div>

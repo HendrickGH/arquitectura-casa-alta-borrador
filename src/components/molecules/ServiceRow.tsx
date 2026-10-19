@@ -1,4 +1,3 @@
-import { EditorialImage } from "@/components/organisms/EditorialImage";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
 import { Text } from "@/components/atoms/Text";
@@ -87,14 +86,14 @@ export function ServiceRow({
 
         <div className="mt-5">
           <Heading
-            as="h4"
-            voice="plain"
-            sizeClassName="text-xl leading-snug md:text-[1.375rem]"
-            className="max-w-[20ch]"
+            as="h3"
+            voice="serif"
+            sizeClassName="text-[1.35rem] leading-[1.18] md:text-[1.6rem]"
+            className="max-w-[22ch]"
           >
             {service.title}
           </Heading>
-          <Text className="voice mt-3 max-w-[46ch] text-base leading-relaxed text-ink-muted">
+          <Text className="mt-3 max-w-[46ch] text-base leading-relaxed text-ink-muted">
             {service.summary}
           </Text>
           <ServiceItems
@@ -108,10 +107,10 @@ export function ServiceRow({
 
   const body = (
     <>
-      <Heading as="h4" voice="plain" className="max-w-[24ch]">
+      <Heading as="h3" voice="serif" className="max-w-[24ch]">
         {service.title}
       </Heading>
-      <Text className="voice mt-4 max-w-[52ch] text-lg leading-relaxed text-ink-muted">
+      <Text className="mt-4 max-w-[52ch] text-lg leading-relaxed text-ink-muted">
         {service.summary}
       </Text>
       {/* Capped measure: the list stays a compact spec under the summary, not a
@@ -146,11 +145,14 @@ export function ServiceRow({
         panelGrid,
       )}
     >
-      <EditorialImage
-        photo={service.image}
-        sizes={PANEL_SIZES}
-        className={cx(flip && "md:order-2")}
-      />
+      <div className={cx("overflow-hidden bg-bone-100", flip && "md:order-2")}>
+        <Photo
+          photo={service.image}
+          sizes={PANEL_SIZES}
+          fit="intrinsic"
+          className="h-auto w-full"
+        />
+      </div>
       <div className={cx(flip && "md:order-1")}>{body}</div>
     </li>
   );

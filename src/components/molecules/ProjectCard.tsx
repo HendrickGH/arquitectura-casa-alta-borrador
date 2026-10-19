@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/atoms/Button";
 import { Heading } from "@/components/atoms/Heading";
-import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
+import { cx } from "@/lib/cx";
 import { revealStep } from "@/lib/reveal";
 import type { Project } from "@/types/content";
 
@@ -16,15 +17,25 @@ interface ProjectCardProps {
   revealIndex?: number;
   /** Interactive dossier modal trigger. */
   onSelect?: (project: Project) => void;
+  /** Aspect ratio class, e.g. "aspect-[16/10]" or "aspect-[4/5]". Defaults to "aspect-[4/3]". */
+  aspectClassName?: string;
+  /** Grid layout and column placement classes. */
+  className?: string;
+  /** Whether to prefer project.wideCover for landscape cells. */
+  preferWide?: boolean;
 }
 
 /**
- * Thirdway-style editorial project card (`cards-insights-carousel` plate).
+ * Architectural Monograph Project Card (Bloom 3D Reference).
  *
- * Framed on a warm `concha-nacar` plate with oval capsule metadata tags
- * `(01) (TIPOLOGÍA) (UBICACIÓN)`, a manual multi-photo carousel, and an
- * inline underlined action with an oval arrow pill that opens the full
- * architectural dossier modal — never a generic rectangular bordered button.
+ * - Resting: Pristine architectural photograph with dynamic proportions (wide 16:10 vs tall 4:5).
+ *   Zero description, zero overlaid text or scrims when unhovered.
+ * - Desktop Hover: Smooth dark gradient scrim fades in with the project title
+ *   at bottom-left and location at bottom-right. Clicking anywhere opens the
+ *   dossier modal (`onSelect`).
+ * - Mobile Touch: First tap activates the hover state (revealing title, location,
+ *   and a centered "Conoce más" Button). Tapping "Conoce más" opens the dossier modal.
+ *   Tapping outside or tapping the card again closes the active state.
  */
 export function ProjectCard({
   project,
@@ -32,215 +43,134 @@ export function ProjectCard({
   priority = false,
   revealIndex,
   onSelect,
+  aspectClassName = "aspect-[4/3]",
+  className,
+  preferWide = false,
 }: ProjectCardProps) {
-  const images = project.gallery.length > 0 ? project.gallery : [project.cover];
-  const [index, setIndex] = useState(0);
-  const total = images.length;
-  const touchStartX = useRef<number | null>(null);
+  const [isActive, setIsActive] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const cardRef = useRef<HTMLElement>(null);
 
-  const move = (step: number) =>
-    setIndex((current) => (current + step + total) % total);
+  const photo =
+    preferWide && project.wideCover ? project.wideCover : project.cover;
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0]?.clientX ?? null;
-  };
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: none) or (max-width: 767px)");
+    const updateTouch = () => setIsTouchDevice(mq.matches);
+    updateTouch();
+    mq.addEventListener("change", updateTouch);
+    return () => mq.removeEventListener("change", updateTouch);
+  }, []);
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const endX = e.changedTouches[0]?.clientX ?? null;
-    if (endX === null) return;
-    const diff = touchStartX.current - endX;
-    touchStartX.current = null;
-    if (Math.abs(diff) > 40) {
-      move(diff > 0 ? 1 : -1);
+  useEffect(() => {
+    if (!isActive) return;
+
+    const handlePointerDownOutside = (e: PointerEvent) => {
+      if (cardRef.current && !cardRef.current.contains(e.target as Node)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDownOutside);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDownOutside);
+    };
+  }, [isActive]);
+
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (isTouchDevice) {
+      if (!isActive) {
+        e.preventDefault();
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
+    } else {
+      onSelect?.(project);
     }
   };
 
-  const ordinal =
-    typeof revealIndex === "number"
-      ? String(revealIndex + 1).padStart(2, "0")
-      : "01";
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onSelect?.(project);
+    }
+  };
 
   return (
     <article
+      ref={cardRef}
       {...revealStep(revealIndex)}
-      className="group flex flex-col justify-between"
+      role="button"
+      tabIndex={0}
+      aria-label={`Ver proyecto ${project.title}`}
+      onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
+      className={cx(
+        "group relative w-full cursor-pointer overflow-hidden bg-bone-100 select-none",
+        aspectClassName,
+        "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-800",
+        className,
+      )}
     >
-      <div>
-        {/* Top Thirdway oval capsule metadata bar */}
-        <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="number-pill">{`(${ordinal})`}</span>
-            {project.categoryLabel ? (
-              <span className="number-pill">{project.categoryLabel}</span>
-            ) : null}
+      {/* 1° Clean Photograph */}
+      <Photo
+        photo={photo}
+        sizes={sizes}
+        priority={priority}
+        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+      />
+
+      {/* 2° Hover / Active Overlay */}
+      <div
+        className={cx(
+          "absolute inset-0 flex flex-col justify-between transition-opacity duration-300",
+          isActive
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-visible:opacity-100 group-focus-visible:pointer-events-auto",
+        )}
+      >
+        {/* Scrim gradient: deep bottom, soft middle */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-transparent"
+        />
+
+        {/* Mobile CTA: "Conoce más" button (shown when active on touch/mobile) */}
+        {isActive ? (
+          <div
+            className="relative z-20 flex flex-1 items-center justify-center p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Button
+              variant="inverse"
+              size="sm"
+              arrow
+              onClick={() => {
+                setIsActive(false);
+                onSelect?.(project);
+              }}
+            >
+              Conoce más
+            </Button>
           </div>
+        ) : (
+          <div className="flex-1" />
+        )}
+
+        {/* Bottom Bar: Title (left) & Location (right) */}
+        <div className="relative z-10 flex items-end justify-between gap-4 p-3.5 sm:p-4 md:p-5">
+          <h3 className="font-sans text-sm sm:text-base md:text-lg font-medium text-white drop-shadow-sm leading-tight tracking-normal flex-1 min-w-0 pr-2">
+            {project.title}
+          </h3>
+
           {project.location ? (
-            <span className="text-xs tracking-wider text-ink-muted uppercase">
+            <span className="font-sans text-xs sm:text-sm text-white/90 drop-shadow-sm whitespace-nowrap pb-0.5">
               {project.location}
             </span>
           ) : null}
         </div>
-
-        {/* Title & concise summary above the photograph (Thirdway plate order) */}
-        <div
-          {...(onSelect
-            ? {
-                role: "button",
-                tabIndex: 0,
-                onClick: () => onSelect(project),
-                onKeyDown: (e: React.KeyboardEvent) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    onSelect(project);
-                  }
-                },
-                "aria-label": `Ver expediente completo de ${project.title}`,
-                className:
-                  "cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-800",
-              }
-            : {})}
-        >
-          <Heading
-            as="h3"
-            voice="serif"
-            sizeClassName="text-[1.45rem] leading-[1.12] md:text-[1.7rem] transition-colors group-hover:text-brand-800"
-          >
-            {project.title}
-          </Heading>
-
-          {project.summary ? (
-            <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-ink-muted">
-              {project.summary}
-            </p>
-          ) : null}
-        </div>
-      </div>
-
-      {/* Framed photograph carousel with touch swipe support */}
-      <div className="mt-5">
-        <div
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          className="relative aspect-[4/3] w-full overflow-hidden"
-        >
-          <div
-            className="flex h-full transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${index * 100}%)` }}
-          >
-            {images.map((photo, i) => (
-              <div
-                key={photo.src}
-                onClick={() => onSelect?.(project)}
-                className={`relative h-full w-full shrink-0 ${
-                  onSelect ? "cursor-pointer" : ""
-                }`}
-              >
-                <Photo
-                  photo={photo}
-                  sizes={sizes}
-                  priority={priority && i === 0}
-                  className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="pointer-events-none absolute bottom-3 left-3 z-10 flex items-center gap-1.5">
-            <span className="number-pill-inverse">
-              {`(${String(index + 1).padStart(2, "0")}) / (${String(total).padStart(2, "0")})`}
-            </span>
-          </div>
-
-          {total > 1 ? (
-            <>
-              <CarouselArrow
-                label="Imagen anterior"
-                side="left"
-                onClick={() => move(-1)}
-              />
-              <CarouselArrow
-                label="Imagen siguiente"
-                side="right"
-                onClick={() => move(1)}
-              />
-            </>
-          ) : null}
-        </div>
-
-        {/* Bottom inline Thirdway action bar */}
-        <div className="mt-4 flex items-center justify-between gap-4 border-t border-ink/12 pt-3.5">
-          <span className="text-xs text-ink-muted">
-            {`${project.photoCount} fotografías de obra`}
-          </span>
-
-          {onSelect ? (
-            <button
-              type="button"
-              onClick={() => onSelect(project)}
-              className="group/btn label inline-flex items-center gap-2.5 text-ink transition-colors hover:text-brand-800"
-            >
-              <span className="underline decoration-ink/40 underline-offset-[5px] group-hover/btn:decoration-brand-800">
-                Ver expediente
-              </span>
-              <span aria-hidden="true" className="arrow-pill arrow-pill-ink">
-                <svg
-                  viewBox="0 0 16 16"
-                  className="arrow-pill-out h-3.5 w-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                >
-                  <path
-                    d="M2.5 8h11m-4-4 4 4-4 4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <svg
-                  viewBox="0 0 16 16"
-                  className="arrow-pill-in h-3.5 w-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                >
-                  <path
-                    d="M2.5 8h11m-4-4 4 4-4 4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </button>
-          ) : null}
-        </div>
       </div>
     </article>
-  );
-}
-
-interface CarouselArrowProps {
-  label: string;
-  side: "left" | "right";
-  onClick: () => void;
-}
-
-function CarouselArrow({ label, side, onClick }: CarouselArrowProps) {
-  const position = side === "left" ? "left-2.5" : "right-2.5";
-  return (
-    <button
-      type="button"
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick();
-      }}
-      aria-label={label}
-      className={`absolute top-1/2 z-10 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-white/35 bg-ink/55 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-ink/85 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${position}`}
-    >
-      <Icon
-        name={side === "left" ? "arrow-left" : "arrow-right"}
-        className="h-4 w-4"
-      />
-    </button>
   );
 }

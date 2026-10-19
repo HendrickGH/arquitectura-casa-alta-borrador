@@ -3,15 +3,9 @@ import { Text } from "@/components/atoms/Text";
 interface StatItemProps {
   value: string;
   label: string;
-  index?: number;
+  tag?: string;
+  sub?: string;
 }
-
-const STAT_METRICS_INFO: Record<number, { tag: string; sub: string }> = {
-  1: { tag: "TRAYECTORIA", sub: "Presencia continua en Oaxaca" },
-  2: { tag: "PROYECTOS", sub: "Edificación habitacional y civil" },
-  3: { tag: "SUPERFICIE", sub: "Cálculo y estructura ejecutada" },
-  4: { tag: "GARANTÍA", sub: "Certeza técnica y contractual" },
-};
 
 /**
  * One figure in the ledger. The figure is set in the editorial serif at display
@@ -20,23 +14,12 @@ const STAT_METRICS_INFO: Record<number, { tag: string; sub: string }> = {
  * `data-count` carries the authored value to the reveal script, which counts it
  * up from zero the first time the band enters.
  */
-export function StatItem({ value, label, index }: StatItemProps) {
-  const meta = index !== undefined ? STAT_METRICS_INFO[index] : null;
-
+export function StatItem({ value, label, tag, sub }: StatItemProps) {
   return (
     <div className="group flex flex-col justify-between gap-3 p-1 transition-all duration-300">
-      <div className="flex items-center justify-between gap-2 pr-4">
-        {meta ? (
-          <span className="label text-[0.65rem] tracking-widest text-brand-800 font-semibold">
-            {meta.tag}
-          </span>
-        ) : <span />}
-        {index !== undefined ? (
-          <span className="number-pill transition-colors duration-300 group-hover:border-brand-800 group-hover:bg-brand-800 group-hover:text-white">
-            {String(index).padStart(2, "0")}
-          </span>
-        ) : null}
-      </div>
+      {tag ? (
+        <span className="label text-brand-800">{tag}</span>
+      ) : null}
 
       <div>
         <p
@@ -45,13 +28,11 @@ export function StatItem({ value, label, index }: StatItemProps) {
         >
           {value}
         </p>
-        <Text size="sm" className="mt-2 text-ink font-medium leading-snug">
+        <Text size="sm" className="mt-2 font-medium leading-snug text-ink">
           {label}
         </Text>
-        {meta?.sub ? (
-          <p className="mt-1 text-[0.75rem] text-ink-muted leading-relaxed">
-            {meta.sub}
-          </p>
+        {sub ? (
+          <p className="mt-1 text-xs leading-relaxed text-ink-muted">{sub}</p>
         ) : null}
       </div>
     </div>

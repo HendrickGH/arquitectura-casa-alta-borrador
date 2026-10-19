@@ -124,14 +124,42 @@ const contactStudioPhoto: Photo = {
   height: 1280,
 };
 
+/** Flagship photograph for the Closing CTA section: Punta Zicatela. */
+const closingStudioPhoto: Photo = {
+  src: "/images/10-obra-punta-zicatela/10-escalones-acceso-vano-trapezoidal-recamara.avif",
+  alt: "Acceso arquitectónico en acabado chukum con vano trapezoidal monumental, escalones de concreto y luz rasante en Punta Zicatela",
+  width: 1500,
+  height: 2000,
+};
+
 /**
  * Figures the client supplied directly.
  */
 const stats: Stat[] = [
-  { value: "2016", label: "Construyendo desde" },
-  { value: "150+", label: "Obras entregadas" },
-  { value: "50,000", label: "Metros cuadrados construidos" },
-  { value: "100%", label: "Entregas cumplidas" },
+  {
+    value: "2016",
+    label: "Construyendo desde",
+    tag: "TRAYECTORIA",
+    sub: "Presencia continua en Oaxaca",
+  },
+  {
+    value: "150+",
+    label: "Obras entregadas",
+    tag: "PROYECTOS",
+    sub: "Edificación habitacional y civil",
+  },
+  {
+    value: "50,000",
+    label: "Metros cuadrados construidos",
+    tag: "SUPERFICIE",
+    sub: "Cálculo y estructura ejecutada",
+  },
+  {
+    value: "100%",
+    label: "Entregas cumplidas",
+    tag: "GARANTÍA",
+    sub: "Certeza técnica y contractual",
+  },
 ];
 
 const tiles: CategoryTileContent[] = [
@@ -288,23 +316,47 @@ export const home: HomePage = {
 
   testimonials: {
     intro: {
-      eyebrow: "Clientes",
-      heading: "Lo que dicen de nosotros",
-      body: "",
+      eyebrow: "Respaldo y certidumbre",
+      heading: "Garantía contractual de entrega por obra",
+      body: "Nuestra credibilidad descansa en obras concluidas, memorias técnicas auditables y compromisos por escrito entregados en mano a cada propietario.",
     },
     items: [],
+    dossiers: [],
   },
 
   closing: {
+    eyebrow: "Primera reunión sin costo",
     heading: "Construir con Casa Alta es sencillo",
     body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
     cta: { label: "Agendar primera reunión", href: whatsappHref },
+    photo: closingStudioPhoto,
   },
 
   contact: {
     eyebrow: "Contacto directo",
     heading: "Cuéntenos su proyecto",
     body: "Agende su primera reunión sin costo por Zoom o en nuestras oficinas de Puerto Escondido y Salina Cruz. Si prefiere atención inmediata, escríbanos por WhatsApp.",
+    specialtiesLabel: "Especialidad de su proyecto",
+    specialties: [
+      "Arquitectura Residencial",
+      "Ingeniería y Obra Civil",
+      "Interiores y Cosentino",
+      "Construcción Sustentable",
+      "Remodelación / Gabinete",
+    ],
+    localitiesLabel: "Ubicación o plaza de ejecución",
+    localities: [
+      "Puerto Escondido",
+      "Oaxaca Centro",
+      "Salina Cruz",
+      "Costa / Otra región",
+    ],
+    consultationTitle: "Primera sesión técnica sin costo",
+    consultationChecklist: [
+      "Evaluación de predio, mecánica preliminar y orientación solar",
+      "Estimación paramétrica de inversión y catálogo de partidas",
+      "Ruta crítica de proyecto ejecutivo y supervisión DRO",
+    ],
     name: { label: "Nombre", placeholder: "Su nombre completo" },
     email: { label: "Correo electrónico", placeholder: "nombre@correo.com" },
     phone: { label: "Teléfono / WhatsApp", placeholder: "951 000 0000" },

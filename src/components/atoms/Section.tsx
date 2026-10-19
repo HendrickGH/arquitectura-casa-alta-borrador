@@ -1,12 +1,15 @@
 import { cx } from "@/lib/cx";
 import { revealAttrs, type RevealVariant } from "@/lib/reveal";
 
-type Tone = "canvas" | "bone";
+type Tone = "canvas" | "bone" | "concha-nacar";
+type Density = "default" | "compact";
 
 interface SectionProps {
   children: React.ReactNode;
   /** Alternating tint. The page base is always canvas; bone never leads. */
   tone?: Tone;
+  /** Vertical rhythm scale. Use `compact` for dense bands or editorial splits. */
+  density?: Density;
   /** Anchor target for in-page navigation. */
   id?: string;
   className?: string;
@@ -18,9 +21,21 @@ interface SectionProps {
   reveal?: RevealVariant;
 }
 
+const tones: Record<Tone, string> = {
+  canvas: "bg-canvas",
+  bone: "bg-bone-50",
+  "concha-nacar": "bg-concha-nacar/35",
+};
+
+const densities: Record<Density, string> = {
+  default: "py-20 md:py-28 lg:py-36",
+  compact: "py-12 md:py-16 lg:py-20",
+};
+
 export function Section({
   children,
   tone = "canvas",
+  density = "default",
   id,
   className,
   reveal = "fade",
@@ -30,8 +45,8 @@ export function Section({
       id={id}
       {...revealAttrs(reveal)}
       className={cx(
-        "py-20 md:py-28 lg:py-36",
-        tone === "bone" ? "bg-bone-50" : "bg-canvas",
+        densities[density],
+        tones[tone],
         // Anchored sections clear the sticky header through the global
         // `scroll-padding-top` in globals.css, which reads `--chrome-h`.
         className,

@@ -88,4 +88,11 @@ export const site = {
     },
     { label: "WhatsApp", href: whatsappHref, icon: "whatsapp" },
   ],
+
+  footerPhoto: {
+    src: "/images/arquitectura-que-perdura/05-volumen-tres-niveles-chukum-remate-palapa.avif",
+    alt: "Volumen arquitectónico de tres niveles en chukum con remate de palapa en la costa de Oaxaca",
+    width: 829,
+    height: 1280,
+  },
 } satisfies SiteConfig;

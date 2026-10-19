@@ -1,3 +1,4 @@
+import { Icon } from "@/components/atoms/Icon";
 import { cx } from "@/lib/cx";
 
 type Variant = "primary" | "secondary" | "quiet" | "inverse" | "outline";
@@ -6,11 +7,12 @@ interface ButtonProps {
   children: React.ReactNode;
   /**
    * An anchor when present. Omit it to render a real `<button>` -- the submit
-   * control a form needs. The two are exclusive: a link that navigates and a
-   * control that submits are not the same thing, and the variants are shared so
-   * the primary action still has exactly one owner.
+   * or interactive control. The two are exclusive: a link that navigates and a
+   * control that triggers an action are not the same thing, and the variants
+   * are shared so the primary action still has exactly one owner.
    */
   href?: string;
+  onClick?: () => void;
   variant?: Variant;
   size?: "md" | "sm";
   className?: string;
@@ -19,7 +21,7 @@ interface ButtonProps {
   /** Submit controls only. */
   type?: "button" | "submit";
   disabled?: boolean;
-  /** Renders the Thirdway-style double-arrow pill alongside the label. */
+  /** Renders a clean directional arrow icon alongside the label. */
   arrow?: boolean;
 }
 
@@ -32,7 +34,6 @@ interface ButtonProps {
  */
 const variants: Record<Variant, string> = {
   primary: "bg-brand-800 text-white hover:bg-ink",
-  /* Thirdway signature inline underlined CTA with oval arrow pill — never a generic boxy border */
   secondary:
     "text-ink underline decoration-ink/40 underline-offset-[6px] hover:text-brand-800 hover:decoration-brand-800",
   quiet: "text-brand-700 underline underline-offset-4 hover:text-brand-900",
@@ -51,6 +52,7 @@ const sizes: Record<NonNullable<ButtonProps["size"]>, string> = {
 export function Button({
   children,
   href,
+  onClick,
   variant = "primary",
   size = "md",
   className,
@@ -64,42 +66,17 @@ export function Button({
 
   const classes = cx(
     "group label inline-flex items-center justify-center gap-3 transition-colors duration-200",
-    !isInlineLink ? cx(sizes[size], "rounded-full") : "py-1.5",
+    !isInlineLink ? sizes[size] : "py-1.5",
     variants[variant],
-    disabled && "cursor-not-allowed opacity-60",
+    disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer",
     className,
   );
 
-  const arrowPill = arrow ? (
-    <span
-      aria-hidden="true"
-      className={cx(
-        "arrow-pill",
-        (variant === "inverse" ||
-          variant === "secondary" ||
-          variant === "quiet") &&
-          "arrow-pill-ink",
-      )}
-    >
-      <svg
-        viewBox="0 0 16 16"
-        className="arrow-pill-out h-3.5 w-3.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      >
-        <path d="M2.5 8h11m-4-4 4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <svg
-        viewBox="0 0 16 16"
-        className="arrow-pill-in h-3.5 w-3.5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      >
-        <path d="M2.5 8h11m-4-4 4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    </span>
+  const arrowIcon = arrow ? (
+    <Icon
+      name="arrow-right"
+      className="h-3.5 w-3.5 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+    />
   ) : null;
 
   if (href) {
@@ -110,15 +87,20 @@ export function Button({
         className={classes}
       >
         <span>{children}</span>
-        {arrowPill}
+        {arrowIcon}
       </a>
     );
   }
 
   return (
-    <button type={type} disabled={disabled} className={classes}>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={classes}
+    >
       <span>{children}</span>
-      {arrowPill}
+      {arrowIcon}
     </button>
   );
 }

@@ -1,79 +1,34 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/atoms/Container";
 import { Logo } from "@/components/atoms/Logo";
 import { Photo } from "@/components/atoms/Photo";
-import type { Photo as PhotoType, SiteConfig } from "@/types/content";
+import type { SiteConfig } from "@/types/content";
 
 interface FooterProps {
   site: SiteConfig;
 }
 
-const FOOTER_STUDIO_PHOTO: PhotoType = {
-  src: "/images/arquitectura-que-perdura/05-volumen-tres-niveles-chukum-remate-palapa.avif",
-  alt: "Volumen arquitectónico de tres niveles en chukum con remate de palapa en la costa de Oaxaca",
-  width: 829,
-  height: 1280,
-};
-
 /**
- * Thirdway-style dark architectural footer with vertical ruler scale (`ruler-y`),
- * live scroll-distance meter, real studio photograph thumbnail, and monumental
- * wordmark.
+ * Dark architectural footer (`--color-ink`) with 0px geometry, studio office
+ * presence, and monumental wordmark.
  */
 export function Footer({ site }: FooterProps) {
   const year = new Date().getFullYear();
-  const [metersScrolled, setMetersScrolled] = useState("2.40");
-
-  useEffect(() => {
-    let ticking = false;
-    const updateDistance = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const maxScroll = Math.max(
-            document.documentElement.scrollHeight - window.innerHeight,
-            window.scrollY,
-            1200,
-          );
-          // 96 CSS px = 1 inch = 0.0254 m
-          const meters = (maxScroll * 0.0254) / 96;
-          setMetersScrolled(meters.toFixed(2));
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    updateDistance();
-    window.addEventListener("scroll", updateDistance, { passive: true });
-    return () => window.removeEventListener("scroll", updateDistance);
-  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="ruler-y relative overflow-hidden bg-ink text-concha-nacar">
-      {/* Left vertical ruler scale numbers (Thirdway signature) */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-10 bottom-10 left-4 hidden flex-col justify-between font-mono text-[0.65rem] tracking-widest text-concha-nacar/45 md:flex"
-      >
-        <span>01</span>
-        <span>02</span>
-        <span>03</span>
-        <span>04</span>
-        <span>05</span>
-      </div>
-
-      <Container className="py-16 md:py-24 lg:pl-14">
+    <footer className="relative overflow-hidden bg-ink text-concha-nacar">
+      <Container className="py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           {/* Left column: Navigation + Offices + Contact */}
           <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
             <div>
-              <p className="label mb-5 text-concha-nacar/50">(01) Navegación</p>
+              <p className="label mb-5 text-concha-nacar/50">Navegación</p>
               <ul className="flex flex-col gap-3">
                 {site.nav.map((link) => (
                   <li key={link.href}>
@@ -89,7 +44,7 @@ export function Footer({ site }: FooterProps) {
             </div>
 
             <div>
-              <p className="label mb-5 text-concha-nacar/50">(02) Sedes</p>
+              <p className="label mb-5 text-concha-nacar/50">Sedes</p>
               <ul className="flex flex-col gap-5">
                 {site.offices.map((office) => (
                   <li key={office.city} className="flex flex-col gap-1">
@@ -106,12 +61,12 @@ export function Footer({ site }: FooterProps) {
 
             <div>
               <p className="label mb-5 text-concha-nacar/50">
-                (03) Contacto directo
+                Contacto directo
               </p>
               <ul className="flex flex-col gap-4">
                 {site.contact.map((line) => (
                   <li key={line.href} className="flex flex-col gap-0.5">
-                    <span className="text-[0.68rem] tracking-wider text-concha-nacar/50 uppercase">
+                    <span className="label text-concha-nacar/50">
                       {line.label}
                     </span>
                     <a
@@ -131,7 +86,7 @@ export function Footer({ site }: FooterProps) {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-concha-nacar/25 px-3 py-1 text-[0.68rem] tracking-wider text-concha-nacar/80 uppercase transition-colors hover:border-concha-nacar hover:bg-concha-nacar hover:text-ink"
+                    className="label border border-concha-nacar/25 px-3 py-1.5 text-concha-nacar/80 transition-colors hover:border-concha-nacar hover:bg-concha-nacar hover:text-ink"
                   >
                     {link.label}
                   </a>
@@ -140,27 +95,29 @@ export function Footer({ site }: FooterProps) {
             </div>
           </div>
 
-          {/* Right column: Thirdway architectural scroll-distance box with real studio photo */}
+          {/* Right column: Studio institutional box with real studio photo */}
           <div className="flex flex-col justify-between border border-concha-nacar/20 bg-white/[0.03] p-6 md:p-8 lg:col-span-5">
             <div className="flex items-start justify-between gap-6">
               <div>
-                <span className="inline-flex rounded-full border border-concha-nacar/35 px-2.5 py-0.5 font-mono text-[0.68rem] text-concha-nacar/80">
-                  {`ESCALA 1:100 · ${site.foundedYear}—${year}`}
+                <span className="label inline-flex border border-concha-nacar/35 px-2.5 py-1 text-concha-nacar/80 tabular-nums">
+                  {`Desde ${site.foundedYear} · Oaxaca (${site.foundedYear}—${year})`}
                 </span>
-                <p className="display mt-4 text-xl leading-tight text-concha-nacar md:text-2xl">
-                  {`HA RECORRIDO ${metersScrolled} METROS DE OBRA CONSTRUIDA EN OAXACA`}
+                <p className="voice mt-4 text-xl leading-snug text-concha-nacar md:text-2xl">
+                  {site.claim}
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-concha-nacar/65">
                   {site.coverage}
                 </p>
               </div>
-              <div className="relative h-24 w-20 shrink-0 overflow-hidden border border-concha-nacar/25 bg-ink">
-                <Photo
-                  photo={FOOTER_STUDIO_PHOTO}
-                  sizes="96px"
-                  className="h-full w-full object-cover"
-                />
-              </div>
+              {site.footerPhoto ? (
+                <div className="relative h-24 w-20 shrink-0 overflow-hidden border border-concha-nacar/25 bg-ink">
+                  <Photo
+                    photo={site.footerPhoto}
+                    sizes="96px"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ) : null}
             </div>
 
             <div className="mt-8 flex items-center justify-between border-t border-concha-nacar/15 pt-4">
@@ -176,12 +133,12 @@ export function Footer({ site }: FooterProps) {
                 type="button"
                 onClick={scrollToTop}
                 aria-label="Volver arriba al inicio de la página"
-                className="group label inline-flex min-h-[44px] items-center gap-2.5 text-concha-nacar transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-white"
+                className="group label inline-flex min-h-[44px] cursor-pointer items-center gap-2.5 text-concha-nacar transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-white"
               >
                 <span className="underline decoration-concha-nacar/40 underline-offset-4 group-hover:decoration-white">
                   Volver arriba
                 </span>
-                <span className="inline-flex h-7 w-9 items-center justify-center rounded-full border border-concha-nacar/40 bg-concha-nacar text-ink transition-transform duration-300 group-hover:-translate-y-0.5">
+                <span className="inline-flex h-8 w-8 items-center justify-center border border-concha-nacar/40 bg-concha-nacar text-ink transition-transform duration-300 group-hover:-translate-y-0.5">
                   ↑
                 </span>
               </button>
@@ -196,13 +153,11 @@ export function Footer({ site }: FooterProps) {
               <p className="display text-[clamp(2.6rem,7vw,6.5rem)] leading-[0.86] tracking-[-0.03em] text-concha-nacar/90">
                 CASA ALTA
               </p>
-              <p className="mt-2 text-xs tracking-widest text-concha-nacar/55 uppercase">
-                {site.tagline}
-              </p>
+              <p className="label mt-2 text-concha-nacar/55">{site.tagline}</p>
             </div>
 
             <div className="flex flex-col gap-1 text-left md:text-right">
-              <p className="label text-concha-nacar/60">
+              <p className="label text-concha-nacar/60 tabular-nums">
                 {`© ${year} ${site.legalName}`}
               </p>
               <p className="text-xs text-concha-nacar/45">{site.claim}</p>

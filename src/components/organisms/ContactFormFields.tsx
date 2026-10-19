@@ -15,39 +15,24 @@ interface ContactFormFieldsProps {
 
 type Status = "idle" | "sending" | "success" | "error";
 
-const SPECIALTY_OPTIONS = [
-  "Arquitectura Residencial",
-  "Ingeniería y Obra Civil",
-  "Interiores y Cosentino",
-  "Construcción Sustentable",
-  "Remodelación / Gabinete",
-] as const;
-
-const LOCALITY_OPTIONS = [
-  "Puerto Escondido",
-  "Oaxaca Centro",
-  "Salina Cruz",
-  "Costa / Otra región",
-] as const;
-
 /**
  * Architectural Consultation Hub (`ContactFormFields`).
  *
- * Enhanced with Wenda-inspired microinteractions:
- * - Interactive specialty selector chips to guide the client's inquiry.
- * - Project location chips for Puerto Escondido, Oaxaca Centro, Salina Cruz, etc.
+ * - 0px rectangular specialty and locality selector chips (`border-brand-800 bg-brand-50 text-brand-900` when active).
  * - Dynamic WhatsApp synchronization: updates the prefilled WhatsApp message in real-time.
- * - Animated sending indicator and styled confirmation banners in the firm's brand palette.
  */
 export function ContactFormFields({
   contact,
   whatsappHref,
 }: ContactFormFieldsProps) {
+  const specialties = contact.specialties ?? [];
+  const localities = contact.localities ?? [];
+
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>(
-    SPECIALTY_OPTIONS[0],
+    specialties[0] ?? "",
   );
   const [selectedLocality, setSelectedLocality] = useState<string>(
-    LOCALITY_OPTIONS[0],
+    localities[0] ?? "",
   );
   const [status, setStatus] = useState<Status>("idle");
 
@@ -90,59 +75,65 @@ export function ContactFormFields({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-      {/* 1. Specialty Selection Chips (Borderless) */}
-      <div>
-        <label className="mb-2.5 block text-xs font-semibold uppercase tracking-wider text-ink-muted">
-          1. Especialidad de su proyecto
-        </label>
-        <div className="flex flex-wrap gap-2">
-          {SPECIALTY_OPTIONS.map((spec) => {
-            const isSelected = selectedSpecialty === spec;
-            return (
-              <button
-                key={spec}
-                type="button"
-                onClick={() => setSelectedSpecialty(spec)}
-                className={cx(
-                  "cursor-pointer px-3.5 py-2 text-xs font-medium tracking-wide transition-all duration-200",
-                  isSelected
-                    ? "bg-brand-800 text-white shadow-xs"
-                    : "bg-bone-100 text-ink/80 hover:bg-bone-200 hover:text-ink",
-                )}
-              >
-                {spec}
-              </button>
-            );
-          })}
+      {/* 1. Specialty Selection Chips (0px rectangular) */}
+      {specialties.length > 0 ? (
+        <div>
+          <label className="label mb-2.5 block text-ink-muted">
+            {contact.specialtiesLabel || "1. Especialidad de su proyecto"}
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {specialties.map((spec) => {
+              const isSelected = selectedSpecialty === spec;
+              return (
+                <button
+                  key={spec}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setSelectedSpecialty(spec)}
+                  className={cx(
+                    "label min-h-[44px] cursor-pointer border px-4 py-2.5 transition-colors duration-200",
+                    isSelected
+                      ? "border-brand-800 bg-brand-50 text-brand-900"
+                      : "border-bone-200 bg-canvas text-ink-muted hover:border-ink/40 hover:text-ink",
+                  )}
+                >
+                  {spec}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : null}
 
-      {/* 2. Locality Selection Chips (Borderless) */}
-      <div>
-        <label className="mb-2.5 block text-xs font-semibold uppercase tracking-wider text-ink-muted">
-          2. Ubicación o plaza de ejecución
-        </label>
-        <div className="flex flex-wrap gap-2">
-          {LOCALITY_OPTIONS.map((loc) => {
-            const isSelected = selectedLocality === loc;
-            return (
-              <button
-                key={loc}
-                type="button"
-                onClick={() => setSelectedLocality(loc)}
-                className={cx(
-                  "cursor-pointer px-3.5 py-2 text-xs font-medium tracking-wide transition-all duration-200",
-                  isSelected
-                    ? "bg-brand-800 text-white shadow-xs"
-                    : "bg-bone-100 text-ink/80 hover:bg-bone-200 hover:text-ink",
-                )}
-              >
-                {loc}
-              </button>
-            );
-          })}
+      {/* 2. Locality Selection Chips (0px rectangular) */}
+      {localities.length > 0 ? (
+        <div>
+          <label className="label mb-2.5 block text-ink-muted">
+            {contact.localitiesLabel || "2. Ubicación o plaza de ejecución"}
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {localities.map((loc) => {
+              const isSelected = selectedLocality === loc;
+              return (
+                <button
+                  key={loc}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setSelectedLocality(loc)}
+                  className={cx(
+                    "label min-h-[44px] cursor-pointer border px-4 py-2.5 transition-colors duration-200",
+                    isSelected
+                      ? "border-brand-800 bg-brand-50 text-brand-900"
+                      : "border-bone-200 bg-canvas text-ink-muted hover:border-ink/40 hover:text-ink",
+                  )}
+                >
+                  {loc}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : null}
 
       {/* 3. Text inputs grid */}
       <div className="grid gap-6 md:grid-cols-2">
@@ -213,18 +204,18 @@ export function ContactFormFields({
             )}
           </Button>
 
-          <Button href={dynamicWhatsappHref} variant="secondary" external>
+          <Button href={dynamicWhatsappHref} variant="secondary" external arrow>
             {contact.whatsapp}
           </Button>
         </div>
 
-        {/* Status Feedback Announcements */}
+        {/* Status Feedback Announcements (0px geometry) */}
         {status === "success" && (
           <div
             role="status"
             className="flex items-start gap-3 border border-emerald-300 bg-emerald-50/90 p-4 text-sm text-emerald-900 md:col-span-2"
           >
-            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-emerald-600 text-white">
               <svg
                 viewBox="0 0 16 16"
                 className="h-3 w-3"
@@ -242,7 +233,8 @@ export function ContactFormFields({
             <div>
               <p className="font-semibold">{contact.success}</p>
               <p className="mt-0.5 text-xs text-emerald-800">
-                Un arquitecto de nuestro equipo revisará su proyecto y le responderá a la brevedad.
+                Un arquitecto de nuestro equipo revisará su proyecto y le
+                responderá a la brevedad.
               </p>
             </div>
           </div>
@@ -253,7 +245,7 @@ export function ContactFormFields({
             role="alert"
             className="flex items-start gap-3 border border-amber-300 bg-amber-50/90 p-4 text-sm text-amber-900 md:col-span-2"
           >
-            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-amber-600 text-white">
+            <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-amber-600 text-white">
               !
             </span>
             <div>

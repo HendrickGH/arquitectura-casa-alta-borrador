@@ -4,10 +4,14 @@ import { editorialRefs } from "@/content/editorial";
 import { home } from "@/content/home";
 import { processSteps } from "@/content/process";
 import { differentiators } from "@/content/differentiators";
-import { testimonials } from "@/content/testimonials";
+import {
+  institutionalDossiers,
+  testimonials,
+} from "@/content/testimonials";
 import { masonrySlots } from "@/content/masonry";
 import {
   aboutPageContent,
+  contactPageContent,
   interiorsPageContent,
   servicesPageContent,
   sustainabilityPageContent,
@@ -31,6 +35,7 @@ import {
 import type {
   AboutPageContent,
   CategoryTile,
+  ContactPageContent,
   Differentiator,
   DivisionCard,
   HomePage,
@@ -43,6 +48,7 @@ import type {
   ServiceGroup,
   ServicesPageContent,
   SiteConfig,
+  SpaceCard,
   SustainabilityPageContent,
   Testimonial,
 } from "@/types/content";
@@ -172,7 +178,7 @@ export function getFeaturedProjects(): Project[] {
     .filter((project): project is Project => project !== null);
 }
 
-/** Four flagship projects lead the landing showcase (`[01] / [04]`). */
+/** Four flagship projects lead the landing showcase (`01 / 04`). */
 const FEATURED_COUNT = 4;
 
 /** A project's display title, for the alt text the manifest cannot supply. */
@@ -196,8 +202,7 @@ export function getLandingPortfolio(): {
 }
 
 /**
- * The four vertical division cards on the landing page (Thirdway expandable
- * card pattern).
+ * The four vertical division cards on the landing page.
  */
 export function getDivisionCards(): DivisionCard[] {
   return home.divisions
@@ -327,7 +332,11 @@ export function getHomePage(): HomePage {
       ...home.differentiators,
       items: getDifferentiators(),
     },
-    testimonials: { ...home.testimonials, items: testimonials },
+    testimonials: {
+      ...home.testimonials,
+      items: testimonials,
+      dossiers: institutionalDossiers,
+    },
   };
 }
 
@@ -342,6 +351,79 @@ export function getInteriorsPage(): InteriorsPageContent {
     ) ??
     getProjectCover(interiorsPageContent.hero.dir, "Arquitectura de interiores")!;
 
+  const interiorsPhotos = getProjectPhotos(
+    "arquitectura-interiores",
+    "Arquitectura de interiores Casa Alta",
+  ).filter((p) => p.src !== heroPhoto.src);
+
+  const lifestylePhotos = getProjectPhotos(
+    "modelos-mujeres",
+    "Showroom de cocinas e interiorismo Casa Alta",
+  );
+
+  const spaces: SpaceCard[] = [];
+
+  interiorsPhotos.forEach((photo, idx) => {
+    const src = photo.src;
+    if (src.includes("bano") || src.includes("lavabo")) {
+      spaces.push({
+        id: `bano-${idx}`,
+        category: "banos",
+        categoryLabel: "Baño residencial",
+        title: src.includes("marmol")
+          ? "Baño principal en mármol con luz perimetral"
+          : "Lavabo flotante negro mate y monomando",
+        materials: "Mármol importado · Herrajes y monomando negro mate",
+        photo,
+      });
+    } else if (
+      src.includes("isla") ||
+      src.includes("cocina") ||
+      src.includes("cubierta")
+    ) {
+      spaces.push({
+        id: `cocina-${idx}`,
+        category: "cocinas",
+        categoryLabel: "Cocina e isla",
+        title: src.includes("piedra")
+          ? "Isla monolítica en piedra sinterizada"
+          : src.includes("ventanal")
+            ? "Cocina integral integrada a patio interior"
+            : "Cubierta continua con veta lineal",
+        materials: "Superficie ultracompacta Cosentino · Veta continua",
+        photo,
+      });
+    } else {
+      spaces.push({
+        id: `interior-${idx}`,
+        category: "interiores",
+        categoryLabel: "Comedor y estancia",
+        title: src.includes("galeria")
+          ? "Pasillo galería con muro terracota"
+          : "Comedor residencial en parota con vista a jardín",
+        materials: "Madera tropical certificada · Acabado concha nácar",
+        photo,
+      });
+    }
+  });
+
+  lifestylePhotos.slice(0, 6).forEach((photo, idx) => {
+    spaces.push({
+      id: `lifestyle-${idx}`,
+      category: "showroom",
+      categoryLabel: "Showroom Casa Alta",
+      title:
+        idx === 0
+          ? "Convivencia diaria en isla de piedra natural"
+          : idx === 1
+            ? "Barra contemporánea con iluminación cálida"
+            : "Cocina integral negro mate en showroom",
+      materials:
+        "Superficies Cosentino de importación · Mobiliario sobre diseño",
+      photo,
+    });
+  });
+
   return {
     hero: {
       eyebrow: interiorsPageContent.hero.eyebrow,
@@ -349,17 +431,15 @@ export function getInteriorsPage(): InteriorsPageContent {
       subheadline: interiorsPageContent.hero.subheadline,
       photo: heroPhoto,
     },
+    inspiration: {
+      ...interiorsPageContent.inspiration,
+      spaces,
+    },
     cosentino: interiorsPageContent.cosentino,
     interiorsGalleryIntro: interiorsPageContent.interiorsGalleryIntro,
-    interiorsPhotos: getProjectPhotos(
-      "arquitectura-interiores",
-      "Arquitectura de interiores Casa Alta",
-    ).filter((p) => p.src !== heroPhoto.src),
+    interiorsPhotos,
     lifestyleIntro: interiorsPageContent.lifestyleIntro,
-    lifestylePhotos: getProjectPhotos(
-      "modelos-mujeres",
-      "Showroom de cocinas e interiorismo Casa Alta",
-    ),
+    lifestylePhotos,
   };
 }
 
@@ -437,10 +517,18 @@ export function getServicesPage(): ServicesPageContent {
     ) ??
     getProjectCover(servicesPageContent.hero.dir, "Ingeniería civil Casa Alta")!;
 
+  const introPhoto =
+    findPhotoByBase(
+      servicesPageContent.intro.dir,
+      servicesPageContent.intro.base,
+      "Ingeniería y proyecto ejecutivo en gabinete",
+    ) ?? undefined;
+
   // Track used photos on the services page so specialty galleries don't duplicate
   // the hero or the service catalogue cards.
   const used = new Set<string>([
     heroPhoto.src,
+    ...(introPhoto ? [introPhoto.src] : []),
     ...getServiceGroups().flatMap((g) =>
       g.services.flatMap((s) => (s.image ? [s.image.src] : [])),
     ),
@@ -453,7 +541,13 @@ export function getServicesPage(): ServicesPageContent {
       subheadline: servicesPageContent.hero.subheadline,
       photo: heroPhoto,
     },
-    intro: servicesPageContent.intro,
+    intro: {
+      eyebrow: servicesPageContent.intro.eyebrow,
+      heading: servicesPageContent.intro.heading,
+      body: servicesPageContent.intro.body,
+      photo: introPhoto,
+      photoCaption: servicesPageContent.intro.photoCaption,
+    },
     specialties: {
       eyebrow: servicesPageContent.specialties.eyebrow,
       heading: servicesPageContent.specialties.heading,
@@ -479,4 +573,41 @@ export function getServicesPage(): ServicesPageContent {
     },
   };
 }
+
+export function getContactPage(): ContactPageContent {
+  const heroPhoto =
+    findPhotoByBase(
+      contactPageContent.hero.dir,
+      contactPageContent.hero.base,
+      "Sesión de revisión de proyecto ejecutivo en oficina de Constructora Casa Alta",
+    ) ??
+    getProjectCover(contactPageContent.hero.dir, "Contacto Casa Alta")!;
+
+  const officesPhoto =
+    findPhotoByBase(
+      contactPageContent.officesIntro.dir,
+      contactPageContent.officesIntro.base,
+      "Unidad institucional de Constructora Casa Alta en supervisión de obra en Oaxaca",
+    ) ??
+    getProjectCover(
+      contactPageContent.officesIntro.dir,
+      "Supervisión de obra Casa Alta",
+    )!;
+
+  return {
+    hero: {
+      eyebrow: contactPageContent.hero.eyebrow,
+      heading: contactPageContent.hero.heading,
+      subheadline: contactPageContent.hero.subheadline,
+      photo: heroPhoto,
+    },
+    officesIntro: {
+      eyebrow: contactPageContent.officesIntro.eyebrow,
+      heading: contactPageContent.officesIntro.heading,
+      body: contactPageContent.officesIntro.body,
+      photo: officesPhoto,
+    },
+  };
+}
+
 

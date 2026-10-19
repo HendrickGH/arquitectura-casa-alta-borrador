@@ -6,6 +6,7 @@ import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
+import { ContactForm } from "@/components/organisms/ContactForm";
 import { PageHero } from "@/components/organisms/PageHero";
 import { ProcessList } from "@/components/organisms/ProcessList";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
@@ -27,6 +28,8 @@ interface ServicesPageTemplateProps {
   processIntro: SectionIntro;
   steps: ProcessStep[];
   closing: HomePage["closing"];
+  contact: HomePage["contact"];
+  whatsappHref: string;
 }
 
 const SPECIALTY_PHOTO_SIZES =
@@ -46,28 +49,24 @@ export function ServicesPageTemplate({
   processIntro,
   steps,
   closing,
+  contact,
+  whatsappHref,
 }: ServicesPageTemplateProps) {
   return (
     <SiteChrome site={site} chrome="canvas">
       <main id="main">
         <PageHero
-          badge="(DIVISIÓN 02)"
           eyebrow={page.hero.eyebrow}
           heading={page.hero.heading}
           subheadline={page.hero.subheadline}
           photo={page.hero.photo}
         />
 
-        <Section
-          tone="canvas"
-          reveal="stagger"
-          className="!pt-12 !pb-16 md:!pt-16 md:!pb-20"
-        >
+        <Section tone="canvas" density="compact" reveal="stagger">
           <Container>
             <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
               <div className="flex flex-col gap-4 lg:col-span-7">
-                <div {...revealStep(0)} className="flex items-center gap-2.5">
-                  <span className="number-pill">(01)</span>
+                <div {...revealStep(0)}>
                   <p className="eyebrow">{page.intro.eyebrow}</p>
                 </div>
                 <div {...revealStep(1)}>
@@ -90,24 +89,23 @@ export function ServicesPageTemplate({
                 </div>
               </div>
 
-              <div {...revealStep(2)} className="lg:col-span-5">
-                <div className="overflow-hidden">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Photo
-                      photo={{
-                        src: "/images/proyectos-integrales/01-arquitectos-revisando-planos-estructurales-mesa-madera.avif",
-                        alt: "Arquitectos e ingenieros de Casa Alta revisando planos ejecutivos y cálculo estructural",
-                        width: 960,
-                        height: 1280,
-                      }}
-                      sizes="(min-width: 1024px) 40vw, 95vw"
-                    />
-                  </div>
-                  <div className="mt-3 flex items-center justify-between gap-2 text-xs text-ink-muted">
-                    <span>Ingeniería y proyecto ejecutivo en gabinete</span>
-                  </div>
+              {page.intro.photo ? (
+                <div {...revealStep(2)} className="lg:col-span-5">
+                  <figure className="overflow-hidden">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
+                      <Photo
+                        photo={page.intro.photo}
+                        sizes="(min-width: 1024px) 40vw, 95vw"
+                      />
+                    </div>
+                    {page.intro.photoCaption ? (
+                      <figcaption className="mt-3 text-xs text-ink-muted">
+                        {page.intro.photoCaption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
                 </div>
-              </div>
+              ) : null}
             </div>
           </Container>
         </Section>
@@ -126,13 +124,19 @@ export function ServicesPageTemplate({
                   key={specialty.slug}
                   id={specialty.slug}
                   {...revealStep(sIdx)}
-                  className="ruler-top pt-10"
+                  className="border-t border-bone-200 pt-10"
                 >
                   <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
                     <div className="flex flex-col gap-4 lg:col-span-5">
                       <div className="flex items-center gap-3">
-                        <span className="number-pill">{specialty.number}</span>
-                        <span className="label text-brand-800">
+                        <span className="label tabular-nums text-brand-800">
+                          {specialty.number}
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className="h-3 w-px bg-bone-300"
+                        />
+                        <span className="label text-ink-muted">
                           {specialty.subtitle}
                         </span>
                       </div>
@@ -153,7 +157,7 @@ export function ServicesPageTemplate({
                         {specialty.deliverables.map((item) => (
                           <li
                             key={item}
-                            className="rounded-full border border-ink/20 px-3 py-1 text-xs font-medium text-ink"
+                            className="border border-bone-300 bg-canvas px-3 py-1.5 text-xs font-medium text-ink"
                           >
                             {item}
                           </li>
@@ -176,7 +180,7 @@ export function ServicesPageTemplate({
                       {specialty.photos.slice(0, 4).map((photo) => (
                         <div
                           key={photo.src}
-                          className="relative aspect-[4/3] overflow-hidden"
+                          className="relative aspect-[4/3] overflow-hidden bg-bone-200"
                         >
                           <Photo
                             photo={photo}
@@ -201,6 +205,7 @@ export function ServicesPageTemplate({
           }}
           groups={groups}
           tone="canvas"
+          whatsappHref={whatsappHref}
         />
 
         <ProcessList
@@ -208,6 +213,13 @@ export function ServicesPageTemplate({
           intro={processIntro}
           steps={steps}
           tone="bone"
+        />
+
+        <ContactForm
+          id="contacto"
+          contact={contact}
+          whatsappHref={whatsappHref}
+          tone="canvas"
         />
 
         <ClosingCTA closing={closing} />

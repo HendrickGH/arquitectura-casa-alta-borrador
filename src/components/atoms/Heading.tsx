@@ -5,6 +5,7 @@ type Voice = "display" | "serif" | "plain";
 interface HeadingProps {
   children: React.ReactNode;
   as?: "h1" | "h2" | "h3" | "h4";
+  id?: string;
   /**
    * display: Montserrat, uppercase, tight leading -- the house display voice.
    * serif:   Marcellus, for project titles and the emotional line.
@@ -39,12 +40,13 @@ const voices: Record<Voice, string> = {
 export function Heading({
   children,
   as: Tag = "h2",
+  id,
   voice = "display",
   sizeClassName,
   className,
 }: HeadingProps) {
   return (
-    <Tag className={cx(voices[voice], sizeClassName ?? sizes[voice], className)}>
+    <Tag id={id} className={cx(voices[voice], sizeClassName ?? sizes[voice], className)}>
       {children}
     </Tag>
   );

@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
+import { Tabs } from "@/components/molecules/Tabs";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { PageHero } from "@/components/organisms/PageHero";
 import { ProjectCaseStudyModal } from "@/components/organisms/ProjectCaseStudyModal";
@@ -64,14 +65,20 @@ export function ProjectsIndexTemplate({
   const [category, setCategory] = useState<"all" | ProjectCategory>("all");
   const [selected, setSelected] = useState<Project | null>(null);
 
-  const counts = useMemo(() => {
-    const map: Record<string, number> = { all: projects.length };
+  const tabs = useMemo(() => {
+    const counts: Record<string, number> = { all: projects.length };
     for (const project of projects) {
       if (project.category) {
-        map[project.category] = (map[project.category] ?? 0) + 1;
+        counts[project.category] = (counts[project.category] ?? 0) + 1;
       }
     }
-    return map;
+    return FILTER_LABELS.filter(
+      (item) => item.id === "all" || (counts[item.id] ?? 0) > 0,
+    ).map((item) => ({
+      id: item.id,
+      label: item.label,
+      count: counts[item.id] ?? 0,
+    }));
   }, [projects]);
 
   const filtered = useMemo(() => {
@@ -98,7 +105,6 @@ export function ProjectsIndexTemplate({
       <main id="main">
         {leadHeroPhoto ? (
           <PageHero
-            badge="(DIVISIÓN 01 · PORTAFOLIO)"
             eyebrow={intro.eyebrow}
             heading={intro.heading}
             subheadline={intro.body}
@@ -106,51 +112,22 @@ export function ProjectsIndexTemplate({
           />
         ) : null}
 
-        <Section tone="canvas" className="!pt-12 !pb-8 md:!pt-16 md:!pb-12">
-          <Container>
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div
-                role="tablist"
-                aria-label="Filtrar proyectos por tipología"
-                className="flex flex-wrap items-center gap-2"
-              >
-                {FILTER_LABELS.map((item) => {
-                  const count = counts[item.id] ?? 0;
-                  if (item.id !== "all" && count === 0) return null;
-                  const active = category === item.id;
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={active}
-                      onClick={() => handleCategoryChange(item.id)}
-                      className={`label inline-flex items-center gap-2 rounded-full border px-4 py-2 transition-colors duration-200 ${
-                        active
-                          ? "border-ink bg-ink text-concha-nacar"
-                          : "border-ink/25 bg-concha-nacar text-ink hover:border-ink"
-                      }`}
-                    >
-                      <span>{item.label}</span>
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-[0.65rem] tabular-nums ${
-                          active
-                            ? "bg-white/20 text-concha-nacar"
-                            : "bg-ink/10 text-ink"
-                        }`}
-                      >
-                        {String(count).padStart(2, "0")}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+        <Section tone="canvas" density="compact">
+          <div className="mx-auto w-full max-w-[1920px] px-2 sm:px-3 md:px-4 lg:px-6">
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+              <Tabs
+                tabs={tabs}
+                activeId={category}
+                onChange={handleCategoryChange}
+                ariaLabel="Filtrar proyectos por tipología"
+                className="flex-1"
+              />
 
-              <span className="number-pill">
-                {`(${String(filtered.length).padStart(2, "0")} OBRAS EN PANTALLA)`}
+              <span className="label tabular-nums text-ink-muted">
+                {`${String(filtered.length).padStart(2, "0")} OBRAS EN PANTALLA`}
               </span>
             </div>
-          </Container>
+          </div>
         </Section>
 
         <Section tone="canvas" className="pt-0 md:pt-0 lg:pt-0">

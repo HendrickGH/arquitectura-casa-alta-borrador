@@ -156,138 +156,6 @@
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 	}
-
-	/* Thirdway signature oval capsule index pill: (01), (04), (17). */
-	.number-pill {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0.24rem 0.68rem;
-		border-radius: 9999px;
-		font-family: var(--font-sans);
-		font-size: 0.6875rem;
-		font-weight: 500;
-		line-height: 1;
-		letter-spacing: 0.1em;
-		font-variant-numeric: tabular-nums;
-		background-color: transparent;
-		color: var(--color-ink);
-		border: 1px solid rgb(21 21 21 / 0.32);
-	}
-
-	.number-pill-inverse {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0.24rem 0.68rem;
-		border-radius: 9999px;
-		font-family: var(--font-sans);
-		font-size: 0.6875rem;
-		font-weight: 500;
-		line-height: 1;
-		letter-spacing: 0.1em;
-		font-variant-numeric: tabular-nums;
-		background-color: rgba(21, 21, 21, 0.36);
-		color: var(--color-canvas);
-		border: 1px solid rgba(255, 255, 255, 0.42);
-		-webkit-backdrop-filter: blur(8px);
-		backdrop-filter: blur(8px);
-	}
-
-	/* Architectural blueprint ruler hairline with tick marks. */
-	.ruler-top {
-		position: relative;
-		border-top: 1px solid rgb(21 21 21 / 0.16);
-	}
-
-	.ruler-top::before {
-		content: "";
-		position: absolute;
-		top: -1px;
-		left: 0;
-		right: 0;
-		height: 5px;
-		background-image: repeating-linear-gradient(
-			to right,
-			rgb(21 21 21 / 0.22) 0,
-			rgb(21 21 21 / 0.22) 1px,
-			transparent 1px,
-			transparent 48px
-		);
-		pointer-events: none;
-	}
-
-	/* Thirdway vertical architectural ruler along the left edge of dark sections. */
-	.ruler-y {
-		background-image:
-			repeating-linear-gradient(
-				to bottom,
-				rgba(247, 241, 233, 0.45) 0,
-				rgba(247, 241, 233, 0.45) 1px,
-				transparent 1px,
-				transparent 40px
-			),
-			repeating-linear-gradient(
-				to bottom,
-				rgba(247, 241, 233, 0.2) 0,
-				rgba(247, 241, 233, 0.2) 1px,
-				transparent 1px,
-				transparent 8px
-			);
-		background-size: 14px 100%, 7px 100%;
-		background-repeat: no-repeat;
-		background-position: left top;
-	}
-
-	/* Double-arrow oval pill micro-interaction (Thirdway signature). */
-	.arrow-pill {
-		position: relative;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.25rem;
-		height: 1.45rem;
-		border-radius: 9999px;
-		overflow: hidden;
-		background-color: rgba(255, 255, 255, 0.18);
-		border: 1px solid rgba(255, 255, 255, 0.35);
-		transition:
-			background-color 280ms cubic-bezier(0.22, 1, 0.36, 1),
-			color 280ms cubic-bezier(0.22, 1, 0.36, 1),
-			border-color 280ms cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	.arrow-pill-ink {
-		background-color: var(--color-ink);
-		color: var(--color-concha-nacar);
-		border: 1px solid var(--color-ink);
-	}
-
-	.arrow-pill-out,
-	.arrow-pill-in {
-		transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
-	.arrow-pill-out {
-		transform: translateX(0);
-	}
-
-	.arrow-pill-in {
-		position: absolute;
-		transform: translateX(-150%);
-	}
-
-	.group:hover .arrow-pill-out,
-	a:hover > .arrow-pill .arrow-pill-out,
-	button:hover > .arrow-pill .arrow-pill-out {
-		transform: translateX(150%);
-	}
-
-	.group:hover .arrow-pill-in,
-	a:hover > .arrow-pill .arrow-pill-in,
-	button:hover > .arrow-pill .arrow-pill-in {
-		transform: translateX(0);
-	}
 }
 
 /*
@@ -296,9 +164,6 @@
  * Unlayered on purpose: Tailwind's utilities live in the `utilities` layer, and
  * a rule inside a layer would lose to `text-ink` on the nav entries no matter
  * how specific it is.
- *
- * Animations and transitions run unconditionally: `prefers-reduced-motion` is
- * deliberately NOT honoured (client decision, 2026-09-20).
  */
 
 /* --- Header ------------------------------------------------------------- */
@@ -395,9 +260,9 @@ header[data-surface="hero"] .chrome-cta:hover {
 .hero-overlay {
 	background: linear-gradient(
 		180deg,
-		rgba(6, 12, 26, 0.8) 0%,
-		rgba(6, 12, 26, 0.68) 45%,
-		rgba(6, 12, 26, 0.82) 100%
+		rgba(21, 21, 21, 0.8) 0%,
+		rgba(21, 21, 21, 0.68) 45%,
+		rgba(21, 21, 21, 0.82) 100%
 	);
 }
 
@@ -409,9 +274,9 @@ header[data-surface="hero"] .chrome-cta:hover {
 .cta-overlay {
 	background: linear-gradient(
 		180deg,
-		rgba(6, 12, 26, 0.74) 0%,
-		rgba(6, 12, 26, 0.68) 45%,
-		rgba(6, 12, 26, 0.82) 100%
+		rgba(21, 21, 21, 0.74) 0%,
+		rgba(21, 21, 21, 0.68) 45%,
+		rgba(21, 21, 21, 0.82) 100%
 	);
 }
 

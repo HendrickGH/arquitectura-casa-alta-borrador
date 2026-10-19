@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/atoms/Container";
 import { Photo } from "@/components/atoms/Photo";
-import { Section } from "@/components/atoms/Section";
+import { ProcessEntry } from "@/components/molecules/ProcessEntry";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import type { ProcessStep, SectionIntro } from "@/types/content";
 
@@ -16,32 +16,34 @@ interface ProcessListProps {
 }
 
 /**
- * GSAP ScrollTrigger Pinned Split-Screen 7-Step Process (`Cómo trabajamos`).
+ * GSAP ScrollTrigger Pinned Panoramic Split-Screen Methodology (`Cómo trabajamos`).
  *
- * - On desktop (`lg+`), pins the left architectural stage (`pin: true`) with a
- *   live crossfading stack of 7 real studio photographs (`step.photo`), an oval
- *   capsule counter `(01) / (07)`, and a scroll-scrubbed progress bar while the
- *   7 methodology steps scroll on the right.
- * - On smaller viewports, displays each step's real studio photograph inline so
- *   every stage of the process remains visual.
+ * - On desktop (`lg+`), pins the 100svh stage when it covers 100% of the viewport.
+ * - Expansive layout (similar to projects grid): Left ledger takes a compact,
+ *   structured column (32-38% width) while the right architectural photography
+ *   stage expands across the remaining 62-68% width to maximize visual impact.
+ * - Smooth step progression with crossfading full-height studio photography.
+ * - On mobile/tablet (`< lg`), renders a clean sequential architectural ledger.
  */
 export function ProcessList({
   intro,
   steps,
   tone = "bone",
-  id,
+  id = "proceso",
 }: ProcessListProps) {
-  const scopeRef = useRef<HTMLDivElement>(null);
-  const pinColumnRef = useRef<HTMLDivElement>(null);
-  const listRef = useRef<HTMLOListElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
+  const scrollTriggerRef = useRef<{ start: number; end: number } | null>(null);
+  const lastStepRef = useRef(0);
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
-    const scope = scopeRef.current;
-    const pinColumn = pinColumnRef.current;
-    const list = listRef.current;
-    if (!scope || !pinColumn || !list || steps.length === 0) return;
+    const stage = stageRef.current;
+    if (!stage || steps.length <= 1) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
 
     let cancelled = false;
     let cleanup: (() => void) | undefined;
@@ -51,23 +53,37 @@ export function ProcessList({
       if (cancelled) return;
       gsap.registerPlugin(ScrollTrigger);
 
+      if (typeof window !== "undefined") {
+        (
+          window as unknown as { __ScrollTrigger?: typeof ScrollTrigger }
+        ).__ScrollTrigger = ScrollTrigger;
+      }
+
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
-        const items = gsap.utils.toArray<HTMLElement>(
-          "[data-process-step-card]",
-          list,
-        );
+        const scrollDistancePerStep = 600;
+        const totalDistance = (steps.length - 1) * scrollDistancePerStep;
 
-        ScrollTrigger.create({
-          trigger: scope,
-          start: "top top+=104",
-          endTrigger: list,
-          end: "bottom bottom-=80",
-          pin: pinColumn,
-          pinSpacing: false,
-          scrub: 0.4,
+        const st = ScrollTrigger.create({
+          trigger: stage,
+          start: "top top",
+          end: () => `+=${totalDistance}`,
+          pin: true,
+          pinSpacing: true,
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+          refreshPriority: 5,
           onUpdate: (self) => {
+            const idx = Math.min(
+              steps.length - 1,
+              Math.max(0, Math.floor(self.progress * steps.length)),
+            );
+            if (lastStepRef.current !== idx) {
+              lastStepRef.current = idx;
+              setActiveStep(idx);
+            }
+
             if (progressRef.current) {
               gsap.set(progressRef.current, {
                 scaleX: Math.max(1 / steps.length, self.progress),
@@ -76,15 +92,8 @@ export function ProcessList({
           },
         });
 
-        items.forEach((item, idx) => {
-          ScrollTrigger.create({
-            trigger: item,
-            start: "top center+=80",
-            end: "bottom center+=80",
-            onEnter: () => setActiveStep(idx),
-            onEnterBack: () => setActiveStep(idx),
-          });
-        });
+        scrollTriggerRef.current = st;
+        ScrollTrigger.refresh();
       });
 
       cleanup = () => mm.revert();
@@ -100,126 +109,127 @@ export function ProcessList({
 
   const currentStep = steps[activeStep] ?? steps[0];
 
+  const handleSelectStep = (idx: number) => {
+    lastStepRef.current = idx;
+    setActiveStep(idx);
+    const st = scrollTriggerRef.current;
+    if (st && typeof st.start === "number" && typeof st.end === "number") {
+      const target =
+        st.start + ((idx + 0.5) / steps.length) * (st.end - st.start);
+      window.scrollTo({
+        top: target,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <Section id={id} tone={tone} reveal="stagger">
-      <Container>
-        <div className="mb-12 flex flex-col justify-between gap-6 border-b border-ink/15 pb-8 md:mb-16 lg:flex-row lg:items-end">
-          <div className="max-w-[46rem]">
-            <div className="mb-3 flex items-center gap-2.5">
-              <span className="number-pill">(05)</span>
-              <p className="eyebrow">{intro.eyebrow}</p>
+    <div
+      id={id}
+      className={`relative w-full ${
+        tone === "bone" ? "bg-bone-50" : "bg-canvas"
+      }`}
+    >
+      {/* Desktop 100svh Pinned Panoramic Split-Screen Stage (lg+) */}
+      <div
+        ref={stageRef}
+        className="mx-auto hidden lg:flex lg:h-[100svh] lg:min-h-[100svh] lg:w-full lg:overflow-hidden"
+      >
+        {/* Left Column: Focused Methodology Ledger (20-28% width, max 420px) */}
+        <div className="flex w-[28%] shrink-0 flex-col justify-between overflow-y-auto pb-6 pl-6 pr-4 pt-20 sm:pl-8 sm:pr-6 sm:pt-24 lg:pb-8 lg:pl-8 lg:pr-6 lg:pt-24 xl:w-[24%] xl:pb-10 xl:pl-10 xl:pr-8 xl:pt-28 2xl:w-[20%] 2xl:max-w-[420px] 2xl:pl-12 2xl:pr-8">
+          {/* Top: Section Header */}
+          <div>
+            <p className="eyebrow text-brand-800">{intro.eyebrow}</p>
+            <h2 className="voice mt-2 text-3xl font-normal leading-[1.08] text-ink xl:text-4xl 2xl:text-[2.65rem]">
+              {intro.heading}
+            </h2>
+            {intro.body ? (
+              <p className="mt-2.5 max-w-[42ch] text-xs leading-relaxed text-ink-muted xl:text-sm">
+                {intro.body}
+              </p>
+            ) : null}
+          </div>
+
+          {/* Middle: Sequence of Steps */}
+          <ol className="my-auto space-y-1.5 py-4 xl:space-y-2.5">
+            {steps.map((step, idx) => (
+              <ProcessEntry
+                key={step.order}
+                step={step}
+                index={idx}
+                total={steps.length}
+                isActive={idx === activeStep}
+                onSelect={() => handleSelectStep(idx)}
+                variant="pinned"
+              />
+            ))}
+          </ol>
+
+          {/* Bottom: Hairline Scrub Progress + Status */}
+          <div className="pt-2">
+            <div className="h-[1px] w-full overflow-hidden bg-bone-200">
+              <div
+                ref={progressRef}
+                className="h-full w-full origin-left bg-brand-800"
+                style={{ transform: `scaleX(${1 / steps.length})` }}
+              />
             </div>
-            <SectionHeading heading={intro.heading} body={intro.body} />
+            <div className="mt-3 flex items-center justify-between text-xs text-ink-muted tabular-nums">
+              <span className="label text-brand-800">{currentStep.title}</span>
+              <span className="label tabular-nums">
+                {`${String(activeStep + 1).padStart(2, "0")} / ${String(steps.length).padStart(2, "0")}`}
+              </span>
+            </div>
           </div>
         </div>
 
-        <div
-          ref={scopeRef}
-          className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12"
-        >
-          {/* Left column: GSAP ScrollTrigger Pinned Studio Photograph Stage (lg+) */}
-          <div ref={pinColumnRef} className="hidden lg:col-span-5 lg:block">
-            <div className="overflow-hidden">
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                  <span className="number-pill">
-                    {`(${String(activeStep + 1).padStart(2, "0")}) / (${String(steps.length).padStart(2, "0")})`}
-                  </span>
-                  <span className="label text-brand-800">
-                    {currentStep.title}
-                  </span>
-                </div>
-              </div>
-
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                {steps.map((step, index) =>
-                  step.photo ? (
-                    <div
-                      key={step.order}
-                      className="absolute inset-0 transition-opacity duration-500 ease-out"
-                      style={{
-                        opacity: index === activeStep ? 1 : 0,
-                        zIndex: index === activeStep ? 2 : 1,
-                      }}
-                    >
-                      <Photo
-                        photo={step.photo}
-                        sizes="(min-width: 1024px) 40vw, 95vw"
-                      />
-                    </div>
-                  ) : null,
-                )}
-              </div>
-
-              {/* Scroll-scrubbed progress bar */}
-              <div className="mt-3 h-[2px] w-full overflow-hidden bg-ink/12">
-                <div
-                  ref={progressRef}
-                  className="h-full w-full origin-left bg-brand-800"
-                  style={{ transform: `scaleX(${1 / steps.length})` }}
+        {/* Right Column: Expansive Full-Height Photography Stage (64-70% width) */}
+        <div className="relative h-full flex-1 overflow-hidden bg-bone-200">
+          {steps.map((step, index) =>
+            step.photo ? (
+              <div
+                key={step.order}
+                className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+                  index === activeStep
+                    ? "opacity-100 pointer-events-auto z-10"
+                    : "opacity-0 pointer-events-none z-0"
+                }`}
+              >
+                <Photo
+                  photo={step.photo}
+                  sizes="(min-width: 1536px) 80vw, (min-width: 1280px) 76vw, (min-width: 1024px) 72vw, 100vw"
+                  priority={index === 0}
+                  className="h-full w-full object-cover"
                 />
               </div>
+            ) : null,
+          )}
+        </div>
+      </div>
 
-              <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-ink-muted">
-                {currentStep.photo?.alt ?? currentStep.description}
-              </p>
-            </div>
-          </div>
+      {/* Mobile / Tablet Sequential View (< lg) */}
+      <div className="lg:hidden">
+        <div className="mx-auto w-full max-w-[1920px] px-4 py-16 sm:px-6 md:py-20">
+          <SectionHeading
+            eyebrow={intro.eyebrow}
+            heading={intro.heading}
+            body={intro.body}
+            className="mb-10 border-b border-bone-200 pb-8"
+          />
 
-          {/* Right column: Scrollable 7-step architectural ledger */}
-          <ol
-            ref={listRef}
-            className="flex flex-col divide-y divide-ink/15 border-t border-b border-ink/15 lg:col-span-7"
-          >
-            {steps.map((step, index) => {
-              const isActive = index === activeStep;
-              const num = String(step.order).padStart(2, "0");
-              return (
-                <li
-                  key={step.order}
-                  data-process-step-card
-                  onMouseEnter={() => setActiveStep(index)}
-                  className={`py-8 transition-opacity duration-300 ${
-                    isActive ? "opacity-100" : "opacity-60 hover:opacity-100"
-                  }`}
-                >
-                  <div className="flex items-center gap-2.5">
-                    <span
-                      className={`number-pill ${
-                        isActive
-                          ? "!border-brand-800 !bg-brand-800 !text-white"
-                          : ""
-                      }`}
-                    >
-                      {`(${num})`}
-                    </span>
-                    <span className="label text-brand-800 font-medium">
-                      {`Etapa ${num} de ${String(steps.length).padStart(2, "0")}`}
-                    </span>
-                  </div>
-
-                  <h3 className="voice mt-4 text-2xl leading-tight text-ink md:text-[1.75rem]">
-                    {step.title}
-                  </h3>
-
-                  <p className="mt-3 text-base leading-relaxed text-ink-muted">
-                    {step.description}
-                  </p>
-
-                  {/* Mobile/tablet inline real studio photograph */}
-                  {step.photo ? (
-                    <div className="mt-5 overflow-hidden lg:hidden">
-                      <div className="relative aspect-[16/10] w-full overflow-hidden">
-                        <Photo photo={step.photo} sizes="95vw" />
-                      </div>
-                    </div>
-                  ) : null}
-                </li>
-              );
-            })}
+          <ol className="flex flex-col divide-y divide-bone-200">
+            {steps.map((step, idx) => (
+              <ProcessEntry
+                key={step.order}
+                step={step}
+                index={idx}
+                total={steps.length}
+                variant="card"
+              />
+            ))}
           </ol>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </div>
   );
 }

@@ -15,18 +15,16 @@ interface SectionHeadingProps {
    * the hero's `h1`; `h1` on a route that has no hero and must supply its own.
    */
   as?: "h1" | "h2";
+  /** Optional right-aligned editorial CTA when header splits across the grid. */
+  action?: React.ReactNode;
+  className?: string;
 }
 
 /**
  * The heading block a section opens with.
  *
- * Empty strings remove their element entirely rather than rendering a hollow
- * tag, which is what lets a section carry no eyebrow without leaving a gap
- * where one would have been.
- *
- * The eyebrow, heading and body are marked as reveal steps 0, 1 and 2, so a
- * `stagger` section brings them in in reading order; in a `fade` section the
- * markers are inert and the block still reveals as one.
+ * Canonical order: 1° Eyebrow (.eyebrow) -> 2° Heading (.voice) -> 3° Body
+ * -> 4° Action (optional right-aligned CTA on desktop).
  */
 export function SectionHeading({
   eyebrow,
@@ -34,10 +32,12 @@ export function SectionHeading({
   body,
   align = "left",
   as = "h2",
+  action,
+  className,
 }: SectionHeadingProps) {
-  const centered = align === "center";
+  const centered = align === "center" && !action;
 
-  return (
+  const copyStack = (
     <div
       className={cx(
         "flex flex-col gap-4",
@@ -50,9 +50,6 @@ export function SectionHeading({
         </div>
       ) : null}
 
-      {/* Sentence-case serif, so the heading can wrap on its own and needs no
-          non-breaking measure. The width cap keeps it to a comfortable measure
-          rather than a full-width banner. */}
       <div {...revealStep(1)}>
         <Heading
           as={as}
@@ -72,4 +69,22 @@ export function SectionHeading({
       ) : null}
     </div>
   );
+
+  if (action) {
+    return (
+      <div
+        className={cx(
+          "flex flex-col justify-between gap-6 border-b border-bone-200 pb-8 lg:flex-row lg:items-end",
+          className,
+        )}
+      >
+        {copyStack}
+        <div {...revealStep(2)} className="shrink-0">
+          {action}
+        </div>
+      </div>
+    );
+  }
+
+  return <div className={className}>{copyStack}</div>;
 }

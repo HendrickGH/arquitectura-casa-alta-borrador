@@ -2,7 +2,7 @@ import { ContactForm } from "@/components/organisms/ContactForm";
 import { Differentiators } from "@/components/organisms/Differentiators";
 import { DivisionCards } from "@/components/organisms/DivisionCards";
 import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
-import { FullBleedCTA } from "@/components/organisms/FullBleedCTA";
+import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
@@ -95,6 +95,7 @@ export function LandingTemplate({
           intro={home.services}
           groups={groups}
           tone="canvas"
+          whatsappHref={whatsappHref}
         />
 
         <Differentiators
@@ -110,10 +111,11 @@ export function LandingTemplate({
         <Testimonials
           intro={home.testimonials.intro}
           items={home.testimonials.items}
+          dossiers={home.testimonials.dossiers}
           tone="bone"
         />
 
-        <FullBleedCTA photo={moment} closing={home.closing} />
+        <ClosingCTA closing={home.closing} isLanding />
 
         <ContactForm
           id="contacto"
