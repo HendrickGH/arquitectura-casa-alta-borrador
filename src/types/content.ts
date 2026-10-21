@@ -452,22 +452,27 @@ export interface SustainabilityPageContent {
     heading: string;
     subheadline: string;
     photo: Photo;
+    catalogCtaLabel?: string;
+    consultationCtaLabel?: string;
   };
-  narrative: {
+  pillars: {
     eyebrow: string;
     heading: string;
-    /** Verbatim tropical climate & thermal/acoustic narrative from the client. */
-    verbatimQuote: string;
-    paragraphs: string[];
-    ctaLabel?: string;
-    ctaHref?: string;
+    body: string;
+    sections: SpecialtySection[];
+  };
+  manifesto: {
+    text: string;
     photo?: Photo;
   };
-  pillars: ThematicPillar[];
-  bioclimaticGalleryIntro: SectionIntro;
-  bioclimaticPhotos: Photo[];
-  enduringGalleryIntro: SectionIntro;
-  enduringPhotos: Photo[];
+  gallery: {
+    intro: SectionIntro;
+    photos: Photo[];
+  };
+  strategies: {
+    intro: SectionIntro;
+    items: Differentiator[];
+  };
 }
 
 export interface MethodologyPhase {

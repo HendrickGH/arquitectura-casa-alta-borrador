@@ -182,76 +182,159 @@ export const sustainabilityPageContent = {
       "Optimizamos la carga térmica y acústica con vientos cruzados, luz natural filtrada y materiales sostenibles de bajo impacto.",
     dir: "02-el-bicho",
     base: "01-fachada-tres-palapas-alberca",
+    catalogCtaLabel: "Explorar pilares bioclimáticos",
+    consultationCtaLabel: "Planear proyecto bioclimático",
   },
-  narrative: {
-    eyebrow: "Manifiesto bioclimático",
-    heading: "Diseño en armonía con el entorno",
-    // Exact verbatim copy provided by the client ("no cambiar nada").
-    verbatimQuote:
-      "Proyecto de arquitectura sostenible para un clima y ambiente tropical . En donde se optimiza la carga térmica y acústica usando materiales sostenibles que reducen el uso de energias artificiales optimizando lo vientos cruzados y la buena ventalacion , arquitectura de playa que funciona para espacios donde la densidad térmica es muy alta dando como resultado espacios amplios y frescos donde el lujo está en sentirse cómoda realmente y contento con el espacio y uno mismo .",
-    paragraphs: [
-      "En la costa y el Istmo de Oaxaca, construir contra el clima encarece el mantenimiento y obliga a depender día y noche del aire acondicionado. En Casa Alta partimos de la orientación solar, los vientos dominantes del mar y la masa térmica de los materiales antes de trazar el primer muro.",
-      "Combinamos técnicas constructivas tradicionales de la región —acabados minerales en chukum, celosías de barro cocido, maderas certificadas y cubiertas ventiladas de palma natural— con ingeniería contemporánea de captación pluvial, biodigestores y energía solar.",
+  pillars: {
+    eyebrow: "Ingeniería bioclimática",
+    heading: "Sistemas pasivos de confort térmico y resiliencia",
+    body: "Soluciones de ingeniería que reducen la carga energética y aprovechan los vientos del Pacífico.",
+    sections: [
+      {
+        slug: "ventilacion-pasiva",
+        number: "01",
+        title: "Ventilación Pasiva y Brisa Cruzada",
+        shortTitle: "Ventilación",
+        subtitle: "Ventilación",
+        description:
+          "Orientación estratégica hacia los vientos dominantes del Pacífico y chimeneas térmicas que evacuan el calor sin consumo eléctrico.",
+        deliverables: [
+          "Muros de celosía que aceleran la brisa",
+          "Vanos de doble altura para convección natural",
+          "Orientación respecto al viento dominante",
+          "Confort térmico pasivo sin climatización",
+        ],
+        dir: "arquitectura-sostenible",
+        base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
+      },
+      {
+        slug: "materiales-locales",
+        number: "02",
+        title: "Materiales Locales y Chukum",
+        shortTitle: "Materialidad",
+        subtitle: "Materialidad",
+        description:
+          "Acabados minerales en chukum, pastas de cal apagada y maderas de la región tratadas al vacío para resistir la salinidad costera.",
+        deliverables: [
+          "Acabados minerales de nula huella química",
+          "Curado de maderas contra salitre y termita",
+          "Palapas de palma que disipan la radiación",
+          "Ensambles tradicionales reforzados",
+        ],
+        dir: "arquitectura-sostenible",
+        base: "05-materiales-locales-chukum-madera-palapa-costera",
+      },
+      {
+        slug: "gestion-del-agua",
+        number: "03",
+        title: "Gestión Hídrica y Captación Pluvial",
+        shortTitle: "Agua",
+        subtitle: "Agua",
+        description:
+          "Sistemas hidrosanitarios autónomos con captación de agua de lluvia, biodigestores y tratamiento ecológico que protegen el manto freático.",
+        deliverables: [
+          "Captación pluvial en cubiertas y filtrado",
+          "Biodigestores ecológicos certificados",
+          "Protección de mantos freáticos en playa",
+          "Jardines endémicos de bajo riego",
+        ],
+        dir: "arquitectura-sostenible",
+        base: "03-espejo-agua-alberca-sombra-palmeras-microclima",
+      },
+      {
+        slug: "resiliencia-estructural",
+        number: "04",
+        title: "Resiliencia Sísmica y Huracanes",
+        shortTitle: "Resiliencia",
+        subtitle: "Resiliencia",
+        description:
+          "Ingeniería estructural calculada en gabinete para la alta sismicidad y corrosión marina de Oaxaca, garantizando permanencia patrimonial.",
+        deliverables: [
+          "Cálculo sísmico en suelo de playa y roca",
+          "Cimentaciones protegidas contra corrosión marina",
+          "Supervisión pericial directa con firma DRO",
+          "Estructuras mixtas de concreto, acero y madera",
+        ],
+        dir: "02-el-bicho",
+        base: "01-fachada-tres-palapas-alberca",
+      },
     ],
-    ctaLabel: "Planear un proyecto bioclimático",
-    ctaHref: "/contacto",
   },
-  pillars: [
-    {
-      number: "01",
-      title: "Eficiencia energética pasiva y ventilación cruzada",
-      description:
-        "Orientamos vanos, corredores, dobles alturas y muros de celosía para acelerar el paso de la brisa marina y evacuar el aire caliente por convección natural sin consumo eléctrico.",
-      items: [
-        "Muros de celosía geométrica y de barro para filtrar el sol directo",
-        "Vanos de doble altura y patios interiores con ventilación convectiva",
-        "Orientación estratégica respecto a los vientos dominantes del mar",
-      ],
+  manifesto: {
+    // Exact verbatim copy provided by the client ("no cambiar nada").
+    text:
+      "Proyecto de arquitectura sostenible para un clima y ambiente tropical . En donde se optimiza la carga térmica y acústica usando materiales sostenibles que reducen el uso de energias artificiales optimizando lo vientos cruzados y la buena ventalacion , arquitectura de playa que funciona para espacios donde la densidad térmica es muy alta dando como resultado espacios amplios y frescos donde el lujo está en sentirse cómoda realmente y contento con el espacio y uno mismo .",
+    dir: "02-el-bicho",
+    base: "02-fachada-palapas-alberca-palmeras",
+  },
+  gallery: {
+    intro: {
+      eyebrow: "Dossier fotográfico",
+      heading: "Evidencia de obra y permanencia en el trópico",
+      body: "Registro en doble cinta continua de decisiones bioclimáticas reales: celosías de barro, cubiertas de palma natural, espejos de agua sombreados y acabados que resisten el clima de la costa oaxaqueña.",
     },
-    {
-      number: "02",
-      title: "Maderas tropicales curadas y cubiertas de palma",
-      description:
-        "Estructuras de madera de la región tratadas para resistir la intemperie costera, integradas con cubiertas de palapa tejida que disipan la radiación térmica y refrescan los espacios interiores.",
-      items: [
-        "Curado preventivo de maderas contra salitre, termita y humedad",
-        "Palapas de alta disipación térmica y renovación continua de aire",
-        "Ensambles tradicionales reforzados con herrajes marinos inoxidables",
-      ],
+  },
+  strategies: {
+    intro: {
+      eyebrow: "Estrategias constructivas",
+      heading: "Construir para el clima de Oaxaca",
+      body: "En la costa y el Istmo, edificar contra el clima encarece el mantenimiento y fuerza la dependencia del aire acondicionado. Integramos cuatro estrategias pasivas desde el primer trazo.",
     },
-    {
-      number: "03",
-      title: "Materiales locales y acabados minerales de bajo impacto",
-      description:
-        "Selección de materiales autóctonos con baja huella de carbono y sistemas hidrosanitarios autónomos que protegen los mantos freáticos y el suelo en zonas donde la red municipal es limitada.",
-      items: [
-        "Acabados minerales en chukum y tonos tierra de bajo impacto ambiental",
-        "Losas aligeradas con aislamiento térmico y acústico continuo",
-        "Captación pluvial, plantas de tratamiento y biodigestores ecológicos",
-      ],
-    },
-    {
-      number: "04",
-      title: "Cimentaciones sismorresistentes y cálculo estructural",
-      description:
-        "Ingeniería civil calculada en gabinete para la sismicidad y topografía real de Oaxaca, garantizando seguridad estructural y durabilidad patrimonial frente a la corrosión marina.",
-      items: [
-        "Ingeniería calculada para la sismicidad de Oaxaca y suelo de playa",
-        "Zapatas marinas y cimentaciones protegidas contra corrosión salina",
-        "Supervisión directa de armados de acero y pruebas de resistencia de concreto",
-      ],
-    },
-  ] satisfies ThematicPillar[],
-  bioclimaticGalleryIntro: {
-    eyebrow: "Soluciones pasivas en obra",
-    heading: "Arquitectura sostenible en clima tropical",
-    body: "Cada fotografía documenta una decisión bioclimática real: celosías que tamizan la luz, espejos de agua bajo sombra de palmeras, terrazas orientadas a la brisa y materiales locales.",
-  } satisfies SectionIntro,
-  enduringGalleryIntro: {
-    eyebrow: "Materialidad atemporal",
-    heading: "Arquitectura que perdura",
-    body: "Obras que envejecen con dignidad frente al salitre, la humedad y el sol de la costa oaxaqueña.",
-  } satisfies SectionIntro,
+    items: [
+      {
+        title: "Orientación solar y evacuación convectiva",
+        tag: "TERMODINÁMICA PASIVA",
+        description:
+          "Orientamos vanos, dobles alturas y patios interiores según los vientos dominantes del mar para crear un tiro térmico natural que desaloja el aire caliente sin motores eléctricos.",
+        points: [
+          "Cálculo de trayectorias solares y sombras arrojadas",
+          "Efecto chimenea en circulaciones verticales y atrios",
+          "Reducción de hasta 6 °C respecto a la temperatura exterior",
+        ],
+        dir: "arquitectura-sostenible",
+        base: "07-doble-altura-celosia-iluminacion-natural-filtrada",
+      },
+      {
+        title: "Celosías de barro y tamiz de luz natural",
+        tag: "PROTECCIÓN SOLAR",
+        description:
+          "Muros de celosía artesanal cocida en la región que interceptan la radiación solar directa antes de que impacte los cristales, filtrando brisa constante e iluminación suave.",
+        points: [
+          "Bloqueo del 70% de la radiación térmica solar directa",
+          "Ventilación constante día y noche sin comprometer la privacidad",
+          "Material cerámico de alta inercia térmica y fabricación local",
+        ],
+        dir: "arquitectura-sostenible",
+        base: "04-fachada-celosia-proteccion-solar-vegetacion",
+      },
+      {
+        title: "Masa térmica de concreto y recubrimientos de chukum",
+        tag: "HIGROTÉRMICA Y TRANSPIRABILIDAD",
+        description:
+          "Muros masivos que absorben el calor diurno y lo liberan durante la noche fresca, revestidos con pastas de cal y chukum que absorben y expulsan la humedad ambiental sin degradarse.",
+        points: [
+          "Inercia higrotérmica que estabiliza la temperatura interior",
+          "Fungicida e hidrófugo natural impermeable a la brisa marina",
+          "Muros monolíticos sin juntas de dilatación vulnerables al salitre",
+        ],
+        dir: "02-el-bicho",
+        base: "05-bano-espejo-redondo-lavabo",
+      },
+      {
+        title: "Cubiertas ventiladas de palma natural y carrizo",
+        tag: "DISIPACIÓN TÉRMICA SUPERIOR",
+        description:
+          "Techumbres tradicionales tejidas por maestros artesanos sobre estructuras de madera curada. El aire caliente asciende y escapa libremente entre el tejido vegetal.",
+        points: [
+          "Estructuras de madera tropical tratada en autoclave al vacío",
+          "Cero acumulación de calor bajo techo en las horas pico de sol",
+          "Mantenimiento programado y vida útil extendida con herrajes marinos",
+        ],
+        dir: "02-el-bicho",
+        base: "01-fachada-tres-palapas-alberca",
+      },
+    ],
+  },
 };
 
 export const aboutPageContent = {

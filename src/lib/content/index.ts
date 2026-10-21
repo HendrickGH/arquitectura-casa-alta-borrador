@@ -470,29 +470,71 @@ export function getSustainabilityPage(): SustainabilityPageContent {
       "Construcción sustentable",
     )!;
 
+  // 1. 4 Pillars for SpecialtiesShowcase
+  const pillarSections: SpecialtySection[] =
+    sustainabilityPageContent.pillars.sections.map((p) => {
+      const photo =
+        findPhotoByBase(p.dir, p.base, p.title) ?? heroPhoto;
+      return {
+        slug: p.slug,
+        number: p.number,
+        title: p.title,
+        shortTitle: p.shortTitle,
+        subtitle: p.subtitle,
+        description: p.description,
+        deliverables: p.deliverables,
+        photo,
+        photos: [photo],
+      };
+    });
+
+  // 2. Manifesto photo
+  const manifestoPhoto =
+    findPhotoByBase(
+      sustainabilityPageContent.manifesto.dir,
+      sustainabilityPageContent.manifesto.base,
+      "Manifiesto bioclimático",
+    ) ?? heroPhoto;
+
+  // 3. Interleaved Gallery for CredibilityGallery
   const rawBioclimatic = getProjectPhotos(
     "arquitectura-sostenible",
     "Arquitectura sostenible Casa Alta",
   );
-
-  // Exclude the lead photo used in the narrative column, yielding exactly 12 gallery photos
-  // (4 complete rows of 3 on desktop, 6 complete rows of 2 on tablet, 0 orphans).
-  const narrativePhoto = rawBioclimatic[0];
-  const bioclimaticPhotos = rawBioclimatic.slice(1, 13);
-
-  // Exclude photo 18 (superimposed marketing text, Score 3★) and cap at exactly 12 top-tier Score 5★ photos
-  // (4 complete rows of 3 on desktop, 6 complete rows of 2 on tablet, 0 orphans).
   const rawEnduring = getProjectPhotos(
     "arquitectura-que-perdura",
     "Arquitectura que perdura Casa Alta",
+  ).filter(
+    (p) =>
+      !p.src.includes("18-cartel-construye-puerto-escondido") &&
+      !p.src.includes("cartel-construye"),
   );
-  const enduringPhotos = rawEnduring
-    .filter(
-      (p) =>
-        !p.src.includes("18-cartel-construye-puerto-escondido") &&
-        !p.src.includes("cartel-construye"),
-    )
-    .slice(0, 12);
+
+  // Interleave 8 bioclimatic + 8 enduring = 16 photos (2 rows of 8)
+  const galleryPhotos: Photo[] = [];
+  const maxPairs = Math.min(8, rawBioclimatic.length, rawEnduring.length);
+  for (let i = 0; i < maxPairs; i++) {
+    const bio = rawBioclimatic[i];
+    const end = rawEnduring[i];
+    if (bio) galleryPhotos.push(bio);
+    if (end) galleryPhotos.push(end);
+  }
+
+  // 4. Strategies for WhyCasaAltaEditorial
+  const strategyItems: Differentiator[] =
+    sustainabilityPageContent.strategies.items.map((item) => {
+      const photo =
+        item.dir && item.base
+          ? findPhotoByBase(item.dir, item.base, item.title) ?? undefined
+          : undefined;
+      return {
+        title: item.title,
+        description: item.description,
+        tag: item.tag,
+        points: item.points,
+        photo,
+      };
+    });
 
   return {
     hero: {
@@ -500,16 +542,27 @@ export function getSustainabilityPage(): SustainabilityPageContent {
       heading: sustainabilityPageContent.hero.heading,
       subheadline: sustainabilityPageContent.hero.subheadline,
       photo: heroPhoto,
+      catalogCtaLabel: sustainabilityPageContent.hero.catalogCtaLabel,
+      consultationCtaLabel: sustainabilityPageContent.hero.consultationCtaLabel,
     },
-    narrative: {
-      ...sustainabilityPageContent.narrative,
-      photo: narrativePhoto,
+    pillars: {
+      eyebrow: sustainabilityPageContent.pillars.eyebrow,
+      heading: sustainabilityPageContent.pillars.heading,
+      body: sustainabilityPageContent.pillars.body,
+      sections: pillarSections,
     },
-    pillars: sustainabilityPageContent.pillars,
-    bioclimaticGalleryIntro: sustainabilityPageContent.bioclimaticGalleryIntro,
-    bioclimaticPhotos,
-    enduringGalleryIntro: sustainabilityPageContent.enduringGalleryIntro,
-    enduringPhotos,
+    manifesto: {
+      text: sustainabilityPageContent.manifesto.text,
+      photo: manifestoPhoto,
+    },
+    gallery: {
+      intro: sustainabilityPageContent.gallery.intro,
+      photos: galleryPhotos,
+    },
+    strategies: {
+      intro: sustainabilityPageContent.strategies.intro,
+      items: strategyItems,
+    },
   };
 }
 
