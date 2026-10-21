@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
@@ -8,6 +8,7 @@ import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
+import { Tabs } from "@/components/molecules/Tabs";
 import type { MaterialSwatch } from "@/types/content";
 
 export interface MaterialFinishesMatrixProps {
@@ -28,7 +29,7 @@ const SWATCH_PHOTO_SIZES = "(min-width: 1024px) 50vw, 100vw";
  * technical test specs and resistance attributes in Oaxaca's climate.
  *
  * Adheres to DESIGN.md: 0px geometry, Marcellus/Montserrat hierarchy,
- * zero hairline borders, and pure surface contrast.
+ * Cosentino Catalogue Bar (Section 5.2), zero hairline borders, and pure surface contrast.
  */
 export function MaterialFinishesMatrix({
   eyebrow,
@@ -42,6 +43,15 @@ export function MaterialFinishesMatrix({
   const activeMaterial =
     materials.find((m) => m.id === activeId) ?? materials[0];
 
+  const tabs = useMemo(
+    () =>
+      materials.map((mat) => ({
+        id: mat.id,
+        label: mat.tabLabel ?? mat.name,
+      })),
+    [materials],
+  );
+
   if (!materials || materials.length === 0) return null;
 
   return (
@@ -50,36 +60,13 @@ export function MaterialFinishesMatrix({
         <SectionHeading eyebrow={eyebrow} heading={heading} body={body} />
 
         {/* Material Category Switcher — Cosentino Catalogue Bar (DESIGN.md Section 5.2) */}
-        <div
-          role="tablist"
-          aria-label="Selector de superficies y materiales"
-          className="mt-12 flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6"
-        >
-          {materials.map((mat, index) => {
-            const isSelected = mat.id === activeMaterial?.id;
-            return (
-              <button
-                key={mat.id}
-                role="tab"
-                type="button"
-                id={`material-tab-${mat.id}`}
-                aria-selected={isSelected}
-                aria-controls={`material-panel-${mat.id}`}
-                onClick={() => setActiveId(mat.id)}
-                className={`min-h-[44px] px-5 py-2.5 text-xs font-semibold tracking-wider uppercase transition-colors duration-200 cursor-pointer ${
-                  isSelected
-                    ? "bg-brand-50 text-brand-900"
-                    : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink"
-                }`}
-              >
-                <span className="tabular-nums mr-2 text-ink-muted">
-                  {`0${index + 1}`}
-                </span>
-                {mat.name.split(" ")[0]} {mat.name.split(" ")[1] ?? ""}
-              </button>
-            );
-          })}
-        </div>
+        <Tabs
+          tabs={tabs}
+          activeId={activeMaterial?.id ?? ""}
+          onChange={setActiveId}
+          ariaLabel="Selector de superficies y materiales"
+          className="mt-10"
+        />
 
         {/* Active Material Architectural Monograph Panel */}
         {activeMaterial ? (

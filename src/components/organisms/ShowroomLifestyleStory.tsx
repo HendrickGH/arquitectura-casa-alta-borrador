@@ -65,7 +65,7 @@ export function ShowroomLifestyleStory({
 
                   {/* Secondary Detail Photo */}
                   {scene.secondaryPhoto ? (
-                    <div className="relative aspect-[4/3] col-span-12 overflow-hidden bg-bone-200 sm:col-span-4 sm:aspect-auto">
+                    <div className="relative aspect-[4/3] col-span-12 overflow-hidden bg-bone-200 sm:col-span-4 sm:h-full sm:aspect-auto">
                       <Photo
                         photo={scene.secondaryPhoto}
                         sizes={SECONDARY_PHOTO_SIZES}

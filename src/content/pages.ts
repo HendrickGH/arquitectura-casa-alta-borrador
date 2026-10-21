@@ -32,6 +32,7 @@ export const interiorsPageContent = {
       {
         id: "piedra-sinterizada",
         name: "Piedras Tecnológicas y Porcelánicos Ultracompactos",
+        tabLabel: "Piedras Tecnológicas",
         subtitle: "Porcelánicos de gran formato (3200 × 1600 mm)",
         category: "Superficies minerales continuas",
         description:
@@ -48,6 +49,7 @@ export const interiorsPageContent = {
       {
         id: "cuarzo-pureza",
         name: "Cuarzo de Alta Pureza y Veta Continua",
+        tabLabel: "Cuarzo de Alta Pureza",
         subtitle: "Alineación bookmatch y acabado mate sedoso",
         category: "Islas y barras monolíticas",
         description:
@@ -64,6 +66,7 @@ export const interiorsPageContent = {
       {
         id: "maderas-tropicales",
         name: "Maderas Tropicales Curadas (Parota y Tzalam)",
+        tabLabel: "Maderas Tropicales",
         subtitle: "Tratamiento en autoclave y aceites naturales",
         category: "Carpintería residencial sobre diseño",
         description:
@@ -80,6 +83,7 @@ export const interiorsPageContent = {
       {
         id: "acabados-bioclimaticos",
         name: "Acabados Minerales Bioclimáticos (Chukum y Pastas de Cal)",
+        tabLabel: "Acabados Minerales",
         subtitle: "Resina vegetal ancestral y transpirabilidad térmica",
         category: "Muros y recubrimientos higrotérmicos",
         description:

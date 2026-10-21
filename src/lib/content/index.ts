@@ -50,7 +50,6 @@ import type {
   ServiceGroup,
   ServicesPageContent,
   SiteConfig,
-  SpaceCard,
   SustainabilityPageContent,
   Testimonial,
 } from "@/types/content";
@@ -427,6 +426,7 @@ export function getInteriorsPage(): InteriorsPageContent {
       return {
         id: m.id,
         name: m.name,
+        tabLabel: m.tabLabel,
         subtitle: m.subtitle,
         category: m.category,
         description: m.description,

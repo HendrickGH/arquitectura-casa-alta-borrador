@@ -4,6 +4,7 @@ import { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
+import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
@@ -87,91 +88,89 @@ export function InteriorsSurfacesExperience({
   return (
     <>
       {/* ---------------- LAYER 3: Explorador de Espacios (tone="bone") ---------------- */}
-      <section id="espacios">
-        <Section tone="bone" density="default">
-          <Container>
-            <SectionHeading
-              eyebrow={inspiration.eyebrow}
-              heading={inspiration.heading}
-              body={inspiration.body}
-            />
+      <Section id="espacios" tone="bone" density="default">
+        <Container>
+          <SectionHeading
+            eyebrow={inspiration.eyebrow}
+            heading={inspiration.heading}
+            body={inspiration.body}
+          />
 
-            <Tabs
-              tabs={tabsWithCounts}
-              activeId={activeCategory}
-              onChange={setActiveCategory}
-              ariaLabel="Filtrar por tipología de espacio"
-              className="mt-10"
-            />
+          <Tabs
+            tabs={tabsWithCounts}
+            activeId={activeCategory}
+            onChange={setActiveCategory}
+            ariaLabel="Filtrar por tipología de espacio"
+            className="mt-10"
+          />
 
-            {/* Clean-Ground Space Dossier Cards */}
-            <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredCards.map((card) => (
-                <article
-                  key={card.id}
-                  className="group flex flex-col justify-between bg-canvas p-4 sm:p-5 transition-shadow duration-300 hover:shadow-lg"
-                >
-                  <div>
-                    {/* Visual Card Trigger */}
-                    <button
-                      id={`space-trigger-${card.id}`}
-                      type="button"
-                      onClick={(e) => openDossier(card, e.currentTarget)}
-                      aria-label={`Abrir ficha técnica de ${card.title}`}
-                      className="aspect-[4/3] w-full cursor-pointer overflow-hidden bg-bone-200 text-left focus-visible:outline-2 focus-visible:outline-brand-800"
-                    >
-                      <Photo
-                        photo={card.photo}
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        fit="cover"
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                      />
-                    </button>
-
-                    {/* Metadata & Tag */}
-                    <span className="label mt-4 block text-brand-800">
-                      {card.categoryLabel}
-                    </span>
-
-                    {/* Architectural Title */}
-                    <Heading
-                      as="h3"
-                      voice="serif"
-                      sizeClassName="mt-2 text-[1.35rem] leading-[1.15] md:text-[1.5rem] transition-colors group-hover:text-brand-800"
-                    >
-                      {card.title}
-                    </Heading>
-
-                    {/* Materials Summary */}
-                    <Text size="sm" className="mt-2 text-ink-muted">
-                      {card.materials}
-                    </Text>
+          {/* Clean-Ground Space Dossier Cards (Single Interactive Trigger per Card) */}
+          <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredCards.map((card) => (
+              <article
+                key={card.id}
+                id={`space-card-${card.id}`}
+                role="button"
+                tabIndex={0}
+                onClick={(e) => openDossier(card, e.currentTarget)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openDossier(card, e.currentTarget);
+                  }
+                }}
+                aria-label={`Abrir ficha técnica de ${card.title}`}
+                className="group flex flex-col justify-between bg-canvas p-4 sm:p-5 transition-shadow duration-300 hover:shadow-lg cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-800"
+              >
+                <div>
+                  {/* Clean Visual Frame */}
+                  <div className="aspect-[4/3] w-full overflow-hidden bg-bone-200">
+                    <Photo
+                      photo={card.photo}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      fit="cover"
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
                   </div>
 
-                  {/* Footer Action Bar */}
-                  <div className="mt-6 flex items-center justify-between pt-4">
-                    <span className="label text-[0.6875rem] text-ink-muted tabular-nums">
-                      {`REF · ${card.id.toUpperCase()}`}
-                    </span>
-                    <Button
-                      id={`space-action-${card.id}`}
-                      variant="secondary"
-                      size="sm"
-                      arrow
-                      className="min-h-[44px]"
-                      onClick={(e) =>
-                        openDossier(card, e?.currentTarget as HTMLElement)
-                      }
-                    >
-                      Ver ficha técnica
-                    </Button>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </Container>
-        </Section>
-      </section>
+                  {/* Metadata & Tag */}
+                  <span className="label mt-4 block text-brand-800">
+                    {card.categoryLabel}
+                  </span>
+
+                  {/* Architectural Title */}
+                  <Heading
+                    as="h3"
+                    voice="serif"
+                    sizeClassName="mt-2 text-[1.35rem] leading-[1.15] md:text-[1.5rem] transition-colors group-hover:text-brand-800"
+                  >
+                    {card.title}
+                  </Heading>
+
+                  {/* Materials Summary */}
+                  <Text size="sm" className="mt-2 text-ink-muted">
+                    {card.materials}
+                  </Text>
+                </div>
+
+                {/* Footer Action Bar */}
+                <div className="mt-6 flex items-center justify-between pt-4">
+                  <span className="label text-[0.6875rem] text-ink-muted tabular-nums">
+                    {`REF · ${card.id.toUpperCase()}`}
+                  </span>
+                  <span className="label inline-flex min-h-[44px] items-center gap-1.5 text-xs text-ink underline decoration-ink/40 underline-offset-[6px] transition-colors group-hover:text-brand-800 group-hover:decoration-brand-800">
+                    Ver ficha técnica
+                    <Icon
+                      name="arrow-right"
+                      className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1"
+                    />
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </Container>
+      </Section>
 
       {/* ---------------- LAYER 4: Ingeniería de Detalle & Respaldo DRO (tone="canvas") ---------------- */}
       {guaranteeContent ? (

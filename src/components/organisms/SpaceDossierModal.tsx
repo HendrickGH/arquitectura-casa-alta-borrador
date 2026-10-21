@@ -39,6 +39,7 @@ export function SpaceDossierModal({
   useEffect(() => {
     if (!space) return;
 
+    const triggerEl = triggerRef?.current;
     const prevOverflow = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     closeBtnRef.current?.focus();
@@ -79,8 +80,8 @@ export function SpaceDossierModal({
     return () => {
       document.documentElement.style.overflow = prevOverflow;
       window.removeEventListener("keydown", handleKeyDown);
-      if (triggerRef?.current && typeof triggerRef.current.focus === "function") {
-        triggerRef.current.focus();
+      if (triggerEl && typeof triggerEl.focus === "function") {
+        triggerEl.focus();
       }
     };
   }, [space, onClose, triggerRef]);
@@ -118,7 +119,7 @@ export function SpaceDossierModal({
         </button>
 
         {/* Column 1: Uncropped Architectural Photograph */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200 lg:col-span-7 lg:h-full lg:aspect-auto">
+        <div className="relative aspect-[4/3] max-h-[36vh] sm:max-h-none w-full overflow-hidden bg-bone-200 lg:col-span-7 lg:h-full lg:aspect-auto">
           <Photo
             photo={space.photo}
             sizes={PHOTO_SIZES}

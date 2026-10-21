@@ -5,7 +5,6 @@ import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Section } from "@/components/atoms/Section";
-import { Text } from "@/components/atoms/Text";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import type { EstimatorConfig } from "@/types/content";
 
@@ -45,6 +44,36 @@ export function InteriorsQuickEstimator({
   const currentLocationOption = step3?.options.find(
     (o) => o.id === selectedLocation,
   );
+
+  const handleRadioKeyDown = (
+    e: React.KeyboardEvent,
+    options: { id: string }[],
+    currentSelected: string,
+    setSelected: (id: string) => void,
+  ) => {
+    const currentIndex = options.findIndex((o) => o.id === currentSelected);
+    if (currentIndex === -1) return;
+
+    let nextIndex = currentIndex;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      e.preventDefault();
+      nextIndex = (currentIndex + 1) % options.length;
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      e.preventDefault();
+      nextIndex = (currentIndex - 1 + options.length) % options.length;
+    }
+
+    if (nextIndex !== currentIndex) {
+      const nextOption = options[nextIndex];
+      if (nextOption) {
+        setSelected(nextOption.id);
+        const nextButton = document.getElementById(
+          `${componentId}-${nextOption.id}`,
+        );
+        nextButton?.focus();
+      }
+    }
+  };
 
   const assembledWhatsappUrl = useMemo(() => {
     const spaceLabel = currentSpaceOption?.label ?? selectedSpace;
@@ -119,21 +148,39 @@ export function InteriorsQuickEstimator({
                     return (
                       <button
                         key={opt.id}
+                        id={`${componentId}-${opt.id}`}
                         type="button"
                         role="radio"
                         aria-checked={isSelected}
+                        tabIndex={isSelected ? 0 : -1}
                         onClick={() => setSelectedSpace(opt.id)}
+                        onKeyDown={(e) =>
+                          handleRadioKeyDown(
+                            e,
+                            step1.options,
+                            selectedSpace,
+                            setSelectedSpace,
+                          )
+                        }
                         className={`flex min-h-[56px] flex-col justify-center px-5 py-3.5 text-left transition-colors cursor-pointer ${
                           isSelected
                             ? "bg-brand-50 text-brand-900"
                             : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink"
                         }`}
                       >
-                        <span className="text-xs sm:text-sm font-semibold text-ink">
+                        <span
+                          className={`text-xs sm:text-sm font-semibold ${
+                            isSelected ? "text-brand-900" : "text-ink"
+                          }`}
+                        >
                           {opt.label}
                         </span>
                         {opt.description ? (
-                          <span className="mt-1 text-[0.75rem] text-ink-muted leading-tight">
+                          <span
+                            className={`mt-1 text-[0.75rem] leading-tight ${
+                              isSelected ? "text-brand-900/80" : "text-ink-muted"
+                            }`}
+                          >
                             {opt.description}
                           </span>
                         ) : null}
@@ -173,21 +220,39 @@ export function InteriorsQuickEstimator({
                     return (
                       <button
                         key={opt.id}
+                        id={`${componentId}-${opt.id}`}
                         type="button"
                         role="radio"
                         aria-checked={isSelected}
+                        tabIndex={isSelected ? 0 : -1}
                         onClick={() => setSelectedStage(opt.id)}
+                        onKeyDown={(e) =>
+                          handleRadioKeyDown(
+                            e,
+                            step2.options,
+                            selectedStage,
+                            setSelectedStage,
+                          )
+                        }
                         className={`flex min-h-[56px] flex-col justify-center px-4 py-3.5 text-left transition-colors cursor-pointer ${
                           isSelected
                             ? "bg-brand-50 text-brand-900"
                             : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink"
                         }`}
                       >
-                        <span className="text-xs sm:text-sm font-semibold text-ink leading-snug">
+                        <span
+                          className={`text-xs sm:text-sm font-semibold leading-snug ${
+                            isSelected ? "text-brand-900" : "text-ink"
+                          }`}
+                        >
                           {opt.label}
                         </span>
                         {opt.description ? (
-                          <span className="mt-1 text-[0.6875rem] text-ink-muted leading-tight">
+                          <span
+                            className={`mt-1 text-[0.6875rem] leading-tight ${
+                              isSelected ? "text-brand-900/80" : "text-ink-muted"
+                            }`}
+                          >
                             {opt.description}
                           </span>
                         ) : null}
@@ -227,21 +292,39 @@ export function InteriorsQuickEstimator({
                     return (
                       <button
                         key={opt.id}
+                        id={`${componentId}-${opt.id}`}
                         type="button"
                         role="radio"
                         aria-checked={isSelected}
+                        tabIndex={isSelected ? 0 : -1}
                         onClick={() => setSelectedLocation(opt.id)}
+                        onKeyDown={(e) =>
+                          handleRadioKeyDown(
+                            e,
+                            step3.options,
+                            selectedLocation,
+                            setSelectedLocation,
+                          )
+                        }
                         className={`flex min-h-[56px] flex-col justify-center px-4 py-3.5 text-left transition-colors cursor-pointer ${
                           isSelected
                             ? "bg-brand-50 text-brand-900"
                             : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink"
                         }`}
                       >
-                        <span className="text-xs sm:text-sm font-semibold text-ink leading-snug">
+                        <span
+                          className={`text-xs sm:text-sm font-semibold leading-snug ${
+                            isSelected ? "text-brand-900" : "text-ink"
+                          }`}
+                        >
                           {opt.label}
                         </span>
                         {opt.description ? (
-                          <span className="mt-1 text-[0.6875rem] text-ink-muted leading-tight">
+                          <span
+                            className={`mt-1 text-[0.6875rem] leading-tight ${
+                              isSelected ? "text-brand-900/80" : "text-ink-muted"
+                            }`}
+                          >
                             {opt.description}
                           </span>
                         ) : null}

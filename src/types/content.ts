@@ -450,6 +450,7 @@ export type SpaceCard = SpaceDossier;
 export interface MaterialSwatch {
   id: string;
   name: string;
+  tabLabel?: string;
   subtitle: string;
   category: string;
   description: string;
