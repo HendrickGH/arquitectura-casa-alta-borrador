@@ -245,8 +245,8 @@ export interface ContactFormContent {
   budgetRanges?: string[];
   timeframesLabel?: string;
   timeframes?: string[];
-  consultationTitle: string;
-  consultationChecklist: string[];
+  consultationTitle?: string;
+  consultationChecklist?: string[];
   directAttentionLabel?: string;
   freeCostLabel?: string;
   coverageLabel?: string;
@@ -568,7 +568,7 @@ export interface OperatingHours {
 }
 
 export interface ContactStageContent {
-  eyebrow: string;
+  eyebrow?: string;
   regionBadge?: string;
   heading: string;
   body: string;
@@ -590,7 +590,7 @@ export interface ContactPageContent {
     photo: Photo;
   };
   contactForm: ContactFormContent;
-  formPhoto: Photo;
+  formPhoto?: Photo;
   stage: ContactStageContent;
   address: {
     label: string;
@@ -609,7 +609,7 @@ export interface ContactPageContent {
     href: string;
   };
   whatsappPrefill?: string;
-  eyebrow: string;
+  eyebrow?: string;
   heading: string;
   body: string;
   photo: Photo;

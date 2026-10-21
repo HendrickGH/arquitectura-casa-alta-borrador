@@ -388,15 +388,7 @@ export const contactPageContent = {
     photoAlt:
       "Sesión de trabajo y revisión de proyecto ejecutivo en oficina de arquitectura de Constructora Casa Alta",
   },
-  formPhoto: {
-    dir: "proyectos-integrales",
-    base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
-    photoAlt:
-      "Arquitectos de Casa Alta revisando planos ejecutivos y detalles estructurales sobre mesa de madera",
-  },
   stage: {
-    eyebrow: "Sede Puerto Escondido · Costa de Oaxaca",
-    regionBadge: "Oaxaca · Costa e Istmo",
     heading: "Atención técnica directa y localización en campo",
     body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
     dir: "02-el-bicho",
@@ -405,7 +397,6 @@ export const contactPageContent = {
       "Fachada de tres palapas y alberca en El Bicho, proyecto residencial en la costa de Oaxaca por Constructora Casa Alta",
     phonesLabel: "Líneas directas de atención",
     scheduleLabel: "Horarios de atención",
-    mapLabel: "Mapa de localización · Puerto Escondido",
     mapNote: "Colonia Brisas de Zicatela · Atención presencial con cita previa.",
     whatsappCta: "Escribir por WhatsApp",
     consultationCta: "Iniciar consulta",
@@ -444,15 +435,6 @@ export const contactPageContent = {
       "6 a 12 meses",
       "Fase de planeación",
     ],
-    consultationTitle: "Primera sesión técnica sin costo",
-    consultationChecklist: [
-      "Evaluación de predio, mecánica preliminar y orientación solar",
-      "Estimación paramétrica de inversión y catálogo de partidas",
-      "Ruta crítica de proyecto ejecutivo y supervisión DRO",
-    ],
-    directAttentionLabel: "Atención directa",
-    freeCostLabel: "Sin costo",
-    coverageLabel: "Puerto Escondido · Oaxaca Centro · Salina Cruz",
     name: { label: "Nombre", placeholder: "Su nombre completo" },
     email: { label: "Correo electrónico", placeholder: "nombre@correo.com" },
     phone: { label: "Teléfono / WhatsApp", placeholder: "951 000 0000" },
@@ -512,7 +494,6 @@ export const contactPageContent = {
   base: "01-fachada-tres-palapas-alberca",
   photoAlt:
     "Fachada de tres palapas y alberca en El Bicho, proyecto residencial en la costa de Oaxaca por Constructora Casa Alta",
-  eyebrow: "Sede Puerto Escondido · Costa de Oaxaca",
   heading: "Atención técnica directa y localización en campo",
   body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
 };

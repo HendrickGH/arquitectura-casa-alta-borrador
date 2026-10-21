@@ -828,17 +828,7 @@ export function getContactPage(): ContactPageContent {
       contactPageContent.hero.photoAlt,
     )!;
 
-  const formPhoto =
-    findPhotoByBase(
-      contactPageContent.formPhoto.dir,
-      contactPageContent.formPhoto.base,
-      "Revisión de planos estructurales",
-      contactPageContent.formPhoto.photoAlt,
-    ) ??
-    getProjectCover(
-      contactPageContent.formPhoto.dir,
-      contactPageContent.formPhoto.photoAlt,
-    )!;
+  const formPhoto = undefined;
 
   const stagePhoto =
     findPhotoByBase(
@@ -862,14 +852,11 @@ export function getContactPage(): ContactPageContent {
     contactForm: contactPageContent.contactForm,
     formPhoto,
     stage: {
-      eyebrow: contactPageContent.stage.eyebrow,
-      regionBadge: contactPageContent.stage.regionBadge,
       heading: contactPageContent.stage.heading,
       body: contactPageContent.stage.body,
       photo: stagePhoto,
       phonesLabel: contactPageContent.stage.phonesLabel,
       scheduleLabel: contactPageContent.stage.scheduleLabel,
-      mapLabel: contactPageContent.stage.mapLabel,
       mapNote: contactPageContent.stage.mapNote,
       whatsappCta: contactPageContent.stage.whatsappCta,
       consultationCta: contactPageContent.stage.consultationCta,
@@ -880,7 +867,6 @@ export function getContactPage(): ContactPageContent {
     schedule: contactPageContent.schedule,
     email: contactPageContent.email,
     whatsappPrefill: contactPageContent.whatsappPrefill,
-    eyebrow: contactPageContent.stage.eyebrow,
     heading: contactPageContent.stage.heading,
     body: contactPageContent.stage.body,
     photo: stagePhoto,

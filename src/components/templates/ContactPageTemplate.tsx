@@ -52,7 +52,7 @@ export function ContactPageTemplate({
           tone="canvas"
           contact={page.contactForm}
           whatsappHref={whatsappHref}
-          photo={page.formPhoto}
+          showSidebar={false}
         />
 
         {/* Section 3: Monumental Direct Contact & Maps Stage (150svh) */}
@@ -75,7 +75,7 @@ function ContactStage({
 
   const stageData = page.stage ?? {
     eyebrow: page.eyebrow,
-    regionBadge: "Oaxaca · Costa e Istmo",
+    regionBadge: undefined,
     heading: page.heading,
     body: page.body,
     photo: page.photo,
@@ -128,11 +128,7 @@ function ContactStage({
         <Photo photo={stageData.photo} sizes="100vw" fit="cover" />
       </div>
 
-      {/* Architectural gradient scrims ensuring WCAG AAA text contrast */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-ink via-ink/40 to-transparent"
-      />
+      {/* Architectural gradient scrim ensuring WCAG AAA text contrast */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/85 to-transparent via-65%"
@@ -141,14 +137,18 @@ function ContactStage({
       {/* Bottom-anchored monumental direct contact stage */}
       <Container className="relative z-20 w-full">
         <div {...revealStep(0)} className="max-w-[48rem]">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
-            <p className="eyebrow !text-white/85">{stageData.eyebrow}</p>
-            {stageData.regionBadge ? (
-              <span className="label text-white/70">
-                {stageData.regionBadge}
-              </span>
-            ) : null}
-          </div>
+          {stageData.eyebrow || stageData.regionBadge ? (
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
+              {stageData.eyebrow ? (
+                <p className="eyebrow !text-white/85">{stageData.eyebrow}</p>
+              ) : null}
+              {stageData.regionBadge ? (
+                <span className="label text-white/70">
+                  {stageData.regionBadge}
+                </span>
+              ) : null}
+            </div>
+          ) : null}
 
           <Heading
             as="h2"
@@ -201,12 +201,12 @@ function ContactStage({
                   <a
                     key={phone.number}
                     href={phone.href}
-                    className="group flex flex-col justify-between p-4 bg-white/[0.04] hover:bg-white/[0.08] transition-colors duration-200 min-h-[44px]"
+                    className="group flex flex-col justify-center gap-1 py-1 min-h-[44px] transition-colors duration-200"
                   >
                     <span className="label text-white/60 text-[0.6875rem]">
                       {phone.role}
                     </span>
-                    <span className="mt-2 flex items-center gap-2.5 text-base sm:text-lg font-medium text-white tabular-nums group-hover:text-concha-nacar transition-colors">
+                    <span className="flex items-center gap-2.5 text-base sm:text-lg font-medium text-white tabular-nums group-hover:text-concha-nacar transition-colors">
                       <Icon
                         name="phone"
                         className="h-4 w-4 text-brand-500 shrink-0"
@@ -281,9 +281,11 @@ function ContactStage({
 
           {/* Right Column: Google Maps Widget Embed */}
           <div className="flex flex-col gap-4 lg:col-span-6 xl:col-span-6">
-            <span className="label text-white/70 block">
-              {stageData.mapLabel ?? "Mapa de localización · Puerto Escondido"}
-            </span>
+            {stageData.mapLabel ? (
+              <span className="label text-white/70 block">
+                {stageData.mapLabel}
+              </span>
+            ) : null}
             <div className="relative w-full overflow-hidden bg-white/5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]">
               <iframe
                 src={page.address.embedUrl}
