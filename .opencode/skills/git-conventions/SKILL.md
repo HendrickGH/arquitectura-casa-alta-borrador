@@ -17,24 +17,15 @@ never move. Your job is to make sure that contract is not violated *through git*
 
 ## When to Use
 
-Use before committing, when the working tree has accumulated changes, or when asked to split
-work into reviewable commits.
+Use before concluding any task where changes have been made to the working tree, or when splitting
+work into reviewable commits. Every agent working in this repository is responsible for committing
+its work before ending its turn. Leaving an uncommitted or dirty tree is strictly prohibited.
 
-This is enforced, not advisory: `.opencode/plugins/casa-alta.ts` blocks `git add` / `commit` /
-`mv` / `rm` until this skill has been loaded in the session. Loading it is the switch that
-unlocks staging and committing, so do it first.
+## The agent commits its own work
 
-## Hard constraint: you inspect and commit, you do not edit
-
-**Do not call `write` or `edit` while running this skill.** You can inspect, stage, and
-commit — but you cannot modify the content you are committing. That is deliberate. An agent
-that both writes the files and judges them has no way to catch its own mistakes, and a commit
-is the hardest thing in this repo to undo. If a file is wrong, report it and send it back to
-the agent that owns it.
-
-The repository needs you to hold that line yourself. opencode cannot restrict a skill's
-toolset the way a dedicated read-only agent could (a skill is instructions, not a sandbox), so
-this is a rule you must not break.
+Every agent that creates, edits, or removes files must inspect, stage, and commit its work units
+following the rules below. Do not leave changes uncommitted for another agent or session.
+Verify the diff, check the hazards, ensure tests or builds pass, and commit.
 
 Use repeated `-m` flags for multi-paragraph commit messages. Do not write temp message files.
 
@@ -48,7 +39,6 @@ This repo uses conventional commits, in English, with a scope. The scopes actual
 | `images` | anything under `images-optimizado/`, and raw dumps landing in `images/` |
 | `tooling` | `tools/` — the pipeline scripts |
 | `agents` | `.opencode/skills/` — the repo's project skills |
-| `hooks` | `.opencode/plugin/` — the repo's opencode plugin |
 | `docs` | `AGENTS.md`, `openspec/`, and other prose |
 | *(none)* | `chore:` for repo housekeeping, e.g. `.gitignore` |
 
@@ -93,9 +83,8 @@ These are specific to this repo and are invisible to a generic git agent.
    `plan.txt` / `manifest.txt` are intermediates from `tools/buildplan.pl`. Confirm they are
    not being staged, or that they are intentionally tracked.
 
-`.opencode/plugin/casa-alta.ts` enforces hazards 1–3 and warns about 3–4. It is not advisory —
-it can block your commit. Read `AGENTS.md`, "Plugin and formatter", for what it can and cannot
-see.
+You enforce these hazards directly. Do not rely on external scripts or hooks to block
+hazardous commits: inspect the diff carefully before staging. Read `AGENTS.md` for full context.
 
 ## Procedure
 
