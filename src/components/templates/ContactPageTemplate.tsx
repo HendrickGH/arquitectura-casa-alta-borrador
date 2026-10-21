@@ -49,7 +49,7 @@ export function ContactPageTemplate({
         {/* Section 2: ContactForm (Formulario de Contacto en Superficie Clara) */}
         <ContactForm
           id="formulario-contacto"
-          tone="bone"
+          tone="canvas"
           contact={page.contactForm}
           whatsappHref={whatsappHref}
           photo={page.formPhoto}
@@ -75,6 +75,7 @@ function ContactStage({
 
   const stageData = page.stage ?? {
     eyebrow: page.eyebrow,
+    regionBadge: "Oaxaca · Costa e Istmo",
     heading: page.heading,
     body: page.body,
     photo: page.photo,
@@ -122,7 +123,7 @@ function ContactStage({
       <div
         ref={imageWrapperRef}
         aria-hidden="true"
-        className="pointer-events-none absolute -top-[15%] left-0 right-0 h-[130%] w-full select-none will-change-transform"
+        className="pointer-events-none absolute -top-[20%] left-0 right-0 h-[140%] w-full select-none will-change-transform"
       >
         <Photo photo={stageData.photo} sizes="100vw" fit="cover" />
       </div>
@@ -130,7 +131,7 @@ function ContactStage({
       {/* Architectural gradient scrims ensuring WCAG AAA text contrast */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-ink/90 via-ink/40 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-ink via-ink/40 to-transparent"
       />
       <div
         aria-hidden="true"
@@ -142,9 +143,11 @@ function ContactStage({
         <div {...revealStep(0)} className="max-w-[48rem]">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
             <p className="eyebrow !text-white/85">{stageData.eyebrow}</p>
-            <span className="label text-white/70">
-              Oaxaca · Costa e Istmo
-            </span>
+            {stageData.regionBadge ? (
+              <span className="label text-white/70">
+                {stageData.regionBadge}
+              </span>
+            ) : null}
           </div>
 
           <Heading
@@ -167,7 +170,7 @@ function ContactStage({
               external
               arrow
             >
-              Escribir por WhatsApp
+              {stageData.whatsappCta ?? "Escribir por WhatsApp"}
             </Button>
 
             <Button
@@ -176,7 +179,7 @@ function ContactStage({
               size="md"
               arrow
             >
-              Iniciar consulta
+              {stageData.consultationCta ?? "Iniciar consulta"}
             </Button>
           </div>
         </div>
@@ -191,7 +194,7 @@ function ContactStage({
             {/* Telephone lines with roles */}
             <div>
               <span className="label text-white/70 block mb-4">
-                Líneas directas de atención
+                {stageData.phonesLabel ?? "Líneas directas de atención"}
               </span>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {page.phones.map((phone) => (
@@ -219,7 +222,7 @@ function ContactStage({
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <span className="label text-white/70 block mb-3">
-                  Horarios de atención
+                  {stageData.scheduleLabel ?? "Horarios de atención"}
                 </span>
                 <ul className="flex flex-col gap-2.5">
                   {page.schedule.map((slot) => (
@@ -237,7 +240,7 @@ function ContactStage({
 
               <div>
                 <span className="label text-white/70 block mb-3">
-                  Correo electrónico
+                  {page.email.label}
                 </span>
                 <a
                   href={page.email.href}
@@ -270,7 +273,7 @@ function ContactStage({
                   size="sm"
                   arrow
                 >
-                  Abrir en Google Maps
+                  {stageData.mapsCta ?? "Abrir en Google Maps"}
                 </Button>
               </div>
             </div>
@@ -279,7 +282,7 @@ function ContactStage({
           {/* Right Column: Google Maps Widget Embed */}
           <div className="flex flex-col gap-4 lg:col-span-6 xl:col-span-6">
             <span className="label text-white/70 block">
-              Mapa de localización · Puerto Escondido
+              {stageData.mapLabel ?? "Mapa de localización · Puerto Escondido"}
             </span>
             <div className="relative w-full overflow-hidden bg-white/5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]">
               <iframe
@@ -295,7 +298,8 @@ function ContactStage({
               />
             </div>
             <p className="text-xs text-white/60">
-              Colonia Brisas de Zicatela · Atención presencial con cita previa.
+              {stageData.mapNote ??
+                "Colonia Brisas de Zicatela · Atención presencial con cita previa."}
             </p>
           </div>
         </div>

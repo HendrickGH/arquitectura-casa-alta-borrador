@@ -247,6 +247,9 @@ export interface ContactFormContent {
   timeframes?: string[];
   consultationTitle: string;
   consultationChecklist: string[];
+  directAttentionLabel?: string;
+  freeCostLabel?: string;
+  coverageLabel?: string;
   name: ContactField;
   email: ContactField;
   phone: ContactField;
@@ -564,6 +567,21 @@ export interface OperatingHours {
   hours: string;
 }
 
+export interface ContactStageContent {
+  eyebrow: string;
+  regionBadge?: string;
+  heading: string;
+  body: string;
+  photo: Photo;
+  phonesLabel?: string;
+  scheduleLabel?: string;
+  mapLabel?: string;
+  mapNote?: string;
+  whatsappCta?: string;
+  consultationCta?: string;
+  mapsCta?: string;
+}
+
 export interface ContactPageContent {
   hero: {
     eyebrow: string;
@@ -573,12 +591,7 @@ export interface ContactPageContent {
   };
   contactForm: ContactFormContent;
   formPhoto: Photo;
-  stage: {
-    eyebrow: string;
-    heading: string;
-    body: string;
-    photo: Photo;
-  };
+  stage: ContactStageContent;
   address: {
     label: string;
     street: string;

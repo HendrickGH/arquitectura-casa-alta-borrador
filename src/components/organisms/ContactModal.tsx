@@ -149,6 +149,7 @@ export function ContactModal({
         <ContactFormFields
           contact={contact}
           whatsappHref={whatsappHref}
+          idPrefix="modal"
         />
       </div>
     </div>

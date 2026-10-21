@@ -11,6 +11,7 @@ interface ContactFormFieldsProps {
   contact: ContactFormContent;
   /** The WhatsApp target, supplied by the seam. */
   whatsappHref: string;
+  idPrefix?: string;
 }
 
 type Status = "idle" | "sending" | "success" | "error";
@@ -18,13 +19,15 @@ type Status = "idle" | "sending" | "success" | "error";
 /**
  * Architectural Consultation Hub (`ContactFormFields`).
  *
- * - 0px rectangular specialty and locality selector chips (`bg-brand-50 text-brand-900` when active).
+ * - 0px rectangular specialty, locality, budget, and timeframe selector chips.
  * - Dynamic WhatsApp synchronization: updates the prefilled WhatsApp message in real-time.
  */
 export function ContactFormFields({
   contact,
   whatsappHref,
+  idPrefix = "contact",
 }: ContactFormFieldsProps) {
+  const prefix = idPrefix;
   const specialties = contact.specialties ?? [];
   const localities = contact.localities ?? [];
   const budgetRanges = contact.budgetRanges ?? [];
@@ -56,12 +59,25 @@ export function ContactFormFields({
       .filter(Boolean)
       .join(", ");
 
-    const query = encodeURIComponent(
-      `Hola Casa Alta, deseo agendar una primera reunión técnica para ${details}.`,
-    );
-    const separator = whatsappHref.includes("?") ? "&" : "?";
-    return `${whatsappHref}${separator}text=${query}`;
+    const text = details
+      ? `Hola Casa Alta, deseo agendar una primera reunión técnica para ${details}.`
+      : "Hola Casa Alta, deseo agendar una primera reunión técnica para cotizar un proyecto arquitectónico.";
+
+    try {
+      const url = new URL(whatsappHref);
+      url.searchParams.set("text", text);
+      return url.toString();
+    } catch {
+      const base = whatsappHref.split("?")[0];
+      return `${base}?text=${encodeURIComponent(text)}`;
+    }
   })();
+
+  const phoneDisplay =
+    whatsappHref
+      .replace(/\D/g, "")
+      .slice(-10)
+      .replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3") || "WhatsApp";
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -89,6 +105,10 @@ export function ContactFormFields({
         message: formattedMessage,
       });
       form.reset();
+      setSelectedSpecialty(specialties[0] ?? "");
+      setSelectedLocality(localities[0] ?? "");
+      setSelectedBudget(budgetRanges[0] ?? "");
+      setSelectedTimeframe(timeframes[0] ?? "");
       setStatus("success");
     } catch {
       setStatus("error");
@@ -126,7 +146,7 @@ export function ContactFormFields({
                   className={cx(
                     "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
                     isSelected
-                      ? "bg-brand-50 text-brand-900 font-medium"
+                      ? "bg-brand-50 text-brand-900 font-semibold"
                       : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
                   )}
                 >
@@ -156,7 +176,7 @@ export function ContactFormFields({
                   className={cx(
                     "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
                     isSelected
-                      ? "bg-brand-50 text-brand-900 font-medium"
+                      ? "bg-brand-50 text-brand-900 font-semibold"
                       : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
                   )}
                 >
@@ -186,7 +206,7 @@ export function ContactFormFields({
                   className={cx(
                     "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
                     isSelected
-                      ? "bg-brand-50 text-brand-900 font-medium"
+                      ? "bg-brand-50 text-brand-900 font-semibold"
                       : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
                   )}
                 >
@@ -216,7 +236,7 @@ export function ContactFormFields({
                   className={cx(
                     "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
                     isSelected
-                      ? "bg-brand-50 text-brand-900 font-medium"
+                      ? "bg-brand-50 text-brand-900 font-semibold"
                       : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
                   )}
                 >
@@ -231,7 +251,7 @@ export function ContactFormFields({
       {/* 3. Text inputs grid */}
       <div className="grid gap-6 md:grid-cols-2">
         <FormField
-          id="contact-name"
+          id={`${prefix}-name`}
           name="name"
           label={contact.name.label}
           placeholder={contact.name.placeholder}
@@ -239,7 +259,7 @@ export function ContactFormFields({
           required
         />
         <FormField
-          id="contact-email"
+          id={`${prefix}-email`}
           name="email"
           type="email"
           label={contact.email.label}
@@ -248,7 +268,7 @@ export function ContactFormFields({
           required
         />
         <FormField
-          id="contact-phone"
+          id={`${prefix}-phone`}
           name="phone"
           type="tel"
           label={contact.phone.label}
@@ -257,7 +277,7 @@ export function ContactFormFields({
           className="md:col-span-2"
         />
         <FormField
-          id="contact-message"
+          id={`${prefix}-message`}
           name="message"
           label={contact.message.label}
           placeholder={contact.message.placeholder}
@@ -351,7 +371,7 @@ export function ContactFormFields({
                   rel="noopener noreferrer"
                   className="font-semibold underline underline-offset-2"
                 >
-                  951 458 1395
+                  {phoneDisplay}
                 </a>
                 .
               </p>

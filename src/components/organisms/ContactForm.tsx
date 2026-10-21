@@ -15,6 +15,7 @@ interface ContactFormProps {
   /** Anchor target, so the header nav can link straight to this section. */
   id?: string;
   tone?: "canvas" | "bone";
+  idPrefix?: string;
 }
 
 /**
@@ -26,7 +27,8 @@ export function ContactForm({
   whatsappHref,
   photo,
   id,
-  tone = "bone",
+  tone = "canvas",
+  idPrefix = "contact",
 }: ContactFormProps) {
   return (
     <Section id={id} tone={tone} reveal="stagger">
@@ -36,8 +38,12 @@ export function ContactForm({
           <div {...revealStep(0)} className="lg:col-span-5">
             <div className="overflow-hidden">
               <div className="mb-3 flex items-center justify-between gap-2">
-                <span className="label text-brand-800">Atención directa</span>
-                <span className="label text-ink-muted">Sin costo</span>
+                <span className="label text-brand-800">
+                  {contact.directAttentionLabel ?? "Atención directa"}
+                </span>
+                <span className="label text-ink-muted">
+                  {contact.freeCostLabel ?? "Sin costo"}
+                </span>
               </div>
               {photo ? (
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
@@ -48,7 +54,10 @@ export function ContactForm({
                 </div>
               ) : null}
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-3 text-xs text-ink-muted">
-                <span>Puerto Escondido · Oaxaca Centro · Salina Cruz</span>
+                <span>
+                  {contact.coverageLabel ??
+                    "Puerto Escondido · Oaxaca Centro · Salina Cruz"}
+                </span>
               </div>
 
               {/* Consultation Checklist with 0px square bullets */}
@@ -85,6 +94,7 @@ export function ContactForm({
               <ContactFormFields
                 contact={contact}
                 whatsappHref={whatsappHref}
+                idPrefix={idPrefix}
               />
             </div>
           </div>
