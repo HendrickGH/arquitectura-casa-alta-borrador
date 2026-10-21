@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
@@ -12,6 +11,7 @@ import { CarouselNavButtons } from "@/components/molecules/CarouselNavButtons";
 import { PhotoLightboxModal } from "@/components/molecules/PhotoLightboxModal";
 import { cx } from "@/lib/cx";
 import { useCarouselScroll } from "@/lib/hooks/useCarouselScroll";
+import { useModalDialog } from "@/lib/hooks/useModalDialog";
 import type { Photo as PhotoModel, Project } from "@/types/content";
 
 interface ProjectCaseStudyModalProps {
@@ -38,7 +38,6 @@ export function ProjectCaseStudyModal({
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const triggerElementRef = useRef<HTMLElement | null>(null);
   const [activePhoto, setActivePhoto] = useState<PhotoModel | null>(null);
   const activePhotoRef = useRef<PhotoModel | null>(null);
 
@@ -54,71 +53,20 @@ export function ProjectCaseStudyModal({
     scrollRight: scrollGalleryRight,
   } = useCarouselScroll(galleryTrackRef, { fallbackWidth: 340, gap: 16 });
 
-  useEffect(() => {
-    if (!project) return;
-
-    triggerElementRef.current = document.activeElement as HTMLElement | null;
-
-    const timer = window.setTimeout(() => {
-      closeButtonRef.current?.focus();
-    }, 40);
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (activePhotoRef.current) {
-          setActivePhoto(null);
-          return;
-        }
-        onClose();
-        return;
-      }
-      if (e.key === "Tab" && overlayRef.current) {
-        const focusable = overlayRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    const prevOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (!reducedMotion && overlayRef.current && contentRef.current) {
-      gsap.fromTo(
-        overlayRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.38, ease: "power2.out" },
-      );
-      gsap.fromTo(
-        contentRef.current,
-        { y: 36, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.55, ease: "power3.out", delay: 0.06 },
-      );
-    }
-
-    return () => {
-      window.clearTimeout(timer);
-      document.documentElement.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKey);
-      triggerElementRef.current?.focus();
-    };
-  }, [project, onClose]);
+  useModalDialog({
+    isOpen: Boolean(project),
+    onClose,
+    overlayRef,
+    dialogRef: contentRef,
+    trapRef: overlayRef,
+    closeButtonRef,
+    animation: "dossier",
+    onEscape: () => {
+      if (!activePhotoRef.current) return false;
+      setActivePhoto(null);
+      return true;
+    },
+  });
 
   if (!project) return null;
 

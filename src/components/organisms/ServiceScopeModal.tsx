@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useRouter } from "next/navigation";
-import gsap from "gsap";
 import { Button } from "@/components/atoms/Button";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Text } from "@/components/atoms/Text";
 import { useContactModal } from "@/components/organisms/ContactModalContext";
+import { useModalDialog } from "@/lib/hooks/useModalDialog";
 import type { Service } from "@/types/content";
 
 interface ServiceScopeModalProps {
@@ -38,72 +38,16 @@ export function ServiceScopeModal({
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const triggerElementRef = useRef<HTMLElement | null>(null);
   const contactModal = useContactModal();
   const router = useRouter();
 
-  useEffect(() => {
-    if (!service) return;
-
-    triggerElementRef.current = document.activeElement as HTMLElement | null;
-
-    const timer = window.setTimeout(() => {
-      closeButtonRef.current?.focus();
-    }, 40);
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
-      if (e.key === "Tab" && dialogRef.current) {
-        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    const prevOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (!reducedMotion && overlayRef.current && dialogRef.current) {
-      gsap.fromTo(
-        overlayRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.28, ease: "power2.out" },
-      );
-      gsap.fromTo(
-        dialogRef.current,
-        { y: 24, opacity: 0, scale: 0.98 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "power3.out", delay: 0.05 },
-      );
-    }
-
-    return () => {
-      window.clearTimeout(timer);
-      document.documentElement.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKey);
-      triggerElementRef.current?.focus();
-    };
-  }, [service, onClose]);
+  const { triggerElementRef } = useModalDialog({
+    isOpen: Boolean(service),
+    onClose,
+    overlayRef,
+    dialogRef,
+    closeButtonRef,
+  });
 
   if (!service) return null;
 

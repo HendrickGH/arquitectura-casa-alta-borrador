@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import type { Photo as PhotoModel } from "@/types/content";
@@ -22,15 +21,6 @@ export function PhotoLightboxModal({
   onClose,
   ariaLabel,
 }: PhotoLightboxModalProps) {
-  useEffect(() => {
-    if (!photo) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [photo, onClose]);
-
   if (!photo) return null;
 
   return (
