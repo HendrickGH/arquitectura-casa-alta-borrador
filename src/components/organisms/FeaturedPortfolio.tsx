@@ -18,6 +18,7 @@ interface FeaturedPortfolioProps {
   /** Anchor target, so the header nav can link straight to this section. */
   id?: string;
   whatsappHref?: string;
+  action?: React.ReactNode;
 }
 
 /**
@@ -34,6 +35,7 @@ export function FeaturedPortfolio({
   tone = "canvas",
   id,
   whatsappHref,
+  action,
 }: FeaturedPortfolioProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -52,9 +54,13 @@ export function FeaturedPortfolio({
             heading={intro.heading}
             body={intro.body}
             action={
-              <Button href="/proyectos" variant="secondary" size="sm" arrow>
-                Ver archivo completo (17 obras)
-              </Button>
+              action !== undefined ? (
+                action
+              ) : (
+                <Button href="/proyectos" variant="secondary" size="sm" arrow>
+                  Ver archivo completo (17 obras)
+                </Button>
+              )
             }
           />
         </div>

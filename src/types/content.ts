@@ -417,79 +417,6 @@ export interface ThematicPillar {
   items?: string[];
 }
 
-export type SpaceCategory =
-  | "all"
-  | "cocinas"
-  | "banos"
-  | "terrazas"
-  | "interiores"
-  | "showroom";
-
-export interface SpaceDossierTechnicalSpecs {
-  cubierta: string;
-  cuerpo: string;
-  herrajes: string;
-  entrega: string;
-}
-
-export interface SpaceDossier {
-  id: string;
-  category: SpaceCategory;
-  categoryLabel: string;
-  title: string;
-  materials: string;
-  description: string;
-  specs: SpaceDossierTechnicalSpecs;
-  photo: Photo;
-  quoteContext: string;
-}
-
-/** Architectural space card with complete dossier information. */
-export type SpaceCard = SpaceDossier;
-
-export interface MaterialSwatch {
-  id: string;
-  name: string;
-  tabLabel?: string;
-  subtitle: string;
-  category: string;
-  description: string;
-  specs: string[];
-  photo: Photo;
-}
-
-export interface ShowroomStoryScene {
-  id: string;
-  number: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  highlights: string[];
-  primaryPhoto: Photo;
-  secondaryPhoto?: Photo;
-}
-
-export interface EstimatorOption {
-  id: string;
-  label: string;
-  description?: string;
-}
-
-export interface EstimatorStep {
-  step: number;
-  question: string;
-  hint?: string;
-  options: EstimatorOption[];
-}
-
-export interface EstimatorConfig {
-  eyebrow: string;
-  heading: string;
-  subheadline: string;
-  freeConsultationNote: string;
-  steps: EstimatorStep[];
-}
-
 export interface InteriorsPageContent {
   hero: {
     eyebrow: string;
@@ -499,49 +426,25 @@ export interface InteriorsPageContent {
     catalogCtaLabel?: string;
     consultationCtaLabel?: string;
   };
-  materialsMatrix: {
+  materials: {
     eyebrow: string;
     heading: string;
     body: string;
-    materials: MaterialSwatch[];
+    sections: SpecialtySection[];
   };
-  inspiration: {
-    eyebrow: string;
-    heading: string;
-    body: string;
-    tabs: Array<{ id: SpaceCategory; label: string }>;
-    spaces: SpaceDossier[];
+  manifesto: {
+    text: string;
+    photo?: Photo;
   };
-  engineeringGuarantee: {
-    eyebrow: string;
-    heading: string;
-    claim: string;
-    body: string;
-    badges: string[];
-    pillars: ThematicPillar[];
+  portfolio: {
+    intro: SectionIntro;
+    featured: Project[];
+    remaining: Project[];
   };
-  showroomStory: {
-    eyebrow: string;
-    heading: string;
-    body: string;
-    scenes: ShowroomStoryScene[];
+  engineering: {
+    intro: SectionIntro;
+    items: Differentiator[];
   };
-  estimator: EstimatorConfig;
-  surfaces: HighEndFinishesContent;
-  interiorsGalleryIntro: SectionIntro;
-  interiorsPhotos: Photo[];
-  lifestyleIntro: SectionIntro;
-  lifestylePhotos: Photo[];
-}
-
-export interface HighEndFinishesContent {
-  eyebrow: string;
-  heading: string;
-  /** Verbatim client claim for Acabados de Alta Gama y Superficies de Importación. */
-  claim: string;
-  body: string;
-  badges: string[];
-  pillars: ThematicPillar[];
 }
 
 export interface SustainabilityPageContent {

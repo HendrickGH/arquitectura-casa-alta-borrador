@@ -39,9 +39,7 @@ import type {
   DivisionCard,
   HomePage,
   InteriorsPageContent,
-  MaterialSwatch,
-  ShowroomStoryScene,
-  SpaceDossier,
+  SpecialtySection,
   MethodologyPhase,
   Photo,
   ProcessStep,
@@ -362,475 +360,65 @@ export function getInteriorsPage(): InteriorsPageContent {
     ) ??
     getProjectCover(interiorsPageContent.hero.dir, "Arquitectura de interiores")!;
 
-  const studioInteriors = getProjectPhotos(
-    "arquitectura-interiores",
-    "Arquitectura de interiores Casa Alta",
-  ).filter((p) => p.src !== heroPhoto.src);
-
-  const lifestylePhotos = getProjectPhotos(
-    "modelos-mujeres",
-    "Showroom de cocinas e interiorismo Casa Alta",
-  );
-
-  const banoElBicho = findPhotoByBase(
-    "02-el-bicho",
-    "05-bano-espejo-redondo-lavabo",
-    "El Bicho",
-    "Interior de baño residencial con espejo redondo de madera y lavabo de piedra",
-  );
-
-  const residentialPhotos = [
-    findPhotoByBase(
-      "12-vilas-cavan",
-      "01-interior-sala-cocina-chimenea",
-      "Vilas Cavan",
-      "Sala y cocina integradas con chimenea y carpintería residencial",
-    ),
-    findPhotoByBase(
-      "07-casa-tarrastro",
-      "02-terraza-celosia-madera-encino",
-      "Casa Tarrastro",
-      "Galería techada con celosía de madera y cancelería de vidrio",
-    ),
-    findPhotoByBase(
-      "03-casa-blake-tlalixtac",
-      "07-corredor-vigas-madera-lamparas",
-      "Casa Blake",
-      "Corredor residencial con vigas de madera y cancelería",
-    ),
-    findPhotoByBase(
-      "02-el-bicho",
-      "04-corredor-madera-vista-mar",
-      "El Bicho",
-      "Corredor habitable con columnas de madera estructural y vista abierta",
-    ),
-    findPhotoByBase(
-      "12-vilas-cavan",
-      "03-sala-ventanal-montana",
-      "Vilas Cavan",
-      "Estancia residencial con ventanal panorámico hacia montaña",
-    ),
-    findPhotoByBase(
-      "02-el-bicho",
-      "03-terraza-hamaca-jardin",
-      "El Bicho",
-      "Área de descanso y estancia exterior integrada a la arquitectura",
-    ),
-  ].filter((p): p is Photo => p !== null);
-
-  const interiorsPhotos = [...studioInteriors, ...residentialPhotos];
-
-  const materials: MaterialSwatch[] = interiorsPageContent.materialsMatrix.materials.map(
-    (m) => {
-      const photo = findPhotoByBase(m.dir, m.base, m.name) ?? heroPhoto;
+  // 1. Materials for SpecialtiesShowcase
+  const materialSections: SpecialtySection[] =
+    interiorsPageContent.materials.sections.map((m) => {
+      const photo =
+        findPhotoByBase(m.dir, m.base, m.title) ?? heroPhoto;
       return {
-        id: m.id,
-        name: m.name,
-        tabLabel: m.tabLabel,
+        slug: m.slug,
+        number: m.number,
+        title: m.title,
+        shortTitle: m.shortTitle,
         subtitle: m.subtitle,
-        category: m.category,
         description: m.description,
-        specs: m.specs,
+        deliverables: m.deliverables,
         photo,
+        photos: [photo],
       };
-    },
-  );
-
-  const spaces: SpaceDossier[] = [];
-
-  // Cocinas (3)
-  const cocinaPhotos = studioInteriors.filter(
-    (p) =>
-      p.src.includes("isla") ||
-      p.src.includes("cocina") ||
-      p.src.includes("cubierta"),
-  );
-  cocinaPhotos.slice(0, 3).forEach((photo, idx) => {
-    const isComedor = photo.src.includes("comedor");
-    const isCubierta = photo.src.includes("cubierta");
-    const title = isComedor
-      ? "Comedor en madera noble integrado a isla de cocina"
-      : isCubierta
-        ? "Cubierta continua con veta lineal en piedra noble"
-        : "Isla monolítica en piedra sinterizada con parrilla integrada";
-    const description = isComedor
-      ? "Mesa en tablón continuo de madera tropical ensamblada directamente a la isla, creando una transición fluida entre la zona caliente y la zona de comensales bajo techo de carrizo."
-      : isCubierta
-        ? "Área de preparación longitudinal con remate de antepecho integrado en una sola pieza de piedra, eliminando esquinas vivas y facilitando el aseo diario."
-        : "Isla de gran formato con faldón a 45° en piedra sinterizada de 20 mm, parrilla de cinco quemadores empotrada y módulo para horno bajo cubierta con ventilación perimetral.";
-    const specs = isComedor
-      ? {
-          cubierta: "Tablón de Parota maciza curada con sellado mate grado alimenticio",
-          cuerpo: "Estructura interna de acero al carbón con anclaje oculto a losa",
-          herrajes: "Herrajes marinos de acero inoxidable AISI 316 resistentes a salitre",
-          entrega: "5 a 7 semanas con curado en autoclave y ensamble en sitio",
-        }
-      : isCubierta
-        ? {
-            cubierta: "Porcelánico ultracompacto mate con alineación de veta continua",
-            cuerpo: "Módulos suspendidos con iluminación LED cálida integrada a 3000K",
-            herrajes: "Sistemas elevables Aventos HK y pistones amortiguados",
-            entrega: "4 a 5 semanas con levantamiento láser previo",
-          }
-        : {
-            cubierta: "Piedra sinterizada 20 mm con inglete a 45° y veta continua",
-            cuerpo: "Tableros hidrófugos de alta densidad en tono grafito mate",
-            herrajes: "Guías Blum Tandembox de extracción total (cierre suave 100,000 ciclos)",
-            entrega: "4 a 6 semanas desde validación ejecutiva en sitio",
-          };
-
-    spaces.push({
-      id: `cocina-${idx}`,
-      category: "cocinas",
-      categoryLabel: "Cocina e isla",
-      title,
-      materials: isComedor
-        ? "Madera de Parota curada · Piedra tecnológica"
-        : "Piedra sinterizada ultracompacta · Veta continua",
-      description,
-      specs,
-      photo,
-      quoteContext: `Hola Casa Alta, me interesa cotizar un espacio similar a ${title} (Ref: cocina-${idx}). Quisiera coordinar la asesoría técnica gratuita.`,
     });
-  });
 
-  // Baños (3)
-  const banoStudio = studioInteriors.find(
-    (p) => p.src.includes("bano") || p.src.includes("lavabo"),
-  );
-  if (banoStudio) {
-    spaces.push({
-      id: "bano-0",
-      category: "banos",
-      categoryLabel: "Baño residencial",
-      title: "Baño contemporáneo en porcelánico con espejo retroiluminado",
-      materials: "Porcelánico de gran formato · Espejo perimetral LED",
-      description:
-        "Recubrimiento de gran formato de piso a techo, espejo circular flotado con encendido perimetral indirecto y cancelería de cristal templado sin perfiles visibles.",
-      specs: {
-        cubierta: "Porcelánico rectificado antibacteriano y nula absorción de humedad",
-        cuerpo: "Mueble vanitory suspendido con acabado en laca poliuretano mate",
-        herrajes: "Cajones con recorte sifónico oculto y guías ocultas de extracción",
-        entrega: "3 a 4 semanas con trazo hidrosanitario en obra",
-      },
-      photo: banoStudio,
-      quoteContext:
-        "Hola Casa Alta, me interesa cotizar un espacio similar al Baño contemporáneo en porcelánico (Ref: bano-0). Quisiera coordinar la asesoría técnica gratuita.",
-    });
-  }
-  if (banoElBicho) {
-    spaces.push({
-      id: "bano-1",
-      category: "banos",
-      categoryLabel: "Baño residencial",
-      title: "Lavabo artesanal en piedra labrada y espejo de madera",
-      materials: "Piedra natural labrada · Madera tropical curada",
-      description:
-        "Lavamanos monobloque tallado en piedra de río o cantera local, montado sobre meseta de madera tratada para resistir salpicaduras continuas.",
-      specs: {
-        cubierta: "Piedra natural labrada a mano con sellado hidrofugante nanotecnológico",
-        cuerpo: "Repisa estructural en madera tropical dura tratada con cera de abeja",
-        herrajes: "Monomando alto de latón macizo acabado negro mate minimalista",
-        entrega: "3 a 5 semanas sujeto a labrado artesanal",
-      },
-      photo: banoElBicho,
-      quoteContext:
-        "Hola Casa Alta, me interesa cotizar un espacio similar al Lavabo artesanal en piedra (Ref: bano-1). Quisiera coordinar la asesoría técnica gratuita.",
-    });
-  }
-  const banoPunta = findPhotoByBase(
-    "10-obra-punta-zicatela",
-    "26-bano-exterior-puertas-celosia-bambu-sanitario",
-    "Punta Zicatela",
-    "Sanitario residencial con cancelería y celosía de madera",
-  );
-  if (banoPunta) {
-    spaces.push({
-      id: "bano-2",
-      category: "banos",
-      categoryLabel: "Baño residencial",
-      title: "Sanitario con cancelería de celosía y muros en chukum",
-      materials: "Carpintería en celosía · Muros en chukum y piedra",
-      description:
-        "Espacio con ventilación natural cruzada mediante celosía de madera, muros continuos en acabado chukum hidrófugo y piezas sanitarias suspendidas.",
-      specs: {
-        cubierta: "Repisa corrida en concreto pulido con sellado epóxico satinado",
-        cuerpo: "Mampostería y pastas de cal con pigmentos minerales de la región",
-        herrajes: "Cancelería de madera estufada con bisagras de pivote oculto",
-        entrega: "4 a 6 semanas integrado a la fase de obra civil",
-      },
-      photo: banoPunta,
-      quoteContext:
-        "Hola Casa Alta, me interesa cotizar un espacio similar al Sanitario en celosía y chukum (Ref: bano-2). Quisiera coordinar la asesoría técnica gratuita.",
-    });
-  }
+  // 2. Manifesto photo
+  const manifestoPhoto =
+    findPhotoByBase(
+      interiorsPageContent.manifesto.dir,
+      interiorsPageContent.manifesto.base,
+      "Manifiesto de interiores",
+    ) ?? heroPhoto;
 
-  // Terrazas (6)
-  const terrazaItems = [
-    {
-      photo: findPhotoByBase(
-        "01-plaza-esmeralda-puerto-escondido",
-        "02-terraza-anochecer-planta-jardinera",
-        "Plaza Esmeralda",
-        "Terraza exterior en anochecer con jardineras integradas y deck de madera",
-      ),
-      title: "Terraza exterior con jardineras integradas y deck de madera",
-      materials: "Madera tropical tratada · Iluminación rasante cálida",
-      description:
-        "Deck exterior resistente a intemperie con jardineras corridas revestidas en madera y luces de cortesía perimetrales para uso nocturno.",
-      specs: {
-        cubierta: "Deck de Cumarú o Parota tratada con aceites botánicos filtro UV",
-        cuerpo: "Bastidor de acero estructural protegido con imprimación anticorrosiva",
-        herrajes: "Tornillería oculta de acero inoxidable calidad marina AISI 316",
-        entrega: "4 a 6 semanas con habilitado en taller y montaje rápido",
-      },
-    },
-    {
-      photo: findPhotoByBase(
-        "08-rbnb-palmarito",
-        "01-trabajadores-barra-techo-palapa",
-        "Palmarito",
-        "Barra exterior residencial bajo cubierta de palapa frente al mar",
-      ),
-      title: "Barra exterior y cubierta de palapa frente al mar",
-      materials: "Concreto aparente · Madera de zapote y palma tejida",
-      description:
-        "Barra de servicio para asador y coctelería exterior, protegida de la radiación solar directa por una armadura artesanal de palma tejida.",
-      specs: {
-        cubierta: "Superficie de cuarzo o granito cepillado de 20 mm resistente a UV",
-        cuerpo: "Mampostería de concreto aparente con sellado marino antihumedad",
-        herrajes: "Puertas inferiores con ventilación cruzada y cerrojos inoxidables",
-        entrega: "4 a 5 semanas en coordinación con la palapa",
-      },
-    },
-    {
-      photo: findPhotoByBase(
-        "01-plaza-esmeralda-puerto-escondido",
-        "07-terraza-madera-cristal-ciudad",
-        "Plaza Esmeralda",
-        "Terraza exterior con piso de madera y barandal de cristal templado",
-      ),
-      title: "Terraza apergolada con barandal de cristal templado",
-      materials: "Madera estructural · Cristal templado con herrajes marinos",
-      description:
-        "Área apergolada con vistas despejadas, piso de madera de tráfico pesado y barandal de seguridad en vidrio templado sin postes verticales invasivos.",
-      specs: {
-        cubierta: "Pergolado de vigas de madera dura regional estufada",
-        cuerpo: "Pilares de acero estructural con acabado electrostático negro",
-        herrajes: "Botones de sujeción para cristal templado de 10 mm en acero inoxidable",
-        entrega: "3 a 5 semanas con cálculo de resistencia al viento",
-      },
-    },
-    {
-      photo: findPhotoByBase(
-        "08-rbnb-palmarito",
-        "02-cielo-palapa-barra-mar",
-        "Palmarito",
-        "Barra de convivencia exterior bajo cubierta de palapa con vista al mar",
-      ),
-      title: "Barra de convivencia exterior bajo cubierta natural",
-      materials: "Superficie de alta resistencia · Estructura de madera tropical",
-      description:
-        "Estación de bar exterior con contrabarra y conexión eléctrica para enfriadores de bebidas, diseñada para resistir el rocío salino permanente.",
-      specs: {
-        cubierta: "Placa pétrea sellada resistente a grasa, alcohol y ácidos de cítricos",
-        cuerpo: "Estructura de troncos curados al vacío contra insectos xilófagos",
-        herrajes: "Conectores marinos para intemperie y cajas eléctricas herméticas IP66",
-        entrega: "4 a 6 semanas",
-      },
-    },
-    {
-      photo: findPhotoByBase(
-        "02-el-bicho",
-        "01-fachada-tres-palapas-alberca",
-        "El Bicho",
-        "Terraza y deck de madera frente a alberca con vista al horizonte",
-      ),
-      title: "Deck de madera y alberca frente al horizonte",
-      materials: "Deck de madera tropical · Alberca integrada",
-      description:
-        "Plataforma de asoleadero en madera de grano cerrado que no transmite exceso de calor a los pies descalzos y canaliza el agua pluvial hacia drenes perimetrales.",
-      specs: {
-        cubierta: "Madera tropical de alta densidad resistente a inmersión y salinidad",
-        cuerpo: "Subestructura ventilada con canaletas de desagüe rápido",
-        herrajes: "Fijación mediante clip oculto sin perforaciones vistas en superficie",
-        entrega: "4 a 6 semanas",
-      },
-    },
-    {
-      photo: findPhotoByBase(
-        "01-plaza-esmeralda-puerto-escondido",
-        "30-iluminacion-rasante-muro-terraza-anochecer",
-        "Plaza Esmeralda",
-        "Terraza lounge con iluminación rasante cálida en muro perimetral",
-      ),
-      title: "Terraza lounge con iluminación rasante cálida",
-      materials: "Concreto aparente · Iluminación rasante en muro",
-      description:
-        "Muros perimetrales con acabado mineral continuo y luminarias de piso empotradas que resaltan la textura de la piedra durante el atardecer.",
-      specs: {
-        cubierta: "Muros texturizados en acabado mineral artesanal concha nácar",
-        cuerpo: "Concreto desbastado y jardineras perimetrales de absorción",
-        herrajes: "Luminarias rasantes LED con driver remoto y protección IP67",
-        entrega: "3 a 4 semanas",
-      },
-    },
-  ];
-  terrazaItems.forEach((item, idx) => {
-    if (item.photo) {
-      spaces.push({
-        id: `terraza-${idx}`,
-        category: "terrazas",
-        categoryLabel: "Terrazas y barras exteriores",
-        title: item.title,
-        materials: item.materials,
-        description: item.description,
-        specs: item.specs,
-        photo: item.photo,
-        quoteContext: `Hola Casa Alta, me interesa cotizar una terraza o barra similar a ${item.title} (Ref: terraza-${idx}). Quisiera coordinar la asesoría técnica gratuita.`,
-      });
-    }
-  });
+  // 3. Interior Projects for FeaturedPortfolio
+  const interiorsProject = getProject("arquitectura-interiores");
+  const vilasCavan = getProject("vilas-cavan");
+  const cafeMalagua = getProject("cafe-malagua");
+  const casaCharcoSeco = getProject("casa-charco-seco");
+  const casaBlake = getProject("casa-blake-tlalixtac");
+  const puntaZicatela = getProject("obra-punta-zicatela");
 
-  // Interiores (3)
-  const interioresStudio = studioInteriors.filter(
-    (p) =>
-      !p.src.includes("bano") &&
-      !p.src.includes("lavabo") &&
-      !p.src.includes("isla") &&
-      !p.src.includes("cocina") &&
-      !p.src.includes("cubierta"),
-  );
-  interioresStudio.slice(0, 2).forEach((photo, idx) => {
-    const isGaleria = photo.src.includes("galeria");
-    const title = isGaleria
-      ? "Pasillo galería con muro terracota y aplique de luz"
-      : "Comedor residencial en parota con vista a jardín";
-    const description = isGaleria
-      ? "Circulación interior con muro de acento en pigmento mineral terracota, iluminación indirecta dirigida y remate visual en vegetación exterior."
-      : "Mesa de comedor de ocho plazas en madera maciza de parota, concebida para articular la estancia principal con el jardín interior.";
-    const specs = isGaleria
-      ? {
-          cubierta: "Muros en pasta mineral terracota con textura artesanal",
-          cuerpo: "Paneles con refuerzo acústico y aislamiento térmico interior",
-          herrajes: "Rieles de iluminación empotrados a ras de plafón",
-          entrega: "2 a 3 semanas",
-        }
-      : {
-          cubierta: "Tablón macizo de Parota con borde vivo natural y sellado mate",
-          cuerpo: "Base monolítica en madera y acero con refuerzo antisísmico",
-          herrajes: "Niveladores ocultos de alta resistencia a torsión",
-          entrega: "4 a 5 semanas",
-        };
+  const interiorProjects = [
+    interiorsProject,
+    vilasCavan,
+    cafeMalagua,
+    casaCharcoSeco,
+    casaBlake,
+    puntaZicatela,
+  ].filter((p): p is Project => p !== null);
 
-    spaces.push({
-      id: `interior-${idx}`,
-      category: "interiores",
-      categoryLabel: "Estancias y comedores",
-      title,
-      materials: isGaleria
-        ? "Pasta mineral terracota · Apliques de luz cálida"
-        : "Madera tropical certificada · Acabado concha nácar",
-      description,
-      specs,
-      photo,
-      quoteContext: `Hola Casa Alta, me interesa cotizar un espacio interior similar a ${title} (Ref: interior-${idx}). Quisiera coordinar la asesoría técnica gratuita.`,
-    });
-  });
-  const escaleraTarrastro = findPhotoByBase(
-    "07-casa-tarrastro",
-    "09-escalera-interior-barandal-geometrico-doble-altura",
-    "Casa Tarrastro",
-    "Escalera interior en doble altura con porcelánico gris y herrería geométrica",
-  );
-  if (escaleraTarrastro) {
-    spaces.push({
-      id: "interior-2",
-      category: "interiores",
-      categoryLabel: "Estancias y comedores",
-      title: "Escalera en doble altura con barandal de diseño",
-      materials: "Porcelánico de gran formato · Herrería contemporánea y luz cenital",
-      description:
-        "Núcleo vertical en doble altura con peldaños monolíticos en porcelánico de alta resistencia al desgaste y barandal escultural en herrería negra mate.",
-      specs: {
-        cubierta: "Huellas en porcelánico rectificado de gran formato con canto pulido",
-        cuerpo: "Estructura de concreto armado con luz de cortesía en zoclo",
-        herrajes: "Barandal de diseño continuo en herrería electropintada sin tornillos visibles",
-        entrega: "3 a 5 semanas con trazo geométrico en sitio",
-      },
-      photo: escaleraTarrastro,
-      quoteContext:
-        "Hola Casa Alta, me interesa cotizar un espacio similar a la Escalera en doble altura (Ref: interior-2). Quisiera coordinar la asesoría técnica gratuita.",
-    });
-  }
+  const featured = interiorProjects.slice(0, 4);
+  const remaining = interiorProjects.slice(4);
 
-  // Showroom (3)
-  const showroomPhotos = lifestylePhotos.slice(0, 3);
-  showroomPhotos.forEach((photo, idx) => {
-    const title =
-      idx === 0
-        ? "Isla central en cuarzo negro con iluminación lineal suspendida"
-        : idx === 1
-          ? "Barra contemporánea con mobiliario negro mate y barra desayunadora"
-          : "Torre de alacena extraíble y cocina integral en showroom";
-    const description =
-      idx === 0
-        ? "Espacio de interacción social alrededor de una isla de cuarzo de gran escala, diseñada para cocinar y convivir sin barreras visuales."
-        : idx === 1
-          ? "Módulos de cocina en acabado negro mate antihuella, integrados con barra de madera cálida para desayunos informales."
-          : "Módulo despensero de columna alta con herrajes cromados de extracción total y gavetas interiores de apertura suave.";
-    const specs =
-      idx === 0
-        ? {
-            cubierta: "Cuarzo negro de importación con veta lineal continua",
-            cuerpo: "Gabinetes en melamina hidrófuga acabado carbón mate",
-            herrajes: "Sistemas push-to-open y cierre amortiguado Blum",
-            entrega: "4 a 6 semanas",
-          }
-        : idx === 1
-          ? {
-              cubierta: "Cuarzo de alta densidad con cantos biselados a 45°",
-              cuerpo: "Armarios de piso a techo con iluminación LED indirecta a 3000K",
-              herrajes: "Bisagras Clip Top Blumotion 110° niqueladas",
-              entrega: "4 a 6 semanas",
-            }
-          : {
-              cubierta: "Módulos verticales en negro mate anti-huella digital",
-              cuerpo: "Estructura modular con divisores internos regulables",
-              herrajes: "Mecanismo extraíble cromado de 5 niveles con amortiguación hidráulica",
-              entrega: "4 a 6 semanas",
-            };
-
-    spaces.push({
-      id: `showroom-${idx}`,
-      category: "showroom",
-      categoryLabel: "Showroom y convivencia",
-      title,
-      materials: "Cuarzo de importación · Mobiliario negro mate y herrajes Blum",
-      description,
-      specs,
-      photo,
-      quoteContext: `Hola Casa Alta, me interesa cotizar un espacio similar a ${title} (Ref: showroom-${idx}). Quisiera coordinar la asesoría técnica gratuita.`,
-    });
-  });
-
-  const showroomScenes: ShowroomStoryScene[] =
-    interiorsPageContent.showroomStory.scenes.map((s) => {
-      const primaryPhoto =
-        findPhotoByBase(s.primaryDir, s.primaryBase, s.title) ?? heroPhoto;
-      const secondaryPhoto =
-        s.secondaryDir && s.secondaryBase
-          ? findPhotoByBase(s.secondaryDir, s.secondaryBase, s.subtitle) ?? undefined
+  // 4. Engineering Pillars for WhyCasaAltaEditorial
+  const engineeringItems: Differentiator[] =
+    interiorsPageContent.engineering.items.map((item) => {
+      const photo =
+        item.dir && item.base
+          ? findPhotoByBase(item.dir, item.base, item.title) ?? undefined
           : undefined;
       return {
-        id: s.id,
-        number: s.number,
-        title: s.title,
-        subtitle: s.subtitle,
-        description: s.description,
-        highlights: s.highlights,
-        primaryPhoto,
-        secondaryPhoto,
+        title: item.title,
+        description: item.description,
+        tag: item.tag,
+        points: item.points,
+        photo,
       };
     });
 
@@ -843,29 +431,25 @@ export function getInteriorsPage(): InteriorsPageContent {
       catalogCtaLabel: interiorsPageContent.hero.catalogCtaLabel,
       consultationCtaLabel: interiorsPageContent.hero.consultationCtaLabel,
     },
-    materialsMatrix: {
-      eyebrow: interiorsPageContent.materialsMatrix.eyebrow,
-      heading: interiorsPageContent.materialsMatrix.heading,
-      body: interiorsPageContent.materialsMatrix.body,
-      materials,
+    materials: {
+      eyebrow: interiorsPageContent.materials.eyebrow,
+      heading: interiorsPageContent.materials.heading,
+      body: interiorsPageContent.materials.body,
+      sections: materialSections,
     },
-    inspiration: {
-      ...interiorsPageContent.inspiration,
-      spaces,
+    manifesto: {
+      text: interiorsPageContent.manifesto.text,
+      photo: manifestoPhoto,
     },
-    engineeringGuarantee: interiorsPageContent.engineeringGuarantee,
-    showroomStory: {
-      eyebrow: interiorsPageContent.showroomStory.eyebrow,
-      heading: interiorsPageContent.showroomStory.heading,
-      body: interiorsPageContent.showroomStory.body,
-      scenes: showroomScenes,
+    portfolio: {
+      intro: interiorsPageContent.portfolio.intro,
+      featured,
+      remaining,
     },
-    estimator: interiorsPageContent.estimator,
-    surfaces: interiorsPageContent.surfaces,
-    interiorsGalleryIntro: interiorsPageContent.interiorsGalleryIntro,
-    interiorsPhotos,
-    lifestyleIntro: interiorsPageContent.lifestyleIntro,
-    lifestylePhotos,
+    engineering: {
+      intro: interiorsPageContent.engineering.intro,
+      items: engineeringItems,
+    },
   };
 }
 

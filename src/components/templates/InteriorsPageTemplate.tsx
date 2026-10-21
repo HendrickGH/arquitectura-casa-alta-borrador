@@ -1,10 +1,13 @@
 import { Button } from "@/components/atoms/Button";
+import { Container } from "@/components/atoms/Container";
+import { Section } from "@/components/atoms/Section";
+import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
-import { InteriorsQuickEstimator } from "@/components/organisms/InteriorsQuickEstimator";
-import { InteriorsSurfacesExperience } from "@/components/organisms/InteriorsSurfacesExperience";
-import { MaterialFinishesMatrix } from "@/components/organisms/MaterialFinishesMatrix";
+import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
+import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { PageHero } from "@/components/organisms/PageHero";
-import { ShowroomLifestyleStory } from "@/components/organisms/ShowroomLifestyleStory";
+import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
+import { WhyCasaAltaEditorial } from "@/components/organisms/WhyCasaAltaEditorial";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
   HomePage,
@@ -22,14 +25,13 @@ interface InteriorsPageTemplateProps {
 /**
  * `/arquitectura-interiores` — Arquitectura de Interiores y Acabados de Alta Gama.
  *
- * Implements the approved 6-layer editorial & conversion architecture:
- * Layer 1: PageHero (bg-ink) with Dual CTAs (#espacios and free consultation)
- * Layer 2: MaterialFinishesMatrix (tone="canvas") — tactile stone, wood, and mineral samples
- * Layer 3: Space Explorer with SpaceDossierModal (tone="bone") — zero orphan figures
- * Layer 4: Engineering DRO Guarantee (tone="canvas") — technical precision & warranty
- * Layer 5: ShowroomLifestyleStory (tone="bone") — curated diptych scenes from showroom
- * Layer 6: InteriorsQuickEstimator (tone="canvas") — 3-step assistant & free consultation guarantee
- * Closing: ClosingCTA (tone="bone")
+ * Implements the canonical Cosentino Architectural Editorial contract:
+ * - Layer 1: PageHero (bg-ink) with Dual CTAs (#materiales and WhatsApp consultation)
+ * - Layer 2: SpecialtiesShowcase (tone="canvas") — 4 tactile materials with zero-CLS hover expansion
+ * - Layer 3: ManifestoLine (bg-concha-nacar) — signature architect quote and portrait
+ * - Layer 4: FeaturedPortfolio (tone="canvas") — dynamic 2-3 row cadence of executed interior works
+ * - Layer 5: WhyCasaAltaEditorial (tone="bone") — 4 DRO engineering & craftsmanship pillars with harmonic overlap
+ * - Closing: ClosingCTA (bg-concha-nacar)
  */
 export function InteriorsPageTemplate({
   site,
@@ -52,8 +54,8 @@ export function InteriorsPageTemplate({
           photo={page.hero.photo}
           actions={
             <>
-              <Button variant="inverse" href="#espacios" arrow>
-                {page.hero.catalogCtaLabel ?? "Explorar espacios y acabados"}
+              <Button variant="inverse" href="#materiales" arrow>
+                {page.hero.catalogCtaLabel ?? "Explorar catálogo de materiales"}
               </Button>
               <Button
                 variant="outline"
@@ -67,35 +69,53 @@ export function InteriorsPageTemplate({
           }
         />
 
-        {/* Layer 2: Matriz Táctil de Materialidad y Resistencia Bioclimática */}
-        <MaterialFinishesMatrix
-          eyebrow={page.materialsMatrix.eyebrow}
-          heading={page.materialsMatrix.heading}
-          body={page.materialsMatrix.body}
-          materials={page.materialsMatrix.materials}
-          whatsappHref={whatsappHref}
+        {/* Layer 2: Catálogo de Materialidad y Superficies Nobles (SpecialtiesShowcase) */}
+        <Section id="materiales" tone="canvas" density="default">
+          <Container>
+            <SectionHeading
+              eyebrow={page.materials.eyebrow}
+              heading={page.materials.heading}
+              body={page.materials.body}
+            />
+            <div className="mt-12 sm:mt-16">
+              <SpecialtiesShowcase
+                sections={page.materials.sections}
+                deliverablesLabel="Propiedades y tolerancias técnicas:"
+                ctaLabel="Consultar especificación en taller"
+                ctaHref={heroWhatsappHref}
+              />
+            </div>
+          </Container>
+        </Section>
+
+        {/* Layer 3: Manifiesto de Arquitectura de Interiores (ManifestoLine) */}
+        <ManifestoLine
+          line={page.manifesto.text}
+          architect={site.architect}
+          photo={page.manifesto.photo}
         />
 
-        {/* Layers 3 & 4: Explorador de Espacios con Dossier Modal & Garantía DRO */}
-        <InteriorsSurfacesExperience
-          inspiration={page.inspiration}
-          engineeringGuarantee={page.engineeringGuarantee}
-          surfaces={page.surfaces}
+        {/* Layer 4: Dossier de Espacios y Obras de Interiores (FeaturedPortfolio / ProjectsGrid) */}
+        <FeaturedPortfolio
+          id="espacios"
+          intro={page.portfolio.intro}
+          projects={page.portfolio.featured}
+          remaining={page.portfolio.remaining}
+          tone="canvas"
           whatsappHref={whatsappHref}
+          action={
+            <Button href="/contacto" variant="secondary" size="sm" arrow>
+              Agendar asesoría de interiores
+            </Button>
+          }
         />
 
-        {/* Layer 5: Monografía Editorial "El Showroom Habitado" */}
-        <ShowroomLifestyleStory
-          eyebrow={page.showroomStory.eyebrow}
-          heading={page.showroomStory.heading}
-          body={page.showroomStory.body}
-          scenes={page.showroomStory.scenes}
-        />
-
-        {/* Layer 6: Pre-cotizador Interactivo en 3 Pasos & Asesoría sin Costo */}
-        <InteriorsQuickEstimator
-          estimator={page.estimator}
-          whatsappHref={whatsappHref}
+        {/* Layer 5: Ingeniería de Detalle y Respaldo DRO (WhyCasaAltaEditorial) */}
+        <WhyCasaAltaEditorial
+          id="garantia-dro"
+          intro={page.engineering.intro}
+          items={page.engineering.items}
+          tone="bone"
         />
 
         {/* Closing CTA */}

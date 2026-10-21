@@ -181,6 +181,16 @@ const curatedGalleries: Record<string, string[]> = {
     "01-vista-frontal-residencia-modernizada-cochera-acceso",
     "06-patio-frontal-pavimentado-fachada-blanca-remodelada",
   ],
+  "arquitectura-interiores": [
+    "03-cocina-comedor-muro-terracota-techo-bambu-isla",
+    "01-isla-cocina-piedra-parrilla-horno-muro-terracota",
+    "02-comedor-madera-integrado-isla-cocina-cuadro-arte",
+    "04-bano-moderno-marmol-espejo-circular-iluminacion-led",
+    "05-cubierta-isla-cocina-veta-lineal-techo-carrizo",
+    "08-cocina-madera-ventanal-jardin-interior-techo-bambu",
+    "09-mesa-comedor-madera-luminarias-globo-cocina",
+    "10-mueble-lavabo-negro-mate-monomando-minimalista",
+  ],
 };
 
 /** Keyed by the manifest's `dir`, which is the only stable identifier. */
@@ -474,6 +484,27 @@ export const projectContent: Record<string, ProjectContent> = {
       { label: "Materialidad", value: "Estructura de concreto, herrería y cancelería contemporánea" },
     ],
     images: curatedGalleries.remodelacion,
+  },
+
+  "arquitectura-interiores": {
+    slug: "arquitectura-interiores",
+    title: "Showroom y Carpintería Residencial",
+    category: "interiorismo",
+    categoryLabel: categoryLabels.interiorismo,
+    location: "Oaxaca de Juárez, Oaxaca",
+    year: "2024",
+    summary:
+      "Cocinas integrales de autor, superficies ultracompactas de gran formato y carpintería residencial fabricada sobre diseño en taller propio.",
+    story:
+      "El proyecto de interiores de Casa Alta resuelve la transición entre la escala arquitectónica y el detalle táctil. Diseñado con muros de terracota, techos de bambú y carrizo, e islas monolíticas con faldón a 45 grados en piedra tecnológica.",
+    outcome:
+      "Espacios habitables con ergonomía milimétrica, resistencia bioclimática y ensamble estructural avalado por perito DRO.",
+    specs: [
+      { label: "Tipología", value: "Interiorismo residencial y cocinas" },
+      { label: "Ubicación", value: "Oaxaca de Juárez, Oaxaca" },
+      { label: "Materialidad", value: "Piedra tecnológica, parota y chukum" },
+    ],
+    images: curatedGalleries["arquitectura-interiores"],
   },
 };
 
