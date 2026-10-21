@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
+import { useRef } from "react";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { ContactFormFields } from "@/components/organisms/ContactFormFields";
+import { useModalDialog } from "@/lib/hooks/useModalDialog";
 import type { ContactFormContent } from "@/types/content";
 
 export interface ContactModalProps {
@@ -33,70 +33,14 @@ export function ContactModal({
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const triggerElementRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    if (!isOpen) return;
-
-    triggerElementRef.current = document.activeElement as HTMLElement | null;
-
-    const timer = window.setTimeout(() => {
-      closeButtonRef.current?.focus();
-    }, 40);
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
-      if (e.key === "Tab" && dialogRef.current) {
-        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    const prevOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (!reducedMotion && overlayRef.current && dialogRef.current) {
-      gsap.fromTo(
-        overlayRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.28, ease: "power2.out" },
-      );
-      gsap.fromTo(
-        dialogRef.current,
-        { y: 24, opacity: 0, scale: 0.98 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.38, ease: "power3.out", delay: 0.04 },
-      );
-    }
-
-    return () => {
-      window.clearTimeout(timer);
-      document.documentElement.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKey);
-      triggerElementRef.current?.focus();
-    };
-  }, [isOpen, onClose]);
+  useModalDialog({
+    isOpen,
+    onClose,
+    overlayRef,
+    dialogRef,
+    closeButtonRef,
+  });
 
   if (!isOpen) return null;
 

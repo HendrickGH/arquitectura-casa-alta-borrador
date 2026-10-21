@@ -1,16 +1,11 @@
-import { Container } from "@/components/atoms/Container";
-import { Heading } from "@/components/atoms/Heading";
-import { Photo } from "@/components/atoms/Photo";
-import { Section } from "@/components/atoms/Section";
-import { Text } from "@/components/atoms/Text";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
+import { EditorialSplitSection } from "@/components/organisms/EditorialSplitSection";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { MethodologyZigzag } from "@/components/organisms/MethodologyZigzag";
 import { PageHero } from "@/components/organisms/PageHero";
 import { StatsBand } from "@/components/organisms/StatsBand";
 import { SiteChrome } from "@/components/templates/SiteChrome";
-import { revealStep } from "@/lib/reveal";
 import type {
   AboutPageContent,
   HomePage,
@@ -63,63 +58,13 @@ export function AboutPageTemplate({
         <StatsBand stats={stats} />
 
         {/* Section: Nuestra Identidad (Text on Left, Image on Right) */}
-        <Section tone="canvas" density="default" reveal="stagger">
-          <Container>
-            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
-              {/* Left Column: Narrative and Manifesto */}
-              <div className="flex flex-col gap-6 lg:col-span-6">
-                {page.story.eyebrow ? (
-                  <div {...revealStep(0)}>
-                    <p className="eyebrow">{page.story.eyebrow}</p>
-                  </div>
-                ) : null}
-
-                <div {...revealStep(1)}>
-                  <Heading
-                    as="h2"
-                    voice="serif"
-                    sizeClassName="text-[clamp(2.1rem,3.6vw,3.25rem)] leading-[1.12]"
-                    className="max-w-[22ch]"
-                  >
-                    {page.story.heading}
-                  </Heading>
-                </div>
-
-                <div {...revealStep(2)} className="flex flex-col gap-4">
-                  {page.story.paragraphs.map((paragraph, index) => (
-                    <Text
-                      key={paragraph}
-                      size={index === 0 ? "lede" : undefined}
-                      className={
-                        index === 0
-                          ? "max-w-[48ch] text-ink"
-                          : "max-w-[48ch] text-ink-muted"
-                      }
-                    >
-                      {paragraph}
-                    </Text>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Column: Architectural Photography in Clean Frame */}
-              {page.credibilityPhotos[0] ? (
-                <div {...revealStep(2)} className="lg:col-span-6">
-                  <figure className="overflow-hidden bg-bone-100">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[4/5]">
-                      <Photo
-                        photo={page.credibilityPhotos[0]}
-                        sizes="(min-width: 1024px) 46vw, 100vw"
-                        fit="cover"
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
-                      />
-                    </div>
-                  </figure>
-                </div>
-              ) : null}
-            </div>
-          </Container>
-        </Section>
+        <EditorialSplitSection
+          variant="monograph"
+          eyebrow={page.story.eyebrow}
+          heading={page.story.heading}
+          paragraphs={page.story.paragraphs}
+          photo={page.credibilityPhotos[0]}
+        />
 
         {/* Section: Credibility & On-site Supervision Ribbon Gallery */}
         <CredibilityGallery

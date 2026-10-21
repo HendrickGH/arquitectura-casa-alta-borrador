@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { Text } from "@/components/atoms/Text";
+import { CarouselNavButtons } from "@/components/molecules/CarouselNavButtons";
+import { PhotoLightboxModal } from "@/components/molecules/PhotoLightboxModal";
 import { cx } from "@/lib/cx";
+import { useCarouselScroll } from "@/lib/hooks/useCarouselScroll";
+import { useModalDialog } from "@/lib/hooks/useModalDialog";
 import type { Photo as PhotoModel, Project } from "@/types/content";
 
 interface ProjectCaseStudyModalProps {
@@ -35,7 +38,6 @@ export function ProjectCaseStudyModal({
   const overlayRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const triggerElementRef = useRef<HTMLElement | null>(null);
   const [activePhoto, setActivePhoto] = useState<PhotoModel | null>(null);
   const activePhotoRef = useRef<PhotoModel | null>(null);
 
@@ -44,111 +46,27 @@ export function ProjectCaseStudyModal({
   }, [activePhoto]);
 
   const galleryTrackRef = useRef<HTMLDivElement | null>(null);
-  const [canScrollGalleryLeft, setCanScrollGalleryLeft] = useState(false);
-  const [canScrollGalleryRight, setCanScrollGalleryRight] = useState(true);
+  const {
+    canScrollLeft: canScrollGalleryLeft,
+    canScrollRight: canScrollGalleryRight,
+    scrollLeft: scrollGalleryLeft,
+    scrollRight: scrollGalleryRight,
+  } = useCarouselScroll(galleryTrackRef, { fallbackWidth: 340, gap: 16 });
 
-  const updateGalleryScrollButtons = () => {
-    const track = galleryTrackRef.current;
-    if (!track) return;
-    const { scrollLeft, scrollWidth, clientWidth } = track;
-    setCanScrollGalleryLeft(scrollLeft > 6);
-    setCanScrollGalleryRight(scrollLeft < scrollWidth - clientWidth - 6);
-  };
-
-  useEffect(() => {
-    const track = galleryTrackRef.current;
-    if (!track) return;
-
-    updateGalleryScrollButtons();
-    const onScroll = () => updateGalleryScrollButtons();
-    track.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    return () => {
-      track.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [project]);
-
-  const handleGalleryScroll = (direction: "left" | "right") => {
-    const track = galleryTrackRef.current;
-    if (!track) return;
-
-    const firstCard = track.firstElementChild as HTMLElement | null;
-    const cardWidth = firstCard ? firstCard.offsetWidth : 320;
-    const scrollAmount = (cardWidth + 16) * 2;
-
-    track.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    if (!project) return;
-
-    triggerElementRef.current = document.activeElement as HTMLElement | null;
-
-    const timer = window.setTimeout(() => {
-      closeButtonRef.current?.focus();
-    }, 40);
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        if (activePhotoRef.current) {
-          setActivePhoto(null);
-          return;
-        }
-        onClose();
-        return;
-      }
-      if (e.key === "Tab" && overlayRef.current) {
-        const focusable = overlayRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        );
-        if (focusable.length === 0) return;
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey) {
-          if (document.activeElement === first) {
-            e.preventDefault();
-            last.focus();
-          }
-        } else if (document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    const prevOverflow = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    window.addEventListener("keydown", onKey);
-
-    const reducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (!reducedMotion && overlayRef.current && contentRef.current) {
-      gsap.fromTo(
-        overlayRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.38, ease: "power2.out" },
-      );
-      gsap.fromTo(
-        contentRef.current,
-        { y: 36, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.55, ease: "power3.out", delay: 0.06 },
-      );
-    }
-
-    return () => {
-      window.clearTimeout(timer);
-      document.documentElement.style.overflow = prevOverflow;
-      window.removeEventListener("keydown", onKey);
-      triggerElementRef.current?.focus();
-    };
-  }, [project, onClose]);
+  useModalDialog({
+    isOpen: Boolean(project),
+    onClose,
+    overlayRef,
+    dialogRef: contentRef,
+    trapRef: overlayRef,
+    closeButtonRef,
+    animation: "dossier",
+    onEscape: () => {
+      if (!activePhotoRef.current) return false;
+      setActivePhoto(null);
+      return true;
+    },
+  });
 
   if (!project) return null;
 
@@ -332,26 +250,14 @@ export function ProjectCaseStudyModal({
               </div>
 
               {/* Navigation arrow buttons for horizontal scroll */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => handleGalleryScroll("left")}
-                  disabled={!canScrollGalleryLeft}
-                  aria-label="Desplazar galería a la izquierda"
-                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  <Icon name="arrow-left" className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleGalleryScroll("right")}
-                  disabled={!canScrollGalleryRight}
-                  aria-label="Desplazar galería a la derecha"
-                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  <Icon name="arrow-right" className="h-4 w-4" />
-                </button>
-              </div>
+              <CarouselNavButtons
+                canScrollLeft={canScrollGalleryLeft}
+                canScrollRight={canScrollGalleryRight}
+                onScrollLeft={scrollGalleryLeft}
+                onScrollRight={scrollGalleryRight}
+                prevLabel="Desplazar galería a la izquierda"
+                nextLabel="Desplazar galería a la derecha"
+              />
             </div>
 
             <div
@@ -390,36 +296,10 @@ export function ProjectCaseStudyModal({
       </div>
 
       {/* Fullscreen Photo Lightbox Modal */}
-      {activePhoto ? (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={activePhoto.alt}
-          className="fixed inset-0 z-60 flex items-center justify-center bg-ink/95 p-4 md:p-8 backdrop-blur-md"
-          onClick={() => setActivePhoto(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setActivePhoto(null)}
-            aria-label="Cerrar vista ampliada"
-            className="absolute top-4 right-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-ink text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white"
-          >
-            <Icon name="close" className="h-4 w-4" />
-          </button>
-          <div
-            className="relative max-h-[90vh] max-w-[90vw] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Photo
-              photo={activePhoto}
-              sizes="90vw"
-              fit="contain"
-              priority
-              className="max-h-[90vh] max-w-[90vw] w-auto h-auto object-contain"
-            />
-          </div>
-        </div>
-      ) : null}
+      <PhotoLightboxModal
+        photo={activePhoto}
+        onClose={() => setActivePhoto(null)}
+      />
     </div>
   );
 }

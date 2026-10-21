@@ -179,12 +179,7 @@ export function SpecialtiesShowcase({
 
                   {/* CTA Action */}
                   <div className="mt-7">
-                    <Button
-                      href={ctaHref}
-                      variant="inverse"
-                      size="sm"
-                      arrow
-                    >
+                    <Button href={ctaHref} variant="inverse" size="sm" arrow>
                       {ctaLabel}
                     </Button>
                   </div>
@@ -255,10 +250,13 @@ export function SpecialtiesShowcase({
           Self-contained cards (photo, short eyebrow, title, summary, zero expansion)
           ==================================================================== */}
       <div className="md:hidden">
+        {/* `relative` contains the cards' absolutely positioned `sr-only` lists:
+            without a positioned ancestor they resolve against the initial
+            containing block, escape the scroll clip, and widen the document. */}
         <div
           role="region"
           aria-label="Carrusel de especialidades"
-          className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-6 px-6 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="relative flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-6 px-6 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {sections.map((section) => (
             <article

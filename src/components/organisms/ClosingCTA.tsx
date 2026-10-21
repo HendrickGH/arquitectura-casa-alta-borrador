@@ -60,7 +60,7 @@ export function ClosingCTA({
     let cancelled = false;
     let revert: (() => void) | undefined;
 
-    void import("./gsap-scenes")
+    void import("@/lib/animation/gsap")
       .then(({ createParallaxStage }) => {
         if (cancelled) return;
         revert = createParallaxStage({ container, target });

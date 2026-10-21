@@ -118,7 +118,7 @@ export function Footer({ site }: FooterProps) {
                   Volver arriba
                 </span>
                 <span className="inline-flex items-center justify-center text-concha-nacar transition-transform duration-300 group-hover:-translate-y-0.5">
-                  ↑
+                  <Icon name="arrow-up" className="h-3.5 w-3.5" />
                 </span>
               </button>
             </div>
