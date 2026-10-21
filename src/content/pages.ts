@@ -33,8 +33,8 @@ export const interiorsPageContent = {
         slug: "piedras-tecnologicas",
         number: "01",
         title: "Piedras Tecnológicas",
-        shortTitle: "Piedras Tecnológicas",
-        subtitle: "Porcelánicos ultracompactos sinterizados a 1200 °C",
+        shortTitle: "Piedras",
+        subtitle: "Piedras",
         description:
           "Cero porosidad y absorción nula (<0.05%). Inmunidad ante ácidos, calor directo y uso culinario intensivo.",
         deliverables: [
@@ -50,8 +50,8 @@ export const interiorsPageContent = {
         slug: "cuarzo-pureza",
         number: "02",
         title: "Cuarzo de Alta Pureza",
-        shortTitle: "Cuarzo Puro",
-        subtitle: "Alineación bookmatch y acabado mate sedoso",
+        shortTitle: "Cuarzo",
+        subtitle: "Cuarzo",
         description:
           "93% de cuarzo mineral y resinas compactadas al vacío. Superficie bacteriostática de tacto cálido sin selladores.",
         deliverables: [
@@ -67,8 +67,8 @@ export const interiorsPageContent = {
         slug: "maderas-tropicales",
         number: "03",
         title: "Maderas Tropicales Curadas",
-        shortTitle: "Maderas Curadas",
-        subtitle: "Parota y tzalam en autoclave con aceites botánicos",
+        shortTitle: "Maderas",
+        subtitle: "Maderas",
         description:
           "Madera estabilizada a humedad de equilibrio para prevenir alabeos por calor y salinidad costera.",
         deliverables: [
@@ -84,8 +84,8 @@ export const interiorsPageContent = {
         slug: "acabados-bioclimaticos",
         number: "04",
         title: "Acabados Minerales",
-        shortTitle: "Chukum y Cal",
-        subtitle: "Resina vegetal ancestral y pastas de cal",
+        shortTitle: "Minerales",
+        subtitle: "Minerales",
         description:
           "Extracto de corteza de chukum y cal viva apagada en obra. Regula la humedad ambiental y permanece fresca.",
         deliverables: [
