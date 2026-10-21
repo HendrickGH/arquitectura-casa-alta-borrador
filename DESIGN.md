@@ -228,7 +228,7 @@ Applies directly to `src/components/organisms/WhyCasaAltaEditorial.tsx` on the l
 - Surface: `bg-ink text-concha-nacar` with `0px` borders (`border-concha-nacar/15`).
 - No `.ruler-y` vertical scale, no `(01) / (02) / (03)` prefixes on column headers, and **no** `"HA RECORRIDO X METROS"` scroll-distance meter.
 - Left columns (`lg:col-span-7`): `Navegación`, `Sedes`, and `Contacto directo` (with plain underlined text social links, no boxes).
-- Right column (`lg:col-span-5`): Clean, boxless institutional block: the claim, the coverage statement across Oaxaca's 8 regions, the inverted `<Logo />`, and a `Volver arriba` `<button>` (`min-h-[44px]`) with a plain arrow. No background panel, no founding-year badge, no studio photograph.
+- Right column (`lg:col-span-5`): Boxless column: social links stacked one per row with `<Icon>` glyphs, the inverted `<Logo />`, and a `Volver arriba` `<button>` (`min-h-[44px]`) with a plain arrow. No claim or coverage text, no background panel, no founding-year badge, no studio photograph.
 - Bottom row: Monumental `CASA ALTA` `.display` wordmark and legal copyright line.
 
 ### 6.5 Project Dossier Gallery Pattern (`ProjectCaseStudyModal`)

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Container } from "@/components/atoms/Container";
+import { Icon } from "@/components/atoms/Icon";
 import { Logo } from "@/components/atoms/Logo";
 import type { SiteConfig } from "@/types/content";
 
@@ -77,33 +78,28 @@ export function Footer({ site }: FooterProps) {
                   </li>
                 ))}
               </ul>
-
-              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-                {site.social.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="label text-concha-nacar/80 underline decoration-concha-nacar/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
 
-          {/* Right column: claim, coverage, logo */}
+          {/* Right column: social links, logo */}
           <div className="flex flex-col justify-between lg:col-span-5">
-            <div>
-              <p className="voice text-xl leading-snug text-concha-nacar md:text-2xl">
-                {site.claim}
-              </p>
-              <p className="mt-2 text-xs leading-relaxed text-concha-nacar/65">
-                {site.coverage}
-              </p>
-            </div>
+            <ul className="flex flex-col gap-4">
+              {site.social.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 text-concha-nacar/80 transition-colors hover:text-white"
+                  >
+                    <Icon name={link.icon} className="h-5 w-5" />
+                    <span className="label underline decoration-concha-nacar/30 underline-offset-4 group-hover:decoration-white">
+                      {link.label}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
 
             <div className="mt-8 flex items-center justify-between pt-4">
               <Link
