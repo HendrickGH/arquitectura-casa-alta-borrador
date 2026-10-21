@@ -38,3 +38,7 @@ next-env.d.ts
 
 # Archives
 *.zip
+
+# Teamwork multi-agent runtime state
+/.agents/teamwork/
+
