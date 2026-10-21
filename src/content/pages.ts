@@ -262,7 +262,7 @@ export const sustainabilityPageContent = {
   },
   manifesto: {
     text:
-      "Arquitectura de playa para clima tropical: espacios amplios y frescos donde el verdadero lujo es sentirse en armonía con el entorno.",
+      "No construimos contra el clima: proyectamos desde la sombra, la brisa del mar y la materia local.",
     dir: "02-el-bicho",
     base: "02-fachada-palapas-alberca-palmeras",
   },
