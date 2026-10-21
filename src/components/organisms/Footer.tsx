@@ -24,65 +24,63 @@ export function Footer({ site }: FooterProps) {
   return (
     <footer className="relative overflow-hidden bg-ink text-concha-nacar">
       <Container className="py-16 md:py-24">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          {/* Left column: Navigation + Offices + Contact */}
-          <div className="grid gap-10 sm:grid-cols-3 lg:col-span-7">
-            <div>
-              <p className="label mb-5 text-concha-nacar/50">Navegación</p>
-              <ul className="flex flex-col gap-3">
-                {site.nav.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="voice text-xl text-concha-nacar transition-colors hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="label mb-5 text-concha-nacar/50">Sedes</p>
-              <ul className="flex flex-col gap-5">
-                {site.offices.map((office) => (
-                  <li key={office.city} className="flex flex-col gap-1">
-                    <span className="voice text-xl text-concha-nacar">
-                      {office.city}
-                    </span>
-                    <span className="text-xs leading-relaxed text-concha-nacar/65">
-                      {office.region}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="label mb-5 text-concha-nacar/50">
-                Contacto directo
-              </p>
-              <ul className="flex flex-col gap-4">
-                {site.contact.map((line) => (
-                  <li key={line.href} className="flex flex-col gap-0.5">
-                    <span className="label text-concha-nacar/50">
-                      {line.label}
-                    </span>
-                    <a
-                      href={line.href}
-                      className="text-sm font-medium text-concha-nacar underline decoration-concha-nacar/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
-                    >
-                      {line.value}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+          {/* Navigation + Offices + Contact + Social */}
+          <div>
+            <p className="label mb-5 text-concha-nacar/50">Navegación</p>
+            <ul className="flex flex-col gap-3">
+              {site.nav.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="voice text-xl text-concha-nacar transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Right column: social links, logo */}
-          <div className="flex flex-col justify-between lg:col-span-5">
+          <div>
+            <p className="label mb-5 text-concha-nacar/50">Sedes</p>
+            <ul className="flex flex-col gap-5">
+              {site.offices.map((office) => (
+                <li key={office.city} className="flex flex-col gap-1">
+                  <span className="voice text-xl text-concha-nacar">
+                    {office.city}
+                  </span>
+                  <span className="text-xs leading-relaxed text-concha-nacar/65">
+                    {office.region}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="label mb-5 text-concha-nacar/50">
+              Contacto directo
+            </p>
+            <ul className="flex flex-col gap-4">
+              {site.contact.map((line) => (
+                <li key={line.href} className="flex flex-col gap-0.5">
+                  <span className="label text-concha-nacar/50">
+                    {line.label}
+                  </span>
+                  <a
+                    href={line.href}
+                    className="text-sm font-medium text-concha-nacar underline decoration-concha-nacar/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
+                  >
+                    {line.value}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col">
+            <p className="label mb-5 text-concha-nacar/50">Redes</p>
             <ul className="flex flex-col gap-4">
               {site.social.map((link) => (
                 <li key={link.label}>
@@ -101,7 +99,7 @@ export function Footer({ site }: FooterProps) {
               ))}
             </ul>
 
-            <div className="mt-8 flex items-center justify-between pt-4">
+            <div className="mt-10 flex flex-col items-start gap-6">
               <Link
                 href="/"
                 className="brightness-0 invert"
