@@ -184,7 +184,7 @@ export function ProjectCaseStudyModal({
             aria-label="Cerrar expediente de proyecto"
             className="group label inline-flex min-h-[44px] cursor-pointer items-center gap-3 text-ink transition-colors hover:text-brand-800 focus-visible:outline-2 focus-visible:outline-brand-800"
           >
-            <span className="underline decoration-ink/40 underline-offset-4 group-hover:decoration-brand-800">
+            <span className="underline decoration-ink/40 underline-offset-4 group-hover:decoration-brand-800 max-sm:hidden">
               Cerrar expediente
             </span>
             <span className="inline-flex h-9 w-9 items-center justify-center bg-ink text-canvas transition-colors duration-200 group-hover:bg-brand-800">

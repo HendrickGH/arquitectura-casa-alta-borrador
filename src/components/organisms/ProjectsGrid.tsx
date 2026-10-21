@@ -103,8 +103,8 @@ export function ProjectsGrid({
           const colSpanClass = isSingle
             ? "col-span-12"
             : isTwo
-              ? "col-span-12 sm:col-span-6"
-              : "col-span-12 sm:col-span-4";
+              ? "col-span-12 md:col-span-6"
+              : "col-span-12 md:col-span-4";
 
           // Proportions matching Bloom 3D Studio:
           // Row of 2: landscape (aspect-[16/10])
@@ -119,8 +119,8 @@ export function ProjectsGrid({
           const sizes = isSingle
             ? "100vw"
             : isTwo
-              ? "(min-width: 640px) 50vw, 100vw"
-              : "(min-width: 640px) 33vw, 100vw";
+              ? "(min-width: 768px) 50vw, 100vw"
+              : "(min-width: 768px) 33vw, 100vw";
 
           return (
             <ProjectCard

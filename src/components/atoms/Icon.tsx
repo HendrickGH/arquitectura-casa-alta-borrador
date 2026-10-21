@@ -135,12 +135,15 @@ const glyphs: Record<IconName, React.ReactNode> = {
 };
 
 export function Icon({ name, className }: IconProps) {
+  const hasExplicitSize =
+    Boolean(className) && /(?:^|\s)(?:h-|w-|size-)/.test(className!);
+
   return (
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
       focusable="false"
-      className={cx("h-5 w-5", className)}
+      className={cx(!hasExplicitSize && "h-5 w-5", className)}
     >
       {glyphs[name]}
     </svg>
