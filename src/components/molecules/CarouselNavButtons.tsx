@@ -9,6 +9,8 @@ export interface CarouselNavButtonsProps {
   prevLabel?: string;
   nextLabel?: string;
   className?: string;
+  /** Tailwind size classes for the arrow glyphs. */
+  iconClassName?: string;
 }
 
 /**
@@ -25,6 +27,7 @@ export function CarouselNavButtons({
   prevLabel = "Ver anterior",
   nextLabel = "Ver siguiente",
   className,
+  iconClassName = "h-4 w-4",
 }: CarouselNavButtonsProps) {
   return (
     <div className={cx("flex items-center gap-2", className)}>
@@ -35,7 +38,7 @@ export function CarouselNavButtons({
         aria-label={prevLabel}
         className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
       >
-        <Icon name="arrow-left" className="h-4 w-4" />
+        <Icon name="arrow-left" className={iconClassName} />
       </button>
       <button
         type="button"
@@ -44,7 +47,7 @@ export function CarouselNavButtons({
         aria-label={nextLabel}
         className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
       >
-        <Icon name="arrow-right" className="h-4 w-4" />
+        <Icon name="arrow-right" className={iconClassName} />
       </button>
     </div>
   );

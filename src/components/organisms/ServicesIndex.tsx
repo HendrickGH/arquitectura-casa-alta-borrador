@@ -134,6 +134,7 @@ export function ServicesIndex({
             canScrollRight={canScrollRight}
             onScrollLeft={scrollLeft}
             onScrollRight={scrollRight}
+            iconClassName="h-3.5 w-3.5"
             prevLabel="Ver partidas anteriores"
             nextLabel="Ver partidas siguientes"
           />
