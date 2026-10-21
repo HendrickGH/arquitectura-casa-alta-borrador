@@ -425,13 +425,68 @@ export type SpaceCategory =
   | "interiores"
   | "showroom";
 
-export interface SpaceCard {
+export interface SpaceDossierTechnicalSpecs {
+  cubierta: string;
+  cuerpo: string;
+  herrajes: string;
+  entrega: string;
+}
+
+export interface SpaceDossier {
   id: string;
   category: SpaceCategory;
   categoryLabel: string;
   title: string;
   materials: string;
+  description: string;
+  specs: SpaceDossierTechnicalSpecs;
   photo: Photo;
+  quoteContext: string;
+}
+
+/** Architectural space card with complete dossier information. */
+export type SpaceCard = SpaceDossier;
+
+export interface MaterialSwatch {
+  id: string;
+  name: string;
+  subtitle: string;
+  category: string;
+  description: string;
+  specs: string[];
+  photo: Photo;
+}
+
+export interface ShowroomStoryScene {
+  id: string;
+  number: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  highlights: string[];
+  primaryPhoto: Photo;
+  secondaryPhoto?: Photo;
+}
+
+export interface EstimatorOption {
+  id: string;
+  label: string;
+  description?: string;
+}
+
+export interface EstimatorStep {
+  step: number;
+  question: string;
+  hint?: string;
+  options: EstimatorOption[];
+}
+
+export interface EstimatorConfig {
+  eyebrow: string;
+  heading: string;
+  subheadline: string;
+  freeConsultationNote: string;
+  steps: EstimatorStep[];
 }
 
 export interface InteriorsPageContent {
@@ -440,14 +495,37 @@ export interface InteriorsPageContent {
     heading: string;
     subheadline: string;
     photo: Photo;
+    catalogCtaLabel?: string;
+    consultationCtaLabel?: string;
+  };
+  materialsMatrix: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    materials: MaterialSwatch[];
   };
   inspiration: {
     eyebrow: string;
     heading: string;
     body: string;
     tabs: Array<{ id: SpaceCategory; label: string }>;
-    spaces: SpaceCard[];
+    spaces: SpaceDossier[];
   };
+  engineeringGuarantee: {
+    eyebrow: string;
+    heading: string;
+    claim: string;
+    body: string;
+    badges: string[];
+    pillars: ThematicPillar[];
+  };
+  showroomStory: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    scenes: ShowroomStoryScene[];
+  };
+  estimator: EstimatorConfig;
   surfaces: HighEndFinishesContent;
   interiorsGalleryIntro: SectionIntro;
   interiorsPhotos: Photo[];

@@ -1,113 +1,62 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
-import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { Tabs } from "@/components/molecules/Tabs";
+import { SpaceDossierModal } from "@/components/organisms/SpaceDossierModal";
 import type {
   HighEndFinishesContent,
   InteriorsPageContent,
-  Photo as PhotoModel,
   SpaceCategory,
+  SpaceDossier,
 } from "@/types/content";
 
 export interface InteriorsSurfacesExperienceProps {
   inspiration: InteriorsPageContent["inspiration"];
-  surfaces: HighEndFinishesContent;
+  engineeringGuarantee?: InteriorsPageContent["engineeringGuarantee"];
+  surfaces?: HighEndFinishesContent;
   whatsappHref?: string;
 }
 
+/**
+ * Layers 3 & 4: Space Explorer with Technical Dossiers & DRO Engineering Guarantee.
+ *
+ * Space Explorer (Layer 3 - tone="bone"):
+ *   Presents residential spaces organized by architectural typologies. Every card
+ *   opens a comprehensive SpaceDossierModal with specs, joinery details,
+ *   delivery time, and contextual WhatsApp routing.
+ *
+ * Engineering Guarantee (Layer 4 - tone="canvas"):
+ *   Articulates detail engineering, laser scanning, anti-seismic joints,
+ *   and formal contractual DRO warranty.
+ *
+ * Adheres strictly to DESIGN.md: 0px geometry, Marcellus/Montserrat hierarchy,
+ * zero hairline borders, and pure surface contrast.
+ */
 export function InteriorsSurfacesExperience({
   inspiration,
+  engineeringGuarantee,
   surfaces,
-  whatsappHref,
+  whatsappHref = "https://wa.me/529514581395",
 }: InteriorsSurfacesExperienceProps) {
-  const content = surfaces;
+  const guaranteeContent = engineeringGuarantee ?? surfaces;
   const [activeCategory, setActiveCategory] = useState<SpaceCategory>("all");
-  const [selectedPhoto, setSelectedPhoto] = useState<PhotoModel | null>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
-  const closeBtnRef = useRef<HTMLButtonElement>(null);
-  const lastTriggerRef = useRef<HTMLElement | null>(null);
+  const [selectedSpace, setSelectedSpace] = useState<SpaceDossier | null>(null);
+  const activeTriggerRef = useRef<HTMLElement | null>(null);
 
-  const openLightbox = (
-    photo: PhotoModel,
-    trigger?: HTMLElement | React.MouseEvent<HTMLElement> | null,
-    cardId?: string,
+  const openDossier = (
+    space: SpaceDossier,
+    triggerEl?: HTMLElement | null,
   ) => {
-    let el: HTMLElement | null = null;
-    if (trigger && "currentTarget" in trigger) {
-      el = trigger.currentTarget as HTMLElement;
-    } else if (trigger instanceof HTMLElement) {
-      el = trigger;
-    } else if (
-      document.activeElement instanceof HTMLElement &&
-      document.activeElement !== document.body
-    ) {
-      el = document.activeElement;
-    } else if (cardId) {
-      el = document.getElementById(`space-trigger-${cardId}`);
-    }
-    lastTriggerRef.current = el;
-    setSelectedPhoto(photo);
+    activeTriggerRef.current = triggerEl ?? null;
+    setSelectedSpace(space);
   };
-
-  useEffect(() => {
-    if (!selectedPhoto) return;
-    const prev = document.documentElement.style.overflow;
-    document.documentElement.style.overflow = "hidden";
-    closeBtnRef.current?.focus();
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setSelectedPhoto(null);
-        return;
-      }
-      if (e.key === "Tab" && dialogRef.current) {
-        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
-        );
-        if (focusable.length === 0) {
-          e.preventDefault();
-          return;
-        }
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (!dialogRef.current.contains(document.activeElement)) {
-          e.preventDefault();
-          first.focus();
-        } else if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.documentElement.style.overflow = prev;
-      window.removeEventListener("keydown", onKey);
-      const trigger = lastTriggerRef.current;
-      if (trigger && typeof trigger.focus === "function") {
-        trigger.focus();
-        requestAnimationFrame(() => {
-          if (
-            document.activeElement === document.body ||
-            !document.activeElement
-          ) {
-            trigger.focus();
-          }
-        });
-      }
-    };
-  }, [selectedPhoto]);
 
   const filteredCards = useMemo(() => {
     if (activeCategory === "all") return inspiration.spaces;
@@ -128,119 +77,126 @@ export function InteriorsSurfacesExperience({
     [inspiration.tabs, inspiration.spaces],
   );
 
+  const droWhatsappHref = useMemo(() => {
+    const baseClean = whatsappHref.split("?")[0];
+    const msg =
+      "Hola Casa Alta, me interesa conocer la garantía técnica y respaldo DRO para mi proyecto de interiores y acabados.";
+    return `${baseClean}?text=${encodeURIComponent(msg)}`;
+  }, [whatsappHref]);
+
   return (
     <>
-      {/* ---------------- SECTION 1: Catálogo de Espacios ---------------- */}
-      <Section tone="canvas">
-        <Container>
-          <SectionHeading
-            eyebrow={inspiration.eyebrow}
-            heading={inspiration.heading}
-            body={inspiration.body}
-          />
+      {/* ---------------- LAYER 3: Explorador de Espacios (tone="bone") ---------------- */}
+      <section id="espacios">
+        <Section tone="bone" density="default">
+          <Container>
+            <SectionHeading
+              eyebrow={inspiration.eyebrow}
+              heading={inspiration.heading}
+              body={inspiration.body}
+            />
 
-          <Tabs
-            tabs={tabsWithCounts}
-            activeId={activeCategory}
-            onChange={setActiveCategory}
-            ariaLabel="Filtrar por tipología de espacio"
-            className="mt-10"
-          />
+            <Tabs
+              tabs={tabsWithCounts}
+              activeId={activeCategory}
+              onChange={setActiveCategory}
+              ariaLabel="Filtrar por tipología de espacio"
+              className="mt-10"
+            />
 
-          {/* Canonical Clean-Ground Space Cards */}
-          <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredCards.map((card) => (
-              <article
-                key={card.id}
-                className="group flex flex-col justify-between"
-              >
-                <div>
-                  {/* 1° Photo: Accessible semantic button trigger */}
-                  <button
-                    id={`space-trigger-${card.id}`}
-                    type="button"
-                    onClick={(e) =>
-                      openLightbox(card.photo, e.currentTarget, card.id)
-                    }
-                    aria-label={`Ampliar fotografía de ${card.title}`}
-                    className="aspect-[4/3] w-full cursor-pointer overflow-hidden bg-bone-100 text-left focus-visible:outline-2 focus-visible:outline-brand-800"
-                  >
-                    <Photo
-                      photo={card.photo}
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      fit="cover"
-                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    />
-                  </button>
+            {/* Clean-Ground Space Dossier Cards */}
+            <div className="mt-12 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredCards.map((card) => (
+                <article
+                  key={card.id}
+                  className="group flex flex-col justify-between bg-canvas p-4 sm:p-5 transition-shadow duration-300 hover:shadow-lg"
+                >
+                  <div>
+                    {/* Visual Card Trigger */}
+                    <button
+                      id={`space-trigger-${card.id}`}
+                      type="button"
+                      onClick={(e) => openDossier(card, e.currentTarget)}
+                      aria-label={`Abrir ficha técnica de ${card.title}`}
+                      className="aspect-[4/3] w-full cursor-pointer overflow-hidden bg-bone-200 text-left focus-visible:outline-2 focus-visible:outline-brand-800"
+                    >
+                      <Photo
+                        photo={card.photo}
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        fit="cover"
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                      />
+                    </button>
 
-                  {/* 2° Metadata */}
-                  <span className="label mt-4 block text-brand-800">
-                    {card.categoryLabel}
-                  </span>
+                    {/* Metadata & Tag */}
+                    <span className="label mt-4 block text-brand-800">
+                      {card.categoryLabel}
+                    </span>
 
-                  {/* 3° Title */}
-                  <Heading
-                    as="h3"
-                    voice="serif"
-                    sizeClassName="mt-2 text-[1.35rem] leading-[1.15] md:text-[1.5rem] transition-colors group-hover:text-brand-800"
-                  >
-                    {card.title}
-                  </Heading>
+                    {/* Architectural Title */}
+                    <Heading
+                      as="h3"
+                      voice="serif"
+                      sizeClassName="mt-2 text-[1.35rem] leading-[1.15] md:text-[1.5rem] transition-colors group-hover:text-brand-800"
+                    >
+                      {card.title}
+                    </Heading>
 
-                  {/* 4° Summary */}
-                  <Text size="sm" className="mt-2 text-ink-muted">
-                    {card.materials}
-                  </Text>
-                </div>
+                    {/* Materials Summary */}
+                    <Text size="sm" className="mt-2 text-ink-muted">
+                      {card.materials}
+                    </Text>
+                  </div>
 
-                {/* 5° Action: Min 44px touch target */}
-                <div className="mt-5 flex items-center justify-between pt-3.5">
-                  <span className="label text-ink-muted">Alta gama</span>
-                  <Button
-                    id={`space-action-${card.id}`}
-                    variant="secondary"
-                    size="sm"
-                    arrow
-                    className="min-h-[44px]"
-                    onClick={(e) =>
-                      openLightbox(
-                        card.photo,
-                        e?.currentTarget as HTMLElement,
-                        card.id,
-                      )
-                    }
-                  >
-                    Ampliar fotografía
-                  </Button>
-                </div>
-              </article>
-            ))}
-          </div>
-        </Container>
-      </Section>
+                  {/* Footer Action Bar */}
+                  <div className="mt-6 flex items-center justify-between pt-4">
+                    <span className="label text-[0.6875rem] text-ink-muted tabular-nums">
+                      {`REF · ${card.id.toUpperCase()}`}
+                    </span>
+                    <Button
+                      id={`space-action-${card.id}`}
+                      variant="secondary"
+                      size="sm"
+                      arrow
+                      className="min-h-[44px]"
+                      onClick={(e) =>
+                        openDossier(card, e?.currentTarget as HTMLElement)
+                      }
+                    >
+                      Ver ficha técnica
+                    </Button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      </section>
 
-      {/* ---------------- SECTION 2: Technical Certification Pillars ---------------- */}
-      {content ? (
-        <Section tone="bone">
+      {/* ---------------- LAYER 4: Ingeniería de Detalle & Respaldo DRO (tone="canvas") ---------------- */}
+      {guaranteeContent ? (
+        <Section tone="canvas" density="default">
           <Container>
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+              {/* Left Column: DRO Value Proposition & Guarantee Badges */}
               <div className="flex flex-col gap-6 lg:col-span-5">
-                <p className="eyebrow">{content.eyebrow}</p>
+                <p className="eyebrow">{guaranteeContent.eyebrow}</p>
 
                 <Heading as="h2" voice="serif" className="max-w-[20ch]">
-                  {content.heading}
+                  {guaranteeContent.heading}
                 </Heading>
 
                 <blockquote className="py-2 pl-4">
                   <p className="voice text-lg leading-relaxed text-brand-900 md:text-xl">
-                    &ldquo;{content.claim}&rdquo;
+                    &ldquo;{guaranteeContent.claim}&rdquo;
                   </p>
                 </blockquote>
 
-                <Text className="text-ink-muted">{content.body}</Text>
+                <Text className="text-ink-muted">{guaranteeContent.body}</Text>
 
+                {/* 0px Badges — Pure surface contrast, zero border-color (DESIGN.md Section 4.1) */}
                 <ul className="flex flex-wrap gap-2 pt-1">
-                  {content.badges.map((badge) => (
+                  {guaranteeContent.badges.map((badge) => (
                     <li
                       key={badge}
                       className="label bg-bone-100 px-3 py-1.5 text-ink"
@@ -252,30 +208,26 @@ export function InteriorsSurfacesExperience({
 
                 <div className="mt-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
                   <Button href="/contacto" arrow>
-                    Cotizar proyecto de interiorismo y cocinas
+                    Agendar asesoría técnica sin costo
                   </Button>
                   {whatsappHref ? (
                     <Button
-                      href={`${whatsappHref}?text=${encodeURIComponent(
-                        "Hola Casa Alta, me interesa cotizar acabados de alta gama y superficies nobles para mi proyecto residencial.",
-                      )}`}
+                      href={droWhatsappHref}
                       variant="secondary"
                       external
                       arrow
                       className="min-h-[44px]"
                     >
-                      Consultar acabados por WhatsApp
+                      Consultar con Perito DRO
                     </Button>
                   ) : null}
                 </div>
               </div>
 
+              {/* Right Column: 3 Certified Technical Pillars */}
               <div className="flex flex-col gap-10 lg:col-span-7">
-                {content.pillars.map((pillar) => (
-                  <div
-                    key={pillar.number}
-                    className="pt-4"
-                  >
+                {guaranteeContent.pillars.map((pillar) => (
+                  <div key={pillar.number} className="pt-4">
                     <span className="label text-brand-800 tabular-nums">
                       {pillar.number}
                     </span>
@@ -310,45 +262,13 @@ export function InteriorsSurfacesExperience({
         </Section>
       ) : null}
 
-      {/* Fullscreen Photo Lightbox Modal */}
-      {selectedPhoto ? (
-        <div
-          ref={dialogRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label={selectedPhoto.alt || "Visor de fotografía"}
-          onClick={() => setSelectedPhoto(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 p-4 backdrop-blur-md"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[90vh] w-full max-w-5xl overflow-hidden"
-          >
-            <div className="relative aspect-[16/10] w-full max-h-[80vh]">
-              <Photo
-                photo={selectedPhoto}
-                sizes="95vw"
-                fit="contain"
-                className="h-full w-full object-contain"
-              />
-            </div>
-
-            <div className="mt-4 flex items-center justify-between gap-4 pt-3 text-white">
-              <p className="voice text-sm md:text-base">{selectedPhoto.alt}</p>
-              <button
-                ref={closeBtnRef}
-                type="button"
-                onClick={() => setSelectedPhoto(null)}
-                aria-label="Cerrar visor de fotografía"
-                className="label inline-flex min-h-[44px] cursor-pointer items-center gap-2 bg-white/20 px-4 py-2 text-white transition-colors hover:bg-white hover:text-ink focus-visible:outline-2 focus-visible:outline-white"
-              >
-                <span>Cerrar</span>
-                <Icon name="close" className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      {/* Accessible Space Dossier Modal */}
+      <SpaceDossierModal
+        space={selectedSpace}
+        onClose={() => setSelectedSpace(null)}
+        whatsappBaseHref={whatsappHref}
+        triggerRef={activeTriggerRef}
+      />
     </>
   );
 }

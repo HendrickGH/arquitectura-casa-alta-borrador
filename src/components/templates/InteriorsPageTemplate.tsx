@@ -1,12 +1,11 @@
-import { Container } from "@/components/atoms/Container";
-import { Photo } from "@/components/atoms/Photo";
-import { Section } from "@/components/atoms/Section";
-import { SectionHeading } from "@/components/molecules/SectionHeading";
+import { Button } from "@/components/atoms/Button";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
+import { InteriorsQuickEstimator } from "@/components/organisms/InteriorsQuickEstimator";
 import { InteriorsSurfacesExperience } from "@/components/organisms/InteriorsSurfacesExperience";
+import { MaterialFinishesMatrix } from "@/components/organisms/MaterialFinishesMatrix";
 import { PageHero } from "@/components/organisms/PageHero";
+import { ShowroomLifestyleStory } from "@/components/organisms/ShowroomLifestyleStory";
 import { SiteChrome } from "@/components/templates/SiteChrome";
-import { revealStep } from "@/lib/reveal";
 import type {
   HomePage,
   InteriorsPageContent,
@@ -20,17 +19,17 @@ interface InteriorsPageTemplateProps {
   whatsappHref: string;
 }
 
-const GALLERY_SIZES =
-  "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
-
 /**
  * `/arquitectura-interiores` — Arquitectura de Interiores y Acabados de Alta Gama.
  *
- * Presents:
- * - 100vw × 100vh Full Bleed Hero with transparent header.
- * - Architectural space tabs and clean-ground cards.
- * - Certified technical guarantee and installation pillars.
- * - Photographic galleries of interior architecture and residential lifestyle.
+ * Implements the approved 6-layer editorial & conversion architecture:
+ * Layer 1: PageHero (bg-ink) with Dual CTAs (#espacios and free consultation)
+ * Layer 2: MaterialFinishesMatrix (tone="canvas") — tactile stone, wood, and mineral samples
+ * Layer 3: Space Explorer with SpaceDossierModal (tone="bone") — zero orphan figures
+ * Layer 4: Engineering DRO Guarantee (tone="canvas") — technical precision & warranty
+ * Layer 5: ShowroomLifestyleStory (tone="bone") — curated diptych scenes from showroom
+ * Layer 6: InteriorsQuickEstimator (tone="canvas") — 3-step assistant & free consultation guarantee
+ * Closing: ClosingCTA (tone="bone")
  */
 export function InteriorsPageTemplate({
   site,
@@ -38,100 +37,68 @@ export function InteriorsPageTemplate({
   closing,
   whatsappHref,
 }: InteriorsPageTemplateProps) {
-  // Deduplicate lower gallery photographs against Space Explorer cards and hero photo
-  const featuredSources = new Set(
-    page.inspiration.spaces.map((card) => card.photo.src),
-  );
-  if (page.hero.photo?.src) {
-    featuredSources.add(page.hero.photo.src);
-  }
-
-  const galleryInteriorsPhotos = page.interiorsPhotos.filter(
-    (photo) => !featuredSources.has(photo.src),
-  );
-
-  const galleryLifestylePhotos = page.lifestylePhotos.filter(
-    (photo) => !featuredSources.has(photo.src),
-  );
+  const heroWhatsappHref = `${whatsappHref.split("?")[0]}?text=${encodeURIComponent(
+    "Hola Casa Alta, me interesa agendar una asesoría técnica gratuita para mi proyecto de arquitectura de interiores.",
+  )}`;
 
   return (
     <SiteChrome site={site} chrome="canvas">
       <main id="main">
+        {/* Layer 1: Hero Editorial de Autor con Acciones Duales */}
         <PageHero
           eyebrow={page.hero.eyebrow}
           heading={page.hero.heading}
           subheadline={page.hero.subheadline}
           photo={page.hero.photo}
+          actions={
+            <>
+              <Button variant="inverse" href="#espacios" arrow>
+                {page.hero.catalogCtaLabel ?? "Explorar espacios y acabados"}
+              </Button>
+              <Button
+                variant="outline"
+                href={heroWhatsappHref}
+                external
+                arrow
+              >
+                {page.hero.consultationCtaLabel ?? "Agendar asesoría gratuita"}
+              </Button>
+            </>
+          }
         />
 
+        {/* Layer 2: Matriz Táctil de Materialidad y Resistencia Bioclimática */}
+        <MaterialFinishesMatrix
+          eyebrow={page.materialsMatrix.eyebrow}
+          heading={page.materialsMatrix.heading}
+          body={page.materialsMatrix.body}
+          materials={page.materialsMatrix.materials}
+          whatsappHref={whatsappHref}
+        />
+
+        {/* Layers 3 & 4: Explorador de Espacios con Dossier Modal & Garantía DRO */}
         <InteriorsSurfacesExperience
           inspiration={page.inspiration}
+          engineeringGuarantee={page.engineeringGuarantee}
           surfaces={page.surfaces}
           whatsappHref={whatsappHref}
         />
 
-        {galleryInteriorsPhotos.length > 0 ? (
-          <Section tone="canvas" reveal="stagger">
-            <Container>
-              <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-                <SectionHeading
-                  eyebrow={page.interiorsGalleryIntro.eyebrow}
-                  heading={page.interiorsGalleryIntro.heading}
-                  body={page.interiorsGalleryIntro.body}
-                />
-                <span className="label self-start tabular-nums text-ink-muted lg:self-auto">
-                  {`${String(galleryInteriorsPhotos.length).padStart(2, "0")} REGISTROS`}
-                </span>
-              </div>
+        {/* Layer 5: Monografía Editorial "El Showroom Habitado" */}
+        <ShowroomLifestyleStory
+          eyebrow={page.showroomStory.eyebrow}
+          heading={page.showroomStory.heading}
+          body={page.showroomStory.body}
+          scenes={page.showroomStory.scenes}
+        />
 
-              <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
-                {galleryInteriorsPhotos.map((photo, index) => (
-                  <figure
-                    key={photo.src}
-                    {...revealStep(index)}
-                    className="overflow-hidden"
-                  >
-                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
-                      <Photo photo={photo} sizes={GALLERY_SIZES} />
-                    </div>
-                  </figure>
-                ))}
-              </div>
-            </Container>
-          </Section>
-        ) : null}
+        {/* Layer 6: Pre-cotizador Interactivo en 3 Pasos & Asesoría sin Costo */}
+        <InteriorsQuickEstimator
+          estimator={page.estimator}
+          whatsappHref={whatsappHref}
+        />
 
-        {galleryLifestylePhotos.length > 0 ? (
-          <Section tone="bone" reveal="stagger">
-            <Container>
-              <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-                <SectionHeading
-                  eyebrow={page.lifestyleIntro.eyebrow}
-                  heading={page.lifestyleIntro.heading}
-                  body={page.lifestyleIntro.body}
-                />
-                <span className="label self-start tabular-nums text-ink-muted lg:self-auto">
-                  {`${String(galleryLifestylePhotos.length).padStart(2, "0")} ESPACIOS`}
-                </span>
-              </div>
-
-              <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
-                {galleryLifestylePhotos.map((photo, index) => (
-                  <figure
-                    key={photo.src}
-                    {...revealStep(index)}
-                    className="overflow-hidden"
-                  >
-                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
-                      <Photo photo={photo} sizes={GALLERY_SIZES} />
-                    </div>
-                  </figure>
-                ))}
-              </div>
-            </Container>
-          </Section>
-        ) : null}
-
+        {/* Closing CTA */}
         <ClosingCTA closing={closing} />
       </main>
     </SiteChrome>

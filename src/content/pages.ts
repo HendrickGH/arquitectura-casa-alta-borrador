@@ -1,4 +1,4 @@
-import type { SectionIntro, SpaceCategory, ThematicPillar } from "@/types/content";
+import type { EstimatorConfig, SectionIntro, SpaceCategory, ThematicPillar } from "@/types/content";
 
 /**
  * Authored content for the dedicated interior routes:
@@ -14,70 +14,331 @@ import type { SectionIntro, SpaceCategory, ThematicPillar } from "@/types/conten
 
 export const interiorsPageContent = {
   hero: {
-    eyebrow: "Arquitectura de interiores · Acabados de alta gama",
-    heading: "Acabados de Alta Gama y Superficies de Importación",
+    eyebrow: "Arquitectura de interiores · Acabados nobles y carpintería",
+    heading:
+      "Cocinas integrales, superficies nobles y carpintería residencial en Oaxaca",
     subheadline:
-      "Materiales de importación para proyectos residenciales, instalación certificada y garantizada.",
+      "Fabricación propia con despiece milimétrico, cálculo de resistencia costera y maderas curadas. Asesoría técnica inicial sin costo, presencial en estudio o por videollamada.",
     dir: "arquitectura-interiores",
     base: "03-cocina-comedor-muro-terracota-techo-bambu-isla",
+    catalogCtaLabel: "Explorar espacios y acabados",
+    consultationCtaLabel: "Agendar asesoría gratuita",
+  },
+  materialsMatrix: {
+    eyebrow: "Matriz táctil de materialidad",
+    heading: "Superficies nobles probadas para resistir el tiempo y el clima de Oaxaca",
+    body: "Seleccionamos piedras de importación, maderas de la región curadas en autoclave y polímeros bioclimáticos que no se degradan con la radiación solar, el salitre ni el uso residencial intensivo.",
+    materials: [
+      {
+        id: "piedra-sinterizada",
+        name: "Piedras Tecnológicas y Porcelánicos Ultracompactos",
+        subtitle: "Porcelánicos de gran formato (3200 × 1600 mm)",
+        category: "Superficies minerales continuas",
+        description:
+          "Sinterización mineral a más de 1200 °C. Cero porosidad, absorción de agua nula (<0.05%) e inmunidad absoluta ante manchas de café, vino, ácidos cítricos y sartenes al rojo vivo.",
+        specs: [
+          "Absorción de agua < 0.05% (antimanchas)",
+          "Resistencia al calor directo > 300 °C",
+          "Faldón con inglete a 45° y veta continua",
+          "Espesores técnicos: 12 mm y 20 mm",
+        ],
+        dir: "arquitectura-interiores",
+        base: "05-cubierta-isla-cocina-veta-lineal-techo-carrizo",
+      },
+      {
+        id: "cuarzo-pureza",
+        name: "Cuarzo de Alta Pureza y Veta Continua",
+        subtitle: "Alineación bookmatch y acabado mate sedoso",
+        category: "Islas y barras monolíticas",
+        description:
+          "93% de cuarzo natural compactado al vacío con resinas poliméricas de alta densidad. Superficie bacteriostática no porosa que no requiere selladores anuales.",
+        specs: [
+          "Dureza Mohs 7 (alta resistencia al rayado)",
+          "Empates invisibles con adhesivo pigmentado",
+          "Acabado Leather y Mate Sedoso antideslumbrante",
+          "Garantía estructural contra delaminación",
+        ],
+        dir: "modelos-mujeres",
+        base: "20-perspectiva-barra-cuarzo-vajilla-convivencia",
+      },
+      {
+        id: "maderas-tropicales",
+        name: "Maderas Tropicales Curadas (Parota y Tzalam)",
+        subtitle: "Tratamiento en autoclave y aceites naturales",
+        category: "Carpintería residencial sobre diseño",
+        description:
+          "Tablones seleccionados de parota y tzalam estabilizados a humedad de equilibrio para prevenir curvaturas y alabeos por cambios drásticos de temperatura y salinidad en la costa.",
+        specs: [
+          "Curado preventivo anti-termitas y hongos xilófagos",
+          "Acabado a poro abierto con ceras botánicas y aceites Rubio",
+          "Ensambles tradicionales de caja y espiga reforzados",
+          "Resistencia a humedad ambiental superior al 85%",
+        ],
+        dir: "03-casa-blake-tlalixtac",
+        base: "07-corredor-vigas-madera-lamparas",
+      },
+      {
+        id: "acabados-bioclimaticos",
+        name: "Acabados Minerales Bioclimáticos (Chukum y Pastas de Cal)",
+        subtitle: "Resina vegetal ancestral y transpirabilidad térmica",
+        category: "Muros y recubrimientos higrotérmicos",
+        description:
+          "Pastas artesanales formuladas con extracto de corteza de árbol de chukum y cal viva apagada en obra. Regula la humedad porosa del ambiente y mantiene los espacios interiores frescos al tacto.",
+        specs: [
+          "Fungicida e hidrófugo natural sin químicos volátiles",
+          "Acabado pétreo aterciopelado sin juntas de dilatación",
+          "Excelente reflexión y difusión de la luz natural indirecta",
+          "Ideal para baños húmedos, regaderas y muros de acento",
+        ],
+        dir: "arquitectura-sostenible",
+        base: "05-materiales-locales-chukum-madera-palapa-costera",
+      },
+    ],
   },
   inspiration: {
-    eyebrow: "Diseño arquitectónico de interiores",
-    heading: "Diseño con propósito para inspirar la vida de las personas",
-    body: "Materiales de importación para proyectos residenciales, instalación certificada y garantizada. Cada superficie y espacio está concebido para resistir el tiempo, el clima costero y enriquecer la convivencia cotidiana.",
+    eyebrow: "Dossier de espacios residenciales",
+    heading: "Espacios proyectados desde la función, la luz y la tectónica",
+    body: "Cada espacio se diseña a la medida de la rutina familiar y la orientación solar del inmueble. Inspecciona la ficha técnica de cada espacio y coordina una asesoría técnica sin costo.",
     tabs: [
       { id: "all", label: "Todos los espacios" },
       { id: "cocinas", label: "Cocinas e islas" },
       { id: "banos", label: "Baños residenciales" },
       { id: "terrazas", label: "Terrazas y barras exteriores" },
-      { id: "interiores", label: "Comedores y galerías" },
+      { id: "interiores", label: "Estancias y comedores" },
       { id: "showroom", label: "Showroom y convivencia" },
     ] satisfies Array<{ id: SpaceCategory; label: string }>,
   },
-  surfaces: {
-    eyebrow: "Instalación y certificación técnica",
-    heading: "Acabados de Alta Gama y Superficies de Importación",
+  engineeringGuarantee: {
+    eyebrow: "Ingeniería de detalle y respaldo DRO",
+    heading: "Rigor estructural y certificación técnica en cada ensamble",
     claim:
-      "Materiales de importación para proyectos residenciales, instalación certificada y garantizada.",
-    body: "Un espacio residencial se experimenta a través de las superficies que se tocan todos los días. En Casa Alta proyectamos, fabricamos e instalamos cocinas integrales, islas monolíticas, baños, vestidores y recubrimientos arquitectónicos utilizando superficies ultracompactas y piedras de importación con mano de obra certificada y garantía por escrito.",
+      "Toda obra de interiores cuenta con cálculo de cargas, anclajes antisísmicos y garantía contractual por escrito avalada por Perito DRO.",
+    body: "En Oaxaca, la arquitectura interior no es solo decoración: es ingeniería de precisión frente a sismos, salinidad costera y calor extremo. Respaldamos cada proyecto con levantamiento láser, fijaciones de acero inoxidable y contrato formal con póliza de vicios ocultos.",
     badges: [
-      "Acabados de Alta Gama y Superficies de Importación",
-      "Instalación certificada y garantizada",
-      "Cocinas e islas a medida",
-      "Carpintería y herrajes residenciales",
+      "Levantamiento milimétrico con escáner láser",
+      "Juntas epóxicas sismorresistentes",
+      "Selladores marinos hidrófugos de alta elasticidad",
+      "Garantía contractual por escrito con firma DRO",
     ],
     pillars: [
       {
         number: "01",
-        title: "Superficies de importación y piedra tecnológica",
+        title: "Levantamiento láser y despiece sin holguras",
         description:
-          "Trabajamos con superficies de alta resistencia térmica, mecánica y a la humedad salina —piedra sinterizada, cuarzo y porcelánicos de gran formato— ideales tanto para residencias urbanas como para casas de playa.",
+          "Antes de ordenar o cortar un solo módulo o losa, digitalizamos los muros en obra con escáner láser de precisión milimétrica para absorber desplomes de albañilería y asegurar ajustes perfectos.",
         items: [
-          "Cubiertas e islas monolíticas con veta continua",
-          "Recubrimientos de muros y pisos en gran formato",
-          "Fachadas ventiladas y barras exteriores resistentes al sol",
+          "Modelado BIM 3D y despiece a control numérico CNC",
+          "Tolerancia de holgura en juntas menor a 1.5 milímetros",
+          "Integración oculta de instalaciones eléctricas e hidráulicas",
         ],
       },
       {
         number: "02",
-        title: "Cocinas premium y mobiliario sobre diseño",
+        title: "Fijación antisísmica y juntas de alivio elástico",
         description:
-          "Diseñamos cada cocina, closet y vestidor desde los planos ejecutivos de la obra para integrar instalaciones ocultas, iluminación LED indirecta y sistemas de organización extraíbles.",
+          "Oaxaca es zona de alta sismicidad. Nuestras cubiertas pesadas y muebles suspendidos incorporan bastidores de acero anclados a elementos estructurales y adhesivos de curado controlado.",
         items: [
-          "Cocinas integrales en madera certificada y acabados mate",
-          "Sistemas de alacena extraíble y herrajes de cierre suave",
-          "Closets, vestidores, puertas residenciales y tocadores flotantes",
+          "Adhesivos epóxicos bicomponentes de alta flexibilidad elástica",
+          "Anclajes químicos certificados Hilti en muros de carga",
+          "Cero fisuras en empates de piedra bajo torsión tectónica",
         ],
       },
       {
         number: "03",
-        title: "Garantía técnica y despiece milimétrico",
+        title: "Sellado costero y herrajes de acero inoxidable",
         description:
-          "El mejor material falla si su corte o colocación es improvisado. Nuestro equipo ejecuta el despiece milimétrico, transporte especializado y montaje certificado en sitio con garantía directa de Casa Alta.",
+          "Para proyectos en Puerto Escondido, Huatulco y la costa oaxaqueña, aislamos cada unión con selladores marinos resistentes a la radiación UV, la salinidad y la proliferación de moho.",
         items: [
-          "Cero fisuras: juntas imperceptibles con adhesivos epóxicos de curado controlado.",
-          "Nivelación milimétrica: control láser en sustratos y cubiertas de gran formato.",
-          "Sellado bioclimático: aislamiento elástico de alta resistencia al salitre y la humedad costera.",
+          "Bisagras y correderas inoxidables con prueba de niebla salina",
+          "Barnices y selladores hidrófugos con filtro UV de grado marino",
+          "Maderas tratadas al vacío contra termitas y carcoma",
+        ],
+      },
+    ] satisfies ThematicPillar[],
+  },
+  showroomStory: {
+    eyebrow: "Monografía editorial · El showroom habitado",
+    heading: "Arquitectura que se prueba en el uso cotidiano",
+    body: "Sesión fotográfica en nuestro showroom de cocinas integrales: una aproximación realista a la ergonomía, la convivencia y los sistemas ocultos de almacenamiento en torno a una isla de cuarzo negro.",
+    scenes: [
+      {
+        id: "escena-1",
+        number: "01",
+        title: "El ritual de la convivencia en la barra central",
+        subtitle: "La isla como núcleo social de la vivienda",
+        description:
+          "Diseñamos la isla como el eje operativo y social de la casa. El voladizo ergonómico en cuarzo negro aloja cómodamente a los comensales, mientras que la iluminación cálida suspendida define una atmósfera íntima y acogedora.",
+        highlights: [
+          "Cubierta con voladizo de 30 cm para espacio libre de rodillas",
+          "Superficie de cuarzo térmicamente neutra al tacto",
+          "Luminarias lineales en madera que tamizan la luz",
+        ],
+        primaryDir: "modelos-mujeres",
+        primaryBase: "01-convivencia-isla-cocina-marmol-lampara-madera",
+        secondaryDir: "modelos-mujeres",
+        secondaryBase: "04-charla-amigas-isla-piedra-negra-lamparas-diseno",
+      },
+      {
+        id: "escena-2",
+        number: "02",
+        title: "Ergonomía oculta y almacenamiento vertical",
+        subtitle: "Torres despenseras extraíbles y modulación inteligente",
+        description:
+          "Cada centímetro cúbico cuenta. Nuestras columnas integradas ocultan canastillas cromadas de extracción total con amortiguación de impacto, garantizando que el menaje y los víveres estén al alcance con un solo movimiento suave.",
+        highlights: [
+          "Mecanismos extraíbles con capacidad de carga de hasta 70 kg",
+          "Frentes en acabado negro mate anti-huella digital",
+          "Cierre amortiguado Soft-Close probado a 100,000 ciclos",
+        ],
+        primaryDir: "modelos-mujeres",
+        primaryBase: "07-alacena-extraible-organizador-cocina-moderna",
+        secondaryDir: "modelos-mujeres",
+        secondaryBase: "06-perspectiva-completa-cocina-showroom-iluminacion-led",
+      },
+      {
+        id: "escena-3",
+        number: "03",
+        title: "Área húmeda de bajo perfil y extracción silenciosa",
+        subtitle: "Fregadero bajo cubierta y campana de acero perimetral",
+        description:
+          "La integración al ras o bajo cubierta elimina los bordes de acumulación de grasa o agua. Combinamos tarjas de acero inoxidable de calibre pesado con monomandos de cuello retráctil y campanas extractoras de tiro directo.",
+        highlights: [
+          "Instalación bajo cubierta con sellador fungicida permanente",
+          "Grifería de monomando minimalista con aireador de ahorro",
+          "Campana extractora perimetral de bajo nivel de ruido (≤ 48 dB)",
+        ],
+        primaryDir: "modelos-mujeres",
+        primaryBase: "11-brindis-isla-cocina-tarja-acero-campana",
+        secondaryDir: "modelos-mujeres",
+        secondaryBase: "20-perspectiva-barra-cuarzo-vajilla-convivencia",
+      },
+    ],
+  },
+  estimator: {
+    eyebrow: "Pre-cotizador interactivo en 3 pasos",
+    heading: "Calcula el alcance de tu espacio con transparencia",
+    subheadline:
+      "Selecciona las características de tu proyecto para recibir una estimación preliminar y agendar tu primera sesión de asesoría técnica y conceptual 100% gratuita.",
+    freeConsultationNote:
+      "Toda intervención en Casa Alta comienza con una primera sesión de asesoría técnica y conceptual 100% gratuita, presencial en nuestro estudio o por videollamada.",
+    steps: [
+      {
+        step: 1,
+        question: "¿Qué espacio deseas intervenir?",
+        hint: "Diseño y fabricación a la medida para obra nueva o remodelación.",
+        options: [
+          {
+            id: "cocina",
+            label: "Cocina integral e isla",
+            description: "Cubierta en cuarzo/porcelánico, gabinetes y herrajes",
+          },
+          {
+            id: "bano",
+            label: "Baño residencial y vanitory",
+            description: "Mueble suspendido, espejo LED y cancel de cristal",
+          },
+          {
+            id: "terraza",
+            label: "Terraza exterior y barra",
+            description: "Superficie para intemperie, asador y pergolado",
+          },
+          {
+            id: "integral",
+            label: "Mobiliario y carpintería integral",
+            description: "Closets, puertas, panelados acústicos y estancias",
+          },
+        ],
+      },
+      {
+        step: 2,
+        question: "¿En qué etapa se encuentra el proyecto?",
+        hint: "Nos adaptamos tanto a planos iniciales como a espacios habitados.",
+        options: [
+          {
+            id: "planos",
+            label: "En proyecto arquitectónico / Planos",
+            description: "Ideal para prever instalaciones hidráulicas y eléctricas",
+          },
+          {
+            id: "obra-gris",
+            label: "En obra negra o gris",
+            description: "Momento oportuno para trazo de guías y levantamiento láser",
+          },
+          {
+            id: "remodelacion",
+            label: "Remodelación de espacio habitado",
+            description: "Sustitución de acabados existentes con mínima invasión",
+          },
+        ],
+      },
+      {
+        step: 3,
+        question: "¿En qué región de Oaxaca se ubica?",
+        hint: "Calculamos los tratamientos bioclimáticos y logística de montaje.",
+        options: [
+          {
+            id: "costa",
+            label: "Costa (Puerto Escondido, Huatulco, Mazunte)",
+            description: "Especificación para salinidad marina y clima tropical",
+          },
+          {
+            id: "valles",
+            label: "Valles Centrales (Oaxaca de Juárez y conurbada)",
+            description: "Sistemas sismorresistentes y maderas de la región",
+          },
+          {
+            id: "istmo-otra",
+            label: "Istmo u otra región del estado",
+            description: "Logística especializada de transporte y montaje en sitio",
+          },
+        ],
+      },
+    ],
+  } satisfies EstimatorConfig,
+  surfaces: {
+    eyebrow: "Ingeniería de detalle y respaldo DRO",
+    heading: "Rigor estructural y certificación técnica en cada ensamble",
+    claim:
+      "Toda obra de interiores cuenta con cálculo de cargas, anclajes antisísmicos y garantía contractual por escrito avalada por Perito DRO.",
+    body: "En Oaxaca, la arquitectura interior no es solo decoración: es ingeniería de precisión frente a sismos, salinidad costera y calor extremo. Respaldamos cada proyecto con levantamiento láser, fijaciones de acero inoxidable y contrato formal con póliza de vicios ocultos.",
+    badges: [
+      "Levantamiento milimétrico con escáner láser",
+      "Juntas epóxicas sismorresistentes",
+      "Selladores marinos hidrófugos de alta elasticidad",
+      "Garantía contractual por escrito con firma DRO",
+    ],
+    pillars: [
+      {
+        number: "01",
+        title: "Levantamiento láser y despiece sin holguras",
+        description:
+          "Antes de ordenar o cortar un solo módulo o losa, digitalizamos los muros en obra con escáner láser de precisión milimétrica para absorber desplomes de albañilería y asegurar ajustes perfectos.",
+        items: [
+          "Modelado BIM 3D y despiece a control numérico CNC",
+          "Tolerancia de holgura en juntas menor a 1.5 milímetros",
+          "Integración oculta de instalaciones eléctricas e hidráulicas",
+        ],
+      },
+      {
+        number: "02",
+        title: "Fijación antisísmica y juntas de alivio elástico",
+        description:
+          "Oaxaca es zona de alta sismicidad. Nuestras cubiertas pesadas y muebles suspendidos incorporan bastidores de acero anclados a elementos estructurales y adhesivos de curado controlado.",
+        items: [
+          "Adhesivos epóxicos bicomponentes de alta flexibilidad elástica",
+          "Anclajes químicos certificados Hilti en muros de carga",
+          "Cero fisuras en empates de piedra bajo torsión tectónica",
+        ],
+      },
+      {
+        number: "03",
+        title: "Sellado costero y herrajes de acero inoxidable",
+        description:
+          "Para proyectos en Puerto Escondido, Huatulco y la costa oaxaqueña, aislamos cada unión con selladores marinos resistentes a la radiación UV, la salinidad y la proliferación de moho.",
+        items: [
+          "Bisagras y correderas inoxidables con prueba de niebla salina",
+          "Barnices y selladores hidrófugos con filtro UV de grado marino",
+          "Maderas tratadas al vacío contra termitas y carcoma",
         ],
       },
     ] satisfies ThematicPillar[],

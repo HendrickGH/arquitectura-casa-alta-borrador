@@ -10,6 +10,7 @@ interface PageHeroProps {
   heading: string;
   subheadline: string;
   photo: PhotoModel;
+  actions?: React.ReactNode;
 }
 
 /**
@@ -23,6 +24,7 @@ export function PageHero({
   heading,
   subheadline,
   photo,
+  actions,
 }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -112,6 +114,11 @@ export function PageHero({
             <p className="max-w-[42ch] text-sm leading-relaxed text-white/85 md:text-base">
               {subheadline}
             </p>
+            {actions ? (
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                {actions}
+              </div>
+            ) : null}
           </div>
         </div>
       </Container>
