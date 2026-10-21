@@ -148,6 +148,7 @@ export function ServicesPageTemplate({
           contact={contact}
           whatsappHref={whatsappHref}
           tone="canvas"
+          showSidebar={false}
         />
 
         <ClosingCTA closing={closing} />

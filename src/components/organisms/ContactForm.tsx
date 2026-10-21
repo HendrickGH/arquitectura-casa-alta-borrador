@@ -34,22 +34,30 @@ export function ContactForm({
   idPrefix = "contact",
   showSidebar = true,
 }: ContactFormProps) {
+  const hasSidebar = showSidebar && Boolean(photo);
+
   return (
     <Section id={id} tone={tone} reveal="stagger">
       <Container>
-        {showSidebar ? (
+        {hasSidebar ? (
           <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-14">
             {/* Left column: Real studio photograph + direct consultation summary */}
             <div {...revealStep(0)} className="lg:col-span-5">
               <div className="overflow-hidden">
-                <div className="mb-3 flex items-center justify-between gap-2">
-                  <span className="label text-brand-800">
-                    {contact.directAttentionLabel ?? "Atención directa"}
-                  </span>
-                  <span className="label text-ink-muted">
-                    {contact.freeCostLabel ?? "Sin costo"}
-                  </span>
-                </div>
+                {contact.directAttentionLabel || contact.freeCostLabel ? (
+                  <div className="mb-3 flex items-center justify-between gap-2">
+                    {contact.directAttentionLabel ? (
+                      <span className="label text-brand-800">
+                        {contact.directAttentionLabel}
+                      </span>
+                    ) : null}
+                    {contact.freeCostLabel ? (
+                      <span className="label text-ink-muted">
+                        {contact.freeCostLabel}
+                      </span>
+                    ) : null}
+                  </div>
+                ) : null}
                 {photo ? (
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
                     <Photo
@@ -58,12 +66,11 @@ export function ContactForm({
                     />
                   </div>
                 ) : null}
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-3 text-xs text-ink-muted">
-                  <span>
-                    {contact.coverageLabel ??
-                      "Puerto Escondido · Oaxaca Centro · Salina Cruz"}
-                  </span>
-                </div>
+                {contact.coverageLabel ? (
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-3 text-xs text-ink-muted">
+                    <span>{contact.coverageLabel}</span>
+                  </div>
+                ) : null}
 
                 {/* Consultation Checklist with 0px square bullets */}
                 {contact.consultationChecklist &&

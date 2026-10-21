@@ -388,12 +388,6 @@ export const home: HomePage = {
       "6 a 12 meses",
       "Fase de planeación",
     ],
-    consultationTitle: "Primera sesión técnica sin costo",
-    consultationChecklist: [
-      "Evaluación de predio, mecánica preliminar y orientación solar",
-      "Estimación paramétrica de inversión y catálogo de partidas",
-      "Ruta crítica de proyecto ejecutivo y supervisión DRO",
-    ],
     name: { label: "Nombre", placeholder: "Su nombre completo" },
     email: { label: "Correo electrónico", placeholder: "nombre@correo.com" },
     phone: { label: "Teléfono / WhatsApp", placeholder: "951 000 0000" },
