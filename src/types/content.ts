@@ -436,10 +436,9 @@ export interface InteriorsPageContent {
     text: string;
     photo?: Photo;
   };
-  portfolio: {
+  gallery: {
     intro: SectionIntro;
-    featured: Project[];
-    remaining: Project[];
+    photos: Photo[];
   };
   engineering: {
     intro: SectionIntro;

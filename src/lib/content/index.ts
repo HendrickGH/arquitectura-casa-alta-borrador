@@ -386,25 +386,30 @@ export function getInteriorsPage(): InteriorsPageContent {
       "Manifiesto de interiores",
     ) ?? heroPhoto;
 
-  // 3. Interior Projects for FeaturedPortfolio
-  const interiorsProject = getProject("arquitectura-interiores");
-  const vilasCavan = getProject("vilas-cavan");
-  const cafeMalagua = getProject("cafe-malagua");
-  const casaCharcoSeco = getProject("casa-charco-seco");
-  const casaBlake = getProject("casa-blake-tlalixtac");
-  const puntaZicatela = getProject("obra-punta-zicatela");
+  // 3. Interleaved Gallery for CredibilityGallery
+  const studioInteriors = getProjectPhotos(
+    "arquitectura-interiores",
+    "Arquitectura de interiores Casa Alta",
+  );
+  const lifestylePhotos = getProjectPhotos(
+    "modelos-mujeres",
+    "Showroom y convivencia Casa Alta",
+  );
 
-  const interiorProjects = [
-    interiorsProject,
-    vilasCavan,
-    cafeMalagua,
-    casaCharcoSeco,
-    casaBlake,
-    puntaZicatela,
-  ].filter((p): p is Project => p !== null);
-
-  const featured = interiorProjects.slice(0, 4);
-  const remaining = interiorProjects.slice(4);
+  const galleryPhotos: Photo[] = [];
+  let lifeIndex = 0;
+  for (let i = 0; i < studioInteriors.length; i++) {
+    const archPhoto = studioInteriors[i];
+    if (archPhoto) galleryPhotos.push(archPhoto);
+    if ((i + 1) % 2 === 0 && lifeIndex < lifestylePhotos.length) {
+      const lifePhoto = lifestylePhotos[lifeIndex++];
+      if (lifePhoto) galleryPhotos.push(lifePhoto);
+    }
+  }
+  if (galleryPhotos.length % 2 !== 0 && lifeIndex < lifestylePhotos.length) {
+    const extraLife = lifestylePhotos[lifeIndex++];
+    if (extraLife) galleryPhotos.push(extraLife);
+  }
 
   // 4. Engineering Pillars for WhyCasaAltaEditorial
   const engineeringItems: Differentiator[] =
@@ -441,10 +446,9 @@ export function getInteriorsPage(): InteriorsPageContent {
       text: interiorsPageContent.manifesto.text,
       photo: manifestoPhoto,
     },
-    portfolio: {
-      intro: interiorsPageContent.portfolio.intro,
-      featured,
-      remaining,
+    gallery: {
+      intro: interiorsPageContent.gallery.intro,
+      photos: galleryPhotos,
     },
     engineering: {
       intro: interiorsPageContent.engineering.intro,

@@ -3,7 +3,7 @@ import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
-import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
+import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { PageHero } from "@/components/organisms/PageHero";
 import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
@@ -95,19 +95,12 @@ export function InteriorsPageTemplate({
           photo={page.manifesto.photo}
         />
 
-        {/* Layer 4: Dossier de Espacios y Obras de Interiores (FeaturedPortfolio / ProjectsGrid) */}
-        <FeaturedPortfolio
+        {/* Layer 4: Dossier Fotográfico en Doble Cinta (CredibilityGallery) */}
+        <CredibilityGallery
           id="espacios"
-          intro={page.portfolio.intro}
-          projects={page.portfolio.featured}
-          remaining={page.portfolio.remaining}
+          intro={page.gallery.intro}
+          photos={page.gallery.photos}
           tone="canvas"
-          whatsappHref={whatsappHref}
-          action={
-            <Button href="/contacto" variant="secondary" size="sm" arrow>
-              Agendar asesoría de interiores
-            </Button>
-          }
         />
 
         {/* Layer 5: Ingeniería de Detalle y Respaldo DRO (WhyCasaAltaEditorial) */}

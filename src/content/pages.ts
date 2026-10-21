@@ -104,11 +104,11 @@ export const interiorsPageContent = {
     dir: "arquitectura-interiores",
     base: "08-cocina-madera-ventanal-jardin-interior-techo-bambu",
   },
-  portfolio: {
+  gallery: {
     intro: {
-      eyebrow: "Dossier fotográfico de interiores",
-      heading: "Espacios habitables proyectados desde la función y la luz",
-      body: "Cocinas integrales, baños residenciales y carpintería sobre diseño documentados en obra terminada. Hacé clic en cualquier proyecto para abrir el expediente completo en alta resolución.",
+      eyebrow: "Dossier fotográfico · Espacios habitados",
+      heading: "Materia, luz y convivencia en torno a la arquitectura interior",
+      body: "Inspección fotográfica continua en doble cinta: cocinas integrales, carpintería residencial de autor y momentos de uso real en nuestro showroom de Oaxaca.",
     },
   },
   engineering: {

@@ -11,13 +11,20 @@ import type { Photo as PhotoModel, SectionIntro } from "@/types/content";
 interface CredibilityGalleryProps {
   intro: SectionIntro;
   photos: PhotoModel[];
+  tone?: "canvas" | "bone";
+  id?: string;
 }
 
 /**
  * Interactive horizontal scroll gallery displaying on-site supervision photographs
  * in a dual-row continuous ribbon with snap-scrolling and lightbox inspection.
  */
-export function CredibilityGallery({ intro, photos }: CredibilityGalleryProps) {
+export function CredibilityGallery({
+  intro,
+  photos,
+  tone = "canvas",
+  id,
+}: CredibilityGalleryProps) {
   const galleryTrackRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -44,7 +51,13 @@ export function CredibilityGallery({ intro, photos }: CredibilityGalleryProps) {
   };
 
   return (
-    <Section tone="canvas" density="default" reveal="stagger" className="overflow-hidden">
+    <Section
+      id={id}
+      tone={tone}
+      density="default"
+      reveal="stagger"
+      className="overflow-hidden"
+    >
       <Container>
         <SectionHeading
           eyebrow={intro.eyebrow}
