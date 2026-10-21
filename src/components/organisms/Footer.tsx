@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Container } from "@/components/atoms/Container";
 import { Logo } from "@/components/atoms/Logo";
-import { Photo } from "@/components/atoms/Photo";
 import type { SiteConfig } from "@/types/content";
 
 interface FooterProps {
@@ -79,14 +78,14 @@ export function Footer({ site }: FooterProps) {
                 ))}
               </ul>
 
-              <div className="mt-6 flex flex-wrap items-center gap-2">
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
                 {site.social.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="label bg-white/10 px-3 py-1.5 text-concha-nacar/80 transition-colors hover:bg-concha-nacar hover:text-ink"
+                    className="label text-concha-nacar/80 underline decoration-concha-nacar/30 underline-offset-4 transition-colors hover:text-white hover:decoration-white"
                   >
                     {link.label}
                   </a>
@@ -95,29 +94,15 @@ export function Footer({ site }: FooterProps) {
             </div>
           </div>
 
-          {/* Right column: Studio institutional box with real studio photo */}
-          <div className="flex flex-col justify-between bg-white/[0.03] p-6 md:p-8 lg:col-span-5">
-            <div className="flex items-start justify-between gap-6">
-              <div>
-                <span className="label inline-flex bg-white/10 px-2.5 py-1 text-concha-nacar/80 tabular-nums">
-                  {`Desde ${site.foundedYear} · Oaxaca (${site.foundedYear}—${year})`}
-                </span>
-                <p className="voice mt-4 text-xl leading-snug text-concha-nacar md:text-2xl">
-                  {site.claim}
-                </p>
-                <p className="mt-2 text-xs leading-relaxed text-concha-nacar/65">
-                  {site.coverage}
-                </p>
-              </div>
-              {site.footerPhoto ? (
-                <div className="relative h-24 w-20 shrink-0 overflow-hidden bg-ink">
-                  <Photo
-                    photo={site.footerPhoto}
-                    sizes="96px"
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ) : null}
+          {/* Right column: claim, coverage, logo */}
+          <div className="flex flex-col justify-between lg:col-span-5">
+            <div>
+              <p className="voice text-xl leading-snug text-concha-nacar md:text-2xl">
+                {site.claim}
+              </p>
+              <p className="mt-2 text-xs leading-relaxed text-concha-nacar/65">
+                {site.coverage}
+              </p>
             </div>
 
             <div className="mt-8 flex items-center justify-between pt-4">
@@ -138,7 +123,7 @@ export function Footer({ site }: FooterProps) {
                 <span className="underline decoration-concha-nacar/40 underline-offset-4 group-hover:decoration-white">
                   Volver arriba
                 </span>
-                <span className="inline-flex h-8 w-8 items-center justify-center bg-concha-nacar text-ink transition-transform duration-300 group-hover:-translate-y-0.5">
+                <span className="inline-flex items-center justify-center text-concha-nacar transition-transform duration-300 group-hover:-translate-y-0.5">
                   ↑
                 </span>
               </button>
