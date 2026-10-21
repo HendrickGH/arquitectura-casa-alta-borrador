@@ -261,9 +261,8 @@ export const sustainabilityPageContent = {
     ],
   },
   manifesto: {
-    // Exact verbatim copy provided by the client ("no cambiar nada").
     text:
-      "Proyecto de arquitectura sostenible para un clima y ambiente tropical . En donde se optimiza la carga térmica y acústica usando materiales sostenibles que reducen el uso de energias artificiales optimizando lo vientos cruzados y la buena ventalacion , arquitectura de playa que funciona para espacios donde la densidad térmica es muy alta dando como resultado espacios amplios y frescos donde el lujo está en sentirse cómoda realmente y contento con el espacio y uno mismo .",
+      "Arquitectura de playa para clima tropical: espacios amplios y frescos donde el verdadero lujo es sentirse en armonía con el entorno.",
     dir: "02-el-bicho",
     base: "02-fachada-palapas-alberca-palmeras",
   },
