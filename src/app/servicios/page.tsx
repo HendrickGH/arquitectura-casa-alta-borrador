@@ -3,7 +3,6 @@ import { ServicesPageTemplate } from "@/components/templates/ServicesPageTemplat
 import {
   getClosing,
   getHomePage,
-  getProcessSteps,
   getServiceGroups,
   getServicesPage,
   getSiteConfig,
@@ -25,8 +24,6 @@ export default function ServicesRoutePage() {
       site={site}
       page={page}
       groups={getServiceGroups()}
-      processIntro={home.process}
-      steps={getProcessSteps()}
       closing={getClosing()}
       contact={home.contact}
       whatsappHref={site.whatsapp.href}

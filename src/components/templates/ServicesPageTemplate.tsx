@@ -7,15 +7,12 @@ import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { PageHero } from "@/components/organisms/PageHero";
-import { ProcessList } from "@/components/organisms/ProcessList";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
 import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import { revealStep } from "@/lib/reveal";
 import type {
   HomePage,
-  ProcessStep,
-  SectionIntro,
   ServiceGroup,
   ServicesPageContent,
   SiteConfig,
@@ -25,8 +22,6 @@ interface ServicesPageTemplateProps {
   site: SiteConfig;
   page: ServicesPageContent;
   groups: ServiceGroup[];
-  processIntro?: SectionIntro;
-  steps?: ProcessStep[];
   closing: HomePage["closing"];
   contact: HomePage["contact"];
   whatsappHref: string;
@@ -37,14 +32,12 @@ interface ServicesPageTemplateProps {
  *
  * Showcases the studio's four field execution specialties (`proyectos-integrales`,
  * `obra-civil`, `naves-industriales`, `remodelacion`), the complete 13-service
- * technical catalog (`ServicesIndex`), and the 7-step methodology (`ProcessList`).
+ * technical catalog (`ServicesIndex`).
  */
 export function ServicesPageTemplate({
   site,
   page,
   groups,
-  processIntro,
-  steps,
   closing,
   contact,
   whatsappHref,
@@ -133,15 +126,6 @@ export function ServicesPageTemplate({
           tone="canvas"
           whatsappHref={whatsappHref}
         />
-
-        {processIntro && steps ? (
-          <ProcessList
-            id="proceso"
-            intro={processIntro}
-            steps={steps}
-            tone="bone"
-          />
-        ) : null}
 
         <ContactForm
           id="contacto"
