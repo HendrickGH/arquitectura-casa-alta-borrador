@@ -382,9 +382,6 @@ header[data-surface="hero"] .chrome-cta:hover {
 	transform: none;
 }
 
-iframe {
-	display: none !important;
-}
 
 @media (prefers-reduced-motion: reduce) {
 	html {

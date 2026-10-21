@@ -25,8 +25,15 @@ export interface ContactPageTemplateProps {
  * gradient scrim (WCAG AAA contrast), embedded Google Maps widget, direct phone
  * lines with role designations, operating hours, email, and modal consultation trigger.
  */
-export function ContactPageTemplate({
-  site,
+export function ContactPageTemplate(props: ContactPageTemplateProps) {
+  return (
+    <SiteChrome site={props.site} chrome="canvas">
+      <ContactStage {...props} />
+    </SiteChrome>
+  );
+}
+
+function ContactStage({
   page,
   whatsappHref,
 }: ContactPageTemplateProps) {
@@ -67,48 +74,48 @@ export function ContactPageTemplate({
   }, []);
 
   return (
-    <SiteChrome site={site} chrome="canvas">
-      <main id="main">
-        <section
-          ref={containerRef}
-          {...revealAttrs("stagger")}
-          className="relative flex min-h-[150svh] w-full flex-col justify-end overflow-hidden bg-ink -mt-[var(--chrome-h)] pt-[calc(var(--chrome-h)+theme(spacing.16))] pb-16 sm:pb-24 lg:pb-32"
+    <main id="main">
+      <section
+        ref={containerRef}
+        {...revealAttrs("stagger")}
+        className="relative flex min-h-[150svh] w-full flex-col justify-end overflow-hidden bg-ink -mt-[var(--chrome-h)] pt-[calc(var(--chrome-h)+theme(spacing.16))] pb-16 sm:pb-24 lg:pb-32"
+      >
+        {/* Parallax background wrapper: oversized height ensures clean vertical travel */}
+        <div
+          ref={imageWrapperRef}
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-[15%] left-0 right-0 h-[130%] w-full select-none will-change-transform"
         >
-          {/* Parallax background wrapper: oversized height ensures clean vertical travel */}
-          <div
-            ref={imageWrapperRef}
-            aria-hidden="true"
-            className="pointer-events-none absolute -top-[15%] left-0 right-0 h-[130%] w-full select-none will-change-transform"
-          >
-            <Photo photo={page.photo} priority sizes="100vw" fit="cover" />
-          </div>
+          <Photo photo={page.photo} priority sizes="100vw" fit="cover" />
+        </div>
 
-          {/* Architectural gradient scrims ensuring WCAG AAA text contrast */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-ink/90 via-ink/40 to-transparent"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/85 to-transparent via-65%"
-          />
+        {/* Architectural gradient scrims ensuring WCAG AAA text contrast */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-ink/90 via-ink/40 to-transparent"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/85 to-transparent via-65%"
+        />
 
-          {/* Bottom-anchored monumental direct contact stage */}
-          <Container className="relative z-20 w-full">
-            <div {...revealStep(0)} className="max-w-[48rem]">
-              <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
-                <p className="eyebrow !text-white/85">{page.eyebrow}</p>
-                <span className="label text-white/70">
-                  Oaxaca · Costa e Istmo
-                </span>
-              </div>
+        {/* Bottom-anchored monumental direct contact stage */}
+        <Container className="relative z-20 w-full">
+          <div {...revealStep(0)} className="max-w-[48rem]">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
+              <p className="eyebrow !text-white/85">{page.eyebrow}</p>
+              <span className="label text-white/70">
+                Oaxaca · Costa e Istmo
+              </span>
+            </div>
 
-              <Heading
-                voice="serif"
-                sizeClassName="text-[2.25rem] leading-[1.08] text-white sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] max-w-[20ch]"
-              >
-                {page.heading}
-              </Heading>
+            <Heading
+              as="h1"
+              voice="serif"
+              sizeClassName="text-[2.25rem] leading-[1.08] text-white sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] max-w-[20ch]"
+            >
+              {page.heading}
+            </Heading>
 
               <p className="mt-6 max-w-[56ch] text-base leading-relaxed text-white/85 sm:text-lg">
                 {page.body}
@@ -264,6 +271,5 @@ export function ContactPageTemplate({
           </Container>
         </section>
       </main>
-    </SiteChrome>
   );
 }
