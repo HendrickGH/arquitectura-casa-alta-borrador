@@ -7,7 +7,7 @@ const page = getContactPage();
 
 export const metadata: Metadata = {
   title: `Contacto Directo y Ubicación — ${site.name}`,
-  description: page.body,
+  description: page.hero?.subheadline ?? page.body,
 };
 
 export default function ContactRoutePage() {

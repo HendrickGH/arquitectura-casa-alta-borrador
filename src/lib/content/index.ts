@@ -816,28 +816,66 @@ export function getServicesPage(): ServicesPageContent {
 }
 
 export function getContactPage(): ContactPageContent {
-  const photo =
+  const heroPhoto =
     findPhotoByBase(
-      contactPageContent.dir,
-      contactPageContent.base,
-      "El Bicho",
-      contactPageContent.photoAlt,
+      contactPageContent.hero.dir,
+      contactPageContent.hero.base,
+      "Gabinete de Arquitectura",
+      contactPageContent.hero.photoAlt,
     ) ??
     getProjectCover(
-      contactPageContent.dir,
-      contactPageContent.photoAlt,
+      contactPageContent.hero.dir,
+      contactPageContent.hero.photoAlt,
+    )!;
+
+  const formPhoto =
+    findPhotoByBase(
+      contactPageContent.formPhoto.dir,
+      contactPageContent.formPhoto.base,
+      "Revisión de planos estructurales",
+      contactPageContent.formPhoto.photoAlt,
+    ) ??
+    getProjectCover(
+      contactPageContent.formPhoto.dir,
+      contactPageContent.formPhoto.photoAlt,
+    )!;
+
+  const stagePhoto =
+    findPhotoByBase(
+      contactPageContent.stage.dir,
+      contactPageContent.stage.base,
+      "El Bicho",
+      contactPageContent.stage.photoAlt,
+    ) ??
+    getProjectCover(
+      contactPageContent.stage.dir,
+      contactPageContent.stage.photoAlt,
     )!;
 
   return {
-    eyebrow: contactPageContent.eyebrow,
-    heading: contactPageContent.heading,
-    body: contactPageContent.body,
-    photo,
+    hero: {
+      eyebrow: contactPageContent.hero.eyebrow,
+      heading: contactPageContent.hero.heading,
+      subheadline: contactPageContent.hero.subheadline,
+      photo: heroPhoto,
+    },
+    contactForm: contactPageContent.contactForm,
+    formPhoto,
+    stage: {
+      eyebrow: contactPageContent.stage.eyebrow,
+      heading: contactPageContent.stage.heading,
+      body: contactPageContent.stage.body,
+      photo: stagePhoto,
+    },
     address: contactPageContent.address,
     phones: contactPageContent.phones,
     schedule: contactPageContent.schedule,
     email: contactPageContent.email,
     whatsappPrefill: contactPageContent.whatsappPrefill,
+    eyebrow: contactPageContent.stage.eyebrow,
+    heading: contactPageContent.stage.heading,
+    body: contactPageContent.stage.body,
+    photo: stagePhoto,
   };
 }
 

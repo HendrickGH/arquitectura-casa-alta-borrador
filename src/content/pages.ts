@@ -378,13 +378,85 @@ export const servicesPageContent = {
 };
 
 export const contactPageContent = {
-  eyebrow: "Contacto directo · Estudio y Obra",
-  heading: "Hablemos de su proyecto en la costa, el valle o el Istmo de Oaxaca",
-  body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
-  dir: "02-el-bicho",
-  base: "01-fachada-tres-palapas-alberca",
-  photoAlt:
-    "Fachada de tres palapas y alberca en El Bicho, proyecto residencial en la costa de Oaxaca por Constructora Casa Alta",
+  hero: {
+    eyebrow: "Contacto directo · Estudio y Obra",
+    heading: "Iniciemos la conversación sobre su proyecto arquitectónico",
+    subheadline:
+      "Gabinete de proyectos y residencia de obra en Puerto Escondido, Valles Centrales, Sierra e Istmo de Oaxaca.",
+    dir: "proyectos-integrales",
+    base: "03-sesion-trabajo-revision-proyecto-ejecutivo-oficina",
+    photoAlt:
+      "Sesión de trabajo y revisión de proyecto ejecutivo en oficina de arquitectura de Constructora Casa Alta",
+  },
+  formPhoto: {
+    dir: "proyectos-integrales",
+    base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
+    photoAlt:
+      "Arquitectos de Casa Alta revisando planos ejecutivos y detalles estructurales sobre mesa de madera",
+  },
+  stage: {
+    eyebrow: "Sede Puerto Escondido · Costa de Oaxaca",
+    heading: "Atención técnica directa y localización en campo",
+    body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
+    dir: "02-el-bicho",
+    base: "01-fachada-tres-palapas-alberca",
+    photoAlt:
+      "Fachada de tres palapas y alberca en El Bicho, proyecto residencial en la costa de Oaxaca por Constructora Casa Alta",
+  },
+  contactForm: {
+    eyebrow: "Primera sesión técnica",
+    heading: "Cuéntenos sobre su proyecto",
+    body: "Reciba un diagnóstico preliminar de viabilidad, estimación paramétrica y ruta crítica sin costo ni compromiso.",
+    specialtiesLabel: "1. Especialidad de su proyecto",
+    specialties: [
+      "Arquitectura Residencial",
+      "Ingeniería y Obra Civil",
+      "Acabados de Alta Gama y Superficies de Importación",
+      "Construcción Sustentable",
+      "Remodelación / Gabinete",
+    ],
+    localitiesLabel: "2. Ubicación o plaza de ejecución",
+    localities: [
+      "Puerto Escondido",
+      "Oaxaca Centro",
+      "Salina Cruz",
+      "Costa / Otra región",
+    ],
+    budgetRangesLabel: "3. Rango de inversión estimada",
+    budgetRanges: [
+      "$1.5M – $3.5M MXN",
+      "$3.5M – $7M MXN",
+      "$7M – $15M MXN",
+      "Más de $15M MXN",
+    ],
+    timeframesLabel: "4. Plazo proyectado de inicio",
+    timeframes: [
+      "Inmediato (1–2 meses)",
+      "3 a 6 meses",
+      "6 a 12 meses",
+      "Fase de planeación",
+    ],
+    consultationTitle: "Primera sesión técnica sin costo",
+    consultationChecklist: [
+      "Evaluación de predio, mecánica preliminar y orientación solar",
+      "Estimación paramétrica de inversión y catálogo de partidas",
+      "Ruta crítica de proyecto ejecutivo y supervisión DRO",
+    ],
+    name: { label: "Nombre", placeholder: "Su nombre completo" },
+    email: { label: "Correo electrónico", placeholder: "nombre@correo.com" },
+    phone: { label: "Teléfono / WhatsApp", placeholder: "951 000 0000" },
+    message: {
+      label: "Sobre su proyecto",
+      placeholder:
+        "Cuéntenos qué desea construir o remodelar, en qué localidad y para cuándo lo proyecta.",
+    },
+    submit: "Enviar mensaje",
+    sending: "Enviando…",
+    success: "Gracias. Recibimos su mensaje y le responderemos a la brevedad.",
+    error:
+      "No pudimos enviar el mensaje. Intente de nuevo o escríbanos directamente por WhatsApp.",
+    whatsapp: "Escribir por WhatsApp",
+  },
   address: {
     label: "Ubicación del estudio",
     street: "Guerrero s/n, entre Justo Salvador e Hidalgo",
@@ -398,7 +470,7 @@ export const contactPageContent = {
   },
   phones: [
     {
-      role: "Dirección de Obra / DRO",
+      role: "Dirección de Obra y DRO",
       number: "951 458 1395",
       href: "tel:+529514581395",
     },
@@ -425,4 +497,11 @@ export const contactPageContent = {
   },
   whatsappPrefill:
     "Hola Casa Alta, me gustaría agendar una reunión para cotizar un proyecto arquitectónico.",
+  dir: "02-el-bicho",
+  base: "01-fachada-tres-palapas-alberca",
+  photoAlt:
+    "Fachada de tres palapas y alberca en El Bicho, proyecto residencial en la costa de Oaxaca por Constructora Casa Alta",
+  eyebrow: "Sede Puerto Escondido · Costa de Oaxaca",
+  heading: "Atención técnica directa y localización en campo",
+  body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
 };

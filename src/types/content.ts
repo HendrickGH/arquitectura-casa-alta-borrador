@@ -241,6 +241,10 @@ export interface ContactFormContent {
   specialties: string[];
   localitiesLabel: string;
   localities: string[];
+  budgetRangesLabel?: string;
+  budgetRanges?: string[];
+  timeframesLabel?: string;
+  timeframes?: string[];
   consultationTitle: string;
   consultationChecklist: string[];
   name: ContactField;
@@ -561,10 +565,20 @@ export interface OperatingHours {
 }
 
 export interface ContactPageContent {
-  eyebrow: string;
-  heading: string;
-  body: string;
-  photo: Photo;
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheadline: string;
+    photo: Photo;
+  };
+  contactForm: ContactFormContent;
+  formPhoto: Photo;
+  stage: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    photo: Photo;
+  };
   address: {
     label: string;
     street: string;
@@ -582,6 +596,10 @@ export interface ContactPageContent {
     href: string;
   };
   whatsappPrefill?: string;
+  eyebrow: string;
+  heading: string;
+  body: string;
+  photo: Photo;
 }
 
 

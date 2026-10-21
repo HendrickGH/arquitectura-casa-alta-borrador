@@ -374,6 +374,20 @@ export const home: HomePage = {
       "Salina Cruz",
       "Costa / Otra región",
     ],
+    budgetRangesLabel: "Rango de inversión estimada",
+    budgetRanges: [
+      "$1.5M – $3.5M MXN",
+      "$3.5M – $7M MXN",
+      "$7M – $15M MXN",
+      "Más de $15M MXN",
+    ],
+    timeframesLabel: "Plazo proyectado de inicio",
+    timeframes: [
+      "Inmediato (1–2 meses)",
+      "3 a 6 meses",
+      "6 a 12 meses",
+      "Fase de planeación",
+    ],
     consultationTitle: "Primera sesión técnica sin costo",
     consultationChecklist: [
       "Evaluación de predio, mecánica preliminar y orientación solar",

@@ -27,6 +27,8 @@ export function ContactFormFields({
 }: ContactFormFieldsProps) {
   const specialties = contact.specialties ?? [];
   const localities = contact.localities ?? [];
+  const budgetRanges = contact.budgetRanges ?? [];
+  const timeframes = contact.timeframes ?? [];
 
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>(
     specialties[0] ?? "",
@@ -34,13 +36,28 @@ export function ContactFormFields({
   const [selectedLocality, setSelectedLocality] = useState<string>(
     localities[0] ?? "",
   );
+  const [selectedBudget, setSelectedBudget] = useState<string>(
+    budgetRanges[0] ?? "",
+  );
+  const [selectedTimeframe, setSelectedTimeframe] = useState<string>(
+    timeframes[0] ?? "",
+  );
   const [status, setStatus] = useState<Status>("idle");
 
   // Compute dynamic WhatsApp target with prefilled context based on user chips
   const dynamicWhatsappHref = (() => {
     if (!whatsappHref) return "";
+    const details = [
+      selectedSpecialty ? `un proyecto de ${selectedSpecialty}` : "",
+      selectedLocality ? `en ${selectedLocality}` : "",
+      selectedBudget ? `inversión de ${selectedBudget}` : "",
+      selectedTimeframe ? `plazo: ${selectedTimeframe}` : "",
+    ]
+      .filter(Boolean)
+      .join(", ");
+
     const query = encodeURIComponent(
-      `Hola Casa Alta, deseo agendar una primera reunión técnica para un proyecto de ${selectedSpecialty} en ${selectedLocality}.`,
+      `Hola Casa Alta, deseo agendar una primera reunión técnica para ${details}.`,
     );
     const separator = whatsappHref.includes("?") ? "&" : "?";
     return `${whatsappHref}${separator}text=${query}`;
@@ -54,8 +71,15 @@ export function ContactFormFields({
     setStatus("sending");
 
     const rawMessage = String(data.get("message") ?? "");
-    const contextHeader = `[Especialidad: ${selectedSpecialty}] [Ubicación: ${selectedLocality}]`;
-    const formattedMessage = `${contextHeader}\n\n${rawMessage}`;
+    const contextParts = [
+      selectedSpecialty ? `[Especialidad: ${selectedSpecialty}]` : "",
+      selectedLocality ? `[Ubicación: ${selectedLocality}]` : "",
+      selectedBudget ? `[Presupuesto: ${selectedBudget}]` : "",
+      selectedTimeframe ? `[Plazo: ${selectedTimeframe}]` : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+    const formattedMessage = `${contextParts}\n\n${rawMessage}`;
 
     try {
       await sendContactMessage({
@@ -75,6 +99,15 @@ export function ContactFormFields({
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+      <input type="hidden" name="specialty" value={selectedSpecialty} />
+      <input type="hidden" name="locality" value={selectedLocality} />
+      {selectedBudget ? (
+        <input type="hidden" name="budget" value={selectedBudget} />
+      ) : null}
+      {selectedTimeframe ? (
+        <input type="hidden" name="timeframe" value={selectedTimeframe} />
+      ) : null}
+
       {/* 1. Specialty Selection Chips (0px rectangular) */}
       {specialties.length > 0 ? (
         <div>
@@ -128,6 +161,66 @@ export function ContactFormFields({
                   )}
                 >
                   {loc}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+
+      {/* 3. Budget Range Selection Chips (0px rectangular) */}
+      {budgetRanges.length > 0 ? (
+        <div>
+          <label className="label mb-2.5 block text-ink-muted">
+            {contact.budgetRangesLabel || "3. Rango de inversión estimada"}
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {budgetRanges.map((range) => {
+              const isSelected = selectedBudget === range;
+              return (
+                <button
+                  key={range}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setSelectedBudget(range)}
+                  className={cx(
+                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
+                    isSelected
+                      ? "bg-brand-50 text-brand-900 font-medium"
+                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
+                  )}
+                >
+                  {range}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+
+      {/* 4. Timeframe Selection Chips (0px rectangular) */}
+      {timeframes.length > 0 ? (
+        <div>
+          <label className="label mb-2.5 block text-ink-muted">
+            {contact.timeframesLabel || "4. Plazo proyectado de inicio"}
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {timeframes.map((timeframe) => {
+              const isSelected = selectedTimeframe === timeframe;
+              return (
+                <button
+                  key={timeframe}
+                  type="button"
+                  aria-pressed={isSelected}
+                  onClick={() => setSelectedTimeframe(timeframe)}
+                  className={cx(
+                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
+                    isSelected
+                      ? "bg-brand-50 text-brand-900 font-medium"
+                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
+                  )}
+                >
+                  {timeframe}
                 </button>
               );
             })}
