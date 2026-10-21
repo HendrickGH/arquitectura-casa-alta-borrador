@@ -8,7 +8,10 @@ import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { Text } from "@/components/atoms/Text";
+import { CarouselNavButtons } from "@/components/molecules/CarouselNavButtons";
+import { PhotoLightboxModal } from "@/components/molecules/PhotoLightboxModal";
 import { cx } from "@/lib/cx";
+import { useCarouselScroll } from "@/lib/hooks/useCarouselScroll";
 import type { Photo as PhotoModel, Project } from "@/types/content";
 
 interface ProjectCaseStudyModalProps {
@@ -44,45 +47,12 @@ export function ProjectCaseStudyModal({
   }, [activePhoto]);
 
   const galleryTrackRef = useRef<HTMLDivElement | null>(null);
-  const [canScrollGalleryLeft, setCanScrollGalleryLeft] = useState(false);
-  const [canScrollGalleryRight, setCanScrollGalleryRight] = useState(true);
-
-  const updateGalleryScrollButtons = () => {
-    const track = galleryTrackRef.current;
-    if (!track) return;
-    const { scrollLeft, scrollWidth, clientWidth } = track;
-    setCanScrollGalleryLeft(scrollLeft > 6);
-    setCanScrollGalleryRight(scrollLeft < scrollWidth - clientWidth - 6);
-  };
-
-  useEffect(() => {
-    const track = galleryTrackRef.current;
-    if (!track) return;
-
-    updateGalleryScrollButtons();
-    const onScroll = () => updateGalleryScrollButtons();
-    track.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-
-    return () => {
-      track.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, [project]);
-
-  const handleGalleryScroll = (direction: "left" | "right") => {
-    const track = galleryTrackRef.current;
-    if (!track) return;
-
-    const firstCard = track.firstElementChild as HTMLElement | null;
-    const cardWidth = firstCard ? firstCard.offsetWidth : 320;
-    const scrollAmount = (cardWidth + 16) * 2;
-
-    track.scrollBy({
-      left: direction === "left" ? -scrollAmount : scrollAmount,
-      behavior: "smooth",
-    });
-  };
+  const {
+    canScrollLeft: canScrollGalleryLeft,
+    canScrollRight: canScrollGalleryRight,
+    scrollLeft: scrollGalleryLeft,
+    scrollRight: scrollGalleryRight,
+  } = useCarouselScroll(galleryTrackRef, { fallbackWidth: 340, gap: 16 });
 
   useEffect(() => {
     if (!project) return;
@@ -332,26 +302,14 @@ export function ProjectCaseStudyModal({
               </div>
 
               {/* Navigation arrow buttons for horizontal scroll */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => handleGalleryScroll("left")}
-                  disabled={!canScrollGalleryLeft}
-                  aria-label="Desplazar galería a la izquierda"
-                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  <Icon name="arrow-left" className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleGalleryScroll("right")}
-                  disabled={!canScrollGalleryRight}
-                  aria-label="Desplazar galería a la derecha"
-                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
-                >
-                  <Icon name="arrow-right" className="h-4 w-4" />
-                </button>
-              </div>
+              <CarouselNavButtons
+                canScrollLeft={canScrollGalleryLeft}
+                canScrollRight={canScrollGalleryRight}
+                onScrollLeft={scrollGalleryLeft}
+                onScrollRight={scrollGalleryRight}
+                prevLabel="Desplazar galería a la izquierda"
+                nextLabel="Desplazar galería a la derecha"
+              />
             </div>
 
             <div
@@ -390,36 +348,10 @@ export function ProjectCaseStudyModal({
       </div>
 
       {/* Fullscreen Photo Lightbox Modal */}
-      {activePhoto ? (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={activePhoto.alt}
-          className="fixed inset-0 z-60 flex items-center justify-center bg-ink/95 p-4 md:p-8 backdrop-blur-md"
-          onClick={() => setActivePhoto(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setActivePhoto(null)}
-            aria-label="Cerrar vista ampliada"
-            className="absolute top-4 right-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-ink text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white"
-          >
-            <Icon name="close" className="h-4 w-4" />
-          </button>
-          <div
-            className="relative max-h-[90vh] max-w-[90vw] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Photo
-              photo={activePhoto}
-              sizes="90vw"
-              fit="contain"
-              priority
-              className="max-h-[90vh] max-w-[90vw] w-auto h-auto object-contain"
-            />
-          </div>
-        </div>
-      ) : null}
+      <PhotoLightboxModal
+        photo={activePhoto}
+        onClose={() => setActivePhoto(null)}
+      />
     </div>
   );
 }
