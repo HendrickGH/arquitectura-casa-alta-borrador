@@ -12,7 +12,7 @@ interface ButtonProps {
    * are shared so the primary action still has exactly one owner.
    */
   href?: string;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   variant?: Variant;
   size?: "md" | "sm";
   className?: string;
@@ -21,6 +21,7 @@ interface ButtonProps {
   /** Submit controls only. */
   type?: "button" | "submit";
   disabled?: boolean;
+  id?: string;
   /** Renders a clean directional arrow icon alongside the label. */
   arrow?: boolean;
 }
@@ -59,6 +60,7 @@ export function Button({
   external = false,
   type = "button",
   disabled = false,
+  id,
   arrow = false,
 }: ButtonProps) {
   const isInlineLink =
@@ -82,6 +84,7 @@ export function Button({
   if (href) {
     return (
       <a
+        id={id}
         href={href}
         {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className={classes}
@@ -94,6 +97,7 @@ export function Button({
 
   return (
     <button
+      id={id}
       type={type}
       onClick={onClick}
       disabled={disabled}

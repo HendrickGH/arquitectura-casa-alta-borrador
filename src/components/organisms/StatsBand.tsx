@@ -10,10 +10,8 @@ interface StatsBandProps {
 
 function ruleClass(index: number): string {
   return cx(
-    index % 2 === 1 && "border-l border-bone-200 pl-6",
-    index === 0
-      ? "lg:border-l-0"
-      : "lg:border-l lg:border-bone-200 lg:pl-8 xl:pl-10",
+    index % 2 === 1 && "pl-6",
+    index === 0 ? "lg:pl-0" : "lg:pl-8 xl:pl-10",
   );
 }
 
@@ -21,7 +19,7 @@ export function StatsBand({ stats }: StatsBandProps) {
   return (
     <section
       {...revealAttrs("stagger")}
-      className="border-t border-b border-bone-200 bg-bone-50/70 py-8"
+      className="bg-bone-50/70 py-8"
     >
       <Container>
         {/* Subtle architectural ledger header */}

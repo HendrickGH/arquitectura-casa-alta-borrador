@@ -57,7 +57,7 @@ export function Testimonials({
             eyebrow={intro.eyebrow || "Testimonios"}
             heading={intro.heading}
             body={intro.body}
-            className="mb-12 border-b border-bone-200 pb-8 md:mb-16"
+            className="mb-12 pb-4 md:mb-16"
           />
 
           <div className="grid gap-x-16 gap-y-14 md:grid-cols-2">
@@ -104,7 +104,7 @@ export function Testimonials({
           }
         />
 
-        {/* Dossier Interactive Switcher Tabs (0px Cosentino catalogue bar) */}
+        {/* Dossier Interactive Switcher Tabs (0px architectural catalogue bar) */}
         <Tabs
           tabs={dossierTabs}
           activeId={String(activeDossierIdx)}
@@ -200,7 +200,7 @@ export function Testimonials({
             </div>
 
             {/* 0px Step Controls */}
-            <div className="flex items-center justify-between border-t border-bone-200 pt-6">
+            <div className="flex items-center justify-between pt-6">
               <p className="label text-ink-muted tabular-nums">
                 {`${String(activeDossierIdx + 1).padStart(2, "0")} / ${String(dossiers.length).padStart(2, "0")}`}
               </p>
@@ -212,7 +212,7 @@ export function Testimonials({
                       prev === 0 ? dossiers.length - 1 : prev - 1,
                     )
                   }
-                  className="label inline-flex min-h-[44px] cursor-pointer items-center gap-2 border border-bone-200 bg-canvas px-4 py-2 text-ink transition-colors hover:border-brand-800 hover:text-brand-800"
+                  className="label inline-flex min-h-[44px] cursor-pointer items-center gap-2 bg-bone-100 px-4 py-2 text-ink transition-colors hover:bg-bone-200"
                   aria-label="Expediente anterior"
                 >
                   <Icon name="arrow-left" className="h-3.5 w-3.5" />
@@ -225,7 +225,7 @@ export function Testimonials({
                       prev === dossiers.length - 1 ? 0 : prev + 1,
                     )
                   }
-                  className="label inline-flex min-h-[44px] cursor-pointer items-center gap-2 border border-bone-200 bg-canvas px-4 py-2 text-ink transition-colors hover:border-brand-800 hover:text-brand-800"
+                  className="label inline-flex min-h-[44px] cursor-pointer items-center gap-2 bg-bone-100 px-4 py-2 text-ink transition-colors hover:bg-bone-200"
                   aria-label="Siguiente expediente"
                 >
                   <span>Siguiente</span>

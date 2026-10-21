@@ -17,10 +17,9 @@ interface TabsProps<T extends string = string> {
 }
 
 /**
- * Cosentino-style architectural catalogue tab bar.
+ * Architectural catalogue tab bar.
  *
- * Uses a clean bottom hairline (`border-b border-bone-200`) and a 2px active
- * underline (`border-brand-800`) at 0px geometry — never oval capsule buttons.
+ * Uses clean typographic contrast without border strokes at 0px geometry.
  */
 export function Tabs<T extends string = string>({
   tabs,
@@ -34,7 +33,7 @@ export function Tabs<T extends string = string>({
       role="tablist"
       aria-label={ariaLabel}
       className={cx(
-        "flex flex-wrap items-center gap-6 border-b border-bone-200 md:gap-8",
+        "flex flex-wrap items-center gap-6 md:gap-8",
         className,
       )}
     >
@@ -48,10 +47,10 @@ export function Tabs<T extends string = string>({
             aria-selected={active}
             onClick={() => onChange(tab.id)}
             className={cx(
-              "label -mb-px inline-flex min-h-[44px] cursor-pointer items-center gap-2 border-b-2 pb-3 transition-colors duration-200",
+              "label inline-flex min-h-[44px] cursor-pointer items-center gap-2 pb-2 transition-colors duration-200",
               active
-                ? "border-brand-800 font-medium text-ink"
-                : "border-transparent text-ink-muted hover:border-ink/30 hover:text-ink",
+                ? "font-semibold text-brand-800"
+                : "text-ink-muted hover:text-ink",
             )}
           >
             <span>{tab.label}</span>

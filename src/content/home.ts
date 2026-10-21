@@ -92,21 +92,14 @@ const elBichoAtardecerPhoto: Photo = {
   height: 720,
 };
 
-/** Full-color aerial reference photo of Punta Zicatela placed after Quiénes somos (PDF p. 2). */
-const introAerialPhoto: Photo = {
-  src: "/images/02-el-bicho/57-panoramica-aerea-conjunto-costero-zicatela.avif",
-  alt: "Panorámica aérea a color del conjunto arquitectónico con cubiertas de palma en Punta Zicatela, Puerto Escondido, con la costa y las montañas de Oaxaca al fondo",
-  width: 1280,
-  height: 720,
+/** Flagship photograph for Quiénes somos: Punta Zicatela pool aerial context (client brief request). */
+const puntaZicatelaIntroPhoto: Photo = {
+  src: "/images/hero/vista-aerea-palapas-alberca-playa.avif",
+  alt: "Vista aérea del conjunto con alberca en Punta Zicatela, Puerto Escondido",
+  width: 1600,
+  height: 900,
 };
 
-/** Secondary studio photograph for Quiénes somos: on-site coastal construction supervision. */
-const introSupervisionPhoto: Photo = {
-  src: "/images/credibilidad/02-trabajador-uniforme-casa-alta-armado-acero-playa.avif",
-  alt: "Personal técnico de Casa Alta con uniforme institucional armando estructura de acero frente al mar en la costa de Oaxaca",
-  width: 1200,
-  height: 1600,
-};
 
 /** Studio photograph for the Architect Manifesto section. */
 const manifestoStudioPhoto: Photo = {
@@ -130,6 +123,22 @@ const closingStudioPhoto: Photo = {
   alt: "Acceso arquitectónico en acabado chukum con vano trapezoidal monumental, escalones de concreto y luz rasante en Punta Zicatela",
   width: 1500,
   height: 2000,
+};
+
+/** Technical supervision and blueprints session for WhyCasaAltaEditorial. */
+const teamBlueprintsPhoto: Photo = {
+  src: "/images/proyectos-integrales/01-arquitectos-revisando-planos-estructurales-mesa-madera.avif",
+  alt: "Dos arquitectos de Casa Alta realizando anotaciones y coordinando especificaciones técnicas sobre planos ejecutivos",
+  width: 960,
+  height: 1280,
+};
+
+/** Noble construction materiality (chukum and cast concrete) for WhyCasaAltaEditorial. */
+const materialChukumConcretePhoto: Photo = {
+  src: "/images/10-obra-punta-zicatela/09-fachada-chukum-ventana-circular-barra-concreto.avif",
+  alt: "Fachada en acabado chukum mineral con ventana circular y barra monolítica en concreto aparente en Punta Zicatela",
+  width: 960,
+  height: 1280,
 };
 
 /**
@@ -193,8 +202,8 @@ const divisions: DivisionCardContent[] = [
     description:
       "Proyectos ejecutivos y construcción integral de casas de descanso, villas costeras y desarrollos multifamiliares pensados para la plusvalía y el clima de Oaxaca.",
     href: "/proyectos",
-    dir: "arquitectura-que-perdura",
-    base: "05-volumen-tres-niveles-chukum-remate-palapa",
+    dir: "02-el-bicho",
+    base: "01-fachada-tres-palapas-alberca",
   },
   {
     number: "02",
@@ -204,11 +213,11 @@ const divisions: DivisionCardContent[] = [
       "Concreto armado y presforzado, montaje con grúas de gran capacidad, puentes vehiculares y peatonales, pavimentación hidráulica y naves industriales.",
     href: "/servicios",
     dir: "obra-civil",
-    base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
+    base: "04-izado-cabezal-columna-puente-grua-cielo-azul",
   },
   {
     number: "03",
-    title: "Arquitectura de Interiores / Cosentino",
+    title: "Arquitectura de Interiores y Acabados de Alta Gama",
     subtitle: "Materiales de Importación · Cocinas",
     description:
       "Materiales de importación para proyectos residenciales con instalación certificada y garantizada: islas monolíticas, cuarzo, piedra sinterizada y carpintería a medida.",
@@ -221,10 +230,10 @@ const divisions: DivisionCardContent[] = [
     title: "Construcción Sustentable",
     subtitle: "Bioclimática · Confort Térmico",
     description:
-      "Arquitectura para clima tropical que optimiza la carga térmica y acústica mediante vientos cruzados, celosías, chukum, palma natural y energías limpias.",
+      "Arquitectura en armonía con el entorno: diseño contemporáneo e innovación bioclimática que optimiza el confort térmico, la ventilación natural y la eficiencia energética.",
     href: "/construccion-sustentable",
     dir: "arquitectura-sostenible",
-    base: "05-materiales-locales-chukum-madera-palapa-costera",
+    base: "04-fachada-celosia-proteccion-solar-vegetacion",
   },
 ];
 
@@ -246,15 +255,15 @@ export const home: HomePage = {
       { title: "El Bicho · Atardecer en la Costa", photo: elBichoAtardecerPhoto },
     ],
     subheadline:
-      "Estudio de arquitectura, proyectos ejecutivos y dirección integral de obra en Oaxaca.",
+      "Proyectos ejecutivos de arquitectura residencial e ingeniería civil.",
     chrome: { tone: "canvas" },
   },
 
   stats,
 
-  // The architect's philosophical statement from the client brief (PDF p. 4).
+  // The architect's philosophical statement from the client brief (PDF p. 2 / p. 4).
   manifesto:
-    "La arquitectura es el medio de expresión donde se crea el espacio íntimo que envuelve al ser para su desarrollo.",
+    "La arquitectura es el medio de expresión en donde se combina la proporción, el diseño y la línea para lograr construir obras que edifiquen la vida del ser humano.",
   manifestoPhoto: manifestoStudioPhoto,
 
   // The studio's mission statement from the client brief.
@@ -274,17 +283,13 @@ export const home: HomePage = {
   intro: {
     eyebrow: "Quiénes somos",
     heading: "CASA ALTA · Arquitectura que perdura",
-    body: "Somos una constructora oaxaqueña dedicada a resolver todas las necesidades constructivas de un proyecto, desde los sistemas más vanguardistas hasta la construcción tradicional. Trabajamos con proyectos residenciales, comerciales e industriales, y con obra civil.",
+    body: "Somos una constructora mexicana especializada en arquitectura, ingeniería y construcción, integrada por profesionales comprometidos con el desarrollo de proyectos que combinan diseño, funcionalidad y calidad constructiva.",
     paragraphs: [
-      "Cada proyecto que llega a nuestras manos recibe una solución pensada para él: cálculo estructural, selección de materiales según el clima real de la costa, la sierra o el valle, y un resultado que se sostiene en el tiempo.",
-      "Nuestra misión es dar función, carácter y certeza técnica y legal a cada espacio que construimos, respaldando su patrimonio desde el primer trazo hasta la garantía post-entrega.",
+      "Desarrollamos proyectos residenciales, comerciales y de obra civil, incorporando soluciones arquitectónicas innovadoras y principios de construcción sostenible, con especial atención al entorno natural.",
+      "Nuestra filosofía se fundamenta en la transparencia, la responsabilidad y el cumplimiento de nuestros compromisos. Brindamos a nuestros clientes claridad durante cada etapa del proyecto, desde la búsqueda y selección del terreno hasta el diseño arquitectónico y la construcción, ofreciendo un acompañamiento integral y personalizado.",
     ],
-    photo: introAerialPhoto,
-    photoCaption:
-      "Conjunto arquitectónico en Punta Zicatela, Puerto Escondido — Vista aérea en su versión original a color.",
-    secondaryPhoto: introSupervisionPhoto,
-    secondaryPhotoCaption:
-      "Supervisión técnica permanente y armado estructural en obra costera.",
+    photo: puntaZicatelaIntroPhoto,
+    photoCaption: "Punta Zicatela · Puerto Escondido, Oaxaca",
   },
 
   services: {
@@ -302,16 +307,34 @@ export const home: HomePage = {
   process: {
     eyebrow: "Metodología Casa Alta",
     heading: "Cómo trabajamos",
-    body: "Empezamos por escucharlo sin costo. De ahí nace un paquete ejecutivo completo, certeza legal por contrato, supervisión permanente en obra y garantía por escrito.",
+    body: "Para realizar un proyecto con Casa Alta seguimos un proceso claro y estructurado: desde la primera reunión y paquete estándar hasta la entrega formal con certeza legal y garantía por escrito.",
+  },
+
+  differentiatorsIntro: {
+    eyebrow: "Certeza tectónica",
+    heading: "Por qué Casa Alta",
+    body: "No separamos el cálculo en gabinete de la faena en terreno. Cada obra se ejecuta con precios cerrados por catálogo, supervisión DRO continua y el dominio artesanal de los materiales que resisten el clima de Oaxaca.",
+    paragraphs: [
+      "Abordamos cada encargo desde una perspectiva unificada: la arquitectura, el cálculo estructural y la dirección de obra convergen en un solo equipo responsable desde el primer trazo conceptual.",
+      "Nuestra estructura operativa integra maquinaria propia, cuadrillas especializadas y presencia directa en Puerto Escondido y los Valles Centrales, garantizando control de costos y cumplimiento de plazos sin intermediación opaca.",
+      "Construimos con honestidad constructiva y rigor técnico ante la alta sismicidad oaxaqueña, empleando concreto aparente, chukum mineral y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
+    ],
   },
 
   differentiators: {
     intro: {
-      eyebrow: "Por qué Casa Alta",
-      heading: "Decisiones que se sostienen",
-      body: "La diferencia no está en lo que prometemos, sino en cómo calculamos, supervisamos y respaldamos cada partida de la obra.",
+      eyebrow: "Certeza tectónica",
+      heading: "Por qué Casa Alta",
+      body: "No separamos el cálculo en gabinete de la faena en terreno. Cada obra se ejecuta con precios cerrados por catálogo, supervisión DRO continua y el dominio artesanal de los materiales que resisten el clima de Oaxaca.",
+      paragraphs: [
+        "Abordamos cada encargo desde una perspectiva unificada: la arquitectura, el cálculo estructural y la dirección de obra convergen en un solo equipo responsable desde el primer trazo conceptual.",
+        "Nuestra estructura operativa integra maquinaria propia, cuadrillas especializadas y presencia directa en Puerto Escondido y los Valles Centrales, garantizando control de costos y cumplimiento de plazos sin intermediación opaca.",
+        "Construimos con honestidad constructiva y rigor técnico ante la alta sismicidad oaxaqueña, empleando concreto aparente, chukum mineral y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
+      ],
     },
     items: [],
+    teamPhoto: teamBlueprintsPhoto,
+    materialPhoto: materialChukumConcretePhoto,
   },
 
   testimonials: {
@@ -340,7 +363,7 @@ export const home: HomePage = {
     specialties: [
       "Arquitectura Residencial",
       "Ingeniería y Obra Civil",
-      "Interiores y Cosentino",
+      "Acabados de Alta Gama y Superficies de Importación",
       "Construcción Sustentable",
       "Remodelación / Gabinete",
     ],

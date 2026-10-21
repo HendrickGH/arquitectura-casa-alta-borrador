@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useRef } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
@@ -13,68 +10,27 @@ import type { SectionIntro } from "@/types/content";
 interface IntroSectionProps {
   intro: SectionIntro;
   tone?: "canvas" | "bone";
+  density?: "default" | "compact";
   /** Anchor target, so the header nav can link straight to this section. */
   id?: string;
 }
 
-const PHOTO_SIZES = "(min-width: 1024px) 44vw, 100vw";
-const SECONDARY_SIZES = "(min-width: 1024px) 24vw, 60vw";
+const PHOTO_SIZES =
+  "(min-width: 1280px) 580px, (min-width: 1024px) 46vw, 100vw";
 
 /**
- * Asymmetric editorial introduction (`Quiénes somos`), pairing the
- * studio narrative with a dual-photograph architectural composition.
+ * Minimalist architectural editorial introduction (`Quiénes somos`).
+ *
+ * Balanced 50/50 monograph spread pairing a single vertical photograph of
+ * authentic on-site supervision (left) with a generous whitespace column (right)
+ * carrying the studio's two-line synthesis lede and secondary navigation.
  */
 export function IntroSection({
   intro,
   tone = "canvas",
+  density = "default",
   id,
 }: IntroSectionProps) {
-  const scopeRef = useRef<HTMLDivElement>(null);
-  const secondaryRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const scope = scopeRef.current;
-    const secondary = secondaryRef.current;
-    if (!scope || !secondary) return;
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
-    let cancelled = false;
-    let cleanup: (() => void) | undefined;
-
-    void import("gsap").then(async ({ gsap }) => {
-      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      if (cancelled) return;
-      gsap.registerPlugin(ScrollTrigger);
-
-      const ctx = gsap.context(() => {
-        gsap.fromTo(
-          secondary,
-          { y: 26 },
-          {
-            y: -22,
-            ease: "none",
-            scrollTrigger: {
-              trigger: scope,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 0.6,
-            },
-          },
-        );
-      }, scope);
-
-      cleanup = () => ctx.revert();
-    });
-
-    return () => {
-      cancelled = true;
-      cleanup?.();
-    };
-  }, []);
-
   const paragraphs =
     intro.paragraphs && intro.paragraphs.length > 0
       ? [intro.body, ...intro.paragraphs]
@@ -83,36 +39,58 @@ export function IntroSection({
         : [];
 
   return (
-    <Section id={id} tone={tone} density="compact" reveal="stagger">
+    <Section id={id} tone={tone} density={density} reveal="stagger">
       <Container>
-        <div
-          ref={scopeRef}
-          className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-12"
-        >
-          {/* Left column: Monumental statement */}
-          <div className="flex flex-col gap-6 lg:col-span-6">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16 xl:gap-20">
+          {/* Left column: Vertical photograph of authentic on-site supervision */}
+          {intro.photo ? (
+            <div {...revealStep(0)} className="lg:col-span-6">
+              <figure className="overflow-hidden">
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-bone-100 sm:aspect-[3/4]">
+                  <Photo
+                    photo={intro.photo}
+                    sizes={PHOTO_SIZES}
+                    fit="cover"
+                  />
+                </div>
+                {intro.photoCaption ? (
+                  <figcaption className="mt-3 text-xs text-ink-muted">
+                    <span>{intro.photoCaption}</span>
+                  </figcaption>
+                ) : null}
+              </figure>
+            </div>
+          ) : null}
+
+          {/* Right column: Minimal editorial statement with generous whitespace */}
+          <div className="flex flex-col justify-center lg:col-span-6 lg:pl-4 xl:pl-8">
             {intro.eyebrow ? (
-              <div {...revealStep(0)}>
-                <p className="eyebrow">{intro.eyebrow}</p>
+              <div {...revealStep(1)}>
+                <p className="eyebrow mb-4">{intro.eyebrow}</p>
               </div>
             ) : null}
 
-            <div {...revealStep(1)}>
+            <div {...revealStep(2)}>
               <Heading
                 as="h2"
                 voice="serif"
-                sizeClassName="text-[clamp(2rem,3.6vw,3.35rem)] leading-[1.08]"
+                sizeClassName="text-[clamp(2.1rem,3.6vw,3.25rem)] leading-[1.12]"
+                className="max-w-[22ch]"
               >
                 {intro.heading}
               </Heading>
             </div>
 
-            <div {...revealStep(2)} className="mt-1 flex flex-col gap-4">
+            <div {...revealStep(3)} className="mt-6 flex flex-col gap-4">
               {paragraphs.map((paragraph, index) => (
                 <Text
                   key={paragraph}
                   size={index === 0 ? "lede" : undefined}
-                  className={index === 0 ? "text-ink" : "text-ink-muted"}
+                  className={
+                    index === 0
+                      ? "max-w-[46ch] text-ink"
+                      : "max-w-[46ch] text-ink-muted"
+                  }
                 >
                   {paragraph}
                 </Text>
@@ -120,59 +98,14 @@ export function IntroSection({
             </div>
 
             <div
-              {...revealStep(3)}
-              className="mt-3 flex flex-wrap items-center justify-between gap-4 border-t border-bone-200 pt-5"
+              {...revealStep(4)}
+              className="mt-10 pt-2"
             >
               <Button href="/nosotros" variant="secondary" size="sm" arrow>
-                Conocer la firma y trayectoria
+                Conocer el estudio
               </Button>
-              <span className="label text-ink-muted tabular-nums">
-                Desde 2016 · Oaxaca
-              </span>
             </div>
           </div>
-
-          {/* Right column: Dual studio photograph spread (Aerial + Supervision) */}
-          {intro.photo ? (
-            <div
-              {...revealStep(2)}
-              className="relative flex flex-col gap-5 lg:col-span-6"
-            >
-              <figure className="overflow-hidden">
-                <div className="relative overflow-hidden">
-                  <Photo
-                    photo={intro.photo}
-                    sizes={PHOTO_SIZES}
-                    className="block h-auto w-full object-contain"
-                  />
-                </div>
-                {intro.photoCaption ? (
-                  <figcaption className="mt-3 flex items-center justify-between gap-4 text-xs text-ink-muted">
-                    <span>{intro.photoCaption}</span>
-                  </figcaption>
-                ) : null}
-              </figure>
-
-              {intro.secondaryPhoto ? (
-                <figure
-                  ref={secondaryRef}
-                  className="ml-auto w-full max-w-[22rem] overflow-hidden sm:w-3/4 lg:-mt-14 lg:mr-4"
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Photo
-                      photo={intro.secondaryPhoto}
-                      sizes={SECONDARY_SIZES}
-                    />
-                  </div>
-                  {intro.secondaryPhotoCaption ? (
-                    <figcaption className="mt-2.5 flex items-center justify-between gap-2 text-[0.72rem] text-ink-muted">
-                      <span>{intro.secondaryPhotoCaption}</span>
-                    </figcaption>
-                  ) : null}
-                </figure>
-              ) : null}
-            </div>
-          ) : null}
         </div>
       </Container>
     </Section>

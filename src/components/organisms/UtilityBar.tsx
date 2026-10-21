@@ -29,14 +29,12 @@ export function UtilityBar({ claim, phones, social }: UtilityBarProps) {
         <p className="label opacity-90">{claim}</p>
 
         <div className="flex shrink-0 items-center gap-6">
-          <div className="hidden items-center gap-5 sm:flex">
-            {phones.map((phone, index) => (
+          <div className="hidden items-center gap-4 sm:flex">
+            {phones.map((phone) => (
               <a
                 key={phone.href}
                 href={phone.href}
-                className={`items-center gap-2 transition-opacity duration-200 hover:opacity-70 ${
-                  index === 0 ? "flex" : "hidden md:flex"
-                }`}
+                className="flex items-center gap-1.5 transition-opacity duration-200 hover:opacity-70"
               >
                 <Icon name="phone" className="h-3.5 w-3.5" />
                 <span className="label tabular-nums">{phone.value}</span>

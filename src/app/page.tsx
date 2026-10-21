@@ -3,12 +3,9 @@ import {
   getDivisionCards,
   getHomePage,
   getLandingPortfolio,
-  getMasonry,
-  getMomentPhoto,
   getProcessSteps,
   getServiceGroups,
   getSiteConfig,
-  getTiles,
   getWhatsappHref,
 } from "@/lib/content";
 
@@ -27,9 +24,6 @@ export default function HomePage() {
   const groups = getServiceGroups();
   const steps = getProcessSteps();
   const { featured, remaining } = getLandingPortfolio();
-  const tiles = getTiles();
-  const masonry = getMasonry();
-  const moment = getMomentPhoto();
   const whatsappHref = getWhatsappHref();
 
   return (
@@ -41,9 +35,6 @@ export default function HomePage() {
       steps={steps}
       featured={featured}
       remaining={remaining}
-      tiles={tiles}
-      masonry={masonry}
-      moment={moment}
       whatsappHref={whatsappHref}
     />
   );

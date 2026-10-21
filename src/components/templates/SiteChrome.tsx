@@ -1,4 +1,5 @@
 import { RouteScrollReset } from "@/components/atoms/RouteScrollReset";
+import { ContactModalProvider } from "@/components/organisms/ContactModalContext";
 import { Footer } from "@/components/organisms/Footer";
 import { Header } from "@/components/organisms/Header";
 import { RevealObserver } from "@/components/organisms/MotionShell";
@@ -7,6 +8,8 @@ import type { SiteConfig } from "@/types/content";
 
 interface SiteChromeProps {
   site: SiteConfig;
+  /** When true, explicitly suppresses mounting the consultation modal (e.g. on /contacto). */
+  disableContactModal?: boolean;
   /**
    * The hero's chrome polarity, when the page opens on a photograph the header
    * can float over. Omitted on every page that starts on a clean ground.
@@ -18,7 +21,7 @@ interface SiteChromeProps {
 
 /**
  * The shell every page shares: skip link, header (contact strip + navigation),
- * the page's main content, footer and the reveal observer.
+ * the page's main content, footer, modal provider, and the reveal observer.
  *
  * It exists so the routes compose the chrome once instead of each page
  * restating the same elements in the same order. The contact strip lives inside
@@ -27,8 +30,13 @@ interface SiteChromeProps {
  * projects pages leave it undefined, which keeps the header filled at every
  * scroll position.
  */
-export function SiteChrome({ site, chrome, children }: SiteChromeProps) {
-  return (
+export function SiteChrome({
+  site,
+  disableContactModal = false,
+  chrome,
+  children,
+}: SiteChromeProps) {
+  const content = (
     <>
       <RouteScrollReset />
 
@@ -50,4 +58,17 @@ export function SiteChrome({ site, chrome, children }: SiteChromeProps) {
       <RevealObserver />
     </>
   );
+
+  if (!disableContactModal && site.contactForm) {
+    return (
+      <ContactModalProvider
+        contact={site.contactForm}
+        whatsappHref={site.whatsapp.href}
+      >
+        {content}
+      </ContactModalProvider>
+    );
+  }
+
+  return content;
 }

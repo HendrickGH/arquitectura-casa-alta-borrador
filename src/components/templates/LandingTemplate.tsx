@@ -1,24 +1,17 @@
-import { ContactForm } from "@/components/organisms/ContactForm";
-import { Differentiators } from "@/components/organisms/Differentiators";
 import { DivisionCards } from "@/components/organisms/DivisionCards";
 import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { ManifestoLine } from "@/components/organisms/ManifestoLine";
-import { MasonryGallery } from "@/components/organisms/MasonryGallery";
-import { ScrollScene } from "@/components/organisms/MotionShell";
 import { ProcessList } from "@/components/organisms/ProcessList";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
 import { StatsBand } from "@/components/organisms/StatsBand";
-import { Testimonials } from "@/components/organisms/Testimonials";
+import { WhyCasaAltaEditorial } from "@/components/organisms/WhyCasaAltaEditorial";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
-  CategoryTile,
   DivisionCard,
   HomePage,
-  MasonryItem,
-  Photo,
   ProcessStep,
   Project,
   ServiceGroup,
@@ -35,9 +28,6 @@ interface LandingTemplateProps {
   featured: Project[];
   /** The projects the featured row did not take, continuing it. */
   remaining: Project[];
-  tiles: CategoryTile[];
-  masonry: MasonryItem[];
-  moment: Photo | null;
   /** Primary WhatsApp target, for the contact form's secondary action. */
   whatsappHref: string;
 }
@@ -50,8 +40,6 @@ export function LandingTemplate({
   steps,
   featured,
   remaining,
-  masonry,
-  moment,
   whatsappHref,
 }: LandingTemplateProps) {
   return (
@@ -98,31 +86,13 @@ export function LandingTemplate({
           whatsappHref={whatsappHref}
         />
 
-        <Differentiators
-          intro={home.differentiators.intro}
+        <WhyCasaAltaEditorial
+          intro={home.differentiatorsIntro ?? home.differentiators.intro}
           items={home.differentiators.items}
           tone="bone"
         />
 
-        <ScrollScene>
-          <MasonryGallery items={masonry} tone="canvas" />
-        </ScrollScene>
-
-        <Testimonials
-          intro={home.testimonials.intro}
-          items={home.testimonials.items}
-          dossiers={home.testimonials.dossiers}
-          tone="bone"
-        />
-
         <ClosingCTA closing={home.closing} isLanding />
-
-        <ContactForm
-          id="contacto"
-          contact={home.contact}
-          whatsappHref={whatsappHref}
-          photo={home.contactPhoto}
-        />
       </main>
     </SiteChrome>
   );

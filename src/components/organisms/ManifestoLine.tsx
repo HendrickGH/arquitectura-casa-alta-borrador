@@ -70,7 +70,7 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
     <section
       ref={sectionRef}
       {...revealAttrs("stagger")}
-      className="border-t border-b border-bone-200 bg-concha-nacar"
+      className="bg-concha-nacar"
     >
       <Container className="py-20 md:py-28 lg:py-32">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-14">
@@ -113,7 +113,7 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
 
             <figcaption
               {...revealStep(2)}
-              className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-ink/15 pt-6"
+              className="mt-10 flex flex-wrap items-center justify-between gap-4 pt-4"
             >
               <div>
                 <p className="label text-brand-800">{architect.name}</p>

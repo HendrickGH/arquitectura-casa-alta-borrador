@@ -12,57 +12,57 @@ import type { ProcessStep } from "@/types/content";
 export const processSteps: ProcessStep[] = [
   {
     order: 1,
-    title: "Primera reunión, sin costo",
+    title: "Primera reunión (asesoría)",
     description:
-      "Nos sentamos con usted, por Zoom o en persona en Puerto Escondido o Salina Cruz. Escuchamos qué necesita y definimos las bases reales: para cuándo lo requiere, con qué presupuesto cuenta y cómo imagina el final de su proyecto.",
+      "Conocimiento de las ideas y necesidades de su proyecto, en sesión presencial o por videollamada, definiendo las bases para iniciar el proceso creativo.",
     dir: "proyectos-integrales",
     base: "03-sesion-trabajo-revision-proyecto-ejecutivo-oficina",
   },
   {
     order: 2,
-    title: "Propuesta y presupuesto",
+    title: "Paquete estándar",
     description:
-      "Le entregamos el alcance técnico por escrito, el cronograma estimado de ejecución y el presupuesto desglosado por partidas. Sin costos sorpresivos ni conceptos que aparezcan a mitad de la obra.",
+      "Conjunto de estudios y planimetría indispensables para realizar el proyecto, evaluando la viabilidad del terreno y el alcance técnico preliminar.",
     dir: "proyectos-integrales",
     base: "02-detalle-revision-plano-ingenieria-detalle-constructivo",
   },
   {
     order: 3,
-    title: "Paquete estándar de proyecto",
+    title: "Proyecto e ingenierías",
     description:
-      "Contratado el paquete, desarrollamos la ingeniería y la arquitectura completa antes de abrir cepa en el terreno: diseño arquitectónico, planos ejecutivos, cálculo estructural y visualización.",
+      "Desarrollo de proyecto arquitectónico junto con ingenierías y sistemas constructivos, definiendo materiales y estructuras que erigirán los cimientos de la obra.",
     dir: "arquitectura-que-perdura",
     base: "08-acceso-doble-altura-celosia-circular-palmas",
   },
   {
     order: 4,
-    title: "Certeza legal y planeación",
+    title: "Certeza legal",
     description:
-      "Formalizamos cada compromiso por contrato: especificaciones técnicas de materiales, tiempos de entrega y alcances legales claros para proteger su inversión y su patrimonio desde el primer día.",
+      "Asegura la inversión de cada etapa apegándonos a contrato de tiempos y estimaciones derivadas del cronograma, con ruta confiable para el respaldo fiscal y jurídico.",
     dir: "credibilidad",
     base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
   },
   {
     order: 5,
-    title: "Ejecución y supervisión en obra",
+    title: "Ejecución y supervisión",
     description:
-      "Aquí está nuestro mayor cuidado. Supervisión permanente en sitio por arquitectos e ingenieros residentes, control de calidad en aceros y colados, y revisión rigurosa de cada detalle constructivo.",
+      "Experiencia y tecnología combinadas en supervisión permanente paso a paso en el control de calidad, definiendo la estructura fundamental y el carácter arquitectónico.",
     dir: "credibilidad",
     base: "06-armado-acero-estructural-zapata-trabajador-casa-alta",
   },
   {
     order: 6,
-    title: "Entrega en tiempo y forma",
+    title: "Entrega de obra",
     description:
-      "Entregamos en el plazo acordado y con las especificaciones que se firmaron al inicio, después de verificar instalaciones eléctricas, hidrosanitarias y acabados finales.",
+      "Terminación de obra en base al tiempo acordado en las especificaciones del cronograma y programa de estimaciones, con acta de entrega-recepción firmada por ambas partes.",
     dir: "arquitectura-que-perdura",
     base: "02-fachada-tierra-camastros-madera-alberca-palmeras",
   },
   {
     order: 7,
-    title: "Garantía y seguimiento post-entrega",
+    title: "Garantía post-entrega",
     description:
-      "Una obra no termina el día que se entregan las llaves. Respaldamos nuestra ejecución con garantía por escrito y permanecemos disponibles para el seguimiento posterior de su inmueble.",
+      "Ofrecemos garantía por escrito con vigencia según el tipo de proyecto (con garantía mínima de 6 meses), protegiendo la calidad constructiva y su patrimonio.",
     dir: "arquitectura-que-perdura",
     base: "04-patio-hamacas-huellas-piedra-alberca-palmeras",
   },

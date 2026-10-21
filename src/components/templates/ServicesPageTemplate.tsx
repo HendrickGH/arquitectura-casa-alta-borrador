@@ -1,4 +1,3 @@
-import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
@@ -10,6 +9,7 @@ import { ContactForm } from "@/components/organisms/ContactForm";
 import { PageHero } from "@/components/organisms/PageHero";
 import { ProcessList } from "@/components/organisms/ProcessList";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
+import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import { revealStep } from "@/lib/reveal";
 import type {
@@ -25,15 +25,12 @@ interface ServicesPageTemplateProps {
   site: SiteConfig;
   page: ServicesPageContent;
   groups: ServiceGroup[];
-  processIntro: SectionIntro;
-  steps: ProcessStep[];
+  processIntro?: SectionIntro;
+  steps?: ProcessStep[];
   closing: HomePage["closing"];
   contact: HomePage["contact"];
   whatsappHref: string;
 }
-
-const SPECIALTY_PHOTO_SIZES =
-  "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
 
 /**
  * `/servicios` — Ingeniería, Proyectos Ejecutivos y Construcción.
@@ -110,7 +107,7 @@ export function ServicesPageTemplate({
           </Container>
         </Section>
 
-        <Section tone="bone" reveal="stagger">
+        <Section id="especialidades" tone="bone" reveal="stagger">
           <Container>
             <SectionHeading
               eyebrow={page.specialties.eyebrow}
@@ -118,102 +115,33 @@ export function ServicesPageTemplate({
               body={page.specialties.body}
             />
 
-            <div className="mt-14 flex flex-col gap-16 md:gap-24">
-              {page.specialties.sections.map((specialty, sIdx) => (
-                <article
-                  key={specialty.slug}
-                  id={specialty.slug}
-                  {...revealStep(sIdx)}
-                  className="border-t border-bone-200 pt-10"
-                >
-                  <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-                    <div className="flex flex-col gap-4 lg:col-span-5">
-                      <div className="flex items-center gap-3">
-                        <span className="label tabular-nums text-brand-800">
-                          {specialty.number}
-                        </span>
-                        <span
-                          aria-hidden="true"
-                          className="h-3 w-px bg-bone-300"
-                        />
-                        <span className="label text-ink-muted">
-                          {specialty.subtitle}
-                        </span>
-                      </div>
-
-                      <Heading
-                        as="h3"
-                        voice="serif"
-                        sizeClassName="text-[1.6rem] leading-[1.15] md:text-[2rem]"
-                      >
-                        {specialty.title}
-                      </Heading>
-
-                      <Text className="text-ink-muted">
-                        {specialty.description}
-                      </Text>
-
-                      <ul className="mt-2 flex flex-wrap gap-2">
-                        {specialty.deliverables.map((item) => (
-                          <li
-                            key={item}
-                            className="border border-bone-300 bg-canvas px-3 py-1.5 text-xs font-medium text-ink"
-                          >
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="mt-3">
-                        <Button
-                          href="/contacto"
-                          variant="secondary"
-                          size="sm"
-                          arrow
-                        >
-                          Solicitar asesoría técnica
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-4 min-[768px]:grid-cols-2 lg:col-span-7">
-                      {specialty.photos.slice(0, 4).map((photo) => (
-                        <div
-                          key={photo.src}
-                          className="relative aspect-[4/3] overflow-hidden bg-bone-200"
-                        >
-                          <Photo
-                            photo={photo}
-                            sizes={SPECIALTY_PHOTO_SIZES}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </article>
-              ))}
+            <div className="mt-12 md:mt-16">
+              <SpecialtiesShowcase
+                sections={page.specialties.sections}
+                deliverablesLabel={page.specialties.deliverablesLabel}
+                ctaLabel={page.specialties.ctaLabel}
+                ctaHref={page.specialties.ctaHref}
+              />
             </div>
           </Container>
         </Section>
 
         <ServicesIndex
           id="catalogo-servicios"
-          intro={{
-            eyebrow: "Catálogo técnico",
-            heading: "Alcances por etapa de proyecto y construcción.",
-            body: "Contrate el desarrollo integral llave en mano o la especialidad técnica que su obra requiera.",
-          }}
+          intro={page.catalog}
           groups={groups}
           tone="canvas"
           whatsappHref={whatsappHref}
         />
 
-        <ProcessList
-          id="proceso"
-          intro={processIntro}
-          steps={steps}
-          tone="bone"
-        />
+        {processIntro && steps ? (
+          <ProcessList
+            id="proceso"
+            intro={processIntro}
+            steps={steps}
+            tone="bone"
+          />
+        ) : null}
 
         <ContactForm
           id="contacto"

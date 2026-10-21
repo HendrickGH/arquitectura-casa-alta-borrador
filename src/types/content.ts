@@ -80,6 +80,8 @@ export interface SiteConfig {
   social: SocialLink[];
   /** Institutional studio photograph rendered in the footer specification block. */
   footerPhoto: Photo;
+  /** Global consultation form content, rendered in ContactModal across views. */
+  contactForm?: ContactFormContent;
 }
 
 /* ---------- services ---------- */
@@ -358,23 +360,6 @@ export interface DivisionCard {
   photo: Photo;
 }
 
-/** One photograph of the masonry, with the project it was drawn from. */
-export interface MasonryItem {
-  photo: Photo;
-  /** Clean public slug; the masonry itself links nowhere yet. */
-  projectSlug: string;
-}
-
-/**
- * One authored slot of the masonry: a project and the photograph to draw from
- * it, named by the manifest's own `base` slug so a re-rank cannot silently swap
- * the photograph for a different one.
- */
-export interface MasonrySlot {
-  dir: string;
-  base: string;
-}
-
 export interface HomePage {
   hero: HeroContent;
   stats: Stat[];
@@ -391,7 +376,13 @@ export interface HomePage {
   services: SectionIntro;
   projects: SectionIntro;
   process: SectionIntro;
-  differentiators: { intro: SectionIntro; items: Differentiator[] };
+  differentiatorsIntro?: SectionIntro;
+  differentiators: {
+    intro: SectionIntro;
+    items: Differentiator[];
+    teamPhoto?: Photo;
+    materialPhoto?: Photo;
+  };
   testimonials: {
     intro: SectionIntro;
     items: Testimonial[];
@@ -423,6 +414,7 @@ export type SpaceCategory =
   | "all"
   | "cocinas"
   | "banos"
+  | "terrazas"
   | "interiores"
   | "showroom";
 
@@ -449,19 +441,21 @@ export interface InteriorsPageContent {
     tabs: Array<{ id: SpaceCategory; label: string }>;
     spaces: SpaceCard[];
   };
-  cosentino: {
-    eyebrow: string;
-    heading: string;
-    /** Verbatim client claim for Cosentino / imported residential materials. */
-    claim: string;
-    body: string;
-    badges: string[];
-    pillars: ThematicPillar[];
-  };
+  surfaces: HighEndFinishesContent;
   interiorsGalleryIntro: SectionIntro;
   interiorsPhotos: Photo[];
   lifestyleIntro: SectionIntro;
   lifestylePhotos: Photo[];
+}
+
+export interface HighEndFinishesContent {
+  eyebrow: string;
+  heading: string;
+  /** Verbatim client claim for Acabados de Alta Gama y Superficies de Importación. */
+  claim: string;
+  body: string;
+  badges: string[];
+  pillars: ThematicPillar[];
 }
 
 export interface SustainabilityPageContent {
@@ -477,12 +471,24 @@ export interface SustainabilityPageContent {
     /** Verbatim tropical climate & thermal/acoustic narrative from the client. */
     verbatimQuote: string;
     paragraphs: string[];
+    ctaLabel?: string;
+    ctaHref?: string;
+    photo?: Photo;
   };
   pillars: ThematicPillar[];
   bioclimaticGalleryIntro: SectionIntro;
   bioclimaticPhotos: Photo[];
   enduringGalleryIntro: SectionIntro;
   enduringPhotos: Photo[];
+}
+
+export interface MethodologyPhase {
+  number: string;
+  kicker: string;
+  title: string;
+  description: string;
+  deliverable: string;
+  photo: Photo;
 }
 
 export interface AboutPageContent {
@@ -504,8 +510,22 @@ export interface AboutPageContent {
   credibilityIntro: SectionIntro;
   credibilityHighlights: ThematicPillar[];
   credibilityPhotos: Photo[];
+  methodologyIntro: SectionIntro;
+  methodology: MethodologyPhase[];
   enduringIntro: SectionIntro;
   enduringPhotos: Photo[];
+}
+
+export interface SpecialtySection {
+  slug: string;
+  number: string;
+  title: string;
+  shortTitle: string;
+  subtitle: string;
+  description: string;
+  deliverables: string[];
+  photo: Photo;
+  photos: Photo[];
 }
 
 export interface ServicesPageContent {
@@ -516,35 +536,52 @@ export interface ServicesPageContent {
     photo: Photo;
   };
   intro: SectionIntro;
+  catalog: SectionIntro;
   specialties: {
     eyebrow: string;
     heading: string;
     body: string;
-    sections: {
-      slug: string;
-      number: string;
-      title: string;
-      subtitle: string;
-      description: string;
-      deliverables: string[];
-      photos: Photo[];
-    }[];
+    deliverablesLabel?: string;
+    ctaLabel?: string;
+    ctaHref?: string;
+    closeLabel?: string;
+    sections: SpecialtySection[];
   };
 }
 
+export interface ContactPhoneLine {
+  role: string;
+  number: string;
+  href: string;
+}
+
+export interface OperatingHours {
+  label: string;
+  hours: string;
+}
+
 export interface ContactPageContent {
-  hero: {
-    eyebrow: string;
-    heading: string;
-    subheadline: string;
-    photo: Photo;
+  eyebrow: string;
+  heading: string;
+  body: string;
+  photo: Photo;
+  address: {
+    label: string;
+    street: string;
+    neighborhood: string;
+    city: string;
+    full: string;
+    mapsUrl: string;
+    embedUrl: string;
   };
-  officesIntro: {
-    eyebrow: string;
-    heading: string;
-    body: string;
-    photo: Photo;
+  phones: ContactPhoneLine[];
+  schedule: OperatingHours[];
+  email: {
+    label: string;
+    value: string;
+    href: string;
   };
+  whatsappPrefill?: string;
 }
 
 

@@ -13,7 +13,7 @@ export function registerGsapPlugins() {
 
 /**
  * Refresh once after the landing's images and fonts settle: trigger positions
- * move when the hero's photograph and the masonry's boxes land.
+ * move when images and layout settle.
  */
 export function refreshAfterLayout() {
   if (refreshScheduled) return;
@@ -26,63 +26,19 @@ export function refreshAfterLayout() {
 }
 
 /**
- * The masonry's single-cell photographs drift by column as the wall crosses the
- * viewport.
- */
-function buildDrift(scope: HTMLElement) {
-  const items = gsap.utils.toArray<HTMLElement>("[data-drift-item]", scope);
-  if (items.length === 0) return;
-
-  const columns = new Map<number, HTMLElement[]>();
-  for (const item of items) {
-    const key = Math.round(item.getBoundingClientRect().left);
-    const bucket = columns.get(key);
-    if (bucket) bucket.push(item);
-    else columns.set(key, [item]);
-  }
-
-  const groups = [...columns.entries()]
-    .sort(([a], [b]) => a - b)
-    .map(([, elements]) => elements);
-  if (groups.length < 2) return;
-
-  const TRAVEL = 28;
-  const timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: scope,
-      start: "top bottom",
-      end: "bottom top",
-      scrub: true,
-    },
-  });
-
-  groups.forEach((elements, index) => {
-    const shift = (index - (groups.length - 1) / 2) * TRAVEL;
-    if (shift === 0) return;
-    timeline.fromTo(elements, { y: -shift }, { y: shift, ease: "none" }, 0);
-  });
-}
-
-export function createScenes({ scope }: { scope: HTMLElement }): () => void {
-  registerGsapPlugins();
-  refreshAfterLayout();
-
-  const media = gsap.matchMedia();
-  media.add("(min-width: 1200px)", () => buildDrift(scope));
-
-  return () => media.revert();
-}
-
-/**
  * Smooth continuous scroll parallax for the 150vh ClosingCTA stage.
  * Scrubbed linearly to the page scroll position across viewport boundaries.
  */
 export function createParallaxStage({
   container,
   target,
+  start = "top bottom",
+  end = "bottom top",
 }: {
   container: HTMLElement;
   target: HTMLElement;
+  start?: string;
+  end?: string;
 }): () => void {
   registerGsapPlugins();
   refreshAfterLayout();
@@ -97,8 +53,8 @@ export function createParallaxStage({
         ease: "none",
         scrollTrigger: {
           trigger: container,
-          start: "top bottom",
-          end: "bottom top",
+          start,
+          end,
           scrub: true,
         },
       },

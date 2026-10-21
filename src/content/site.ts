@@ -40,7 +40,7 @@ export const site = {
     { label: "Contacto", href: "/contacto" },
   ],
 
-  cta: { label: "Contacto", href: "/contacto" },
+  cta: { label: "Cotizar proyecto", href: "/contacto" },
 
   // The persistent floating button every page carries. It replaced the hero's
   // own WhatsApp CTA; the label is its accessible name.
@@ -90,8 +90,8 @@ export const site = {
   ],
 
   footerPhoto: {
-    src: "/images/arquitectura-que-perdura/05-volumen-tres-niveles-chukum-remate-palapa.avif",
-    alt: "Volumen arquitectónico de tres niveles en chukum con remate de palapa en la costa de Oaxaca",
+    src: "/images/arquitectura-que-perdura/07-fachada-interior-alberca-palapas-vegetacion-costera.avif",
+    alt: "Vista del patio y alberca flanqueados por volúmenes en acabado tierra y cubiertas de palma en la costa de Oaxaca",
     width: 829,
     height: 1280,
   },

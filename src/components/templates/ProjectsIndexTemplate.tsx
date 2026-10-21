@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { Tabs } from "@/components/molecules/Tabs";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";

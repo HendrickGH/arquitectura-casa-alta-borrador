@@ -19,7 +19,7 @@ interface ServicesIndexProps {
   /** Anchor target, so the header nav can link straight to this section. */
   id?: string;
   /** Direct WhatsApp contact link */
-  whatsappHref?: string;
+  whatsappHref: string;
 }
 
 const CARD_SIZES =
@@ -28,8 +28,8 @@ const CARD_SIZES =
 /**
  * Editorial Architectural Carousel (`ServicesIndex`).
  *
- * Implements the Cosentino Architectural Editorial reference:
- * - 0px Cosentino catalogue tabs at the top for switching between the studio's technical divisions.
+ * Implements the Architectural Editorial reference:
+ * - 0px architectural catalogue tabs at the top for switching between the studio's technical divisions.
  * - Top-right orthogonal carousel navigation controls (← / →).
  * - Horizontal scroll-snap track with expansive monolith cards matching DivisionCards proportions
  *   (h-[580px] to h-[680px], w-[85vw] to w-[480px]). Requires horizontal scrolling whenever 3 or more items exist.
@@ -118,8 +118,8 @@ export function ServicesIndex({
           body={intro.body}
         />
 
-        {/* Cosentino Top Bar: Left Tabs and Right Carousel Navigation Arrows */}
-        <div className="mt-10 flex flex-col justify-between gap-6 border-b border-bone-200 sm:flex-row sm:items-end">
+        {/* Top Bar: Left Tabs and Right Carousel Navigation Arrows */}
+        <div className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
           <Tabs
             tabs={groupTabs}
             activeId={String(activeGroupIndex)}
@@ -127,7 +127,7 @@ export function ServicesIndex({
               setActiveGroupIndex(Number(nextId));
             }}
             ariaLabel="Seleccionar división técnica"
-            className="border-b-0 pb-0"
+            className="pb-0"
           />
 
           {/* Orthogonal Carousel Navigation Arrows (0px) */}
@@ -137,7 +137,7 @@ export function ServicesIndex({
               onClick={() => handleScroll("left")}
               disabled={!canScrollLeft}
               aria-label="Ver partidas anteriores"
-              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
             >
               <Icon name="arrow-left" className="h-4 w-4" />
             </button>
@@ -146,7 +146,7 @@ export function ServicesIndex({
               onClick={() => handleScroll("right")}
               disabled={!canScrollRight}
               aria-label="Ver partidas siguientes"
-              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
             >
               <Icon name="arrow-right" className="h-4 w-4" />
             </button>
@@ -171,7 +171,7 @@ export function ServicesIndex({
                 type="button"
                 onClick={() => setSelectedService({ service, index: sIdx })}
                 aria-label={`Ver alcances y entregables de ${service.title}`}
-                className="group relative flex h-[580px] w-[85vw] shrink-0 snap-start flex-col justify-between overflow-hidden border border-white/10 bg-ink p-7 text-left text-white transition-colors duration-300 hover:border-white/25 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500 cursor-pointer sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] lg:p-9"
+                className="group relative flex h-[580px] w-[85vw] shrink-0 snap-start flex-col justify-between overflow-hidden bg-ink p-7 text-left text-white transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500 cursor-pointer sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] lg:p-9"
               >
                 {/* Full-bleed Photo Background */}
                 <div className="absolute inset-0 z-0 overflow-hidden bg-bone-100">
@@ -238,15 +238,15 @@ export function ServicesIndex({
         {/* Mobile Navigation Helper Indicator */}
         <div className="mt-4 flex items-center justify-between sm:hidden">
           <span className="text-xs text-ink-muted">
-            Deslizá para explorar partidas
+            Desliza para explorar partidas
           </span>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={() => handleScroll("left")}
               disabled={!canScrollLeft}
-              aria-label="Ver anterior"
-              className="inline-flex h-9 w-9 items-center justify-center border border-bone-200 bg-canvas text-ink disabled:opacity-30"
+              aria-label="Ver partidas anteriores"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
             >
               <Icon name="arrow-left" className="h-3.5 w-3.5" />
             </button>
@@ -254,8 +254,8 @@ export function ServicesIndex({
               type="button"
               onClick={() => handleScroll("right")}
               disabled={!canScrollRight}
-              aria-label="Ver siguiente"
-              className="inline-flex h-9 w-9 items-center justify-center border border-bone-200 bg-canvas text-ink disabled:opacity-30"
+              aria-label="Ver partidas siguientes"
+              className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
             >
               <Icon name="arrow-right" className="h-3.5 w-3.5" />
             </button>

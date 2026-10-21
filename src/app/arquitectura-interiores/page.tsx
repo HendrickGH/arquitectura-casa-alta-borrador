@@ -10,8 +10,8 @@ const site = getSiteConfig();
 const page = getInteriorsPage();
 
 export const metadata: Metadata = {
-  title: `Arquitectura de Interiores / Cosentino — ${site.name}`,
-  description: page.cosentino.claim,
+  title: `Arquitectura de Interiores y Acabados de Alta Gama — ${site.name}`,
+  description: page.surfaces.claim,
 };
 
 export default function InteriorsRoutePage() {
@@ -20,6 +20,7 @@ export default function InteriorsRoutePage() {
       site={site}
       page={page}
       closing={getClosing()}
+      whatsappHref={site.whatsapp.href}
     />
   );
 }

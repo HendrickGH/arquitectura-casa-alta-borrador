@@ -39,7 +39,7 @@ export function Differentiators({
           eyebrow={intro.eyebrow}
           heading={intro.heading}
           body={intro.body}
-          className="mb-14 border-b border-bone-200 pb-8 md:mb-20"
+          className="mb-14 pb-4 md:mb-20"
         />
 
         {/* 2-Column Editorial Vignettes */}

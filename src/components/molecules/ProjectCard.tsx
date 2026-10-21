@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/atoms/Button";
-import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
 import { cx } from "@/lib/cx";
 import { revealStep } from "@/lib/reveal";

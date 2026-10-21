@@ -4,7 +4,6 @@ import {
   getAboutPage,
   getClosing,
   getHomePage,
-  getProcessSteps,
   getSiteConfig,
 } from "@/lib/content";
 
@@ -23,12 +22,9 @@ export default function AboutRoutePage() {
     <AboutPageTemplate
       site={site}
       page={page}
+      phases={page.methodology}
       stats={home.stats}
       manifesto={home.manifesto}
-      processIntro={home.process}
-      steps={getProcessSteps()}
-      differentiatorsIntro={home.differentiators.intro}
-      differentiators={home.differentiators.items}
       closing={getClosing()}
     />
   );

@@ -3,7 +3,7 @@ import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
-import { CosentinoInspirationExperience } from "@/components/organisms/CosentinoInspirationExperience";
+import { InteriorsSurfacesExperience } from "@/components/organisms/InteriorsSurfacesExperience";
 import { PageHero } from "@/components/organisms/PageHero";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import { revealStep } from "@/lib/reveal";
@@ -17,17 +17,18 @@ interface InteriorsPageTemplateProps {
   site: SiteConfig;
   page: InteriorsPageContent;
   closing: HomePage["closing"];
+  whatsappHref: string;
 }
 
 const GALLERY_SIZES =
   "(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw";
 
 /**
- * `/arquitectura-interiores` — Arquitectura de Interiores / Cosentino.
+ * `/arquitectura-interiores` — Arquitectura de Interiores y Acabados de Alta Gama.
  *
  * Presents:
  * - 100vw × 100vh Full Bleed Hero with transparent header.
- * - Cosentino-inspired space tabs and clean-ground cards.
+ * - Architectural space tabs and clean-ground cards.
  * - Certified technical guarantee and installation pillars.
  * - Photographic galleries of interior architecture and residential lifestyle.
  */
@@ -35,7 +36,24 @@ export function InteriorsPageTemplate({
   site,
   page,
   closing,
+  whatsappHref,
 }: InteriorsPageTemplateProps) {
+  // Deduplicate lower gallery photographs against Space Explorer cards and hero photo
+  const featuredSources = new Set(
+    page.inspiration.spaces.map((card) => card.photo.src),
+  );
+  if (page.hero.photo?.src) {
+    featuredSources.add(page.hero.photo.src);
+  }
+
+  const galleryInteriorsPhotos = page.interiorsPhotos.filter(
+    (photo) => !featuredSources.has(photo.src),
+  );
+
+  const galleryLifestylePhotos = page.lifestylePhotos.filter(
+    (photo) => !featuredSources.has(photo.src),
+  );
+
   return (
     <SiteChrome site={site} chrome="canvas">
       <main id="main">
@@ -46,12 +64,13 @@ export function InteriorsPageTemplate({
           photo={page.hero.photo}
         />
 
-        <CosentinoInspirationExperience
+        <InteriorsSurfacesExperience
           inspiration={page.inspiration}
-          cosentino={page.cosentino}
+          surfaces={page.surfaces}
+          whatsappHref={whatsappHref}
         />
 
-        {page.interiorsPhotos.length > 0 ? (
+        {galleryInteriorsPhotos.length > 0 ? (
           <Section tone="canvas" reveal="stagger">
             <Container>
               <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -61,12 +80,12 @@ export function InteriorsPageTemplate({
                   body={page.interiorsGalleryIntro.body}
                 />
                 <span className="label self-start tabular-nums text-ink-muted lg:self-auto">
-                  {`${String(page.interiorsPhotos.length).padStart(2, "0")} REGISTROS`}
+                  {`${String(galleryInteriorsPhotos.length).padStart(2, "0")} REGISTROS`}
                 </span>
               </div>
 
               <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
-                {page.interiorsPhotos.map((photo, index) => (
+                {galleryInteriorsPhotos.map((photo, index) => (
                   <figure
                     key={photo.src}
                     {...revealStep(index)}
@@ -82,7 +101,7 @@ export function InteriorsPageTemplate({
           </Section>
         ) : null}
 
-        {page.lifestylePhotos.length > 0 ? (
+        {galleryLifestylePhotos.length > 0 ? (
           <Section tone="bone" reveal="stagger">
             <Container>
               <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
@@ -92,12 +111,12 @@ export function InteriorsPageTemplate({
                   body={page.lifestyleIntro.body}
                 />
                 <span className="label self-start tabular-nums text-ink-muted lg:self-auto">
-                  {`${String(page.lifestylePhotos.length).padStart(2, "0")} ESPACIOS`}
+                  {`${String(galleryLifestylePhotos.length).padStart(2, "0")} ESPACIOS`}
                 </span>
               </div>
 
               <div className="mt-12 grid grid-cols-1 gap-8 min-[768px]:grid-cols-2 min-[1200px]:grid-cols-3">
-                {page.lifestylePhotos.map((photo, index) => (
+                {galleryLifestylePhotos.map((photo, index) => (
                   <figure
                     key={photo.src}
                     {...revealStep(index)}

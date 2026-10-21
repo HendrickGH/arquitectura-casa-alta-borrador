@@ -5,6 +5,7 @@ import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
+import { useContactModal } from "@/components/organisms/ContactModalContext";
 import { revealAttrs, revealStep } from "@/lib/reveal";
 import type { CallToAction, Photo as PhotoModel } from "@/types/content";
 
@@ -45,6 +46,7 @@ export function ClosingCTA({
 }: ClosingCTAProps) {
   const containerRef = useRef<HTMLElement>(null);
   const imageWrapperRef = useRef<HTMLDivElement>(null);
+  const contactModal = useContactModal();
 
   const activePhoto = photo ?? closing.photo;
   const external = closing.cta.href.startsWith("http");
@@ -100,7 +102,7 @@ export function ClosingCTA({
       {/* Bottom-anchored monumental editorial CTA */}
       <Container className="relative z-10 w-full pb-16 pt-24 md:pb-24 lg:pb-32">
         <div {...revealStep(0)} className="max-w-[48rem]">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/20 pb-4">
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
             <p className="eyebrow !text-white/85">
               {closing.eyebrow || "Primera reunión sin costo"}
             </p>
@@ -132,12 +134,19 @@ export function ClosingCTA({
             </Button>
 
             <Button
-              href={secondaryHref}
+              href={contactModal ? undefined : secondaryHref}
+              onClick={
+                contactModal
+                  ? () => {
+                      contactModal.openContactModal();
+                    }
+                  : undefined
+              }
               variant="outline"
               size="md"
               arrow
             >
-              Ir a formulario y oficinas
+              Iniciar consulta
             </Button>
           </div>
         </div>

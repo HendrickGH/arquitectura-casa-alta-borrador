@@ -11,7 +11,7 @@ const page = getSustainabilityPage();
 
 export const metadata: Metadata = {
   title: `Construcción Sustentable y Bioclimática — ${site.name}`,
-  description: page.narrative.verbatimQuote,
+  description: page.hero.subheadline,
 };
 
 export default function SustainabilityRoutePage() {
@@ -20,6 +20,7 @@ export default function SustainabilityRoutePage() {
       site={site}
       page={page}
       closing={getClosing()}
+      whatsappHref={site.whatsapp.href}
     />
   );
 }

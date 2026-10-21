@@ -74,7 +74,7 @@ export function SectionHeading({
     return (
       <div
         className={cx(
-          "flex flex-col justify-between gap-6 border-b border-bone-200 pb-8 lg:flex-row lg:items-end",
+          "flex flex-col justify-between gap-6 pb-6 lg:flex-row lg:items-end",
           className,
         )}
       >

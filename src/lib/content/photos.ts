@@ -4,7 +4,7 @@ import type {
   ManifestPhoto,
   ManifestProject,
 } from "@/types/manifest";
-import type { MasonrySlot, Photo } from "@/types/content";
+import type { Photo } from "@/types/content";
 
 /**
  * Bridges the pipeline's manifest into the view models components consume.
@@ -180,36 +180,6 @@ export function getProjectGallery(
   }
 
   return picked;
-}
-
-/**
- * The masonry's photographs, in the wall's authored display order.
- *
- * The order lives in `src/content/masonry.ts`, not here: the wall's double cells
- * sit at fixed positions, so the order decides which photographs get the four
- * largest cells, and that is an editorial call rather than one the manifest's
- * dimensions should make. An earlier version interleaved tall and short photos
- * to feed CSS multi-column's height balancer; the wall is a fixed-row grid now,
- * which packs its own rows, so the balancing had nothing left to balance.
- *
- * A slot whose project or photograph is missing, or whose photograph scores
- * below the portfolio floor, drops out rather than rendering a guessed image.
- */
-export function masonryPhotos(
-  slots: readonly MasonrySlot[],
-  resolveTitle: (dir: string) => string,
-): ProjectPhoto[] {
-  return slots.flatMap((slot) => {
-    const project = findManifestProject(slot.dir);
-    const photo = project?.photos.find((entry) => entry.base === slot.base);
-    if (!project || !photo || photo.score < SCORE_FLOOR) return [];
-    return [
-      {
-        dir: slot.dir,
-        photo: toPhoto(slot.dir, photo, resolveTitle(slot.dir)),
-      },
-    ];
-  });
 }
 
 /**

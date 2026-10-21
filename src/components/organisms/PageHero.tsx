@@ -92,12 +92,14 @@ export function PageHero({
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
         {/* Top metadata strip */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/20 pb-4">
-          <p className="eyebrow !text-white/85">{eyebrow}</p>
-          <span className="label hidden text-white/65 sm:inline">
-            Casa Alta · Oaxaca
-          </span>
-        </div>
+        {eyebrow && eyebrow.trim().length > 0 ? (
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
+            <p className="eyebrow !text-white/85">{eyebrow}</p>
+            <span className="label hidden text-white/65 sm:inline">
+              Casa Alta · Oaxaca
+            </span>
+          </div>
+        ) : null}
 
         {/* Monumental typography grid */}
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">

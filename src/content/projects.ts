@@ -80,33 +80,43 @@ function provisional(
  */
 const curatedGalleries: Record<string, string[]> = {
   "01-plaza-esmeralda-puerto-escondido": [
+    "22-fachada-frontal-acceso-escaleras-electricas",
     "07-terraza-madera-cristal-ciudad",
-    "12-cristal-madera-noche-ciudad",
-    "05-toma-aerea-azoteas-jardin",
+    "02-terraza-anochecer-planta-jardinera",
+    "20-local-esquinero-ventanal-panoramico-calle",
+    "03-escaleras-electricas-atrio-blanco",
   ],
   "02-el-bicho": [
+    "02-fachada-palapas-alberca-palmeras",
     "54-fachada-nocturna-alberca-iluminada-palapas",
     "31-fachada-iluminada-nocturna",
-    "12-armadura-techo-palapa-obra",
     "13-fachada-alberca-palmeras",
+    "03-terraza-hamaca-jardin",
   ],
   "03-casa-blake-tlalixtac": [
     "08-fachada-frontal-dos-plantas",
+    "06-fachada-camino-losas-jardin",
     "07-corredor-vigas-madera-lamparas",
     "09-esquina-ventanal-farol-terraza",
+    "38-alberca-curva-terminada-mosaico-gris-jardin",
   ],
   "04-casa-melchor-ocampo": [
+    "01-calle-pendiente-fachada-colonial",
     "04-fachada-amarilla-balcones-celosia",
+    "02-puerta-acero-oxidado-relieve",
+    "03-herreria-balcon-cielo",
     "08-balcon-forjado-cielo-nubes",
   ],
   "05-cafe-malagua": [
     "01-barra-tabique-lamparas-calidas",
-    "04-interior-palapa-lamparas-colgantes",
+    "02-barra-central-lamparas-encendidas",
     "03-barra-tabique-celosia-madera",
+    "04-interior-palapa-lamparas-colgantes",
   ],
   "06-capilla-el-tule": [
     "01-capilla-cantera-jacaranda-flor",
     "03-esquina-cantera-detalle-bajo",
+    "02-cornisa-cantera-contrapicado",
     "05-interior-banca-madera-ventanas",
   ],
   "07-casa-tarrastro": [
@@ -114,31 +124,37 @@ const curatedGalleries: Record<string, string[]> = {
     "08-terraza-techada-pergola-madera-muro-cantera",
     "10-fachada-frontal-pergola-superior-ventanales",
     "09-escalera-interior-barandal-geometrico-doble-altura",
+    "02-terraza-celosia-madera-encino",
   ],
   "08-rbnb-palmarito": [
-    "01-trabajadores-barra-techo-palapa",
-    "02-cielo-palapa-barra-mar",
+    "05-torre-concreto-cristal-carretilla",
     "03-marco-concreto-vista-playa",
+    "02-cielo-palapa-barra-mar",
+    "01-trabajadores-barra-techo-palapa",
+    "04-postes-madera-vista-mar",
   ],
   "09-casa-santa-rosa": [
+    "02-fachada-blanca-macetas-patios",
     "01-pergola-madera-terraza-piso",
     "03-puerta-madera-acceso-interior",
   ],
   "10-obra-punta-zicatela": [
     "09-fachada-chukum-ventana-circular-barra-concreto",
     "12-modulo-terminado-bajo-sombra-arboles-zicatela",
-    "10-escalones-acceso-vano-trapezoidal-recamara",
     "13-recamara-muros-chukum-cama-madera-lampara-halo",
+    "01-ventana-circular-sombra-follaje",
   ],
   "11-columnas-c1-c2": [
     "03-columna-prefabricada-terreno-jacaranda",
     "01-izado-columna-grua-jacaranda",
+    "04-columna-prefabricada-cuadrilla-grua",
   ],
   "12-vilas-cavan": [
     "10-fachada-frontal-chimenea-ladrillo-techo-teja",
-    "09-portico-acceso-columnas-cantera-ventanal",
-    "14-cancel-corredizo-negro-terraza-vista-montana",
+    "07-pasillo-acceso-fachada-blanca-teja-cantera",
     "11-estancia-chimenea-ladrillo-barra-cocina",
+    "14-cancel-corredizo-negro-terraza-vista-montana",
+    "09-portico-acceso-columnas-cantera-ventanal",
   ],
   "13-puente-cd-administrativa": [
     "02-puente-peatonal-avenida-rampas",
@@ -147,8 +163,9 @@ const curatedGalleries: Record<string, string[]> = {
   "14-pavimentacion": ["01-revolvedora-concreto-sobre-pavimento"],
   "15-casa-charco-seco": [
     "08-perspectiva-fachada-terracota-vegetacion-cielo",
-    "03-planta-baja-abierta-cocina-comedor-estancia",
+    "04-fachada-exterior-terracota-portones-madera-vegetacion",
     "05-vista-cenital-patio-alberca-muro-celosia-barro",
+    "03-planta-baja-abierta-cocina-comedor-estancia",
     "01-sillon-lectura-bajo-escalera-celosia-iluminada",
   ],
   "16-casa-la-barra": [
@@ -156,12 +173,12 @@ const curatedGalleries: Record<string, string[]> = {
   ],
   "17-el-tomatal": [
     "02-fachada-principal-chukum-celosia-ladrillo-palmeras",
-    "01-detalle-celosia-vertical-macetas-monstera-helecho",
     "03-acceso-vehicular-adoquin-barro-fachada-celosia",
+    "01-detalle-celosia-vertical-macetas-monstera-helecho",
   ],
   remodelacion: [
-    "01-vista-frontal-residencia-modernizada-cochera-acceso",
     "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
+    "01-vista-frontal-residencia-modernizada-cochera-acceso",
     "06-patio-frontal-pavimentado-fachada-blanca-remodelada",
   ],
 };

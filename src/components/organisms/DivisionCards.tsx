@@ -21,8 +21,8 @@ const CARD_SIZES =
   "(min-width: 1280px) 480px, (min-width: 1024px) 420px, (min-width: 640px) 50vw, 85vw";
 
 /**
- * Architectural division showcase cards inspired by Cosentino's
- * material monolith cards (Dekton, Silestone, Éclos).
+ * Architectural division showcase cards inspired by architectural
+ * material monolith cards:
  *
  * Implements a generous horizontal snap track so images have expansive
  * width and height without being constrained to a single viewport box.
@@ -83,7 +83,7 @@ export function DivisionCards({
         onClick={() => handleScroll("left")}
         disabled={!canScrollLeft}
         aria-label="Ver frente anterior"
-        className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+        className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
       >
         <Icon name="arrow-left" className="h-4 w-4" />
       </button>
@@ -92,7 +92,7 @@ export function DivisionCards({
         onClick={() => handleScroll("right")}
         disabled={!canScrollRight}
         aria-label="Ver frente siguiente"
-        className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+        className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
       >
         <Icon name="arrow-right" className="h-4 w-4" />
       </button>
@@ -125,7 +125,7 @@ export function DivisionCards({
             <Link
               key={card.href}
               href={card.href}
-              className="group relative flex h-[580px] w-[85vw] shrink-0 snap-start flex-col justify-between overflow-hidden border border-white/10 bg-ink p-7 text-white transition-colors duration-300 hover:border-white/25 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500 sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] lg:p-9"
+              className="group relative flex h-[580px] w-[85vw] shrink-0 snap-start flex-col justify-between overflow-hidden bg-ink p-7 text-white transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500 sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] lg:p-9"
             >
               {/* Full-bleed background photograph */}
               <div className="absolute inset-0 z-0 overflow-hidden bg-bone-100">

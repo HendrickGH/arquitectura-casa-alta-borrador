@@ -47,7 +47,7 @@ export function ContactForm({
                   />
                 </div>
               ) : null}
-              <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-bone-200 pt-3 text-xs text-ink-muted">
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-3 pt-3 text-xs text-ink-muted">
                 <span>Puerto Escondido · Oaxaca Centro · Salina Cruz</span>
               </div>
 

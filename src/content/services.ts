@@ -34,11 +34,11 @@ export const serviceGroups: ServiceGroup[] = [
       },
       {
         slug: "arquitectura-interior",
-        title: "Arquitectura de interiores / Cosentino",
+        title: "Arquitectura de Interiores y Acabados de Alta Gama",
         summary:
           "Materiales de importación para proyectos residenciales, instalación certificada y garantizada. Interiorismo integral y mobiliario a medida que entregan espacios terminados desde el primer día.",
         items: [
-          "Materiales de importación Cosentino (Dekton, Silestone, Sensa)",
+          "Acabados de Alta Gama y Superficies de Importación",
           "Instalación certificada y garantizada",
           "Cocinas residenciales premium e islas monolíticas",
           "Closets, vestidores y mobiliario sobre diseño",

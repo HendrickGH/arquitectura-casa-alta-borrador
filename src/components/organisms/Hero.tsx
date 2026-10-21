@@ -102,7 +102,7 @@ export function Hero({ hero }: HeroProps) {
 
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/20 pb-4">
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
           {hero.eyebrow ? (
             <p className="eyebrow !text-white/85">{hero.eyebrow}</p>
           ) : (

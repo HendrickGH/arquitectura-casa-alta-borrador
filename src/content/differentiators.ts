@@ -7,56 +7,56 @@ import type { Differentiator } from "@/types/content";
  */
 export const differentiators: Differentiator[] = [
   {
-    title: "El sistema se elige por cálculo",
+    title: "Presupuesto y plazos cerrados",
     description:
-      "Losa aligerada, concreto armado, presforzado o estructura metálica: validamos cada opción con cálculo estructural y decidimos según precio, tiempo de ejecución y la zona de la obra. El clima de la sierra no resiste lo mismo que el de la costa, y eso cambia el proyecto.",
-    tag: "Cálculo estructural y sistemas",
+      "Sin sobrecostos sorpresa ni partidas abiertas. Cada concepto se vincula a un catálogo de precios unitarios y calendario de obra firmado bajo contrato con penalización por desfase.",
+    tag: "Certeza contractual y financiera",
     points: [
-      "Validación de losas, marcos y cimentación con cálculo estructural",
-      "Adaptación térmica y sísmica para costa, valles o sierra oaxaqueña",
-      "Optimización de costos y plazos con personal técnico calificado",
-    ],
-    dir: "obra-civil",
-    base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
-  },
-  {
-    title: "Se entrega lo que se firmó",
-    description:
-      "Nuestro compromiso es entregar en el tiempo acordado y con las especificaciones del contrato inicial. Es la razón por la que nos vuelven a llamar.",
-    tag: "Certeza contractual y plazos",
-    points: [
-      "Entrega rigurosa en tiempo y catálogo de conceptos firmado",
-      "Supervisión continua en sitio registrada en bitácora de obra",
-      "Garantía por escrito post-entrega en estructura y acabados",
+      "Catálogo de conceptos y precios unitarios cerrados por contrato",
+      "Ruta crítica y calendario de estimaciones por hito constructivo",
+      "Garantía por escrito post-entrega en vicios ocultos y acabados",
     ],
     dir: "credibilidad",
-    base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
+    base: "03-camioneta-constructora-casa-alta-frente-obra",
   },
   {
-    title: "Experiencia en todo Oaxaca",
+    title: "Cálculo estructural y DRO propio",
     description:
-      "Hemos construido en la sierra, en la costa, en el Istmo y en el centro del estado. Conocemos el terreno, la logística y los proveedores de cada región.",
-    tag: "Cobertura logística en Oaxaca",
+      "No subcontratamos la firma ni el criterio estructural. Validamos cimentación, marcos y losas bajo normas sismorresistentes para la alta sismicidad oaxaqueña con Director Responsable de Obra en casa.",
+    tag: "Seguridad y normativa sísmica",
     points: [
-      "Operación en Puerto Escondido, Oaxaca Centro, Salina Cruz e Istmo",
-      "Conocimiento de logística, normativas y proveeduría regional",
-      "Capacidad para obra civil pesada, puentes y naves industriales",
+      "Memoria de cálculo y firma DRO avalada ante colegios oficiales",
+      "Ingeniería adaptada a sismos, empuje de vientos costeros y mecánica de suelos",
+      "Supervisión continua en sitio registrada en bitácora oficial de obra",
+    ],
+    dir: "obra-civil",
+    base: "03-colocacion-capitel-prefabricado-sobre-columna-concreto",
+  },
+  {
+    title: "Cuadrillas y maquinaria propia",
+    description:
+      "Control directo del frente de trabajo sin intermediación opaca. Disponemos de equipo propio para excavación, armado de acero, colados y montaje pesado en todo el estado.",
+    tag: "Control de ejecución y logística",
+    points: [
+      "Cuadrillas especializadas en fierrería, carpintería de obra y colados",
+      "Maquinaria propia para excavación, presfuerzo y bombeo de concreto",
+      "Cobertura y cadena de suministro en Puerto Escondido, Valles Centrales e Istmo",
+    ],
+    dir: "credibilidad",
+    base: "02-trabajador-uniforme-casa-alta-armado-acero-playa",
+  },
+  {
+    title: "Arquitectura regional nativa",
+    description:
+      "Diseño vanguardista y dominio de los materiales nobles de Oaxaca: concreto aparente, recubrimiento chukum impermeable, maderas tropicales curadas y cubiertas artesanales de palma.",
+    tag: "Materialidad noble y clima",
+    points: [
+      "Diseño contemporáneo integrado al paisaje y la orientación solar",
+      "Chukum mineral, madera de parota certificada y celosías artesanales",
+      "Soluciones bioclimáticas para confort térmico y alta plusvalía patrimonial",
     ],
     dir: "arquitectura-sostenible",
-    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
-  },
-  {
-    title: "Experiencia local, diseño actual",
-    description:
-      "Desde una casa habitación hasta obra de mayor complejidad. Diseño vanguardista, renders de alta calidad y supervisión cuidada en el detalle.",
-    tag: "Diseño vanguardista y tradición",
-    points: [
-      "Renders hiperrealistas y proyecto ejecutivo completo en gabinete",
-      "Uso de maderas tropicales parota, chukum y palapa artesanal",
-      "Detalle constructivo de alta gama y plusvalía patrimonial",
-    ],
-    dir: "arquitectura-que-perdura",
-    base: "02-fachada-tierra-camastros-madera-alberca-palmeras",
+    base: "05-materiales-locales-chukum-madera-palapa-costera",
   },
 ];
 

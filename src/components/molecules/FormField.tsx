@@ -39,8 +39,8 @@ export function FormField({
   className,
 }: FormFieldProps) {
   const control = cx(
-    "w-full border border-bone-200 bg-canvas px-4 py-3 text-base text-ink transition-colors",
-    "placeholder:text-ink-muted/60 focus:border-brand-800 focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand-800",
+    "w-full bg-bone-100/70 px-4 py-3 text-base text-ink transition-colors",
+    "placeholder:text-ink-muted/60 focus:bg-canvas focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-brand-800",
   );
 
   return (

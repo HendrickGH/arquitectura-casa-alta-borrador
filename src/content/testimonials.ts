@@ -88,7 +88,7 @@ export const institutionalDossiers: InstitutionalDossier[] = [
       "Construir el patrimonio familiar exige transparencia absoluta en catálogo de conceptos, control presupuestal sin sorpresas de sobrecosto y acabados artesanales en piedra regional.",
     points: [
       "Contrato a precio alzado con catálogo de conceptos firmado",
-      "Integración de piedra sinterizada Cosentino con instalador avalado",
+      "Integración de piedra sinterizada de importación con instalador avalado",
       "Acta formal de entrega y finiquito con planos As-Built",
     ],
     seal: "SATISFACCIÓN Y FINIQUITO FIRMADO",

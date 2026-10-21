@@ -38,7 +38,10 @@ export function ProjectCaseStudyModal({
   const triggerElementRef = useRef<HTMLElement | null>(null);
   const [activePhoto, setActivePhoto] = useState<PhotoModel | null>(null);
   const activePhotoRef = useRef<PhotoModel | null>(null);
-  activePhotoRef.current = activePhoto;
+
+  useEffect(() => {
+    activePhotoRef.current = activePhoto;
+  }, [activePhoto]);
 
   const galleryTrackRef = useRef<HTMLDivElement | null>(null);
   const [canScrollGalleryLeft, setCanScrollGalleryLeft] = useState(false);
@@ -160,7 +163,7 @@ export function ProjectCaseStudyModal({
       className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-canvas text-ink"
     >
       {/* Sticky 0px top bar */}
-      <div className="sticky top-0 z-30 border-b border-bone-200 bg-canvas/95 backdrop-blur-md">
+      <div className="sticky top-0 z-30 bg-canvas/95 backdrop-blur-md">
         <Container className="flex items-center justify-between gap-4 py-4">
           <div className="flex flex-wrap items-center gap-4">
             <span className="label text-brand-800">
@@ -184,7 +187,7 @@ export function ProjectCaseStudyModal({
             <span className="underline decoration-ink/40 underline-offset-4 group-hover:decoration-brand-800">
               Cerrar expediente
             </span>
-            <span className="inline-flex h-9 w-9 items-center justify-center border border-ink/30 bg-ink text-canvas transition-colors duration-200 group-hover:bg-brand-800">
+            <span className="inline-flex h-9 w-9 items-center justify-center bg-ink text-canvas transition-colors duration-200 group-hover:bg-brand-800">
               <Icon name="close" className="h-4 w-4" />
             </span>
           </button>
@@ -233,7 +236,7 @@ export function ProjectCaseStudyModal({
           </div>
 
           {/* Narrative + Technical Specifications */}
-          <div className="mt-12 grid grid-cols-1 gap-10 border-t border-bone-200 pt-10 lg:grid-cols-12 lg:gap-12">
+          <div className="mt-12 grid grid-cols-1 gap-10 pt-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
               <span className="label text-brand-800">Memoria descriptiva</span>
 
@@ -266,10 +269,10 @@ export function ProjectCaseStudyModal({
               )}
             </div>
 
-            <aside className="flex flex-col justify-between border-t border-bone-200 pt-8 lg:col-span-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
+            <aside className="flex flex-col justify-between pt-8 lg:col-span-5 lg:pt-0 lg:pl-10">
               <div>
                 <p className="label text-brand-800">Ficha técnica</p>
-                <dl className="mt-6 divide-y divide-bone-200 border-t border-b border-bone-200">
+                <dl className="mt-6">
                   <div className="flex items-baseline justify-between gap-4 py-3.5">
                     <dt className="label text-ink-muted">Ubicación</dt>
                     <dd className="text-right text-sm font-medium text-ink">
@@ -317,7 +320,7 @@ export function ProjectCaseStudyModal({
           </div>
 
           {/* Complete photo gallery: horizontal scroll multi-row mosaic */}
-          <div className="mt-14 border-t border-bone-200 pt-10">
+          <div className="mt-14 pt-10">
             <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <p className="label text-brand-800">
@@ -335,7 +338,7 @@ export function ProjectCaseStudyModal({
                   onClick={() => handleGalleryScroll("left")}
                   disabled={!canScrollGalleryLeft}
                   aria-label="Desplazar galería a la izquierda"
-                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
                 >
                   <Icon name="arrow-left" className="h-4 w-4" />
                 </button>
@@ -344,7 +347,7 @@ export function ProjectCaseStudyModal({
                   onClick={() => handleGalleryScroll("right")}
                   disabled={!canScrollGalleryRight}
                   aria-label="Desplazar galería a la derecha"
-                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 disabled:cursor-not-allowed disabled:opacity-30"
+                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 disabled:cursor-not-allowed disabled:opacity-30"
                 >
                   <Icon name="arrow-right" className="h-4 w-4" />
                 </button>
@@ -399,7 +402,7 @@ export function ProjectCaseStudyModal({
             type="button"
             onClick={() => setActivePhoto(null)}
             aria-label="Cerrar vista ampliada"
-            className="absolute top-4 right-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center border border-white/20 bg-ink text-white transition-colors hover:border-white hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white"
+            className="absolute top-4 right-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center bg-ink text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-white"
           >
             <Icon name="close" className="h-4 w-4" />
           </button>

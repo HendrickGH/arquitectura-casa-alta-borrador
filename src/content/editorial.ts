@@ -101,22 +101,22 @@ export const editorialRefs: EditorialRef[] = [
     service: "albercas-y-espacios-exteriores",
     slug: "servicios-albercas-villa-exterior",
     dir: "arquitectura-sostenible",
-    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
-    alt: "Perspectiva de alberca y asoleadero integrados a la arquitectura bioclimática costera",
+    base: "03-espejo-agua-alberca-sombra-palmeras-microclima",
+    alt: "Perspectiva de alberca con espejo de agua entre palmeras y terrazas sombreadas en la costa de Oaxaca",
   },
   {
     service: "instalaciones-electricas",
     slug: "servicios-instalaciones-electricas-subestacion",
     dir: "obra-civil",
-    base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
+    base: "02-montaje-columna-prefabricada-en-candelero-cimentacion",
     alt: "Infraestructura e ingeniería de soporte en obra civil e industrial ejecutada por Casa Alta en Oaxaca",
   },
   {
     service: "instalaciones-hidrosanitarias",
     slug: "servicios-instalaciones-tratamiento-agua",
-    dir: "arquitectura-sostenible",
-    base: "03-espejo-agua-alberca-sombra-palmeras-microclima",
-    alt: "Ingeniería de manejo de agua, sistemas hidráulicos y recirculación en albercas y terrazas costeras",
+    dir: "credibilidad",
+    base: "14-tendido-poliducto-instalacion-subterranea-calle",
+    alt: "Equipo de ingeniería de Casa Alta preparando tendido de tuberías y ductos para instalaciones subterráneas en Oaxaca",
   },
 ];
 

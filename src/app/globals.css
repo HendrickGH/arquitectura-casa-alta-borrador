@@ -202,7 +202,7 @@ header[data-nav-open="true"] {
    needs to run the blur at all. */
 header[data-surface="page"] {
 	background-color: rgb(255 255 255 / 0.96);
-	border-color: var(--color-bone-200);
+	border-color: transparent;
 	-webkit-backdrop-filter: blur(10px);
 	backdrop-filter: blur(10px);
 }
@@ -364,9 +364,7 @@ header[data-surface="hero"] .chrome-cta:hover {
 }
 
 /* Opacity-only reveal for content that already owns its `transform` elsewhere:
-   the masonry's per-column drift drives each single cell's `y` through GSAP, so
-   its reveal fades but never translates and the two never fight over the same
-   property. */
+   its reveal fades without translation so they never fight over the same property. */
 [data-reveal-variant="stagger"] [data-reveal-step][data-reveal-motion="fade"] {
 	transition: opacity 720ms ease-out;
 	transition-delay: calc(min(var(--reveal-index, 0), 3) * 90ms);

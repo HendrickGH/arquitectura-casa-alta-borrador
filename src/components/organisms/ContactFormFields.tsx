@@ -18,7 +18,7 @@ type Status = "idle" | "sending" | "success" | "error";
 /**
  * Architectural Consultation Hub (`ContactFormFields`).
  *
- * - 0px rectangular specialty and locality selector chips (`border-brand-800 bg-brand-50 text-brand-900` when active).
+ * - 0px rectangular specialty and locality selector chips (`bg-brand-50 text-brand-900` when active).
  * - Dynamic WhatsApp synchronization: updates the prefilled WhatsApp message in real-time.
  */
 export function ContactFormFields({
@@ -91,10 +91,10 @@ export function ContactFormFields({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedSpecialty(spec)}
                   className={cx(
-                    "label min-h-[44px] cursor-pointer border px-4 py-2.5 transition-colors duration-200",
+                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
                     isSelected
-                      ? "border-brand-800 bg-brand-50 text-brand-900"
-                      : "border-bone-200 bg-canvas text-ink-muted hover:border-ink/40 hover:text-ink",
+                      ? "bg-brand-50 text-brand-900 font-medium"
+                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
                   )}
                 >
                   {spec}
@@ -121,10 +121,10 @@ export function ContactFormFields({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedLocality(loc)}
                   className={cx(
-                    "label min-h-[44px] cursor-pointer border px-4 py-2.5 transition-colors duration-200",
+                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
                     isSelected
-                      ? "border-brand-800 bg-brand-50 text-brand-900"
-                      : "border-bone-200 bg-canvas text-ink-muted hover:border-ink/40 hover:text-ink",
+                      ? "bg-brand-50 text-brand-900 font-medium"
+                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
                   )}
                 >
                   {loc}
@@ -213,7 +213,7 @@ export function ContactFormFields({
         {status === "success" && (
           <div
             role="status"
-            className="flex items-start gap-3 border border-emerald-300 bg-emerald-50/90 p-4 text-sm text-emerald-900 md:col-span-2"
+            className="flex items-start gap-3 bg-emerald-50/90 p-4 text-sm text-emerald-900 md:col-span-2"
           >
             <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-emerald-600 text-white">
               <svg
@@ -243,7 +243,7 @@ export function ContactFormFields({
         {status === "error" && (
           <div
             role="alert"
-            className="flex items-start gap-3 border border-amber-300 bg-amber-50/90 p-4 text-sm text-amber-900 md:col-span-2"
+            className="flex items-start gap-3 bg-amber-50/90 p-4 text-sm text-amber-900 md:col-span-2"
           >
             <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-amber-600 text-white">
               !

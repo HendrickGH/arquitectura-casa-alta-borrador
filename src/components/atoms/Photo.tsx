@@ -55,6 +55,8 @@ export function Photo({
       height={photo.height}
       sizes={sizes}
       priority={priority}
+      loading={priority ? undefined : "lazy"}
+      decoding={priority ? "sync" : "async"}
       className={cx(fits[fit], className)}
     />
   );

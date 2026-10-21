@@ -8,7 +8,6 @@ import {
   institutionalDossiers,
   testimonials,
 } from "@/content/testimonials";
-import { masonrySlots } from "@/content/masonry";
 import {
   aboutPageContent,
   contactPageContent,
@@ -28,19 +27,19 @@ import {
   getProjectGallery,
   getProjectPhotoCount,
   getProjectPhotos,
-  masonryPhotos,
   pickUnusedProjectPhoto,
   strongestUnusedLandscapePhoto,
 } from "./photos";
 import type {
   AboutPageContent,
   CategoryTile,
+  ContactFormContent,
   ContactPageContent,
   Differentiator,
   DivisionCard,
   HomePage,
   InteriorsPageContent,
-  MasonryItem,
+  MethodologyPhase,
   Photo,
   ProcessStep,
   Project,
@@ -63,7 +62,14 @@ import type {
  */
 
 export function getSiteConfig(): SiteConfig {
-  return site;
+  return {
+    ...site,
+    contactForm: home.contact,
+  };
+}
+
+export function getContactFormContent(): ContactFormContent {
+  return home.contact;
 }
 
 /**
@@ -121,9 +127,10 @@ export function getDifferentiators(): Differentiator[] {
   return differentiators.map((item) => ({
     ...item,
     photo:
-      item.dir && item.base
+      item.photo ??
+      (item.dir && item.base
         ? (findPhotoByBase(item.dir, item.base, item.title) ?? undefined)
-        : undefined,
+        : undefined),
   }));
 }
 
@@ -134,20 +141,30 @@ export function getTestimonials(): Testimonial[] {
 function buildProject(dir: string): Project | null {
   const editorial = projectContent[dir];
   const manifestProject = findManifestProject(dir);
-  const cover = getProjectCover(dir, editorial?.title ?? "");
+  if (!editorial || !manifestProject) return null;
 
-  if (!editorial || !manifestProject || !cover) return null;
+  const title = editorial.title ?? "";
+  const gallery = getProjectGallery(
+    dir,
+    title,
+    editorial.images ?? [],
+  );
+
+  // The curated lead photo is the primary photo chosen for this project (first in gallery).
+  const curatedCover = gallery[0] ?? null;
+  const cover = curatedCover ?? getProjectCover(dir, title);
+  if (!cover) return null;
+
+  // The curated lead photo is the authoritative cover for both monograph card preview and dossier modal lead.
+  const wideCover =
+    curatedCover ?? getProjectCover(dir, title, "landscape") ?? cover;
 
   return {
     ...editorial,
     cover,
-    wideCover: getProjectCover(dir, editorial.title, "landscape") ?? cover,
-    gallery: getProjectGallery(
-      dir,
-      editorial?.title ?? "",
-      editorial?.images ?? [],
-    ),
-    photos: getProjectPhotos(dir, editorial.title),
+    wideCover,
+    gallery,
+    photos: getProjectPhotos(dir, title),
     photoCount: getProjectPhotoCount(dir),
   };
 }
@@ -237,7 +254,6 @@ export function getTiles(): CategoryTile[] {
     ...remaining.flatMap((project) =>
       project.gallery.map((photo) => photo.src),
     ),
-    ...getMasonry().map((item) => item.photo.src),
   ]);
 
   return home.tiles
@@ -258,17 +274,6 @@ export function getTiles(): CategoryTile[] {
         : null;
     })
     .filter((tile): tile is CategoryTile => tile !== null);
-}
-
-/**
- * The masonry's photographs: the strongest images the archive holds across
- * projects, in the wall's authored order.
- */
-export function getMasonry(): MasonryItem[] {
-  return masonryPhotos(masonrySlots, projectTitle).map((entry) => ({
-    photo: entry.photo,
-    projectSlug: projectContent[entry.dir]?.slug ?? entry.dir,
-  }));
 }
 
 /** Every photograph the landing already shows, by src. */
@@ -295,7 +300,6 @@ function landingSources(): Set<string> {
       g.services.flatMap((s) => (s.image ? [s.image.src] : [])),
     ),
     ...getTiles().map((tile) => tile.photo.src),
-    ...getMasonry().map((item) => item.photo.src),
   ]);
 }
 
@@ -326,10 +330,15 @@ export function getClosing(): HomePage["closing"] {
  * The landing view model.
  */
 export function getHomePage(): HomePage {
+  const diffIntro =
+    home.differentiatorsIntro ?? home.differentiators.intro;
+
   return {
     ...home,
+    differentiatorsIntro: diffIntro,
     differentiators: {
       ...home.differentiators,
+      intro: diffIntro,
       items: getDifferentiators(),
     },
     testimonials: {
@@ -351,7 +360,7 @@ export function getInteriorsPage(): InteriorsPageContent {
     ) ??
     getProjectCover(interiorsPageContent.hero.dir, "Arquitectura de interiores")!;
 
-  const interiorsPhotos = getProjectPhotos(
+  const studioInteriors = getProjectPhotos(
     "arquitectura-interiores",
     "Arquitectura de interiores Casa Alta",
   ).filter((p) => p.src !== heroPhoto.src);
@@ -361,53 +370,237 @@ export function getInteriorsPage(): InteriorsPageContent {
     "Showroom de cocinas e interiorismo Casa Alta",
   );
 
+  const banoElBicho = findPhotoByBase(
+    "02-el-bicho",
+    "05-bano-espejo-redondo-lavabo",
+    "El Bicho",
+    "Interior de baño residencial con espejo redondo de madera y lavabo de piedra",
+  );
+
+  const residentialPhotos = [
+    findPhotoByBase(
+      "12-vilas-cavan",
+      "01-interior-sala-cocina-chimenea",
+      "Vilas Cavan",
+      "Sala y cocina integradas con chimenea y carpintería residencial",
+    ),
+    findPhotoByBase(
+      "07-casa-tarrastro",
+      "02-terraza-celosia-madera-encino",
+      "Casa Tarrastro",
+      "Galería techada con celosía de madera y cancelería de vidrio",
+    ),
+    findPhotoByBase(
+      "03-casa-blake-tlalixtac",
+      "07-corredor-vigas-madera-lamparas",
+      "Casa Blake",
+      "Corredor residencial con vigas de madera y cancelería",
+    ),
+    findPhotoByBase(
+      "02-el-bicho",
+      "04-corredor-madera-vista-mar",
+      "El Bicho",
+      "Corredor habitable con columnas de madera estructural y vista abierta",
+    ),
+    findPhotoByBase(
+      "12-vilas-cavan",
+      "03-sala-ventanal-montana",
+      "Vilas Cavan",
+      "Estancia residencial con ventanal panorámico hacia montaña",
+    ),
+    findPhotoByBase(
+      "02-el-bicho",
+      "03-terraza-hamaca-jardin",
+      "El Bicho",
+      "Área de descanso y estancia exterior integrada a la arquitectura",
+    ),
+  ].filter((p): p is Photo => p !== null);
+
+  const interiorsPhotos = [...studioInteriors, ...residentialPhotos];
+
   const spaces: SpaceCard[] = [];
 
-  interiorsPhotos.forEach((photo, idx) => {
-    const src = photo.src;
-    if (src.includes("bano") || src.includes("lavabo")) {
+  // Cocinas (3)
+  const cocinaPhotos = studioInteriors.filter(
+    (p) =>
+      p.src.includes("isla") ||
+      p.src.includes("cocina") ||
+      p.src.includes("cubierta"),
+  );
+  cocinaPhotos.slice(0, 3).forEach((photo, idx) => {
+    const title = photo.src.includes("comedor")
+      ? "Comedor en madera integrado a isla de cocina"
+      : photo.src.includes("cubierta")
+        ? "Cubierta continua con veta lineal"
+        : "Isla monolítica en piedra sinterizada";
+    spaces.push({
+      id: `cocina-${idx}`,
+      category: "cocinas",
+      categoryLabel: "Cocina e isla",
+      title,
+      materials: "Superficie ultracompacta de importación · Veta continua",
+      photo,
+    });
+  });
+
+  // Baños (3)
+  const banoStudio = studioInteriors.find(
+    (p) => p.src.includes("bano") || p.src.includes("lavabo"),
+  );
+  if (banoStudio) {
+    spaces.push({
+      id: "bano-0",
+      category: "banos",
+      categoryLabel: "Baño residencial",
+      title: "Baño principal en porcelánico tipo mármol con luz perimetral",
+      materials: "Porcelánico de importación · Espejo retroiluminado",
+      photo: banoStudio,
+    });
+  }
+  if (banoElBicho) {
+    spaces.push({
+      id: "bano-1",
+      category: "banos",
+      categoryLabel: "Baño residencial",
+      title: "Lavabo artesanal en piedra y espejo de madera",
+      materials: "Piedra natural labrada · Madera tropical tratada",
+      photo: banoElBicho,
+    });
+  }
+  const banoPunta = findPhotoByBase(
+    "10-obra-punta-zicatela",
+    "26-bano-exterior-puertas-celosia-bambu-sanitario",
+    "Punta Zicatela",
+    "Sanitario residencial con cancelería y celosía de madera",
+  );
+  if (banoPunta) {
+    spaces.push({
+      id: "bano-2",
+      category: "banos",
+      categoryLabel: "Baño residencial",
+      title: "Sanitario con celosía de madera y muros en acabado mineral",
+      materials: "Carpintería en celosía · Muros en chukum y piedra",
+      photo: banoPunta,
+    });
+  }
+
+  // Terrazas (6)
+  const terrazaPhotos = [
+    {
+      photo: findPhotoByBase(
+        "01-plaza-esmeralda-puerto-escondido",
+        "02-terraza-anochecer-planta-jardinera",
+        "Plaza Esmeralda",
+        "Terraza exterior en anochecer con jardineras integradas y deck de madera",
+      ),
+      title: "Terraza exterior con jardineras y deck de madera",
+      materials: "Madera tropical tratada · Iluminación rasante cálida",
+    },
+    {
+      photo: findPhotoByBase(
+        "08-rbnb-palmarito",
+        "01-trabajadores-barra-techo-palapa",
+        "Palmarito",
+        "Barra exterior residencial bajo cubierta de palapa frente al mar",
+      ),
+      title: "Barra exterior y cubierta de palapa frente al mar",
+      materials: "Concreto aparente · Madera de zapote y palma tejida",
+    },
+    {
+      photo: findPhotoByBase(
+        "01-plaza-esmeralda-puerto-escondido",
+        "07-terraza-madera-cristal-ciudad",
+        "Plaza Esmeralda",
+        "Terraza exterior con piso de madera y barandal de cristal templado",
+      ),
+      title: "Terraza apergolada con barandal de cristal templado",
+      materials: "Madera estructural · Cristal templado con herrajes marinos",
+    },
+    {
+      photo: findPhotoByBase(
+        "08-rbnb-palmarito",
+        "02-cielo-palapa-barra-mar",
+        "Palmarito",
+        "Barra de convivencia exterior bajo cubierta de palapa con vista al mar",
+      ),
+      title: "Barra de convivencia exterior bajo cubierta natural",
+      materials: "Superficie de alta resistencia · Estructura de madera tropical",
+    },
+    {
+      photo: findPhotoByBase(
+        "02-el-bicho",
+        "01-fachada-tres-palapas-alberca",
+        "El Bicho",
+        "Terraza y deck de madera frente a alberca con vista al horizonte",
+      ),
+      title: "Deck de madera y alberca frente al horizonte",
+      materials: "Deck de madera tropical · Alberca con vista al horizonte",
+    },
+    {
+      photo: findPhotoByBase(
+        "01-plaza-esmeralda-puerto-escondido",
+        "30-iluminacion-rasante-muro-terraza-anochecer",
+        "Plaza Esmeralda",
+        "Terraza lounge con iluminación rasante cálida en muro perimetral",
+      ),
+      title: "Terraza exterior con iluminación rasante cálida",
+      materials: "Concreto aparente · Iluminación rasante en muro",
+    },
+  ];
+  terrazaPhotos.forEach((item, idx) => {
+    if (item.photo) {
       spaces.push({
-        id: `bano-${idx}`,
-        category: "banos",
-        categoryLabel: "Baño residencial",
-        title: src.includes("marmol")
-          ? "Baño principal en mármol con luz perimetral"
-          : "Lavabo flotante negro mate y monomando",
-        materials: "Mármol importado · Herrajes y monomando negro mate",
-        photo,
-      });
-    } else if (
-      src.includes("isla") ||
-      src.includes("cocina") ||
-      src.includes("cubierta")
-    ) {
-      spaces.push({
-        id: `cocina-${idx}`,
-        category: "cocinas",
-        categoryLabel: "Cocina e isla",
-        title: src.includes("piedra")
-          ? "Isla monolítica en piedra sinterizada"
-          : src.includes("ventanal")
-            ? "Cocina integral integrada a patio interior"
-            : "Cubierta continua con veta lineal",
-        materials: "Superficie ultracompacta Cosentino · Veta continua",
-        photo,
-      });
-    } else {
-      spaces.push({
-        id: `interior-${idx}`,
-        category: "interiores",
-        categoryLabel: "Comedor y estancia",
-        title: src.includes("galeria")
-          ? "Pasillo galería con muro terracota"
-          : "Comedor residencial en parota con vista a jardín",
-        materials: "Madera tropical certificada · Acabado concha nácar",
-        photo,
+        id: `terraza-${idx}`,
+        category: "terrazas",
+        categoryLabel: "Terrazas y barras exteriores",
+        title: item.title,
+        materials: item.materials,
+        photo: item.photo,
       });
     }
   });
 
-  lifestylePhotos.slice(0, 6).forEach((photo, idx) => {
+  // Interiores (3)
+  const interioresStudio = studioInteriors.filter(
+    (p) =>
+      !p.src.includes("bano") &&
+      !p.src.includes("lavabo") &&
+      !p.src.includes("isla") &&
+      !p.src.includes("cocina") &&
+      !p.src.includes("cubierta"),
+  );
+  interioresStudio.slice(0, 2).forEach((photo, idx) => {
+    spaces.push({
+      id: `interior-${idx}`,
+      category: "interiores",
+      categoryLabel: "Comedor y estancia",
+      title: photo.src.includes("galeria")
+        ? "Pasillo galería con muro terracota"
+        : "Comedor residencial en parota con vista a jardín",
+      materials: "Madera tropical certificada · Acabado concha nácar",
+      photo,
+    });
+  });
+  const escaleraTarrastro = findPhotoByBase(
+    "07-casa-tarrastro",
+    "09-escalera-interior-barandal-geometrico-doble-altura",
+    "Casa Tarrastro",
+    "Escalera interior en doble altura con porcelánico gris y herrería geométrica",
+  );
+  if (escaleraTarrastro) {
+    spaces.push({
+      id: "interior-2",
+      category: "interiores",
+      categoryLabel: "Comedor y estancia",
+      title: "Escalera en doble altura con barandal de diseño",
+      materials:
+        "Porcelánico de importación · Herrería contemporánea y luz cenital",
+      photo: escaleraTarrastro,
+    });
+  }
+
+  // Showroom (3)
+  lifestylePhotos.slice(0, 3).forEach((photo, idx) => {
     spaces.push({
       id: `lifestyle-${idx}`,
       category: "showroom",
@@ -419,7 +612,7 @@ export function getInteriorsPage(): InteriorsPageContent {
             ? "Barra contemporánea con iluminación cálida"
             : "Cocina integral negro mate en showroom",
       materials:
-        "Superficies Cosentino de importación · Mobiliario sobre diseño",
+        "Acabados de Alta Gama y Superficies de Importación · Mobiliario sobre diseño",
       photo,
     });
   });
@@ -435,7 +628,7 @@ export function getInteriorsPage(): InteriorsPageContent {
       ...interiorsPageContent.inspiration,
       spaces,
     },
-    cosentino: interiorsPageContent.cosentino,
+    surfaces: interiorsPageContent.surfaces,
     interiorsGalleryIntro: interiorsPageContent.interiorsGalleryIntro,
     interiorsPhotos,
     lifestyleIntro: interiorsPageContent.lifestyleIntro,
@@ -455,6 +648,30 @@ export function getSustainabilityPage(): SustainabilityPageContent {
       "Construcción sustentable",
     )!;
 
+  const rawBioclimatic = getProjectPhotos(
+    "arquitectura-sostenible",
+    "Arquitectura sostenible Casa Alta",
+  );
+
+  // Exclude the lead photo used in the narrative column, yielding exactly 12 gallery photos
+  // (4 complete rows of 3 on desktop, 6 complete rows of 2 on tablet, 0 orphans).
+  const narrativePhoto = rawBioclimatic[0];
+  const bioclimaticPhotos = rawBioclimatic.slice(1, 13);
+
+  // Exclude photo 18 (superimposed marketing text, Score 3★) and cap at exactly 12 top-tier Score 5★ photos
+  // (4 complete rows of 3 on desktop, 6 complete rows of 2 on tablet, 0 orphans).
+  const rawEnduring = getProjectPhotos(
+    "arquitectura-que-perdura",
+    "Arquitectura que perdura Casa Alta",
+  );
+  const enduringPhotos = rawEnduring
+    .filter(
+      (p) =>
+        !p.src.includes("18-cartel-construye-puerto-escondido") &&
+        !p.src.includes("cartel-construye"),
+    )
+    .slice(0, 12);
+
   return {
     hero: {
       eyebrow: sustainabilityPageContent.hero.eyebrow,
@@ -462,18 +679,15 @@ export function getSustainabilityPage(): SustainabilityPageContent {
       subheadline: sustainabilityPageContent.hero.subheadline,
       photo: heroPhoto,
     },
-    narrative: sustainabilityPageContent.narrative,
+    narrative: {
+      ...sustainabilityPageContent.narrative,
+      photo: narrativePhoto,
+    },
     pillars: sustainabilityPageContent.pillars,
     bioclimaticGalleryIntro: sustainabilityPageContent.bioclimaticGalleryIntro,
-    bioclimaticPhotos: getProjectPhotos(
-      "arquitectura-sostenible",
-      "Arquitectura sostenible Casa Alta",
-    ).filter((p) => p.src !== heroPhoto.src),
+    bioclimaticPhotos,
     enduringGalleryIntro: sustainabilityPageContent.enduringGalleryIntro,
-    enduringPhotos: getProjectPhotos(
-      "arquitectura-que-perdura",
-      "Arquitectura que perdura Casa Alta",
-    ),
+    enduringPhotos,
   };
 }
 
@@ -485,6 +699,23 @@ export function getAboutPage(): AboutPageContent {
       "Credibilidad y supervisión en obra",
     ) ??
     getProjectCover(aboutPageContent.hero.dir, "Supervisión Casa Alta")!;
+
+  const methodology: MethodologyPhase[] = aboutPageContent.methodology.map(
+    (phase) => ({
+      number: phase.number,
+      kicker: phase.kicker,
+      title: phase.title,
+      description: phase.description,
+      deliverable: phase.deliverable,
+      photo:
+        findPhotoByBase(phase.dir, phase.base, "", phase.photoAlt) ?? {
+          src: `/images/${phase.dir}/${phase.base}.avif`,
+          alt: phase.photoAlt,
+          width: 1200,
+          height: 800,
+        },
+    }),
+  );
 
   return {
     hero: {
@@ -500,12 +731,18 @@ export function getAboutPage(): AboutPageContent {
       "credibilidad",
       "Equipo y supervisión Casa Alta",
     ).filter((p) => p.src !== heroPhoto.src),
+    methodologyIntro: aboutPageContent.methodologyIntro,
+    methodology,
     enduringIntro: aboutPageContent.enduringIntro,
     enduringPhotos: getProjectPhotos(
       "arquitectura-que-perdura",
       "Arquitectura que perdura Casa Alta",
     ).slice(0, 8),
   };
+}
+
+export function getMethodologyPhases(): MethodologyPhase[] {
+  return getAboutPage().methodology;
 }
 
 export function getServicesPage(): ServicesPageContent {
@@ -548,26 +785,30 @@ export function getServicesPage(): ServicesPageContent {
       photo: introPhoto,
       photoCaption: servicesPageContent.intro.photoCaption,
     },
+    catalog: servicesPageContent.catalog,
     specialties: {
       eyebrow: servicesPageContent.specialties.eyebrow,
       heading: servicesPageContent.specialties.heading,
       body: servicesPageContent.specialties.body,
+      deliverablesLabel: servicesPageContent.specialties.deliverablesLabel,
+      ctaLabel: servicesPageContent.specialties.ctaLabel,
+      ctaHref: servicesPageContent.specialties.ctaHref,
+      closeLabel: servicesPageContent.specialties.closeLabel,
       sections: servicesPageContent.specialties.sections.map((section) => {
-        const allPhotos = getProjectPhotos(section.dir, section.title);
-        const filtered = allPhotos.filter((p) => !used.has(p.src));
-        const selected = (filtered.length > 0 ? filtered : allPhotos).slice(
-          0,
-          section.maxPhotos,
-        );
-        for (const p of selected) used.add(p.src);
+        const photo =
+          findPhotoByBase(section.dir, section.base, section.title) ??
+          getProjectCover(section.dir, section.title)!;
+        used.add(photo.src);
         return {
           slug: section.slug,
           number: section.number,
           title: section.title,
+          shortTitle: section.shortTitle,
           subtitle: section.subtitle,
           description: section.description,
           deliverables: section.deliverables,
-          photos: selected,
+          photo,
+          photos: [photo],
         };
       }),
     },
@@ -575,38 +816,28 @@ export function getServicesPage(): ServicesPageContent {
 }
 
 export function getContactPage(): ContactPageContent {
-  const heroPhoto =
+  const photo =
     findPhotoByBase(
-      contactPageContent.hero.dir,
-      contactPageContent.hero.base,
-      "Sesión de revisión de proyecto ejecutivo en oficina de Constructora Casa Alta",
-    ) ??
-    getProjectCover(contactPageContent.hero.dir, "Contacto Casa Alta")!;
-
-  const officesPhoto =
-    findPhotoByBase(
-      contactPageContent.officesIntro.dir,
-      contactPageContent.officesIntro.base,
-      "Unidad institucional de Constructora Casa Alta en supervisión de obra en Oaxaca",
+      contactPageContent.dir,
+      contactPageContent.base,
+      "El Bicho",
+      contactPageContent.photoAlt,
     ) ??
     getProjectCover(
-      contactPageContent.officesIntro.dir,
-      "Supervisión de obra Casa Alta",
+      contactPageContent.dir,
+      contactPageContent.photoAlt,
     )!;
 
   return {
-    hero: {
-      eyebrow: contactPageContent.hero.eyebrow,
-      heading: contactPageContent.hero.heading,
-      subheadline: contactPageContent.hero.subheadline,
-      photo: heroPhoto,
-    },
-    officesIntro: {
-      eyebrow: contactPageContent.officesIntro.eyebrow,
-      heading: contactPageContent.officesIntro.heading,
-      body: contactPageContent.officesIntro.body,
-      photo: officesPhoto,
-    },
+    eyebrow: contactPageContent.eyebrow,
+    heading: contactPageContent.heading,
+    body: contactPageContent.body,
+    photo,
+    address: contactPageContent.address,
+    phones: contactPageContent.phones,
+    schedule: contactPageContent.schedule,
+    email: contactPageContent.email,
+    whatsappPrefill: contactPageContent.whatsappPrefill,
   };
 }
 

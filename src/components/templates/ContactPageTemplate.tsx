@@ -1,183 +1,269 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
-import { Section } from "@/components/atoms/Section";
-import { Text } from "@/components/atoms/Text";
-import { SocialLinkItem } from "@/components/molecules/SocialLinkItem";
-import { ContactForm } from "@/components/organisms/ContactForm";
-import { PageHero } from "@/components/organisms/PageHero";
+import { useContactModal } from "@/components/organisms/ContactModalContext";
 import { SiteChrome } from "@/components/templates/SiteChrome";
-import { revealStep } from "@/lib/reveal";
-import type {
-  ContactPageContent,
-  HomePage,
-  SiteConfig,
-} from "@/types/content";
+import { revealAttrs, revealStep } from "@/lib/reveal";
+import type { ContactPageContent, SiteConfig } from "@/types/content";
 
-interface ContactPageTemplateProps {
+export interface ContactPageTemplateProps {
   site: SiteConfig;
   page: ContactPageContent;
-  contact: HomePage["contact"];
   whatsappHref: string;
 }
 
 /**
- * `/contacto` — Contacto, Oficinas y Primera Reunión Sin Costo.
+ * `/contacto` — Direct Monumental Contact Stage (150svh).
  *
- * Displays the architectural Hero, the Puerto Escondido and Salina Cruz offices
- * paired with real studio photography, direct telephone lines (`951 458 1395` /
- * `951 165 0678`), WhatsApp, email, social profiles, and the project inquiry form.
+ * Implements the single immersive direct-contact stage with the highest-rated
+ * photograph of El Bicho, continuous GSAP parallax scrub, architectural dark
+ * gradient scrim (WCAG AAA contrast), embedded Google Maps widget, direct phone
+ * lines with role designations, operating hours, email, and modal consultation trigger.
  */
 export function ContactPageTemplate({
   site,
   page,
-  contact,
   whatsappHref,
 }: ContactPageTemplateProps) {
+  const containerRef = useRef<HTMLElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
+  const contactModal = useContactModal();
+
+  const whatsappWithPrefill = page.whatsappPrefill
+    ? `${whatsappHref}?text=${encodeURIComponent(page.whatsappPrefill)}`
+    : whatsappHref;
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const target = imageWrapperRef.current;
+    if (!container || !target) return;
+
+    let cancelled = false;
+    let revert: (() => void) | undefined;
+
+    void import("@/components/organisms/gsap-scenes")
+      .then(({ createParallaxStage }) => {
+        if (cancelled) return;
+        revert = createParallaxStage({
+          container,
+          target,
+          start: "top top",
+          end: "bottom top",
+        });
+      })
+      .catch(() => {
+        // Fallback gracefully without throwing: image remains visible statically.
+      });
+
+    return () => {
+      cancelled = true;
+      revert?.();
+    };
+  }, []);
+
   return (
     <SiteChrome site={site} chrome="canvas">
       <main id="main">
-        <PageHero
-          eyebrow={page.hero.eyebrow}
-          heading={page.hero.heading}
-          subheadline={page.hero.subheadline}
-          photo={page.hero.photo}
-        />
+        <section
+          ref={containerRef}
+          {...revealAttrs("stagger")}
+          className="relative flex min-h-[150svh] w-full flex-col justify-end overflow-hidden bg-ink -mt-[var(--chrome-h)] pt-[calc(var(--chrome-h)+theme(spacing.16))] pb-16 sm:pb-24 lg:pb-32"
+        >
+          {/* Parallax background wrapper: oversized height ensures clean vertical travel */}
+          <div
+            ref={imageWrapperRef}
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-[15%] left-0 right-0 h-[130%] w-full select-none will-change-transform"
+          >
+            <Photo photo={page.photo} priority sizes="100vw" fit="cover" />
+          </div>
 
-        <Section tone="canvas" density="compact" reveal="stagger">
-          <Container>
-            <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-12">
-              <div className="flex flex-col gap-5 lg:col-span-5">
-                <div {...revealStep(0)}>
-                  <p className="eyebrow">{page.officesIntro.eyebrow}</p>
-                </div>
+          {/* Architectural gradient scrims ensuring WCAG AAA text contrast */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-ink/90 via-ink/40 to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/85 to-transparent via-65%"
+          />
 
-                <div {...revealStep(1)}>
-                  <Heading as="h2" voice="serif" className="max-w-[20ch]">
-                    {page.officesIntro.heading}
-                  </Heading>
-                </div>
-
-                <div {...revealStep(2)}>
-                  <Text className="text-ink-muted">
-                    {page.officesIntro.body}
-                  </Text>
-                </div>
-
-                <div {...revealStep(2)} className="overflow-hidden">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-200">
-                    <Photo
-                      photo={page.officesIntro.photo}
-                      sizes="(min-width: 1024px) 38vw, 95vw"
-                    />
-                  </div>
-                </div>
-
-                <div
-                  {...revealStep(3)}
-                  className="mt-2 flex flex-wrap items-center gap-4"
-                >
-                  <Button href={whatsappHref} external arrow>
-                    Escribir por WhatsApp
-                  </Button>
-                  {site.contact[0] ? (
-                    <Button
-                      href={site.contact[0].href}
-                      variant="secondary"
-                      size="sm"
-                      arrow
-                    >
-                      {`Llamar al ${site.contact[0].value}`}
-                    </Button>
-                  ) : null}
-                </div>
+          {/* Bottom-anchored monumental direct contact stage */}
+          <Container className="relative z-20 w-full">
+            <div {...revealStep(0)} className="max-w-[48rem]">
+              <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
+                <p className="eyebrow !text-white/85">{page.eyebrow}</p>
+                <span className="label text-white/70">
+                  Oaxaca · Costa e Istmo
+                </span>
               </div>
 
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-7">
-                {site.offices.map((office, idx) => (
-                  <div
-                    key={office.city}
-                    {...revealStep(idx)}
-                    className="flex flex-col justify-between border-t border-bone-200 pt-6"
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="label tabular-nums text-brand-800">
-                        {`SEDE 0${idx + 1}`}
-                      </span>
-                      <span className="label text-ink-muted">
-                        {office.region}
-                      </span>
-                    </div>
-                    <div className="mt-6">
-                      <Heading as="h3" voice="serif" sizeClassName="text-xl">
-                        {office.city}
-                      </Heading>
-                      <Text size="sm" className="mt-2 text-ink-muted">
-                        Atención presencial y supervisión de proyectos en{" "}
-                        {office.city} ({office.region}).
-                      </Text>
-                    </div>
-                  </div>
-                ))}
+              <Heading
+                voice="serif"
+                sizeClassName="text-[2.25rem] leading-[1.08] text-white sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] max-w-[20ch]"
+              >
+                {page.heading}
+              </Heading>
 
-                <div
-                  {...revealStep(2)}
-                  className="border-t border-bone-200 pt-8 sm:col-span-2"
+              <p className="mt-6 max-w-[56ch] text-base leading-relaxed text-white/85 sm:text-lg">
+                {page.body}
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-5 sm:gap-6">
+                <Button
+                  href={whatsappWithPrefill}
+                  variant="primary"
+                  size="md"
+                  external
+                  arrow
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-4 border-b border-bone-200 pb-4">
-                    <p className="label text-brand-800">
-                      Líneas directas y correo electrónico
-                    </p>
-                    <ul className="flex items-center gap-4">
-                      {site.social.map((link) => (
-                        <li key={link.label}>
-                          <SocialLinkItem link={link} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  Escribir por WhatsApp
+                </Button>
 
-                  <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-3">
-                    {site.contact.map((line) => (
+                <Button
+                  href={contactModal ? undefined : whatsappWithPrefill}
+                  onClick={
+                    contactModal
+                      ? () => {
+                          contactModal.openContactModal();
+                        }
+                      : undefined
+                  }
+                  variant="outline"
+                  size="md"
+                  arrow
+                >
+                  Iniciar consulta
+                </Button>
+              </div>
+            </div>
+
+            {/* Information Grid: Channels, Hours, Location & Google Maps Widget */}
+            <div
+              {...revealStep(1)}
+              className="mt-14 grid grid-cols-1 gap-12 sm:mt-16 lg:mt-20 lg:grid-cols-12 lg:gap-14 items-start"
+            >
+              {/* Left Column: Direct telephone lines, operating hours & address */}
+              <div className="flex flex-col gap-10 lg:col-span-6 xl:col-span-6">
+                {/* Telephone lines with roles */}
+                <div>
+                  <span className="label text-white/70 block mb-4">
+                    Líneas directas de atención
+                  </span>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {page.phones.map((phone) => (
                       <a
-                        key={line.href}
-                        href={line.href}
-                        className="flex flex-col gap-1 border-b border-bone-200 pb-3 transition-colors hover:border-brand-800"
+                        key={phone.number}
+                        href={phone.href}
+                        className="group flex flex-col justify-between p-4 bg-white/[0.04] hover:bg-white/[0.08] transition-colors duration-200 min-h-[44px]"
                       >
-                        <span className="label text-ink-muted">
-                          {line.label}
+                        <span className="label text-white/60 text-[0.6875rem]">
+                          {phone.role}
                         </span>
-                        <span className="mt-1 flex items-center gap-2 text-sm font-medium text-ink tabular-nums">
+                        <span className="mt-2 flex items-center gap-2.5 text-base sm:text-lg font-medium text-white tabular-nums group-hover:text-concha-nacar transition-colors">
                           <Icon
-                            name={
-                              line.href.startsWith("mailto:") ? "mail" : "phone"
-                            }
-                            className="h-4 w-4 text-brand-800"
+                            name="phone"
+                            className="h-4 w-4 text-brand-500 shrink-0"
                           />
-                          <span className="truncate">{line.value}</span>
+                          <span>{phone.number}</span>
                         </span>
                       </a>
                     ))}
                   </div>
                 </div>
+
+                {/* Operating hours & email */}
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div>
+                    <span className="label text-white/70 block mb-3">
+                      Horarios de atención
+                    </span>
+                    <ul className="flex flex-col gap-2.5">
+                      {page.schedule.map((slot) => (
+                        <li key={slot.label} className="text-sm leading-snug">
+                          <span className="block font-medium text-white">
+                            {slot.label}
+                          </span>
+                          <span className="text-white/75 text-xs sm:text-sm">
+                            {slot.hours}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <span className="label text-white/70 block mb-3">
+                      Correo electrónico
+                    </span>
+                    <a
+                      href={page.email.href}
+                      className="group inline-flex items-center gap-2.5 text-sm sm:text-base font-medium text-white hover:text-concha-nacar transition-colors py-1.5 min-h-[44px]"
+                    >
+                      <Icon
+                        name="mail"
+                        className="h-4 w-4 text-brand-500 shrink-0"
+                      />
+                      <span className="break-all">{page.email.value}</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Physical address */}
+                <div>
+                  <span className="label text-white/70 block mb-2">
+                    {page.address.label}
+                  </span>
+                  <p className="text-base text-white/90 leading-relaxed">
+                    {page.address.street}
+                    <br />
+                    {page.address.neighborhood}, {page.address.city}
+                  </p>
+                  <div className="mt-4">
+                    <Button
+                      href={page.address.mapsUrl}
+                      external
+                      variant="outline"
+                      size="sm"
+                      arrow
+                    >
+                      Abrir en Google Maps
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Google Maps Widget Embed */}
+              <div className="flex flex-col gap-4 lg:col-span-6 xl:col-span-6">
+                <span className="label text-white/70 block">
+                  Mapa de localización · Puerto Escondido
+                </span>
+                <div className="relative w-full overflow-hidden bg-white/5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]">
+                  <iframe
+                    src={page.address.embedUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen={false}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Ubicación de Constructora Casa Alta en Google Maps"
+                    className="h-full w-full border-0"
+                  />
+                </div>
+                <p className="text-xs text-white/60">
+                  Colonia Brisas de Zicatela · Atención presencial con cita previa.
+                </p>
               </div>
             </div>
           </Container>
-        </Section>
-
-        <ContactForm
-          id="formulario"
-          contact={contact}
-          whatsappHref={whatsappHref}
-          photo={homeContactPhotoFallback(page)}
-        />
+        </section>
       </main>
     </SiteChrome>
   );
-}
-
-function homeContactPhotoFallback(page: ContactPageContent) {
-  return page.officesIntro.photo;
 }

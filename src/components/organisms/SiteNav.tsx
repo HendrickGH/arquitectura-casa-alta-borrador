@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Icon } from "@/components/atoms/Icon";
+import { useContactModal } from "@/components/organisms/ContactModalContext";
 import { useNavOpen } from "@/components/organisms/MotionShell";
 import { NavItem } from "@/components/molecules/NavItem";
 import { SocialLinkItem } from "@/components/molecules/SocialLinkItem";
@@ -41,6 +42,7 @@ const XL_QUERY = "(min-width: 1280px)";
  */
 export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
   const { open, setOpen } = useNavOpen();
+  const contactModal = useContactModal();
 
   // Lock scroll while open, close on Escape, and close if the viewport crosses
   // into `xl` (where the inline nav takes over).
@@ -83,7 +85,7 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
         <nav aria-label="Principal">
           <ul className="flex flex-col">
             {nav.map((link) => (
-              <li key={link.href} className="border-b border-bone-200">
+              <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={close}
@@ -135,7 +137,18 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
           </ul>
         </nav>
 
-        <Button href={cta.href} size="sm" className="chrome-cta shrink-0 max-sm:px-4">
+        <Button
+          href={contactModal ? undefined : cta.href}
+          onClick={
+            contactModal
+              ? () => {
+                  contactModal.openContactModal();
+                }
+              : undefined
+          }
+          size="sm"
+          className="chrome-cta shrink-0 max-sm:px-4"
+        >
           {cta.label}
         </Button>
 

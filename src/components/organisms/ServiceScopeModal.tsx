@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { Button } from "@/components/atoms/Button";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Text } from "@/components/atoms/Text";
+import { useContactModal } from "@/components/organisms/ContactModalContext";
 import type { Service } from "@/types/content";
 
 interface ServiceScopeModalProps {
@@ -13,7 +15,7 @@ interface ServiceScopeModalProps {
   partidaIndex: number;
   totalPartidas: number;
   onClose: () => void;
-  whatsappHref?: string;
+  whatsappHref: string;
   contactAnchorId?: string;
 }
 
@@ -22,7 +24,7 @@ interface ServiceScopeModalProps {
  *
  * Displays the complete technical deliverables, executive scope checklist,
  * and dual consultation actions (smooth scroll to #contacto and direct WhatsApp)
- * adhering strictly to the Cosentino Architectural Editorial contract:
+ * adhering strictly to the Architectural Editorial contract:
  * 0px orthogonal geometry, Marcellus/Montserrat typography, and keyboard focus trap.
  */
 export function ServiceScopeModal({
@@ -30,13 +32,15 @@ export function ServiceScopeModal({
   partidaIndex,
   totalPartidas,
   onClose,
-  whatsappHref = "https://wa.me/529514581395",
+  whatsappHref,
   contactAnchorId = "contacto",
 }: ServiceScopeModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const triggerElementRef = useRef<HTMLElement | null>(null);
+  const contactModal = useContactModal();
+  const router = useRouter();
 
   useEffect(() => {
     if (!service) return;
@@ -116,13 +120,22 @@ export function ServiceScopeModal({
   })();
 
   const handleConsultarPresupuesto = () => {
+    triggerElementRef.current = null;
     onClose();
     window.setTimeout(() => {
+      if (contactModal) {
+        contactModal.openContactModal();
+        return;
+      }
       const contactEl = document.getElementById(contactAnchorId);
       if (contactEl) {
         contactEl.scrollIntoView({ behavior: "smooth" });
+        const focusable = contactEl.querySelector<HTMLElement>(
+          "input, textarea, select, button",
+        );
+        focusable?.focus({ preventScroll: true });
       } else {
-        window.location.hash = `#${contactAnchorId}`;
+        router.push("/contacto");
       }
     }, 120);
   };
@@ -139,10 +152,10 @@ export function ServiceScopeModal({
       <div
         ref={dialogRef}
         onClick={(e) => e.stopPropagation()}
-        className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto border border-bone-200 bg-canvas p-6 text-ink shadow-2xl sm:p-8 md:p-10"
+        className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto bg-canvas p-6 text-ink shadow-2xl sm:p-8 md:p-10"
       >
         {/* Top Header bar: Technical Partida Identifier and 0px Close Button */}
-        <div className="flex items-start justify-between gap-4 border-b border-bone-200 pb-5">
+        <div className="flex items-start justify-between gap-4 pb-5">
           <div className="flex flex-col gap-1">
             <span className="label text-brand-800 tabular-nums">
               {`Partida ${numStr} / ${totalStr} · ${service.items.length} alcances`}
@@ -154,7 +167,7 @@ export function ServiceScopeModal({
             type="button"
             onClick={onClose}
             aria-label="Cerrar detalle de partida"
-            className="group inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center border border-bone-200 bg-canvas text-ink transition-colors hover:border-ink hover:bg-bone-100 focus-visible:outline-2 focus-visible:outline-brand-800"
+            className="group inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 focus-visible:outline-2 focus-visible:outline-brand-800"
           >
             <Icon name="close" className="h-4 w-4 transition-transform group-hover:scale-110" />
           </button>
@@ -178,7 +191,7 @@ export function ServiceScopeModal({
         </div>
 
         {/* Technical Deliverables Checklist */}
-        <div className="mt-8 border-t border-bone-200 pt-6">
+        <div className="mt-8 pt-6">
           <span className="label mb-4 block text-ink">
             Alcances y entregables ejecutivos:
           </span>
@@ -197,7 +210,7 @@ export function ServiceScopeModal({
         </div>
 
         {/* Dual Conversion Actions Footer */}
-        <div className="mt-10 flex flex-col gap-4 border-t border-bone-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <Button
             variant="primary"
             onClick={handleConsultarPresupuesto}

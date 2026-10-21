@@ -14,8 +14,8 @@ import type { SectionIntro, SpaceCategory, ThematicPillar } from "@/types/conten
 
 export const interiorsPageContent = {
   hero: {
-    eyebrow: "Arquitectura de interiores · Cosentino",
-    heading: "Materiales de importación e interiorismo residencial",
+    eyebrow: "Arquitectura de interiores · Acabados de alta gama",
+    heading: "Acabados de Alta Gama y Superficies de Importación",
     subheadline:
       "Materiales de importación para proyectos residenciales, instalación certificada y garantizada.",
     dir: "arquitectura-interiores",
@@ -29,18 +29,19 @@ export const interiorsPageContent = {
       { id: "all", label: "Todos los espacios" },
       { id: "cocinas", label: "Cocinas e islas" },
       { id: "banos", label: "Baños residenciales" },
+      { id: "terrazas", label: "Terrazas y barras exteriores" },
       { id: "interiores", label: "Comedores y galerías" },
       { id: "showroom", label: "Showroom y convivencia" },
     ] satisfies Array<{ id: SpaceCategory; label: string }>,
   },
-  cosentino: {
-    eyebrow: "Alianza y certificación técnica",
-    heading: "Arquitectura de interiores / Cosentino",
+  surfaces: {
+    eyebrow: "Instalación y certificación técnica",
+    heading: "Acabados de Alta Gama y Superficies de Importación",
     claim:
       "Materiales de importación para proyectos residenciales, instalación certificada y garantizada.",
     body: "Un espacio residencial se experimenta a través de las superficies que se tocan todos los días. En Casa Alta proyectamos, fabricamos e instalamos cocinas integrales, islas monolíticas, baños, vestidores y recubrimientos arquitectónicos utilizando superficies ultracompactas y piedras de importación con mano de obra certificada y garantía por escrito.",
     badges: [
-      "Superficies Cosentino de importación",
+      "Acabados de Alta Gama y Superficies de Importación",
       "Instalación certificada y garantizada",
       "Cocinas e islas a medida",
       "Carpintería y herrajes residenciales",
@@ -70,13 +71,13 @@ export const interiorsPageContent = {
       },
       {
         number: "03",
-        title: "Instalación certificada y garantizada",
+        title: "Garantía técnica y despiece milimétrico",
         description:
           "El mejor material falla si su corte o colocación es improvisado. Nuestro equipo ejecuta el despiece milimétrico, transporte especializado y montaje certificado en sitio con garantía directa de Casa Alta.",
         items: [
-          "Levantamiento láser y despiece técnico previo a corte",
-          "Colocación certificada con adhesivos y selladores específicos",
-          "Garantía por escrito en materiales y mano de obra",
+          "Cero fisuras: juntas imperceptibles con adhesivos epóxicos de curado controlado.",
+          "Nivelación milimétrica: control láser en sustratos y cubiertas de gran formato.",
+          "Sellado bioclimático: aislamiento elástico de alta resistencia al salitre y la humedad costera.",
         ],
       },
     ] satisfies ThematicPillar[],
@@ -99,12 +100,12 @@ export const sustainabilityPageContent = {
     heading: "Construcción sustentable para el clima de Oaxaca",
     subheadline:
       "Optimizamos la carga térmica y acústica con vientos cruzados, luz natural filtrada y materiales sostenibles de bajo impacto.",
-    dir: "arquitectura-sostenible",
-    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
+    dir: "02-el-bicho",
+    base: "01-fachada-tres-palapas-alberca",
   },
   narrative: {
     eyebrow: "Manifiesto bioclimático",
-    heading: "El lujo de habitar un espacio verdaderamente fresco",
+    heading: "Diseño en armonía con el entorno",
     // Exact verbatim copy provided by the client ("no cambiar nada").
     verbatimQuote:
       "Proyecto de arquitectura sostenible para un clima y ambiente tropical . En donde se optimiza la carga térmica y acústica usando materiales sostenibles que reducen el uso de energias artificiales optimizando lo vientos cruzados y la buena ventalacion , arquitectura de playa que funciona para espacios donde la densidad térmica es muy alta dando como resultado espacios amplios y frescos donde el lujo está en sentirse cómoda realmente y contento con el espacio y uno mismo .",
@@ -112,39 +113,52 @@ export const sustainabilityPageContent = {
       "En la costa y el Istmo de Oaxaca, construir contra el clima encarece el mantenimiento y obliga a depender día y noche del aire acondicionado. En Casa Alta partimos de la orientación solar, los vientos dominantes del mar y la masa térmica de los materiales antes de trazar el primer muro.",
       "Combinamos técnicas constructivas tradicionales de la región —acabados minerales en chukum, celosías de barro cocido, maderas certificadas y cubiertas ventiladas de palma natural— con ingeniería contemporánea de captación pluvial, biodigestores y energía solar.",
     ],
+    ctaLabel: "Planear un proyecto bioclimático",
+    ctaHref: "/contacto",
   },
   pillars: [
     {
       number: "01",
-      title: "Vientos cruzados y ventilación pasiva",
+      title: "Eficiencia energética pasiva y ventilación cruzada",
       description:
         "Orientamos vanos, corredores, dobles alturas y muros de celosía para acelerar el paso de la brisa marina y evacuar el aire caliente por convección natural sin consumo eléctrico.",
       items: [
         "Muros de celosía geométrica y de barro para filtrar el sol directo",
-        "Vanos de doble altura y patios interiores con espejo de agua",
-        "Cubiertas altas de palapa que disipan el calor acumulado",
+        "Vanos de doble altura y patios interiores con ventilación convectiva",
+        "Orientación estratégica respecto a los vientos dominantes del mar",
       ],
     },
     {
       number: "02",
-      title: "Optimización de carga térmica y acústica",
+      title: "Maderas tropicales curadas y cubiertas de palma",
       description:
-        "Reducimos la ganancia de calor en muros y losas mediante materiales de baja conductividad térmica, aleros profundos y vegetación endémica que genera microclimas frescos alrededor de la casa.",
+        "Estructuras de madera de la región tratadas para resistir la intemperie costera, integradas con cubiertas de palapa tejida que disipan la radiación térmica y refrescan los espacios interiores.",
       items: [
-        "Acabados minerales en chukum y tonos tierra de baja reflectancia",
-        "Losas aligeradas con aislamiento térmico y acústico",
-        "Conservación de palmeras e integración de jardines nativos de bajo riego",
+        "Curado preventivo de maderas contra salitre, termita y humedad",
+        "Palapas de alta disipación térmica y renovación continua de aire",
+        "Ensambles tradicionales reforzados con herrajes marinos inoxidables",
       ],
     },
     {
       number: "03",
-      title: "Autonomía hídrica y eficiencia energética",
+      title: "Materiales locales y acabados minerales de bajo impacto",
       description:
-        "Integramos sistemas activos de bajo impacto ambiental para que el edificio consuma menos recursos durante toda su vida útil, especialmente en zonas costeras donde la infraestructura municipal es limitada.",
+        "Selección de materiales autóctonos con baja huella de carbono y sistemas hidrosanitarios autónomos que protegen los mantos freáticos y el suelo en zonas donde la red municipal es limitada.",
       items: [
-        "Sistemas de energía renovable y paneles solares integrados",
-        "Captación de agua pluvial, plantas de tratamiento y biodigestores",
-        "Iluminación LED cálida de bajo consumo y equipos ahorradores",
+        "Acabados minerales en chukum y tonos tierra de bajo impacto ambiental",
+        "Losas aligeradas con aislamiento térmico y acústico continuo",
+        "Captación pluvial, plantas de tratamiento y biodigestores ecológicos",
+      ],
+    },
+    {
+      number: "04",
+      title: "Cimentaciones sismorresistentes y cálculo estructural",
+      description:
+        "Ingeniería civil calculada en gabinete para la sismicidad y topografía real de Oaxaca, garantizando seguridad estructural y durabilidad patrimonial frente a la corrosión marina.",
+      items: [
+        "Ingeniería calculada para la sismicidad de Oaxaca y suelo de playa",
+        "Zapatas marinas y cimentaciones protegidas contra corrosión salina",
+        "Supervisión directa de armados de acero y pruebas de resistencia de concreto",
       ],
     },
   ] satisfies ThematicPillar[],
@@ -162,7 +176,7 @@ export const sustainabilityPageContent = {
 
 export const aboutPageContent = {
   hero: {
-    eyebrow: "Constructora Casa Alta · Desde 2016",
+    eyebrow: "",
     heading: "Ingeniería, oficio y presencia real en cada obra",
     subheadline:
       "Más de 150 obras entregadas y 50,000 m² construidos en la Costa, Valles Centrales, Sierra e Istmo de Oaxaca.",
@@ -171,18 +185,16 @@ export const aboutPageContent = {
   },
   story: {
     eyebrow: "Nuestra identidad",
-    heading: "CASA ALTA: Arquitectura que perdura",
+    heading: "Construir con dignidad lo que se proyecta con sensibilidad",
     paragraphs: [
-      "Fundada en 2016 bajo la dirección del Arq. Felipe Humberto Hernández Bejarano, Constructora Casa Alta nació en Oaxaca con una convicción clara: unir la sensibilidad del diseño arquitectónico con el rigor técnico de la ingeniería civil y la supervisión directa en campo.",
-      "Contamos con oficinas operativas en Puerto Escondido y Salina Cruz, cuadrillas uniformadas, flotilla propia y residentes de obra que supervisan personalmente cada etapa constructiva —desde el trazo topográfico y el armado de acero de cimentación hasta el último detalle de carpintería e iluminación.",
-      "Construir lejos de su lugar de residencia o invertir el patrimonio familiar exige confianza absoluta. Por eso trabajamos con contratos claros, presupuestos sin partidas ocultas, cumplimiento del 100% en tiempos pactados y garantía por escrito post-entrega.",
+      "Fundada en Oaxaca, Casa Alta integra taller de diseño arquitectónico y empresa constructora bajo una misma responsabilidad técnica. Proyectamos con sensibilidad espacial y ejecutamos con el rigor que exige el suelo y el clima de nuestra tierra, sin intermediarios ni atajos.",
     ],
     missionTitle: "Misión",
     mission:
-      "Ser una empresa que solucione todas las soluciones constructivas y dar función y carácter a cada proyecto que llega a nuestras manos.",
+      "Dar certeza técnica, legal y estética a cada espacio que construimos, respaldando su patrimonio desde el primer trazo.",
     visionTitle: "Filosofía",
     vision:
-      "La arquitectura es el medio de expresión donde se crea el espacio íntimo que envuelve al ser para su desarrollo.",
+      "La arquitectura es el medio de expresión en donde se combina la proporción, el diseño y la línea para lograr construir obras que edifiquen la vida del ser humano.",
   },
   credibilityIntro: {
     eyebrow: "Credibilidad en campo",
@@ -192,21 +204,21 @@ export const aboutPageContent = {
   credibilityHighlights: [
     {
       number: "01",
-      title: "Supervisión técnica permanente",
+      title: "Cálculo propio",
       description:
-        "Arquitectos e ingenieros residentes verifican en sitio el trazo topográfico, armado de parrillas de cimentación, calidad de concreto, casetones y nivelación láser.",
+        "Ingeniería civil calculada en casa para la sismicidad y topografía real de Oaxaca, sin subcontratar la seguridad estructural.",
     },
     {
       number: "02",
-      title: "Capacidad operativa y logística propia",
+      title: "Supervisión en sitio",
       description:
-        "Flotilla oficial, bodegas de insumos y red de proveedores consolidada en Puerto Escondido, Oaxaca centro y Salina Cruz para garantizar el abasto sin retrasos.",
+        "Presencia permanente de arquitectos e ingenieros de la firma en cada colado, armado de acero y etapa constructiva.",
     },
     {
       number: "03",
-      title: "Certeza jurídica y garantía por escrito",
+      title: "Certeza patrimonial",
       description:
-        "Cada paquete contratado incluye proyecto ejecutivo completo, contrato con especificaciones y plazos fijos, y póliza de garantía posterior a la entrega de llaves.",
+        "Contratos transparentes, presupuestos cerrados sin partidas ocultas y póliza de garantía post-entrega por escrito.",
     },
   ] satisfies ThematicPillar[],
   enduringIntro: {
@@ -214,7 +226,53 @@ export const aboutPageContent = {
     heading: "Espacios que sostienen su valor en el tiempo",
     body: "Cuando la cimentación, la estructura y los acabados se supervisan sin atajos, la arquitectura conserva su belleza y su valor patrimonial año tras año.",
   } satisfies SectionIntro,
+  methodologyIntro: {
+    eyebrow: "Metodología de obra",
+    heading: "Cómo transformamos el terreno en arquitectura",
+    body: "Tres fases maestras de rigor técnico sin intermediarios, desde el cálculo inicial hasta la entrega final.",
+  } satisfies SectionIntro,
+  methodology: [
+    {
+      number: "01",
+      kicker: "Gabinete técnico · Cálculo estructural",
+      title: "Proyecto ejecutivo y cálculo estructural",
+      description:
+        "Desarrollamos la arquitectura integral y la memoria de cálculo sismorresistente antes de iniciar faena en el terreno. Cada detalle constructivo e hidrosanitario queda resuelto en plano.",
+      deliverable: "Memoria de cálculo y planos ejecutivos firmados",
+      dir: "proyectos-integrales",
+      base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
+      photoAlt:
+        "Arquitectos de Casa Alta revisando planos ejecutivos y memorias de cálculo estructural en mesa de trabajo",
+    },
+    {
+      number: "02",
+      kicker: "Faena en terreno · Residencia de obra",
+      title: "Cimentación y supervisión técnica en sitio",
+      description:
+        "Dirección técnica permanente con ingenieros y cuadrilla propia de la firma. Verificamos armados de acero, zapatas sismorresistentes y la resistencia del concreto en cada colado.",
+      deliverable:
+        "Bitácora de obra en sitio y verificación de laboratorio de concreto",
+      dir: "credibilidad",
+      base: "06-armado-acero-estructural-zapata-trabajador-casa-alta",
+      photoAlt:
+        "Personal técnico de Casa Alta supervisando el armado de acero estructural en zapata de cimentación",
+    },
+    {
+      number: "03",
+      kicker: "Materialidad noble · Entrega llave en mano",
+      title: "Acabados de autor y garantía patrimonial",
+      description:
+        "Integramos maderas tropicales curadas, cantera local y herrería artesanal. Entregamos la obra con finiquito cerrado sin sobrecostos y póliza de garantía post-entrega por escrito.",
+      deliverable: "Póliza de garantía por escrito y finiquito sin costos ocultos",
+      dir: "arquitectura-que-perdura",
+      base: "01-comedor-exterior-madera-bajo-palapa-lamparas-tejidas",
+      photoAlt:
+        "Espacio arquitectónico terminado con ensamble de madera noble, palapa e iluminación en Oaxaca",
+    },
+  ],
 };
+
+export const aboutPage = aboutPageContent;
 
 export const servicesPageContent = {
   hero: {
@@ -233,16 +291,26 @@ export const servicesPageContent = {
     base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
     photoCaption: "Ingeniería y proyecto ejecutivo en gabinete",
   },
+  catalog: {
+    eyebrow: "Catálogo técnico",
+    heading: "Alcances por etapa de proyecto y construcción.",
+    body: "Contrate el desarrollo integral llave en mano o la especialidad técnica que su obra requiera.",
+  },
   specialties: {
     eyebrow: "Evidencia técnica en sitio",
     heading: "Nuestras divisiones en ejecución real",
     body: "Registro fotográfico directo de nuestras cuadrillas, maquinaria pesada y mesas de ingeniería resolviendo proyectos ejecutivos, obra civil, naves industriales y remodelaciones.",
+    deliverablesLabel: "Entregables clave de ingeniería:",
+    ctaLabel: "Solicitar asesoría técnica",
+    ctaHref: "#contacto",
+    closeLabel: "Cerrar",
     sections: [
       {
         slug: "proyectos-integrales",
         number: "01",
         title: "Proyectos arquitectónicos y ejecutivos integrales",
-        subtitle: "Planeación · Cálculo estructural · Planos de detalle",
+        shortTitle: "Planeación",
+        subtitle: "Planeación",
         description:
           "Toda gran obra se resuelve primero en el gabinete de ingeniería. Nuestro equipo desarrolla el paquete estándar completo: anteproyecto, planos ejecutivos de albañilería e instalaciones, memorias de cálculo estructural y visualización arquitectónica.",
         deliverables: [
@@ -252,13 +320,14 @@ export const servicesPageContent = {
           "Renders de alta calidad y catálogo de conceptos con presupuesto",
         ],
         dir: "proyectos-integrales",
-        maxPhotos: 3,
+        base: "02-detalle-revision-plano-ingenieria-detalle-constructivo",
       },
       {
         slug: "obra-civil-pesada",
         number: "02",
         title: "Ingeniería civil, puentes y concreto presforzado",
-        subtitle: "Infraestructura · Grúas de gran tonelaje · Prefabricados",
+        shortTitle: "Infraestructura",
+        subtitle: "Infraestructura",
         description:
           "Ejecutamos obra civil de alta complejidad: cimentaciones profundas, izado y montaje de columnas y capiteles prefabricados con grúas telescópicas, trabes cajón para puentes vehiculares y peatonales, y pavimentación con concreto hidráulico.",
         deliverables: [
@@ -268,13 +337,14 @@ export const servicesPageContent = {
           "Cimentaciones profundas, dados, zapatas y control topográfico",
         ],
         dir: "obra-civil",
-        maxPhotos: 12,
+        base: "02-montaje-columna-prefabricada-en-candelero-cimentacion",
       },
       {
         slug: "naves-industriales",
         number: "03",
         title: "Naves industriales y edificación comercial",
-        subtitle: "Grandes claros · Prefabricados · Estructura metálica",
+        shortTitle: "Estructura metálica",
+        subtitle: "Estructura metálica",
         description:
           "Construimos naves industriales, bodegas, centros comerciales y hoteles con sistemas prefabricados de concreto de gran altura y estructuras metálicas que reducen los tiempos de montaje y aseguran plazos firmes de apertura.",
         deliverables: [
@@ -284,13 +354,14 @@ export const servicesPageContent = {
           "Locales comerciales, hoteles y desarrollos de usos mixtos",
         ],
         dir: "naves-industriales",
-        maxPhotos: 1,
+        base: "01-maniobra-gruas-izado-muros-prefabricados-concreto",
       },
       {
         slug: "remodelacion-residencial",
         number: "04",
         title: "Remodelación, ampliación y modernización residencial",
-        subtitle: "Intervención estructural · Nuevas fachadas · Acabados",
+        shortTitle: "Acabados",
+        subtitle: "Acabados",
         description:
           "Transformamos inmuebles existentes mediante refuerzo estructural, rediseño de volumetría y fachadas, renovación de instalaciones y aplicación de acabados contemporáneos sin demoler el patrimonio previo.",
         deliverables: [
@@ -300,27 +371,58 @@ export const servicesPageContent = {
           "Renovación integral de interiores, baños, cocinas e iluminación",
         ],
         dir: "remodelacion",
-        maxPhotos: 6,
+        base: "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
       },
     ],
   },
 };
 
 export const contactPageContent = {
-  hero: {
-    eyebrow: "Contacto directo · Puerto Escondido y Salina Cruz",
-    heading:
-      "Hablemos de su proyecto en la costa, el valle o el Istmo de Oaxaca",
-    subheadline:
-      "En nuestra primera sesión gratuita por Zoom o en oficina revisamos ubicación, programa arquitectónico, viabilidad estructural y presupuesto estimado.",
-    dir: "proyectos-integrales",
-    base: "03-sesion-trabajo-revision-proyecto-ejecutivo-oficina",
+  eyebrow: "Contacto directo · Estudio y Obra",
+  heading: "Hablemos de su proyecto en la costa, el valle o el Istmo de Oaxaca",
+  body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
+  dir: "02-el-bicho",
+  base: "01-fachada-tres-palapas-alberca",
+  photoAlt:
+    "Fachada de tres palapas y alberca en El Bicho, proyecto residencial en la costa de Oaxaca por Constructora Casa Alta",
+  address: {
+    label: "Ubicación del estudio",
+    street: "Guerrero s/n, entre Justo Salvador e Hidalgo",
+    neighborhood: "Colonia Brisas de Zicatela",
+    city: "70934 Puerto Escondido, Oax.",
+    full: "Guerrero s/n, entre Justo Salvador e Hidalgo, Colonia Brisas de Zicatela, 70934 Puerto Escondido, Oax.",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Guerrero+s%2Fn%2C+entre+Justo+Salvador+e+Hidalgo%2C+Colonia+Brisas+de+Zicatela%2C+70934+Puerto+Escondido%2C+Oax.",
+    embedUrl:
+      "https://maps.google.com/maps?q=Guerrero+s%2Fn%2C+entre+Justo+Salvador+e+Hidalgo%2C+Colonia+Brisas+de+Zicatela%2C+70934+Puerto+Escondido%2C+Oax.&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
-  officesIntro: {
-    eyebrow: "Sedes y cobertura regional",
-    heading: "Presencia directa en obra en las 8 regiones de Oaxaca",
-    body: "Atendemos de manera directa desde nuestras oficinas en Puerto Escondido y Salina Cruz, coordinando topografía, cálculo estructural, licencias y ejecución llave en mano.",
-    dir: "credibilidad",
-    base: "03-camioneta-constructora-casa-alta-frente-obra",
+  phones: [
+    {
+      role: "Dirección de Obra / DRO",
+      number: "951 458 1395",
+      href: "tel:+529514581395",
+    },
+    {
+      role: "Gabinete de Proyectos y Presupuestos",
+      number: "951 165 0678",
+      href: "tel:+529511650678",
+    },
+  ],
+  schedule: [
+    {
+      label: "Gabinete de Proyectos",
+      hours: "Lun–Vie 09:00 a 18:00 hrs (previa cita)",
+    },
+    {
+      label: "Supervisión de Obra",
+      hours: "Lun–Sáb 08:00 a 14:00 hrs",
+    },
+  ],
+  email: {
+    label: "Correo electrónico",
+    value: "contacto@arquitecturacasaalta.com",
+    href: "mailto:contacto@arquitecturacasaalta.com",
   },
+  whatsappPrefill:
+    "Hola Casa Alta, me gustaría agendar una reunión para cotizar un proyecto arquitectónico.",
 };
