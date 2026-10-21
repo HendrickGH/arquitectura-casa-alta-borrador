@@ -9,8 +9,10 @@ export type IconName =
   | "mail"
   | "arrow-left"
   | "arrow-right"
+  | "arrow-up"
   | "menu"
-  | "close";
+  | "close"
+  | "check";
 
 interface IconProps {
   name: IconName;
@@ -114,6 +116,16 @@ const glyphs: Record<IconName, React.ReactNode> = {
       strokeLinejoin="round"
     />
   ),
+  "arrow-up": (
+    <path
+      d="M12 20V5m-6 6 6-6 6 6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  ),
   menu: (
     <path
       d="M3 6h18M3 12h18M3 18h18"
@@ -130,6 +142,16 @@ const glyphs: Record<IconName, React.ReactNode> = {
       stroke="currentColor"
       strokeWidth="1.6"
       strokeLinecap="round"
+    />
+  ),
+  check: (
+    <path
+      d="M5 12l5 5L20 7"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   ),
 };

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button";
+import { Icon } from "@/components/atoms/Icon";
 import { FormField } from "@/components/molecules/FormField";
 import { cx } from "@/lib/cx";
 import { sendContactMessage } from "@/lib/email/emailjs";
@@ -329,19 +330,7 @@ export function ContactFormFields({
             className="flex items-start gap-3 bg-emerald-50/90 p-4 text-sm text-emerald-900 md:col-span-2"
           >
             <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center bg-emerald-600 text-white">
-              <svg
-                viewBox="0 0 16 16"
-                className="h-3 w-3"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  d="M3 8.5l3.5 3.5 6.5-7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Icon name="check" className="h-3.5 w-3.5" />
             </span>
             <div>
               <p className="font-semibold">{contact.success}</p>
