@@ -403,3 +403,11 @@ header[data-surface="hero"] .chrome-cta:hover {
 		transform: none !important;
 	}
 }
+
+/*
+ * Netlify injects its "Made with Netlify" badge as an iframe with this id. It is
+ * an overlay outside the design system and it must not appear in production.
+ */
+iframe#nl-badge-frame {
+	display: none;
+}
