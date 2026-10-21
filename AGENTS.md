@@ -32,8 +32,7 @@ public/                 served assets. public/images is a generated mirror, giti
 tools/                  the image pipeline plus three site tools. See "Pipeline" below.
 openspec/               SDD artifacts: config, specs, and changes/ with the live change.
 .opencode/skills/       project skills for this repo — loaded automatically in sessions here
-.opencode/plugins/      git guard + formatter plugin. Project-scoped; loads only in this repo.
-opencode.json           project config. Disables the built-in formatters; see "Plugin and formatter".
+opencode.json           project config. Disables built-in formatters so generated manifest.json is not reformatted.
 ```
 
 Measured sizes: `images/` is 215 files / 74 MB, `images-optimizado/` is 808 files / 125 MB,
@@ -203,89 +202,56 @@ trust step.
   set. Use when new images appear.
 - **`web-build`** — builds site markup, SEO metadata, sitemap and schema from `manifest.json`.
   Use when the site must consume the optimized image set.
-- **`git-conventions`** — stages and commits work using this repo's conventional-commit
-  vocabulary, and guards the git-level hazards below. **It must not call `write` or `edit`**: an
-  agent that both writes the files and judges them has no way to catch its own mistakes, and a
-  commit is the hardest thing here to undo. opencode cannot restrict a skill's toolset the way a
-  dedicated read-only agent could, so it is a rule the skill carries. Respect it.
+- **`git-conventions`** — defines how to stage and commit work using this repo's conventional-commit
+  vocabulary and guards the git-level hazards below. Every agent performing changes must follow its conventions before finishing a task.
 
 Project skill directories are repo-owned content, tracked in git like any other file.
 
-## Git conventions
+## Git conventions & mandatory commit policy
 
-**Always run the `git-conventions` skill before staging or committing anything here.** Not only
-for large changes: that skill carries the hazard checks, the work-unit grouping and the ban on
-`git add -A`. A commit made without it is an unreviewed commit. This is **enforced**: the plugin
-blocks `git add` / `commit` / `mv` / `rm` until the skill has been loaded in the session, so a
-mutation cannot happen without it. See "Plugin and formatter".
+**Every agent that makes changes in this repository MUST commit its work before ending its turn or concluding the session.** Leaving an uncommitted working tree or dirty state is strictly forbidden. The agent that writes or modifies code is responsible for inspecting the diff, checking hazards, grouping atomic changes into coherent work units, and executing conventional commits.
 
-Conventional commits, in English, lowercase imperative, one line that says what changed. The
-scopes in use: `web` (`src/` — the Next.js app), `images` (both raw dumps and
-`images-optimizado/`), `tooling`, `agents` (`.opencode/skills/`), `hooks` (`.opencode/plugins/`),
-`docs`, and bare `chore:` for repo housekeeping. `web` was added when the app landed; before that
-there was no scope for application code because there was no application.
+The canonical rules, hazard checks, and staging guidelines are defined in the **`git-conventions`** skill (`.opencode/skills/git-conventions/SKILL.md`). Agents must read and adhere to them directly.
 
-**Never add `Co-Authored-By`, a "Generated with" footer, or any AI attribution.** This is a
-standing rule for this repository.
+> [!IMPORTANT]
+> **No dirty working trees**: Never finish a task without committing your changes.
+> **No external hook dependency**: The previous blocking git hook (`.opencode/plugins/casa-alta.ts`) has been removed. You are directly responsible for version control hygiene — inspect your diff, stage intentionally, and commit.
+> **The author commits**: The agent that implements code, edits content, or adds assets must also stage and commit those changes. Do not leave work uncommitted for another agent or human.
 
-Three hazards are specific to this repo and invisible to a generic git workflow:
+### Commit message rules
 
-1. **`images/` is read-only, including in git.** New raw photos may be added; files already
-   committed there are never modified, moved or deleted.
-2. **Never rename a path that changes a numeric prefix.** Both the project folder (`01-`) and the
-   photo ordinal are published URLs. A `git mv` that renumbers breaks the link and discards
-   search ranking. Reordering is the `order` field in `manifest.json` — never a filesystem path.
-3. **Binaries are permanent.** 215 files / 74 MB under `images/`, 808 files / 125 MB under
-   `images-optimizado/`. There is no `.gitattributes` and no Git LFS, so every raw dump becomes
-   history that cannot be un-added without rewriting published history. Stage deliberately;
-   never `git add -A` after a pipeline run.
+Conventional commits, in English, lowercase imperative, one line that says what changed:
 
-## Plugin and formatter
+`<type>(<scope>): <subject>`
 
-One TypeScript plugin, `.opencode/plugins/casa-alta.ts`, ports the two shell hooks this repo used
-under Hermes. Project plugins load automatically in opencode sessions started inside this repo,
-so the global scope gate the shell scripts needed is gone. It is not advisory —
-`tool.execute.before` can `throw`, which blocks the tool call before it runs.
+- **Types**: `feat`, `fix`, `docs`, `refactor`, `style`, `perf`, `test`, `chore`.
+- **Scopes**:
+  - `web` — `src/` (the Next.js app)
+  - `images` — raw photo additions under `images/` and generated output under `images-optimizado/`
+  - `tooling` — `tools/` pipeline and verification scripts
+  - `agents` — `.opencode/skills/`
+  - `docs` — `AGENTS.md`, `DESIGN.md`, `openspec/`, and other documentation
+  - *(none)* — bare `chore:` for repo housekeeping (`.gitignore`, lockfiles)
+- **Tone**: Lowercase, imperative, no trailing period (e.g. `feat(web): wire responsive modal drawer`). Add a body paragraph only when the *why* is not obvious from the subject.
+- **NEVER add AI attribution**: Absolutely no `Co-Authored-By`, "Generated with", or AI assistant trailers. Commits must look like standard engineering commits.
 
-| Concern | Hook | What it does |
-|---|---|---|
-| Skill gate | `tool.execute.before` on `bash` | **Blocks** `git add` / `git commit` / `git mv` / `git rm` until the `git-conventions` skill has been loaded in the session. Reading commands (`status`, `diff`, `log`) stay ungated. |
-| Git guard | `tool.execute.before` on `bash` | **Blocks** a commit carrying AI attribution, a staged rename that changes a numeric prefix, or a modification to a file already tracked under `images/`. **Warns** (without blocking) above 50 staged files in `images-optimizado/`, or ≥20 MB of new content. |
-| Formatter | `tool.execute.after` on `edit`/`write` | Runs Prettier on `.tsx .ts .jsx .js .mjs .cjs .css .scss` only, and no-ops when no Prettier is found. |
-| Auto-commit | `event` on `session.idle` | **Commits** the working tree as `chore(<scope>): auto-commit N files` when the index is clean. **Refuses** (and warns via a toast plus `.opencode/logs/dirty-tree.log`) when it would touch a hazard: unmerged paths, a numeric-prefix rename, a tracked `images/` modification, >50 files under `images-optimizado/`, or ≥20 MB of new content. |
+### Staging hygiene & work units
 
-Four properties are load-bearing:
+- **Stage deliberately with explicit paths**: Run `git add <path1> <path2>` or targeted directory staging. **NEVER run `git add -A` or `git add .` blindly** across the entire repository.
+- **Group into coherent work units**: One commit per distinct intent. Pair source code with its directly regenerated output or test changes when they belong together. Do not lump unrelated changes across multiple scopes into a single dump.
+- **Inspect before committing**: Always check `git status --short` and `git diff --stat` (plus `--cached`) to confirm only the intended files are staged.
 
-1. **The skill gate is what makes "always run `git-conventions`" true.** opencode has no
-   automatic skill execution: skills load on demand through the `skill` tool. The plugin records
-   a successful `git-conventions` load per session and refuses any *agent-issued* index-mutating
-   git command until then, so the skill's hazard checks and work-unit grouping cannot be skipped
-   by not loading it. The flag is per session and is cleared on restart.
-2. **The git guard cannot surface its warning in-band.** `tool.execute.before` can block but has
-   no advisory channel, so the weight warning goes to stderr and to `.opencode/logs/git-guard.log`
-   (gitignored) instead of into the agent's context. The three denials are unaffected; only the
-   warning lost in-band delivery. Read that log when a large staged change is expected.
-3. **The formatter deliberately skips `.json` and `.md`.** `manifest.json` is generated by
-   `tools/manifest.pl` and reformatting it would create churn against the pipeline that owns it.
-   opencode's built-in formatters are therefore disabled in `opencode.json` (`"formatter": false`)
-   so they cannot touch generated JSON behind the plugin's back. The plugin locates Prettier at
-   `node_modules/.bin/prettier`, then on `PATH`, then in an nvm-managed Node install.
-4. **The auto-commit bypasses the skill gate on purpose, and re-checks the hazards itself.** It
-   is plugin-internal, so no `tool.execute.before` hook fires and no skill load unlocks it; that
-   is why `autoCommitHazard()` re-runs the manual gate's blockers against the index before
-   committing. It does **not** get work-unit grouping or type inference — that lives in the
-   model, not the plugin — so the message is always a scope-only `chore(...)`. It also fires only
-   when the index is clean: a non-empty index belongs to the agent mid-commit.
+### The 5 repository hazards to check before committing
 
-**On leaving the tree clean.** The auto-commit is the deliberate exception to "the human commits
-deliberately": the session ends uncommitted only when a hazard was refused, and then it warns
-instead of committing. It cannot replace `git-conventions` for anything that matters — it cannot
-tell a feature from a fix, group a change into work units, or describe intent — so its history is
-explicitly machine-authored (`chore(<scope>): auto-commit`). Load the skill and commit meaningful
-work units yourself; let the auto-commit be the safety net for what is left over, not the
-narrative of the repository.
+These are specific to this repository and must be checked on every commit:
 
-The plugin uses only Node builtins plus a type-only import of `@opencode-ai/plugin`, so it needs
-no `.opencode/package.json`. Note that **Prettier is not a declared dependency of this repo** — it
-is found through an nvm global install, so the formatting is not reproducible from the lockfile.
-Pin it as a devDependency when that starts to matter.
+1. **`images/` is read-only for tracked files**: 211+ tracked files, ~71 MB. Raw source photos arrive; files already committed there are NEVER modified, moved, or deleted. If your diff touches an existing tracked file under `images/`, stop immediately and restore it. Adding new untracked photos under `images/` is allowed.
+2. **Never rename a path that changes a numeric prefix**: Both project folders (`01-plaza-...`) and photo ordinals (`01-fachada.avif`) are published URLs indexed by search engines. Renaming a numeric prefix breaks live links and discards search ranking. Reordering is handled solely via the `order` field in `manifest.json`, never by moving filesystem paths.
+3. **`images-optimizado/` is generated, and churn must be controlled**: 800+ tracked files, ~125 MB. Re-running the pipeline can rewrite hundreds of binaries. Stage only the specific assets and manifest intended for the change. Never commit mass binary churn without explicit confirmation.
+4. **Binaries are permanent**: There is no Git LFS and no `.gitattributes` filter. Every committed raw photo or binary becomes permanent git history. Confirm byte weights before staging large assets.
+5. **Never commit generated debris**: Check that intermediate files from pipeline runs (`plan.txt`, `manifest.txt`, `/tmp/casa-alta-work/` debris) or scratch files are not inadvertently staged.
+
+### Operational boundaries
+
+- **Commit locally**: Commit to the active branch (e.g., `main`).
+- **Never push or mutate remote history**: Never run `git push`, `git rebase`, `git commit --amend` (on pushed commits), create arbitrary branches, or run `git reset --hard` unless the human explicitly requested that exact operation in the conversation. The agent commits; the human manages the remote.
