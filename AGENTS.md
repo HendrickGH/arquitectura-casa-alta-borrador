@@ -192,6 +192,21 @@ public URLs — are still ahead; see `openspec/changes/casa-alta-web-foundation/
 - **Never publish the 1/5 and 2/5 photos.** 62 of 206 are below portfolio grade and sit at the
   end of each folder. A portfolio is judged by its worst photo.
 
+### Netlify badge suppression (permanent rule)
+
+`src/app/globals.css` keeps a global rule that hides Netlify's "Made with Netlify" badge:
+
+```css
+iframe#nl-badge-frame {
+	display: none;
+}
+```
+
+Netlify injects that iframe into the page at deploy time. It is an overlay outside the design
+system and it must never appear in production. **Keep this rule.** Do not remove it as dead CSS
+during a cleanup, do not scope it behind a breakpoint, and do not replace it with a deploy
+setting — the iframe id is the stable contract, and the rule is the whole fix.
+
 ## Project skills
 
 Three skills live in `.opencode/skills/` and load automatically in sessions started inside this
