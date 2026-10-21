@@ -15,7 +15,7 @@ Casa Alta is an architecture and civil engineering studio in Oaxaca. Its digital
 1. **Photography Leads on Quiet Ground**: High-craft studio photography is the primary carrier of meaning. Below the full-bleed heroes and pinned stages, photographs sit uncropped or in clean `4:3` / `3:4` frames with **zero dark gradient scrims and zero overlaid text**.
 2. **Orthogonal `0px` Geometry (Zero Capsules)**: Architecture is tectonic and orthogonal. Every border-radius token (`--radius-xs` through `--radius-4xl`) is `0px`. Pill badges (`.number-pill`), oval arrow capsules (`.arrow-pill`), and `rounded-full` buttons or tabs are **forbidden**.
 3. **Sole Circular Exception**: The floating WhatsApp trigger (`src/components/organisms/WhatsAppFloat.tsx`, `h-14 w-14 rounded-full`) is the **only** circular element allowed in the entire interface.
-4. **Structural Honesty**: Dividers, numbers, and labels organize information; they never decorate. Blueprint tick-mark gradients (`.ruler-top`, `.ruler-y`) and scroll-distance gimmicks are banned.
+4. **Structural Honesty & Zero Border-Color**: Border lines, dividing hairlines, and box outlines are banned. Dividers, numbers, and labels organize information; they never decorate with strokes. Spatial hierarchy relies entirely on surface contrast and generous whitespace.
 
 ---
 
@@ -69,7 +69,7 @@ The system uses **two** font families loaded in `src/app/layout.tsx`: **Marcellu
 
 ## 4. Ornamentation, Dividers & Numbering
 
-1. **Hairlines Only (`Rule`)**: Remove `.ruler-top` and `.ruler-y` from `src/app/globals.css`. Dividers are clean `1px` solid lines (`border-bone-200` or `border-ink/15` on light surfaces; `border-white/20` on dark surfaces) rendered via `<Rule />` or standard border utilities.
+1. **Strict Ban on Border Colors & Hairline Dividers (Zero Border-Color Contract)**: Border colors and visible border strokes (`border-color`, `border-bone-200`, `border-white/*`, `border-ink/*`, hairline dividers, card borders, section lines) are **strictly forbidden** across the entire website unless explicitly requested in the design specification. Spatial rhythm, grouping, and visual hierarchy must be achieved exclusively through tonal surface alternation (`canvas` vs `bone` vs `ink` vs `concha-nacar`), typography scale, and generous whitespace. Hairlines, card outlines, and section boundary borders must never be introduced.
 2. **No Section or Card Number Pills**: Remove `.number-pill` and `.number-pill-inverse`. Do not prefix section eyebrows, footer columns, or project cards with `(01)`, `(02)`, etc.
 3. **When Numerals Are Permitted**: Plain tabular numerals (`01`, `02`, or `01 / 04` set in `.label tabular-nums`, **without** parentheses or pill borders) are used **only** when the items form a genuine sequence:
    - The 7 methodology steps in `ProcessList` (`01`–`07`).
@@ -97,25 +97,28 @@ All buttons and action links use `0px` corners (`rounded-none`), `.label` typogr
 
 ### 5.2 Tabs & Category Switchers (Cosentino Catalogue Bar)
 
-Used identically in `ServicesIndex`, `ProjectsIndexTemplate`, `CosentinoInspirationExperience`, and `Testimonials`:
+Used identically in `ServicesIndex`, `ProjectsIndexTemplate`, `InteriorsSurfacesExperience`, and `Testimonials`:
 
-- **Container**: `flex flex-wrap items-center gap-6 border-b border-bone-200` (with `role="tablist"`).
-- **Tab Item**: `0px` button (`role="tab"`, `aria-selected`), `min-h-[44px] pb-3 -mb-px label cursor-pointer transition-colors duration-200 border-b-2`.
-- **Active State**: `border-brand-800 text-ink font-medium`.
-- **Inactive State**: `border-transparent text-ink-muted hover:text-ink hover:border-ink/30`.
+- **Zero Border Policy**: Tabs must never render hairline borders, divider strokes, or baseline rules.
+- **Container**: `flex flex-wrap items-center gap-6 md:gap-8` (with `role="tablist"`).
+- **Tab Item**: `0px` button (`role="tab"`, `aria-selected`), `min-h-[44px] pb-2 label cursor-pointer transition-colors duration-200`.
+- **Active State**: `font-semibold text-brand-800` (delineated by typographic weight and brand accent, zero border-color).
+- **Inactive State**: `text-ink-muted hover:text-ink`.
 - **Counts**: Optional count suffix rendered inline as `.label tabular-nums text-ink-muted` (e.g. `Habitacional 06`), never inside a pill badge.
 
 ### 5.3 Form Selector Chips (`src/components/organisms/ContactFormFields.tsx`)
 
-- `0px` rectangular controls: `min-h-[44px] px-4 py-2 border text-xs font-medium tracking-wide transition-colors cursor-pointer`.
-- **Inactive**: `border-bone-200 bg-canvas text-ink-muted hover:border-ink hover:text-ink`.
-- **Selected**: `border-brand-800 bg-brand-50 text-brand-900` (never solid `bg-brand-800`, preserving visual hierarchy for the submit `<Button variant="primary">`).
+- `0px` rectangular controls: `min-h-[44px] px-4 py-2.5 text-xs font-medium tracking-wide transition-colors cursor-pointer`.
+- **Zero Border Policy**: Never apply `border` or `border-color` strokes to form chips.
+- **Inactive**: `bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink`.
+- **Selected**: `bg-brand-50 text-brand-900 font-semibold` (never solid `bg-brand-800`, preserving visual hierarchy for the submit `<Button variant="primary">`).
 
 ### 5.4 Icon Controls (Carousels, Modals, Navigation)
 
-- Prev/next carousel controls (`ProjectCard`, `MasonryGallery`, `Testimonials`) and modal close buttons (`ProjectCaseStudyModal`, lightbox) must be `0px` square buttons with a `44×44px` minimum hit area (`h-11 w-11`).
-- Over photographs: `bg-ink/70 text-white border border-white/25 hover:bg-ink`.
-- On light surfaces: `bg-canvas text-ink border border-bone-200 hover:border-ink`.
+- Prev/next carousel controls and modal close buttons must be `0px` square buttons with a `44×44px` minimum hit area (`h-11 w-11`).
+- **Zero Border Policy**: No hairline or stroke borders.
+- Over photographs: `bg-ink text-white hover:bg-white/10`.
+- On light surfaces: `bg-bone-100 text-ink hover:bg-bone-200`.
 
 ---
 
@@ -158,7 +161,7 @@ Applies to `ProjectsGrid` and `ProjectCard` on landing (`FeaturedPortfolio`) and
 3. **Idle State**: 100% clean architectural photography (`0px` orthogonal corners, `bg-bone-100`). Zero overlaid text, zero scrims, zero summaries, and zero external card bodies.
 4. **Desktop Hover**: Subtle dark gradient scrim (`from-ink/90 via-ink/35 to-transparent`) fades in. Project title (`Marcellus h3`, white) is positioned at bottom-left; project location (`Montserrat .label`, white/90) is positioned at bottom-right. Clicking anywhere opens the full-screen dossier modal (`onSelect`).
 5. **Mobile Touch**: Collapses to single column (`col-span-12`). First tap activates the hover state and reveals a centered `<Button variant="inverse" size="sm" arrow>Conoce más</Button>`. Tapping "Conoce más" opens the dossier modal. Tapping outside deactivates.
-6. **Clean-Ground Pattern (Informational Cards)**: For non-project cards (`Differentiators`, `CosentinoInspirationExperience` space cards, `ServiceRow variant="card"`), metadata and text sit on clean ground below the photograph.
+6. **Clean-Ground Pattern (Informational Cards)**: For non-project cards (`Differentiators`, `InteriorsSurfacesExperience` space cards, `ServiceRow variant="card"`), metadata and text sit on clean ground below the photograph.
 
 #### 6.2.2 Cosentino Material Monolith Pattern (`DivisionCards`)
 
@@ -182,6 +185,32 @@ Applies directly to `src/components/organisms/DivisionCards.tsx` on the landing 
 2. **Monolith Dimensions**: `w-[85vw] sm:w-[50vw] md:w-[420px] lg:w-[480px]`, `h-[580px] sm:h-[620px] lg:h-[680px]`, `0px` orthogonal corners, `border border-white/10 hover:border-white/25`.
 3. **Dual Scrim Gradients**: Top `h-44 bg-gradient-to-b from-ink/85 via-ink/35 to-transparent` protecting the title; bottom `h-80 bg-gradient-to-t from-ink via-ink/85 to-transparent` ensuring absolute legibility for the narrative body and action.
 4. **Typography**: Top title set purely in `Marcellus` (`voice="serif" text-2xl md:text-3xl lg:text-[2rem]`) without secondary kickers or pills; body set in `Montserrat` (`Text size="base" text-white/90 max-w-[42ch]`); action set in `.label text-sm tracking-wider text-white group-hover:text-concha-nacar` with animated directional arrow.
+
+#### 6.2.3 Paired Staggered Monograph Layout (`WhyCasaAltaEditorial`)
+
+Applies directly to `src/components/organisms/WhyCasaAltaEditorial.tsx` on the landing page ("Por qué Casa Alta"):
+
+1. **Section Heading Outside the Zigzag**:
+   - Eyebrow (`.eyebrow`, `Marcellus 400`, `text-brand-800`), Heading (`Marcellus 400`), and Lede narrative (`Text size="lede"`, capped at `max-w-[62ch]`) positioned cleanly at the top of the section with a subtle bottom divider hairline (`border-b border-bone-200 pb-8 mb-16 md:mb-20`), completely outside and above the grid.
+2. **2-Column Paired Staggered Grid with Responsive Overlap (Desktop `>= lg`)**:
+   - Organized across an alternating row-based 12-column CSS Grid (`grid-cols-12`, `lg:gap-y-0`):
+     - **Row 1**: Vertical Photo 01 on left (`col-span-6 col-start-1`), Card 01 on right (`col-span-6 col-start-7`, `lg:self-center`, filling the space next to Photo 01). Card 01 is centered vertically in direct dialogue with Photo 01.
+     - **Row 2**: Card 02 on left (`col-span-6 col-start-1`, `lg:self-center`, `lg:-mt-20 xl:-mt-[100px]`), Vertical Photo 02 on right (`col-span-6 col-start-7`, `lg:-mt-20 xl:-mt-[100px]` taking 80px/100px of Photo 01/Card 01). Card 02 is centered vertically in direct dialogue with Photo 02.
+     - **Row 3**: Vertical Photo 03 on left (`col-span-6 col-start-1`, `lg:-mt-20 xl:-mt-[100px]` taking 80px/100px of Card 02/Photo 02), Card 03 on right (`col-span-6 col-start-7`, `lg:self-center`, `lg:-mt-20 xl:-mt-[100px]`). Card 03 is centered vertically in direct dialogue with Photo 03.
+     - **Row 4**: Card 04 on left (`col-span-6 col-start-1`, `lg:self-center`, `lg:-mt-20 xl:-mt-[100px]`), Vertical Photo 04 on right (`col-span-6 col-start-7`, `lg:-mt-20 xl:-mt-[100px]` taking 80px/100px of Photo 03/Card 03). Card 04 is centered vertically in direct dialogue with Photo 04.
+   - Responsive `lg:-mt-20 xl:-mt-[100px]` vertical overlap applied uniformly to both elements in rows 2–4 ensures:
+     `GAP = H_photo - 2 * Overlap > Height(Card)` with 0px center differential across all pairs, preventing text-image collision while preserving harmonic rhythm.
+3. **Mobile Flow (`< lg`)**:
+   - Clean vertical sequence in natural DOM order without negative margins:
+     Section Heading -> Punto 01 (Foto + Card) -> Punto 02 (Foto + Card) -> Punto 03 (Foto + Card) -> Punto 04 (Foto + Card).
+4. **Card Pattern & Content Stack Hierarchy**:
+   - `Montserrat 600 tabular-nums text-brand-800` ordinals (`01`–`04`, `text-2xl xl:text-3xl`).
+   - `.label text-brand-800` discipline tags.
+   - `Marcellus 400` titles (`h3`, `text-2xl xl:text-3xl text-ink leading-snug`).
+   - Narrative description in `Text` (`text-xs/relaxed sm:text-sm/relaxed xl:text-base/relaxed text-ink-muted leading-relaxed max-w-[48ch]`).
+   - Technical checkpoints with strict `0px` square bullets (`w-1.5 h-1.5 bg-brand-800`).
+5. **Photography Frame**:
+   - Clean portrait vertical `aspect-[4/5]` frame, strict `0px` border-radius, `bg-bone-200`, calm ground with zero overlays or scrims, smooth hover scale (`hover:scale-[1.02]`).
 
 ### 6.3 Heroes & Full-Bleed Stages (`Hero`, `PageHero`, `FeaturedPortfolio`, `FullBleedCTA`)
 
@@ -222,8 +251,8 @@ The complete photographic record in `src/components/organisms/ProjectCaseStudyMo
 Dependencies flow strictly downward: `atoms` → `molecules` → `organisms` → `templates` → `src/app/**/page.tsx`.
 
 - **`atoms/`**: HTML primitives, design tokens, and `next/image` wrapper (`Button`, `Container`, `Heading`, `Icon`, `Logo`, `Photo`, `RouteScrollReset`, `Rule`, `Section`, `Text`).
-- **`molecules/`**: Single repeatable UI units composed **only** of atoms (`ContactItem`, `FormField`, `NavItem`, `ProcessEntry`, `ProjectCard`, `SectionHeading`, `ServiceRow`, `SocialLinkItem`, `StatItem`, `Tabs`). **A molecule must never import an organism.**
-- **`organisms/`**: Complete page sections owning layout and client interactivity (`ClosingCTA`, `ContactForm`, `ContactFormFields`, `CosentinoInspirationExperience`, `Differentiators`, `DivisionCards`, `FeaturedPortfolio`, `Footer`, `FullBleedCTA`, `Header`, `Hero`, `IntroSection`, `ManifestoLine`, `MasonryGallery`, `MotionShell`, `PageHero`, `ProcessList`, `ProjectCaseStudyModal`, `ProjectsGrid`, `ServicesIndex`, `SiteNav`, `StatsBand`, `Testimonials`, `UtilityBar`, `WhatsAppFloat`).
+- **`molecules/`**: Single repeatable UI units composed **only** of atoms (`FormField`, `NavItem`, `ProcessEntry`, `ProjectCard`, `SectionHeading`, `ServiceRow`, `SocialLinkItem`, `StatItem`, `Tabs`). **A molecule must never import an organism.**
+- **`organisms/`**: Complete page sections owning layout and client interactivity (`ClosingCTA`, `ContactForm`, `ContactFormFields`, `ContactModal`, `ContactModalContext`, `CredibilityGallery`, `Differentiators`, `DivisionCards`, `FeaturedPortfolio`, `Footer`, `FullBleedCTA`, `Header`, `Hero`, `InteriorsSurfacesExperience`, `IntroSection`, `ManifestoLine`, `MethodologyZigzag`, `MotionShell`, `PageHero`, `ProcessList`, `ProjectCaseStudyModal`, `ProjectsGrid`, `ServiceScopeModal`, `ServicesIndex`, `SiteNav`, `StatsBand`, `Testimonials`, `UtilityBar`, `WhatsAppFloat`, `WhyCasaAltaEditorial`).
 - **`templates/`**: Pure page-level section placement and `canvas` ↔ `bone` tone alternation (`LandingTemplate`, `AboutPageTemplate`, `ProjectsIndexTemplate`, `ServicesPageTemplate`, `InteriorsPageTemplate`, `SustainabilityPageTemplate`, `ContactPageTemplate`, `SiteChrome`).
 - **No Orphaned Duplicates**: Organisms (`ProcessList`, `ServicesIndex`) must compose their corresponding molecules (`ProcessEntry`, `ServiceRow`) rather than duplicating their markup inline, and unused components must be consolidated or removed.
 
@@ -235,5 +264,5 @@ Dependencies flow strictly downward: `atoms` → `molecules` → `organisms` →
 ### 7.3 Accessibility & Motion Contract
 
 1. **Semantic Controls & Focus**: Every interactive element must be a native `<button>` or `<a>`/`<Link>` with an accessible label, `min-h-[44px]` touch target, and visible `:focus-visible` outline (`outline-none` without a replacement focus indicator is forbidden).
-2. **Unified Modal Behavior**: Both `ProjectCaseStudyModal` and image lightboxes must trap keyboard focus (`Tab` / `Shift+Tab`), close on `Escape`, lock document scroll while open, and restore focus to the trigger element on close.
+2. **Unified Modal Behavior**: All dialogs (`ContactModal`, `ServiceScopeModal`, `ProjectCaseStudyModal`, and image lightboxes) must trap keyboard focus (`Tab` / `Shift+Tab`), close on `Escape`, lock document scroll while open, and restore focus to the trigger element on close.
 3. **Reduced Motion**: `prefers-reduced-motion: reduce` must be respected consistently in both `src/app/globals.css` and every GSAP `ScrollTrigger` / `RevealObserver` effect. Remove any stale comments claiming reduced motion is ignored.
