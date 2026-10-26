@@ -11064,6 +11064,33 @@
                      "width": 622
                   }
                ]
+            },
+            {
+               "base": "14-residencia-bioclimatica-palapa-celosia-chukum",
+               "fallback": "14-residencia-bioclimatica-palapa-celosia-chukum.jpg",
+               "full": {
+                  "file": "14-residencia-bioclimatica-palapa-celosia-chukum.avif",
+                  "height": 1116,
+                  "width": 2000
+               },
+               "note": "Residencia bioclimatica con muros de tierra, celosia de barro y cubierta tradicional de palapa en la costa",
+               "order": "14",
+               "score": 5,
+               "slug": "residencia-bioclimatica-palapa-celosia-chukum",
+               "source": "images/arquitectura-sostenible/14-residencia-bioclimatica-palapa-celosia-chukum.jpeg",
+               "srcset": "14-residencia-bioclimatica-palapa-celosia-chukum-480.avif 480w, 14-residencia-bioclimatica-palapa-celosia-chukum-960.avif 960w, 14-residencia-bioclimatica-palapa-celosia-chukum.avif 2000w",
+               "variants": [
+                  {
+                     "file": "14-residencia-bioclimatica-palapa-celosia-chukum-480.avif",
+                     "height": 268,
+                     "width": 480
+                  },
+                  {
+                     "file": "14-residencia-bioclimatica-palapa-celosia-chukum-960.avif",
+                     "height": 536,
+                     "width": 960
+                  }
+               ]
             }
          ]
       },
