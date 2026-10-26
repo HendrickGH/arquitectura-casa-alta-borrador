@@ -98,7 +98,7 @@ export function PageHero({
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
             <p className="eyebrow !text-white/85">{eyebrow}</p>
             <span className="label hidden text-white/65 sm:inline">
-              Casa Alta · Oaxaca
+              Casa Alta · Estudio & Obra
             </span>
           </div>
         ) : null}

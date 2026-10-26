@@ -22,7 +22,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "Cálculo estructural y DRO propio",
     description:
-      "No subcontratamos la firma ni el criterio estructural. Validamos cimentación, marcos y losas bajo normas sismorresistentes para la alta sismicidad oaxaqueña con Director Responsable de Obra en casa.",
+      "No subcontratamos la firma ni el criterio estructural. Validamos cimentación, marcos y losas bajo normas sismorresistentes para zonas de alta sismicidad con Director Responsable de Obra en casa.",
     tag: "Seguridad y normativa sísmica",
     points: [
       "Memoria de cálculo y firma DRO avalada ante colegios oficiales",
@@ -35,7 +35,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "Cuadrillas y maquinaria propia",
     description:
-      "Control directo del frente de trabajo sin intermediación opaca. Disponemos de equipo propio para excavación, armado de acero, colados y montaje pesado en todo el estado.",
+      "Control directo del frente de trabajo sin intermediación opaca. Disponemos de equipo propio para excavación, armado de acero, colados y montaje pesado en cualquier frente de obra.",
     tag: "Control de ejecución y logística",
     points: [
       "Cuadrillas especializadas en fierrería, carpintería de obra y colados",
@@ -48,7 +48,7 @@ export const differentiators: Differentiator[] = [
   {
     title: "Arquitectura regional nativa",
     description:
-      "Diseño vanguardista y dominio de los materiales nobles de Oaxaca: concreto aparente, recubrimiento chukum impermeable, maderas tropicales curadas y cubiertas artesanales de palma.",
+      "Diseño vanguardista y dominio de los materiales nobles y regionales: concreto aparente, recubrimiento chukum impermeable, maderas tropicales curadas y cubiertas artesanales de palma.",
     tag: "Materialidad noble y clima",
     points: [
       "Diseño contemporáneo integrado al paisaje y la orientación solar",

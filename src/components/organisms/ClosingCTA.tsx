@@ -107,7 +107,7 @@ export function ClosingCTA({
               {closing.eyebrow || "Primera reunión sin costo"}
             </p>
             <span className="label text-white/70">
-              Zoom o presencial en Oaxaca
+              Reunión por Zoom o en nuestras sedes
             </span>
           </div>
 

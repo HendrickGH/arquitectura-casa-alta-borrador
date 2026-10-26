@@ -16,7 +16,7 @@ export const interiorsPageContent = {
   hero: {
     eyebrow: "Arquitectura de interiores · Acabados nobles y carpintería",
     heading:
-      "Cocinas integrales, superficies nobles y carpintería residencial en Oaxaca",
+      "Cocinas integrales, superficies nobles y carpintería residencial de autor",
     subheadline:
       "Fabricación propia con despiece milimétrico, cálculo de resistencia costera y maderas curadas. Asesoría técnica inicial sin costo, presencial en estudio o por videollamada.",
     dir: "arquitectura-interiores",
@@ -27,7 +27,7 @@ export const interiorsPageContent = {
   materials: {
     eyebrow: "Materialidad",
     heading: "Superficies nobles y maderas del trópico",
-    body: "Piedras tecnológicas, cuarzo puro, maderas curadas y chukum mineral seleccionados para el clima de Oaxaca.",
+    body: "Piedras tecnológicas, cuarzo puro, maderas curadas y chukum mineral seleccionados para climas costeros y de alta exigencia térmica.",
     sections: [
       {
         slug: "piedras-tecnologicas",
@@ -108,14 +108,14 @@ export const interiorsPageContent = {
     intro: {
       eyebrow: "Dossier fotográfico · Espacios habitados",
       heading: "Materia, luz y convivencia en torno a la arquitectura interior",
-      body: "Inspección fotográfica continua en doble cinta: cocinas integrales, carpintería residencial de autor y momentos de uso real en nuestro showroom de Oaxaca.",
+      body: "Inspección fotográfica continua en doble cinta: cocinas integrales, carpintería residencial de autor y momentos de uso real en nuestro showroom y talleres centrales.",
     },
   },
   engineering: {
     intro: {
       eyebrow: "Ingeniería de detalle y respaldo DRO",
       heading: "Rigor estructural y certificación técnica en cada ensamble",
-      body: "En Oaxaca, la arquitectura interior no es solo decoración: es ingeniería de precisión frente a sismos, salinidad costera y calor extremo. Respaldamos cada proyecto con levantamiento láser, fijaciones de acero inoxidable y póliza formal de vicios ocultos.",
+      body: "Frente a los retos del clima tropical y la sismicidad, la arquitectura interior no es solo decoración: es ingeniería de precisión con levantamiento láser, fijaciones de acero inoxidable y póliza formal de vicios ocultos.",
     },
     items: [
       {
@@ -135,7 +135,7 @@ export const interiorsPageContent = {
         title: "Fijación antisísmica y juntas de alivio elástico",
         tag: "CÁLCULO ESTRUCTURAL Y SEGURIDAD",
         description:
-          "Oaxaca es zona de alta sismicidad. Nuestras cubiertas pesadas y muebles suspendidos incorporan bastidores de acero anclados a elementos estructurales y adhesivos de curado controlado.",
+          "En zonas de alta sismicidad, nuestras cubiertas pesadas y muebles suspendidos incorporan bastidores de acero anclados a elementos estructurales y adhesivos de curado controlado.",
         points: [
           "Adhesivos epóxicos bicomponentes de alta flexibilidad elástica",
           "Anclajes químicos certificados Hilti en muros de carga",
@@ -177,7 +177,7 @@ export const interiorsPageContent = {
 export const sustainabilityPageContent = {
   hero: {
     eyebrow: "Arquitectura bioclimática y tropical",
-    heading: "Construcción sustentable para el clima de Oaxaca",
+    heading: "Construcción sustentable y arquitectura bioclimática",
     subheadline:
       "Optimizamos la carga térmica y acústica con vientos cruzados, luz natural filtrada y materiales sostenibles de bajo impacto.",
     dir: "arquitectura-sostenible",
@@ -248,7 +248,7 @@ export const sustainabilityPageContent = {
         shortTitle: "Resiliencia",
         subtitle: "Resiliencia",
         description:
-          "Ingeniería estructural calculada en gabinete para la alta sismicidad y corrosión marina de Oaxaca, garantizando permanencia patrimonial.",
+          "Ingeniería estructural calculada en gabinete para alta sismicidad y entornos marinos de máxima salinidad, garantizando permanencia patrimonial.",
         deliverables: [
           "Cálculo sísmico en suelo de playa y roca",
           "Cimentaciones protegidas contra corrosión marina",
@@ -276,7 +276,7 @@ export const sustainabilityPageContent = {
   strategies: {
     intro: {
       eyebrow: "Estrategias constructivas",
-      heading: "Construir para el clima de Oaxaca",
+      heading: "Construir para el clima del trópico y la costa",
       body: "En la costa y el Istmo, edificar contra el clima encarece el mantenimiento y fuerza la dependencia del aire acondicionado. Integramos cuatro estrategias pasivas desde el primer trazo.",
     },
     items: [
@@ -341,7 +341,7 @@ export const aboutPageContent = {
     eyebrow: "",
     heading: "Ingeniería, oficio y presencia real en cada obra",
     subheadline:
-      "Más de 150 obras entregadas y 50,000 m² construidos en la Costa, Valles Centrales, Sierra e Istmo de Oaxaca.",
+      "Más de 150 obras entregadas y 50,000 m² construidos con cobertura en el Pacífico, el sur y proyectos a nivel nacional.",
     dir: "credibilidad",
     base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
   },
@@ -349,7 +349,7 @@ export const aboutPageContent = {
     eyebrow: "Nuestra identidad",
     heading: "Construir con dignidad lo que se proyecta con sensibilidad",
     paragraphs: [
-      "Fundada en Oaxaca, Casa Alta integra taller de diseño arquitectónico y empresa constructora bajo una misma responsabilidad técnica. Proyectamos con sensibilidad espacial y ejecutamos con el rigor que exige el suelo y el clima de nuestra tierra, sin intermediarios ni atajos.",
+      "Con sede central en Oaxaca y alcance en todo el país, Casa Alta integra taller de diseño arquitectónico y empresa constructora bajo una misma responsabilidad técnica. Proyectamos con sensibilidad espacial y ejecutamos con el rigor que exige el suelo y el clima de cada latitud, sin intermediarios ni atajos.",
     ],
     missionTitle: "Misión",
     mission:
@@ -368,7 +368,7 @@ export const aboutPageContent = {
       number: "01",
       title: "Cálculo propio",
       description:
-        "Ingeniería civil calculada en casa para la sismicidad y topografía real de Oaxaca, sin subcontratar la seguridad estructural.",
+        "Ingeniería civil calculada en casa para sismicidad severa y topografías complejas, sin subcontratar la seguridad estructural.",
     },
     {
       number: "02",
@@ -448,7 +448,7 @@ export const servicesPageContent = {
   intro: {
     eyebrow: "Frentes de trabajo",
     heading: "Elegimos el sistema constructivo por cálculo, no por costumbre",
-    body: "Cada terreno en Oaxaca plantea un reto distinto. Validamos con cálculo estructural si el proyecto requiere concreto armado, presforzado, estructura metálica, losa aligerada o sistemas vernáculos mejorados.",
+    body: "Cada terreno y latitud plantea un reto distinto. Validamos con cálculo estructural si el proyecto requiere concreto armado, presforzado, estructura metálica, losa aligerada o sistemas vernáculos mejorados.",
     dir: "proyectos-integrales",
     base: "03-equipo-ingenieria-analisis-proyecto-sala-trabajo",
     photoCaption: "Ingeniería y proyecto ejecutivo en gabinete",
@@ -544,7 +544,7 @@ export const contactPageContent = {
     eyebrow: "Contacto directo · Estudio y Obra",
     heading: "Iniciemos la conversación sobre su proyecto arquitectónico",
     subheadline:
-      "Gabinete de proyectos y residencia de obra en Puerto Escondido, Valles Centrales, Sierra e Istmo de Oaxaca.",
+      "Gabinete de proyectos y residencia de obra con sedes en Puerto Escondido y Salina Cruz, y capacidad de ejecución en todo México.",
     dir: "proyectos-integrales",
     base: "03-sesion-trabajo-revision-proyecto-ejecutivo-oficina",
     photoAlt:

@@ -33,7 +33,7 @@ export function ContactEditorial({
               Conversemos sobre tu próximo proyecto.
             </Heading>
             <p className="mt-4 text-xs tracking-wider uppercase text-ink-muted">
-              Oaxaca · Puerto Escondido · Salina Cruz
+              Cobertura Nacional · Sedes en Puerto Escondido y Salina Cruz
             </p>
 
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3">

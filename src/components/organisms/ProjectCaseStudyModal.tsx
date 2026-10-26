@@ -227,8 +227,7 @@ export function ProjectCaseStudyModal({
 
               <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
                 <p className="text-xs text-ink-muted">
-                  Proyecto y ejecución directa por Constructora Casa Alta en
-                  Oaxaca.
+                  Proyecto y ejecución directa por Constructora Casa Alta.
                 </p>
                 <Button variant="secondary" size="sm" onClick={onClose}>
                   Volver al portafolio

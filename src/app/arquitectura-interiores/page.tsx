@@ -56,11 +56,11 @@ export default function InteriorsRoutePage() {
     },
     "description": page.hero.subheadline,
     "areaServed": [
-      "Oaxaca de Juárez",
+      "México",
+      "Costa del Pacífico",
       "Puerto Escondido",
+      "Oaxaca de Juárez",
       "Huatulco",
-      "Valles Centrales",
-      "Costa de Oaxaca",
     ],
     "offers": {
       "@type": "Offer",

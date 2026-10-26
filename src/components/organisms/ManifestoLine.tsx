@@ -84,7 +84,7 @@ export function ManifestoLine({ line, architect, photo }: ManifestoLineProps) {
                   />
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-3 text-xs text-ink-muted">
-                  <span>Arquitectura que perdura · Costa de Oaxaca</span>
+                  <span>Arquitectura que perdura · Costa del Pacífico</span>
                 </div>
               </div>
             </div>

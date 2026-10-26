@@ -164,7 +164,7 @@ const stats: Stat[] = [
     value: "2016",
     label: "Construyendo desde",
     tag: "TRAYECTORIA",
-    sub: "Presencia continua en Oaxaca",
+    sub: "Proyectos en todo México",
   },
   {
     value: "150+",
@@ -215,7 +215,7 @@ const divisions: DivisionCardContent[] = [
     title: "Arquitectura Residencial y Turística",
     subtitle: "Vivienda · Hotelería · Airbnb",
     description:
-      "Proyectos ejecutivos y construcción integral de casas de descanso, villas costeras y desarrollos multifamiliares pensados para la plusvalía y el clima de Oaxaca.",
+      "Proyectos ejecutivos y construcción integral de casas de descanso, villas costeras y desarrollos multifamiliares pensados para la plusvalía y climas de alta exigencia.",
     href: "/proyectos",
     dir: "02-el-bicho",
     base: "01-fachada-tres-palapas-alberca",
@@ -348,13 +348,13 @@ export const home: HomePage = {
   services: {
     eyebrow: "Catálogo de servicios",
     heading: "Soluciones constructivas e ingeniería",
-    body: "No todos los proyectos se resuelven con el mismo sistema. Validamos cada partida con cálculo estructural y ejecutamos con personal y maquinaria propia en todo Oaxaca.",
+    body: "No todos los proyectos se resuelven con el mismo sistema. Validamos cada partida con cálculo estructural y ejecutamos con personal técnico y maquinaria propia en proyectos residenciales, comerciales e industriales.",
   },
 
   projects: {
     eyebrow: "Portafolio seleccionado",
     heading: "Obra construida",
-    body: "Una selección de lo que hemos proyectado y entregado en Oaxaca. Cada obra responde a su propio terreno, a su clima y al propósito de quien la habita.",
+    body: "Una selección de obras proyectadas y entregadas por nuestra firma. Cada obra responde a su propio terreno, a su clima y al propósito de quien la habita.",
   },
 
   process: {
@@ -366,11 +366,11 @@ export const home: HomePage = {
   differentiatorsIntro: {
     eyebrow: "Certeza tectónica",
     heading: "Por qué Casa Alta",
-    body: "No separamos el cálculo en gabinete de la faena en terreno. Cada obra se ejecuta con precios cerrados por catálogo, supervisión DRO continua y el dominio artesanal de los materiales que resisten el clima de Oaxaca.",
+    body: "No separamos el cálculo en gabinete de la faena en terreno. Cada obra se ejecuta con precios cerrados por catálogo, supervisión DRO continua y el dominio artesanal de los materiales que resisten climas costeros, salinos y de alta radiación solar.",
     paragraphs: [
       "Abordamos cada encargo desde una perspectiva unificada: la arquitectura, el cálculo estructural y la dirección de obra convergen en un solo equipo responsable desde el primer trazo conceptual.",
       "Nuestra estructura operativa integra maquinaria propia, cuadrillas especializadas y presencia directa en Puerto Escondido y los Valles Centrales, garantizando control de costos y cumplimiento de plazos sin intermediación opaca.",
-      "Construimos con honestidad constructiva y rigor técnico ante la alta sismicidad oaxaqueña, empleando concreto aparente, chukum mineral y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
+      "Construimos con honestidad constructiva y rigor técnico ante zonas de alta sismicidad y ambiente costero, empleando concreto aparente, chukum mineral y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
     ],
   },
 
@@ -378,11 +378,11 @@ export const home: HomePage = {
     intro: {
       eyebrow: "Certeza tectónica",
       heading: "Por qué Casa Alta",
-      body: "No separamos el cálculo en gabinete de la faena en terreno. Cada obra se ejecuta con precios cerrados por catálogo, supervisión DRO continua y el dominio artesanal de los materiales que resisten el clima de Oaxaca.",
+      body: "No separamos el cálculo en gabinete de la faena en terreno. Cada obra se ejecuta con precios cerrados por catálogo, supervisión DRO continua y el dominio artesanal de los materiales que resisten climas costeros, salinos y de alta radiación solar.",
       paragraphs: [
         "Abordamos cada encargo desde una perspectiva unificada: la arquitectura, el cálculo estructural y la dirección de obra convergen en un solo equipo responsable desde el primer trazo conceptual.",
         "Nuestra estructura operativa integra maquinaria propia, cuadrillas especializadas y presencia directa en Puerto Escondido y los Valles Centrales, garantizando control de costos y cumplimiento de plazos sin intermediación opaca.",
-        "Construimos con honestidad constructiva y rigor técnico ante la alta sismicidad oaxaqueña, empleando concreto aparente, chukum mineral y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
+        "Construimos con honestidad constructiva y rigor técnico ante zonas de alta sismicidad y ambiente costero, empleando concreto aparente, chukum mineral y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
       ],
     },
     items: [],

@@ -68,7 +68,7 @@ export const serviceGroups: ServiceGroup[] = [
     slug: "construccion",
     title: "Construcción",
     intro:
-      "Aquí está nuestra reputación: más de 150 obras alrededor del estado. Elegimos el sistema constructivo por proyecto --clima, terreno, plazo y presupuesto--, no por costumbre.",
+      "Aquí está nuestra reputación: más de 150 obras entregadas con rigor técnico y contractual. Elegimos el sistema constructivo por proyecto --clima, terreno, plazo y presupuesto--, no por costumbre.",
     services: [
       {
         slug: "construccion-habitacional",
