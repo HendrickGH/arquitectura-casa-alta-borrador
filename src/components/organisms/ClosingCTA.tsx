@@ -93,10 +93,10 @@ export function ClosingCTA({
         <Photo photo={activePhoto} sizes="100vw" fit="cover" />
       </div>
 
-      {/* Architectural bottom gradient scrim for legible editorial contrast */}
+      {/* Architectural gradient scrim ensuring deep contrast matching the contact page */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-[75vh] max-h-[820px] bg-gradient-to-t from-ink via-ink/75 to-transparent"
+        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/85 to-transparent via-65%"
       />
 
       {/* Bottom-anchored monumental editorial CTA */}
