@@ -6,7 +6,8 @@
   ],
   "hero/casa-charco-seco-fachada-horizontal-terracota": [
     [480, "casa-charco-seco-fachada-horizontal-terracota-480.avif"],
-    [1024, "casa-charco-seco-fachada-horizontal-terracota.avif"]
+    [960, "casa-charco-seco-fachada-horizontal-terracota-960.avif"],
+    [2000, "casa-charco-seco-fachada-horizontal-terracota.avif"]
   ],
   "hero/casa-charco-seco-fachada-terracota-enredadera": [
     [288, "casa-charco-seco-fachada-terracota-enredadera-480.avif"],
@@ -25,7 +26,8 @@
   ],
   "hero/casa-la-barra-fachada-horizontal-chukum": [
     [480, "casa-la-barra-fachada-horizontal-chukum-480.avif"],
-    [1024, "casa-la-barra-fachada-horizontal-chukum.avif"]
+    [960, "casa-la-barra-fachada-horizontal-chukum-960.avif"],
+    [2000, "casa-la-barra-fachada-horizontal-chukum.avif"]
   ],
   "hero/casa-melchor-ocampo-balcon-herreria-celosia": [
     [480, "casa-melchor-ocampo-balcon-herreria-celosia-480.avif"],

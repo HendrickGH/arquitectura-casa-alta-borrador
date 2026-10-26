@@ -6607,7 +6607,11 @@
       "casa-charco-seco-fachada-horizontal-terracota-480.avif"
     ],
     [
-      1024,
+      960,
+      "casa-charco-seco-fachada-horizontal-terracota-960.avif"
+    ],
+    [
+      2000,
       "casa-charco-seco-fachada-horizontal-terracota.avif"
     ]
   ],
@@ -6659,7 +6663,11 @@
       "casa-la-barra-fachada-horizontal-chukum-480.avif"
     ],
     [
-      1024,
+      960,
+      "casa-la-barra-fachada-horizontal-chukum-960.avif"
+    ],
+    [
+      2000,
       "casa-la-barra-fachada-horizontal-chukum.avif"
     ]
   ],
