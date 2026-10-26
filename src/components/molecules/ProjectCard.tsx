@@ -157,17 +157,11 @@ export function ProjectCard({
           <div className="flex-1" />
         )}
 
-        {/* Bottom Bar: Title (left) & Location (right) */}
-        <div className="relative z-10 flex flex-col gap-1 lg:flex-row lg:items-end lg:justify-between lg:gap-4 p-3.5 sm:p-4 md:p-5">
-          <h3 className="voice text-base sm:text-lg lg:text-xl font-normal text-white drop-shadow-sm leading-tight tracking-normal">
+        {/* Bottom Bar: Title only, strictly one line */}
+        <div className="relative z-10 p-4 sm:p-5 md:p-6">
+          <h3 className="voice text-base sm:text-lg lg:text-xl font-normal text-white drop-shadow-sm tracking-normal truncate whitespace-nowrap">
             {project.title}
           </h3>
-
-          {project.location ? (
-            <span className="label text-[0.6875rem] sm:text-xs text-white/90 drop-shadow-sm tracking-[0.14em] uppercase lg:text-right shrink-0">
-              {project.location}
-            </span>
-          ) : null}
         </div>
       </div>
     </article>
