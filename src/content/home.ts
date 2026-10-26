@@ -7,12 +7,12 @@ import type {
 } from "@/types/content";
 import { whatsappHref } from "./site";
 
-/** The landing hero lead photo: Vista aérea de palapas y alberca en Punta Zicatela. */
-const heroVistaAereaPalapasPhoto: Photo = {
-  src: "/images/hero/vista-aerea-palapas-alberca-playa.avif",
-  alt: "Vista aérea de las villas de El Bicho en Punta Zicatela: palapas triangulares, alberca y playa de Puerto Escondido",
-  width: 1600,
-  height: 900,
+/** The landing hero lead photo: Punta Zicatela - Vista aérea panorámica en alta resolución (2000x1116 max capped, original 2752x1536). */
+const heroPuntaZicatelaHorizontalPhoto: Photo = {
+  src: "/images/hero/punta-zicatela-villas-palapas-alberca-playa.avif",
+  alt: "Vista aérea panorámica de las villas de Punta Zicatela con cubiertas de palapa, alberca y costa de Puerto Escondido",
+  width: 2000,
+  height: 1116,
 };
 
 /** The landing hero second photo: Casa La Barra - Fachada horizontal chukum y palapa (2000x1116 max capped, original 2752x1536). */
@@ -257,7 +257,7 @@ export const home: HomePage = {
     slides: [
       {
         title: "Punta Zicatela",
-        photo: heroVistaAereaPalapasPhoto,
+        photo: heroPuntaZicatelaHorizontalPhoto,
       },
       {
         title: "Casa La Barra",
