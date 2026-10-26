@@ -43,7 +43,7 @@ export interface ThematicPillarPageTemplateProps {
     deliverablesLabel: string;
     ctaLabel: string;
   };
-  manifesto: { text: string; photo?: Photo };
+  manifesto?: { text: string; photo?: Photo };
   gallery: { id: string; intro: SectionIntro; photos: Photo[] };
   pillars: { id: string; intro: SectionIntro; items: PillarItems };
 }
@@ -111,11 +111,13 @@ export function ThematicPillarPageTemplate({
         </Section>
 
         {/* Layer 3: Manifesto */}
-        <ManifestoLine
-          line={manifesto.text}
-          architect={site.architect}
-          photo={manifesto.photo}
-        />
+        {manifesto ? (
+          <ManifestoLine
+            line={manifesto.text}
+            architect={site.architect}
+            photo={manifesto.photo}
+          />
+        ) : null}
 
         {/* Layer 4: Ribbon gallery */}
         <CredibilityGallery

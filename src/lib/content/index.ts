@@ -346,6 +346,21 @@ export function getClosing(): HomePage["closing"] {
   return home.closing;
 }
 
+/** Closing CTA for the sustainability page, customized with an arquitectura-sostenible photo. */
+export function getSustainabilityClosing(): HomePage["closing"] {
+  const baseClosing = getClosing();
+  const photo =
+    findPhotoByBase(
+      "arquitectura-sostenible",
+      "10-conjunto-sustentable-palmeras-alberca-techos-palma",
+      "Construcción sustentable Casa Alta",
+    ) ?? baseClosing.photo;
+  return {
+    ...baseClosing,
+    photo,
+  };
+}
+
 /**
  * The landing view model.
  */
@@ -508,39 +523,17 @@ export function getSustainabilityPage(): SustainabilityPageContent {
       };
     });
 
-  // 2. Manifesto photo
-  const manifestoPhoto =
-    findPhotoByBase(
-      sustainabilityPageContent.manifesto.dir,
-      sustainabilityPageContent.manifesto.base,
-      "Manifiesto bioclimático",
-    ) ?? heroPhoto;
-
-  // 3. Interleaved Gallery for CredibilityGallery
+  // 2. Gallery for CredibilityGallery — strictly and exclusively from arquitectura-sostenible
   const rawBioclimatic = getProjectPhotos(
     "arquitectura-sostenible",
     "Arquitectura sostenible Casa Alta",
   );
-  const rawEnduring = getProjectPhotos(
-    "arquitectura-que-perdura",
-    "Arquitectura que perdura Casa Alta",
-  ).filter(
-    (p) =>
-      !p.src.includes("18-cartel-construye-puerto-escondido") &&
-      !p.src.includes("cartel-construye"),
+  // Exclude the hero photo from the ribbon gallery to prevent immediate duplicate
+  const galleryPhotos: Photo[] = rawBioclimatic.filter(
+    (p) => p.src !== heroPhoto.src,
   );
 
-  // Interleave 8 bioclimatic + 8 enduring = 16 photos (2 rows of 8)
-  const galleryPhotos: Photo[] = [];
-  const maxPairs = Math.min(8, rawBioclimatic.length, rawEnduring.length);
-  for (let i = 0; i < maxPairs; i++) {
-    const bio = rawBioclimatic[i];
-    const end = rawEnduring[i];
-    if (bio) galleryPhotos.push(bio);
-    if (end) galleryPhotos.push(end);
-  }
-
-  // 4. Strategies for WhyCasaAltaEditorial
+  // 3. Strategies for WhyCasaAltaEditorial
   const strategyItems: Differentiator[] =
     sustainabilityPageContent.strategies.items.map((item) => {
       const photo =
@@ -570,10 +563,6 @@ export function getSustainabilityPage(): SustainabilityPageContent {
       heading: sustainabilityPageContent.pillars.heading,
       body: sustainabilityPageContent.pillars.body,
       sections: pillarSections,
-    },
-    manifesto: {
-      text: sustainabilityPageContent.manifesto.text,
-      photo: manifestoPhoto,
     },
     gallery: {
       intro: sustainabilityPageContent.gallery.intro,

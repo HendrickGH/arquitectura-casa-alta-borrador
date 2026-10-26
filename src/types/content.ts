@@ -461,7 +461,7 @@ export interface SustainabilityPageContent {
     body: string;
     sections: SpecialtySection[];
   };
-  manifesto: {
+  manifesto?: {
     text: string;
     photo?: Photo;
   };

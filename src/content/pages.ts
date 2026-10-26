@@ -180,8 +180,8 @@ export const sustainabilityPageContent = {
     heading: "Construcción sustentable para el clima de Oaxaca",
     subheadline:
       "Optimizamos la carga térmica y acústica con vientos cruzados, luz natural filtrada y materiales sostenibles de bajo impacto.",
-    dir: "02-el-bicho",
-    base: "01-fachada-tres-palapas-alberca",
+    dir: "arquitectura-sostenible",
+    base: "14-residencia-bioclimatica-palapa-celosia-chukum",
     catalogCtaLabel: "Explorar pilares bioclimáticos",
     consultationCtaLabel: "Planear proyecto bioclimático",
   },
@@ -255,16 +255,16 @@ export const sustainabilityPageContent = {
           "Supervisión pericial directa con firma DRO",
           "Estructuras mixtas de concreto, acero y madera",
         ],
-        dir: "02-el-bicho",
-        base: "01-fachada-tres-palapas-alberca",
+        dir: "arquitectura-sostenible",
+        base: "06-volumen-sombreado-aleros-palapa-vegetacion-endemica",
       },
     ],
   },
   manifesto: {
     text:
       "No construimos contra el clima: proyectamos desde la sombra, la brisa del mar y la materia local.",
-    dir: "02-el-bicho",
-    base: "02-fachada-palapas-alberca-palmeras",
+    dir: "arquitectura-sostenible",
+    base: "02-jardines-nativos-alberca-cubiertas-palma-natural",
   },
   gallery: {
     intro: {
@@ -316,8 +316,8 @@ export const sustainabilityPageContent = {
           "Fungicida e hidrófugo natural impermeable a la brisa marina",
           "Muros monolíticos sin juntas de dilatación vulnerables al salitre",
         ],
-        dir: "02-el-bicho",
-        base: "05-bano-espejo-redondo-lavabo",
+        dir: "arquitectura-sostenible",
+        base: "08-terrazas-abiertas-orientacion-solar-alberca",
       },
       {
         title: "Cubiertas ventiladas de palma natural y carrizo",
@@ -329,8 +329,8 @@ export const sustainabilityPageContent = {
           "Cero acumulación de calor bajo techo en las horas pico de sol",
           "Mantenimiento programado y vida útil extendida con herrajes marinos",
         ],
-        dir: "02-el-bicho",
-        base: "01-fachada-tres-palapas-alberca",
+        dir: "arquitectura-sostenible",
+        base: "02-jardines-nativos-alberca-cubiertas-palma-natural",
       },
     ],
   },

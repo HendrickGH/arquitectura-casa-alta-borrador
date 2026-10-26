@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { SustainabilityPageTemplate } from "@/components/templates/SustainabilityPageTemplate";
 import {
-  getClosing,
   getSiteConfig,
+  getSustainabilityClosing,
   getSustainabilityPage,
 } from "@/lib/content";
 
 const site = getSiteConfig();
 const page = getSustainabilityPage();
+const closing = getSustainabilityClosing();
 
 export const metadata: Metadata = {
   title: `Construcción Sustentable y Bioclimática — ${site.name}`,
@@ -19,7 +20,7 @@ export default function SustainabilityRoutePage() {
     <SustainabilityPageTemplate
       site={site}
       page={page}
-      closing={getClosing()}
+      closing={closing}
       whatsappHref={site.whatsapp.href}
     />
   );
