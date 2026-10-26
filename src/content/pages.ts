@@ -450,7 +450,7 @@ export const servicesPageContent = {
     heading: "Elegimos el sistema constructivo por cálculo, no por costumbre",
     body: "Cada terreno en Oaxaca plantea un reto distinto. Validamos con cálculo estructural si el proyecto requiere concreto armado, presforzado, estructura metálica, losa aligerada o sistemas vernáculos mejorados.",
     dir: "proyectos-integrales",
-    base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
+    base: "03-equipo-ingenieria-analisis-proyecto-sala-trabajo",
     photoCaption: "Ingeniería y proyecto ejecutivo en gabinete",
   },
   catalog: {

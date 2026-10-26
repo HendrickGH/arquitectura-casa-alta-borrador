@@ -51,9 +51,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "construccion-habitacional",
     slug: "servicios-construccion-estructura-gruas",
-    dir: "remodelacion",
-    base: "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
-    alt: "Residencia de dos niveles con fachada blanca contemporánea, balcones y amplios ventanales",
+    dir: "07-casa-tarrastro",
+    base: "10-fachada-frontal-pergola-superior-ventanales",
+    alt: "Residencia unifamiliar contemporánea con terraza techada, cancelería de piso a techo y pérgola superior en Oaxaca",
   },
   {
     service: "construccion-comercial-industrial",
@@ -66,8 +66,8 @@ export const editorialRefs: EditorialRef[] = [
     service: "construccion-y-obra-civil",
     slug: "servicios-obra-civil-asfalto",
     dir: "obra-civil",
-    base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
-    alt: "Panorámica de construcción de puente vehicular de concreto sobre el cauce de un río operando con dos grúas",
+    base: "10-montaje-trabes-cajon-puente-sobre-pilas-concreto",
+    alt: "Colocación y montaje de trabes cajón de concreto sobre pilas estructurales durante la construcción de un puente vehicular",
   },
   {
     service: "presforzado-y-estructura-metalica",
@@ -79,16 +79,12 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "espacios-publicos-y-deportivos",
     slug: "servicios-espacios-publicos-estadio",
-    dir: "06-capilla-el-tule",
-    base: "01-capilla-cantera-jacaranda-flor",
-    alt: "Espacio público y equipamiento comunitario en cantera verde bajo jacaranda en flor en Santa María del Tule, Oaxaca",
+    alt: "Graderío de un estadio y equipamiento deportivo para eventos de gran concurrencia",
   },
   {
     service: "skateparks",
     slug: "servicios-exterior-pista-skate",
-    dir: "17-el-tomatal",
-    base: "03-acceso-vehicular-adoquin-barro-fachada-celosia",
-    alt: "Infraestructura urbana, concreto expuesto y pavimentos exteriores ejecutados por Casa Alta en Oaxaca",
+    alt: "Rampa, transiciones de concreto pulido y barandales en pista de skate al aire libre",
   },
   {
     service: "landscape",
@@ -107,16 +103,12 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "instalaciones-electricas",
     slug: "servicios-instalaciones-electricas-subestacion",
-    dir: "obra-civil",
-    base: "02-montaje-columna-prefabricada-en-candelero-cimentacion",
-    alt: "Infraestructura e ingeniería de soporte en obra civil e industrial ejecutada por Casa Alta en Oaxaca",
+    alt: "Transformador y subestación eléctrica de media y alta tensión al aire libre",
   },
   {
     service: "instalaciones-hidrosanitarias",
     slug: "servicios-instalaciones-tratamiento-agua",
-    dir: "credibilidad",
-    base: "14-tendido-poliducto-instalacion-subterranea-calle",
-    alt: "Equipo de ingeniería de Casa Alta preparando tendido de tuberías y ductos para instalaciones subterráneas en Oaxaca",
+    alt: "Tanques de sedimentación y sistemas de tratamiento de agua e infraestructura hidrosanitaria",
   },
 ];
 

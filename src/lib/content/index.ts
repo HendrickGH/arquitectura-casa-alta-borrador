@@ -30,6 +30,7 @@ import {
   pickUnusedProjectPhoto,
   strongestUnusedLandscapePhoto,
 } from "./photos";
+import editorialDimensions from "@images/editorial/editorial.dimensions.json";
 import type {
   AboutPageContent,
   CategoryTile,
@@ -80,11 +81,21 @@ export function getWhatsappHref(): string {
   return whatsappHref;
 }
 
+/** The dimensions sidecar tools/editorial.sh writes, keyed by image slug. */
+type EditorialDimensions = Record<
+  string,
+  { width: number; height: number; fallback: string }
+>;
+
+const editorialDimensionsBySlug =
+  editorialDimensions as unknown as EditorialDimensions;
+
 /**
  * The photograph attached to each service, keyed by service slug.
  *
- * Resolves 100% from real studio photographs in `manifest.json` — zero stock
- * images are ever used.
+ * Prefers an authentic studio photograph from `manifest.json` when `ref.dir` and
+ * `ref.base` are configured, and falls back to the editorial texture sidecar
+ * when no studio photo exists for that specialty in the archive.
  */
 export function getEditorial(): Map<string, Photo> {
   const byService = new Map<string, Photo>();
@@ -93,8 +104,17 @@ export function getEditorial(): Map<string, Photo> {
       const studioPhoto = findPhotoByBase(ref.dir, ref.base, "", ref.alt);
       if (studioPhoto) {
         byService.set(ref.service, studioPhoto);
+        continue;
       }
     }
+    const dimensions = editorialDimensionsBySlug[ref.slug];
+    if (!dimensions) continue;
+    byService.set(ref.service, {
+      src: `/images/editorial/${ref.slug}.avif`,
+      alt: ref.alt,
+      width: dimensions.width,
+      height: dimensions.height,
+    });
   }
   return byService;
 }
