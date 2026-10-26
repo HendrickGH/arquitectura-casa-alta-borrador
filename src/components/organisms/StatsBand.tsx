@@ -19,7 +19,7 @@ export function StatsBand({ stats }: StatsBandProps) {
   return (
     <section
       {...revealAttrs("stagger")}
-      className="border-y border-bone-200/80 bg-bone-50/50 py-4"
+      className="bg-bone-50/50 py-6"
     >
       <Container>
         <div className="grid grid-cols-2 gap-y-4 py-1 sm:grid-cols-4">

@@ -41,24 +41,24 @@ export function ServicesEditorialShowcase({
     <Section id={id} tone="canvas" density="default">
       <Container>
         <div className="mb-12">
-          <p className="label mb-3 text-ink-muted">Lo que hacemos</p>
+          <p className="eyebrow mb-2">Lo que hacemos</p>
           <Heading voice="serif" as="h2" sizeClassName="text-3xl md:text-5xl text-ink">
             Servicios.
           </Heading>
         </div>
 
-        <div className="border-t border-bone-300">
+        <div className="divide-y divide-bone-200">
           {pillars.map((pillar) => (
             <Link
               key={pillar.title}
               href={pillar.href}
-              className="group flex flex-col justify-between border-b border-bone-200 py-8 transition-colors duration-200 hover:bg-bone-50/50 md:flex-row md:items-baseline md:gap-8"
+              className="group flex flex-col justify-between py-8 transition-colors duration-200 hover:bg-bone-50/50 md:flex-row md:items-baseline md:gap-8"
             >
               <div className="flex items-baseline gap-4 md:w-1/3">
-                <span className="text-xs text-ink-muted transition-transform duration-200 group-hover:translate-x-1">
+                <span className="text-xs text-brand-800 transition-transform duration-200 group-hover:translate-x-1">
                   →
                 </span>
-                <h3 className="font-serif text-xl font-normal text-ink transition-colors group-hover:text-brand-900 md:text-2xl">
+                <h3 className="voice text-xl font-normal text-ink transition-colors group-hover:text-brand-900 md:text-2xl">
                   {pillar.title}
                 </h3>
               </div>

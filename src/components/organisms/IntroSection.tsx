@@ -41,7 +41,7 @@ export function IntroSection({
           <div className="flex flex-col justify-start lg:col-span-5">
             {intro.eyebrow ? (
               <div {...revealStep(0)}>
-                <p className="label mb-4 text-ink-muted">{intro.eyebrow}</p>
+                <p className="eyebrow mb-3">{intro.eyebrow}</p>
               </div>
             ) : null}
 

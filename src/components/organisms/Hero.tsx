@@ -105,7 +105,7 @@ export function Hero({ hero }: HeroProps) {
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
           {/* Left Column: Architectural Title */}
           <div className="flex flex-col items-start gap-3 lg:col-span-8">
-            <h1 className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-normal tracking-wide text-white">
+            <h1 className="voice text-[clamp(2.1rem,4.2vw,3.5rem)] font-normal leading-[1.05] tracking-[0.005em] text-white">
               <span className="block transition-all duration-700 ease-out">
                 {hero.slides[activeSlide]?.title}
               </span>
