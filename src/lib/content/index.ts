@@ -441,15 +441,41 @@ export function getInteriorsPage(): InteriorsPageContent {
       };
     });
 
-  // 2. Gallery for CredibilityGallery — strictly and exclusively from arquitectura-interiores
+  // 2. Gallery for CredibilityGallery — architecture interiors interleaved with 5-star lifestyle models
   const studioInteriors = getProjectPhotos(
     "arquitectura-interiores",
     "Arquitectura de interiores Casa Alta",
+  ).filter((p) => p.src !== heroPhoto.src);
+
+  const lifestyleProject = findManifestProject("modelos-mujeres");
+  const fiveStarBases = new Set(
+    lifestyleProject?.photos
+      .filter((p) => p.score === 5)
+      .map((p) => p.base) ?? [],
   );
-  // Exclude the hero photo from the ribbon gallery to prevent immediate duplicate
-  const galleryPhotos: Photo[] = studioInteriors.filter(
-    (p) => p.src !== heroPhoto.src,
-  );
+
+  const fiveStarLifestyle = getProjectPhotos(
+    "modelos-mujeres",
+    "Showroom y convivencia Casa Alta",
+  ).filter((p) => {
+    const base = p.src.split("/").pop()?.replace(/\.avif$/, "");
+    return base ? fiveStarBases.has(base) : false;
+  });
+
+  const galleryPhotos: Photo[] = [];
+  let lifeIndex = 0;
+  for (let i = 0; i < studioInteriors.length; i++) {
+    const archPhoto = studioInteriors[i];
+    if (archPhoto) galleryPhotos.push(archPhoto);
+    if ((i + 1) % 2 === 0 && lifeIndex < fiveStarLifestyle.length) {
+      const lifePhoto = fiveStarLifestyle[lifeIndex++];
+      if (lifePhoto) galleryPhotos.push(lifePhoto);
+    }
+  }
+  if (galleryPhotos.length % 2 !== 0 && lifeIndex < fiveStarLifestyle.length) {
+    const extraLife = fiveStarLifestyle[lifeIndex++];
+    if (extraLife) galleryPhotos.push(extraLife);
+  }
 
   // 3. Engineering Pillars for WhyCasaAltaEditorial
   const engineeringItems: Differentiator[] =
