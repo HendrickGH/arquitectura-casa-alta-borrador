@@ -7,12 +7,28 @@ import type {
 } from "@/types/content";
 import { whatsappHref } from "./site";
 
-/** The landing hero lead photo: El Bicho facade and aerial pool context. */
-const heroImage: Photo = {
-  src: "/images/hero/vista-aerea-palapas-alberca-playa.avif",
-  alt: "Vista aérea de las villas de El Bicho en Punta Zicatela: tres niveles de palapa triangular, alberca y costa de Puerto Escondido",
+/** The landing hero lead photo: El Bicho - Fachada nocturna de las villas con tres palapas e iluminación turquesa (5 estrellas). */
+const heroElBichoPhoto: Photo = {
+  src: "/images/02-el-bicho/54-fachada-nocturna-alberca-iluminada-palapas.avif",
+  alt: "Fachada nocturna de las villas de El Bicho con tres palapas triangulares e iluminación en alberca frente a la playa en Punta Zicatela",
+  width: 1080,
+  height: 810,
+};
+
+/** The landing hero second photo: Plaza Esmeralda - Terraza en blue hour con acabados de madera y luces cálidas (5 estrellas, 1600x1066). */
+const heroPlazaEsmeraldaPhoto: Photo = {
+  src: "/images/01-plaza-esmeralda-puerto-escondido/02-terraza-anochecer-planta-jardinera.avif",
+  alt: "Terraza arquitectónica al anochecer con jardineras de madera, vegetación y vistas de Puerto Escondido en Plaza Esmeralda",
   width: 1600,
-  height: 900,
+  height: 1066,
+};
+
+/** The landing hero third photo: Casa Tarrastro - Fachada principal contemporánea con muro de piedra y pérgola metálica (5 estrellas, 1280x720). */
+const heroCasaTarrastroPhoto: Photo = {
+  src: "/images/07-casa-tarrastro/06-fachada-principal-dos-niveles-pergola-piedra.avif",
+  alt: "Fachada contemporánea de dos niveles en Casa Tarrastro con volúmenes blancos, muro de piedra natural y pérgola de acero",
+  width: 1280,
+  height: 720,
 };
 
 const columnasCivilPhoto: Photo = {
@@ -241,16 +257,16 @@ export const home: HomePage = {
     eyebrow: "Empresa 100% Mexicana",
     slides: [
       {
-        title: "Punta Zicatela · Puerto Escondido",
-        photo: heroImage,
+        title: "El Bicho · Costa de Oaxaca",
+        photo: heroElBichoPhoto,
       },
       {
-        title: "Residencia El Bicho · Costa de Oaxaca",
-        photo: elBichoAtardecerPhoto,
+        title: "Plaza Esmeralda · Puerto Escondido",
+        photo: heroPlazaEsmeraldaPhoto,
       },
       {
-        title: "Villas Cavan · Arquitectura Residencial",
-        photo: villasCavanFachadaPhoto,
+        title: "Casa Tarrastro · Arquitectura Contemporánea",
+        photo: heroCasaTarrastroPhoto,
       },
     ],
     subheadline:
