@@ -6601,6 +6601,16 @@
       "casa-blake-fachada-dos-niveles-herreria-negra.avif"
     ]
   ],
+  "hero/casa-charco-seco-fachada-horizontal-terracota": [
+    [
+      480,
+      "casa-charco-seco-fachada-horizontal-terracota-480.avif"
+    ],
+    [
+      1024,
+      "casa-charco-seco-fachada-horizontal-terracota.avif"
+    ]
+  ],
   "hero/casa-charco-seco-fachada-terracota-enredadera": [
     [
       288,
@@ -6641,6 +6651,16 @@
     [
       829,
       "casa-la-barra-fachada-chukum-porton-palapa.avif"
+    ]
+  ],
+  "hero/casa-la-barra-fachada-horizontal-chukum": [
+    [
+      480,
+      "casa-la-barra-fachada-horizontal-chukum-480.avif"
+    ],
+    [
+      1024,
+      "casa-la-barra-fachada-horizontal-chukum.avif"
     ]
   ],
   "hero/casa-melchor-ocampo-balcon-herreria-celosia": [
