@@ -1,7 +1,7 @@
 import { site, whatsappHref } from "@/content/site";
 import { serviceGroups } from "@/content/services";
 import { editorialRefs } from "@/content/editorial";
-import { home } from "@/content/home";
+import { home, servicePillarSources } from "@/content/home";
 import { processSteps } from "@/content/process";
 import { differentiators } from "@/content/differentiators";
 import {
@@ -47,6 +47,7 @@ import type {
   Project,
   SectionIntro,
   ServiceGroup,
+  ServicePillar,
   ServicesPageContent,
   SiteConfig,
   SustainabilityPageContent,
@@ -361,6 +362,17 @@ export function getSustainabilityClosing(): HomePage["closing"] {
   };
 }
 
+export function getServicePillars(): ServicePillar[] {
+  return servicePillarSources.map((pillar) => ({
+    title: pillar.title,
+    description: pillar.description,
+    href: pillar.href,
+    photo:
+      findPhotoByBase(pillar.dir, pillar.base, pillar.title, pillar.alt) ??
+      undefined,
+  }));
+}
+
 /**
  * The landing view model.
  */
@@ -370,6 +382,7 @@ export function getHomePage(): HomePage {
 
   return {
     ...home,
+    servicePillars: getServicePillars(),
     differentiatorsIntro: diffIntro,
     differentiators: {
       ...home.differentiators,

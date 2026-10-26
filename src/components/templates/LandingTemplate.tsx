@@ -72,8 +72,12 @@ export function LandingTemplate({
           whatsappHref={whatsappHref}
         />
 
-        {/* 04. Los 3 pilares de servicios solicitados (Arquitectura, Ingeniería y obra civil, Construcción sustentable) */}
-        <ServicesEditorialShowcase groups={groups} id="servicios" />
+        {/* 04. Los 3 pilares de servicios solicitados (Arquitectura, Arquitectura de interiores, Construcción sustentable) */}
+        <ServicesEditorialShowcase
+          pillars={home.servicePillars}
+          groups={groups}
+          id="servicios"
+        />
 
         {/* 05. Metodología Casa Alta: Proceso secuencial con split-screen anclado */}
         <ProcessList

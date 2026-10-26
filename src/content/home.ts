@@ -252,6 +252,45 @@ const divisions: DivisionCardContent[] = [
   },
 ];
 
+export interface ServicePillarSource {
+  title: string;
+  description: string;
+  href: string;
+  dir: string;
+  base: string;
+  alt: string;
+}
+
+export const servicePillarSources: ServicePillarSource[] = [
+  {
+    title: "Arquitectura",
+    description:
+      "Diseño arquitectónico y desarrollo de proyecto ejecutivo, atendiendo la funcionalidad, las proporciones, los materiales y el entorno.",
+    href: "/servicios",
+    dir: "02-el-bicho",
+    base: "02-fachada-palapas-alberca-palmeras",
+    alt: "Diseño arquitectónico integral con alberca y palapas de Casa Alta en Oaxaca",
+  },
+  {
+    title: "Arquitectura de interiores",
+    description:
+      "Materiales de importación para proyectos residenciales con instalación certificada: islas monolíticas, cuarzo, piedra sinterizada y carpintería a medida.",
+    href: "/arquitectura-interiores",
+    dir: "arquitectura-interiores",
+    base: "03-cocina-comedor-muro-terracota-techo-bambu-isla",
+    alt: "Arquitectura de interiores con acabados nobles, cocina integral e isla de piedra",
+  },
+  {
+    title: "Construcción sustentable",
+    description:
+      "Soluciones que consideran el clima, la innovación, los recursos y las condiciones propias de cada sitio.",
+    href: "/construccion-sustentable",
+    dir: "arquitectura-sostenible",
+    base: "04-fachada-celosia-proteccion-solar-vegetacion",
+    alt: "Construcción sustentable con celosía bioclimática y protección solar pasiva",
+  },
+];
+
 export const home: HomePage = {
   hero: {
     slides: [

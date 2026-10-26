@@ -367,6 +367,13 @@ export interface DivisionCard {
   photo: Photo;
 }
 
+export interface ServicePillar {
+  title: string;
+  description: string;
+  href: string;
+  photo?: Photo;
+}
+
 export interface HomePage {
   hero: HeroContent;
   stats: Stat[];
@@ -381,6 +388,7 @@ export interface HomePage {
   divisions: DivisionCardContent[];
   intro: SectionIntro;
   services: SectionIntro;
+  servicePillars?: ServicePillar[];
   projects: SectionIntro;
   process: SectionIntro;
   differentiatorsIntro?: SectionIntro;
