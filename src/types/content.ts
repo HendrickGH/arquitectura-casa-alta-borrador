@@ -290,7 +290,7 @@ export interface HeroSlide {
  */
 export interface HeroContent {
   /** Short kicker above the headline. Not the company claim -- see Hero.tsx. */
-  eyebrow: string;
+  eyebrow?: string;
   /** Rendered as a stack, one line per entry, each with its own photograph. */
   slides: HeroSlide[];
   subheadline: string;

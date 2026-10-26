@@ -254,18 +254,17 @@ const divisions: DivisionCardContent[] = [
 
 export const home: HomePage = {
   hero: {
-    eyebrow: "Empresa 100% Mexicana",
     slides: [
       {
-        title: "Punta Zicatela · Puerto Escondido",
+        title: "Punta Zicatela",
         photo: heroVistaAereaPalapasPhoto,
       },
       {
-        title: "Casa La Barra · Chukum y Palapa",
+        title: "Casa La Barra",
         photo: heroCasaLaBarraHorizontalPhoto,
       },
       {
-        title: "Casa Charco Seco · Fachada Terracota",
+        title: "Casa Charco Seco",
         photo: heroCasaCharcoSecoHorizontalPhoto,
       },
     ],

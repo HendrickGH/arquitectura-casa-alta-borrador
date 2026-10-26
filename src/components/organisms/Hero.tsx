@@ -102,17 +102,6 @@ export function Hero({ hero }: HeroProps) {
 
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
-          {hero.eyebrow ? (
-            <p className="eyebrow !text-white/85">{hero.eyebrow}</p>
-          ) : (
-            <span />
-          )}
-          <span className="label text-white/75 tabular-nums">
-            {`${String(activeSlide + 1).padStart(2, "0")} / ${String(hero.slides.length).padStart(2, "0")}`}
-          </span>
-        </div>
-
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
           {/* Left Column: Architectural Title */}
           <div className="flex flex-col items-start gap-3 lg:col-span-8">
@@ -121,9 +110,6 @@ export function Hero({ hero }: HeroProps) {
                 {hero.slides[activeSlide]?.title}
               </span>
             </h1>
-            <p className="font-serif text-sm italic tracking-widest text-white/70">
-              Arquitectura que perdura
-            </p>
           </div>
 
           {/* Right Column: Narrative Subheadline + 0px Linear Progress Track */}
