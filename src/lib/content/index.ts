@@ -362,6 +362,21 @@ export function getSustainabilityClosing(): HomePage["closing"] {
   };
 }
 
+/** Closing CTA for the interiors page, customized with an arquitectura-interiores photo. */
+export function getInteriorsClosing(): HomePage["closing"] {
+  const baseClosing = getClosing();
+  const photo =
+    findPhotoByBase(
+      "arquitectura-interiores",
+      "08-cocina-madera-ventanal-jardin-interior-techo-bambu",
+      "Arquitectura de interiores Casa Alta",
+    ) ?? baseClosing.photo;
+  return {
+    ...baseClosing,
+    photo,
+  };
+}
+
 export function getServicePillars(): ServicePillar[] {
   return servicePillarSources.map((pillar) => ({
     title: pillar.title,
@@ -426,40 +441,17 @@ export function getInteriorsPage(): InteriorsPageContent {
       };
     });
 
-  // 2. Manifesto photo
-  const manifestoPhoto =
-    findPhotoByBase(
-      interiorsPageContent.manifesto.dir,
-      interiorsPageContent.manifesto.base,
-      "Manifiesto de interiores",
-    ) ?? heroPhoto;
-
-  // 3. Interleaved Gallery for CredibilityGallery
+  // 2. Gallery for CredibilityGallery — strictly and exclusively from arquitectura-interiores
   const studioInteriors = getProjectPhotos(
     "arquitectura-interiores",
     "Arquitectura de interiores Casa Alta",
   );
-  const lifestylePhotos = getProjectPhotos(
-    "modelos-mujeres",
-    "Showroom y convivencia Casa Alta",
+  // Exclude the hero photo from the ribbon gallery to prevent immediate duplicate
+  const galleryPhotos: Photo[] = studioInteriors.filter(
+    (p) => p.src !== heroPhoto.src,
   );
 
-  const galleryPhotos: Photo[] = [];
-  let lifeIndex = 0;
-  for (let i = 0; i < studioInteriors.length; i++) {
-    const archPhoto = studioInteriors[i];
-    if (archPhoto) galleryPhotos.push(archPhoto);
-    if ((i + 1) % 2 === 0 && lifeIndex < lifestylePhotos.length) {
-      const lifePhoto = lifestylePhotos[lifeIndex++];
-      if (lifePhoto) galleryPhotos.push(lifePhoto);
-    }
-  }
-  if (galleryPhotos.length % 2 !== 0 && lifeIndex < lifestylePhotos.length) {
-    const extraLife = lifestylePhotos[lifeIndex++];
-    if (extraLife) galleryPhotos.push(extraLife);
-  }
-
-  // 4. Engineering Pillars for WhyCasaAltaEditorial
+  // 3. Engineering Pillars for WhyCasaAltaEditorial
   const engineeringItems: Differentiator[] =
     interiorsPageContent.engineering.items.map((item) => {
       const photo =
@@ -489,10 +481,6 @@ export function getInteriorsPage(): InteriorsPageContent {
       heading: interiorsPageContent.materials.heading,
       body: interiorsPageContent.materials.body,
       sections: materialSections,
-    },
-    manifesto: {
-      text: interiorsPageContent.manifesto.text,
-      photo: manifestoPhoto,
     },
     gallery: {
       intro: interiorsPageContent.gallery.intro,

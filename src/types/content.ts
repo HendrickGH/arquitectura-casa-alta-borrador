@@ -440,7 +440,7 @@ export interface InteriorsPageContent {
     body: string;
     sections: SpecialtySection[];
   };
-  manifesto: {
+  manifesto?: {
     text: string;
     photo?: Photo;
   };

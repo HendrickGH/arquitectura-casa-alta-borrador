@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { InteriorsPageTemplate } from "@/components/templates/InteriorsPageTemplate";
 import {
-  getClosing,
+  getInteriorsClosing,
   getInteriorsPage,
   getSiteConfig,
 } from "@/lib/content";
 
 const site = getSiteConfig();
 const page = getInteriorsPage();
+const closing = getInteriorsClosing();
 
 export const metadata: Metadata = {
   title: `${page.hero.heading} — ${site.name}`,
@@ -78,7 +79,7 @@ export default function InteriorsRoutePage() {
       <InteriorsPageTemplate
         site={site}
         page={page}
-        closing={getClosing()}
+        closing={closing}
         whatsappHref={site.whatsapp.href}
       />
     </>
