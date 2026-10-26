@@ -116,12 +116,12 @@ const contactStudioPhoto: Photo = {
   height: 1280,
 };
 
-/** Flagship photograph for the Closing CTA section: El Bicho atardecer con iluminación cálida. */
+/** Flagship photograph for the Closing CTA section: El Bicho 5 estrellas (01-fachada-tres-palapas-alberca). */
 const closingStudioPhoto: Photo = {
-  src: "/images/hero/el-bicho-fachada-palapas-atardecer.avif",
-  alt: "Vista de las villas de El Bicho con cubiertas de palapa al atardecer, iluminación cálida y jardín frente a la alberca",
-  width: 1280,
-  height: 720,
+  src: "/images/02-el-bicho/01-fachada-tres-palapas-alberca.avif",
+  alt: "Edificio terminado de El Bicho con tres niveles de palapas, alberca y palmeras en la costa de Oaxaca por Casa Alta",
+  width: 1200,
+  height: 1600,
 };
 
 /** Technical supervision and blueprints session for WhyCasaAltaEditorial. */
