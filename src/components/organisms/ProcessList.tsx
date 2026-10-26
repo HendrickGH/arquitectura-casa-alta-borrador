@@ -137,7 +137,7 @@ export function ProcessList({
       >
         <div className="mx-auto flex h-full w-full max-w-[1920px] px-2 sm:px-3 md:px-4 lg:px-6">
           {/* Left Column: Focused Methodology Ledger (32-37% width) */}
-          <div className="flex w-[38%] shrink-0 flex-col justify-between overflow-y-auto pb-6 pr-6 pt-20 sm:pt-24 lg:w-[37%] lg:pb-8 lg:pr-8 lg:pt-24 xl:w-[34%] xl:pb-10 xl:pr-10 xl:pt-28 2xl:w-[32%] 2xl:max-w-[620px] 2xl:pb-12 2xl:pr-12">
+          <div className="flex w-[38%] shrink-0 flex-col justify-between overflow-hidden pb-6 pr-6 pt-16 sm:pt-16 lg:w-[37%] lg:pb-6 lg:pr-8 lg:pt-16 xl:w-[34%] xl:pb-8 xl:pr-10 xl:pt-20 2xl:w-[32%] 2xl:max-w-[620px] 2xl:pb-10 2xl:pr-12 2xl:pt-24">
             {/* Top: Section Header */}
             <div>
               <p className="eyebrow text-brand-800">{intro.eyebrow}</p>
