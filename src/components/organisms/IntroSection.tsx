@@ -60,15 +60,11 @@ export function IntroSection({
           {/* Right column: Paragraphs + Action button */}
           <div className="flex flex-col justify-start lg:col-span-7 lg:pt-2">
             <div {...revealStep(2)} className="flex flex-col gap-5">
-              {paragraphs.map((paragraph, index) => (
+              {paragraphs.map((paragraph) => (
                 <Text
                   key={paragraph}
-                  size={index === 0 ? "lede" : undefined}
-                  className={
-                    index === 0
-                      ? "max-w-[56ch] text-ink"
-                      : "max-w-[56ch] text-ink-muted text-sm leading-relaxed"
-                  }
+                  size="lede"
+                  className="max-w-[56ch] text-ink leading-relaxed"
                 >
                   {paragraph}
                 </Text>

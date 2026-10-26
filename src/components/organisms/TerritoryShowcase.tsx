@@ -23,7 +23,7 @@ export function TerritoryShowcase({
         {/* Section Header */}
         <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
-            <p className="label mb-2 text-ink-muted">02 / Proyectos seleccionados</p>
+            <p className="label mb-2 text-ink-muted">Proyectos seleccionados</p>
             <Heading
               voice="serif"
               as="h2"
@@ -52,14 +52,14 @@ export function TerritoryShowcase({
         {/* Architectural Caption & Project Tag */}
         <div className="mt-4 flex flex-col justify-between gap-2 border-b border-bone-200 pb-4 text-xs md:flex-row md:items-baseline">
           <p className="font-serif text-base text-ink md:text-lg">
-            Punta Zicatela
+            El Bicho
           </p>
           <p className="label text-ink-muted uppercase tracking-wider">
-            Puerto Escondido, Oaxaca · Proyecto Real
+            Proyecto Real
           </p>
         </div>
-        <p className="mt-3 text-[11px] leading-relaxed text-ink-muted md:text-xs">
-          La fotografía de esta sección proviene del archivo de obra realizado por Casa Alta. Arquitectura integrada al entorno costero, palapas artesanales y paisajismo tropical.
+        <p className="mt-3 text-xs leading-relaxed text-ink md:text-sm">
+          Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.
         </p>
       </Container>
     </section>

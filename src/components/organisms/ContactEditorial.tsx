@@ -24,7 +24,7 @@ export function ContactEditorial({
       <Container>
         <div className="flex flex-col justify-between gap-12 border-t border-bone-300 pt-16 md:flex-row md:items-end">
           <div className="max-w-xl">
-            <p className="label mb-3 text-ink-muted">05 / Contacto</p>
+            <p className="label mb-3 text-ink-muted">Contacto</p>
             <Heading
               voice="serif"
               as="h2"

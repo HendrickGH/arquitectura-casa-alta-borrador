@@ -41,7 +41,7 @@ export function ServicesEditorialShowcase({
     <Section id={id} tone="canvas" density="default">
       <Container>
         <div className="mb-12">
-          <p className="label mb-3 text-ink-muted">03 / Lo que hacemos</p>
+          <p className="label mb-3 text-ink-muted">Lo que hacemos</p>
           <Heading voice="serif" as="h2" sizeClassName="text-3xl md:text-5xl text-ink">
             Servicios.
           </Heading>

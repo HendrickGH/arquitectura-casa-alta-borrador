@@ -40,7 +40,7 @@ export function ProcessBand({ id = "proceso" }: ProcessBandProps) {
     <section id={id} className="bg-ink py-20 text-concha-nacar md:py-28">
       <Container>
         <div className="mb-14">
-          <p className="label mb-3 text-concha-nacar/50">04 / Nuestro proceso</p>
+          <p className="label mb-3 text-concha-nacar/50">Nuestro proceso</p>
           <Heading
             voice="serif"
             as="h2"
@@ -53,12 +53,9 @@ export function ProcessBand({ id = "proceso" }: ProcessBandProps) {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {editorialSteps.map((step) => (
             <div
-              key={step.num}
+              key={step.title}
               className="flex flex-col border-t border-concha-nacar/20 pt-6"
             >
-              <span className="label mb-4 text-concha-nacar/40 tabular-nums">
-                {step.num}
-              </span>
               <h3 className="font-serif text-xl font-normal text-concha-nacar">
                 {step.title}
               </h3>

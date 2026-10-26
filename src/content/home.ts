@@ -116,12 +116,12 @@ const contactStudioPhoto: Photo = {
   height: 1280,
 };
 
-/** Flagship photograph for the Closing CTA section: Punta Zicatela. */
+/** Flagship photograph for the Closing CTA section: El Bicho atardecer con iluminación cálida. */
 const closingStudioPhoto: Photo = {
-  src: "/images/10-obra-punta-zicatela/10-escalones-acceso-vano-trapezoidal-recamara.avif",
-  alt: "Acceso arquitectónico en acabado chukum con vano trapezoidal monumental, escalones de concreto y luz rasante en Punta Zicatela",
-  width: 1500,
-  height: 2000,
+  src: "/images/hero/el-bicho-fachada-palapas-atardecer.avif",
+  alt: "Vista de las villas de El Bicho con cubiertas de palapa al atardecer, iluminación cálida y jardín frente a la alberca",
+  width: 1280,
+  height: 720,
 };
 
 /** Technical supervision and blueprints session for WhyCasaAltaEditorial. */
@@ -281,7 +281,7 @@ export const home: HomePage = {
 
   intro: {
     eyebrow: "Quiénes somos",
-    heading: "CASA ALTA · Arquitectura que perdura",
+    heading: "Arquitectura que perdura",
     body: "Somos una constructora mexicana especializada en arquitectura, ingeniería y construcción, integrada por profesionales comprometidos con el desarrollo de proyectos que combinan diseño, funcionalidad y calidad constructiva.",
     paragraphs: [
       "Desarrollamos proyectos residenciales, comerciales y de obra civil, incorporando soluciones arquitectónicas innovadoras y principios de construcción sostenible, con especial atención al entorno natural.",

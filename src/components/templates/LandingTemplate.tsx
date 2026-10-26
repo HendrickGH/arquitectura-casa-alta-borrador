@@ -6,7 +6,7 @@ import { StatsBand } from "@/components/organisms/StatsBand";
 import { ServicesEditorialShowcase } from "@/components/organisms/ServicesEditorialShowcase";
 import { ProcessBand } from "@/components/organisms/ProcessBand";
 import { ArchitectQuote } from "@/components/organisms/ArchitectQuote";
-import { ContactEditorial } from "@/components/organisms/ContactEditorial";
+import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
   DivisionCard,
@@ -84,12 +84,8 @@ export function LandingTemplate({
           architect={site.architect}
         />
 
-        {/* 07. Contacto directo con teléfonos duales, redes y botón de acción */}
-        <ContactEditorial
-          phones={site.contact.filter((c) => c.href.startsWith("tel:"))}
-          social={site.social}
-          id="contacto"
-        />
+        {/* 07. Cierre monumental (150vh) con imagen arquitectónica destacada y llamada a la acción */}
+        <ClosingCTA closing={home.closing} isLanding />
       </main>
     </SiteChrome>
   );
