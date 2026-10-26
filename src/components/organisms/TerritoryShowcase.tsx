@@ -1,7 +1,9 @@
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
+import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
+import { SectionHeading } from "@/components/molecules/SectionHeading";
 import type { Photo as PhotoModel } from "@/types/content";
 
 interface TerritoryShowcaseProps {
@@ -12,28 +14,25 @@ interface TerritoryShowcaseProps {
 /**
  * Editorial Territory Showcase Section (`Obra y territorio`).
  * Adheres strictly to DESIGN.md:
+ * - Uses canonical Section and SectionHeading molecular hierarchy.
+ * - Standard editorial serif scale (`text-[2.25rem] md:text-[3rem] lg:text-[3.75rem]`).
+ * - Generous lede typography scale for architectural caption, coherent with landing.
  * - Zero border strokes (no border-bone-200 or dividing hairlines).
- * - Typography register: Marcellus (voice="serif") for headings, Montserrat for label/body.
- * - Generous whitespace and orthogonal geometry.
+ * - Orthogonal 0px geometry.
  */
 export function TerritoryShowcase({
   id = "obra-y-territorio",
   photo,
 }: TerritoryShowcaseProps) {
   return (
-    <section id={id} className="bg-canvas py-16 md:py-24">
+    <Section id={id} tone="canvas" density="compact">
       <Container>
-        {/* Section Header */}
-        <div className="mb-8">
-          <p className="eyebrow mb-2">Proyectos seleccionados</p>
-          <Heading
-            voice="serif"
-            as="h2"
-            sizeClassName="text-3xl md:text-5xl text-ink"
-          >
-            Obra y territorio.
-          </Heading>
-        </div>
+        {/* Canonical Section Header */}
+        <SectionHeading
+          eyebrow="Proyectos seleccionados"
+          heading="Obra y territorio."
+          className="mb-8 md:mb-12"
+        />
 
         {/* Protagonist Full Photograph without borders */}
         <div className="overflow-hidden bg-bone-100">
@@ -48,22 +47,22 @@ export function TerritoryShowcase({
         </div>
 
         {/* Architectural Caption */}
-        <div className="mt-6 flex flex-col gap-2">
+        <div className="mt-8 flex flex-col gap-3">
           <Heading
             voice="serif"
             as="h3"
-            sizeClassName="text-xl md:text-2xl text-ink"
+            sizeClassName="text-2xl md:text-3xl text-ink"
           >
             El Bicho
           </Heading>
           <Text
-            size="sm"
+            size="lede"
             className="max-w-[62ch] text-ink-muted leading-relaxed"
           >
             Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.
           </Text>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }
