@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
-import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
+import { SectionHeading } from "@/components/molecules/SectionHeading";
 import type { ServiceGroup } from "@/types/content";
 
 interface ServicesEditorialShowcaseProps {
@@ -40,12 +41,16 @@ export function ServicesEditorialShowcase({
   return (
     <Section id={id} tone="canvas" density="default">
       <Container>
-        <div className="mb-12">
-          <p className="eyebrow mb-2">Lo que hacemos</p>
-          <Heading voice="serif" as="h2" sizeClassName="text-3xl md:text-5xl text-ink">
-            Servicios.
-          </Heading>
-        </div>
+        <SectionHeading
+          eyebrow="Lo que hacemos"
+          heading="Servicios."
+          action={
+            <Button href="/servicios" variant="secondary" size="sm" arrow>
+              Conoce todos nuestros servicios
+            </Button>
+          }
+          className="mb-12 md:flex-row md:items-end"
+        />
 
         <div className="divide-y divide-bone-200">
           {pillars.map((pillar) => (
@@ -54,10 +59,7 @@ export function ServicesEditorialShowcase({
               href={pillar.href}
               className="group flex flex-col justify-between py-8 transition-colors duration-200 hover:bg-bone-50/50 md:flex-row md:items-baseline md:gap-8"
             >
-              <div className="flex items-baseline gap-4 md:w-1/3">
-                <span className="text-xs text-brand-800 transition-transform duration-200 group-hover:translate-x-1">
-                  →
-                </span>
+              <div className="flex items-baseline md:w-1/3">
                 <h3 className="voice text-xl font-normal text-ink transition-colors group-hover:text-brand-900 md:text-2xl">
                   {pillar.title}
                 </h3>
