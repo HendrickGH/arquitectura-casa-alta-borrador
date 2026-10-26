@@ -15,20 +15,20 @@ const heroVistaAereaPalapasPhoto: Photo = {
   height: 900,
 };
 
-/** The landing hero second photo: Casa La Barra - Fachada horizontal chukum y palapa (1024x572, 16:9). */
+/** The landing hero second photo: Casa La Barra - Fachada horizontal chukum y palapa (2000x1116 max capped, original 2752x1536). */
 const heroCasaLaBarraHorizontalPhoto: Photo = {
   src: "/images/hero/casa-la-barra-fachada-horizontal-chukum.avif",
   alt: "Residencia costera Casa La Barra en acabado mineral chukum, portón de listones de madera, celosías y cubierta de palapa",
-  width: 1024,
-  height: 572,
+  width: 2000,
+  height: 1116,
 };
 
-/** The landing hero third photo: Casa Charco Seco - Fachada horizontal en terracota con enredadera (1024x572, 16:9). */
+/** The landing hero third photo: Casa Charco Seco - Fachada horizontal en terracota con enredadera (2000x1116 max capped, original 2752x1536). */
 const heroCasaCharcoSecoHorizontalPhoto: Photo = {
   src: "/images/hero/casa-charco-seco-fachada-horizontal-terracota.avif",
   alt: "Fachada residencial Casa Charco Seco en acabado terracota con portones de madera, celosía y enredadera natural",
-  width: 1024,
-  height: 572,
+  width: 2000,
+  height: 1116,
 };
 
 const columnasCivilPhoto: Photo = {
