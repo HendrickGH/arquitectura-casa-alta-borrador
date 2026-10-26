@@ -321,7 +321,7 @@ export const home: HomePage = {
   process: {
     eyebrow: "Metodología Casa Alta",
     heading: "Cómo trabajamos",
-    body: "Para realizar un proyecto con Casa Alta seguimos un proceso claro y estructurado: desde la primera reunión y paquete estándar hasta la entrega formal con certeza legal y garantía por escrito.",
+    body: "Para realizar un proyecto con Casa Alta es importante seguir los siguientes pasos para conocer el proceso creativo que elaboramos:",
   },
 
   differentiatorsIntro: {

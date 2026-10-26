@@ -4,7 +4,7 @@ import { IntroSection } from "@/components/organisms/IntroSection";
 import { TerritoryShowcase } from "@/components/organisms/TerritoryShowcase";
 import { StatsBand } from "@/components/organisms/StatsBand";
 import { ServicesEditorialShowcase } from "@/components/organisms/ServicesEditorialShowcase";
-import { ProcessBand } from "@/components/organisms/ProcessBand";
+import { ProcessList } from "@/components/organisms/ProcessList";
 import { ArchitectQuote } from "@/components/organisms/ArchitectQuote";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { SiteChrome } from "@/components/templates/SiteChrome";
@@ -75,8 +75,13 @@ export function LandingTemplate({
         {/* 04. Los 3 pilares de servicios solicitados (Arquitectura, Ingeniería y obra civil, Construcción sustentable) */}
         <ServicesEditorialShowcase groups={groups} id="servicios" />
 
-        {/* 05. Bloque oscuro: De la primera conversación a la obra terminada */}
-        <ProcessBand steps={steps} id="proceso" />
+        {/* 05. Metodología Casa Alta: Proceso secuencial con split-screen anclado */}
+        <ProcessList
+          intro={home.process}
+          steps={steps}
+          tone="bone"
+          id="proceso"
+        />
 
         {/* 06. Cita del Arquitecto Felipe Humberto Hernández Bejarano */}
         <ArchitectQuote
