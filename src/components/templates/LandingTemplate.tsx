@@ -1,13 +1,11 @@
-import { DivisionCards } from "@/components/organisms/DivisionCards";
 import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
-import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
-import { ManifestoLine } from "@/components/organisms/ManifestoLine";
-import { ProcessList } from "@/components/organisms/ProcessList";
-import { ServicesIndex } from "@/components/organisms/ServicesIndex";
 import { StatsBand } from "@/components/organisms/StatsBand";
-import { WhyCasaAltaEditorial } from "@/components/organisms/WhyCasaAltaEditorial";
+import { ServicesEditorialShowcase } from "@/components/organisms/ServicesEditorialShowcase";
+import { ProcessBand } from "@/components/organisms/ProcessBand";
+import { ArchitectQuote } from "@/components/organisms/ArchitectQuote";
+import { ContactEditorial } from "@/components/organisms/ContactEditorial";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
   DivisionCard,
@@ -42,57 +40,47 @@ export function LandingTemplate({
   remaining,
   whatsappHref,
 }: LandingTemplateProps) {
+  void divisions;
   return (
     <SiteChrome site={site} chrome="canvas">
       <main id="main">
+        {/* 01. Hero Carrusel de 3 slides seleccionados con títulos contenidos */}
         <Hero hero={home.hero} />
 
+        {/* 02. Quiénes somos con texto literal del PDF del Lic. Gerardo y foto horizontal de Punta Zicatela */}
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
+
+        {/* Cifras clave reducidas en escala discreta y elegante */}
         <StatsBand stats={home.stats} />
 
-        <DivisionCards
-          intro={home.divisionsIntro}
-          divisions={divisions}
-          tone="canvas"
-        />
-
-        <ManifestoLine
-          line={home.manifesto}
-          architect={site.architect}
-          photo={home.manifestoPhoto}
-        />
-
+        {/* 03. Obras seleccionadas */}
         <FeaturedPortfolio
           id="proyectos"
           intro={home.projects}
           projects={featured}
           remaining={remaining}
-          tone="canvas"
+          tone="bone"
           whatsappHref={whatsappHref}
         />
 
-        <ProcessList
-          id="proceso"
-          intro={home.process}
-          steps={steps}
-          tone="bone"
+        {/* 04. Los 3 pilares de servicios solicitados (Arquitectura, Ingeniería y obra civil, Construcción sustentable) */}
+        <ServicesEditorialShowcase groups={groups} id="servicios" />
+
+        {/* 05. Bloque oscuro: De la primera conversación a la obra terminada */}
+        <ProcessBand steps={steps} id="proceso" />
+
+        {/* 06. Cita del Arquitecto Felipe Humberto Hernández Bejarano */}
+        <ArchitectQuote
+          quote={home.manifesto}
+          architect={site.architect}
         />
 
-        <ServicesIndex
-          id="servicios"
-          intro={home.services}
-          groups={groups}
-          tone="canvas"
-          whatsappHref={whatsappHref}
+        {/* 07. Contacto directo con teléfonos duales, redes y botón de acción */}
+        <ContactEditorial
+          phones={site.contact.filter((c) => c.href.startsWith("tel:"))}
+          social={site.social}
+          id="contacto"
         />
-
-        <WhyCasaAltaEditorial
-          intro={home.differentiatorsIntro ?? home.differentiators.intro}
-          items={home.differentiators.items}
-          tone="bone"
-        />
-
-        <ClosingCTA closing={home.closing} isLanding />
       </main>
     </SiteChrome>
   );

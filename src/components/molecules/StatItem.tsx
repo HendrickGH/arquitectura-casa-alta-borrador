@@ -1,5 +1,3 @@
-import { Text } from "@/components/atoms/Text";
-
 interface StatItemProps {
   value: string;
   label: string;
@@ -16,23 +14,23 @@ interface StatItemProps {
  */
 export function StatItem({ value, label, tag, sub }: StatItemProps) {
   return (
-    <div className="group flex flex-col justify-between gap-3 p-1 transition-all duration-300">
+    <div className="group flex flex-col justify-start gap-1 p-1">
       {tag ? (
-        <span className="label text-brand-800">{tag}</span>
+        <span className="text-[10px] tracking-wider uppercase text-ink-muted">{tag}</span>
       ) : null}
 
       <div>
         <p
           data-count={value}
-          className="voice text-3xl leading-[1.05] text-brand-900 tabular-nums transition-transform duration-300 group-hover:translate-x-0.5 md:text-4xl lg:text-5xl"
+          className="font-serif text-xl text-brand-900 tabular-nums md:text-2xl"
         >
           {value}
         </p>
-        <Text size="sm" className="mt-2 font-medium leading-snug text-ink">
+        <p className="text-xs font-medium text-ink">
           {label}
-        </Text>
+        </p>
         {sub ? (
-          <p className="mt-1 text-xs leading-relaxed text-ink-muted">{sub}</p>
+          <p className="text-[11px] text-ink-muted">{sub}</p>
         ) : null}
       </div>
     </div>

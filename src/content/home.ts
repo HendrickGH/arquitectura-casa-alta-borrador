@@ -239,20 +239,20 @@ const divisions: DivisionCardContent[] = [
 
 export const home: HomePage = {
   hero: {
-    eyebrow: "Puerto Escondido, Oaxaca centro y Salina Cruz",
+    eyebrow: "Empresa 100% Mexicana",
     slides: [
-      { title: "El Bicho · Punta Zicatela", photo: heroImage },
-      { title: "Columnas C1 - C2 · Infraestructura", photo: columnasCivilPhoto },
-      { title: "Vilas Cavan · Villas Residenciales", photo: villasCavanFachadaPhoto },
-      { title: "Vilas Cavan · Pórtico y Cantera", photo: villasCavanPorticoPhoto },
-      { title: "Supervisión y Control de Obra", photo: supervisionObraPhoto },
-      { title: "Casa Blake · Tlalixtac", photo: casaBlakePhoto },
-      { title: "Casa Melchor Ocampo · Oaxaca Centro", photo: casaMelchorOcampoPhoto },
-      { title: "Casa Charco Seco · Fachada Terracota", photo: casaCharcoSecoFachadaPhoto },
-      { title: "Casa Charco Seco · Patio y Alberca", photo: casaCharcoSecoPatioPhoto },
-      { title: "Casa La Barra · Chukum y Palapa", photo: casaLaBarraPhoto },
-      { title: "El Bicho · Terraza y Jardín", photo: elBichoTerrazaPhoto },
-      { title: "El Bicho · Atardecer en la Costa", photo: elBichoAtardecerPhoto },
+      {
+        title: "Punta Zicatela · Puerto Escondido",
+        photo: heroImage,
+      },
+      {
+        title: "Residencia El Bicho · Costa de Oaxaca",
+        photo: elBichoAtardecerPhoto,
+      },
+      {
+        title: "Villas Cavan · Arquitectura Residencial",
+        photo: villasCavanFachadaPhoto,
+      },
     ],
     subheadline:
       "Proyectos ejecutivos de arquitectura residencial e ingeniería civil.",

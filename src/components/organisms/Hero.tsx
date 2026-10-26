@@ -114,13 +114,16 @@ export function Hero({ hero }: HeroProps) {
         </div>
 
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          {/* Left Column: Monumental Title */}
+          {/* Left Column: Architectural Title */}
           <div className="flex flex-col items-start gap-3 lg:col-span-8">
-            <h1 className="display text-[clamp(2.1rem,5.4vw,4.4rem)] leading-[0.95] text-white">
+            <h1 className="font-serif text-[clamp(1.75rem,3.5vw,2.75rem)] font-normal tracking-wide text-white">
               <span className="block transition-all duration-700 ease-out">
                 {hero.slides[activeSlide]?.title}
               </span>
             </h1>
+            <p className="font-serif text-sm italic tracking-widest text-white/70">
+              Arquitectura que perdura
+            </p>
           </div>
 
           {/* Right Column: Narrative Subheadline + 0px Linear Progress Track */}

@@ -46,7 +46,7 @@ export function IntroSection({
           {intro.photo ? (
             <div {...revealStep(0)} className="lg:col-span-6">
               <figure className="overflow-hidden">
-                <div className="relative aspect-[4/5] w-full overflow-hidden bg-bone-100 sm:aspect-[3/4]">
+                <div className="relative aspect-[4/3] w-full overflow-hidden bg-bone-100 sm:aspect-[16/10]">
                   <Photo
                     photo={intro.photo}
                     sizes={PHOTO_SIZES}

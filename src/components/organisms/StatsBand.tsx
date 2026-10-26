@@ -19,23 +19,10 @@ export function StatsBand({ stats }: StatsBandProps) {
   return (
     <section
       {...revealAttrs("stagger")}
-      className="bg-bone-50/70 py-8"
+      className="border-y border-bone-200/80 bg-bone-50/50 py-4"
     >
       <Container>
-        {/* Subtle architectural ledger header */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className="h-1.5 w-1.5 bg-brand-800" />
-            <span className="label text-ink">Registro técnico de obra</span>
-            <span className="text-ink-muted">·</span>
-            <span className="label text-ink-muted">
-              Costa y Valles Centrales de Oaxaca
-            </span>
-          </div>
-          <span className="label text-brand-800">Bitácora de obra</span>
-        </div>
-
-        <div className="grid grid-cols-2 gap-y-10 py-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-4 py-1 sm:grid-cols-4">
           {stats.map((stat, index) => (
             <div
               key={stat.label}

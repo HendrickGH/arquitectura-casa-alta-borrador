@@ -16,7 +16,7 @@ export const site = {
   tagline: "Arquitectura que perdura",
   claim: "Empresa 100% mexicana",
   foundedYear: 2016,
-  coverage: "Puerto Escondido, Oaxaca centro y Salina Cruz",
+  coverage: "Proyectos en todo tipo de climas y terrenos",
 
   // The principal behind the studio, named on the landing's manifesto. Supplied
   // by the client; held here rather than in home.ts because it is a company fact,
