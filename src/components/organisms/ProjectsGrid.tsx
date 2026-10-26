@@ -11,8 +11,8 @@ interface ProjectsGridProps {
 }
 
 /**
- * Partitions any number of projects into an alternating cadence of rows
- * of 2 (50% landscape) and rows of 3 (33.3% portrait), exactly mirroring Bloom 3D Studio.
+ * Partitions any number of projects into an alternating cadence:
+ * starts with rows of 3 (33.3% portrait), then rows of 2 (50% landscape), then 3.
  */
 function computeRowPattern(total: number): number[] {
   if (total <= 0) return [];
@@ -20,24 +20,24 @@ function computeRowPattern(total: number): number[] {
   if (total === 2) return [2];
   if (total === 3) return [3];
   if (total === 4) return [2, 2];
-  if (total === 5) return [2, 3];
+  if (total === 5) return [3, 2];
   if (total === 6) return [3, 3];
-  if (total === 7) return [2, 3, 2];
+  if (total === 7) return [3, 2, 2];
   if (total === 8) return [3, 2, 3];
-  if (total === 9) return [2, 3, 2, 2];
-  if (total === 10) return [2, 3, 2, 3];
-  if (total === 11) return [2, 3, 3, 3];
-  if (total === 12) return [2, 3, 2, 3, 2];
+  if (total === 9) return [3, 3, 3];
+  if (total === 10) return [3, 2, 3, 2];
+  if (total === 11) return [3, 2, 3, 3];
+  if (total === 12) return [3, 2, 3, 2, 2];
   if (total === 13) return [3, 2, 3, 2, 3];
-  if (total === 14) return [2, 3, 2, 2, 3, 2];
-  if (total === 15) return [2, 3, 2, 3, 2, 3];
-  if (total === 16) return [2, 3, 2, 3, 3, 3];
-  if (total === 17) return [2, 3, 2, 3, 2, 3, 2];
-  if (total === 18) return [2, 3, 2, 3, 2, 3, 2, 1];
+  if (total === 14) return [3, 2, 3, 3, 3];
+  if (total === 15) return [3, 2, 3, 2, 3, 2];
+  if (total === 16) return [3, 2, 3, 2, 3, 3];
+  if (total === 17) return [3, 2, 3, 2, 3, 2, 2];
+  if (total === 18) return [3, 2, 3, 2, 3, 2, 3];
 
   const rows: number[] = [];
   let remaining = total;
-  let preferThree = false;
+  let preferThree = true;
 
   while (remaining > 0) {
     if (remaining === 2) {
@@ -53,7 +53,7 @@ function computeRowPattern(total: number): number[] {
       break;
     }
     if (remaining === 5) {
-      rows.push(2, 3);
+      rows.push(3, 2);
       break;
     }
 

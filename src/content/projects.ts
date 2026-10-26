@@ -518,11 +518,9 @@ export const featuredProjectDirs = [
   "15-casa-charco-seco",
   "01-plaza-esmeralda-puerto-escondido",
   "03-casa-blake-tlalixtac",
-  "10-obra-punta-zicatela",
   "07-casa-tarrastro",
   "remodelacion",
   "16-casa-la-barra",
   "17-el-tomatal",
-  "12-vilas-cavan",
 ];
 
