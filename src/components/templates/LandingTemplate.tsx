@@ -1,6 +1,7 @@
 import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
 import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
+import { TerritoryShowcase } from "@/components/organisms/TerritoryShowcase";
 import { StatsBand } from "@/components/organisms/StatsBand";
 import { ServicesEditorialShowcase } from "@/components/organisms/ServicesEditorialShowcase";
 import { ProcessBand } from "@/components/organisms/ProcessBand";
@@ -47,13 +48,21 @@ export function LandingTemplate({
         {/* 01. Hero Carrusel de 3 slides seleccionados con títulos contenidos */}
         <Hero hero={home.hero} />
 
-        {/* 02. Quiénes somos con texto literal del PDF del Lic. Gerardo y foto horizontal de Punta Zicatela */}
+        {/* 02. Quiénes somos con texto literal del PDF del Lic. Gerardo */}
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
 
         {/* Cifras clave reducidas en escala discreta y elegante */}
         <StatsBand stats={home.stats} />
 
-        {/* 03. Obras seleccionadas */}
+        {/* 03. Sección Obra y Territorio (Punta Zicatela Cenital Protagónica del mockup) */}
+        {home.intro.photo ? (
+          <TerritoryShowcase
+            id="obra-y-territorio"
+            photo={home.intro.photo}
+          />
+        ) : null}
+
+        {/* 04. Obras seleccionadas */}
         <FeaturedPortfolio
           id="proyectos"
           intro={home.projects}

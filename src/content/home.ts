@@ -92,12 +92,11 @@ const elBichoAtardecerPhoto: Photo = {
   height: 720,
 };
 
-/** Flagship photograph for Quiénes somos: Punta Zicatela pool aerial context (client brief request). */
 const puntaZicatelaIntroPhoto: Photo = {
-  src: "/images/hero/vista-aerea-palapas-alberca-playa.avif",
-  alt: "Vista aérea del conjunto con alberca en Punta Zicatela, Puerto Escondido",
-  width: 1600,
-  height: 900,
+  src: "/images/hero/punta-zicatela-alberca-cenital-palapas.avif",
+  alt: "Toma aérea cenital con dron de Punta Zicatela: alberca triangular, cubiertas de palapa, vegetación tropical y asoleadero en Puerto Escondido",
+  width: 1024,
+  height: 574,
 };
 
 
