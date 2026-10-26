@@ -1,6 +1,7 @@
 import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Photo } from "@/components/atoms/Photo";
+import { Text } from "@/components/atoms/Text";
 import type { Photo as PhotoModel } from "@/types/content";
 
 interface TerritoryShowcaseProps {
@@ -10,8 +11,10 @@ interface TerritoryShowcaseProps {
 
 /**
  * Editorial Territory Showcase Section (`Obra y territorio`).
- * Replicates the client's approved reference mockup with full-width monograph framing,
- * minimal metadata caption and clean architectural white-space.
+ * Adheres strictly to DESIGN.md:
+ * - Zero border strokes (no border-bone-200 or dividing hairlines).
+ * - Typography register: Marcellus (voice="serif") for headings, Montserrat for label/body.
+ * - Generous whitespace and orthogonal geometry.
  */
 export function TerritoryShowcase({
   id = "obra-y-territorio",
@@ -21,24 +24,19 @@ export function TerritoryShowcase({
     <section id={id} className="bg-canvas py-16 md:py-24">
       <Container>
         {/* Section Header */}
-        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="label mb-2 text-ink-muted">Proyectos seleccionados</p>
-            <Heading
-              voice="serif"
-              as="h2"
-              sizeClassName="text-3xl md:text-5xl text-ink"
-            >
-              Obra y territorio.
-            </Heading>
-          </div>
-          <p className="text-xs text-ink-muted md:text-sm">
-            Cada proyecto responde a su contexto.
-          </p>
+        <div className="mb-8">
+          <p className="eyebrow mb-2">Proyectos seleccionados</p>
+          <Heading
+            voice="serif"
+            as="h2"
+            sizeClassName="text-3xl md:text-5xl text-ink"
+          >
+            Obra y territorio.
+          </Heading>
         </div>
 
-        {/* Protagonist Full Photograph */}
-        <div className="overflow-hidden border border-bone-200 bg-bone-100">
+        {/* Protagonist Full Photograph without borders */}
+        <div className="overflow-hidden bg-bone-100">
           <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[16/8.5]">
             <Photo
               photo={photo}
@@ -49,18 +47,22 @@ export function TerritoryShowcase({
           </div>
         </div>
 
-        {/* Architectural Caption & Project Tag */}
-        <div className="mt-4 flex flex-col justify-between gap-2 border-b border-bone-200 pb-4 text-xs md:flex-row md:items-baseline">
-          <p className="font-serif text-base text-ink md:text-lg">
+        {/* Architectural Caption */}
+        <div className="mt-6 flex flex-col gap-2">
+          <Heading
+            voice="serif"
+            as="h3"
+            sizeClassName="text-xl md:text-2xl text-ink"
+          >
             El Bicho
-          </p>
-          <p className="label text-ink-muted uppercase tracking-wider">
-            Proyecto Real
-          </p>
+          </Heading>
+          <Text
+            size="sm"
+            className="max-w-[62ch] text-ink-muted leading-relaxed"
+          >
+            Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.
+          </Text>
         </div>
-        <p className="mt-3 text-xs leading-relaxed text-ink md:text-sm">
-          Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.
-        </p>
       </Container>
     </section>
   );
