@@ -1,9 +1,8 @@
-import { FeaturedPortfolio } from "@/components/organisms/FeaturedPortfolio";
 import { Hero } from "@/components/organisms/Hero";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { TerritoryShowcase } from "@/components/organisms/TerritoryShowcase";
+import { VirtualTourSection } from "@/components/organisms/VirtualTourSection";
 import { StatsBand } from "@/components/organisms/StatsBand";
-import { ServicesEditorialShowcase } from "@/components/organisms/ServicesEditorialShowcase";
 import { ProcessList } from "@/components/organisms/ProcessList";
 import { ArchitectQuote } from "@/components/organisms/ArchitectQuote";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
@@ -42,42 +41,34 @@ export function LandingTemplate({
   whatsappHref,
 }: LandingTemplateProps) {
   void divisions;
+  void groups;
+  void featured;
+  void remaining;
+  void whatsappHref;
+
   return (
     <SiteChrome site={site} chrome="canvas">
       <main id="main">
-        {/* 01. Hero Carrusel de 3 slides seleccionados con títulos contenidos */}
+        {/* 01. Hero Carrusel de 3 slides seleccionados con "Casa Alta" y eslogan "Arquitectura que perdura" */}
         <Hero hero={home.hero} />
 
-        {/* 02. Quiénes somos con texto literal del PDF del Lic. Gerardo */}
+        {/* 02. Quiénes somos: Despacho y estudio de arquitectura (40px) */}
         <IntroSection id="nosotros" intro={home.intro} tone="canvas" />
 
         {/* Cifras clave reducidas en escala discreta y elegante */}
         <StatsBand stats={home.stats} />
 
-        {/* 03. Sección Obra y Territorio (Punta Zicatela Cenital Protagónica del mockup) */}
+        {/* 03. Sección Arquitectura nativa: "El nuevo lujo no se ve, se siente" */}
         {home.intro.photo ? (
           <TerritoryShowcase
-            id="obra-y-territorio"
+            id="arquitectura-nativa"
             photo={home.intro.photo}
+            tone="bone"
           />
         ) : null}
 
-        {/* 04. Obras seleccionadas */}
-        <FeaturedPortfolio
-          id="proyectos"
-          intro={home.projects}
-          projects={featured}
-          remaining={remaining}
-          tone="bone"
-          whatsappHref={whatsappHref}
-        />
-
-        {/* 04. Los 3 pilares de servicios solicitados (Arquitectura, Arquitectura de interiores, Construcción sustentable) */}
-        <ServicesEditorialShowcase
-          pillars={home.servicePillars}
-          groups={groups}
-          id="servicios"
-        />
+        {/* 04. Recorrido virtual guiado ("Charco Seco") con botón a Servicios */}
+        <VirtualTourSection tour={home.virtualTour} tone="canvas" />
 
         {/* 05. Metodología Casa Alta: Proceso secuencial con split-screen anclado */}
         <ProcessList
