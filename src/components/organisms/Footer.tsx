@@ -128,11 +128,13 @@ export function Footer({ site }: FooterProps) {
         {/* Monumental architectural wordmark + legal line */}
         <div className="mt-16 pt-10">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
+            <div className="flex w-fit flex-col">
               <p className="display text-[clamp(2.6rem,7vw,6.5rem)] leading-[0.86] tracking-[-0.03em] text-concha-nacar/90">
                 CASA ALTA
               </p>
-              <p className="label mt-2 text-concha-nacar/55">{site.tagline}</p>
+              <p className="mt-2.5 w-full text-justify text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.1em] text-concha-nacar/65 [text-align-last:justify]">
+                {site.tagline}
+              </p>
             </div>
 
             <div className="flex flex-col gap-1 text-left md:text-right">

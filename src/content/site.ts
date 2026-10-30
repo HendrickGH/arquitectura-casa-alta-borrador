@@ -68,6 +68,7 @@ export const site = {
   offices: [
     { city: "Puerto Escondido", region: "Oaxaca" },
     { city: "Salina Cruz", region: "Oaxaca" },
+    { city: "Oaxaca de Juárez", region: "Oaxaca" },
   ],
 
   social: [
