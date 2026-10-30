@@ -42,3 +42,6 @@ next-env.d.ts
 # Teamwork multi-agent runtime state
 /.agents/teamwork/
 
+# Raw WhatsApp dump media in root
+WhatsApp Video*.mp4
+

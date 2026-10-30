@@ -352,6 +352,7 @@ export const home: HomePage = {
     heading: "Casa Charco Seco",
     hook: "Un recorrido inmersivo por la arquitectura, materiales y espacialidad de Casa Charco Seco.",
     poster: heroCasaCharcoSecoHorizontalPhoto,
+    videoSrc: "/videos/casa-charco-seco-recorrido-virtual.mp4",
     cta: {
       label: "Conoce nuestros servicios",
       href: "/servicios",
@@ -415,7 +416,7 @@ export const home: HomePage = {
 
   closing: {
     eyebrow: "Contacto",
-    heading: "La experiencia de construir con Casalta",
+    heading: "La experiencia de construir con Casa Alta",
     body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
     cta: { label: "Agendar reunión", href: whatsappHref },
     photo: closingStudioPhoto,
