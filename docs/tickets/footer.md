@@ -4,31 +4,26 @@ Enlaces de navegación consistentes, datos de contacto oficiales, derechos reser
 
 > **Índice general**: Volver a [tickets.md](./tickets.md) | **Insumos del cliente**: [entregables-cliente.md](./entregables-cliente.md)
 
-**Métricas de la épica**: Total tickets: **2** | Pendientes/Bloqueados: **2** | Resueltos/Descartados: **0**
+**Métricas de la épica**: Total tickets: **2** | Pendientes/Bloqueados: **0** | Resueltos/Descartados: **2**
 
 ---
 
 ## Tareas Activas y Bloqueadas
 
-<a id="cas-024"></a>
-- [ ] **`CAS-024` Agregar "Oaxaca de Juárez" a la lista de Sedes en el Footer**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Actualizar el apartado de Sedes en el pie de página para mostrar las 3 plazas donde operan: "Puerto Escondido, Salina Cruz y Oaxaca de Juárez" (actualmente solo mostraba Puerto Escondido y Salina Cruz).
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 1 (44:55 - 45:55)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
-
-<a id="cas-025"></a>
-- [ ] **`CAS-025` Agrandar el eslogan "Arquitectura que perdura" al ancho completo de "Casa Alta" en el Footer**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🟠 Alta | **Tipo**: Diseño / UI
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: En el cierre inferior de la página donde aparece "Casa Alta" en grande, agrandar y alargar "Arquitectura que perdura" para que abarque exactamente de la C a la A de "Casa Alta", encuadrado en todas las páginas.
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 1 (46:05 - 47:05)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
+*No hay tareas pendientes en esta sección.*
 
 ---
 
 ## Descartados, Aprobados y Resueltos
 
-*No hay tareas cerradas o descartadas en esta sección.*
+<a id="cas-024"></a>
+- [x] **`CAS-024` Agregar "Oaxaca de Juárez" a la lista de Sedes en el Footer** — `Resuelto`
+  - **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se incorporó `{ city: "Oaxaca de Juárez", region: "Oaxaca" }` en `src/content/site.ts`, reflejándose automáticamente en el listado de Sedes del Footer junto con Puerto Escondido y Salina Cruz.
+  - **Referencia**: [Llamada 1 (44:55 - 45:55)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
 
+<a id="cas-025"></a>
+- [x] **`CAS-025` Agrandar el eslogan "Arquitectura que perdura" al ancho completo de "Casa Alta" en el Footer** — `Resuelto`
+  - **Prioridad**: 🟠 Alta | **Tipo**: Diseño / UI | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: En `src/components/organisms/Footer.tsx`, se agrupó el wordmark en un bloque `w-fit flex flex-col` y se agrandó el eslogan a `text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.1em]` con justificación balanceada `w-full text-justify [text-align-last:justify]`, alineándose de la C a la A de "CASA ALTA" de forma proporcional y responsive en todas las resoluciones.
+  - **Referencia**: [Llamada 1 (46:05 - 47:05)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
