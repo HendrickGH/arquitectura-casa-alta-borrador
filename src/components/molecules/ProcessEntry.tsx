@@ -57,7 +57,11 @@ export function ProcessEntry({
             <Heading
               as="h3"
               voice="serif"
-              sizeClassName="text-base leading-snug sm:text-lg lg:text-lg xl:text-xl 2xl:text-[1.35rem]"
+              sizeClassName={
+                isActive
+                  ? "text-2xl leading-snug sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-[2.35rem]"
+                  : "text-base leading-snug sm:text-lg lg:text-lg xl:text-xl"
+              }
               className={`transition-colors duration-300 ${
                 isActive
                   ? "text-ink"
@@ -70,14 +74,14 @@ export function ProcessEntry({
             <div
               className={`grid transition-all duration-500 ease-out ${
                 isActive
-                  ? "mt-2 grid-rows-[1fr] opacity-100"
+                  ? "mt-2.5 grid-rows-[1fr] opacity-100"
                   : "mt-0 grid-rows-[0fr] opacity-0 pointer-events-none"
               }`}
             >
               <div className="overflow-hidden">
                 <Text
-                  size="sm"
-                  className="max-w-[42ch] leading-relaxed text-ink-muted xl:max-w-[46ch] 2xl:max-w-[48ch]"
+                  size="base"
+                  className="max-w-[48ch] leading-relaxed text-ink-muted text-justify text-sm sm:text-base xl:text-base 2xl:text-lg"
                 >
                   {step.description}
                 </Text>
@@ -95,7 +99,7 @@ export function ProcessEntry({
       className="py-8 md:py-10"
     >
       <div className="grid grid-cols-1 md:grid-cols-12 md:items-center md:gap-8 lg:gap-10">
-        <div className={step.photo ? "md:col-span-6" : "md:col-span-12"}>
+        <div className={step.photo ? "md:col-span-7" : "md:col-span-12"}>
           <div className="flex items-center gap-3">
             <span className="flex h-7 w-7 items-center justify-center bg-bone-200 text-xs font-semibold tabular-nums text-brand-800">
               {marker}
@@ -108,22 +112,22 @@ export function ProcessEntry({
           <Heading
             as="h3"
             voice="serif"
-            sizeClassName="mt-3 text-2xl leading-tight md:text-[1.65rem]"
+            sizeClassName="mt-3 text-2xl leading-tight sm:text-3xl md:text-[2.25rem]"
           >
             {step.title}
           </Heading>
 
-          <Text className="mt-3 max-w-[48ch] leading-relaxed text-ink-muted">
+          <Text className="mt-3 max-w-[54ch] leading-relaxed text-ink-muted text-justify text-base">
             {step.description}
           </Text>
         </div>
 
         {step.photo ? (
-          <div className="mt-5 overflow-hidden md:col-span-6 md:mt-0">
+          <div className="mt-5 overflow-hidden md:col-span-5 md:mt-0">
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-200 md:aspect-[4/3]">
               <Photo
                 photo={step.photo}
-                sizes="(min-width: 768px) 46vw, 100vw"
+                sizes="(min-width: 768px) 40vw, 100vw"
                 className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-[1.02]"
               />
             </div>

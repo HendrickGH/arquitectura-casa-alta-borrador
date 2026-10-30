@@ -136,8 +136,8 @@ export function ProcessList({
         className="hidden lg:flex lg:h-[100svh] lg:min-h-[100svh] lg:w-full lg:overflow-hidden"
       >
         <div className="mx-auto flex h-full w-full max-w-[1920px] px-2 sm:px-3 md:px-4 lg:px-6">
-          {/* Left Column: Focused Methodology Ledger (32-37% width) */}
-          <div className="flex w-[38%] shrink-0 flex-col justify-between overflow-hidden pb-6 pr-6 pt-16 sm:pt-16 lg:w-[37%] lg:pb-6 lg:pr-8 lg:pt-16 xl:w-[34%] xl:pb-8 xl:pr-10 xl:pt-20 2xl:w-[32%] 2xl:max-w-[620px] 2xl:pb-10 2xl:pr-12 2xl:pt-24">
+          {/* Left Column: Focused Methodology Ledger (expanded to ~48% width for prominent typography) */}
+          <div className="flex w-[50%] shrink-0 flex-col justify-between overflow-hidden pb-6 pr-8 pt-16 sm:pt-16 lg:w-[48%] lg:pb-6 lg:pr-10 lg:pt-16 xl:w-[48%] xl:pb-8 xl:pr-12 xl:pt-20 2xl:w-[46%] 2xl:max-w-[760px] 2xl:pb-10 2xl:pr-14 2xl:pt-24">
             {/* Top: Section Header */}
             <div>
               <p className="eyebrow text-brand-800">{intro.eyebrow}</p>
@@ -145,14 +145,14 @@ export function ProcessList({
                 {intro.heading}
               </h2>
               {intro.body ? (
-                <p className="mt-3 max-w-[42ch] text-xs leading-relaxed text-ink-muted xl:text-sm xl:max-w-[46ch] 2xl:max-w-[48ch]">
+                <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-ink-muted text-justify xl:text-base 2xl:text-lg">
                   {intro.body}
                 </p>
               ) : null}
             </div>
 
             {/* Middle: Sequence of Steps */}
-            <ol className="my-auto space-y-1.5 py-4 xl:space-y-2 2xl:space-y-2.5">
+            <ol className="my-auto space-y-2 py-4 xl:space-y-2.5 2xl:space-y-3">
               {steps.map((step, idx) => (
                 <ProcessEntry
                   key={step.order}

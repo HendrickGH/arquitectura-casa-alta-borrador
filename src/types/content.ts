@@ -289,6 +289,10 @@ export interface HeroSlide {
  * photograph) and the description.
  */
 export interface HeroContent {
+  /** Main brand title, e.g. "Casa Alta". */
+  title?: string;
+  /** Primary brand slogan, e.g. "Arquitectura que perdura". */
+  tagline?: string;
   /** Short kicker above the headline. Not the company claim -- see Hero.tsx. */
   eyebrow?: string;
   /** Rendered as a stack, one line per entry, each with its own photograph. */
@@ -374,6 +378,15 @@ export interface ServicePillar {
   photo?: Photo;
 }
 
+export interface VirtualTourContent {
+  eyebrow?: string;
+  heading: string;
+  hook?: string;
+  videoSrc?: string;
+  poster: Photo;
+  cta: CallToAction;
+}
+
 export interface HomePage {
   hero: HeroContent;
   stats: Stat[];
@@ -387,6 +400,7 @@ export interface HomePage {
   divisionsIntro: SectionIntro;
   divisions: DivisionCardContent[];
   intro: SectionIntro;
+  virtualTour?: VirtualTourContent;
   services: SectionIntro;
   servicePillars?: ServicePillar[];
   projects: SectionIntro;

@@ -103,11 +103,14 @@ export function Hero({ hero }: HeroProps) {
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          {/* Left Column: Architectural Title */}
-          <div className="flex flex-col items-start gap-3 lg:col-span-8">
-            <h1 className="voice text-[clamp(2.1rem,4.2vw,3.5rem)] font-normal leading-[1.05] tracking-[0.005em] text-white">
-              <span className="block transition-all duration-700 ease-out">
-                {hero.slides[activeSlide]?.title}
+          {/* Left Column: Architectural Title with Studio Name & Tagline */}
+          <div className="flex flex-col items-start gap-1 lg:col-span-8">
+            <h1 className="flex flex-col items-start">
+              <span className="voice text-[clamp(2.6rem,5.5vw,4.5rem)] font-normal leading-[1.0] tracking-[0.005em] text-white">
+                {hero.title ?? "Casa Alta"}
+              </span>
+              <span className="mt-1.5 text-xs sm:text-sm md:text-base font-medium tracking-[0.22em] uppercase text-white/90">
+                {hero.tagline ?? "Arquitectura que perdura"}
               </span>
             </h1>
           </div>

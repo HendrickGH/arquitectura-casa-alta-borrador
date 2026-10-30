@@ -49,7 +49,7 @@ export function IntroSection({
               <Heading
                 as="h2"
                 voice="serif"
-                sizeClassName="text-[clamp(2.1rem,3.6vw,3.25rem)] leading-[1.12]"
+                sizeClassName="text-[32px] sm:text-[36px] md:text-[40px] leading-[1.15]"
                 className="max-w-[18ch] text-ink"
               >
                 {intro.heading}
@@ -64,7 +64,7 @@ export function IntroSection({
                 <Text
                   key={paragraph}
                   size="lede"
-                  className="max-w-[56ch] text-ink leading-relaxed"
+                  className="max-w-[56ch] text-ink leading-relaxed text-justify"
                 >
                   {paragraph}
                 </Text>
