@@ -15,7 +15,7 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 | :--- | :--- | :--- | :---: | :---: | :---: |
 | **Global y Diseño Base** | [`base-design.md`](./base-design.md) | Ajustes globales de diseño, alineación justificada, eliminación de frases de costo y guardas de estilo visual. | 5 | 0 | 5 |
 | **Menú de Navegación (Header)** | [`header.md`](./header.md) | Reorganización del menú principal: incorporación de Obra Civil, renombre de Sostenible y eliminación de Interiores/Real Estate. | 4 | 0 | 4 |
-| **Página de Inicio (Home)** | [`home.md`](./home.md) | Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charco Seco, arquitectura nativa y métricas. | 14 | 12 | 2 |
+| **Página de Inicio (Home)** | [`home.md`](./home.md) | Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charco Seco, arquitectura nativa y métricas. | 14 | 3 | 11 |
 | **Pie de Página (Footer)** | [`footer.md`](./footer.md) | Enlaces de navegación consistentes, datos de contacto oficiales, derechos reservados y eliminación de links obsoletos. | 2 | 2 | 0 |
 | **Página de Servicios** | [`servicios.md`](./servicios.md) | Catálogo integral de servicios de arquitectura y constructora, sección cocinas/interiores, Skate Parks e ingeniería. | 8 | 8 | 0 |
 | **Página de Proyectos** | [`proyectos.md`](./proyectos.md) | Portafolio de obras destacadas (El Bicho, Blake, Tarrastro, etc.), filtros por tipología, galerías fotográficas y fichas técnicas. | 16 | 15 | 1 |
@@ -25,7 +25,7 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 | **Página de Contacto y Formularios** | [`contacto.md`](./contacto.md) | Reingeniería del formulario guiado paso a paso, eliminación de campos de presupuesto intrusivos, WhatsApp y mapa de ubicación. | 4 | 4 | 0 |
 | **Dominios, Correos y Lanzamiento** | [`lanzamiento.md`](./lanzamiento.md) | Gestión del dominio arquitecturacasalta.com (10 años), DNS, configuración de 5 correos corporativos y despliegue final. | 5 | 5 | 0 |
 | **Post-Lanzamiento (Fase 2 - CMS y SEO)** | [`post-lanzamiento.md`](./post-lanzamiento.md) | Implementación futura de Payload CMS para gestión autónoma del cliente y auditoría continua de posicionamiento SEO. | 2 | 2 | 0 |
-| **TOTALES** | | | **68** | **55** | **13** |
+| **TOTALES** | | | **68** | **46** | **22** |
 
 ## Insumos y Entregables del Cliente
 
@@ -35,7 +35,7 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 
 - [x] **[Global y Diseño Base](./base-design.md)** (0 pendientes / 5 totales) — Ajustes globales de diseño, alineación justificada, eliminación de frases de costo y guardas de estilo visual.
 - [x] **[Menú de Navegación (Header)](./header.md)** (0 pendientes / 4 totales) — Reorganización del menú principal: incorporación de Obra Civil, renombre de Sostenible y eliminación de Interiores/Real Estate.
-- [ ] **[Página de Inicio (Home)](./home.md)** (12 pendientes / 14 totales) — Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charco Seco, arquitectura nativa y métricas.
+- [ ] **[Página de Inicio (Home)](./home.md)** (3 pendientes / 14 totales) — Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charco Seco, arquitectura nativa y métricas.
 - [ ] **[Pie de Página (Footer)](./footer.md)** (2 pendientes / 2 totales) — Enlaces de navegación consistentes, datos de contacto oficiales, derechos reservados y eliminación de links obsoletos.
 - [ ] **[Página de Servicios](./servicios.md)** (8 pendientes / 8 totales) — Catálogo integral de servicios de arquitectura y constructora, sección cocinas/interiores, Skate Parks e ingeniería.
 - [ ] **[Página de Proyectos](./proyectos.md)** (15 pendientes / 16 totales) — Portafolio de obras destacadas (El Bicho, Blake, Tarrastro, etc.), filtros por tipología, galerías fotográficas y fichas técnicas.
