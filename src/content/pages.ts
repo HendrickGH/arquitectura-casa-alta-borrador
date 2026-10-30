@@ -182,7 +182,7 @@ export const civilWorksPageContent = {
     subheadline:
       "Capacidad técnica integral para obras de gran tonelaje: cimentaciones profundas, izado con grúas telescópicas, trabes cajón y cálculo sismorresistente bajo normativa nacional.",
     dir: "obra-civil",
-    base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+    base: "25-grua-telescopica-armado-acero-zapata-puente-peatonal",
     catalogCtaLabel: "Explorar frentes de obra civil",
     consultationCtaLabel: "Solicitar cotización técnica",
   },
@@ -206,7 +206,7 @@ export const civilWorksPageContent = {
           "Ensamble en candelero con mortero grout expansivo",
         ],
         dir: "obra-civil",
-        base: "02-montaje-columna-prefabricada-en-candelero-cimentacion",
+        base: "03-colocacion-capitel-prefabricado-sobre-columna-concreto",
       },
       {
         slug: "puentes-y-trabes-de-gran-claro",
@@ -223,29 +223,29 @@ export const civilWorksPageContent = {
           "Apoyos de neopreno reforzado y juntas de dilatación",
         ],
         dir: "obra-civil",
-        base: "10-montaje-trabes-cajon-puente-sobre-pilas-concreto",
+        base: "07-transporte-trabe-puente-gran-claro-tractocamion",
       },
       {
         slug: "naves-industriales-y-porticos",
         number: "03",
-        title: "Naves Industriales y Muros Tilt-up",
-        shortTitle: "Naves",
-        subtitle: "Naves",
+        title: "Superestructuras y Piezas Especiales",
+        shortTitle: "Estructuras",
+        subtitle: "Estructuras",
         description:
-          "Edificación de naves industriales, centros de distribución y estructuras comerciales con muros de concreto de gran altura y cubiertas de gran claro.",
+          "Montaje de elementos especiales de concreto, trabes de conexión y pórticos estructurales de gran altura para enlaces viales y proyectos de gran envergadura.",
         deliverables: [
-          "Izado simultáneo de muros y cartelas de concreto",
+          "Izado milimétrico de piezas de enlace y contraventeo",
           "Estructura mixta concreto-acero para máxima rigidez",
           "Pisos de concreto pulido con fibras estructurales",
           "Patios de maniobras y terracerías de alto tonelaje",
         ],
-        dir: "naves-industriales",
-        base: "01-maniobra-gruas-izado-muros-prefabricados-concreto",
+        dir: "obra-civil",
+        base: "05-montaje-pieza-especial-concreto-estructura-puente",
       },
       {
         slug: "cimentaciones-profundas-y-vialidades",
         number: "04",
-        title: "Cimentaciones Profundas y Vialidades",
+        title: "Cimentaciones Profundas y Armado de Acero",
         shortTitle: "Cimentación",
         subtitle: "Cimentación",
         description:
@@ -263,8 +263,8 @@ export const civilWorksPageContent = {
   },
   manifesto: {
     text: "La infraestructura civil no se improvisa: se proyecta con rigor de gabinete, cálculo de sismicidad severa y control pericial en cada frente de obra.",
-    dir: "credibilidad",
-    base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
+    dir: "obra-civil",
+    base: "04-izado-cabezal-columna-puente-grua-cielo-azul",
   },
   gallery: {
     intro: {
@@ -281,7 +281,7 @@ export const civilWorksPageContent = {
     },
     items: [
       {
-        title: "Cálculo estructural en gabinete y modelado sismorresistente",
+        title: "Cálculo estructural y modelado sismorresistente",
         tag: "GABINETE TÉCNICO Y CÁLCULO",
         description:
           "Modelamos cada estructura civil mediante software especializado de elementos finitos para garantizar resiliencia ante sismos de alta intensidad y cargas dinámicas de tránsito pesado.",
@@ -290,8 +290,8 @@ export const civilWorksPageContent = {
           "Modelado tridimensional de esfuerzos y deformaciones críticas",
           "Cumplimiento con normas técnicas complementarias y estándares SCT",
         ],
-        dir: "proyectos-integrales",
-        base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
+        dir: "obra-civil",
+        base: "08-izado-columna-prefabricada-con-mensulas-grua-urbana",
       },
       {
         title: "Logística pesada y maniobras con grúas telescópicas certificadas",
@@ -307,7 +307,7 @@ export const civilWorksPageContent = {
         base: "04-izado-cabezal-columna-puente-grua-cielo-azul",
       },
       {
-        title: "Control de calidad en laboratorio y pruebas destructivas",
+        title: "Control de calidad en terracerías y compactación de subbase",
         tag: "CONTROL DE CALIDAD EN SITIO",
         description:
           "Verificamos en laboratorio acreditado la resistencia a la compresión del concreto (cilindros a 7, 14 y 28 días), revenimiento y grados de compactación Proctor en terracerías.",
@@ -316,11 +316,11 @@ export const civilWorksPageContent = {
           "Pruebas de tensión y doblez en acero de refuerzo estructural",
           "Control de compactación nuclear de terracerías y terraplenes",
         ],
-        dir: "credibilidad",
-        base: "06-armado-acero-estructural-zapata-trabajador-casa-alta",
+        dir: "obra-civil",
+        base: "09-rodillo-compactador-caterpillar-base-columnas-prefabricadas",
       },
       {
-        title: "Firma pericial DRO y finiquito administrativo de obra",
+        title: "Firma pericial DRO y supervisión de armados en cimentación",
         tag: "RESPALDO TÉCNICO Y LEGAL",
         description:
           "Entregamos expedientes técnicos completos: bitácora electrónica de obra pública o privada, planos as-built, estimaciones por conceptos ejecutados y finiquito sin partidas ocultas.",
@@ -329,8 +329,8 @@ export const civilWorksPageContent = {
           "Expediente unitario con números generadores y memoria fotográfica",
           "Finiquito de obra y póliza formal de vicios ocultos por escrito",
         ],
-        dir: "credibilidad",
-        base: "05-director-obra-chaleco-casa-alta-bajo-palapa",
+        dir: "obra-civil",
+        base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
       },
     ],
   },

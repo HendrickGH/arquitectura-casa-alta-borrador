@@ -379,13 +379,13 @@ export function getInteriorsClosing(): HomePage["closing"] {
   };
 }
 
-/** Closing CTA for the civil works page, customized with a 5-star obra-civil photo. */
+/** Closing CTA for the civil works page, customized with an exclusive 5-star obra-civil photo. */
 export function getCivilWorksClosing(): HomePage["closing"] {
   const baseClosing = getClosing();
   const photo =
     findPhotoByBase(
       "obra-civil",
-      "11-conjunto-porticos-columnas-trabes-prefabricadas-obra",
+      "05-montaje-pieza-especial-concreto-estructura-puente",
       "Obra civil Casa Alta",
     ) ?? baseClosing.photo;
   return {
@@ -562,52 +562,28 @@ export function getCivilWorksPage(): CivilWorksPageContent {
       };
     });
 
-  // 2. Gallery for CredibilityGallery — strictly 5-star photos
+  // 2. Gallery for CredibilityGallery — strictly 5-star photos exclusive to obra-civil (no overlap with servicios/nosotros)
+  const forbiddenBases = new Set([
+    "02-montaje-columna-prefabricada-en-candelero-cimentacion",
+    "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+    "10-montaje-trabes-cajon-puente-sobre-pilas-concreto",
+    "11-conjunto-porticos-columnas-trabes-prefabricadas-obra",
+  ]);
+
   const ocProject = findManifestProject("obra-civil");
   const ocFiveStarBases = new Set(
     ocProject?.photos
-      .filter((p) => p.score === 5)
+      .filter((p) => p.score === 5 && !forbiddenBases.has(p.base))
       .map((p) => p.base) ?? [],
   );
 
-  const ocFiveStarPhotos = getProjectPhotos(
+  const galleryPhotos: Photo[] = getProjectPhotos(
     "obra-civil",
     "Obra Civil Casa Alta",
   ).filter((p) => {
-    if (p.src === heroPhoto.src) return false;
     const base = p.src.split("/").pop()?.replace(/\.avif$/, "");
     return base ? ocFiveStarBases.has(base) : false;
   });
-
-  const credProject = findManifestProject("credibilidad");
-  const credFiveStarBases = new Set(
-    credProject?.photos
-      .filter((p) => p.score === 5)
-      .map((p) => p.base) ?? [],
-  );
-
-  const credFiveStarPhotos = getProjectPhotos(
-    "credibilidad",
-    "Supervisión y Cuadrilla Casa Alta",
-  ).filter((p) => {
-    const base = p.src.split("/").pop()?.replace(/\.avif$/, "");
-    return base ? credFiveStarBases.has(base) : false;
-  });
-
-  const galleryPhotos: Photo[] = [];
-  let credIndex = 0;
-  for (let i = 0; i < ocFiveStarPhotos.length; i++) {
-    const ocPhoto = ocFiveStarPhotos[i];
-    if (ocPhoto) galleryPhotos.push(ocPhoto);
-    if ((i + 1) % 2 === 0 && credIndex < credFiveStarPhotos.length) {
-      const cPhoto = credFiveStarPhotos[credIndex++];
-      if (cPhoto) galleryPhotos.push(cPhoto);
-    }
-  }
-  if (galleryPhotos.length % 2 !== 0 && credIndex < credFiveStarPhotos.length) {
-    const extraCred = credFiveStarPhotos[credIndex++];
-    if (extraCred) galleryPhotos.push(extraCred);
-  }
 
   // 3. Engineering Pillars for WhyCasaAltaEditorial
   const engineeringItems: Differentiator[] =
