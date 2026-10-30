@@ -24,6 +24,7 @@ export default function ServicesRoutePage() {
       site={site}
       page={page}
       groups={getServiceGroups()}
+      pillars={home.servicePillars}
       closing={getClosing()}
       contact={home.contact}
       whatsappHref={site.whatsapp.href}

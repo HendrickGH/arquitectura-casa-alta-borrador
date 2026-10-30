@@ -5,12 +5,14 @@ import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { ContactForm } from "@/components/organisms/ContactForm";
 import { EditorialSplitSection } from "@/components/organisms/EditorialSplitSection";
 import { PageHero } from "@/components/organisms/PageHero";
+import { ServicesEditorialShowcase } from "@/components/organisms/ServicesEditorialShowcase";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
 import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
   HomePage,
   ServiceGroup,
+  ServicePillar,
   ServicesPageContent,
   SiteConfig,
 } from "@/types/content";
@@ -19,6 +21,7 @@ interface ServicesPageTemplateProps {
   site: SiteConfig;
   page: ServicesPageContent;
   groups: ServiceGroup[];
+  pillars?: ServicePillar[];
   closing: HomePage["closing"];
   contact: HomePage["contact"];
   whatsappHref: string;
@@ -28,13 +31,14 @@ interface ServicesPageTemplateProps {
  * `/servicios` — Ingeniería, Proyectos Ejecutivos y Construcción.
  *
  * Showcases the studio's four field execution specialties (`proyectos-integrales`,
- * `obra-civil`, `naves-industriales`, `remodelacion`), the complete 13-service
- * technical catalog (`ServicesIndex`).
+ * `obra-civil`, `naves-industriales`, `remodelacion`), the 3 core pillars from the home,
+ * and the complete 13-service technical catalog (`ServicesIndex`).
  */
 export function ServicesPageTemplate({
   site,
   page,
   groups,
+  pillars,
   closing,
   contact,
   whatsappHref,
@@ -77,11 +81,18 @@ export function ServicesPageTemplate({
           </Container>
         </Section>
 
+        {pillars && pillars.length > 0 ? (
+          <ServicesEditorialShowcase
+            pillars={pillars}
+            id="frentes-especializados"
+          />
+        ) : null}
+
         <ServicesIndex
           id="catalogo-servicios"
           intro={page.catalog}
           groups={groups}
-          tone="canvas"
+          tone="bone"
           whatsappHref={whatsappHref}
         />
 
