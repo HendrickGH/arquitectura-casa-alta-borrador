@@ -1006,7 +1006,7 @@ $$\text{atoms} \longrightarrow \text{molecules} \longrightarrow \text{organisms}
 
 | # | File Path | Exact Lines | Hardcoded Text / Pattern | Target Extraction Content File |
 |---|---|---|---|---|
-| 1 | `organisms/ClosingCTA.tsx` | 107 | `closing.eyebrow \|\| "Primera reunión sin costo"` | `src/content/home.ts` (`closing.eyebrow`) |
+| 1 | `organisms/ClosingCTA.tsx` | 107 | `closing.eyebrow \|\| "Primera reunión"` | `src/content/home.ts` (`closing.eyebrow`) |
 | 2 | `organisms/ClosingCTA.tsx` | 110 | `<span className="label text-white/70">Zoom o presencial en Oaxaca</span>` | `src/content/home.ts` (`closing.subtitle`) |
 | 3 | `organisms/ClosingCTA.tsx` | 149 | `<Button variant="outline" ...>Iniciar consulta</Button>` | `src/content/home.ts` (`closing.secondaryCtaLabel`) |
 | 4 | `organisms/ContactFormFields.tsx` | 63–64 | WhatsApp message generator templates | `src/content/site.ts` (`site.whatsappTemplates`) |

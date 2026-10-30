@@ -4,7 +4,7 @@ Nueva página y sección dedicada a infraestructura pública, puentes, pavimenta
 
 > **Índice general**: Volver a [tickets.md](./tickets.md) | **Insumos del cliente**: [entregables-cliente.md](./entregables-cliente.md)
 
-**Métricas de la épica**: Total tickets: **2** | Pendientes/Bloqueados: **2** | Resueltos/Descartados: **0**
+**Métricas de la épica**: Total tickets: **2** | Pendientes/Bloqueados: **1** | Resueltos/Descartados: **1**
 
 ---
 
@@ -18,17 +18,13 @@ Nueva página y sección dedicada a infraestructura pública, puentes, pavimenta
   - **Dependencias / Bloqueos**: Ninguna
   - **Referencia**: [Llamada 3 (08:25 - 14:55)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
 
-<a id="cas-051"></a>
-- [ ] **`CAS-051` Construir y maquetar la página "Obra Civil" con enfoque en ingeniería y obra pesada de Casa Alta**
-  - **Estado**: ⚠️ `Bloqueado / Esperando Cliente` | **Prioridad**: 🟠 Alta | **Tipo**: Estructura / UX
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Diseñar y publicar la vista de la pestaña "Obra Civil" manteniendo el branding de Casa Alta (sin destacar el nombre Concáltica para no afectar el SEO, aunque se puede incluir su catálogo/alcance técnico) e integrar los textos que envíe Gerardo.
-  - **Dependencias / Bloqueos**: Esperando textos de Obra Civil (CAS-050)
-  - **Referencia**: [Llamada 3 (11:39 - 14:55)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
-
 ---
 
 ## Descartados, Aprobados y Resueltos
 
-*No hay tareas cerradas o descartadas en esta sección.*
+<a id="cas-051"></a>
+- [x] **`CAS-051` Construir y maquetar la página "Obra Civil" con enfoque en ingeniería y obra pesada de Casa Alta** — `Resuelto`
+  - **Prioridad**: 🟠 Alta | **Tipo**: Estructura / UX | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se construyó y maquetó la ruta `/obra-civil` implementando la arquitectura modular de interiores (`CivilWorksPageTemplate` sobre `ThematicPillarPageTemplate`): PageHero con doble acción, SpecialtiesShowcase (Precolados, Puentes, Naves Industriales y Cimentaciones Profundas), ManifestoLine con cita de obra civil, CredibilityGallery en doble cinta y WhyCasaAltaEditorial con 4 pilares de ingeniería DRO. Se integraron exclusivamente fotografías 5/5 estrellas del acervo de obra civil y supervisión.
+  - **Referencia**: [Llamada 3 (11:39 - 14:55)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
 

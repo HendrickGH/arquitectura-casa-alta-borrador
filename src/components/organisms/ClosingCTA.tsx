@@ -104,7 +104,7 @@ export function ClosingCTA({
         <div {...revealStep(0)} className="max-w-[48rem]">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
             <p className="eyebrow !text-white/85">
-              {closing.eyebrow || "Primera reunión sin costo"}
+              {closing.eyebrow || "Primera reunión"}
             </p>
             <span className="label text-white/70">
               Reunión por Zoom o en nuestras sedes

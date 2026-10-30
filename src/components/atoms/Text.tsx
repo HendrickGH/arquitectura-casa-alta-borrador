@@ -10,11 +10,11 @@ interface TextProps {
 }
 
 const sizes: Record<Size, string> = {
-  sm: "text-sm leading-relaxed text-ink-muted",
-  base: "text-base leading-relaxed",
-  lg: "text-lg leading-relaxed",
+  sm: "text-sm leading-relaxed text-ink-muted text-justify",
+  base: "text-base leading-relaxed text-justify",
+  lg: "text-lg leading-relaxed text-justify",
   /** Opening paragraph: larger, quieter colour, capped measure. */
-  lede: "text-lg leading-relaxed text-ink-muted md:text-xl md:leading-relaxed max-w-[62ch]",
+  lede: "text-lg leading-relaxed text-ink-muted md:text-xl md:leading-relaxed max-w-[62ch] text-justify",
 };
 
 export function Text({

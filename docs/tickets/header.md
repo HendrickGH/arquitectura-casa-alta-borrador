@@ -4,39 +4,35 @@ Reorganización del menú principal: incorporación de Obra Civil, renombre de S
 
 > **Índice general**: Volver a [tickets.md](./tickets.md) | **Insumos del cliente**: [entregables-cliente.md](./entregables-cliente.md)
 
-**Métricas de la épica**: Total tickets: **4** | Pendientes/Bloqueados: **3** | Resueltos/Descartados: **1**
+**Métricas de la épica**: Total tickets: **4** | Pendientes/Bloqueados: **0** | Resueltos/Descartados: **4**
 
 ---
 
 ## Tareas Activas y Bloqueadas
 
-<a id="cas-006"></a>
-- [ ] **`CAS-006` Eliminar la pestaña "Interiores" (Arquitectura de Interiores) del menú superior**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🔴 Crítica | **Tipo**: Estructura / UX
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Quitar "Interiores" de la barra de navegación principal (Header), ya que los servicios de cocinas/interiores corresponden a otra empresa independiente operada por Felipe y no debe tener protagonismo de pestaña principal ni exponer la página a reclamos de Cosentino. El servicio se mantiene únicamente dentro del catálogo de la página "Servicios".
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 2 (31:40 - 38:10)](https://fathom.video/share/NAmhzBmzN9zLafz-R7wPaPxKb_4Fmzus)
-
-<a id="cas-007"></a>
-- [ ] **`CAS-007` Agregar nueva pestaña "Obra Civil" en el menú superior**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🔴 Crítica | **Tipo**: Estructura / UX
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: En reemplazo de "Interiores", agregar la pestaña "Obra Civil" en el menú principal para presentar la capacidad de ingeniería civil y obra pesada bajo la marca Casa Alta (absorbiendo la línea de trabajo de su razón social Concáltica sin confundir a los buscadores con múltiples marcas).
-  - **Dependencias / Bloqueos**: Bloqueado parcialmente por textos de Obra Civil (CAS-039)
-  - **Referencia**: [Llamada 2 (38:08 - 38:28) y Llamada 3 (05:56 - 14:55)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
-
-<a id="cas-008"></a>
-- [ ] **`CAS-008` Renombrar pestaña "Sustentable" a "Sostenible" y posicionar en menú superior**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🟠 Alta | **Tipo**: Estructura / UX
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Cambiar el texto del enlace en la navegación principal de "Sustentable" a "Sostenible", manteniéndola en el menú superior junto a Obra Civil.
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 3 (14:54 - 15:26, 20:40)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
+*No hay tareas pendientes en esta sección.*
 
 ---
 
 ## Descartados, Aprobados y Resueltos
+
+<a id="cas-006"></a>
+- [x] **`CAS-006` Eliminar la pestaña "Interiores" (Arquitectura de Interiores) del menú superior** — `Resuelto`
+  - **Prioridad**: 🔴 Crítica | **Tipo**: Estructura / UX | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se eliminó "Interiores" del arreglo de navegación principal en `src/content/site.ts`. La ruta `/arquitectura-interiores` se preserva para el catálogo de servicios sin protagonismo en el Header principal, mitigando riesgos de marca.
+  - **Referencia**: [Llamada 2 (31:40 - 38:10)](https://fathom.video/share/NAmhzBmzN9zLafz-R7wPaPxKb_4Fmzus)
+
+<a id="cas-007"></a>
+- [x] **`CAS-007` Agregar nueva pestaña "Obra Civil" en el menú superior** — `Resuelto`
+  - **Prioridad**: 🔴 Crítica | **Tipo**: Estructura / UX | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se integró la nueva pestaña "Obra Civil" en el Header apuntando a `/obra-civil`. Se desarrolló la página completa con los mismos componentes de interiores (`ThematicPillarPageTemplate`: PageHero, SpecialtiesShowcase, ManifestoLine, CredibilityGallery, WhyCasaAltaEditorial y ClosingCTA), integrando exclusivamente fotografías 5/5 estrellas de obra civil, puentes, prefabricados y supervisión pericial.
+  - **Referencia**: [Llamada 2 (38:08 - 38:28) y Llamada 3 (05:56 - 14:55)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
+
+<a id="cas-008"></a>
+- [x] **`CAS-008` Renombrar pestaña "Sustentable" a "Sostenible" y posicionar en menú superior** — `Resuelto`
+  - **Prioridad**: 🟠 Alta | **Tipo**: Estructura / UX | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se actualizó la etiqueta de navegación en `src/content/site.ts` de "Sustentable" a "Sostenible", manteniendo su enlace canónico en el menú superior junto a Obra Civil.
+  - **Referencia**: [Llamada 3 (14:54 - 15:26, 20:40)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
 
 <a id="cas-009"></a>
 - [x] **`CAS-009` Descartar pestaña de "Real Estate" (Venta/Preventa de 10 propiedades) en web de Casalta** — `Descartado`

@@ -434,14 +434,14 @@ export const projectContent: Record<string, ProjectContent> = {
     location: "La Barra, Puerto Escondido, Oaxaca",
     year: "",
     summary:
-      "Residencia costera en La Barra resuelta con volúmenes en acabado mineral chukum, celosía artesanal de barro, portón de madera y cubierta superior de palapa.",
+      "Residencia costera en La Barra resuelta con volúmenes en pasta mineral artesanal, celosía artesanal de barro, portón de madera y cubierta superior de palapa.",
     story:
-      "Combina la inercia térmica de los muros en acabado chukum con filtros de celosía de barro cocido y una palapa ventilada en el nivel superior para habitar el trópico con frescura natural.",
+      "Combina la inercia térmica de los muros en acabado mineral con filtros de celosía de barro cocido y una palapa ventilada en el nivel superior para habitar el trópico con frescura natural.",
     outcome: "",
     specs: [
       { label: "Tipología", value: "Habitacional costera" },
       { label: "Ubicación", value: "La Barra, Puerto Escondido, Oaxaca" },
-      { label: "Materialidad", value: "Chukum, celosía de barro, madera y palma" },
+      { label: "Materialidad", value: "Pastas minerales, celosía de barro, madera y palma" },
     ],
     images: curatedGalleries["16-casa-la-barra"],
   },
@@ -454,14 +454,14 @@ export const projectContent: Record<string, ProjectContent> = {
     location: "El Tomatal, Puerto Escondido, Oaxaca",
     year: "",
     summary:
-      "Vivienda costera de un nivel con fachada en acabado chukum, celosías verticales de ladrillo de barro, acceso adoquinado y vegetación tropical integrada.",
+      "Vivienda costera de un nivel con fachada en acabado mineral, celosías verticales de ladrillo de barro, acceso adoquinado y vegetación tropical integrada.",
     story:
       "Un proyecto de escala serena donde los muros color arena y las celosías verticales de barro tamizan el sol de la costa oaxaqueña y permiten ventilación cruzada permanente.",
     outcome: "",
     specs: [
       { label: "Tipología", value: "Habitacional" },
       { label: "Ubicación", value: "El Tomatal, Costa de Oaxaca" },
-      { label: "Materialidad", value: "Chukum, adoquín y celosía de barro" },
+      { label: "Materialidad", value: "Pastas minerales, adoquín y celosía de barro" },
     ],
     images: curatedGalleries["17-el-tomatal"],
   },
@@ -502,7 +502,7 @@ export const projectContent: Record<string, ProjectContent> = {
     specs: [
       { label: "Tipología", value: "Interiorismo residencial y cocinas" },
       { label: "Ubicación", value: "Oaxaca de Juárez, Oaxaca" },
-      { label: "Materialidad", value: "Piedra tecnológica, parota y chukum" },
+      { label: "Materialidad", value: "Piedra tecnológica, parota y pastas minerales" },
     ],
     images: curatedGalleries["arquitectura-interiores"],
   },

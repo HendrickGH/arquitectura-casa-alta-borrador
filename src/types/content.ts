@@ -483,6 +483,35 @@ export interface SustainabilityPageContent {
   };
 }
 
+export interface CivilWorksPageContent {
+  hero: {
+    eyebrow: string;
+    heading: string;
+    subheadline: string;
+    photo: Photo;
+    catalogCtaLabel?: string;
+    consultationCtaLabel?: string;
+  };
+  specialties: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    sections: SpecialtySection[];
+  };
+  manifesto?: {
+    text: string;
+    photo?: Photo;
+  };
+  gallery: {
+    intro: SectionIntro;
+    photos: Photo[];
+  };
+  engineering: {
+    intro: SectionIntro;
+    items: Differentiator[];
+  };
+}
+
 export interface MethodologyPhase {
   number: string;
   kicker: string;

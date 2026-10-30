@@ -10,6 +10,7 @@ import {
 } from "@/content/testimonials";
 import {
   aboutPageContent,
+  civilWorksPageContent,
   contactPageContent,
   interiorsPageContent,
   servicesPageContent,
@@ -34,6 +35,7 @@ import editorialDimensions from "@images/editorial/editorial.dimensions.json";
 import type {
   AboutPageContent,
   CategoryTile,
+  CivilWorksPageContent,
   ContactFormContent,
   ContactPageContent,
   Differentiator,
@@ -377,6 +379,21 @@ export function getInteriorsClosing(): HomePage["closing"] {
   };
 }
 
+/** Closing CTA for the civil works page, customized with a 5-star obra-civil photo. */
+export function getCivilWorksClosing(): HomePage["closing"] {
+  const baseClosing = getClosing();
+  const photo =
+    findPhotoByBase(
+      "obra-civil",
+      "11-conjunto-porticos-columnas-trabes-prefabricadas-obra",
+      "Obra civil Casa Alta",
+    ) ?? baseClosing.photo;
+  return {
+    ...baseClosing,
+    photo,
+  };
+}
+
 export function getServicePillars(): ServicePillar[] {
   return servicePillarSources.map((pillar) => ({
     title: pillar.title,
@@ -514,6 +531,136 @@ export function getInteriorsPage(): InteriorsPageContent {
     },
     engineering: {
       intro: interiorsPageContent.engineering.intro,
+      items: engineeringItems,
+    },
+  };
+}
+
+export function getCivilWorksPage(): CivilWorksPageContent {
+  const heroPhoto =
+    findPhotoByBase(
+      civilWorksPageContent.hero.dir,
+      civilWorksPageContent.hero.base,
+      "Ingeniería y Obra Civil",
+    ) ??
+    getProjectCover(civilWorksPageContent.hero.dir, "Ingeniería y Obra Civil")!;
+
+  // 1. Specialties for SpecialtiesShowcase
+  const specialtySections: SpecialtySection[] =
+    civilWorksPageContent.specialties.sections.map((s) => {
+      const photo = findPhotoByBase(s.dir, s.base, s.title) ?? heroPhoto;
+      return {
+        slug: s.slug,
+        number: s.number,
+        title: s.title,
+        shortTitle: s.shortTitle,
+        subtitle: s.subtitle,
+        description: s.description,
+        deliverables: s.deliverables,
+        photo,
+        photos: [photo],
+      };
+    });
+
+  // 2. Gallery for CredibilityGallery — strictly 5-star photos
+  const ocProject = findManifestProject("obra-civil");
+  const ocFiveStarBases = new Set(
+    ocProject?.photos
+      .filter((p) => p.score === 5)
+      .map((p) => p.base) ?? [],
+  );
+
+  const ocFiveStarPhotos = getProjectPhotos(
+    "obra-civil",
+    "Obra Civil Casa Alta",
+  ).filter((p) => {
+    if (p.src === heroPhoto.src) return false;
+    const base = p.src.split("/").pop()?.replace(/\.avif$/, "");
+    return base ? ocFiveStarBases.has(base) : false;
+  });
+
+  const credProject = findManifestProject("credibilidad");
+  const credFiveStarBases = new Set(
+    credProject?.photos
+      .filter((p) => p.score === 5)
+      .map((p) => p.base) ?? [],
+  );
+
+  const credFiveStarPhotos = getProjectPhotos(
+    "credibilidad",
+    "Supervisión y Cuadrilla Casa Alta",
+  ).filter((p) => {
+    const base = p.src.split("/").pop()?.replace(/\.avif$/, "");
+    return base ? credFiveStarBases.has(base) : false;
+  });
+
+  const galleryPhotos: Photo[] = [];
+  let credIndex = 0;
+  for (let i = 0; i < ocFiveStarPhotos.length; i++) {
+    const ocPhoto = ocFiveStarPhotos[i];
+    if (ocPhoto) galleryPhotos.push(ocPhoto);
+    if ((i + 1) % 2 === 0 && credIndex < credFiveStarPhotos.length) {
+      const cPhoto = credFiveStarPhotos[credIndex++];
+      if (cPhoto) galleryPhotos.push(cPhoto);
+    }
+  }
+  if (galleryPhotos.length % 2 !== 0 && credIndex < credFiveStarPhotos.length) {
+    const extraCred = credFiveStarPhotos[credIndex++];
+    if (extraCred) galleryPhotos.push(extraCred);
+  }
+
+  // 3. Engineering Pillars for WhyCasaAltaEditorial
+  const engineeringItems: Differentiator[] =
+    civilWorksPageContent.engineering.items.map((item) => {
+      const photo =
+        item.dir && item.base
+          ? findPhotoByBase(item.dir, item.base, item.title) ?? undefined
+          : undefined;
+      return {
+        title: item.title,
+        description: item.description,
+        tag: item.tag,
+        points: item.points,
+        photo,
+      };
+    });
+
+  const manifestoPhoto =
+    civilWorksPageContent.manifesto?.dir && civilWorksPageContent.manifesto?.base
+      ? findPhotoByBase(
+          civilWorksPageContent.manifesto.dir,
+          civilWorksPageContent.manifesto.base,
+          "Dirección de Obra",
+        ) ?? undefined
+      : undefined;
+
+  return {
+    hero: {
+      eyebrow: civilWorksPageContent.hero.eyebrow,
+      heading: civilWorksPageContent.hero.heading,
+      subheadline: civilWorksPageContent.hero.subheadline,
+      photo: heroPhoto,
+      catalogCtaLabel: civilWorksPageContent.hero.catalogCtaLabel,
+      consultationCtaLabel: civilWorksPageContent.hero.consultationCtaLabel,
+    },
+    specialties: {
+      eyebrow: civilWorksPageContent.specialties.eyebrow,
+      heading: civilWorksPageContent.specialties.heading,
+      body: civilWorksPageContent.specialties.body,
+      sections: specialtySections,
+    },
+    manifesto: civilWorksPageContent.manifesto
+      ? {
+          text: civilWorksPageContent.manifesto.text,
+          photo: manifestoPhoto,
+        }
+      : undefined,
+    gallery: {
+      intro: civilWorksPageContent.gallery.intro,
+      photos: galleryPhotos,
+    },
+    engineering: {
+      intro: civilWorksPageContent.engineering.intro,
       items: engineeringItems,
     },
   };
