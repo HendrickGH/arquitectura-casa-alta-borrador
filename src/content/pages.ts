@@ -27,7 +27,7 @@ export const interiorsPageContent = {
   materials: {
     eyebrow: "Materialidad",
     heading: "Superficies nobles y maderas del trópico",
-    body: "Piedras tecnológicas, cuarzo puro, maderas curadas y pastas minerales seleccionadas para climas costeros y de alta exigencia térmica.",
+    body: "Piedras tecnológicas, cuarzo puro y maderas curadas seleccionados para climas costeros y de alta exigencia térmica.",
     sections: [
       {
         slug: "piedras-tecnologicas",
@@ -87,7 +87,7 @@ export const interiorsPageContent = {
         shortTitle: "Minerales",
         subtitle: "Minerales",
         description:
-          "Pastas de cal viva apagada en obra y pigmentos minerales. Regulan la humedad ambiental y permanecen frescas.",
+          "Cal viva apagada en obra. Regula la humedad ambiental y permanece fresca.",
         deliverables: [
           "Hidrófugo natural sin VOC",
           "Superficie continua sin juntas",
@@ -372,11 +372,11 @@ export const sustainabilityPageContent = {
       {
         slug: "materiales-locales",
         number: "02",
-        title: "Materiales Locales, Naturales de la Zona y Artesanales",
+        title: "Materiales Locales",
         shortTitle: "Materialidad",
         subtitle: "Materialidad",
         description:
-          "Acabados minerales, pastas de cal apagada y maderas de la región tratadas al vacío para resistir la salinidad costera.",
+          "Pastas de cal apagada y maderas de la región tratadas al vacío para resistir la salinidad costera.",
         deliverables: [
           "Acabados minerales de nula huella química",
           "Curado de maderas contra salitre y termita",
@@ -469,10 +469,10 @@ export const sustainabilityPageContent = {
         base: "04-fachada-celosia-proteccion-solar-vegetacion",
       },
       {
-        title: "Masa térmica de concreto y recubrimientos de tierra",
+        title: "Masa térmica de concreto",
         tag: "HIGROTÉRMICA Y TRANSPIRABILIDAD",
         description:
-          "Muros masivos que absorben el calor diurno y lo liberan durante la noche fresca, revestidos con pastas de cal y pigmento que absorben y expulsan la humedad ambiental sin degradarse.",
+          "Muros masivos que absorben el calor diurno y lo liberan durante la noche fresca, revestidos con pastas de cal que absorben y expulsan la humedad ambiental sin degradarse.",
         points: [
           "Inercia higrotérmica que estabiliza la temperatura interior",
           "Fungicida e hidrófugo natural impermeable a la brisa marina",
@@ -586,8 +586,8 @@ export const aboutPageContent = {
       kicker: "Materialidad noble · Entrega llave en mano",
       title: "Acabados de autor y garantía patrimonial",
       description:
-        "Integramos maderas tropicales curadas, cantera local y herrería artesanal. Entregamos la obra con finiquito cerrado sin sobrecostos y póliza de garantía post-entrega por escrito.",
-      deliverable: "Póliza de garantía por escrito y finiquito transparente",
+        "Integramos maderas tropicales curadas, cantera local y herrería artesanal. Entregamos la obra sin sobrecostos y con póliza de garantía post-entrega por escrito.",
+      deliverable: "Póliza de garantía por escrito",
       dir: "arquitectura-que-perdura",
       base: "01-comedor-exterior-madera-bajo-palapa-lamparas-tejidas",
       photoAlt:
@@ -727,7 +727,7 @@ export const contactPageContent = {
     mapsCta: "Abrir en Google Maps",
   },
   contactForm: {
-    eyebrow: "Primera sesión técnica",
+    eyebrow: "Sesión técnica",
     heading: "Cuéntenos sobre su proyecto",
     body: "Reciba un diagnóstico preliminar de viabilidad, estimación paramétrica y ruta crítica con nuestro equipo técnico.",
     specialtiesLabel: "1. Especialidad de su proyecto",

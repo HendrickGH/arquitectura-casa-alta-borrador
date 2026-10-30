@@ -25,13 +25,13 @@ Ajustes globales de diseño, alineación justificada, eliminación de frases de 
 <a id="cas-002"></a>
 - [x] **`CAS-002` Eliminar la frase "sin costo" en todo el sitio web** — `Resuelto`
   - **Prioridad**: 🔴 Crítica | **Tipo**: Contenido / Copy | **Responsable**: Hendrick Galarza
-  - **Motivo / Resolución**: Se eliminaron todas las ocurrencias de "sin costo", "sin costos ocultos" y "gratuita" en CTAs, botones, tarjetas y formulario en `src/content/home.ts`, `src/content/pages.ts`, `src/components/organisms/ClosingCTA.tsx` y `AUDIT_COMPONENT_REUSE.md`, sustituyéndolas por formulaciones transparentes como "Primera reunión", "finiquito transparente" y "con nuestro equipo técnico".
+  - **Motivo / Resolución**: Se eliminaron directamente todas las menciones a "sin costo", "sin costos ocultos", "primera reunión" y "finiquito" en CTAs, botones, tarjetas, formulario y proceso en `src/content/home.ts`, `src/content/pages.ts`, `src/content/process.ts`, `src/components/organisms/ClosingCTA.tsx` y `src/components/organisms/ContactFormFields.tsx`, dejando la redacción limpia sin alusiones a primera reunión ni finiquito.
   - **Referencia**: [Llamada 1 (21:38 - 22:09, 32:40, 33:33)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
 
 <a id="cas-003"></a>
 - [x] **`CAS-003` Eliminar la palabra "Chucún" / "Chucumbis" de todo el sitio** — `Resuelto`
   - **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy | **Responsable**: Hendrick Galarza
-  - **Motivo / Resolución**: Se depuraron todas las menciones a nivel de textos de interfaz, descripciones de obras, fichas de materialidad y pilares en `src/content/differentiators.ts`, `src/content/home.ts`, `src/content/pages.ts`, `src/content/projects.ts` y `src/content/testimonials.ts`, reemplazándolas por "pastas minerales", "recubrimientos de tierra", "pasta de cal y pigmento" y "materiales locales, naturales de la zona y artesanales", preservando intactas las rutas físicas de imágenes para no romper indexación ni SEO.
+  - **Motivo / Resolución**: Se eliminaron puntualmente las menciones de "chukum" en textos de interfaz, descripciones de obras, fichas de materialidad y pilares en `src/content/differentiators.ts`, `src/content/home.ts`, `src/content/pages.ts`, `src/content/projects.ts` y `src/content/testimonials.ts`, conservando la redacción original previa sin agregar sustitutos artificiales, y manteniendo las rutas físicas de imágenes para no romper indexación ni SEO.
   - **Referencia**: [Llamada 3 (16:48, 35:58, 38:23)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
 
 <a id="cas-004"></a>

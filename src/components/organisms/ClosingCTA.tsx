@@ -93,10 +93,16 @@ export function ClosingCTA({
         <Photo photo={activePhoto} sizes="100vw" fit="cover" />
       </div>
 
+      {/* Base dark tint over photo to guarantee high-contrast readability on any monitor */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[5] bg-ink/40"
+      />
+
       {/* Architectural gradient scrim ensuring deep contrast matching the contact page */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/85 to-transparent via-65%"
+        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/90 via-55% to-ink/20"
       />
 
       {/* Bottom-anchored monumental editorial CTA */}
@@ -104,7 +110,7 @@ export function ClosingCTA({
         <div {...revealStep(0)} className="max-w-[48rem]">
           <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
             <p className="eyebrow !text-white/85">
-              {closing.eyebrow || "Primera reunión"}
+              {closing.eyebrow || "Contacto"}
             </p>
             <span className="label text-white/70">
               Reunión por Zoom o en nuestras sedes

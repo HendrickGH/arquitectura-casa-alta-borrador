@@ -61,8 +61,8 @@ export function ContactFormFields({
       .join(", ");
 
     const text = details
-      ? `Hola Casa Alta, deseo agendar una primera reunión técnica para ${details}.`
-      : "Hola Casa Alta, deseo agendar una primera reunión técnica para cotizar un proyecto arquitectónico.";
+      ? `Hola Casa Alta, deseo agendar una reunión técnica para ${details}.`
+      : "Hola Casa Alta, deseo agendar una reunión técnica para cotizar un proyecto arquitectónico.";
 
     try {
       const url = new URL(whatsappHref);

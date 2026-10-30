@@ -18,7 +18,7 @@ const heroPuntaZicatelaHorizontalPhoto: Photo = {
 /** The landing hero second photo: Casa La Barra - Fachada horizontal chukum y palapa (2000x1116 max capped, original 2752x1536). */
 const heroCasaLaBarraHorizontalPhoto: Photo = {
   src: "/images/hero/casa-la-barra-fachada-horizontal-chukum.avif",
-  alt: "Residencia costera Casa La Barra en acabado mineral, portón de listones de madera, celosías y cubierta de palapa",
+  alt: "Residencia costera Casa La Barra, portón de listones de madera, celosías y cubierta de palapa",
   width: 2000,
   height: 1116,
 };
@@ -89,7 +89,7 @@ const casaCharcoSecoPatioPhoto: Photo = {
 
 const casaLaBarraPhoto: Photo = {
   src: "/images/hero/casa-la-barra-fachada-chukum-porton-palapa.avif",
-  alt: "Residencia costera en acabado mineral con portón de listones de madera, celosías de barro y palapa",
+  alt: "Residencia costera con portón de listones de madera, celosías de barro y palapa",
   width: 829,
   height: 1280,
 };
@@ -148,10 +148,10 @@ const teamBlueprintsPhoto: Photo = {
   height: 1280,
 };
 
-/** Noble construction materiality (mineral and cast concrete) for WhyCasaAltaEditorial. */
+/** Noble construction materiality (cast concrete) for WhyCasaAltaEditorial. */
 const materialChukumConcretePhoto: Photo = {
   src: "/images/10-obra-punta-zicatela/09-fachada-chukum-ventana-circular-barra-concreto.avif",
-  alt: "Fachada en acabado mineral con ventana circular y barra monolítica en concreto aparente en Punta Zicatela",
+  alt: "Fachada con ventana circular y barra monolítica en concreto aparente en Punta Zicatela",
   width: 960,
   height: 1280,
 };
@@ -293,17 +293,19 @@ export const servicePillarSources: ServicePillarSource[] = [
 
 export const home: HomePage = {
   hero: {
+    title: "Casa Alta",
+    tagline: "Arquitectura que perdura",
     slides: [
       {
-        title: "Punta Zicatela",
+        title: "Casa Alta",
         photo: heroPuntaZicatelaHorizontalPhoto,
       },
       {
-        title: "Casa La Barra",
+        title: "Casa Alta",
         photo: heroCasaLaBarraHorizontalPhoto,
       },
       {
-        title: "Casa Charco Seco",
+        title: "Casa Alta",
         photo: heroCasaCharcoSecoHorizontalPhoto,
       },
     ],
@@ -335,14 +337,25 @@ export const home: HomePage = {
 
   intro: {
     eyebrow: "Quiénes somos",
-    heading: "Arquitectura que perdura",
-    body: "Somos una constructora mexicana especializada en arquitectura, ingeniería y construcción, integrada por profesionales comprometidos con el desarrollo de proyectos que combinan diseño, funcionalidad y calidad constructiva.",
+    heading: "Despacho y estudio de arquitectura",
+    body: "Somos un despacho y estudio de arquitectura mexicana especializados en construcción, ingeniería y arquitectura de interiores.",
     paragraphs: [
       "Desarrollamos proyectos residenciales, comerciales y de obra civil, incorporando soluciones arquitectónicas innovadoras y principios de construcción sostenible, con especial atención al entorno natural.",
       "Nuestra filosofía se fundamenta en la transparencia, la responsabilidad y el cumplimiento de nuestros compromisos. Brindamos a nuestros clientes claridad durante cada etapa del proyecto, desde la búsqueda y selección del terreno hasta el diseño arquitectónico y la construcción, ofreciendo un acompañamiento integral y personalizado.",
     ],
     photo: puntaZicatelaIntroPhoto,
     photoCaption: "Punta Zicatela · Puerto Escondido, Oaxaca",
+  },
+
+  virtualTour: {
+    eyebrow: "Recorrido virtual",
+    heading: "Casa Charco Seco",
+    hook: "Un recorrido inmersivo por la arquitectura, materiales y espacialidad de Casa Charco Seco.",
+    poster: heroCasaCharcoSecoHorizontalPhoto,
+    cta: {
+      label: "Conoce nuestros servicios",
+      href: "/servicios",
+    },
   },
 
   services: {
@@ -370,7 +383,7 @@ export const home: HomePage = {
     paragraphs: [
       "Abordamos cada encargo desde una perspectiva unificada: la arquitectura, el cálculo estructural y la dirección de obra convergen en un solo equipo responsable desde el primer trazo conceptual.",
       "Nuestra estructura operativa integra maquinaria propia, cuadrillas especializadas y presencia directa en Puerto Escondido y los Valles Centrales, garantizando control de costos y cumplimiento de plazos sin intermediación opaca.",
-      "Construimos con honestidad constructiva y rigor técnico ante zonas de alta sismicidad y ambiente costero, empleando concreto aparente, pastas minerales y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
+      "Construimos con honestidad constructiva y rigor técnico ante zonas de alta sismicidad y ambiente costero, empleando concreto aparente y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
     ],
   },
 
@@ -382,7 +395,7 @@ export const home: HomePage = {
       paragraphs: [
         "Abordamos cada encargo desde una perspectiva unificada: la arquitectura, el cálculo estructural y la dirección de obra convergen en un solo equipo responsable desde el primer trazo conceptual.",
         "Nuestra estructura operativa integra maquinaria propia, cuadrillas especializadas y presencia directa en Puerto Escondido y los Valles Centrales, garantizando control de costos y cumplimiento de plazos sin intermediación opaca.",
-        "Construimos con honestidad constructiva y rigor técnico ante zonas de alta sismicidad y ambiente costero, empleando concreto aparente, pastas minerales y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
+        "Construimos con honestidad constructiva y rigor técnico ante zonas de alta sismicidad y ambiente costero, empleando concreto aparente y maderas tropicales curadas para edificar obras sólidas concebidas para perdurar.",
       ],
     },
     items: [],
@@ -401,17 +414,17 @@ export const home: HomePage = {
   },
 
   closing: {
-    eyebrow: "Primera reunión",
-    heading: "Construir con Casa Alta es sencillo",
+    eyebrow: "Contacto",
+    heading: "La experiencia de construir con Casalta",
     body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
-    cta: { label: "Agendar primera reunión", href: whatsappHref },
+    cta: { label: "Agendar reunión", href: whatsappHref },
     photo: closingStudioPhoto,
   },
 
   contact: {
     eyebrow: "Contacto directo",
     heading: "Cuéntenos su proyecto",
-    body: "Agende su primera reunión por Zoom o en nuestras oficinas de Puerto Escondido y Salina Cruz. Si prefiere atención inmediata, escríbanos por WhatsApp.",
+    body: "Agende su reunión por Zoom o en nuestras oficinas de Puerto Escondido y Salina Cruz. Si prefiere atención inmediata, escríbanos por WhatsApp.",
     specialtiesLabel: "Especialidad de su proyecto",
     specialties: [
       "Arquitectura Residencial",

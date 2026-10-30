@@ -12,7 +12,7 @@ import type { ProcessStep } from "@/types/content";
 export const processSteps: ProcessStep[] = [
   {
     order: 1,
-    title: "Primera reunión (asesoría)",
+    title: "Asesoría inicial",
     description:
       "Conocimiento de las ideas y requerimientos para definir las bases iniciales del proceso creativo que elaboramos.",
     dir: "proyectos-integrales",
@@ -22,7 +22,7 @@ export const processSteps: ProcessStep[] = [
     order: 2,
     title: "Paquete estándar",
     description:
-      "Es el conjunto de estudios y planimetría para realizar un proyecto. Más información detallada durante la primera reunión.",
+      "Es el conjunto de estudios y planimetría para realizar un proyecto. Más información detallada durante la reunión de asesoría.",
     dir: "proyectos-integrales",
     base: "02-detalle-revision-plano-ingenieria-detalle-constructivo",
   },

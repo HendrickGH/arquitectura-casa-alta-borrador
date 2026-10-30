@@ -51,7 +51,7 @@ export const institutionalDossiers: InstitutionalDossier[] = [
     surface: "1,200 m²",
     year: "2023",
     commitment:
-      "La arquitectura de playa requiere maderas tropicales curadas, palapas artesanales de alta durabilidad y albercas con acabados minerales garantizados contra fisuras y filtraciones.",
+      "La arquitectura de playa requiere maderas tropicales curadas, palapas artesanales de alta durabilidad y albercas garantizadas contra fisuras y filtraciones.",
     points: [
       "Madera certificada con tratamiento autoclave anti-plagas",
       "Instalaciones hidroneumáticas y sanitarias presurizadas y testeadas",

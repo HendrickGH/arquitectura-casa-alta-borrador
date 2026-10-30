@@ -48,11 +48,11 @@ export const differentiators: Differentiator[] = [
   {
     title: "Arquitectura regional nativa",
     description:
-      "Diseño vanguardista y dominio de los materiales nobles y regionales: concreto aparente, recubrimientos minerales impermeables, maderas tropicales curadas y cubiertas artesanales de palma.",
+      "Diseño vanguardista y dominio de los materiales nobles y regionales: concreto aparente, maderas tropicales curadas y cubiertas artesanales de palma.",
     tag: "Materialidad noble y clima",
     points: [
       "Diseño contemporáneo integrado al paisaje y la orientación solar",
-      "Pastas minerales, madera de parota certificada y celosías artesanales",
+      "Madera de parota certificada y celosías artesanales",
       "Soluciones bioclimáticas para confort térmico y alta plusvalía patrimonial",
     ],
     dir: "arquitectura-sostenible",
