@@ -48,24 +48,32 @@ export function TerritoryShowcase({
           </div>
         </div>
 
-        {/* Architectural Caption */}
-        <div className="mt-8 flex flex-col items-start gap-4">
-          <Heading
-            voice="serif"
-            as="h3"
-            sizeClassName="text-2xl md:text-3xl text-ink"
-          >
-            Arquitectura nativa
-          </Heading>
-          <Text
-            size="lede"
-            className="max-w-[62ch] text-ink-muted leading-relaxed text-justify"
-          >
-            Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.
-          </Text>
+        {/* Architectural Caption & CTA: Side-by-Side on Desktop/Tablet, Vertically Centered */}
+        <div className="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-center md:gap-10 lg:gap-16">
+          <div className="flex max-w-[64ch] flex-col gap-3">
+            <Heading
+              voice="serif"
+              as="h3"
+              sizeClassName="text-2xl md:text-3xl text-ink"
+            >
+              Arquitectura nativa
+            </Heading>
+            <Text
+              size="lede"
+              className="text-ink-muted leading-relaxed text-justify"
+            >
+              Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.
+            </Text>
+          </div>
 
-          <div className="mt-2">
-            <Button href="/proyectos" variant="primary" size="md" arrow>
+          <div className="shrink-0 self-start md:self-center">
+            <Button
+              href="/proyectos"
+              variant="primary"
+              size="md"
+              arrow
+              className="w-full justify-center sm:w-auto"
+            >
               Conoce todos nuestros proyectos
             </Button>
           </div>

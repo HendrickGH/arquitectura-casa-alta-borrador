@@ -132,7 +132,7 @@ export function Footer({ site }: FooterProps) {
               <p className="display text-[clamp(2.6rem,7vw,6.5rem)] leading-[0.86] tracking-[-0.03em] text-concha-nacar/90">
                 CASA ALTA
               </p>
-              <p className="mt-2.5 w-full text-justify text-[clamp(0.65rem,1.35vw,1.15rem)] font-medium uppercase tracking-[0.1em] text-concha-nacar/65 [text-align-last:justify]">
+              <p className="mt-2.5 w-full text-justify text-[clamp(0.85rem,1.85vw,1.45rem)] font-medium uppercase tracking-[0.08em] text-concha-nacar/80 [text-align-last:justify]">
                 {site.tagline}
               </p>
             </div>

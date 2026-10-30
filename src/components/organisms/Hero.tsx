@@ -103,13 +103,13 @@ export function Hero({ hero }: HeroProps) {
       {/* Content Container */}
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          {/* Left Column: Architectural Title with Studio Name & Tagline */}
-          <div className="flex flex-col items-start gap-1 lg:col-span-8">
-            <h1 className="flex flex-col items-start">
-              <span className="voice text-[clamp(2.6rem,5.5vw,4.5rem)] font-normal leading-[1.0] tracking-[0.005em] text-white">
-                {hero.title ?? "Casa Alta"}
+          {/* Left Column: Architectural Display Lockup (matching Footer styling) */}
+          <div className="flex flex-col items-start lg:col-span-8">
+            <h1 className="flex w-fit flex-col">
+              <span className="display text-[clamp(2.8rem,7.5vw,6.5rem)] leading-[0.88] tracking-[-0.03em] text-white">
+                CASA ALTA
               </span>
-              <span className="mt-1.5 text-xs sm:text-sm md:text-base font-medium tracking-[0.22em] uppercase text-white/90">
+              <span className="mt-2.5 w-full text-justify text-[clamp(0.85rem,1.85vw,1.45rem)] font-medium uppercase tracking-[0.08em] text-white/90 [text-align-last:justify]">
                 {hero.tagline ?? "Arquitectura que perdura"}
               </span>
             </h1>
