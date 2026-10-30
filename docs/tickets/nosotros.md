@@ -22,7 +22,7 @@ Narrativa del despacho, arraigo en Oaxaca, capacidad de ejecución a nivel nacio
 - [ ] **`CAS-057` Redactar texto completo de "Nosotros" (esencia, alcance nacional, respaldo jurídico/garantías) y seleccionar fotos de equipo**
   - **Estado**: ⚠️ `Bloqueado / Esperando Cliente` | **Prioridad**: 🟠 Alta | **Tipo**: Entregable de Cliente
   - **Responsable**: Gerardo Bejarano / Felipe (Arqui) | **Fecha / Sprint**: Antes del Lunes/Martes
-  - **Descripción y Criterios de Aceptación**: Escribir y enviar a Hendrick el contenido completo de la página "Nosotros" resaltando la esencia de Casalta, su sede en Oaxaca con capacidad de ejecución en todo México, y la certeza legal / respaldo jurídico y garantías para el cliente, además de seleccionar las fotos reales del equipo y obra (incluyendo validar la foto donde están firmando).
+  - **Descripción y Criterios de Aceptación**: Escribir y enviar a Hendrick el contenido completo de la página "Nosotros" resaltando la esencia de Casa Alta, su sede en Oaxaca con capacidad de ejecución en todo México, y la certeza legal / respaldo jurídico y garantías para el cliente, además de seleccionar las fotos reales del equipo y obra (incluyendo validar la foto donde están firmando).
   - **Dependencias / Bloqueos**: Ninguna
   - **Referencia**: [Llamada 4 (04:40 - 09:43)](https://fathom.video/share/sLxWUiL_hzDkkwwyKGAossLKRjcRYGS2)
 

@@ -87,7 +87,7 @@ Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charc
   - **Referencia**: [Llamada 2 (12:46 - 14:46, 19:15 - 19:45, 29:12 - 30:12)](https://fathom.video/share/NAmhzBmzN9zLafz-R7wPaPxKb_4Fmzus)
 
 <a id="cas-019"></a>
-- [x] **`CAS-019` Rediseñar proporción, tamaño de letra y justificación en "Metodología Casalta / Cómo trabajamos" (8 pasos)** — `Resuelto`
+- [x] **`CAS-019` Rediseñar proporción, tamaño de letra y justificación en "Metodología Casa Alta / Cómo trabajamos" (8 pasos)** — `Resuelto`
   - **Prioridad**: 🟠 Alta | **Tipo**: Diseño / UI | **Responsable**: Hendrick Galarza
   - **Motivo / Resolución**: Se amplió la columna de texto de metodología a ~48-50% reduciendo el ancho de imagen a ~50-52%, se aumentó el tamaño de fuente del texto introductorio y de las descripciones, los títulos activos de los pasos se escalaron a tamaño display (`text-4xl`), y se aplicó alineación justificada a todos los textos en `src/components/organisms/ProcessList.tsx` y `src/components/molecules/ProcessEntry.tsx`.
   - **Referencia**: [Llamada 1 (10:20 - 19:57) y Llamada 2 (30:18 - 30:52)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
@@ -99,9 +99,9 @@ Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charc
   - **Referencia**: [Llamada 1 (21:24 - 21:37)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
 
 <a id="cas-023"></a>
-- [x] **`CAS-023` Mejorar contraste del texto blanco y cambiar título en CTA final ("Construir con Casalta es sencillo")** — `Resuelto`
+- [x] **`CAS-023` Mejorar contraste del texto blanco y cambiar título en CTA final ("Construir con Casa Alta es sencillo")** — `Resuelto`
   - **Prioridad**: 🟠 Alta | **Tipo**: Diseño / UI | **Responsable**: Hendrick Galarza
-  - **Motivo / Resolución**: Se oscureció el fondo con capa base `bg-ink/40` y gradiente de alto contraste en `src/components/organisms/ClosingCTA.tsx`, se cambió el título a "La experiencia de construir con Casalta" en `src/content/home.ts` y se garantizó la eliminación de menciones de costo.
+  - **Motivo / Resolución**: Se oscureció el fondo con capa base `bg-ink/40` y gradiente de alto contraste en `src/components/organisms/ClosingCTA.tsx`, se cambió el título a "La experiencia de construir con Casa Alta" en `src/content/home.ts`, se unificó la denominación oficial a "Casa Alta" (eliminando "Casalta" en todo el sitio web y documentación) y se garantizó la eliminación de menciones de costo.
   - **Referencia**: [Llamada 1 (21:38 - 22:48, 30:04 - 32:10) y Llamada 4 (02:35 - 02:50)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
 
 

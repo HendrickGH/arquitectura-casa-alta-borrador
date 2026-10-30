@@ -35,7 +35,7 @@ Reorganización del menú principal: incorporación de Obra Civil, renombre de S
   - **Referencia**: [Llamada 3 (14:54 - 15:26, 20:40)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
 
 <a id="cas-009"></a>
-- [x] **`CAS-009` Descartar pestaña de "Real Estate" (Venta/Preventa de 10 propiedades) en web de Casalta** — `Descartado`
+- [x] **`CAS-009` Descartar pestaña de "Real Estate" (Venta/Preventa de 10 propiedades) en web de Casa Alta** — `Descartado`
   - **Prioridad**: 🟢 Baja | **Tipo**: Decisión / Descartado | **Responsable**: Gerardo Bejarano / Hendrick Galarza
   - **Motivo / Resolución**: Gerardo propuso sustituir Interiores por una pestaña "Real Estate" con mínimo 10 propiedades en venta/preventa (Punta Brasil, Casa Tehuantepec, etc.). Hendrick explicó que mezclar constructora con inmobiliaria penalizaría el SEO en Google y confundiría a los bots de IA, recomendando un dominio/marca aparte. Gerardo y Felipe aceptaron descartar Real Estate de este sitio.
   - **Referencia**: [Llamada 3 (02:09 - 05:56)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)

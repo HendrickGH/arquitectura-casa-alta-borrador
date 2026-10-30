@@ -65,7 +65,7 @@ Lista de insumos críticos, decisiones, textos, fotografías y pagos que deben p
   - **Referencia**: Llamada 2 (11:18 - 11:35, 24:54 - 28:55)
 
 <a id="ent-08"></a>
-- [ ] **`ENT-08`: Confirmación del texto sustituto para el título "Construir con Casalta es sencillo" (ej. "La experiencia de construir con Casalta").**
+- [ ] **`ENT-08`: Confirmación del texto sustituto para el título "Construir con Casa Alta es sencillo" (ej. "La experiencia de construir con Casa Alta").**
   - **Responsable Cliente**: Gerardo Bejarano / Felipe
   - **Categoría**: Textos / Copy | **Estado**: `Pendiente`
   - **Fecha Límite**: Antes del Lunes/Martes
@@ -129,10 +129,10 @@ Lista de insumos críticos, decisiones, textos, fotografías y pagos que deben p
   - **Referencia**: Llamada 4 (11:15 - 11:38)
 
 <a id="ent-16"></a>
-- [ ] **`ENT-16`: Pago de ~$2,300 MXN para adquirir el dominio "interioristaz.com" (con Z) por 10 años una vez lanzado el sitio de Casalta.**
+- [ ] **`ENT-16`: Pago de ~$2,300 MXN para adquirir el dominio "interioristaz.com" (con Z) por 10 años una vez lanzado el sitio de Casa Alta.**
   - **Responsable Cliente**: Felipe (Arqui)
   - **Categoría**: Pago / Dominio | **Estado**: `En Espera`
-  - **Fecha Límite**: Post-Lanzamiento Casalta
+  - **Fecha Límite**: Post-Lanzamiento Casa Alta
   - **Ticket Relacionado**: [`CAS-065`](./lanzamiento.md#cas-065)
   - **Referencia**: Llamada 4 (18:06 - 19:15)
 

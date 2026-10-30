@@ -1,4 +1,4 @@
-# Tablero de Tickets y Épicas — Casalta Web
+# Tablero de Tickets y Épicas — Casa Alta Web
 
 Este documento es el índice maestro operativo del proyecto web de **Arquitectura Casa Alta**, generado a partir de la auditoría y acuerdos de las 4 llamadas de feedback con Gerardo Bejarano y Felipe.
 
@@ -8,6 +8,7 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 2. **Dependencias e Insumos**: Si una tarea indica que está bloqueada por el cliente, revisá [`entregables-cliente.md`](./entregables-cliente.md) para confirmar el ID del insumo requerido.
 3. **Convención de Commits**: Realizá commits atómicos siguiendo las reglas del repositorio: `feat(web): ...`, `fix(web): ...` o `docs: ...` referenciando el ID del ticket (ej. `CAS-001`).
 4. **Alineación con Arquitectura (`DESIGN.md`)**: Todo cambio visual debe respetar la geometría `0px`, tokens de color y la jerarquía Marcellus/Montserrat estipulada en el contrato de diseño.
+5. **Denominación Oficial de Marca**: El nombre oficial del despacho es **Casa Alta** (nunca "Casalta", excepto estrictamente en el dominio técnico registrado `arquitecturacasalta.com`). Toda referencia en código, textos de interfaz y documentación debe respetar esta convención oficial (`CAS-023`).
 
 ## Índice Operativo de Épicas
 

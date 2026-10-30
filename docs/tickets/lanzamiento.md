@@ -37,8 +37,8 @@ Gestión del dominio arquitecturacasalta.com (10 años), DNS, configuración de 
 <a id="cas-065"></a>
 - [ ] **`CAS-065` Pagar y adquirir el dominio "interioristaz.com" (10 años, ~$2,300 MXN) para futuro proyecto de interiorismo**
   - **Estado**: `Backlog (Post-Lanzamiento)` | **Prioridad**: 🟢 Baja | **Tipo**: Entregable de Cliente
-  - **Responsable**: Felipe (Arqui) / Gerardo Bejarano | **Fecha / Sprint**: Después del lanzamiento de Casalta
-  - **Descripción y Criterios de Aceptación**: Una vez lanzado el sitio de Casalta, realizar el pago de ~$2,300 MXN para apartar por 10 años el dominio interioristaz.com (con Z).
+  - **Responsable**: Felipe (Arqui) / Gerardo Bejarano | **Fecha / Sprint**: Después del lanzamiento de Casa Alta
+  - **Descripción y Criterios de Aceptación**: Una vez lanzado el sitio de Casa Alta, realizar el pago de ~$2,300 MXN para apartar por 10 años el dominio interioristaz.com (con Z).
   - **Dependencias / Bloqueos**: Recibir enlace/opciones de Hendrick (CAS-064)
   - **Referencia**: [Llamada 4 (18:06 - 19:15)](https://fathom.video/share/sLxWUiL_hzDkkwwyKGAossLKRjcRYGS2)
 
