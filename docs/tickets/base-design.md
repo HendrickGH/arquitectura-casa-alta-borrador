@@ -4,39 +4,35 @@ Ajustes globales de diseño, alineación justificada, eliminación de frases de 
 
 > **Índice general**: Volver a [tickets.md](./tickets.md) | **Insumos del cliente**: [entregables-cliente.md](./entregables-cliente.md)
 
-**Métricas de la épica**: Total tickets: **5** | Pendientes/Bloqueados: **3** | Resueltos/Descartados: **2**
+**Métricas de la épica**: Total tickets: **5** | Pendientes/Bloqueados: **0** | Resueltos/Descartados: **5**
 
 ---
 
 ## Tareas Activas y Bloqueadas
 
-<a id="cas-001"></a>
-- [ ] **`CAS-001` Justificar todos los textos del sitio web**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🟠 Alta | **Tipo**: Diseño / UI
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Aplicar alineación justificada (text-align: justify) a absolutamente todos los párrafos y bloques de texto de cuerpo en todas las páginas del sitio (Inicio, Quiénes somos, Cómo trabajamos, Proyectos, Servicios, Obra Civil, Sostenible, Nosotros, Contacto) para que se vean cuadrados y alineados.
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 1 (07:21 - 08:24, 53:35)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
-
-<a id="cas-002"></a>
-- [ ] **`CAS-002` Eliminar la frase "sin costo" en todo el sitio web**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🔴 Crítica | **Tipo**: Contenido / Copy
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Borrar "primera reunión sin costo" y cualquier mención a "sin costo" en todas las secciones de CTA, botones y encabezados del formulario de contacto en todo el sitio, para evitar que el cliente piense que las reuniones posteriores se cobran inmediatamente.
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 1 (21:38 - 22:09, 32:40, 33:33)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
-
-<a id="cas-003"></a>
-- [ ] **`CAS-003` Eliminar la palabra "Chucún" / "Chucumbis" de todo el sitio**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Eliminar todas las menciones a "Chucún" o "Chucumbis" en la página Sostenible y en cualquier otra parte del sitio para evitar confusiones con una marca registrada o producto externo.
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 3 (16:48, 35:58, 38:23)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
+*No hay tareas pendientes en esta sección.*
 
 ---
 
 ## Descartados, Aprobados y Resueltos
+
+<a id="cas-001"></a>
+- [x] **`CAS-001` Justificar todos los textos del sitio web** — `Resuelto`
+  - **Prioridad**: 🟠 Alta | **Tipo**: Diseño / UI | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se aplicó alineación justificada global a los párrafos de cuerpo en `globals.css` (`p { text-align: justify; text-justify: inter-word; }`), se incorporó `text-justify` en las variantes del átomo `Text.tsx`, salvaguardando la alineación izquierda de `.display`, `.voice`, `.eyebrow` y `.label` en `@layer components`, y preservando `text-center` en encabezados centrados.
+  - **Referencia**: [Llamada 1 (07:21 - 08:24, 53:35)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
+
+<a id="cas-002"></a>
+- [x] **`CAS-002` Eliminar la frase "sin costo" en todo el sitio web** — `Resuelto`
+  - **Prioridad**: 🔴 Crítica | **Tipo**: Contenido / Copy | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se eliminaron todas las ocurrencias de "sin costo", "sin costos ocultos" y "gratuita" en CTAs, botones, tarjetas y formulario en `src/content/home.ts`, `src/content/pages.ts`, `src/components/organisms/ClosingCTA.tsx` y `AUDIT_COMPONENT_REUSE.md`, sustituyéndolas por formulaciones transparentes como "Primera reunión", "finiquito transparente" y "con nuestro equipo técnico".
+  - **Referencia**: [Llamada 1 (21:38 - 22:09, 32:40, 33:33)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
+
+<a id="cas-003"></a>
+- [x] **`CAS-003` Eliminar la palabra "Chucún" / "Chucumbis" de todo el sitio** — `Resuelto`
+  - **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se depuraron todas las menciones a nivel de textos de interfaz, descripciones de obras, fichas de materialidad y pilares en `src/content/differentiators.ts`, `src/content/home.ts`, `src/content/pages.ts`, `src/content/projects.ts` y `src/content/testimonials.ts`, reemplazándolas por "pastas minerales", "recubrimientos de tierra", "pasta de cal y pigmento" y "materiales locales, naturales de la zona y artesanales", preservando intactas las rutas físicas de imágenes para no romper indexación ni SEO.
+  - **Referencia**: [Llamada 3 (16:48, 35:58, 38:23)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
 
 <a id="cas-004"></a>
 - [x] **`CAS-004` Verificar comportamiento responsivo del carrusel y menú en ventanas no maximizadas** — `Resuelto / Revisión Preventiva`

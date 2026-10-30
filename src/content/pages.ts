@@ -18,16 +18,16 @@ export const interiorsPageContent = {
     heading:
       "Cocinas integrales, superficies nobles y carpintería residencial de autor",
     subheadline:
-      "Fabricación propia con despiece milimétrico, cálculo de resistencia costera y maderas curadas. Asesoría técnica inicial sin costo, presencial en estudio o por videollamada.",
+      "Fabricación propia con despiece milimétrico, cálculo de resistencia costera y maderas curadas. Asesoría técnica inicial, presencial en estudio o por videollamada.",
     dir: "arquitectura-interiores",
     base: "03-cocina-comedor-muro-terracota-techo-bambu-isla",
     catalogCtaLabel: "Explorar catálogo de materiales",
-    consultationCtaLabel: "Agendar asesoría gratuita",
+    consultationCtaLabel: "Agendar asesoría",
   },
   materials: {
     eyebrow: "Materialidad",
     heading: "Superficies nobles y maderas del trópico",
-    body: "Piedras tecnológicas, cuarzo puro, maderas curadas y chukum mineral seleccionados para climas costeros y de alta exigencia térmica.",
+    body: "Piedras tecnológicas, cuarzo puro, maderas curadas y pastas minerales seleccionadas para climas costeros y de alta exigencia térmica.",
     sections: [
       {
         slug: "piedras-tecnologicas",
@@ -87,7 +87,7 @@ export const interiorsPageContent = {
         shortTitle: "Minerales",
         subtitle: "Minerales",
         description:
-          "Extracto de corteza de chukum y cal viva apagada en obra. Regula la humedad ambiental y permanece fresca.",
+          "Pastas de cal viva apagada en obra y pigmentos minerales. Regulan la humedad ambiental y permanecen frescas.",
         deliverables: [
           "Hidrófugo natural sin VOC",
           "Superficie continua sin juntas",
@@ -174,6 +174,168 @@ export const interiorsPageContent = {
   },
 };
 
+export const civilWorksPageContent = {
+  hero: {
+    eyebrow: "Infraestructura pesada · Puentes y prefabricados",
+    heading:
+      "Ingeniería civil, puentes vehiculares y montaje de prefabricados de concreto",
+    subheadline:
+      "Capacidad técnica integral para obras de gran tonelaje: cimentaciones profundas, izado con grúas telescópicas, trabes cajón y cálculo sismorresistente bajo normativa nacional.",
+    dir: "obra-civil",
+    base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+    catalogCtaLabel: "Explorar frentes de obra civil",
+    consultationCtaLabel: "Solicitar cotización técnica",
+  },
+  specialties: {
+    eyebrow: "Capacidad de maniobra",
+    heading: "Infraestructura mayor, preesforzados y montaje pesado",
+    body: "Soluciones de ingeniería civil pesada desarrolladas con equipo propio, maquinaria pesada y supervisión pericial continua en cada maniobra.",
+    sections: [
+      {
+        slug: "columnas-y-porticos-prefabricados",
+        number: "01",
+        title: "Columnas y Pórticos Prefabricados",
+        shortTitle: "Precolados",
+        subtitle: "Precolados",
+        description:
+          "Fabricación y montaje de columnas de concreto de gran altura y capiteles prefabricados insertados en dados de cimentación con candelero.",
+        deliverables: [
+          "Izado con grúas telescópicas de hasta 120 toneladas",
+          "Tolerancias de aplome milimétricas con topografía láser",
+          "Concretos de alta resistencia f'c ≥ 350 kg/cm²",
+          "Ensamble en candelero con mortero grout expansivo",
+        ],
+        dir: "obra-civil",
+        base: "02-montaje-columna-prefabricada-en-candelero-cimentacion",
+      },
+      {
+        slug: "puentes-y-trabes-de-gran-claro",
+        number: "02",
+        title: "Puentes Vehiculares y Trabes Cajón",
+        shortTitle: "Puentes",
+        subtitle: "Puentes",
+        description:
+          "Construcción de pasos vehiculares, puentes sobre ríos y pasos a desnivel utilizando trabes cajón presforzadas y vigas pretensadas de gran claro.",
+        deliverables: [
+          "Superestructuras para claros superiores a 35 metros",
+          "Maniobra en tándem con doble grúa sobre cauce",
+          "Montaje sobre pilas y cabezales de concreto armado",
+          "Apoyos de neopreno reforzado y juntas de dilatación",
+        ],
+        dir: "obra-civil",
+        base: "10-montaje-trabes-cajon-puente-sobre-pilas-concreto",
+      },
+      {
+        slug: "naves-industriales-y-porticos",
+        number: "03",
+        title: "Naves Industriales y Muros Tilt-up",
+        shortTitle: "Naves",
+        subtitle: "Naves",
+        description:
+          "Edificación de naves industriales, centros de distribución y estructuras comerciales con muros de concreto de gran altura y cubiertas de gran claro.",
+        deliverables: [
+          "Izado simultáneo de muros y cartelas de concreto",
+          "Estructura mixta concreto-acero para máxima rigidez",
+          "Pisos de concreto pulido con fibras estructurales",
+          "Patios de maniobras y terracerías de alto tonelaje",
+        ],
+        dir: "naves-industriales",
+        base: "01-maniobra-gruas-izado-muros-prefabricados-concreto",
+      },
+      {
+        slug: "cimentaciones-profundas-y-vialidades",
+        number: "04",
+        title: "Cimentaciones Profundas y Vialidades",
+        shortTitle: "Cimentación",
+        subtitle: "Cimentación",
+        description:
+          "Habilitado de armados masivos de acero, zapatas aisladas y corridas, muros de contención y pavimentación de concreto hidráulico MR.",
+        deliverables: [
+          "Armado de parrillas pesadas con varilla de hasta 1 1/2\"",
+          "Colados masivos continuos con planta dosificadora",
+          "Pavimentos rígidos con concreto de módulo de ruptura MR",
+          "Mejoramiento de subrasante y control de compactación",
+        ],
+        dir: "obra-civil",
+        base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
+      },
+    ],
+  },
+  manifesto: {
+    text: "La infraestructura civil no se improvisa: se proyecta con rigor de gabinete, cálculo de sismicidad severa y control pericial en cada frente de obra.",
+    dir: "credibilidad",
+    base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
+  },
+  gallery: {
+    intro: {
+      eyebrow: "Dossier fotográfico · Frente de obra",
+      heading: "Maniobras de gran calado e ingeniería en campo",
+      body: "Inspección fotográfica de frentes de obra civil ejecutados: izado de cabezales, transporte de trabes especiales, compactación de terracerías y montaje de superestructuras viales.",
+    },
+  },
+  engineering: {
+    intro: {
+      eyebrow: "Rigor estructural y certificación DRO",
+      heading: "Seguridad estructural, cálculo sísmico y supervisión pericial",
+      body: "En zonas de alta sismicidad y terrenos de orografía compleja, la obra civil exige cumplimiento estricto de normativas SCT, ACI y normatividad estatal con respaldo formal de Director Responsable de Obra.",
+    },
+    items: [
+      {
+        title: "Cálculo estructural en gabinete y modelado sismorresistente",
+        tag: "GABINETE TÉCNICO Y CÁLCULO",
+        description:
+          "Modelamos cada estructura civil mediante software especializado de elementos finitos para garantizar resiliencia ante sismos de alta intensidad y cargas dinámicas de tránsito pesado.",
+        points: [
+          "Memorias de cálculo estructural firmadas por peritos colegiados",
+          "Modelado tridimensional de esfuerzos y deformaciones críticas",
+          "Cumplimiento con normas técnicas complementarias y estándares SCT",
+        ],
+        dir: "proyectos-integrales",
+        base: "01-arquitectos-revisando-planos-estructurales-mesa-madera",
+      },
+      {
+        title: "Logística pesada y maniobras con grúas telescópicas certificadas",
+        tag: "LOGÍSTICA Y MANIOBRAS DE PRECISIÓN",
+        description:
+          "Coordinamos el transporte especializado de trabes de gran longitud y el izado milimétrico con grúas de alta capacidad bajo estrictos protocolos de seguridad industrial.",
+        points: [
+          "Planes de izaje críticos avalados por ingenieros de maniobras",
+          "Operadores certificados y equipo de izaje con pruebas de carga",
+          "Tractocamiones y plataformas modulares para transporte especial",
+        ],
+        dir: "obra-civil",
+        base: "04-izado-cabezal-columna-puente-grua-cielo-azul",
+      },
+      {
+        title: "Control de calidad en laboratorio y pruebas destructivas",
+        tag: "CONTROL DE CALIDAD EN SITIO",
+        description:
+          "Verificamos en laboratorio acreditado la resistencia a la compresión del concreto (cilindros a 7, 14 y 28 días), revenimiento y grados de compactación Proctor en terracerías.",
+        points: [
+          "Muestreo sistemático de concreto premezclado en pie de obra",
+          "Pruebas de tensión y doblez en acero de refuerzo estructural",
+          "Control de compactación nuclear de terracerías y terraplenes",
+        ],
+        dir: "credibilidad",
+        base: "06-armado-acero-estructural-zapata-trabajador-casa-alta",
+      },
+      {
+        title: "Firma pericial DRO y finiquito administrativo de obra",
+        tag: "RESPALDO TÉCNICO Y LEGAL",
+        description:
+          "Entregamos expedientes técnicos completos: bitácora electrónica de obra pública o privada, planos as-built, estimaciones por conceptos ejecutados y finiquito sin partidas ocultas.",
+        points: [
+          "Firma de Director Responsable de Obra (DRO) y Corresponsables",
+          "Expediente unitario con números generadores y memoria fotográfica",
+          "Finiquito de obra y póliza formal de vicios ocultos por escrito",
+        ],
+        dir: "credibilidad",
+        base: "05-director-obra-chaleco-casa-alta-bajo-palapa",
+      },
+    ],
+  },
+};
+
 export const sustainabilityPageContent = {
   hero: {
     eyebrow: "Arquitectura bioclimática y tropical",
@@ -210,11 +372,11 @@ export const sustainabilityPageContent = {
       {
         slug: "materiales-locales",
         number: "02",
-        title: "Materiales Locales y Chukum",
+        title: "Materiales Locales, Naturales de la Zona y Artesanales",
         shortTitle: "Materialidad",
         subtitle: "Materialidad",
         description:
-          "Acabados minerales en chukum, pastas de cal apagada y maderas de la región tratadas al vacío para resistir la salinidad costera.",
+          "Acabados minerales, pastas de cal apagada y maderas de la región tratadas al vacío para resistir la salinidad costera.",
         deliverables: [
           "Acabados minerales de nula huella química",
           "Curado de maderas contra salitre y termita",
@@ -307,10 +469,10 @@ export const sustainabilityPageContent = {
         base: "04-fachada-celosia-proteccion-solar-vegetacion",
       },
       {
-        title: "Masa térmica de concreto y recubrimientos de chukum",
+        title: "Masa térmica de concreto y recubrimientos de tierra",
         tag: "HIGROTÉRMICA Y TRANSPIRABILIDAD",
         description:
-          "Muros masivos que absorben el calor diurno y lo liberan durante la noche fresca, revestidos con pastas de cal y chukum que absorben y expulsan la humedad ambiental sin degradarse.",
+          "Muros masivos que absorben el calor diurno y lo liberan durante la noche fresca, revestidos con pastas de cal y pigmento que absorben y expulsan la humedad ambiental sin degradarse.",
         points: [
           "Inercia higrotérmica que estabiliza la temperatura interior",
           "Fungicida e hidrófugo natural impermeable a la brisa marina",
@@ -425,7 +587,7 @@ export const aboutPageContent = {
       title: "Acabados de autor y garantía patrimonial",
       description:
         "Integramos maderas tropicales curadas, cantera local y herrería artesanal. Entregamos la obra con finiquito cerrado sin sobrecostos y póliza de garantía post-entrega por escrito.",
-      deliverable: "Póliza de garantía por escrito y finiquito sin costos ocultos",
+      deliverable: "Póliza de garantía por escrito y finiquito transparente",
       dir: "arquitectura-que-perdura",
       base: "01-comedor-exterior-madera-bajo-palapa-lamparas-tejidas",
       photoAlt:
@@ -567,7 +729,7 @@ export const contactPageContent = {
   contactForm: {
     eyebrow: "Primera sesión técnica",
     heading: "Cuéntenos sobre su proyecto",
-    body: "Reciba un diagnóstico preliminar de viabilidad, estimación paramétrica y ruta crítica sin costo ni compromiso.",
+    body: "Reciba un diagnóstico preliminar de viabilidad, estimación paramétrica y ruta crítica con nuestro equipo técnico.",
     specialtiesLabel: "1. Especialidad de su proyecto",
     specialties: [
       "Arquitectura Residencial",
