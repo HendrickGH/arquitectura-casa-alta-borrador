@@ -13,7 +13,8 @@ const page = getServicesPage();
 
 export const metadata: Metadata = {
   title: `Servicios de Ingeniería y Construcción — ${site.name}`,
-  description: page.hero.subheadline,
+  description:
+    "Catálogo técnico integral de alcances por etapa de proyecto y construcción de Casa Alta.",
 };
 
 export default function ServicesRoutePage() {
@@ -24,7 +25,6 @@ export default function ServicesRoutePage() {
       site={site}
       page={page}
       groups={getServiceGroups()}
-      pillars={home.servicePillars}
       closing={getClosing()}
       contact={home.contact}
       whatsappHref={site.whatsapp.href}

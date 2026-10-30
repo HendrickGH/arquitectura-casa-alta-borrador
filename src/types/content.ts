@@ -576,8 +576,9 @@ export interface ServicesPageContent {
   hero: {
     eyebrow: string;
     heading: string;
-    subheadline: string;
+    subheadline?: string;
     photo: Photo;
+    photos?: Photo[];
   };
   intro: SectionIntro;
   catalog: SectionIntro;

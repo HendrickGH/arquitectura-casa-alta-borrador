@@ -780,7 +780,23 @@ export function getMethodologyPhases(): MethodologyPhase[] {
 }
 
 export function getServicesPage(): ServicesPageContent {
+  const carouselBases =
+    (servicesPageContent.hero as { carouselBases?: string[] }).carouselBases ?? [
+      servicesPageContent.hero.base,
+    ];
+
+  const heroPhotos = carouselBases
+    .map((base) =>
+      findPhotoByBase(
+        servicesPageContent.hero.dir,
+        base,
+        "Ingeniería civil y construcción Casa Alta",
+      ),
+    )
+    .filter((p): p is Photo => Boolean(p));
+
   const heroPhoto =
+    heroPhotos[0] ??
     findPhotoByBase(
       servicesPageContent.hero.dir,
       servicesPageContent.hero.base,
@@ -799,6 +815,7 @@ export function getServicesPage(): ServicesPageContent {
   // the hero or the service catalogue cards.
   const used = new Set<string>([
     heroPhoto.src,
+    ...heroPhotos.map((p) => p.src),
     ...(introPhoto ? [introPhoto.src] : []),
     ...getServiceGroups().flatMap((g) =>
       g.services.flatMap((s) => (s.image ? [s.image.src] : [])),
@@ -811,6 +828,7 @@ export function getServicesPage(): ServicesPageContent {
       heading: servicesPageContent.hero.heading,
       subheadline: servicesPageContent.hero.subheadline,
       photo: heroPhoto,
+      photos: heroPhotos,
     },
     intro: {
       eyebrow: servicesPageContent.intro.eyebrow,

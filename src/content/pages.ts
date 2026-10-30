@@ -602,10 +602,16 @@ export const servicesPageContent = {
   hero: {
     eyebrow: "Ingeniería civil · Proyecto ejecutivo · Construcción",
     heading: "Capacidad técnica para obras de cualquier escala",
-    subheadline:
-      "Del plano estructural en mesa de juntas al izado de columnas prefabricadas, puentes, naves industriales y residencias llave en mano.",
+    subheadline: "",
     dir: "obra-civil",
     base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+    carouselBases: [
+      "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+      "01-grua-izando-parrilla-acero-cimentacion-vialidad",
+      "02-montaje-columna-prefabricada-en-candelero-cimentacion",
+      "10-montaje-trabes-cajon-puente-sobre-pilas-concreto",
+      "25-grua-telescopica-armado-acero-zapata-puente-peatonal",
+    ],
   },
   intro: {
     eyebrow: "Frentes de trabajo",
@@ -616,7 +622,7 @@ export const servicesPageContent = {
     photoCaption: "Ingeniería y proyecto ejecutivo en gabinete",
   },
   catalog: {
-    eyebrow: "Catálogo técnico",
+    eyebrow: "Nuestros servicios",
     heading: "Alcances por etapa de proyecto y construcción.",
     body: "Contrate el desarrollo integral llave en mano o la especialidad técnica que su obra requiera.",
   },

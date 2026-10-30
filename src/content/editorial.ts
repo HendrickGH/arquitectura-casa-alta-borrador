@@ -49,6 +49,13 @@ export const editorialRefs: EditorialRef[] = [
     alt: "Arquitectura bioclimática en tonos tierra con amplios vanos para ventilación cruzada, terraza sombreada y alberca",
   },
   {
+    service: "proyectos-sostenibles",
+    slug: "servicios-eco-sustentables-paneles-solares",
+    dir: "arquitectura-sostenible",
+    base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
+    alt: "Arquitectura bioclimática en tonos tierra con amplios vanos para ventilación cruzada, terraza sombreada y alberca",
+  },
+  {
     service: "construccion-habitacional",
     slug: "servicios-construccion-estructura-gruas",
     dir: "07-casa-tarrastro",
@@ -75,6 +82,13 @@ export const editorialRefs: EditorialRef[] = [
     dir: "obra-civil",
     base: "11-conjunto-porticos-columnas-trabes-prefabricadas-obra",
     alt: "Vista general de pórticos estructurales armados con columnas y trabes prefabricadas de concreto presforzado",
+  },
+  {
+    service: "remodelacion-y-modernizacion",
+    slug: "servicios-remodelacion-fachada-modernizada",
+    dir: "remodelacion",
+    base: "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
+    alt: "Fachada de residencia modernizada con acabados en blanco, dos niveles y cancelería contemporánea",
   },
   {
     service: "espacios-publicos-y-deportivos",

@@ -15,8 +15,8 @@ import type { ServiceGroup } from "@/types/content";
  */
 export const serviceGroups: ServiceGroup[] = [
   {
-    slug: "proyecto-y-diseno",
-    title: "Proyecto y diseño",
+    slug: "arquitectura-y-desarrollo",
+    title: "Arquitectura y desarrollo",
     intro:
       "Cada obra empieza en el papel. Proyectamos y calculamos antes de construir, para que su inversión se sostenga en decisiones y no en supuestos. Del anteproyecto al proyecto ejecutivo, con todo listo para obra.",
     services: [
@@ -49,8 +49,8 @@ export const serviceGroups: ServiceGroup[] = [
         ],
       },
       {
-        slug: "proyectos-eco-sustentables",
-        title: "Proyectos eco-sustentables",
+        slug: "proyectos-sostenibles",
+        title: "Proyectos sostenibles",
         summary:
           "Diseñamos con el clima, no contra él. Aprovechamos ventilación e iluminación natural y sumamos captación de agua y energía para bajar el consumo durante toda la vida del edificio.",
         items: [
@@ -66,7 +66,7 @@ export const serviceGroups: ServiceGroup[] = [
   },
   {
     slug: "construccion",
-    title: "Construcción",
+    title: "Construcción y obra civil",
     intro:
       "Aquí está nuestra reputación: más de 150 obras entregadas con rigor técnico y contractual. Elegimos el sistema constructivo por proyecto --clima, terreno, plazo y presupuesto--, no por costumbre.",
     services: [
@@ -116,6 +116,19 @@ export const serviceGroups: ServiceGroup[] = [
           "Estructura metálica",
           "Naves de gran claro",
           "Sistemas mixtos, según lo que más convenga al proyecto",
+        ],
+      },
+      {
+        slug: "remodelacion-y-modernizacion",
+        title: "Remodelación y ampliación",
+        summary:
+          "Transformamos inmuebles existentes mediante refuerzo estructural, rediseño de volumetría y fachadas, renovación de instalaciones y acabados contemporáneos sin demoler el patrimonio previo.",
+        items: [
+          "Diagnóstico estructural y demolición controlada",
+          "Modernización de fachadas, balcones, herrería y cancelería",
+          "Colado de accesos vehiculares, cocheras y firmes de concreto",
+          "Renovación integral de interiores, baños, cocinas e iluminación",
+          "Refuerzo de elementos estructurales y redistribución de claros",
         ],
       },
     ],

@@ -8,6 +8,7 @@ import type { Photo as PhotoModel } from "@/types/content";
 
 export interface MonolithCardProps {
   title: string;
+  kicker?: string;
   description?: string;
   photo?: PhotoModel | null;
   href?: string;
@@ -16,6 +17,7 @@ export interface MonolithCardProps {
   sizes?: string;
   ariaLabel?: string;
   className?: string;
+  variant?: "carousel" | "grid";
 }
 
 const DEFAULT_SIZES =
@@ -28,9 +30,11 @@ const DEFAULT_SIZES =
  * Marcellus title, body description, and hover arrow transition.
  * Supports polymorphic rendering: Next.js `<Link>` when `href` is supplied,
  * or interactive `<button>` when `onClick` is supplied.
+ * Supports "carousel" (fixed width snap slide) and "grid" (responsive column width).
  */
 export function MonolithCard({
   title,
+  kicker,
   description,
   photo,
   href,
@@ -39,6 +43,7 @@ export function MonolithCard({
   sizes = DEFAULT_SIZES,
   ariaLabel,
   className,
+  variant = "carousel",
 }: MonolithCardProps) {
   const content = (
     <>
@@ -67,22 +72,31 @@ export function MonolithCard({
         className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-80 bg-gradient-to-t from-ink via-ink/85 to-transparent"
       />
 
-      {/* Top: Title */}
+      {/* Top: Kicker & Title */}
       <div className="relative z-10">
+        {kicker ? (
+          <span className="label mb-2.5 block text-[11px] sm:text-xs tracking-[0.14em] text-white/80 drop-shadow-sm font-medium">
+            {kicker}
+          </span>
+        ) : null}
         <Heading
           as="h3"
           voice="serif"
-          sizeClassName="text-2xl md:text-3xl lg:text-[2rem] text-white font-normal leading-[1.14] drop-shadow-sm transition-colors group-hover:text-concha-nacar"
+          sizeClassName={
+            variant === "grid"
+              ? "text-xl sm:text-2xl md:text-[1.75rem] text-white font-normal leading-[1.18] drop-shadow-sm transition-colors group-hover:text-concha-nacar"
+              : "text-2xl md:text-3xl lg:text-[2rem] text-white font-normal leading-[1.14] drop-shadow-sm transition-colors group-hover:text-concha-nacar"
+          }
         >
           {title}
         </Heading>
       </div>
 
       {/* Bottom: Description & CTA */}
-      <div className="relative z-10 flex flex-col gap-5">
+      <div className="relative z-10 flex flex-col gap-4 sm:gap-5">
         {description ? (
           <Text
-            size="base"
+            size="sm"
             className="leading-relaxed text-white/90 drop-shadow-sm font-normal max-w-[42ch]"
           >
             {description}
@@ -90,7 +104,7 @@ export function MonolithCard({
         ) : null}
 
         <div className="flex items-center gap-3 pt-1 text-white transition-colors group-hover:text-concha-nacar">
-          <span className="label text-sm tracking-wider text-white transition-colors group-hover:text-concha-nacar">
+          <span className="label text-xs sm:text-sm tracking-wider text-white transition-colors group-hover:text-concha-nacar font-semibold">
             {ctaLabel}
           </span>
           <Icon
@@ -103,7 +117,10 @@ export function MonolithCard({
   );
 
   const sharedClasses = cx(
-    "group relative flex h-[580px] w-[85vw] shrink-0 snap-start flex-col justify-between overflow-hidden bg-ink p-7 text-white transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500 sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] lg:p-9",
+    "group relative flex flex-col justify-between overflow-hidden bg-ink text-white transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500",
+    variant === "grid"
+      ? "h-[500px] sm:h-[540px] lg:h-[580px] w-full p-6 sm:p-7 lg:p-8"
+      : "h-[580px] w-[85vw] shrink-0 snap-start sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] p-7 lg:p-9",
     className
   );
 

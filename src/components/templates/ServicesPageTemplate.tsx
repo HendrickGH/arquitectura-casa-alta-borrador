@@ -1,18 +1,11 @@
-import { Container } from "@/components/atoms/Container";
-import { Section } from "@/components/atoms/Section";
-import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { ContactForm } from "@/components/organisms/ContactForm";
-import { EditorialSplitSection } from "@/components/organisms/EditorialSplitSection";
 import { PageHero } from "@/components/organisms/PageHero";
-import { ServicesEditorialShowcase } from "@/components/organisms/ServicesEditorialShowcase";
 import { ServicesIndex } from "@/components/organisms/ServicesIndex";
-import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
   HomePage,
   ServiceGroup,
-  ServicePillar,
   ServicesPageContent,
   SiteConfig,
 } from "@/types/content";
@@ -21,7 +14,6 @@ interface ServicesPageTemplateProps {
   site: SiteConfig;
   page: ServicesPageContent;
   groups: ServiceGroup[];
-  pillars?: ServicePillar[];
   closing: HomePage["closing"];
   contact: HomePage["contact"];
   whatsappHref: string;
@@ -30,15 +22,17 @@ interface ServicesPageTemplateProps {
 /**
  * `/servicios` — Ingeniería, Proyectos Ejecutivos y Construcción.
  *
- * Showcases the studio's four field execution specialties (`proyectos-integrales`,
- * `obra-civil`, `naves-industriales`, `remodelacion`), the 3 core pillars from the home,
- * and the complete 13-service technical catalog (`ServicesIndex`).
+ * Catálogo integral homologado en la sección de alcances por etapa de proyecto y construcción:
+ * - PageHero: carrusel con fotos de obra civil/ingeniería y título proporcionado.
+ * - ServicesIndex: select arquitectónico (default: "Todos nuestros servicios") y cuadrícula
+ *   monográfica de partidas con modal de entregables detallados.
+ * - ContactForm: consulta y cotización directa con residencia técnica.
+ * - ClosingCTA: cierre institucional Casa Alta.
  */
 export function ServicesPageTemplate({
   site,
   page,
   groups,
-  pillars,
   closing,
   contact,
   whatsappHref,
@@ -51,48 +45,15 @@ export function ServicesPageTemplate({
           heading={page.hero.heading}
           subheadline={page.hero.subheadline}
           photo={page.hero.photo}
+          photos={page.hero.photos}
+          headingClassName="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.12]"
         />
-
-        <EditorialSplitSection
-          variant="compact"
-          eyebrow={page.intro.eyebrow}
-          heading={page.intro.heading}
-          paragraphs={page.intro.paragraphs ?? [page.intro.body]}
-          photo={page.intro.photo}
-          photoCaption={page.intro.photoCaption}
-        />
-
-        <Section id="especialidades" tone="bone" reveal="stagger">
-          <Container>
-            <SectionHeading
-              eyebrow={page.specialties.eyebrow}
-              heading={page.specialties.heading}
-              body={page.specialties.body}
-            />
-
-            <div className="mt-12 md:mt-16">
-              <SpecialtiesShowcase
-                sections={page.specialties.sections}
-                deliverablesLabel={page.specialties.deliverablesLabel}
-                ctaLabel={page.specialties.ctaLabel}
-                ctaHref={page.specialties.ctaHref}
-              />
-            </div>
-          </Container>
-        </Section>
-
-        {pillars && pillars.length > 0 ? (
-          <ServicesEditorialShowcase
-            pillars={pillars}
-            id="frentes-especializados"
-          />
-        ) : null}
 
         <ServicesIndex
           id="catalogo-servicios"
           intro={page.catalog}
           groups={groups}
-          tone="bone"
+          tone="canvas"
           whatsappHref={whatsappHref}
         />
 
@@ -100,7 +61,7 @@ export function ServicesPageTemplate({
           id="contacto"
           contact={contact}
           whatsappHref={whatsappHref}
-          tone="canvas"
+          tone="bone"
           showSidebar={false}
         />
 
