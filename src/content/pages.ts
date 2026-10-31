@@ -601,14 +601,14 @@ export const servicesPageContent = {
     eyebrow: "",
     heading: "Capacidad técnica para obras de cualquier escala",
     subheadline: "",
-    dir: "obra-civil",
-    base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+    dir: "07-casa-tarrastro",
+    base: "06-fachada-principal-dos-niveles-pergola-piedra",
     carouselItems: [
       {
-        dir: "arquitectura-sostenible",
-        base: "14-residencia-bioclimatica-palapa-celosia-chukum",
-        caption: "Residencia bioclimática con muros de tierra, celosía de barro y cubierta de palapa",
-        niche: "Arquitectura Sostenible",
+        dir: "07-casa-tarrastro",
+        base: "06-fachada-principal-dos-niveles-pergola-piedra",
+        caption: "Fachada panorámica de Casa Tarrastro con muros de piedra y pérgola contemporánea",
+        niche: "Construcción Habitacional",
       },
       {
         dir: "01-plaza-esmeralda-puerto-escondido",
@@ -629,10 +629,10 @@ export const servicesPageContent = {
         niche: "Infraestructura & Obra Civil",
       },
       {
-        dir: "07-casa-tarrastro",
-        base: "06-fachada-principal-dos-niveles-pergola-piedra",
-        caption: "Fachada panorámica de Casa Tarrastro con muros de piedra y pérgola contemporánea",
-        niche: "Construcción Habitacional",
+        dir: "arquitectura-sostenible",
+        base: "14-residencia-bioclimatica-palapa-celosia-chukum",
+        caption: "Residencia bioclimática con muros de tierra, celosía de barro y cubierta de palapa",
+        niche: "Arquitectura Sostenible",
       },
       {
         dir: "naves-industriales",
