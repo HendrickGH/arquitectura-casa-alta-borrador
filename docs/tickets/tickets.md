@@ -19,14 +19,14 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 | **Página de Inicio (Home)** | [`home.md`](./home.md) | Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charco Seco, arquitectura nativa y métricas. | 14 | 3 | 11 |
 | **Pie de Página (Footer)** | [`footer.md`](./footer.md) | Enlaces de navegación consistentes, datos de contacto oficiales, derechos reservados y eliminación de links obsoletos. | 2 | 0 | 2 |
 | **Página de Servicios** | [`servicios.md`](./servicios.md) | Catálogo integral de servicios de arquitectura y constructora, sección cocinas/interiores, Skate Parks e ingeniería. | 8 | 0 | 8 |
-| **Página de Proyectos** | [`proyectos.md`](./proyectos.md) | Portafolio de obras destacadas (El Bicho, Blake, Tarrastro, etc.), filtros por tipología, galerías fotográficas y fichas técnicas. | 16 | 15 | 1 |
+| **Página de Proyectos** | [`proyectos.md`](./proyectos.md) | Portafolio de obras destacadas (El Bicho, Blake, Tarrastro, etc.), filtros por tipología, galerías fotográficas y fichas técnicas. | 16 | 3 | 13 |
 | **Página Obra Civil** | [`obra-civil.md`](./obra-civil.md) | Nueva página y sección dedicada a infraestructura pública, puentes, pavimentaciones, muros de contención y naves. | 2 | 1 | 1 |
 | **Página Sostenible** | [`sostenible.md`](./sostenible.md) | Depuración de marcas registradas ajenas, enfoque en arquitectura bioclimática, sistemas pasivos y materiales regionales. | 4 | 4 | 0 |
 | **Página Nosotros** | [`nosotros.md`](./nosotros.md) | Narrativa del despacho, arraigo en Oaxaca, capacidad de ejecución a nivel nacional, equipo profesional y respaldo contractual. | 2 | 2 | 0 |
 | **Página de Contacto y Formularios** | [`contacto.md`](./contacto.md) | Reingeniería del formulario guiado paso a paso, eliminación de campos de presupuesto intrusivos, WhatsApp y mapa de ubicación. | 4 | 4 | 0 |
 | **Dominios, Correos y Lanzamiento** | [`lanzamiento.md`](./lanzamiento.md) | Gestión del dominio arquitecturacasalta.com (10 años), DNS, configuración de 5 correos corporativos y despliegue final. | 5 | 5 | 0 |
 | **Post-Lanzamiento (Fase 2 - CMS y SEO)** | [`post-lanzamiento.md`](./post-lanzamiento.md) | Implementación futura de Payload CMS para gestión autónoma del cliente y auditoría continua de posicionamiento SEO. | 2 | 2 | 0 |
-| **TOTALES** | | | **68** | **36** | **32** |
+| **TOTALES** | | | **68** | **24** | **44** |
 
 ## Insumos y Entregables del Cliente
 
@@ -39,7 +39,7 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 - [ ] **[Página de Inicio (Home)](./home.md)** (3 pendientes / 14 totales) — Hero carrusel con eslogan, sección Quiénes Somos (40px), integración de Charco Seco, arquitectura nativa y métricas.
 - [x] **[Pie de Página (Footer)](./footer.md)** (0 pendientes / 2 totales) — Enlaces de navegación consistentes, datos de contacto oficiales, derechos reservados y eliminación de links obsoletos.
 - [x] **[Página de Servicios](./servicios.md)** (0 pendientes / 8 totales) — Catálogo integral de servicios de arquitectura y constructora, sección cocinas/interiores, Skate Parks e ingeniería.
-- [ ] **[Página de Proyectos](./proyectos.md)** (15 pendientes / 16 totales) — Portafolio de obras destacadas (El Bicho, Blake, Tarrastro, etc.), filtros por tipología, galerías fotográficas y fichas técnicas.
+- [ ] **[Página de Proyectos](./proyectos.md)** (3 pendientes / 16 totales) — Portafolio de obras destacadas (El Bicho, Blake, Tarrastro, etc.), filtros por tipología, galerías fotográficas y fichas técnicas.
 - [ ] **[Página Obra Civil](./obra-civil.md)** (1 pendientes / 2 totales) — Nueva página y sección dedicada a infraestructura pública, puentes, pavimentaciones, muros de contención y naves.
 - [ ] **[Página Sostenible](./sostenible.md)** (4 pendientes / 4 totales) — Depuración de marcas registradas ajenas, enfoque en arquitectura bioclimática, sistemas pasivos y materiales regionales.
 - [ ] **[Página Nosotros](./nosotros.md)** (2 pendientes / 2 totales) — Narrativa del despacho, arraigo en Oaxaca, capacidad de ejecución a nivel nacional, equipo profesional y respaldo contractual.
