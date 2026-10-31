@@ -24,7 +24,6 @@ export default function AboutRoutePage() {
       page={page}
       phases={page.methodology}
       stats={home.stats}
-      manifesto={home.manifesto}
       closing={getClosing()}
     />
   );

@@ -1,7 +1,6 @@
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
 import { EditorialSplitSection } from "@/components/organisms/EditorialSplitSection";
-import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { MethodologyZigzag } from "@/components/organisms/MethodologyZigzag";
 import { PageHero } from "@/components/organisms/PageHero";
 import { StatsBand } from "@/components/organisms/StatsBand";
@@ -18,7 +17,6 @@ interface AboutPageTemplateProps {
   site: SiteConfig;
   page: AboutPageContent;
   stats: Stat[];
-  manifesto: string;
   phases?: MethodologyPhase[];
   closing: HomePage["closing"];
 }
@@ -31,13 +29,12 @@ interface AboutPageTemplateProps {
  * 2. Identity: Text on Left, Architectural Photograph on Right
  * 3. On-Site Supervision: Aligned dual-row continuous horizontal scroll gallery with lightbox
  * 4. Methodology: Three master phases in alternating editorial zigzag with large photography
- * 5. Closing: Architect manifesto quote + Direct contact CTA
+ * 5. Closing: Direct contact CTA
  */
 export function AboutPageTemplate({
   site,
   page,
   stats,
-  manifesto,
   phases,
   closing,
 }: AboutPageTemplateProps) {
@@ -76,13 +73,6 @@ export function AboutPageTemplate({
         <MethodologyZigzag
           intro={page.methodologyIntro}
           phases={methodologyPhases}
-        />
-
-        {/* Architect's Philosophical Statement */}
-        <ManifestoLine
-          line={manifesto}
-          architect={site.architect}
-          photo={page.enduringPhotos[0]}
         />
 
         {/* Closing Conversion Stage */}
