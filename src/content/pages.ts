@@ -181,9 +181,32 @@ export const civilWorksPageContent = {
       "Ingeniería civil, puentes vehiculares y montaje de prefabricados de concreto",
     subheadline: "",
     dir: "obra-civil",
-    base: "25-grua-telescopica-armado-acero-zapata-puente-peatonal",
+    base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
     catalogCtaLabel: "",
     consultationCtaLabel: "",
+    carouselItems: [
+      {
+        dir: "obra-civil",
+        base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+        caption:
+          "Construcción de puente vehicular sobre río con maniobra de dos grúas telescópicas",
+        niche: "Puentes Vehiculares",
+      },
+      {
+        dir: "obra-civil",
+        base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
+        caption:
+          "Izado de parrilla masiva de acero para cimentación profunda y vialidad",
+        niche: "Cimentaciones Profundas",
+      },
+      {
+        dir: "obra-civil",
+        base: "04-izado-cabezal-columna-puente-grua-cielo-azul",
+        caption:
+          "Montaje e izado de cabezal prefabricado de concreto con grúa de gran capacidad",
+        niche: "Elementos Prefabricados",
+      },
+    ],
   },
   specialties: {
     eyebrow: "Capacidad de maniobra",

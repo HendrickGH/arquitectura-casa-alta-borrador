@@ -503,6 +503,8 @@ export interface CivilWorksPageContent {
     heading: string;
     subheadline: string;
     photo: Photo;
+    photos?: Photo[];
+    slides?: ServiceHeroSlide[];
     catalogCtaLabel?: string;
     consultationCtaLabel?: string;
   };

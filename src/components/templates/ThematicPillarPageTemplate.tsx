@@ -12,6 +12,7 @@ import type {
   HomePage,
   Photo,
   SectionIntro,
+  ServiceHeroSlide,
   SiteConfig,
 } from "@/types/content";
 
@@ -28,6 +29,8 @@ export interface ThematicPillarPageTemplateProps {
     heading: string;
     subheadline: string;
     photo: Photo;
+    photos?: Photo[];
+    slides?: ServiceHeroSlide[];
     catalogCtaLabel?: string;
     consultationCtaLabel?: string;
     /** Resolved WhatsApp URL with prefill. When absent, the consultation CTA is omitted. */
@@ -69,6 +72,8 @@ export function ThematicPillarPageTemplate({
           heading={hero.heading}
           subheadline={hero.subheadline}
           photo={hero.photo}
+          photos={hero.photos}
+          slides={hero.slides}
           actions={
             hero.catalogCtaLabel || (hero.whatsappHref && hero.consultationCtaLabel) ? (
               <>

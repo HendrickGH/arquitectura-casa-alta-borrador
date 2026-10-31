@@ -543,13 +543,50 @@ export function getInteriorsPage(): InteriorsPageContent {
 }
 
 export function getCivilWorksPage(): CivilWorksPageContent {
+  const heroContent = civilWorksPageContent.hero as {
+    dir: string;
+    base: string;
+    eyebrow: string;
+    heading: string;
+    subheadline?: string;
+    catalogCtaLabel?: string;
+    consultationCtaLabel?: string;
+    carouselItems?: Array<{
+      dir: string;
+      base: string;
+      caption?: string;
+      niche?: string;
+    }>;
+  };
+
+  const heroSlides: ServiceHeroSlide[] = (heroContent.carouselItems ?? []).flatMap(
+    (item) => {
+      const photo = findPhotoByBase(
+        item.dir,
+        item.base,
+        item.caption ?? "Ingeniería y Obra Civil",
+      );
+      if (!photo) return [];
+      return [
+        {
+          photo,
+          niche: item.niche,
+          caption: item.caption,
+        },
+      ];
+    },
+  );
+
+  const heroPhotos = heroSlides.map((s) => s.photo);
+
   const heroPhoto =
+    heroPhotos[0] ??
     findPhotoByBase(
-      civilWorksPageContent.hero.dir,
-      civilWorksPageContent.hero.base,
+      heroContent.dir,
+      heroContent.base,
       "Ingeniería y Obra Civil",
     ) ??
-    getProjectCover(civilWorksPageContent.hero.dir, "Ingeniería y Obra Civil")!;
+    getProjectCover(heroContent.dir, "Ingeniería y Obra Civil")!;
 
   // 1. Specialties for SpecialtiesShowcase
   const specialtySections: SpecialtySection[] =
@@ -622,6 +659,8 @@ export function getCivilWorksPage(): CivilWorksPageContent {
       heading: civilWorksPageContent.hero.heading,
       subheadline: civilWorksPageContent.hero.subheadline,
       photo: heroPhoto,
+      photos: heroPhotos.length > 0 ? heroPhotos : undefined,
+      slides: heroSlides.length > 0 ? heroSlides : undefined,
       catalogCtaLabel: civilWorksPageContent.hero.catalogCtaLabel,
       consultationCtaLabel: civilWorksPageContent.hero.consultationCtaLabel,
     },

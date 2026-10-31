@@ -44,6 +44,8 @@ export function CivilWorksPageTemplate({
         heading: page.hero.heading,
         subheadline: page.hero.subheadline,
         photo: page.hero.photo,
+        photos: page.hero.photos,
+        slides: page.hero.slides,
         catalogCtaLabel: page.hero.catalogCtaLabel,
         consultationCtaLabel: page.hero.consultationCtaLabel,
         whatsappHref: heroWhatsappHref,
