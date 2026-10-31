@@ -28,7 +28,7 @@ export function ContactPageTemplate({
   whatsappHref,
 }: ContactPageTemplateProps) {
   return (
-    <SiteChrome site={site} chrome="canvas" disableContactModal>
+    <SiteChrome site={site} chrome="canvas">
       <main id="main">
         {/* Section 1: PageHero (100vh / 100svh) */}
         <PageHero

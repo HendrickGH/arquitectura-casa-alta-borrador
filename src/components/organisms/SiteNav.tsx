@@ -99,6 +99,18 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
         </nav>
 
         <div className="flex flex-col gap-6">
+          <Button
+            type="button"
+            onClick={() => {
+              close();
+              contactModal?.openContactModal();
+            }}
+            size="md"
+            className="w-full justify-center"
+          >
+            {cta.label}
+          </Button>
+
           <div className="flex flex-col gap-3">
             {phones.map((phone) => (
               <a
@@ -138,14 +150,11 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
         </nav>
 
         <Button
-          href={contactModal ? undefined : cta.href}
-          onClick={
-            contactModal
-              ? () => {
-                  contactModal.openContactModal();
-                }
-              : undefined
-          }
+          type="button"
+          onClick={() => {
+            if (open) setOpen(false);
+            contactModal?.openContactModal();
+          }}
           size="sm"
           className="chrome-cta shrink-0 text-[0.9rem] max-sm:px-4"
         >

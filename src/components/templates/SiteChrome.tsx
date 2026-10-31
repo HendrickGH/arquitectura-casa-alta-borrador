@@ -8,8 +8,6 @@ import type { SiteConfig } from "@/types/content";
 
 interface SiteChromeProps {
   site: SiteConfig;
-  /** When true, explicitly suppresses mounting the consultation modal (e.g. on /contacto). */
-  disableContactModal?: boolean;
   /**
    * The hero's chrome polarity, when the page opens on a photograph the header
    * can float over. Omitted on every page that starts on a clean ground.
@@ -32,7 +30,6 @@ interface SiteChromeProps {
  */
 export function SiteChrome({
   site,
-  disableContactModal = false,
   chrome,
   children,
 }: SiteChromeProps) {
@@ -59,7 +56,7 @@ export function SiteChrome({
     </>
   );
 
-  if (!disableContactModal && site.contactForm) {
+  if (site.contactForm) {
     return (
       <ContactModalProvider
         contact={site.contactForm}

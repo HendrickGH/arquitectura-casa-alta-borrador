@@ -418,7 +418,7 @@ export const home: HomePage = {
     eyebrow: "Contacto",
     heading: "La experiencia de construir con Casa Alta",
     body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
-    cta: { label: "Agendar reunión", href: whatsappHref },
+    cta: { label: "Agendar primera reunión", href: whatsappHref },
     photo: closingStudioPhoto,
   },
 
