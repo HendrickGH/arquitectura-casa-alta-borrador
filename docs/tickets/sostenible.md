@@ -17,9 +17,9 @@ Depuración de marcas registradas ajenas, enfoque en arquitectura bioclimática,
 ## Descartados, Aprobados y Resueltos
 
 <a id="cas-052"></a>
-- [x] **`CAS-052` Actualizar Pilar "Materiales" a "Materiales locales, naturales de la zona y artesanales"** — `Terminado / Resuelto`
+- [x] **`CAS-052` Actualizar Pilar "Materiales" a "Materiales locales y artesanales"** — `Terminado / Resuelto`
   - **Estado**: `Terminado` | **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy | **Responsable**: Hendrick Galarza
-  - **Motivo / Resolución**: Se actualizó el título del pilar en `src/content/pages.ts` (`sustainabilityPageContent.pillars.sections`) a `"Materiales locales, naturales de la zona y artesanales"`, reflejándose de forma consistente en el escenario expandido superior y en las columnas inferiores de la sección.
+  - **Motivo / Resolución**: Se actualizó el título del pilar en `src/content/pages.ts` (`sustainabilityPageContent.pillars.sections`) a `"Materiales locales y artesanales"`, reflejándose de forma consistente en el escenario expandido superior y en las columnas inferiores de la sección.
   - **Referencia**: [Llamada 3 (16:40 - 18:28, 20:06 - 20:20)](https://fathom.video/share/3-PxDDgHbvo9RbZsgByyicuX2uXPzs68)
 
 <a id="cas-053"></a>
