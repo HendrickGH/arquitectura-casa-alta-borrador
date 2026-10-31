@@ -11,6 +11,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "check:images": "node tools/check-image-urls.mjs",
+    "check:galleries": "python3 tools/verify-galleries.py",
     "images:sync": "node tools/sync-images.mjs"
   },
   "dependencies": {
