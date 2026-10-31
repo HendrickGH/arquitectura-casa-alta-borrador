@@ -556,6 +556,7 @@ export interface AboutPageContent {
     subheadline: string;
     photo: Photo;
   };
+  intro?: SectionIntro;
   story: {
     eyebrow: string;
     heading: string;

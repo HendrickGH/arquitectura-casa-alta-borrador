@@ -813,6 +813,7 @@ export function getAboutPage(): AboutPageContent {
       subheadline: aboutPageContent.hero.subheadline,
       photo: heroPhoto,
     },
+    intro: aboutPageContent.intro,
     story: aboutPageContent.story,
     credibilityIntro: aboutPageContent.credibilityIntro,
     credibilityHighlights: aboutPageContent.credibilityHighlights,

@@ -528,6 +528,15 @@ export const aboutPageContent = {
     dir: "credibilidad",
     base: "01-arquitecto-chaleco-casa-alta-supervision-topografia",
   },
+  intro: {
+    eyebrow: "Quiénes somos",
+    heading: "Ingeniería que sostiene. Arquitectura que trasciende.",
+    body: "En Casa Alta Arquitectura concebimos cada obra desde la precisión de la ingeniería y la sensibilidad del diseño arquitectónico.",
+    paragraphs: [
+      "Integramos ingeniería estructural, cálculo y soluciones constructivas para transformar ideas en estructuras sólidas, seguras y perdurables, donde cada elemento responde a un equilibrio entre resistencia, funcionalidad y belleza.",
+      "Porque la verdadera arquitectura no solo se admira por su forma, sino por la ingeniería que la hace posible.",
+    ],
+  } satisfies SectionIntro,
   story: {
     eyebrow: "Nuestra identidad",
     heading: "Construir con dignidad lo que se proyecta con sensibilidad",

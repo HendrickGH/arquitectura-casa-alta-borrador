@@ -4,7 +4,7 @@ import { Heading } from "@/components/atoms/Heading";
 import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
 import { revealStep } from "@/lib/reveal";
-import type { SectionIntro } from "@/types/content";
+import type { CallToAction, SectionIntro } from "@/types/content";
 
 interface IntroSectionProps {
   intro: SectionIntro;
@@ -12,6 +12,8 @@ interface IntroSectionProps {
   density?: "default" | "compact";
   /** Anchor target, so the header nav can link straight to this section. */
   id?: string;
+  action?: CallToAction | null;
+  hideAction?: boolean;
 }
 
 /**
@@ -25,6 +27,8 @@ export function IntroSection({
   tone = "canvas",
   density = "default",
   id,
+  action,
+  hideAction = false,
 }: IntroSectionProps) {
   const paragraphs =
     intro.paragraphs && intro.paragraphs.length > 0
@@ -71,14 +75,21 @@ export function IntroSection({
               ))}
             </div>
 
-            <div
-              {...revealStep(3)}
-              className="mt-8 pt-2"
-            >
-              <Button href="/nosotros" variant="secondary" size="sm" arrow>
-                Conocer el estudio
-              </Button>
-            </div>
+            {!hideAction ? (
+              <div
+                {...revealStep(3)}
+                className="mt-8 pt-2"
+              >
+                <Button
+                  href={action?.href ?? "/nosotros"}
+                  variant="secondary"
+                  size="sm"
+                  arrow
+                >
+                  {action?.label ?? "Conocer el estudio"}
+                </Button>
+              </div>
+            ) : null}
           </div>
         </div>
       </Container>

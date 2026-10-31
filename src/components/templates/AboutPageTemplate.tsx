@@ -1,6 +1,7 @@
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
 import { EditorialSplitSection } from "@/components/organisms/EditorialSplitSection";
+import { IntroSection } from "@/components/organisms/IntroSection";
 import { MethodologyZigzag } from "@/components/organisms/MethodologyZigzag";
 import { PageHero } from "@/components/organisms/PageHero";
 import { StatsBand } from "@/components/organisms/StatsBand";
@@ -51,6 +52,15 @@ export function AboutPageTemplate({
           photo={page.hero.photo}
         />
 
+        {/* 01. Quiénes somos: Editorial Introduction */}
+        {page.intro ? (
+          <IntroSection
+            intro={page.intro}
+            tone="canvas"
+            hideAction
+          />
+        ) : null}
+
         {/* Quiet Numerical Ground */}
         <StatsBand stats={stats} />
 
@@ -61,6 +71,7 @@ export function AboutPageTemplate({
           heading={page.story.heading}
           paragraphs={page.story.paragraphs}
           photo={page.credibilityPhotos[0]}
+          tone="bone"
         />
 
         {/* Section: Credibility & On-site Supervision Ribbon Gallery */}
