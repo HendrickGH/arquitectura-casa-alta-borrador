@@ -147,6 +147,7 @@ const curatedGalleries: Record<string, string[]> = {
     "03-columna-prefabricada-terreno-jacaranda",
     "01-izado-columna-grua-jacaranda",
     "04-columna-prefabricada-cuadrilla-grua",
+    "06-izado-columnas-prefabricadas-grua-cielo-azul",
   ],
   "12-vilas-cavan": [
     "10-fachada-frontal-chimenea-ladrillo-techo-teja",

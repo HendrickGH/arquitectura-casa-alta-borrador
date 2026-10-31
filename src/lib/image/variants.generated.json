@@ -1085,20 +1085,6 @@
       "68-estructura-prefabricada-columnas-trabes-concreto.avif"
     ]
   ],
-  "02-el-bicho/69-izado-columnas-prefabricadas-grua-cielo-azul": [
-    [
-      480,
-      "69-izado-columnas-prefabricadas-grua-cielo-azul-480.avif"
-    ],
-    [
-      960,
-      "69-izado-columnas-prefabricadas-grua-cielo-azul-960.avif"
-    ],
-    [
-      1280,
-      "69-izado-columnas-prefabricadas-grua-cielo-azul.avif"
-    ]
-  ],
   "02-el-bicho/70-grua-telescopica-maniobra-obra-vial": [
     [
       480,
@@ -4379,6 +4365,20 @@
     [
       1600,
       "05-maniobra-grua-tablones-material.avif"
+    ]
+  ],
+  "11-columnas-c1-c2/06-izado-columnas-prefabricadas-grua-cielo-azul": [
+    [
+      480,
+      "06-izado-columnas-prefabricadas-grua-cielo-azul-480.avif"
+    ],
+    [
+      960,
+      "06-izado-columnas-prefabricadas-grua-cielo-azul-960.avif"
+    ],
+    [
+      1280,
+      "06-izado-columnas-prefabricadas-grua-cielo-azul.avif"
     ]
   ],
   "12-vilas-cavan/10-fachada-frontal-chimenea-ladrillo-techo-teja": [
