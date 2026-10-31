@@ -87,6 +87,8 @@ const curatedGalleries: Record<string, string[]> = {
     "33-estacionamiento-subterraneo-cajones-columnas",
   ],
   "02-el-bicho": [
+    "91-punta-zicatela-villas-palapas-alberca-playa",
+    "92-punta-zicatela-alberca-cenital-palapas",
     "02-fachada-palapas-alberca-palmeras",
     "54-fachada-nocturna-alberca-iluminada-palapas",
     "31-fachada-iluminada-nocturna",
