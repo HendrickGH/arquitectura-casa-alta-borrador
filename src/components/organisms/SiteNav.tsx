@@ -89,7 +89,7 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
                 <Link
                   href={link.href}
                   onClick={close}
-                  className="label block py-4 text-base text-ink transition-colors duration-200 hover:text-brand-700"
+                  className="label block py-4 text-[1.2rem] text-ink transition-colors duration-200 hover:text-brand-700"
                 >
                   {link.label}
                 </Link>
@@ -107,7 +107,7 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
                 className="flex items-center gap-3 text-ink transition-colors duration-200 hover:text-brand-700"
               >
                 <Icon name="phone" className="h-5 w-5 shrink-0" />
-                <span className="text-sm tabular-nums">{phone.value}</span>
+                <span className="text-[1.05rem] tabular-nums">{phone.value}</span>
               </a>
             ))}
           </div>
@@ -126,9 +126,9 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
 
   return (
     <>
-      <div className="flex items-center gap-2 xl:gap-5 2xl:gap-7">
+      <div className="flex items-center gap-2 xl:gap-4 2xl:gap-7">
         <nav className="hidden xl:block" aria-label="Principal">
-          <ul className="flex items-center gap-5 2xl:gap-7">
+          <ul className="flex items-center gap-4 2xl:gap-7">
             {nav.map((link) => (
               <li key={link.href}>
                 <NavItem link={link} />
@@ -147,7 +147,7 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
               : undefined
           }
           size="sm"
-          className="chrome-cta shrink-0 max-sm:px-4"
+          className="chrome-cta shrink-0 text-[0.9rem] max-sm:px-4"
         >
           {cta.label}
         </Button>

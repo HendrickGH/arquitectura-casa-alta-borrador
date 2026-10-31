@@ -26,7 +26,7 @@ export function UtilityBar({ claim, phones, social }: UtilityBarProps) {
   return (
     <div className="chrome-fg chrome-utility">
       <Container className="flex items-center justify-between gap-4 py-2">
-        <p className="label opacity-90">{claim}</p>
+        <p className="label text-[0.9rem] opacity-90">{claim}</p>
 
         <div className="flex shrink-0 items-center gap-6">
           <div className="hidden items-center gap-4 sm:flex">
@@ -36,8 +36,8 @@ export function UtilityBar({ claim, phones, social }: UtilityBarProps) {
                 href={phone.href}
                 className="flex items-center gap-1.5 transition-opacity duration-200 hover:opacity-70"
               >
-                <Icon name="phone" className="h-3.5 w-3.5" />
-                <span className="label tabular-nums">{phone.value}</span>
+                <Icon name="phone" className="h-4 w-4" />
+                <span className="label text-[0.9rem] tabular-nums">{phone.value}</span>
               </a>
             ))}
           </div>

@@ -51,7 +51,7 @@ export function Header({ site, chrome }: HeaderProps) {
 
       <Container className="flex items-center justify-between gap-4 py-4">
         <Link href="/" className="shrink-0" aria-label={site.name}>
-          <Logo />
+          <Logo size="header" />
         </Link>
 
         <SiteNav
