@@ -84,21 +84,24 @@ const curatedGalleries: Record<string, string[]> = {
     "07-terraza-madera-cristal-ciudad",
     "02-terraza-anochecer-planta-jardinera",
     "20-local-esquinero-ventanal-panoramico-calle",
-    "03-escaleras-electricas-atrio-blanco",
+    "33-estacionamiento-subterraneo-cajones-columnas",
   ],
   "02-el-bicho": [
     "02-fachada-palapas-alberca-palmeras",
     "54-fachada-nocturna-alberca-iluminada-palapas",
     "31-fachada-iluminada-nocturna",
-    "13-fachada-alberca-palmeras",
+    "01-fachada-tres-palapas-alberca",
     "03-terraza-hamaca-jardin",
+    "03-casa-blake-tlalixtac/38-alberca-curva-terminada-mosaico-gris-jardin",
+    "03-casa-blake-tlalixtac/36-vista-superior-alberca-mosaico-negro-sol",
   ],
   "03-casa-blake-tlalixtac": [
     "08-fachada-frontal-dos-plantas",
     "06-fachada-camino-losas-jardin",
     "07-corredor-vigas-madera-lamparas",
     "09-esquina-ventanal-farol-terraza",
-    "38-alberca-curva-terminada-mosaico-gris-jardin",
+    "10-ventanal-reja-geometrica",
+    "32-bomba-concreto-colado-estructura-dos-niveles",
   ],
   "04-casa-melchor-ocampo": [
     "01-calle-pendiente-fachada-colonial",
@@ -132,11 +135,8 @@ const curatedGalleries: Record<string, string[]> = {
     "02-cielo-palapa-barra-mar",
     "01-trabajadores-barra-techo-palapa",
     "04-postes-madera-vista-mar",
-  ],
-  "09-casa-santa-rosa": [
-    "02-fachada-blanca-macetas-patios",
-    "01-pergola-madera-terraza-piso",
-    "03-puerta-madera-acceso-interior",
+    "02-el-bicho/77-bomba-concreto-colado-torre-costa",
+    "02-el-bicho/36-colado-con-manguera-playa",
   ],
   "10-obra-punta-zicatela": [
     "09-fachada-chukum-ventana-circular-barra-concreto",
@@ -205,13 +205,13 @@ export const projectContent: Record<string, ProjectContent> = {
     summary:
       "Conjunto comercial con terrazas de madera, cancelería de cristal y azoteas ajardinadas abiertas a la brisa costera de Puerto Escondido.",
     story:
-      "Resuelto mediante estructura mixta de concreto y acero con carpintería arquitectónica en fachadas y niveles superiores. Los corredores perimetrales y terrazas abiertas integran iluminación cálida y vegetación para operar tanto de día como de noche.",
+      "Resuelto mediante estructura metálica y losacero con carpintería arquitectónica en fachadas y niveles superiores. Los corredores perimetrales y terrazas abiertas integran iluminación cálida y vegetación para operar tanto de día como de noche.",
     outcome:
       "Un punto de referencia comercial en Puerto Escondido que combina durabilidad estructural en ambiente salino con calidez en sus espacios exteriores.",
     specs: [
       { label: "Tipología", value: "Comercial y usos mixtos" },
       { label: "Ubicación", value: "Puerto Escondido, Oaxaca" },
-      { label: "Sistema", value: "Estructura mixta, cristal y madera" },
+      { label: "Sistema", value: "Estructura metálica y losacero, cristal y madera" },
     ],
     images: curatedGalleries["01-plaza-esmeralda-puerto-escondido"],
   },
@@ -306,24 +306,18 @@ export const projectContent: Record<string, ProjectContent> = {
   "08-rbnb-palmarito": {
     ...provisional(
       "rbnb-palmarito",
-      "Palmarito",
+      "Departamento Palmarito – Construcción de estructura",
       "habitacional",
       curatedGalleries["08-rbnb-palmarito"],
     ),
     location: "Playa Palmarito, Puerto Escondido, Oaxaca",
     summary:
-      "Conjunto costero frente al mar en Playa Palmarito con estructuras de concreto expuesto y cubiertas de palma.",
-  },
-  "09-casa-santa-rosa": {
-    ...provisional(
-      "casa-santa-rosa",
-      "Casa Santa Rosa",
-      "habitacional",
-      curatedGalleries["09-casa-santa-rosa"],
-    ),
-    location: "Santa Rosa Panzacola, Oaxaca",
-    summary:
-      "Casa habitación con patios interiores, pérgola de madera y volúmenes blancos de líneas limpias.",
+      "Desarrollo residencial frente al mar en Playa Palmarito. Registro fotográfico enfocado en el proceso constructivo y colado de su estructura de concreto y cubiertas de palma.",
+    specs: [
+      { label: "Tipología", value: "Departamento / Proceso estructural" },
+      { label: "Ubicación", value: "Playa Palmarito, Puerto Escondido" },
+      { label: "Sistema", value: "Estructura de concreto armado y palapa" },
+    ],
   },
 
   // Partly confirmed: the client named this one as apartamentos in Punta Zicatela.
@@ -509,16 +503,40 @@ export const projectContent: Record<string, ProjectContent> = {
 };
 
 /**
- * Landing order. The first four projects lead the flagship showcase on the
- * landing page (Plaza Esmeralda, El Bicho, Casa Charco Seco, Casa Blake),
- * followed by the rest of the curated portfolio below them.
+ * Canonical portfolio order across the site (CAS-039, CAS-040, CAS-044).
+ * El Bicho leads at #1, Plaza Esmeralda sits at #5, and Santa Rosa is removed.
+ */
+export const portfolioOrder: string[] = [
+  "02-el-bicho",
+  "15-casa-charco-seco",
+  "03-casa-blake-tlalixtac",
+  "04-casa-melchor-ocampo",
+  "01-plaza-esmeralda-puerto-escondido",
+  "05-cafe-malagua",
+  "06-capilla-el-tule",
+  "07-casa-tarrastro",
+  "08-rbnb-palmarito",
+  "10-obra-punta-zicatela",
+  "11-columnas-c1-c2",
+  "12-vilas-cavan",
+  "13-puente-cd-administrativa",
+  "14-pavimentacion",
+  "16-casa-la-barra",
+  "17-el-tomatal",
+  "remodelacion",
+  "arquitectura-interiores",
+];
+
+/**
+ * Landing order. The first five projects lead the flagship showcase on the
+ * landing page, with El Bicho at #1 and Plaza Esmeralda positioned at #5 (CAS-039).
  */
 export const featuredProjectDirs = [
   "02-el-bicho",
   "15-casa-charco-seco",
-  "01-plaza-esmeralda-puerto-escondido",
   "03-casa-blake-tlalixtac",
   "07-casa-tarrastro",
+  "01-plaza-esmeralda-puerto-escondido",
   "remodelacion",
   "16-casa-la-barra",
   "17-el-tomatal",

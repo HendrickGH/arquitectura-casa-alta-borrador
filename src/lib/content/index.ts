@@ -19,6 +19,7 @@ import {
 import {
   categoryLabels,
   featuredProjectDirs,
+  portfolioOrder,
   projectContent,
 } from "@/content/projects";
 import {
@@ -193,14 +194,9 @@ function buildProject(dir: string): Project | null {
   };
 }
 
-/** Every project that has both editorial data and photographs, in pipeline order. */
+/** Every project that has both editorial data and photographs, in canonical portfolio order. */
 export function getProjects(): Project[] {
-  return Object.keys(projectContent)
-    .sort(
-      (dirA, dirB) =>
-        Number(findManifestProject(dirA)?.order ?? 0) -
-        Number(findManifestProject(dirB)?.order ?? 0),
-    )
+  return portfolioOrder
     .map(buildProject)
     .filter((project): project is Project => project !== null);
 }

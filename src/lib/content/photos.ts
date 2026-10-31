@@ -131,9 +131,52 @@ export function findPhotoByBase(
 
 
 /**
- * Photos for a project, best first.
+ * Detects if a photograph documents construction process / structural work ("obra gris").
+ * CAS-037 requirement: finished project photos ("obra terminada") must appear first,
+ * and construction process photos must appear at the end.
+ */
+function isObraGris(photo: ManifestPhoto): boolean {
+  const text = `${photo.slug} ${photo.note}`.toLowerCase();
+  if (text.includes("terminad") || text.includes("acabado final")) return false;
+  return [
+    "obra",
+    "cimentacion",
+    "colado",
+    "armado",
+    "trabajador",
+    "albanil",
+    "construccion",
+    "cimbra",
+    "vaciado",
+    "andamio",
+    "excavadora",
+    "mezcladora",
+    "manguera",
+    "varilla",
+    "grua",
+    "izado",
+    "revolvedora",
+    "cuadrilla",
+    "materiales-obra",
+    "firme",
+    "emboquillado",
+    "limpieza-juntas",
+    "colocacion",
+    "frente-obra",
+    "bomba-concreto",
+    "pluma-bomba",
+    "estabilizadores",
+    "trazo-laser",
+    "nivel-laser",
+    "bastidor-metalico",
+    "prefabricado",
+  ].some((term) => text.includes(term));
+}
+
+/**
+ * Photos for a project, finished first, obra gris at the end (CAS-037).
  *
- * Ordered by the manifest's own `order`, which is the human quality ranking.
+ * Ordered by the manifest's own quality ranking within each group.
  * Photos scoring 1 or 2 are excluded: AGENTS.md is explicit that the bottom of
  * each folder is below portfolio grade, and a portfolio is judged by its worst
  * photo.
@@ -142,14 +185,72 @@ export function getProjectPhotos(dir: string, projectTitle = ""): Photo[] {
   const project = findManifestProject(dir);
   if (!project) return [];
 
-  return rankedPhotos(project).map((photo) =>
+  let photos = rankedPhotos(project);
+
+  // CAS-040: El Bicho exclusions
+  if (dir === "02-el-bicho") {
+    const excludedBases = new Set([
+      "05-bano-espejo-redondo-lavabo", // CAS-040: eliminar foto del bano
+      "08-escalera-blanca-cielo-nublado", // CAS-040: duplicada
+      "13-fachada-alberca-palmeras", // CAS-040: duplicada
+      "16-fachada-palapas-obra-piscina", // CAS-040: duplicada
+      "21-escalera-blanca-palma-adoquin", // CAS-040: duplicada
+      "36-colado-con-manguera-playa", // CAS-040: bomba concreto pertenece a Palmarito
+      "77-bomba-concreto-colado-torre-costa", // CAS-040: bomba concreto pertenece a Palmarito
+      "78-colado-losa-superior-estructura-concreto", // CAS-040: bomba concreto pertenece a Palmarito
+    ]);
+    photos = photos.filter((p) => !excludedBases.has(p.base));
+  }
+
+  // CAS-041: Casa Blake exclusions (pool photos moved to El Bicho)
+  if (dir === "03-casa-blake-tlalixtac") {
+    photos = photos.filter((p) => !p.base.includes("alberca"));
+  }
+
+  const finished = photos.filter((p) => !isObraGris(p));
+  const obraGris = photos.filter((p) => isObraGris(p));
+
+  const resolved = [...finished, ...obraGris].map((photo) =>
     toPhoto(dir, photo, projectTitle),
   );
+
+  // CAS-040: Integrar en El Bicho las fotos de alberca provenientes de Casa Blake
+  if (dir === "02-el-bicho") {
+    const blake = findManifestProject("03-casa-blake-tlalixtac");
+    if (blake) {
+      const blakePool = rankedPhotos(blake).filter((p) =>
+        p.base.includes("alberca"),
+      );
+      const poolFinished = blakePool
+        .filter((p) => !isObraGris(p))
+        .map((p) => toPhoto("03-casa-blake-tlalixtac", p, projectTitle));
+      const poolObraGris = blakePool
+        .filter((p) => isObraGris(p))
+        .map((p) => toPhoto("03-casa-blake-tlalixtac", p, projectTitle));
+
+      // Insert finished pool photos right after initial finished photos, and obra gris pool at the end
+      const bichoFinished = finished.map((p) =>
+        toPhoto(dir, p, projectTitle),
+      );
+      const bichoObraGris = obraGris.map((p) =>
+        toPhoto(dir, p, projectTitle),
+      );
+      return [
+        ...bichoFinished,
+        ...poolFinished,
+        ...bichoObraGris,
+        ...poolObraGris,
+      ];
+    }
+  }
+
+  return resolved;
 }
 
 /**
  * A project's curated card gallery: the authored `bases` resolved to photographs,
  * best first. Bases that are unknown or below the portfolio floor are dropped.
+ * Supports cross-project references formatted as "dir/base".
  * Falls back to the ranked top 3 when nothing is authored, so the card never
  * renders empty.
  */
@@ -159,21 +260,36 @@ export function getProjectGallery(
   bases: readonly string[] = [],
 ): Photo[] {
   const project = findManifestProject(dir);
-  if (!project) return [];
+  if (!project && !bases.some((b) => b.includes("/"))) return [];
 
-  const available = new Map(
-    rankedPhotos(project).map((photo) => [photo.base, photo]),
-  );
   const picked: Photo[] = [];
   const seen = new Set<string>();
+
   for (const base of bases) {
-    const photo = available.get(base);
-    if (!photo || seen.has(base)) continue;
+    if (seen.has(base)) continue;
+
+    let targetDir = dir;
+    let targetBase = base;
+    if (base.includes("/")) {
+      const parts = base.split("/");
+      targetDir = parts[0];
+      targetBase = parts[1];
+    }
+
+    const targetProject =
+      targetDir === dir ? project : findManifestProject(targetDir);
+    if (!targetProject) continue;
+
+    const photo = targetProject.photos.find(
+      (p) => p.base === targetBase && p.score >= SCORE_FLOOR,
+    );
+    if (!photo) continue;
+
     seen.add(base);
-    picked.push(toPhoto(dir, photo, projectTitle));
+    picked.push(toPhoto(targetDir, photo, projectTitle));
   }
 
-  if (picked.length === 0) {
+  if (picked.length === 0 && project) {
     return rankedPhotos(project)
       .slice(0, 3)
       .map((photo) => toPhoto(dir, photo, projectTitle));

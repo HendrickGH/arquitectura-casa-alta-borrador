@@ -367,7 +367,7 @@ export const home: HomePage = {
 
   projects: {
     eyebrow: "Portafolio seleccionado",
-    heading: "Obra construida",
+    heading: "Nuestras obras",
     body: "Una selección de obras proyectadas y entregadas por nuestra firma. Cada obra responde a su propio terreno, a su clima y al propósito de quien la habita.",
   },
 
