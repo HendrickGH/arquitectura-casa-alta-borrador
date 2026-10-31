@@ -12186,24 +12186,24 @@
           "fallback": "01-grua-izando-parrilla-acero-cimentacion-vialidad.jpg",
           "full": {
             "file": "01-grua-izando-parrilla-acero-cimentacion-vialidad.avif",
-            "height": 900,
-            "width": 1200
+            "height": 1116,
+            "width": 2000
           },
           "note": "Grua telescopica izando el armado pesado de acero para zapata junto a una avenida",
           "order": "01",
           "score": 5,
           "slug": "grua-izando-parrilla-acero-cimentacion-vialidad",
-          "source": "imagenes-nuevas/obra-civil/WhatsApp Image 2026-10-13 at 23.19.31 (2).jpeg",
-          "srcset": "01-grua-izando-parrilla-acero-cimentacion-vialidad-480.avif 480w, 01-grua-izando-parrilla-acero-cimentacion-vialidad-960.avif 960w, 01-grua-izando-parrilla-acero-cimentacion-vialidad.avif 1200w",
+          "source": "images/obra-civil/01-grua-izando-parrilla-acero-cimentacion-vialidad.jpeg",
+          "srcset": "01-grua-izando-parrilla-acero-cimentacion-vialidad-480.avif 480w, 01-grua-izando-parrilla-acero-cimentacion-vialidad-960.avif 960w, 01-grua-izando-parrilla-acero-cimentacion-vialidad.avif 2000w",
           "variants": [
             {
               "file": "01-grua-izando-parrilla-acero-cimentacion-vialidad-480.avif",
-              "height": 360,
+              "height": 268,
               "width": 480
             },
             {
               "file": "01-grua-izando-parrilla-acero-cimentacion-vialidad-960.avif",
-              "height": 720,
+              "height": 536,
               "width": 960
             }
           ]
@@ -12267,25 +12267,25 @@
           "fallback": "04-izado-cabezal-columna-puente-grua-cielo-azul.jpg",
           "full": {
             "file": "04-izado-cabezal-columna-puente-grua-cielo-azul.avif",
-            "height": 1280,
-            "width": 960
+            "height": 1116,
+            "width": 2000
           },
           "note": "Grua de gran capacidad posicionando el cabezal de concreto en lo alto de la columna con operarios",
           "order": "04",
           "score": 5,
           "slug": "izado-cabezal-columna-puente-grua-cielo-azul",
-          "source": "imagenes-nuevas/obra-civil/WhatsApp Image 2026-10-13 at 23.46.29 (1).jpeg",
-          "srcset": "04-izado-cabezal-columna-puente-grua-cielo-azul-480.avif 360w, 04-izado-cabezal-columna-puente-grua-cielo-azul-960.avif 720w, 04-izado-cabezal-columna-puente-grua-cielo-azul.avif 960w",
+          "source": "images/obra-civil/04-izado-cabezal-columna-puente-grua-cielo-azul.jpeg",
+          "srcset": "04-izado-cabezal-columna-puente-grua-cielo-azul-480.avif 480w, 04-izado-cabezal-columna-puente-grua-cielo-azul-960.avif 960w, 04-izado-cabezal-columna-puente-grua-cielo-azul.avif 2000w",
           "variants": [
             {
               "file": "04-izado-cabezal-columna-puente-grua-cielo-azul-480.avif",
-              "height": 480,
-              "width": 360
+              "height": 268,
+              "width": 480
             },
             {
               "file": "04-izado-cabezal-columna-puente-grua-cielo-azul-960.avif",
-              "height": 960,
-              "width": 720
+              "height": 536,
+              "width": 960
             }
           ]
         },
@@ -12321,24 +12321,24 @@
           "fallback": "06-construccion-puente-vehicular-sobre-rio-dos-gruas.jpg",
           "full": {
             "file": "06-construccion-puente-vehicular-sobre-rio-dos-gruas.avif",
-            "height": 960,
-            "width": 1280
+            "height": 1116,
+            "width": 2000
           },
           "note": "Panoramica de construccion de puente de concreto sobre el cauce de un rio operando con dos gruas",
           "order": "06",
           "score": 5,
           "slug": "construccion-puente-vehicular-sobre-rio-dos-gruas",
-          "source": "imagenes-nuevas/obra-civil/WhatsApp Image 2026-10-13 at 23.46.29 (3).jpeg",
-          "srcset": "06-construccion-puente-vehicular-sobre-rio-dos-gruas-480.avif 480w, 06-construccion-puente-vehicular-sobre-rio-dos-gruas-960.avif 960w, 06-construccion-puente-vehicular-sobre-rio-dos-gruas.avif 1280w",
+          "source": "images/obra-civil/06-construccion-puente-vehicular-sobre-rio-dos-gruas.jpeg",
+          "srcset": "06-construccion-puente-vehicular-sobre-rio-dos-gruas-480.avif 480w, 06-construccion-puente-vehicular-sobre-rio-dos-gruas-960.avif 960w, 06-construccion-puente-vehicular-sobre-rio-dos-gruas.avif 2000w",
           "variants": [
             {
               "file": "06-construccion-puente-vehicular-sobre-rio-dos-gruas-480.avif",
-              "height": 360,
+              "height": 268,
               "width": 480
             },
             {
               "file": "06-construccion-puente-vehicular-sobre-rio-dos-gruas-960.avif",
-              "height": 720,
+              "height": 536,
               "width": 960
             }
           ]
