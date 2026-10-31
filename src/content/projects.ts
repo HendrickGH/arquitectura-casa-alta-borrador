@@ -381,16 +381,16 @@ export const projectContent: Record<string, ProjectContent> = {
     slug: "casa-charco-seco",
     title: "Casa Charco Seco",
     category: "habitacional",
-    categoryLabel: "Habitacional · Airbnb",
+    categoryLabel: categoryLabels.habitacional,
     location: "Costa Cumaná y Rancho Neptuno, Puerto Escondido, Oaxaca",
     year: "2025",
     summary:
       "Excepcional casas hábitacional estilo Merida con vista al mar , concepto de playa para vivir cerca del mar , entre las playas de costa Cumaná y rancho Neptuno en Puerto escondido Oaxaca , en la zona de mayor plusvalía frente a la carretera federal que conecta toda la costa Oaxaqueña.",
     story:
-      "Casas con un concepto de arquitectura es basado en un estilo sencillo pero a la vez contemporánea con toque interiores de arquitectura de playa tipo Mérida Yucatán , colores neutros que dan una sensación de paz y confort para usar como casas de descanso y aventura de playa , especiales para rentas de Airbnb .",
+      "Casas con un concepto de arquitectura es basado en un estilo sencillo pero a la vez contemporánea con toque interiores de arquitectura de playa tipo Mérida Yucatán , colores neutros que dan una sensación de paz y confort para usar como casas de descanso y aventura de playa , ideales como casas de descanso y retiro frente al mar.",
     paragraphs: [
       "Excepcional casas hábitacional estilo Merida con vista al mar , concepto de playa para vivir cerca del mar , entre las playas de costa Cumaná y rancho Neptuno en Puerto escondido Oaxaca , en la zona de mayor plusvalía frente a la carretera federal que conecta toda la costa Oaxaqueña.",
-      "Casas con un concepto de arquitectura es basado en un estilo sencillo pero a la vez contemporánea con toque interiores de arquitectura de playa tipo Mérida Yucatán , colores neutros que dan una sensación de paz y confort para usar como casas de descanso y aventura de playa , especiales para rentas de Airbnb .",
+      "Casas con un concepto de arquitectura es basado en un estilo sencillo pero a la vez contemporánea con toque interiores de arquitectura de playa tipo Mérida Yucatán , colores neutros que dan una sensación de paz y confort para usar como casas de descanso y aventura de playa , ideales como casas de descanso y retiro frente al mar.",
       "Ubicada en el triángulo de mayor plusvalía de Puerto Escondido, teniendo una vista impecable hacia el mar y recibiendo la brisa encantadora que proviene de las olas de costa Cumaná esta casa cuenta con dos habitaciones completas con baños independientes, cada una sala comedor con un espacio incluido para el centro de TV, cocina integral, estilo tipo playa contando con un corredor en medio de la casa en donde se puede usar como pasillo de lectura jardín, y como área de descanso en el jacuzzi , esta casa cuenta con todos los servicios incluidos y con un estacionamiento exclusivo para cada propietario.",
       "En los interiores, los muros y plafones, serán en acabado fino residencial, con una capa de pintura del tono concha nácar para mantener la vibra del lugar que es cerca del mar.",
       "Las recámaras amplias nos permitirán tener un perfecto desarrollo dentro de cada habitación para poder desarrllls nuestras actividades amplia y confortablemente.",
@@ -402,7 +402,7 @@ export const projectContent: Record<string, ProjectContent> = {
     outcome:
       "La recámaras amplias nos regalan la sensación de libertad dentro de un espacio natural",
     specs: [
-      { label: "Tipología", value: "Habitacional / Descanso y Airbnb" },
+      { label: "Tipología", value: "Habitacional / Residencia de descanso" },
       { label: "Ubicación", value: "Costa Cumaná — Rancho Neptuno, Puerto Escondido" },
       { label: "Programa", value: "2 recámaras con baño, sala-comedor, cocina integral, corredor-jardín con jacuzzi y estacionamiento" },
       { label: "Acabados", value: "Acabado fino residencial en tono concha nácar, celosía de barro y madera" },
