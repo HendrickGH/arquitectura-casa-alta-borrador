@@ -160,9 +160,8 @@ export function ServiceScopeModal({
               href={whatsappMessageHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[48px] items-center justify-center gap-2.5 bg-bone-100 px-7 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-bone-200 hover:text-brand-800 border-0 no-underline cursor-pointer"
+              className="inline-flex min-h-[48px] items-center justify-center bg-bone-100 px-7 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-bone-200 hover:text-brand-800 border-0 no-underline cursor-pointer"
             >
-              <Icon name="whatsapp" className="h-4 w-4 text-[#25D366]" />
               <span>Consultar por WhatsApp</span>
             </a>
           ) : null}

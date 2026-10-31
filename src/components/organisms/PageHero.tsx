@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/atoms/Container";
-import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { cx } from "@/lib/cx";
 import type { Photo as PhotoModel, ServiceHeroSlide } from "@/types/content";
@@ -25,8 +24,7 @@ const INTERVAL_MS = 4500;
  *
  * Implements the full-bleed photographic background running behind the transparent
  * header, with sentence-case Marcellus eyebrow and heading, and Montserrat subheadline.
- * Supports automatic and interactive crossfade carousel when multiple `slides` or `photos`
- * are provided, with touch swipe, slide counter, and 0px architectural arrow controls.
+ * Features contemplative automatic crossfade carousel across panoramic photographs.
  */
 export function PageHero({
   eyebrow,
@@ -40,8 +38,6 @@ export function PageHero({
 }: PageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const touchStartX = useRef<number | null>(null);
   const [activeSlide, setActiveSlide] = useState(0);
 
   const allSlides: ServiceHeroSlide[] =
@@ -54,55 +50,14 @@ export function PageHero({
           : [];
 
   const totalSlides = allSlides.length;
-  const isCarousel = totalSlides > 1;
-  const currentSlide = allSlides[activeSlide];
-
-  const resetTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    if (!isCarousel) return;
-    timerRef.current = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % totalSlides);
-    }, INTERVAL_MS);
-  }, [isCarousel, totalSlides]);
-
-  const goToSlide = (idx: number) => {
-    setActiveSlide(idx);
-    resetTimer();
-  };
-
-  const prevSlide = () => {
-    setActiveSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-    resetTimer();
-  };
-
-  const nextSlide = () => {
-    setActiveSlide((prev) => (prev + 1) % totalSlides);
-    resetTimer();
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const deltaX = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(deltaX) > 40) {
-      if (deltaX < 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
-    }
-    touchStartX.current = null;
-  };
 
   useEffect(() => {
-    resetTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [resetTimer]);
+    if (totalSlides <= 1) return;
+    const interval = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % totalSlides);
+    }, INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [totalSlides]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -149,8 +104,6 @@ export function PageHero({
   return (
     <section
       ref={sectionRef}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
       className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-ink text-white"
     >
       {/* Full-bleed background photo(s) with crossfade and subtle parallax */}
@@ -190,21 +143,14 @@ export function PageHero({
       <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
         {/* Top metadata strip */}
         {eyebrow && eyebrow.trim().length > 0 ? (
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-4 pb-4">
+          <div className="mb-6 pb-4">
             <p className="eyebrow !text-white/85">{eyebrow}</p>
-            <span className="label hidden text-white/65 sm:inline">
-              Casa Alta · Estudio & Obra
-            </span>
           </div>
         ) : null}
 
-        {/* Monumental typography grid with Carousel Navigation */}
+        {/* Monumental typography grid */}
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          <div
-            className={
-              hasSubheadline || isCarousel ? "lg:col-span-7" : "lg:col-span-12"
-            }
-          >
+          <div className={hasSubheadline ? "lg:col-span-8" : "lg:col-span-12"}>
             <h1
               className={cx(
                 "voice text-white",
@@ -216,79 +162,22 @@ export function PageHero({
             </h1>
           </div>
 
-          {/* Right column: Carousel Interactive Controls and/or Subheadline */}
-          <div className="flex flex-col justify-end lg:col-span-5">
-            {hasSubheadline ? (
-              <p className="max-w-[42ch] text-sm leading-relaxed text-white/85 md:text-base mb-6">
+          {hasSubheadline ? (
+            <div className="flex flex-col justify-end lg:col-span-4">
+              <p className="max-w-[42ch] text-sm leading-relaxed text-white/85 md:text-base">
                 {subheadline}
               </p>
-            ) : null}
-
-            {isCarousel ? (
-              <div className="flex flex-col gap-4 sm:items-end">
-                {/* Active Niche Badge */}
-                {currentSlide?.niche ? (
-                  <div className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 bg-brand-800" />
-                    <span className="label text-xs uppercase tracking-widest text-white/90 font-medium">
-                      {currentSlide.niche}
-                    </span>
-                  </div>
-                ) : null}
-
-                {/* Carousel Navigation: Numbers + 0px Arrow Buttons */}
-                <div className="flex items-center gap-4">
-                  <span className="label tabular-nums text-xs sm:text-sm tracking-wider text-white/90">
-                    {String(activeSlide + 1).padStart(2, "0")} /{" "}
-                    {String(totalSlides).padStart(2, "0")}
-                  </span>
-
-                  <div className="flex items-center gap-1.5">
-                    <button
-                      type="button"
-                      onClick={prevSlide}
-                      aria-label="Ver fotografía anterior de servicios"
-                      className="inline-flex h-11 w-11 items-center justify-center bg-ink/75 text-white backdrop-blur-sm transition-colors hover:bg-brand-800 focus-visible:outline-2 focus-visible:outline-white cursor-pointer"
-                    >
-                      <Icon name="arrow-left" className="h-4 w-4" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={nextSlide}
-                      aria-label="Ver fotografía siguiente de servicios"
-                      className="inline-flex h-11 w-11 items-center justify-center bg-ink/75 text-white backdrop-blur-sm transition-colors hover:bg-brand-800 focus-visible:outline-2 focus-visible:outline-white cursor-pointer"
-                    >
-                      <Icon name="arrow-right" className="h-4 w-4" />
-                    </button>
-                  </div>
+              {actions ? (
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  {actions}
                 </div>
-
-                {/* Slide Segment Lines Indicator */}
-                <div className="flex items-center gap-1.5 pt-1">
-                  {allSlides.map((_, idx) => (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => goToSlide(idx)}
-                      aria-label={`Ir a fotografía ${idx + 1}`}
-                      className={cx(
-                        "h-1 transition-all duration-300 cursor-pointer",
-                        idx === activeSlide
-                          ? "w-8 bg-white"
-                          : "w-3 bg-white/35 hover:bg-white/70"
-                      )}
-                    />
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            {actions ? (
-              <div className="mt-6 flex flex-wrap items-center gap-4">
-                {actions}
-              </div>
-            ) : null}
-          </div>
+              ) : null}
+            </div>
+          ) : actions ? (
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              {actions}
+            </div>
+          ) : null}
         </div>
       </Container>
     </section>

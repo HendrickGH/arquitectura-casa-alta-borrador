@@ -2,12 +2,12 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Container } from "@/components/atoms/Container";
-import { Icon } from "@/components/atoms/Icon";
 import { Section } from "@/components/atoms/Section";
+import { CarouselNavButtons } from "@/components/molecules/CarouselNavButtons";
 import { MonolithCard } from "@/components/molecules/MonolithCard";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ServiceScopeModal } from "@/components/organisms/ServiceScopeModal";
-import { cx } from "@/lib/cx";
+import { useCarouselScroll } from "@/lib/hooks/useCarouselScroll";
 import type { SectionIntro, Service, ServiceGroup } from "@/types/content";
 
 interface ServicesIndexProps {
@@ -17,6 +17,9 @@ interface ServicesIndexProps {
   id?: string;
   whatsappHref: string;
 }
+
+const CARD_SIZES =
+  "(min-width: 1280px) 480px, (min-width: 1024px) 420px, (min-width: 640px) 50vw, 85vw";
 
 interface FlattenedService {
   service: Service;
@@ -28,9 +31,9 @@ interface FlattenedService {
 /**
  * Editorial Technical Services Index (`ServicesIndex`).
  *
- * Implements an architectural custom select filter (0px geometry, Montserrat typography,
- * default "Todos nuestros servicios") and a responsive 3-column monograph grid
- * of `MonolithCard` components with deliverables modal inspection.
+ * Implements a single architectural select filter (0px geometry, Montserrat typography,
+ * default "Todos nuestros servicios") and a generous horizontal snap overflow carousel
+ * of `MonolithCard` molecules with deliverables modal inspection.
  */
 export function ServicesIndex({
   intro,
@@ -40,27 +43,19 @@ export function ServicesIndex({
   whatsappHref,
 }: ServicesIndexProps) {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
-  const [isSelectOpen, setIsSelectOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<{
     service: Service;
     index: number;
   } | null>(null);
 
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Close dropdown on click outside
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsSelectOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const {
+    canScrollLeft,
+    canScrollRight,
+    scrollLeft,
+    scrollRight,
+    updateScrollState,
+  } = useCarouselScroll(trackRef, { gap: 24, fallbackWidth: 440 });
 
   // Flatten all services from all divisions into a single unified index
   const allServices: FlattenedService[] = useMemo(() => {
@@ -75,32 +70,18 @@ export function ServicesIndex({
     );
   }, [groups]);
 
-  // Filter options list
-  const filterOptions = useMemo(
-    () => [
-      {
-        slug: "all",
-        title: "Todos nuestros servicios",
-        count: allServices.length,
-      },
-      ...groups.map((group) => ({
-        slug: group.slug,
-        title: group.title,
-        count: group.services.length,
-      })),
-    ],
-    [allServices.length, groups]
-  );
-
-  const currentOption =
-    filterOptions.find((opt) => opt.slug === selectedFilter) ??
-    filterOptions[0];
-
   // Filter services according to the active select choice
   const visibleServices = useMemo(() => {
     if (selectedFilter === "all") return allServices;
     return allServices.filter((item) => item.groupSlug === selectedFilter);
   }, [allServices, selectedFilter]);
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    track.scrollTo({ left: 0, behavior: "instant" as ScrollBehavior });
+    updateScrollState();
+  }, [selectedFilter, updateScrollState]);
 
   if (groups.length === 0 || allServices.length === 0) return null;
 
@@ -114,46 +95,44 @@ export function ServicesIndex({
           body={intro.body}
         />
 
-        {/* Ambiented Architectural Select & Filter Bar */}
-        <div className="mt-10 sm:mt-12 flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
-          {/* Custom Architectural Dropdown Select */}
-          <div ref={dropdownRef} className="relative w-full sm:max-w-md">
-            <span
-              id="services-filter-label"
+        {/* Top Bar: Left Single Select and Right Carousel Navigation Arrows */}
+        <div className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+          <div className="w-full sm:max-w-md">
+            <label
+              htmlFor="services-filter"
               className="label mb-2.5 block text-xs font-semibold uppercase tracking-[0.14em] text-brand-800"
             >
               Filtrar por interés o especialidad
-            </span>
+            </label>
+            <div className="relative">
+              <select
+                id="services-filter"
+                value={selectedFilter}
+                onChange={(e) => setSelectedFilter(e.target.value)}
+                aria-label="Filtrar servicios por especialidad o interés"
+                className="min-h-[50px] w-full appearance-none rounded-none border border-bone-200 bg-canvas px-5 py-3.5 pr-12 text-sm sm:text-base font-medium text-ink transition-colors duration-200 hover:border-brand-800 focus:border-brand-800 focus:outline-none focus:ring-1 focus:ring-brand-800 cursor-pointer"
+              >
+                <option value="all">
+                  Todos nuestros servicios ({allServices.length})
+                </option>
+                {groups.map((group) => (
+                  <option key={group.slug} value={group.slug}>
+                    {group.title} ({group.services.length})
+                  </option>
+                ))}
+              </select>
 
-            {/* Custom Architectural Trigger Button */}
-            <button
-              type="button"
-              aria-haspopup="listbox"
-              aria-expanded={isSelectOpen}
-              aria-labelledby="services-filter-label"
-              onClick={() => setIsSelectOpen((prev) => !prev)}
-              className="min-h-[52px] w-full rounded-none border border-bone-200 bg-canvas px-5 py-3.5 text-left transition-colors duration-200 hover:border-brand-800 focus-visible:outline-2 focus-visible:outline-brand-800 cursor-pointer flex items-center justify-between gap-4"
-            >
-              <div className="flex flex-col">
-                <span className="text-sm sm:text-base font-medium text-ink">
-                  {currentOption.title}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 shrink-0">
-                <span className="label tabular-nums text-xs text-ink-muted">
-                  ({currentOption.count})
-                </span>
+              {/* 0px architectural chevron icon */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-ink"
+              >
                 <svg
-                  className={cx(
-                    "h-4 w-4 text-ink transition-transform duration-200",
-                    isSelectOpen && "rotate-180 text-brand-800"
-                  )}
+                  className="h-4 w-4 text-ink"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={1.75}
-                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="square"
@@ -162,98 +141,40 @@ export function ServicesIndex({
                   />
                 </svg>
               </div>
-            </button>
-
-            {/* Custom Dropdown Listbox */}
-            {isSelectOpen ? (
-              <ul
-                role="listbox"
-                aria-labelledby="services-filter-label"
-                className="absolute left-0 right-0 top-full mt-1.5 z-40 bg-canvas border border-bone-200 shadow-2xl overflow-hidden rounded-none py-1"
-              >
-                {filterOptions.map((option) => {
-                  const isSelected = option.slug === selectedFilter;
-                  return (
-                    <li
-                      key={option.slug}
-                      role="option"
-                      aria-selected={isSelected}
-                      onClick={() => {
-                        setSelectedFilter(option.slug);
-                        setIsSelectOpen(false);
-                      }}
-                      className={cx(
-                        "flex items-center justify-between px-5 py-3.5 text-sm sm:text-base transition-colors cursor-pointer",
-                        isSelected
-                          ? "bg-brand-50 text-brand-800 font-semibold"
-                          : "text-ink hover:bg-bone-100 hover:text-brand-800"
-                      )}
-                    >
-                      <span>{option.title}</span>
-                      <div className="flex items-center gap-3">
-                        <span className="label tabular-nums text-xs text-ink-muted">
-                          ({option.count})
-                        </span>
-                        {isSelected ? (
-                          <Icon name="check" className="h-4 w-4 text-brand-800" />
-                        ) : null}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : null}
+            </div>
           </div>
 
-          {/* Quick-filter Chips for Direct 1-Click Access on Desktop */}
-          <div className="hidden lg:flex flex-wrap items-center gap-2">
-            {filterOptions.map((option) => {
-              const isSelected = option.slug === selectedFilter;
-              return (
-                <button
-                  key={option.slug}
-                  type="button"
-                  onClick={() => setSelectedFilter(option.slug)}
-                  className={cx(
-                    "min-h-[44px] px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer rounded-none border-0",
-                    isSelected
-                      ? "bg-brand-800 text-white"
-                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink"
-                  )}
-                >
-                  {option.title} ({option.count})
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Counter metadata and Reset action */}
-          <div className="label text-xs tracking-wider text-ink-muted shrink-0">
-            Mostrando {visibleServices.length}{" "}
-            {visibleServices.length === 1 ? "servicio" : "servicios"}
-            {selectedFilter !== "all" ? (
-              <button
-                type="button"
-                onClick={() => setSelectedFilter("all")}
-                className="ml-3 underline decoration-ink/30 hover:text-brand-800 hover:decoration-brand-800 cursor-pointer"
-              >
-                (Ver todos)
-              </button>
-            ) : null}
+          {/* Orthogonal Carousel Navigation Arrows (0px) */}
+          <div className="hidden sm:flex pb-2">
+            <CarouselNavButtons
+              canScrollLeft={canScrollLeft}
+              canScrollRight={canScrollRight}
+              onScrollLeft={scrollLeft}
+              onScrollRight={scrollRight}
+              prevLabel="Ver servicios anteriores"
+              nextLabel="Ver servicios siguientes"
+            />
           </div>
         </div>
 
-        {/* Unified Responsive Monograph Grid */}
-        <div className="mt-8 sm:mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* Carousel Track: Horizontal Snap Overflow Slider */}
+        <div
+          ref={trackRef}
+          role="region"
+          aria-label="Carrusel de servicios"
+          tabIndex={0}
+          className="mt-8 sm:mt-10 flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-none pb-4 pt-1 focus-visible:outline-2 focus-visible:outline-brand-800"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {visibleServices.map((item) => (
             <MonolithCard
               key={item.service.slug}
-              variant="grid"
+              variant="carousel"
               title={item.service.title}
               description={item.service.summary}
               kicker={item.groupTitle}
               photo={item.service.image}
-              sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+              sizes={CARD_SIZES}
               ctaLabel="Ver alcances y entregables"
               ariaLabel={`Ver alcances y entregables de ${item.service.title}`}
               onClick={() =>
@@ -264,6 +185,22 @@ export function ServicesIndex({
               }
             />
           ))}
+        </div>
+
+        {/* Mobile Navigation Helper Indicator */}
+        <div className="mt-4 flex items-center justify-between sm:hidden">
+          <span className="text-xs text-ink-muted">
+            Desliza para explorar servicios
+          </span>
+          <CarouselNavButtons
+            canScrollLeft={canScrollLeft}
+            canScrollRight={canScrollRight}
+            onScrollLeft={scrollLeft}
+            onScrollRight={scrollRight}
+            iconClassName="h-3.5 w-3.5"
+            prevLabel="Ver servicios anteriores"
+            nextLabel="Ver servicios siguientes"
+          />
         </div>
       </Container>
 
