@@ -6,7 +6,6 @@ import { Container } from "@/components/atoms/Container";
 import { Heading } from "@/components/atoms/Heading";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
-import { useContactModal } from "@/components/organisms/ContactModalContext";
 import { cx } from "@/lib/cx";
 import type { Project, SectionIntro } from "@/types/content";
 
@@ -34,7 +33,6 @@ export function ProjectsShowcaseCR({
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const contactModal = useContactModal();
 
   const total = projects.length;
   const activeProject = projects[activeIndex] ?? projects[0];
@@ -186,28 +184,20 @@ export function ProjectsShowcaseCR({
               </div>
             </div>
 
-            {/* Action Buttons & Navigation Arrows */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pt-4 mt-4 md:pt-8 md:mt-6">
-              <div className="flex flex-wrap items-center gap-3">
+            {/* Action Buttons & Navigation Arrows (Side by side on mobile and desktop) */}
+            <div className="flex items-center justify-between gap-4 pt-4 mt-3 md:pt-8 md:mt-6">
+              <div>
                 <Button
                   variant="primary"
                   onClick={() => onSelectProject(activeProject)}
-                  className="min-h-[48px] px-6 text-xs uppercase tracking-widest"
+                  className="min-h-[44px] px-5 sm:px-6 text-xs uppercase tracking-widest"
                 >
                   Ver proyecto
-                </Button>
-
-                <Button
-                  variant="secondary"
-                  onClick={() => contactModal?.openContactModal()}
-                  className="min-h-[48px] px-4 text-xs uppercase tracking-wider"
-                >
-                  Cotizar mi nuevo proyecto
                 </Button>
               </div>
 
               {/* Prev / Next 0px square buttons */}
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   type="button"
                   onClick={prevProject}
@@ -251,7 +241,7 @@ export function ProjectsShowcaseCR({
                   type="button"
                   onClick={() => setActiveIndex(idx)}
                   className={cx(
-                    "snap-start flex-shrink-0 w-[80vw] sm:w-[360px] md:w-[420px] p-3.5 sm:p-4 flex flex-col gap-3.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
+                    "snap-start flex-shrink-0 w-[62vw] sm:w-[280px] md:w-[320px] p-2.5 sm:p-3 flex flex-col gap-2.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
                     isActive
                       ? "bg-ink text-white"
                       : "bg-bone-50 text-ink hover:bg-bone-100"
@@ -262,7 +252,7 @@ export function ProjectsShowcaseCR({
                     <Photo
                       photo={thumb}
                       fit="cover"
-                      sizes="(min-width: 640px) 420px, 360px"
+                      sizes="(min-width: 640px) 320px, 62vw"
                       className="h-full w-full object-cover"
                     />
                   </div>
@@ -270,7 +260,7 @@ export function ProjectsShowcaseCR({
                   <div className="min-w-0 w-full">
                     <h4
                       className={cx(
-                        "text-base font-semibold truncate leading-snug",
+                        "text-sm sm:text-base font-semibold truncate leading-snug",
                         isActive ? "text-white" : "text-ink"
                       )}
                     >
@@ -278,7 +268,7 @@ export function ProjectsShowcaseCR({
                     </h4>
                     <p
                       className={cx(
-                        "text-xs sm:text-sm truncate mt-1",
+                        "text-[11px] sm:text-xs truncate mt-0.5",
                         isActive ? "text-white/70" : "text-ink-muted"
                       )}
                     >
