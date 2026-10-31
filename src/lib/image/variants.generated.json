@@ -515,6 +515,76 @@
       "40-senaletica-ruta-evacuacion-nivel-dos.avif"
     ]
   ],
+  "01-plaza-esmeralda-puerto-escondido/41-estructura-prefabricada-columnas-trabes-concreto": [
+    [
+      480,
+      "41-estructura-prefabricada-columnas-trabes-concreto-480.avif"
+    ],
+    [
+      960,
+      "41-estructura-prefabricada-columnas-trabes-concreto-960.avif"
+    ],
+    [
+      1280,
+      "41-estructura-prefabricada-columnas-trabes-concreto.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/42-nivelacion-laser-estructura-metalica-interior": [
+    [
+      480,
+      "42-nivelacion-laser-estructura-metalica-interior-480.avif"
+    ],
+    [
+      960,
+      "42-nivelacion-laser-estructura-metalica-interior-960.avif"
+    ],
+    [
+      1280,
+      "42-nivelacion-laser-estructura-metalica-interior.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/43-ajuste-plomo-laser-columna-revestimiento": [
+    [
+      360,
+      "43-ajuste-plomo-laser-columna-revestimiento-480.avif"
+    ],
+    [
+      720,
+      "43-ajuste-plomo-laser-columna-revestimiento-960.avif"
+    ],
+    [
+      960,
+      "43-ajuste-plomo-laser-columna-revestimiento.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/44-supervision-trazo-laser-pasillo-obra": [
+    [
+      360,
+      "44-supervision-trazo-laser-pasillo-obra-480.avif"
+    ],
+    [
+      720,
+      "44-supervision-trazo-laser-pasillo-obra-960.avif"
+    ],
+    [
+      960,
+      "44-supervision-trazo-laser-pasillo-obra.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/45-instalacion-paneles-estructura-metalica-laser": [
+    [
+      480,
+      "45-instalacion-paneles-estructura-metalica-laser-480.avif"
+    ],
+    [
+      960,
+      "45-instalacion-paneles-estructura-metalica-laser-960.avif"
+    ],
+    [
+      1280,
+      "45-instalacion-paneles-estructura-metalica-laser.avif"
+    ]
+  ],
   "02-el-bicho/57-panoramica-aerea-conjunto-costero-zicatela": [
     [
       480,
@@ -1071,20 +1141,6 @@
       "80-conjunto-obra-gris-rampa-acceso-arena.avif"
     ]
   ],
-  "02-el-bicho/68-estructura-prefabricada-columnas-trabes-concreto": [
-    [
-      480,
-      "68-estructura-prefabricada-columnas-trabes-concreto-480.avif"
-    ],
-    [
-      960,
-      "68-estructura-prefabricada-columnas-trabes-concreto-960.avif"
-    ],
-    [
-      1280,
-      "68-estructura-prefabricada-columnas-trabes-concreto.avif"
-    ]
-  ],
   "02-el-bicho/79-trabajador-andamio-madera-armado-trabe": [
     [
       360,
@@ -1317,62 +1373,6 @@
     [
       960,
       "82-avance-obra-fachada-blanca-patio-arena.avif"
-    ]
-  ],
-  "02-el-bicho/84-nivelacion-laser-estructura-metalica-interior": [
-    [
-      480,
-      "84-nivelacion-laser-estructura-metalica-interior-480.avif"
-    ],
-    [
-      960,
-      "84-nivelacion-laser-estructura-metalica-interior-960.avif"
-    ],
-    [
-      1280,
-      "84-nivelacion-laser-estructura-metalica-interior.avif"
-    ]
-  ],
-  "02-el-bicho/85-ajuste-plomo-laser-columna-revestimiento": [
-    [
-      360,
-      "85-ajuste-plomo-laser-columna-revestimiento-480.avif"
-    ],
-    [
-      720,
-      "85-ajuste-plomo-laser-columna-revestimiento-960.avif"
-    ],
-    [
-      960,
-      "85-ajuste-plomo-laser-columna-revestimiento.avif"
-    ]
-  ],
-  "02-el-bicho/86-supervision-trazo-laser-pasillo-obra": [
-    [
-      360,
-      "86-supervision-trazo-laser-pasillo-obra-480.avif"
-    ],
-    [
-      720,
-      "86-supervision-trazo-laser-pasillo-obra-960.avif"
-    ],
-    [
-      960,
-      "86-supervision-trazo-laser-pasillo-obra.avif"
-    ]
-  ],
-  "02-el-bicho/87-instalacion-paneles-estructura-metalica-laser": [
-    [
-      480,
-      "87-instalacion-paneles-estructura-metalica-laser-480.avif"
-    ],
-    [
-      960,
-      "87-instalacion-paneles-estructura-metalica-laser-960.avif"
-    ],
-    [
-      1280,
-      "87-instalacion-paneles-estructura-metalica-laser.avif"
     ]
   ],
   "02-el-bicho/36-colado-con-manguera-playa": [
