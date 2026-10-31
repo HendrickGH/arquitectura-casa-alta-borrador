@@ -29,11 +29,12 @@ export function SustainabilityPageTemplate({
   closing,
   whatsappHref,
 }: SustainabilityPageTemplateProps) {
-  const heroWhatsappHref = whatsappHref
-    ? `${whatsappHref.split("?")[0]}?text=${encodeURIComponent(
-        "Hola Casa Alta, me interesa planear un proyecto de arquitectura bioclimática y construcción sustentable.",
-      )}`
-    : undefined;
+  const heroWhatsappHref =
+    whatsappHref && page.hero.consultationCtaLabel
+      ? `${whatsappHref.split("?")[0]}?text=${encodeURIComponent(
+          "Hola Casa Alta, me interesa planear un proyecto de arquitectura bioclimática y construcción sustentable.",
+        )}`
+      : undefined;
 
   return (
     <ThematicPillarPageTemplate
@@ -44,10 +45,8 @@ export function SustainabilityPageTemplate({
         heading: page.hero.heading,
         subheadline: page.hero.subheadline,
         photo: page.hero.photo,
-        catalogCtaLabel:
-          page.hero.catalogCtaLabel ?? "Explorar pilares bioclimáticos",
-        consultationCtaLabel:
-          page.hero.consultationCtaLabel ?? "Planear proyecto bioclimático",
+        catalogCtaLabel: page.hero.catalogCtaLabel,
+        consultationCtaLabel: page.hero.consultationCtaLabel,
         whatsappHref: heroWhatsappHref,
       }}
       specialties={{

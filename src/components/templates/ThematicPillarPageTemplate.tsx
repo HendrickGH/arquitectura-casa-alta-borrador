@@ -29,8 +29,8 @@ export interface ThematicPillarPageTemplateProps {
     heading: string;
     subheadline: string;
     photo: Photo;
-    catalogCtaLabel: string;
-    consultationCtaLabel: string;
+    catalogCtaLabel?: string;
+    consultationCtaLabel?: string;
     /** Resolved WhatsApp URL with prefill. When absent, the consultation CTA is omitted. */
     whatsappHref?: string;
   };
@@ -73,21 +73,25 @@ export function ThematicPillarPageTemplate({
           subheadline={hero.subheadline}
           photo={hero.photo}
           actions={
-            <>
-              <Button variant="inverse" href={`#${specialties.id}`} arrow>
-                {hero.catalogCtaLabel}
-              </Button>
-              {hero.whatsappHref ? (
-                <Button
-                  variant="outline"
-                  href={hero.whatsappHref}
-                  external
-                  arrow
-                >
-                  {hero.consultationCtaLabel}
-                </Button>
-              ) : null}
-            </>
+            hero.catalogCtaLabel || (hero.whatsappHref && hero.consultationCtaLabel) ? (
+              <>
+                {hero.catalogCtaLabel ? (
+                  <Button variant="inverse" href={`#${specialties.id}`} arrow>
+                    {hero.catalogCtaLabel}
+                  </Button>
+                ) : null}
+                {hero.whatsappHref && hero.consultationCtaLabel ? (
+                  <Button
+                    variant="outline"
+                    href={hero.whatsappHref}
+                    external
+                    arrow
+                  >
+                    {hero.consultationCtaLabel}
+                  </Button>
+                ) : null}
+              </>
+            ) : null
           }
         />
 

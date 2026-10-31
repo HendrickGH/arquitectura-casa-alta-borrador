@@ -338,14 +338,13 @@ export const civilWorksPageContent = {
 
 export const sustainabilityPageContent = {
   hero: {
-    eyebrow: "Arquitectura bioclimática y tropical",
+    eyebrow: "",
     heading: "Construcción sustentable y arquitectura bioclimática",
-    subheadline:
-      "Optimizamos la carga térmica y acústica con vientos cruzados, luz natural filtrada y materiales sostenibles de bajo impacto.",
+    subheadline: "",
     dir: "arquitectura-sostenible",
     base: "14-residencia-bioclimatica-palapa-celosia-chukum",
-    catalogCtaLabel: "Explorar pilares bioclimáticos",
-    consultationCtaLabel: "Planear proyecto bioclimático",
+    catalogCtaLabel: "",
+    consultationCtaLabel: "",
   },
   pillars: {
     eyebrow: "Ingeniería bioclimática",
@@ -372,7 +371,7 @@ export const sustainabilityPageContent = {
       {
         slug: "materiales-locales",
         number: "02",
-        title: "Materiales locales, naturales de la zona y artesanales",
+        title: "Materiales locales y artesanales",
         shortTitle: "Materialidad",
         subtitle: "Materialidad",
         description:

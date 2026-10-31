@@ -12,7 +12,9 @@ const closing = getSustainabilityClosing();
 
 export const metadata: Metadata = {
   title: `Construcción Sustentable y Bioclimática — ${site.name}`,
-  description: page.hero.subheadline,
+  description:
+    page.hero.subheadline ||
+    "Sistemas pasivos de confort térmico, arquitectura bioclimática y materiales regionales en Oaxaca.",
 };
 
 export default function SustainabilityRoutePage() {

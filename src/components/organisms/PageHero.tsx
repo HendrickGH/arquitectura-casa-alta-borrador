@@ -156,7 +156,7 @@ export function PageHero({
               className={cx(
                 "voice text-white",
                 headingClassName ||
-                  "text-[clamp(2.2rem,4.8vw,4.2rem)] leading-[1.04]"
+                  "text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.12]"
               )}
             >
               {heading}
