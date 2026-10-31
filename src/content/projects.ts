@@ -124,7 +124,7 @@ const curatedGalleries: Record<string, string[]> = {
     "05-interior-banca-madera-ventanas",
   ],
   "07-casa-tarrastro": [
-    "06-fachada-principal-dos-niveles-pergola-piedra",
+    "12-fachada-principal-dos-niveles-pergola-jardin",
     "08-terraza-techada-pergola-madera-muro-cantera",
     "10-fachada-frontal-pergola-superior-ventanales",
     "09-escalera-interior-barandal-geometrico-doble-altura",

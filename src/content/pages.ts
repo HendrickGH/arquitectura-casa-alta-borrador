@@ -625,11 +625,11 @@ export const servicesPageContent = {
     heading: "Capacidad técnica para obras de cualquier escala",
     subheadline: "",
     dir: "07-casa-tarrastro",
-    base: "06-fachada-principal-dos-niveles-pergola-piedra",
+    base: "12-fachada-principal-dos-niveles-pergola-jardin",
     carouselItems: [
       {
         dir: "07-casa-tarrastro",
-        base: "06-fachada-principal-dos-niveles-pergola-piedra",
+        base: "12-fachada-principal-dos-niveles-pergola-jardin",
         caption: "Fachada panorámica de Casa Tarrastro con muros de piedra y pérgola contemporánea",
         niche: "Construcción Habitacional",
       },
