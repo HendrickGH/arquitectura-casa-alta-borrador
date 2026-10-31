@@ -2145,60 +2145,6 @@
           ]
         },
         {
-          "base": "70-grua-telescopica-maniobra-obra-vial",
-          "fallback": "70-grua-telescopica-maniobra-obra-vial.jpg",
-          "full": {
-            "file": "70-grua-telescopica-maniobra-obra-vial.avif",
-            "height": 960,
-            "width": 1280
-          },
-          "note": "Grua telescopica Terex operando junto a excavacion y estructura en obra civil",
-          "order": "43",
-          "score": 4,
-          "slug": "grua-telescopica-maniobra-obra-vial",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.51.jpeg",
-          "srcset": "70-grua-telescopica-maniobra-obra-vial-480.avif 480w, 70-grua-telescopica-maniobra-obra-vial-960.avif 960w, 70-grua-telescopica-maniobra-obra-vial.avif 1280w",
-          "variants": [
-            {
-              "file": "70-grua-telescopica-maniobra-obra-vial-480.avif",
-              "height": 360,
-              "width": 480
-            },
-            {
-              "file": "70-grua-telescopica-maniobra-obra-vial-960.avif",
-              "height": 720,
-              "width": 960
-            }
-          ]
-        },
-        {
-          "base": "83-maniobra-montaje-prefabricado-concreto-obra",
-          "fallback": "83-maniobra-montaje-prefabricado-concreto-obra.jpg",
-          "full": {
-            "file": "83-maniobra-montaje-prefabricado-concreto-obra.avif",
-            "height": 960,
-            "width": 1280
-          },
-          "note": "Cuadrilla realizando maniobra de montaje de elemento prefabricado de concreto en obra civil",
-          "order": "44",
-          "score": 3,
-          "slug": "maniobra-montaje-prefabricado-concreto-obra",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.50 (1).jpeg",
-          "srcset": "83-maniobra-montaje-prefabricado-concreto-obra-480.avif 480w, 83-maniobra-montaje-prefabricado-concreto-obra-960.avif 960w, 83-maniobra-montaje-prefabricado-concreto-obra.avif 1280w",
-          "variants": [
-            {
-              "file": "83-maniobra-montaje-prefabricado-concreto-obra-480.avif",
-              "height": 360,
-              "width": 480
-            },
-            {
-              "file": "83-maniobra-montaje-prefabricado-concreto-obra-960.avif",
-              "height": 720,
-              "width": 960
-            }
-          ]
-        },
-        {
           "base": "79-trabajador-andamio-madera-armado-trabe",
           "fallback": "79-trabajador-andamio-madera-armado-trabe.jpg",
           "full": {
@@ -12815,6 +12761,60 @@
             },
             {
               "file": "25-grua-telescopica-armado-acero-zapata-puente-peatonal-960.avif",
+              "height": 720,
+              "width": 960
+            }
+          ]
+        },
+        {
+          "base": "26-maniobra-montaje-prefabricado-concreto-obra",
+          "fallback": "26-maniobra-montaje-prefabricado-concreto-obra.jpg",
+          "full": {
+            "file": "26-maniobra-montaje-prefabricado-concreto-obra.avif",
+            "height": 960,
+            "width": 1280
+          },
+          "note": "Cuadrilla realizando maniobra de montaje de elemento prefabricado de concreto en obra civil",
+          "order": "26",
+          "score": 3,
+          "slug": "maniobra-montaje-prefabricado-concreto-obra",
+          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.50 (1).jpeg",
+          "srcset": "26-maniobra-montaje-prefabricado-concreto-obra-480.avif 480w, 26-maniobra-montaje-prefabricado-concreto-obra-960.avif 960w, 26-maniobra-montaje-prefabricado-concreto-obra.avif 1024w",
+          "variants": [
+            {
+              "file": "26-maniobra-montaje-prefabricado-concreto-obra-480.avif",
+              "height": 360,
+              "width": 480
+            },
+            {
+              "file": "26-maniobra-montaje-prefabricado-concreto-obra-960.avif",
+              "height": 720,
+              "width": 960
+            }
+          ]
+        },
+        {
+          "base": "27-grua-telescopica-maniobra-obra-vial",
+          "fallback": "27-grua-telescopica-maniobra-obra-vial.jpg",
+          "full": {
+            "file": "27-grua-telescopica-maniobra-obra-vial.avif",
+            "height": 960,
+            "width": 1280
+          },
+          "note": "Grua telescopica Terex operando junto a excavacion y estructura en obra civil",
+          "order": "27",
+          "score": 4,
+          "slug": "grua-telescopica-maniobra-obra-vial",
+          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.51.jpeg",
+          "srcset": "27-grua-telescopica-maniobra-obra-vial-480.avif 480w, 27-grua-telescopica-maniobra-obra-vial-960.avif 960w, 27-grua-telescopica-maniobra-obra-vial.avif 1024w",
+          "variants": [
+            {
+              "file": "27-grua-telescopica-maniobra-obra-vial-480.avif",
+              "height": 360,
+              "width": 480
+            },
+            {
+              "file": "27-grua-telescopica-maniobra-obra-vial-960.avif",
               "height": 720,
               "width": 960
             }
