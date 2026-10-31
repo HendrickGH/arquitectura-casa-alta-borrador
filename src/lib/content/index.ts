@@ -522,6 +522,15 @@ export function getInteriorsPage(): InteriorsPageContent {
       body: interiorsPageContent.materials.body,
       sections: materialSections,
     },
+    manifesto: {
+      text: interiorsPageContent.manifesto.text,
+      photo:
+        findPhotoByBase(
+          interiorsPageContent.manifesto.dir,
+          interiorsPageContent.manifesto.base,
+          "Manifiesto de arquitectura de interiores",
+        ) ?? undefined,
+    },
     gallery: {
       intro: interiorsPageContent.gallery.intro,
       photos: galleryPhotos,
@@ -710,6 +719,15 @@ export function getSustainabilityPage(): SustainabilityPageContent {
       heading: sustainabilityPageContent.pillars.heading,
       body: sustainabilityPageContent.pillars.body,
       sections: pillarSections,
+    },
+    manifesto: {
+      text: sustainabilityPageContent.manifesto.text,
+      photo:
+        findPhotoByBase(
+          sustainabilityPageContent.manifesto.dir,
+          sustainabilityPageContent.manifesto.base,
+          "Manifiesto de construcción sustentable",
+        ) ?? undefined,
     },
     gallery: {
       intro: sustainabilityPageContent.gallery.intro,

@@ -149,43 +149,45 @@ export function ProjectsShowcaseCR({
                 {activeProject.title}
               </Heading>
 
-              <p className="mt-4 text-sm sm:text-base text-ink-muted leading-relaxed">
-                {activeProject.summary}
-              </p>
+              <div className="hidden md:block">
+                <p className="mt-4 text-sm sm:text-base text-ink-muted leading-relaxed">
+                  {activeProject.summary}
+                </p>
 
-              {/* Architectural Technical Specs List (Stacked vertically, no background box) */}
-              <div className="flex flex-col gap-3 mt-8">
-                <div className="flex items-baseline gap-4">
-                  <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
-                    Ubicación
-                  </span>
-                  <span className="text-xs sm:text-sm font-semibold text-ink leading-snug">
-                    {activeProject.location || "Oaxaca, México"}
-                  </span>
-                </div>
+                {/* Architectural Technical Specs List (Stacked vertically, no background box) */}
+                <div className="flex flex-col gap-3 mt-8">
+                  <div className="flex items-baseline gap-4">
+                    <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
+                      Ubicación
+                    </span>
+                    <span className="text-xs sm:text-sm font-semibold text-ink leading-snug">
+                      {activeProject.location || "Oaxaca, México"}
+                    </span>
+                  </div>
 
-                <div className="flex items-baseline gap-4">
-                  <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
-                    Año
-                  </span>
-                  <span className="text-xs sm:text-sm font-semibold text-ink tabular-nums">
-                    {activeProject.year || "2024–2025"}
-                  </span>
-                </div>
+                  <div className="flex items-baseline gap-4">
+                    <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
+                      Año
+                    </span>
+                    <span className="text-xs sm:text-sm font-semibold text-ink tabular-nums">
+                      {activeProject.year || "2024–2025"}
+                    </span>
+                  </div>
 
-                <div className="flex items-baseline gap-4">
-                  <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
-                    Tipología
-                  </span>
-                  <span className="text-xs sm:text-sm font-semibold text-ink truncate">
-                    {activeProject.categoryLabel || "Arquitectura"}
-                  </span>
+                  <div className="flex items-baseline gap-4">
+                    <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
+                      Tipología
+                    </span>
+                    <span className="text-xs sm:text-sm font-semibold text-ink truncate">
+                      {activeProject.categoryLabel || "Arquitectura"}
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Action Buttons & Navigation Arrows */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pt-8 mt-6">
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-4 mt-4 md:pt-8 md:mt-6">
               <div className="flex flex-wrap items-center gap-3">
                 <Button
                   variant="primary"
@@ -228,7 +230,7 @@ export function ProjectsShowcaseCR({
         </div>
 
         {/* Bottom Horizontal Snap Track Selector */}
-        <div className="mt-14 pt-4">
+        <div className="mt-6 pt-2 md:mt-12 md:pt-4">
           <div
             ref={trackRef}
             tabIndex={0}
@@ -249,7 +251,7 @@ export function ProjectsShowcaseCR({
                   type="button"
                   onClick={() => setActiveIndex(idx)}
                   className={cx(
-                    "snap-start flex-shrink-0 w-[360px] sm:w-[420px] p-3.5 sm:p-4 flex flex-col gap-3.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
+                    "snap-start flex-shrink-0 w-[80vw] sm:w-[360px] md:w-[420px] p-3.5 sm:p-4 flex flex-col gap-3.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
                     isActive
                       ? "bg-ink text-white"
                       : "bg-bone-50 text-ink hover:bg-bone-100"

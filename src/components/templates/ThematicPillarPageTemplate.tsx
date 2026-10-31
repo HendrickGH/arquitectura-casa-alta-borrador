@@ -108,7 +108,7 @@ export function ThematicPillarPageTemplate({
                 sections={specialties.sections}
                 deliverablesLabel={specialties.deliverablesLabel}
                 ctaLabel={specialties.ctaLabel}
-                ctaHref={hero.whatsappHref}
+                ctaHref={hero.whatsappHref || site.whatsapp.href}
               />
             </div>
           </Container>
@@ -140,7 +140,7 @@ export function ThematicPillarPageTemplate({
         />
 
         {/* Closing CTA */}
-        <ClosingCTA closing={closing} />
+        <ClosingCTA id="contacto" closing={closing} />
       </main>
     </SiteChrome>
   );

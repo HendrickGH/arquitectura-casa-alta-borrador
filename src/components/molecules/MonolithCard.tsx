@@ -120,7 +120,7 @@ export function MonolithCard({
     "group relative flex flex-col justify-between overflow-hidden bg-ink text-white transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-500",
     variant === "grid"
       ? "h-[500px] sm:h-[540px] lg:h-[580px] w-full p-6 sm:p-7 lg:p-8"
-      : "h-[580px] w-[85vw] shrink-0 snap-start sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] p-7 lg:p-9",
+      : "h-[580px] w-[80vw] shrink-0 snap-start sm:h-[620px] sm:w-[50vw] md:w-[420px] lg:h-[680px] lg:w-[480px] p-7 lg:p-9",
     className
   );
 

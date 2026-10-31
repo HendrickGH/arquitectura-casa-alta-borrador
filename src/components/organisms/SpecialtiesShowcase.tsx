@@ -198,13 +198,17 @@ export function SpecialtiesShowcase({
           {sections.map((section) => {
             const isActive = section.slug === hoveredSlug;
             return (
-              <div
+              <button
                 key={section.slug}
+                type="button"
                 id={`tab-${section.slug}`}
                 role="tab"
+                tabIndex={0}
                 aria-selected={isActive}
                 aria-controls={`panel-${section.slug}`}
-                className="flex flex-col text-left pb-2"
+                onClick={() => setHoveredSlug(section.slug)}
+                onFocus={() => setHoveredSlug(section.slug)}
+                className="flex flex-col text-left pb-2 cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800 focus-visible:outline-offset-2"
               >
                 {/* Short Eyebrow */}
                 <span
@@ -239,7 +243,7 @@ export function SpecialtiesShowcase({
                     isActive ? "bg-brand-800" : "bg-transparent",
                   )}
                 />
-              </div>
+              </button>
             );
           })}
         </div>

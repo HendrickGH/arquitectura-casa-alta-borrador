@@ -124,15 +124,6 @@ export function ContactLocationStage({
             >
               {stageData.whatsappCta ?? "Escribir por WhatsApp"}
             </Button>
-
-            <Button
-              href="#formulario-contacto"
-              variant="outline"
-              size="md"
-              arrow
-            >
-              {stageData.consultationCta ?? "Iniciar consulta"}
-            </Button>
           </div>
         </div>
 
@@ -248,7 +239,7 @@ export function ContactLocationStage({
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Ubicación de Constructora Casa Alta en Google Maps"
-                className="h-full w-full border-0"
+                className="h-full w-full border-0 pointer-events-none md:pointer-events-auto"
               />
             </div>
             <p className="text-xs text-white/60">

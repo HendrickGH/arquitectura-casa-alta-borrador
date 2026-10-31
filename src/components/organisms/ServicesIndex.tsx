@@ -8,6 +8,7 @@ import { MonolithCard } from "@/components/molecules/MonolithCard";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ServiceScopeModal } from "@/components/organisms/ServiceScopeModal";
 import { useCarouselScroll } from "@/lib/hooks/useCarouselScroll";
+import { cx } from "@/lib/cx";
 import type { SectionIntro, Service, ServiceGroup } from "@/types/content";
 
 interface ServicesIndexProps {
@@ -95,53 +96,53 @@ export function ServicesIndex({
           body={intro.body}
         />
 
-        {/* Top Bar: Left Single Select and Right Carousel Navigation Arrows */}
+        {/* Top Bar: Left Cosentino Catalogue Bar (Tabs) and Right Carousel Navigation Arrows */}
         <div className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
-          <div className="w-full sm:max-w-md">
-            <label
-              htmlFor="services-filter"
-              className="label mb-2.5 block text-xs font-semibold uppercase tracking-[0.14em] text-brand-800"
+          <div
+            role="tablist"
+            aria-label="Filtrar servicios por especialidad o interés"
+            className="flex flex-wrap items-center gap-4 sm:gap-6 md:gap-8"
+          >
+            <button
+              type="button"
+              role="tab"
+              aria-selected={selectedFilter === "all"}
+              onClick={() => setSelectedFilter("all")}
+              className={cx(
+                "min-h-[44px] pb-2 label cursor-pointer transition-colors duration-200 text-left",
+                selectedFilter === "all"
+                  ? "font-semibold text-brand-800"
+                  : "text-ink-muted hover:text-ink",
+              )}
             >
-              Filtrar por interés o especialidad
-            </label>
-            <div className="relative">
-              <select
-                id="services-filter"
-                value={selectedFilter}
-                onChange={(e) => setSelectedFilter(e.target.value)}
-                aria-label="Filtrar servicios por especialidad o interés"
-                className="min-h-[50px] w-full appearance-none rounded-none border border-bone-200 bg-canvas px-5 py-3.5 pr-12 text-sm sm:text-base font-medium text-ink transition-colors duration-200 hover:border-brand-800 focus:border-brand-800 focus:outline-none focus:ring-1 focus:ring-brand-800 cursor-pointer"
-              >
-                <option value="all">
-                  Todos nuestros servicios ({allServices.length})
-                </option>
-                {groups.map((group) => (
-                  <option key={group.slug} value={group.slug}>
-                    {group.title} ({group.services.length})
-                  </option>
-                ))}
-              </select>
-
-              {/* 0px architectural chevron icon */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-4 text-ink"
-              >
-                <svg
-                  className="h-4 w-4 text-ink"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={1.75}
+              Todos{" "}
+              <span className="tabular-nums text-ink-muted">
+                {String(allServices.length).padStart(2, "0")}
+              </span>
+            </button>
+            {groups.map((group) => {
+              const isSelected = selectedFilter === group.slug;
+              return (
+                <button
+                  key={group.slug}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  onClick={() => setSelectedFilter(group.slug)}
+                  className={cx(
+                    "min-h-[44px] pb-2 label cursor-pointer transition-colors duration-200 text-left",
+                    isSelected
+                      ? "font-semibold text-brand-800"
+                      : "text-ink-muted hover:text-ink",
+                  )}
                 >
-                  <path
-                    strokeLinecap="square"
-                    strokeLinejoin="miter"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </div>
-            </div>
+                  {group.title}{" "}
+                  <span className="tabular-nums text-ink-muted">
+                    {String(group.services.length).padStart(2, "0")}
+                  </span>
+                </button>
+              );
+            })}
           </div>
 
           {/* Orthogonal Carousel Navigation Arrows (0px) */}

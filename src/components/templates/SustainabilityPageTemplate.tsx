@@ -58,6 +58,7 @@ export function SustainabilityPageTemplate({
         deliverablesLabel: "Estrategias y especificaciones técnicas:",
         ctaLabel: "Consultar viabilidad de terreno",
       }}
+      manifesto={page.manifesto}
       gallery={{
         id: "galeria",
         intro: page.gallery.intro,

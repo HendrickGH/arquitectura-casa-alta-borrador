@@ -57,6 +57,7 @@ export function InteriorsPageTemplate({
         deliverablesLabel: "Propiedades y tolerancias técnicas:",
         ctaLabel: "Consultar especificación en taller",
       }}
+      manifesto={page.manifesto}
       gallery={{
         id: "espacios",
         intro: page.gallery.intro,
