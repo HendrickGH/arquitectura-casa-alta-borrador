@@ -41,17 +41,17 @@ Lista de insumos críticos, decisiones, textos, fotografías y pagos que deben p
   - **Referencia**: Llamada 1 (16:32 - 17:31, 20:09 - 20:55)
 
 <a id="ent-05"></a>
-- [ ] **`ENT-05`: Nueva fotografía atractiva y real para el servicio de "Skate Parks" (y revisión de fotos de instalaciones hidrosanitarias).**
+- [x] **`ENT-05`: Nueva fotografía atractiva y real para el servicio de "Skate Parks" (y revisión de fotos de instalaciones hidrosanitarias).**
   - **Responsable Cliente**: Gerardo Bejarano
-  - **Categoría**: Fotografías | **Estado**: `Pendiente`
+  - **Categoría**: Fotografías | **Estado**: `Resuelto`
   - **Fecha Límite**: Antes del Lunes/Martes
   - **Ticket Relacionado**: [`CAS-033`](./servicios.md#cas-033)
   - **Referencia**: Llamada 1 (1:02:15 - 1:02:55)
 
 <a id="ent-06"></a>
-- [ ] **`ENT-06`: Documento con la definición y textos revisados de los servicios de la constructora.**
+- [x] **`ENT-06`: Documento con la definición y textos revisados de los servicios de la constructora.**
   - **Responsable Cliente**: Gerardo Bejarano / Felipe
-  - **Categoría**: Textos / Copy | **Estado**: `Pendiente`
+  - **Categoría**: Textos / Copy | **Estado**: `Resuelto`
   - **Fecha Límite**: Antes del Lunes/Martes
   - **Ticket Relacionado**: [`CAS-033`](./servicios.md#cas-033)
   - **Referencia**: Llamada 1 (20:45 - 21:15, 37:44 - 38:04, 56:28 - 56:45)

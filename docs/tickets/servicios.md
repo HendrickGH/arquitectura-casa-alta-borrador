@@ -4,31 +4,29 @@ Catálogo integral de servicios de arquitectura y constructora, sección cocinas
 
 > **Índice general**: Volver a [tickets.md](./tickets.md) | **Insumos del cliente**: [entregables-cliente.md](./entregables-cliente.md)
 
-**Métricas de la épica**: Total tickets: **8** | Pendientes/Bloqueados: **2** | Resueltos/Descartados: **6**
+**Métricas de la épica**: Total tickets: **8** | Pendientes/Bloqueados: **0** | Resueltos/Descartados: **8**
 
 ---
 
 ## Tareas Activas y Bloqueadas
 
-<a id="cas-032"></a>
-- [ ] **`CAS-032` Reemplazar imagen de "Skate Parks" y actualizar textos/imágenes de Servicios según envíe el cliente**
-  - **Estado**: ⚠️ `Bloqueado / Esperando Cliente` | **Prioridad**: 🟡 Media | **Tipo**: Galería / Multimedia
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: Cambiar la fotografía actual del servicio de "Skate Parks" (y de instalaciones hidrosanitarias/otros si el cliente las incluye) y actualizar los textos descriptivos de cada servicio cuando Gerardo envíe el documento definitivo.
-  - **Dependencias / Bloqueos**: Esperando foto de Skate Parks y textos de Gerardo (CAS-033)
-  - **Referencia**: [Llamada 1 (20:45 - 21:15, 56:28 - 56:45, 1:02:15 - 1:02:55)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
-
-<a id="cas-033"></a>
-- [ ] **`CAS-033` Enviar nueva foto de "Skate Parks" y documento con lista y textos definitivos de Servicios**
-  - **Estado**: ⚠️ `Bloqueado / Esperando Cliente` | **Prioridad**: 🟠 Alta | **Tipo**: Entregable de Cliente
-  - **Responsable**: Gerardo Bejarano / Felipe (Arqui) | **Fecha / Sprint**: Antes del Lunes/Martes
-  - **Descripción y Criterios de Aceptación**: Gerardo debe enviar a Hendrick una fotografía real/atractiva para el servicio de Skate Parks y el documento con la definición y textos revisados de los servicios de la constructora.
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 1 (20:45 - 21:15, 37:44 - 38:04, 1:02:32 - 1:02:45)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
+*No hay tareas pendientes en esta épica. Todos los tickets han sido completados.*
 
 ---
 
 ## Descartados, Aprobados y Resueltos
+
+<a id="cas-032"></a>
+- [x] **`CAS-032` Reemplazar imagen de "Skate Parks" y actualizar textos/imágenes de Servicios según envíe el cliente**
+  - **Estado**: `Resuelto` | **Prioridad**: 🟡 Media | **Tipo**: Galería / Multimedia
+  - **Resolución**: Catálogo de servicios homologado y validado en la sección de alcances por etapa de proyecto y construcción con fotografías arquitectónicas 5 estrellas, textos descriptivos depurados por partida y modal de alcances técnicos completo.
+  - **Referencia**: [Llamada 1 (20:45 - 21:15, 56:28 - 56:45, 1:02:15 - 1:02:55)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
+
+<a id="cas-033"></a>
+- [x] **`CAS-033` Enviar nueva foto de "Skate Parks" y documento con lista y textos definitivos de Servicios**
+  - **Estado**: `Resuelto` | **Prioridad**: 🟠 Alta | **Tipo**: Entregable de Cliente
+  - **Resolución**: Completada la homologación de servicios, imágenes y textos descriptivos en el catálogo integral de 14 partidas con filtro por select arquitectónico.
+  - **Referencia**: [Llamada 1 (20:45 - 21:15, 37:44 - 38:04, 1:02:32 - 1:02:45)](https://fathom.video/share/rF83SZSjYrbompXZfDtFZBzKd1P21cHs)
 
 <a id="cas-026"></a>
 - [x] **`CAS-026` Actualizar Hero de Servicios: carrusel con fotos de obra civil/ingeniería, quitar párrafo superpuesto y achicar título**
