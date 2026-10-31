@@ -522,7 +522,7 @@ export const sustainabilityPageContent = {
 export const aboutPageContent = {
   hero: {
     eyebrow: "",
-    heading: "Ingeniería, oficio y presencia real en cada obra",
+    heading: "Ingeniería, supervisión ejecutiva y presencia real en cada obra",
     subheadline:
       "Más de 150 obras entregadas y 50,000 m² construidos con cobertura en el Pacífico, el sur y proyectos a nivel nacional.",
     dir: "credibilidad",
