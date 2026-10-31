@@ -100,7 +100,6 @@ const curatedGalleries: Record<string, string[]> = {
     "06-fachada-camino-losas-jardin",
     "07-corredor-vigas-madera-lamparas",
     "09-esquina-ventanal-farol-terraza",
-    "10-ventanal-reja-geometrica",
     "32-bomba-concreto-colado-estructura-dos-niveles",
   ],
   "04-casa-melchor-ocampo": [
@@ -130,11 +129,11 @@ const curatedGalleries: Record<string, string[]> = {
     "02-terraza-celosia-madera-encino",
   ],
   "08-rbnb-palmarito": [
-    "05-torre-concreto-cristal-carretilla",
-    "03-marco-concreto-vista-playa",
     "02-cielo-palapa-barra-mar",
-    "01-trabajadores-barra-techo-palapa",
+    "03-marco-concreto-vista-playa",
     "04-postes-madera-vista-mar",
+    "05-torre-concreto-cristal-carretilla",
+    "01-trabajadores-barra-techo-palapa",
     "02-el-bicho/77-bomba-concreto-colado-torre-costa",
     "02-el-bicho/36-colado-con-manguera-playa",
   ],
@@ -169,7 +168,9 @@ const curatedGalleries: Record<string, string[]> = {
     "01-sillon-lectura-bajo-escalera-celosia-iluminada",
   ],
   "16-casa-la-barra": [
+    "02-fachada-horizontal-chukum-palapa-porton",
     "01-fachada-chukum-celosia-barro-techo-palapa-porton-madera",
+    "03-perspectiva-casa-chukum-terraza-palapa-jardin",
   ],
   "17-el-tomatal": [
     "02-fachada-principal-chukum-celosia-ladrillo-palmeras",

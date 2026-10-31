@@ -1,52 +1,4 @@
 {
-  "01-plaza-esmeralda-puerto-escondido/01-muro-texturizado-atardecer-lampara": [
-    [
-      480,
-      "01-muro-texturizado-atardecer-lampara-480.avif"
-    ],
-    [
-      960,
-      "01-muro-texturizado-atardecer-lampara-960.avif"
-    ],
-    [
-      1600,
-      "01-muro-texturizado-atardecer-lampara.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/02-terraza-anochecer-planta-jardinera": [
-    [
-      480,
-      "02-terraza-anochecer-planta-jardinera-480.avif"
-    ],
-    [
-      960,
-      "02-terraza-anochecer-planta-jardinera-960.avif"
-    ],
-    [
-      1600,
-      "02-terraza-anochecer-planta-jardinera.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/03-escaleras-electricas-atrio-blanco": [
-    [
-      480,
-      "03-escaleras-electricas-atrio-blanco-480.avif"
-    ],
-    [
-      960,
-      "03-escaleras-electricas-atrio-blanco.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/04-vigas-madera-marco-cielo": [
-    [
-      480,
-      "04-vigas-madera-marco-cielo-480.avif"
-    ],
-    [
-      960,
-      "04-vigas-madera-marco-cielo.avif"
-    ]
-  ],
   "01-plaza-esmeralda-puerto-escondido/05-toma-aerea-azoteas-jardin": [
     [
       480,
@@ -55,198 +7,6 @@
     [
       960,
       "05-toma-aerea-azoteas-jardin.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/06-celosia-madera-contrapicado": [
-    [
-      480,
-      "06-celosia-madera-contrapicado-480.avif"
-    ],
-    [
-      960,
-      "06-celosia-madera-contrapicado-960.avif"
-    ],
-    [
-      1080,
-      "06-celosia-madera-contrapicado.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/07-terraza-madera-cristal-ciudad": [
-    [
-      480,
-      "07-terraza-madera-cristal-ciudad-480.avif"
-    ],
-    [
-      960,
-      "07-terraza-madera-cristal-ciudad-960.avif"
-    ],
-    [
-      1600,
-      "07-terraza-madera-cristal-ciudad.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/08-volumenes-blancos-muro-verde": [
-    [
-      480,
-      "08-volumenes-blancos-muro-verde-480.avif"
-    ],
-    [
-      960,
-      "08-volumenes-blancos-muro-verde-960.avif"
-    ],
-    [
-      1331,
-      "08-volumenes-blancos-muro-verde.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/09-pasillo-vidrio-reflejo-piso": [
-    [
-      480,
-      "09-pasillo-vidrio-reflejo-piso-480.avif"
-    ],
-    [
-      960,
-      "09-pasillo-vidrio-reflejo-piso.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/10-pasillo-oficinas-madera-cristal": [
-    [
-      480,
-      "10-pasillo-oficinas-madera-cristal-480.avif"
-    ],
-    [
-      960,
-      "10-pasillo-oficinas-madera-cristal.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/11-acceso-nocturno-plafon-luces": [
-    [
-      480,
-      "11-acceso-nocturno-plafon-luces-480.avif"
-    ],
-    [
-      960,
-      "11-acceso-nocturno-plafon-luces.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/12-cristal-madera-noche-ciudad": [
-    [
-      480,
-      "12-cristal-madera-noche-ciudad-480.avif"
-    ],
-    [
-      960,
-      "12-cristal-madera-noche-ciudad-960.avif"
-    ],
-    [
-      1600,
-      "12-cristal-madera-noche-ciudad.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/13-pasillo-blanco-piso-pulido": [
-    [
-      480,
-      "13-pasillo-blanco-piso-pulido-480.avif"
-    ],
-    [
-      960,
-      "13-pasillo-blanco-piso-pulido-960.avif"
-    ],
-    [
-      1600,
-      "13-pasillo-blanco-piso-pulido.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/14-jardin-vertical-volumen-blanco": [
-    [
-      480,
-      "14-jardin-vertical-volumen-blanco-480.avif"
-    ],
-    [
-      960,
-      "14-jardin-vertical-volumen-blanco.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/15-celosia-madera-cielo-nubes": [
-    [
-      480,
-      "15-celosia-madera-cielo-nubes-480.avif"
-    ],
-    [
-      960,
-      "15-celosia-madera-cielo-nubes.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/16-acceso-principal-escaleras-electricas": [
-    [
-      480,
-      "16-acceso-principal-escaleras-electricas-480.avif"
-    ],
-    [
-      960,
-      "16-acceso-principal-escaleras-electricas.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/17-detalle-lampara-muro-noche": [
-    [
-      320,
-      "17-detalle-lampara-muro-noche-480.avif"
-    ],
-    [
-      640,
-      "17-detalle-lampara-muro-noche-960.avif"
-    ],
-    [
-      1066,
-      "17-detalle-lampara-muro-noche.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/18-edificio-noche-luz-azul": [
-    [
-      480,
-      "18-edificio-noche-luz-azul-480.avif"
-    ],
-    [
-      960,
-      "18-edificio-noche-luz-azul.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/19-estacionamiento-interior-sotano": [
-    [
-      480,
-      "19-estacionamiento-interior-sotano-480.avif"
-    ],
-    [
-      960,
-      "19-estacionamiento-interior-sotano.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/20-local-esquinero-ventanal-panoramico-calle": [
-    [
-      480,
-      "20-local-esquinero-ventanal-panoramico-calle-480.avif"
-    ],
-    [
-      960,
-      "20-local-esquinero-ventanal-panoramico-calle-960.avif"
-    ],
-    [
-      1280,
-      "20-local-esquinero-ventanal-panoramico-calle.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/21-escaleras-electricas-vista-calle-acceso": [
-    [
-      480,
-      "21-escaleras-electricas-vista-calle-acceso-480.avif"
-    ],
-    [
-      960,
-      "21-escaleras-electricas-vista-calle-acceso-960.avif"
-    ],
-    [
-      1280,
-      "21-escaleras-electricas-vista-calle-acceso.avif"
     ]
   ],
   "01-plaza-esmeralda-puerto-escondido/22-fachada-frontal-acceso-escaleras-electricas": [
@@ -263,74 +23,56 @@
       "22-fachada-frontal-acceso-escaleras-electricas.avif"
     ]
   ],
-  "01-plaza-esmeralda-puerto-escondido/23-detalle-muro-ceramica-madera-luminarias": [
-    [
-      320,
-      "23-detalle-muro-ceramica-madera-luminarias-480.avif"
-    ],
-    [
-      639,
-      "23-detalle-muro-ceramica-madera-luminarias-960.avif"
-    ],
-    [
-      852,
-      "23-detalle-muro-ceramica-madera-luminarias.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/24-jardinera-larga-madera-palma-terraza": [
-    [
-      320,
-      "24-jardinera-larga-madera-palma-terraza-480.avif"
-    ],
-    [
-      639,
-      "24-jardinera-larga-madera-palma-terraza-960.avif"
-    ],
-    [
-      852,
-      "24-jardinera-larga-madera-palma-terraza.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/25-interior-local-piso-madera-ventanal-esquina": [
+  "01-plaza-esmeralda-puerto-escondido/16-acceso-principal-escaleras-electricas": [
     [
       480,
-      "25-interior-local-piso-madera-ventanal-esquina-480.avif"
+      "16-acceso-principal-escaleras-electricas-480.avif"
     ],
     [
       960,
-      "25-interior-local-piso-madera-ventanal-esquina-960.avif"
+      "16-acceso-principal-escaleras-electricas.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/08-volumenes-blancos-muro-verde": [
+    [
+      480,
+      "08-volumenes-blancos-muro-verde-480.avif"
+    ],
+    [
+      960,
+      "08-volumenes-blancos-muro-verde-960.avif"
+    ],
+    [
+      1331,
+      "08-volumenes-blancos-muro-verde.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/20-local-esquinero-ventanal-panoramico-calle": [
+    [
+      480,
+      "20-local-esquinero-ventanal-panoramico-calle-480.avif"
+    ],
+    [
+      960,
+      "20-local-esquinero-ventanal-panoramico-calle-960.avif"
     ],
     [
       1280,
-      "25-interior-local-piso-madera-ventanal-esquina.avif"
+      "20-local-esquinero-ventanal-panoramico-calle.avif"
     ]
   ],
-  "01-plaza-esmeralda-puerto-escondido/26-jardinera-central-terraza-vista-urbana": [
+  "01-plaza-esmeralda-puerto-escondido/02-terraza-anochecer-planta-jardinera": [
     [
-      320,
-      "26-jardinera-central-terraza-vista-urbana-480.avif"
+      480,
+      "02-terraza-anochecer-planta-jardinera-480.avif"
     ],
     [
-      639,
-      "26-jardinera-central-terraza-vista-urbana-960.avif"
+      960,
+      "02-terraza-anochecer-planta-jardinera-960.avif"
     ],
     [
-      852,
-      "26-jardinera-central-terraza-vista-urbana.avif"
-    ]
-  ],
-  "01-plaza-esmeralda-puerto-escondido/27-cubo-escaleras-tragaluz-barandal-cristal": [
-    [
-      320,
-      "27-cubo-escaleras-tragaluz-barandal-cristal-480.avif"
-    ],
-    [
-      639,
-      "27-cubo-escaleras-tragaluz-barandal-cristal-960.avif"
-    ],
-    [
-      852,
-      "27-cubo-escaleras-tragaluz-barandal-cristal.avif"
+      1600,
+      "02-terraza-anochecer-planta-jardinera.avif"
     ]
   ],
   "01-plaza-esmeralda-puerto-escondido/28-terraza-abierta-jardinera-central-simetrica": [
@@ -375,6 +117,148 @@
       "30-iluminacion-rasante-muro-terraza-anochecer.avif"
     ]
   ],
+  "01-plaza-esmeralda-puerto-escondido/24-jardinera-larga-madera-palma-terraza": [
+    [
+      320,
+      "24-jardinera-larga-madera-palma-terraza-480.avif"
+    ],
+    [
+      639,
+      "24-jardinera-larga-madera-palma-terraza-960.avif"
+    ],
+    [
+      852,
+      "24-jardinera-larga-madera-palma-terraza.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/26-jardinera-central-terraza-vista-urbana": [
+    [
+      320,
+      "26-jardinera-central-terraza-vista-urbana-480.avif"
+    ],
+    [
+      639,
+      "26-jardinera-central-terraza-vista-urbana-960.avif"
+    ],
+    [
+      852,
+      "26-jardinera-central-terraza-vista-urbana.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/07-terraza-madera-cristal-ciudad": [
+    [
+      480,
+      "07-terraza-madera-cristal-ciudad-480.avif"
+    ],
+    [
+      960,
+      "07-terraza-madera-cristal-ciudad-960.avif"
+    ],
+    [
+      1600,
+      "07-terraza-madera-cristal-ciudad.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/11-acceso-nocturno-plafon-luces": [
+    [
+      480,
+      "11-acceso-nocturno-plafon-luces-480.avif"
+    ],
+    [
+      960,
+      "11-acceso-nocturno-plafon-luces.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/12-cristal-madera-noche-ciudad": [
+    [
+      480,
+      "12-cristal-madera-noche-ciudad-480.avif"
+    ],
+    [
+      960,
+      "12-cristal-madera-noche-ciudad-960.avif"
+    ],
+    [
+      1600,
+      "12-cristal-madera-noche-ciudad.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/33-estacionamiento-subterraneo-cajones-columnas": [
+    [
+      480,
+      "33-estacionamiento-subterraneo-cajones-columnas-480.avif"
+    ],
+    [
+      960,
+      "33-estacionamiento-subterraneo-cajones-columnas-960.avif"
+    ],
+    [
+      1280,
+      "33-estacionamiento-subterraneo-cajones-columnas.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/35-cajones-estacionamiento-concreto-pulido": [
+    [
+      480,
+      "35-cajones-estacionamiento-concreto-pulido-480.avif"
+    ],
+    [
+      960,
+      "35-cajones-estacionamiento-concreto-pulido-960.avif"
+    ],
+    [
+      1280,
+      "35-cajones-estacionamiento-concreto-pulido.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/09-pasillo-vidrio-reflejo-piso": [
+    [
+      480,
+      "09-pasillo-vidrio-reflejo-piso-480.avif"
+    ],
+    [
+      960,
+      "09-pasillo-vidrio-reflejo-piso.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/10-pasillo-oficinas-madera-cristal": [
+    [
+      480,
+      "10-pasillo-oficinas-madera-cristal-480.avif"
+    ],
+    [
+      960,
+      "10-pasillo-oficinas-madera-cristal.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/13-pasillo-blanco-piso-pulido": [
+    [
+      480,
+      "13-pasillo-blanco-piso-pulido-480.avif"
+    ],
+    [
+      960,
+      "13-pasillo-blanco-piso-pulido-960.avif"
+    ],
+    [
+      1600,
+      "13-pasillo-blanco-piso-pulido.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/25-interior-local-piso-madera-ventanal-esquina": [
+    [
+      480,
+      "25-interior-local-piso-madera-ventanal-esquina-480.avif"
+    ],
+    [
+      960,
+      "25-interior-local-piso-madera-ventanal-esquina-960.avif"
+    ],
+    [
+      1280,
+      "25-interior-local-piso-madera-ventanal-esquina.avif"
+    ]
+  ],
   "01-plaza-esmeralda-puerto-escondido/31-corredor-comercial-ventanales-doble-acceso": [
     [
       480,
@@ -403,18 +287,100 @@
       "32-galeria-interior-locales-vidrio-templado.avif"
     ]
   ],
-  "01-plaza-esmeralda-puerto-escondido/33-estacionamiento-subterraneo-cajones-columnas": [
+  "01-plaza-esmeralda-puerto-escondido/01-muro-texturizado-atardecer-lampara": [
     [
       480,
-      "33-estacionamiento-subterraneo-cajones-columnas-480.avif"
+      "01-muro-texturizado-atardecer-lampara-480.avif"
     ],
     [
       960,
-      "33-estacionamiento-subterraneo-cajones-columnas-960.avif"
+      "01-muro-texturizado-atardecer-lampara-960.avif"
+    ],
+    [
+      1600,
+      "01-muro-texturizado-atardecer-lampara.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/03-escaleras-electricas-atrio-blanco": [
+    [
+      480,
+      "03-escaleras-electricas-atrio-blanco-480.avif"
+    ],
+    [
+      960,
+      "03-escaleras-electricas-atrio-blanco.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/04-vigas-madera-marco-cielo": [
+    [
+      480,
+      "04-vigas-madera-marco-cielo-480.avif"
+    ],
+    [
+      960,
+      "04-vigas-madera-marco-cielo.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/14-jardin-vertical-volumen-blanco": [
+    [
+      480,
+      "14-jardin-vertical-volumen-blanco-480.avif"
+    ],
+    [
+      960,
+      "14-jardin-vertical-volumen-blanco.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/15-celosia-madera-cielo-nubes": [
+    [
+      480,
+      "15-celosia-madera-cielo-nubes-480.avif"
+    ],
+    [
+      960,
+      "15-celosia-madera-cielo-nubes.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/21-escaleras-electricas-vista-calle-acceso": [
+    [
+      480,
+      "21-escaleras-electricas-vista-calle-acceso-480.avif"
+    ],
+    [
+      960,
+      "21-escaleras-electricas-vista-calle-acceso-960.avif"
     ],
     [
       1280,
-      "33-estacionamiento-subterraneo-cajones-columnas.avif"
+      "21-escaleras-electricas-vista-calle-acceso.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/23-detalle-muro-ceramica-madera-luminarias": [
+    [
+      320,
+      "23-detalle-muro-ceramica-madera-luminarias-480.avif"
+    ],
+    [
+      639,
+      "23-detalle-muro-ceramica-madera-luminarias-960.avif"
+    ],
+    [
+      852,
+      "23-detalle-muro-ceramica-madera-luminarias.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/27-cubo-escaleras-tragaluz-barandal-cristal": [
+    [
+      320,
+      "27-cubo-escaleras-tragaluz-barandal-cristal-480.avif"
+    ],
+    [
+      639,
+      "27-cubo-escaleras-tragaluz-barandal-cristal-960.avif"
+    ],
+    [
+      852,
+      "27-cubo-escaleras-tragaluz-barandal-cristal.avif"
     ]
   ],
   "01-plaza-esmeralda-puerto-escondido/34-muro-verde-follaje-acceso-interior": [
@@ -431,20 +397,6 @@
       "34-muro-verde-follaje-acceso-interior.avif"
     ]
   ],
-  "01-plaza-esmeralda-puerto-escondido/35-cajones-estacionamiento-concreto-pulido": [
-    [
-      480,
-      "35-cajones-estacionamiento-concreto-pulido-480.avif"
-    ],
-    [
-      960,
-      "35-cajones-estacionamiento-concreto-pulido-960.avif"
-    ],
-    [
-      1280,
-      "35-cajones-estacionamiento-concreto-pulido.avif"
-    ]
-  ],
   "01-plaza-esmeralda-puerto-escondido/36-palmas-jardinera-terraza-contexto-urbano": [
     [
       480,
@@ -457,6 +409,54 @@
     [
       1280,
       "36-palmas-jardinera-terraza-contexto-urbano.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/06-celosia-madera-contrapicado": [
+    [
+      480,
+      "06-celosia-madera-contrapicado-480.avif"
+    ],
+    [
+      960,
+      "06-celosia-madera-contrapicado-960.avif"
+    ],
+    [
+      1080,
+      "06-celosia-madera-contrapicado.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/17-detalle-lampara-muro-noche": [
+    [
+      320,
+      "17-detalle-lampara-muro-noche-480.avif"
+    ],
+    [
+      640,
+      "17-detalle-lampara-muro-noche-960.avif"
+    ],
+    [
+      1066,
+      "17-detalle-lampara-muro-noche.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/18-edificio-noche-luz-azul": [
+    [
+      480,
+      "18-edificio-noche-luz-azul-480.avif"
+    ],
+    [
+      960,
+      "18-edificio-noche-luz-azul.avif"
+    ]
+  ],
+  "01-plaza-esmeralda-puerto-escondido/19-estacionamiento-interior-sotano": [
+    [
+      480,
+      "19-estacionamiento-interior-sotano-480.avif"
+    ],
+    [
+      960,
+      "19-estacionamiento-interior-sotano.avif"
     ]
   ],
   "01-plaza-esmeralda-puerto-escondido/37-detalle-apagador-muro-acceso-local": [
@@ -515,6 +515,34 @@
       "40-senaletica-ruta-evacuacion-nivel-dos.avif"
     ]
   ],
+  "02-el-bicho/57-panoramica-aerea-conjunto-costero-zicatela": [
+    [
+      480,
+      "57-panoramica-aerea-conjunto-costero-zicatela-480.avif"
+    ],
+    [
+      960,
+      "57-panoramica-aerea-conjunto-costero-zicatela-960.avif"
+    ],
+    [
+      1280,
+      "57-panoramica-aerea-conjunto-costero-zicatela.avif"
+    ]
+  ],
+  "02-el-bicho/58-toma-aerea-posterior-techos-palma-mar": [
+    [
+      480,
+      "58-toma-aerea-posterior-techos-palma-mar-480.avif"
+    ],
+    [
+      960,
+      "58-toma-aerea-posterior-techos-palma-mar-960.avif"
+    ],
+    [
+      1280,
+      "58-toma-aerea-posterior-techos-palma-mar.avif"
+    ]
+  ],
   "02-el-bicho/01-fachada-tres-palapas-alberca": [
     [
       360,
@@ -541,6 +569,34 @@
     [
       1280,
       "02-fachada-palapas-alberca-palmeras.avif"
+    ]
+  ],
+  "02-el-bicho/14-fachada-tres-palapas-agave": [
+    [
+      480,
+      "14-fachada-tres-palapas-agave-480.avif"
+    ],
+    [
+      960,
+      "14-fachada-tres-palapas-agave-960.avif"
+    ],
+    [
+      1280,
+      "14-fachada-tres-palapas-agave.avif"
+    ]
+  ],
+  "02-el-bicho/40-alberca-borde-blanco-palmas": [
+    [
+      360,
+      "40-alberca-borde-blanco-palmas-480.avif"
+    ],
+    [
+      720,
+      "40-alberca-borde-blanco-palmas-960.avif"
+    ],
+    [
+      1500,
+      "40-alberca-borde-blanco-palmas.avif"
     ]
   ],
   "02-el-bicho/03-terraza-hamaca-jardin": [
@@ -571,24 +627,32 @@
       "04-corredor-madera-vista-mar.avif"
     ]
   ],
-  "02-el-bicho/05-bano-espejo-redondo-lavabo": [
+  "02-el-bicho/60-columnas-redondas-madera-terrazas-blancas": [
     [
-      480,
-      "05-bano-espejo-redondo-lavabo-480.avif"
+      270,
+      "60-columnas-redondas-madera-terrazas-blancas-480.avif"
     ],
     [
-      720,
-      "05-bano-espejo-redondo-lavabo.avif"
+      539,
+      "60-columnas-redondas-madera-terrazas-blancas-960.avif"
+    ],
+    [
+      719,
+      "60-columnas-redondas-madera-terrazas-blancas.avif"
     ]
   ],
-  "02-el-bicho/06-recamara-techo-madera-ventanal": [
+  "02-el-bicho/67-terraza-cubierta-palapa-horizonte-marino": [
     [
       480,
-      "06-recamara-techo-madera-ventanal-480.avif"
+      "67-terraza-cubierta-palapa-horizonte-marino-480.avif"
     ],
     [
-      720,
-      "06-recamara-techo-madera-ventanal.avif"
+      960,
+      "67-terraza-cubierta-palapa-horizonte-marino-960.avif"
+    ],
+    [
+      1280,
+      "67-terraza-cubierta-palapa-horizonte-marino.avif"
     ]
   ],
   "02-el-bicho/07-escalera-exterior-palapa-nubes": [
@@ -603,20 +667,6 @@
     [
       1200,
       "07-escalera-exterior-palapa-nubes.avif"
-    ]
-  ],
-  "02-el-bicho/08-escalera-blanca-cielo-nublado": [
-    [
-      360,
-      "08-escalera-blanca-cielo-nublado-480.avif"
-    ],
-    [
-      720,
-      "08-escalera-blanca-cielo-nublado-960.avif"
-    ],
-    [
-      1200,
-      "08-escalera-blanca-cielo-nublado.avif"
     ]
   ],
   "02-el-bicho/09-pasillo-jardin-hiedra-palma": [
@@ -645,90 +695,6 @@
     [
       900,
       "10-escalera-exterior-edificio-blanco.avif"
-    ]
-  ],
-  "02-el-bicho/11-entramado-techo-madera-piso": [
-    [
-      270,
-      "11-entramado-techo-madera-piso-480.avif"
-    ],
-    [
-      540,
-      "11-entramado-techo-madera-piso-960.avif"
-    ],
-    [
-      899,
-      "11-entramado-techo-madera-piso.avif"
-    ]
-  ],
-  "02-el-bicho/12-armadura-techo-palapa-obra": [
-    [
-      480,
-      "12-armadura-techo-palapa-obra-480.avif"
-    ],
-    [
-      960,
-      "12-armadura-techo-palapa-obra-960.avif"
-    ],
-    [
-      1599,
-      "12-armadura-techo-palapa-obra.avif"
-    ]
-  ],
-  "02-el-bicho/13-fachada-alberca-palmeras": [
-    [
-      480,
-      "13-fachada-alberca-palmeras-480.avif"
-    ],
-    [
-      960,
-      "13-fachada-alberca-palmeras-960.avif"
-    ],
-    [
-      1280,
-      "13-fachada-alberca-palmeras.avif"
-    ]
-  ],
-  "02-el-bicho/14-fachada-tres-palapas-agave": [
-    [
-      480,
-      "14-fachada-tres-palapas-agave-480.avif"
-    ],
-    [
-      960,
-      "14-fachada-tres-palapas-agave-960.avif"
-    ],
-    [
-      1280,
-      "14-fachada-tres-palapas-agave.avif"
-    ]
-  ],
-  "02-el-bicho/15-fachada-obra-tres-palapas": [
-    [
-      480,
-      "15-fachada-obra-tres-palapas-480.avif"
-    ],
-    [
-      960,
-      "15-fachada-obra-tres-palapas-960.avif"
-    ],
-    [
-      1280,
-      "15-fachada-obra-tres-palapas.avif"
-    ]
-  ],
-  "02-el-bicho/16-fachada-palapas-obra-piscina": [
-    [
-      480,
-      "16-fachada-palapas-obra-piscina-480.avif"
-    ],
-    [
-      960,
-      "16-fachada-palapas-obra-piscina-960.avif"
-    ],
-    [
-      1280,
-      "16-fachada-palapas-obra-piscina.avif"
     ]
   ],
   "02-el-bicho/17-esquina-blanca-palapa-ventana": [
@@ -773,6 +739,778 @@
       "19-escalera-exterior-maceta-palma.avif"
     ]
   ],
+  "02-el-bicho/55-puesta-de-sol-mar-desde-palapa": [
+    [
+      360,
+      "55-puesta-de-sol-mar-desde-palapa-480.avif"
+    ],
+    [
+      720,
+      "55-puesta-de-sol-mar-desde-palapa-960.avif"
+    ],
+    [
+      960,
+      "55-puesta-de-sol-mar-desde-palapa.avif"
+    ]
+  ],
+  "02-el-bicho/65-fachada-posterior-iluminada-anochecer-palapa": [
+    [
+      360,
+      "65-fachada-posterior-iluminada-anochecer-palapa-480.avif"
+    ],
+    [
+      720,
+      "65-fachada-posterior-iluminada-anochecer-palapa-960.avif"
+    ],
+    [
+      960,
+      "65-fachada-posterior-iluminada-anochecer-palapa.avif"
+    ]
+  ],
+  "02-el-bicho/31-fachada-iluminada-nocturna": [
+    [
+      480,
+      "31-fachada-iluminada-nocturna-480.avif"
+    ],
+    [
+      960,
+      "31-fachada-iluminada-nocturna-960.avif"
+    ],
+    [
+      1600,
+      "31-fachada-iluminada-nocturna.avif"
+    ]
+  ],
+  "02-el-bicho/54-fachada-nocturna-alberca-iluminada-palapas": [
+    [
+      480,
+      "54-fachada-nocturna-alberca-iluminada-palapas-480.avif"
+    ],
+    [
+      960,
+      "54-fachada-nocturna-alberca-iluminada-palapas-960.avif"
+    ],
+    [
+      1080,
+      "54-fachada-nocturna-alberca-iluminada-palapas.avif"
+    ]
+  ],
+  "02-el-bicho/66-escalera-exterior-blanca-iluminacion-nocturna": [
+    [
+      270,
+      "66-escalera-exterior-blanca-iluminacion-nocturna-480.avif"
+    ],
+    [
+      540,
+      "66-escalera-exterior-blanca-iluminacion-nocturna-960.avif"
+    ],
+    [
+      720,
+      "66-escalera-exterior-blanca-iluminacion-nocturna.avif"
+    ]
+  ],
+  "02-el-bicho/06-recamara-techo-madera-ventanal": [
+    [
+      480,
+      "06-recamara-techo-madera-ventanal-480.avif"
+    ],
+    [
+      720,
+      "06-recamara-techo-madera-ventanal.avif"
+    ]
+  ],
+  "02-el-bicho/63-mezzanine-barandal-herreria-techo-palapa": [
+    [
+      480,
+      "63-mezzanine-barandal-herreria-techo-palapa-480.avif"
+    ],
+    [
+      960,
+      "63-mezzanine-barandal-herreria-techo-palapa-960.avif"
+    ],
+    [
+      1280,
+      "63-mezzanine-barandal-herreria-techo-palapa.avif"
+    ]
+  ],
+  "02-el-bicho/11-entramado-techo-madera-piso": [
+    [
+      270,
+      "11-entramado-techo-madera-piso-480.avif"
+    ],
+    [
+      540,
+      "11-entramado-techo-madera-piso-960.avif"
+    ],
+    [
+      899,
+      "11-entramado-techo-madera-piso.avif"
+    ]
+  ],
+  "02-el-bicho/30-armadura-techo-pacas-palapa": [
+    [
+      270,
+      "30-armadura-techo-pacas-palapa-480.avif"
+    ],
+    [
+      540,
+      "30-armadura-techo-pacas-palapa-960.avif"
+    ],
+    [
+      899,
+      "30-armadura-techo-pacas-palapa.avif"
+    ]
+  ],
+  "02-el-bicho/61-detalle-tejido-palma-vigas-palapa-mar": [
+    [
+      360,
+      "61-detalle-tejido-palma-vigas-palapa-mar-480.avif"
+    ],
+    [
+      720,
+      "61-detalle-tejido-palma-vigas-palapa-mar-960.avif"
+    ],
+    [
+      960,
+      "61-detalle-tejido-palma-vigas-palapa-mar.avif"
+    ]
+  ],
+  "02-el-bicho/62-escalera-interior-herreria-negra-piso-madera": [
+    [
+      360,
+      "62-escalera-interior-herreria-negra-piso-madera-480.avif"
+    ],
+    [
+      720,
+      "62-escalera-interior-herreria-negra-piso-madera-960.avif"
+    ],
+    [
+      960,
+      "62-escalera-interior-herreria-negra-piso-madera.avif"
+    ]
+  ],
+  "02-el-bicho/64-textura-interior-tejido-palma-troncos": [
+    [
+      480,
+      "64-textura-interior-tejido-palma-troncos-480.avif"
+    ],
+    [
+      960,
+      "64-textura-interior-tejido-palma-troncos-960.avif"
+    ],
+    [
+      1280,
+      "64-textura-interior-tejido-palma-troncos.avif"
+    ]
+  ],
+  "02-el-bicho/28-cimentacion-frente-al-mar": [
+    [
+      360,
+      "28-cimentacion-frente-al-mar-480.avif"
+    ],
+    [
+      720,
+      "28-cimentacion-frente-al-mar-960.avif"
+    ],
+    [
+      1200,
+      "28-cimentacion-frente-al-mar.avif"
+    ]
+  ],
+  "02-el-bicho/35-cimentacion-varilla-malla-verde": [
+    [
+      480,
+      "35-cimentacion-varilla-malla-verde-480.avif"
+    ],
+    [
+      960,
+      "35-cimentacion-varilla-malla-verde-960.avif"
+    ],
+    [
+      1600,
+      "35-cimentacion-varilla-malla-verde.avif"
+    ]
+  ],
+  "02-el-bicho/37-cimentacion-madera-playa": [
+    [
+      480,
+      "37-cimentacion-madera-playa-480.avif"
+    ],
+    [
+      960,
+      "37-cimentacion-madera-playa-960.avif"
+    ],
+    [
+      1280,
+      "37-cimentacion-madera-playa.avif"
+    ]
+  ],
+  "02-el-bicho/39-armado-cimentacion-concreto": [
+    [
+      480,
+      "39-armado-cimentacion-concreto-480.avif"
+    ],
+    [
+      960,
+      "39-armado-cimentacion-concreto-960.avif"
+    ],
+    [
+      1600,
+      "39-armado-cimentacion-concreto.avif"
+    ]
+  ],
+  "02-el-bicho/75-vista-superior-encofrado-madera-arena": [
+    [
+      360,
+      "75-vista-superior-encofrado-madera-arena-480.avif"
+    ],
+    [
+      720,
+      "75-vista-superior-encofrado-madera-arena-960.avif"
+    ],
+    [
+      960,
+      "75-vista-superior-encofrado-madera-arena.avif"
+    ]
+  ],
+  "02-el-bicho/71-armado-cimbra-alberca-lona-sombra": [
+    [
+      360,
+      "71-armado-cimbra-alberca-lona-sombra-480.avif"
+    ],
+    [
+      720,
+      "71-armado-cimbra-alberca-lona-sombra-960.avif"
+    ],
+    [
+      960,
+      "71-armado-cimbra-alberca-lona-sombra.avif"
+    ]
+  ],
+  "02-el-bicho/72-vista-cenital-cimbra-alberca-palmeras": [
+    [
+      360,
+      "72-vista-cenital-cimbra-alberca-palmeras-480.avif"
+    ],
+    [
+      720,
+      "72-vista-cenital-cimbra-alberca-palmeras-960.avif"
+    ],
+    [
+      960,
+      "72-vista-cenital-cimbra-alberca-palmeras.avif"
+    ]
+  ],
+  "02-el-bicho/73-obra-nocturna-cimbra-alberca-iluminada": [
+    [
+      360,
+      "73-obra-nocturna-cimbra-alberca-iluminada-480.avif"
+    ],
+    [
+      720,
+      "73-obra-nocturna-cimbra-alberca-iluminada-960.avif"
+    ],
+    [
+      960,
+      "73-obra-nocturna-cimbra-alberca-iluminada.avif"
+    ]
+  ],
+  "02-el-bicho/74-parrilla-acero-cimbra-alberca-playa": [
+    [
+      360,
+      "74-parrilla-acero-cimbra-alberca-playa-480.avif"
+    ],
+    [
+      720,
+      "74-parrilla-acero-cimbra-alberca-playa-960.avif"
+    ],
+    [
+      960,
+      "74-parrilla-acero-cimbra-alberca-playa.avif"
+    ]
+  ],
+  "02-el-bicho/22-estructura-concreto-dos-niveles": [
+    [
+      360,
+      "22-estructura-concreto-dos-niveles-480.avif"
+    ],
+    [
+      720,
+      "22-estructura-concreto-dos-niveles-960.avif"
+    ],
+    [
+      1200,
+      "22-estructura-concreto-dos-niveles.avif"
+    ]
+  ],
+  "02-el-bicho/76-estructura-concreto-dos-niveles-frente-obra": [
+    [
+      480,
+      "76-estructura-concreto-dos-niveles-frente-obra-480.avif"
+    ],
+    [
+      960,
+      "76-estructura-concreto-dos-niveles-frente-obra-960.avif"
+    ],
+    [
+      1280,
+      "76-estructura-concreto-dos-niveles-frente-obra.avif"
+    ]
+  ],
+  "02-el-bicho/80-conjunto-obra-gris-rampa-acceso-arena": [
+    [
+      360,
+      "80-conjunto-obra-gris-rampa-acceso-arena-480.avif"
+    ],
+    [
+      720,
+      "80-conjunto-obra-gris-rampa-acceso-arena-960.avif"
+    ],
+    [
+      960,
+      "80-conjunto-obra-gris-rampa-acceso-arena.avif"
+    ]
+  ],
+  "02-el-bicho/68-estructura-prefabricada-columnas-trabes-concreto": [
+    [
+      480,
+      "68-estructura-prefabricada-columnas-trabes-concreto-480.avif"
+    ],
+    [
+      960,
+      "68-estructura-prefabricada-columnas-trabes-concreto-960.avif"
+    ],
+    [
+      1280,
+      "68-estructura-prefabricada-columnas-trabes-concreto.avif"
+    ]
+  ],
+  "02-el-bicho/69-izado-columnas-prefabricadas-grua-cielo-azul": [
+    [
+      480,
+      "69-izado-columnas-prefabricadas-grua-cielo-azul-480.avif"
+    ],
+    [
+      960,
+      "69-izado-columnas-prefabricadas-grua-cielo-azul-960.avif"
+    ],
+    [
+      1280,
+      "69-izado-columnas-prefabricadas-grua-cielo-azul.avif"
+    ]
+  ],
+  "02-el-bicho/70-grua-telescopica-maniobra-obra-vial": [
+    [
+      480,
+      "70-grua-telescopica-maniobra-obra-vial-480.avif"
+    ],
+    [
+      960,
+      "70-grua-telescopica-maniobra-obra-vial-960.avif"
+    ],
+    [
+      1280,
+      "70-grua-telescopica-maniobra-obra-vial.avif"
+    ]
+  ],
+  "02-el-bicho/83-maniobra-montaje-prefabricado-concreto-obra": [
+    [
+      480,
+      "83-maniobra-montaje-prefabricado-concreto-obra-480.avif"
+    ],
+    [
+      960,
+      "83-maniobra-montaje-prefabricado-concreto-obra-960.avif"
+    ],
+    [
+      1280,
+      "83-maniobra-montaje-prefabricado-concreto-obra.avif"
+    ]
+  ],
+  "02-el-bicho/79-trabajador-andamio-madera-armado-trabe": [
+    [
+      360,
+      "79-trabajador-andamio-madera-armado-trabe-480.avif"
+    ],
+    [
+      720,
+      "79-trabajador-andamio-madera-armado-trabe-960.avif"
+    ],
+    [
+      960,
+      "79-trabajador-andamio-madera-armado-trabe.avif"
+    ]
+  ],
+  "02-el-bicho/12-armadura-techo-palapa-obra": [
+    [
+      480,
+      "12-armadura-techo-palapa-obra-480.avif"
+    ],
+    [
+      960,
+      "12-armadura-techo-palapa-obra-960.avif"
+    ],
+    [
+      1599,
+      "12-armadura-techo-palapa-obra.avif"
+    ]
+  ],
+  "02-el-bicho/24-estructura-madera-en-construccion": [
+    [
+      359,
+      "24-estructura-madera-en-construccion-480.avif"
+    ],
+    [
+      719,
+      "24-estructura-madera-en-construccion-960.avif"
+    ],
+    [
+      958,
+      "24-estructura-madera-en-construccion.avif"
+    ]
+  ],
+  "02-el-bicho/26-interior-armadura-techo-madera": [
+    [
+      270,
+      "26-interior-armadura-techo-madera-480.avif"
+    ],
+    [
+      540,
+      "26-interior-armadura-techo-madera-960.avif"
+    ],
+    [
+      899,
+      "26-interior-armadura-techo-madera.avif"
+    ]
+  ],
+  "02-el-bicho/29-armadura-madera-andamios-interior": [
+    [
+      480,
+      "29-armadura-madera-andamios-interior-480.avif"
+    ],
+    [
+      960,
+      "29-armadura-madera-andamios-interior-960.avif"
+    ],
+    [
+      1600,
+      "29-armadura-madera-andamios-interior.avif"
+    ]
+  ],
+  "02-el-bicho/38-armadura-madera-palapa-obra": [
+    [
+      480,
+      "38-armadura-madera-palapa-obra-480.avif"
+    ],
+    [
+      960,
+      "38-armadura-madera-palapa-obra-960.avif"
+    ],
+    [
+      1280,
+      "38-armadura-madera-palapa-obra.avif"
+    ]
+  ],
+  "02-el-bicho/41-trabajador-armado-madera-obra": [
+    [
+      360,
+      "41-trabajador-armado-madera-obra-480.avif"
+    ],
+    [
+      720,
+      "41-trabajador-armado-madera-obra-960.avif"
+    ],
+    [
+      960,
+      "41-trabajador-armado-madera-obra.avif"
+    ]
+  ],
+  "02-el-bicho/15-fachada-obra-tres-palapas": [
+    [
+      480,
+      "15-fachada-obra-tres-palapas-480.avif"
+    ],
+    [
+      960,
+      "15-fachada-obra-tres-palapas-960.avif"
+    ],
+    [
+      1280,
+      "15-fachada-obra-tres-palapas.avif"
+    ]
+  ],
+  "02-el-bicho/23-obra-dos-pisos-trabajadores": [
+    [
+      360,
+      "23-obra-dos-pisos-trabajadores-480.avif"
+    ],
+    [
+      720,
+      "23-obra-dos-pisos-trabajadores-960.avif"
+    ],
+    [
+      960,
+      "23-obra-dos-pisos-trabajadores.avif"
+    ]
+  ],
+  "02-el-bicho/25-trabajador-frente-a-obra-playa": [
+    [
+      359,
+      "25-trabajador-frente-a-obra-playa-480.avif"
+    ],
+    [
+      719,
+      "25-trabajador-frente-a-obra-playa-960.avif"
+    ],
+    [
+      958,
+      "25-trabajador-frente-a-obra-playa.avif"
+    ]
+  ],
+  "02-el-bicho/27-fachada-palapas-en-obra": [
+    [
+      480,
+      "27-fachada-palapas-en-obra-480.avif"
+    ],
+    [
+      960,
+      "27-fachada-palapas-en-obra-960.avif"
+    ],
+    [
+      1600,
+      "27-fachada-palapas-en-obra.avif"
+    ]
+  ],
+  "02-el-bicho/32-fachada-obra-andamios": [
+    [
+      480,
+      "32-fachada-obra-andamios-480.avif"
+    ],
+    [
+      960,
+      "32-fachada-obra-andamios-960.avif"
+    ],
+    [
+      1600,
+      "32-fachada-obra-andamios.avif"
+    ]
+  ],
+  "02-el-bicho/34-aplanado-techo-interior": [
+    [
+      360,
+      "34-aplanado-techo-interior-480.avif"
+    ],
+    [
+      768,
+      "34-aplanado-techo-interior.avif"
+    ]
+  ],
+  "02-el-bicho/56-toma-aerea-villas-palapas-en-obra": [
+    [
+      480,
+      "56-toma-aerea-villas-palapas-en-obra-480.avif"
+    ],
+    [
+      960,
+      "56-toma-aerea-villas-palapas-en-obra-960.avif"
+    ],
+    [
+      1280,
+      "56-toma-aerea-villas-palapas-en-obra.avif"
+    ]
+  ],
+  "02-el-bicho/59-atardecer-mar-obra-cimbra-alberca": [
+    [
+      360,
+      "59-atardecer-mar-obra-cimbra-alberca-480.avif"
+    ],
+    [
+      720,
+      "59-atardecer-mar-obra-cimbra-alberca-960.avif"
+    ],
+    [
+      960,
+      "59-atardecer-mar-obra-cimbra-alberca.avif"
+    ]
+  ],
+  "02-el-bicho/81-andamios-laterales-muro-blanco-palmera": [
+    [
+      270,
+      "81-andamios-laterales-muro-blanco-palmera-480.avif"
+    ],
+    [
+      540,
+      "81-andamios-laterales-muro-blanco-palmera-960.avif"
+    ],
+    [
+      720,
+      "81-andamios-laterales-muro-blanco-palmera.avif"
+    ]
+  ],
+  "02-el-bicho/82-avance-obra-fachada-blanca-patio-arena": [
+    [
+      360,
+      "82-avance-obra-fachada-blanca-patio-arena-480.avif"
+    ],
+    [
+      720,
+      "82-avance-obra-fachada-blanca-patio-arena-960.avif"
+    ],
+    [
+      960,
+      "82-avance-obra-fachada-blanca-patio-arena.avif"
+    ]
+  ],
+  "02-el-bicho/84-nivelacion-laser-estructura-metalica-interior": [
+    [
+      480,
+      "84-nivelacion-laser-estructura-metalica-interior-480.avif"
+    ],
+    [
+      960,
+      "84-nivelacion-laser-estructura-metalica-interior-960.avif"
+    ],
+    [
+      1280,
+      "84-nivelacion-laser-estructura-metalica-interior.avif"
+    ]
+  ],
+  "02-el-bicho/85-ajuste-plomo-laser-columna-revestimiento": [
+    [
+      360,
+      "85-ajuste-plomo-laser-columna-revestimiento-480.avif"
+    ],
+    [
+      720,
+      "85-ajuste-plomo-laser-columna-revestimiento-960.avif"
+    ],
+    [
+      960,
+      "85-ajuste-plomo-laser-columna-revestimiento.avif"
+    ]
+  ],
+  "02-el-bicho/86-supervision-trazo-laser-pasillo-obra": [
+    [
+      360,
+      "86-supervision-trazo-laser-pasillo-obra-480.avif"
+    ],
+    [
+      720,
+      "86-supervision-trazo-laser-pasillo-obra-960.avif"
+    ],
+    [
+      960,
+      "86-supervision-trazo-laser-pasillo-obra.avif"
+    ]
+  ],
+  "02-el-bicho/87-instalacion-paneles-estructura-metalica-laser": [
+    [
+      480,
+      "87-instalacion-paneles-estructura-metalica-laser-480.avif"
+    ],
+    [
+      960,
+      "87-instalacion-paneles-estructura-metalica-laser-960.avif"
+    ],
+    [
+      1280,
+      "87-instalacion-paneles-estructura-metalica-laser.avif"
+    ]
+  ],
+  "02-el-bicho/36-colado-con-manguera-playa": [
+    [
+      360,
+      "36-colado-con-manguera-playa-480.avif"
+    ],
+    [
+      720,
+      "36-colado-con-manguera-playa-960.avif"
+    ],
+    [
+      960,
+      "36-colado-con-manguera-playa.avif"
+    ]
+  ],
+  "02-el-bicho/77-bomba-concreto-colado-torre-costa": [
+    [
+      361,
+      "77-bomba-concreto-colado-torre-costa-480.avif"
+    ],
+    [
+      722,
+      "77-bomba-concreto-colado-torre-costa-960.avif"
+    ],
+    [
+      963,
+      "77-bomba-concreto-colado-torre-costa.avif"
+    ]
+  ],
+  "02-el-bicho/78-colado-losa-superior-estructura-concreto": [
+    [
+      361,
+      "78-colado-losa-superior-estructura-concreto-480.avif"
+    ],
+    [
+      722,
+      "78-colado-losa-superior-estructura-concreto-960.avif"
+    ],
+    [
+      963,
+      "78-colado-losa-superior-estructura-concreto.avif"
+    ]
+  ],
+  "02-el-bicho/05-bano-espejo-redondo-lavabo": [
+    [
+      480,
+      "05-bano-espejo-redondo-lavabo-480.avif"
+    ],
+    [
+      720,
+      "05-bano-espejo-redondo-lavabo.avif"
+    ]
+  ],
+  "02-el-bicho/08-escalera-blanca-cielo-nublado": [
+    [
+      360,
+      "08-escalera-blanca-cielo-nublado-480.avif"
+    ],
+    [
+      720,
+      "08-escalera-blanca-cielo-nublado-960.avif"
+    ],
+    [
+      1200,
+      "08-escalera-blanca-cielo-nublado.avif"
+    ]
+  ],
+  "02-el-bicho/13-fachada-alberca-palmeras": [
+    [
+      480,
+      "13-fachada-alberca-palmeras-480.avif"
+    ],
+    [
+      960,
+      "13-fachada-alberca-palmeras-960.avif"
+    ],
+    [
+      1280,
+      "13-fachada-alberca-palmeras.avif"
+    ]
+  ],
+  "02-el-bicho/16-fachada-palapas-obra-piscina": [
+    [
+      480,
+      "16-fachada-palapas-obra-piscina-480.avif"
+    ],
+    [
+      960,
+      "16-fachada-palapas-obra-piscina-960.avif"
+    ],
+    [
+      1280,
+      "16-fachada-palapas-obra-piscina.avif"
+    ]
+  ],
   "02-el-bicho/20-balcon-madera-palapa-blanco": [
     [
       360,
@@ -801,160 +1539,6 @@
       "21-escalera-blanca-palma-adoquin.avif"
     ]
   ],
-  "02-el-bicho/22-estructura-concreto-dos-niveles": [
-    [
-      360,
-      "22-estructura-concreto-dos-niveles-480.avif"
-    ],
-    [
-      720,
-      "22-estructura-concreto-dos-niveles-960.avif"
-    ],
-    [
-      1200,
-      "22-estructura-concreto-dos-niveles.avif"
-    ]
-  ],
-  "02-el-bicho/23-obra-dos-pisos-trabajadores": [
-    [
-      360,
-      "23-obra-dos-pisos-trabajadores-480.avif"
-    ],
-    [
-      720,
-      "23-obra-dos-pisos-trabajadores-960.avif"
-    ],
-    [
-      960,
-      "23-obra-dos-pisos-trabajadores.avif"
-    ]
-  ],
-  "02-el-bicho/24-estructura-madera-en-construccion": [
-    [
-      359,
-      "24-estructura-madera-en-construccion-480.avif"
-    ],
-    [
-      719,
-      "24-estructura-madera-en-construccion-960.avif"
-    ],
-    [
-      958,
-      "24-estructura-madera-en-construccion.avif"
-    ]
-  ],
-  "02-el-bicho/25-trabajador-frente-a-obra-playa": [
-    [
-      359,
-      "25-trabajador-frente-a-obra-playa-480.avif"
-    ],
-    [
-      719,
-      "25-trabajador-frente-a-obra-playa-960.avif"
-    ],
-    [
-      958,
-      "25-trabajador-frente-a-obra-playa.avif"
-    ]
-  ],
-  "02-el-bicho/26-interior-armadura-techo-madera": [
-    [
-      270,
-      "26-interior-armadura-techo-madera-480.avif"
-    ],
-    [
-      540,
-      "26-interior-armadura-techo-madera-960.avif"
-    ],
-    [
-      899,
-      "26-interior-armadura-techo-madera.avif"
-    ]
-  ],
-  "02-el-bicho/27-fachada-palapas-en-obra": [
-    [
-      480,
-      "27-fachada-palapas-en-obra-480.avif"
-    ],
-    [
-      960,
-      "27-fachada-palapas-en-obra-960.avif"
-    ],
-    [
-      1600,
-      "27-fachada-palapas-en-obra.avif"
-    ]
-  ],
-  "02-el-bicho/28-cimentacion-frente-al-mar": [
-    [
-      360,
-      "28-cimentacion-frente-al-mar-480.avif"
-    ],
-    [
-      720,
-      "28-cimentacion-frente-al-mar-960.avif"
-    ],
-    [
-      1200,
-      "28-cimentacion-frente-al-mar.avif"
-    ]
-  ],
-  "02-el-bicho/29-armadura-madera-andamios-interior": [
-    [
-      480,
-      "29-armadura-madera-andamios-interior-480.avif"
-    ],
-    [
-      960,
-      "29-armadura-madera-andamios-interior-960.avif"
-    ],
-    [
-      1600,
-      "29-armadura-madera-andamios-interior.avif"
-    ]
-  ],
-  "02-el-bicho/30-armadura-techo-pacas-palapa": [
-    [
-      270,
-      "30-armadura-techo-pacas-palapa-480.avif"
-    ],
-    [
-      540,
-      "30-armadura-techo-pacas-palapa-960.avif"
-    ],
-    [
-      899,
-      "30-armadura-techo-pacas-palapa.avif"
-    ]
-  ],
-  "02-el-bicho/31-fachada-iluminada-nocturna": [
-    [
-      480,
-      "31-fachada-iluminada-nocturna-480.avif"
-    ],
-    [
-      960,
-      "31-fachada-iluminada-nocturna-960.avif"
-    ],
-    [
-      1600,
-      "31-fachada-iluminada-nocturna.avif"
-    ]
-  ],
-  "02-el-bicho/32-fachada-obra-andamios": [
-    [
-      480,
-      "32-fachada-obra-andamios-480.avif"
-    ],
-    [
-      960,
-      "32-fachada-obra-andamios-960.avif"
-    ],
-    [
-      1600,
-      "32-fachada-obra-andamios.avif"
-    ]
-  ],
   "02-el-bicho/33-trabajadores-terraza-mar": [
     [
       359,
@@ -967,114 +1551,6 @@
     [
       958,
       "33-trabajadores-terraza-mar.avif"
-    ]
-  ],
-  "02-el-bicho/34-aplanado-techo-interior": [
-    [
-      360,
-      "34-aplanado-techo-interior-480.avif"
-    ],
-    [
-      768,
-      "34-aplanado-techo-interior.avif"
-    ]
-  ],
-  "02-el-bicho/35-cimentacion-varilla-malla-verde": [
-    [
-      480,
-      "35-cimentacion-varilla-malla-verde-480.avif"
-    ],
-    [
-      960,
-      "35-cimentacion-varilla-malla-verde-960.avif"
-    ],
-    [
-      1600,
-      "35-cimentacion-varilla-malla-verde.avif"
-    ]
-  ],
-  "02-el-bicho/36-colado-con-manguera-playa": [
-    [
-      360,
-      "36-colado-con-manguera-playa-480.avif"
-    ],
-    [
-      720,
-      "36-colado-con-manguera-playa-960.avif"
-    ],
-    [
-      960,
-      "36-colado-con-manguera-playa.avif"
-    ]
-  ],
-  "02-el-bicho/37-cimentacion-madera-playa": [
-    [
-      480,
-      "37-cimentacion-madera-playa-480.avif"
-    ],
-    [
-      960,
-      "37-cimentacion-madera-playa-960.avif"
-    ],
-    [
-      1280,
-      "37-cimentacion-madera-playa.avif"
-    ]
-  ],
-  "02-el-bicho/38-armadura-madera-palapa-obra": [
-    [
-      480,
-      "38-armadura-madera-palapa-obra-480.avif"
-    ],
-    [
-      960,
-      "38-armadura-madera-palapa-obra-960.avif"
-    ],
-    [
-      1280,
-      "38-armadura-madera-palapa-obra.avif"
-    ]
-  ],
-  "02-el-bicho/39-armado-cimentacion-concreto": [
-    [
-      480,
-      "39-armado-cimentacion-concreto-480.avif"
-    ],
-    [
-      960,
-      "39-armado-cimentacion-concreto-960.avif"
-    ],
-    [
-      1600,
-      "39-armado-cimentacion-concreto.avif"
-    ]
-  ],
-  "02-el-bicho/40-alberca-borde-blanco-palmas": [
-    [
-      360,
-      "40-alberca-borde-blanco-palmas-480.avif"
-    ],
-    [
-      720,
-      "40-alberca-borde-blanco-palmas-960.avif"
-    ],
-    [
-      1500,
-      "40-alberca-borde-blanco-palmas.avif"
-    ]
-  ],
-  "02-el-bicho/41-trabajador-armado-madera-obra": [
-    [
-      360,
-      "41-trabajador-armado-madera-obra-480.avif"
-    ],
-    [
-      720,
-      "41-trabajador-armado-madera-obra-960.avif"
-    ],
-    [
-      960,
-      "41-trabajador-armado-madera-obra.avif"
     ]
   ],
   "02-el-bicho/42-columnas-atardecer-mar": [
@@ -1245,482 +1721,6 @@
       "53-obra-nocturna-maquinaria.avif"
     ]
   ],
-  "02-el-bicho/54-fachada-nocturna-alberca-iluminada-palapas": [
-    [
-      480,
-      "54-fachada-nocturna-alberca-iluminada-palapas-480.avif"
-    ],
-    [
-      960,
-      "54-fachada-nocturna-alberca-iluminada-palapas-960.avif"
-    ],
-    [
-      1080,
-      "54-fachada-nocturna-alberca-iluminada-palapas.avif"
-    ]
-  ],
-  "02-el-bicho/55-puesta-de-sol-mar-desde-palapa": [
-    [
-      360,
-      "55-puesta-de-sol-mar-desde-palapa-480.avif"
-    ],
-    [
-      720,
-      "55-puesta-de-sol-mar-desde-palapa-960.avif"
-    ],
-    [
-      960,
-      "55-puesta-de-sol-mar-desde-palapa.avif"
-    ]
-  ],
-  "02-el-bicho/56-toma-aerea-villas-palapas-en-obra": [
-    [
-      480,
-      "56-toma-aerea-villas-palapas-en-obra-480.avif"
-    ],
-    [
-      960,
-      "56-toma-aerea-villas-palapas-en-obra-960.avif"
-    ],
-    [
-      1280,
-      "56-toma-aerea-villas-palapas-en-obra.avif"
-    ]
-  ],
-  "02-el-bicho/57-panoramica-aerea-conjunto-costero-zicatela": [
-    [
-      480,
-      "57-panoramica-aerea-conjunto-costero-zicatela-480.avif"
-    ],
-    [
-      960,
-      "57-panoramica-aerea-conjunto-costero-zicatela-960.avif"
-    ],
-    [
-      1280,
-      "57-panoramica-aerea-conjunto-costero-zicatela.avif"
-    ]
-  ],
-  "02-el-bicho/58-toma-aerea-posterior-techos-palma-mar": [
-    [
-      480,
-      "58-toma-aerea-posterior-techos-palma-mar-480.avif"
-    ],
-    [
-      960,
-      "58-toma-aerea-posterior-techos-palma-mar-960.avif"
-    ],
-    [
-      1280,
-      "58-toma-aerea-posterior-techos-palma-mar.avif"
-    ]
-  ],
-  "02-el-bicho/59-atardecer-mar-obra-cimbra-alberca": [
-    [
-      360,
-      "59-atardecer-mar-obra-cimbra-alberca-480.avif"
-    ],
-    [
-      720,
-      "59-atardecer-mar-obra-cimbra-alberca-960.avif"
-    ],
-    [
-      960,
-      "59-atardecer-mar-obra-cimbra-alberca.avif"
-    ]
-  ],
-  "02-el-bicho/60-columnas-redondas-madera-terrazas-blancas": [
-    [
-      270,
-      "60-columnas-redondas-madera-terrazas-blancas-480.avif"
-    ],
-    [
-      539,
-      "60-columnas-redondas-madera-terrazas-blancas-960.avif"
-    ],
-    [
-      719,
-      "60-columnas-redondas-madera-terrazas-blancas.avif"
-    ]
-  ],
-  "02-el-bicho/61-detalle-tejido-palma-vigas-palapa-mar": [
-    [
-      360,
-      "61-detalle-tejido-palma-vigas-palapa-mar-480.avif"
-    ],
-    [
-      720,
-      "61-detalle-tejido-palma-vigas-palapa-mar-960.avif"
-    ],
-    [
-      960,
-      "61-detalle-tejido-palma-vigas-palapa-mar.avif"
-    ]
-  ],
-  "02-el-bicho/62-escalera-interior-herreria-negra-piso-madera": [
-    [
-      360,
-      "62-escalera-interior-herreria-negra-piso-madera-480.avif"
-    ],
-    [
-      720,
-      "62-escalera-interior-herreria-negra-piso-madera-960.avif"
-    ],
-    [
-      960,
-      "62-escalera-interior-herreria-negra-piso-madera.avif"
-    ]
-  ],
-  "02-el-bicho/63-mezzanine-barandal-herreria-techo-palapa": [
-    [
-      480,
-      "63-mezzanine-barandal-herreria-techo-palapa-480.avif"
-    ],
-    [
-      960,
-      "63-mezzanine-barandal-herreria-techo-palapa-960.avif"
-    ],
-    [
-      1280,
-      "63-mezzanine-barandal-herreria-techo-palapa.avif"
-    ]
-  ],
-  "02-el-bicho/64-textura-interior-tejido-palma-troncos": [
-    [
-      480,
-      "64-textura-interior-tejido-palma-troncos-480.avif"
-    ],
-    [
-      960,
-      "64-textura-interior-tejido-palma-troncos-960.avif"
-    ],
-    [
-      1280,
-      "64-textura-interior-tejido-palma-troncos.avif"
-    ]
-  ],
-  "02-el-bicho/65-fachada-posterior-iluminada-anochecer-palapa": [
-    [
-      360,
-      "65-fachada-posterior-iluminada-anochecer-palapa-480.avif"
-    ],
-    [
-      720,
-      "65-fachada-posterior-iluminada-anochecer-palapa-960.avif"
-    ],
-    [
-      960,
-      "65-fachada-posterior-iluminada-anochecer-palapa.avif"
-    ]
-  ],
-  "02-el-bicho/66-escalera-exterior-blanca-iluminacion-nocturna": [
-    [
-      270,
-      "66-escalera-exterior-blanca-iluminacion-nocturna-480.avif"
-    ],
-    [
-      540,
-      "66-escalera-exterior-blanca-iluminacion-nocturna-960.avif"
-    ],
-    [
-      720,
-      "66-escalera-exterior-blanca-iluminacion-nocturna.avif"
-    ]
-  ],
-  "02-el-bicho/67-terraza-cubierta-palapa-horizonte-marino": [
-    [
-      480,
-      "67-terraza-cubierta-palapa-horizonte-marino-480.avif"
-    ],
-    [
-      960,
-      "67-terraza-cubierta-palapa-horizonte-marino-960.avif"
-    ],
-    [
-      1280,
-      "67-terraza-cubierta-palapa-horizonte-marino.avif"
-    ]
-  ],
-  "02-el-bicho/68-estructura-prefabricada-columnas-trabes-concreto": [
-    [
-      480,
-      "68-estructura-prefabricada-columnas-trabes-concreto-480.avif"
-    ],
-    [
-      960,
-      "68-estructura-prefabricada-columnas-trabes-concreto-960.avif"
-    ],
-    [
-      1280,
-      "68-estructura-prefabricada-columnas-trabes-concreto.avif"
-    ]
-  ],
-  "02-el-bicho/69-izado-columnas-prefabricadas-grua-cielo-azul": [
-    [
-      480,
-      "69-izado-columnas-prefabricadas-grua-cielo-azul-480.avif"
-    ],
-    [
-      960,
-      "69-izado-columnas-prefabricadas-grua-cielo-azul-960.avif"
-    ],
-    [
-      1280,
-      "69-izado-columnas-prefabricadas-grua-cielo-azul.avif"
-    ]
-  ],
-  "02-el-bicho/70-grua-telescopica-maniobra-obra-vial": [
-    [
-      480,
-      "70-grua-telescopica-maniobra-obra-vial-480.avif"
-    ],
-    [
-      960,
-      "70-grua-telescopica-maniobra-obra-vial-960.avif"
-    ],
-    [
-      1280,
-      "70-grua-telescopica-maniobra-obra-vial.avif"
-    ]
-  ],
-  "02-el-bicho/71-armado-cimbra-alberca-lona-sombra": [
-    [
-      360,
-      "71-armado-cimbra-alberca-lona-sombra-480.avif"
-    ],
-    [
-      720,
-      "71-armado-cimbra-alberca-lona-sombra-960.avif"
-    ],
-    [
-      960,
-      "71-armado-cimbra-alberca-lona-sombra.avif"
-    ]
-  ],
-  "02-el-bicho/72-vista-cenital-cimbra-alberca-palmeras": [
-    [
-      360,
-      "72-vista-cenital-cimbra-alberca-palmeras-480.avif"
-    ],
-    [
-      720,
-      "72-vista-cenital-cimbra-alberca-palmeras-960.avif"
-    ],
-    [
-      960,
-      "72-vista-cenital-cimbra-alberca-palmeras.avif"
-    ]
-  ],
-  "02-el-bicho/73-obra-nocturna-cimbra-alberca-iluminada": [
-    [
-      360,
-      "73-obra-nocturna-cimbra-alberca-iluminada-480.avif"
-    ],
-    [
-      720,
-      "73-obra-nocturna-cimbra-alberca-iluminada-960.avif"
-    ],
-    [
-      960,
-      "73-obra-nocturna-cimbra-alberca-iluminada.avif"
-    ]
-  ],
-  "02-el-bicho/74-parrilla-acero-cimbra-alberca-playa": [
-    [
-      360,
-      "74-parrilla-acero-cimbra-alberca-playa-480.avif"
-    ],
-    [
-      720,
-      "74-parrilla-acero-cimbra-alberca-playa-960.avif"
-    ],
-    [
-      960,
-      "74-parrilla-acero-cimbra-alberca-playa.avif"
-    ]
-  ],
-  "02-el-bicho/75-vista-superior-encofrado-madera-arena": [
-    [
-      360,
-      "75-vista-superior-encofrado-madera-arena-480.avif"
-    ],
-    [
-      720,
-      "75-vista-superior-encofrado-madera-arena-960.avif"
-    ],
-    [
-      960,
-      "75-vista-superior-encofrado-madera-arena.avif"
-    ]
-  ],
-  "02-el-bicho/76-estructura-concreto-dos-niveles-frente-obra": [
-    [
-      480,
-      "76-estructura-concreto-dos-niveles-frente-obra-480.avif"
-    ],
-    [
-      960,
-      "76-estructura-concreto-dos-niveles-frente-obra-960.avif"
-    ],
-    [
-      1280,
-      "76-estructura-concreto-dos-niveles-frente-obra.avif"
-    ]
-  ],
-  "02-el-bicho/77-bomba-concreto-colado-torre-costa": [
-    [
-      361,
-      "77-bomba-concreto-colado-torre-costa-480.avif"
-    ],
-    [
-      722,
-      "77-bomba-concreto-colado-torre-costa-960.avif"
-    ],
-    [
-      963,
-      "77-bomba-concreto-colado-torre-costa.avif"
-    ]
-  ],
-  "02-el-bicho/78-colado-losa-superior-estructura-concreto": [
-    [
-      361,
-      "78-colado-losa-superior-estructura-concreto-480.avif"
-    ],
-    [
-      722,
-      "78-colado-losa-superior-estructura-concreto-960.avif"
-    ],
-    [
-      963,
-      "78-colado-losa-superior-estructura-concreto.avif"
-    ]
-  ],
-  "02-el-bicho/79-trabajador-andamio-madera-armado-trabe": [
-    [
-      360,
-      "79-trabajador-andamio-madera-armado-trabe-480.avif"
-    ],
-    [
-      720,
-      "79-trabajador-andamio-madera-armado-trabe-960.avif"
-    ],
-    [
-      960,
-      "79-trabajador-andamio-madera-armado-trabe.avif"
-    ]
-  ],
-  "02-el-bicho/80-conjunto-obra-gris-rampa-acceso-arena": [
-    [
-      360,
-      "80-conjunto-obra-gris-rampa-acceso-arena-480.avif"
-    ],
-    [
-      720,
-      "80-conjunto-obra-gris-rampa-acceso-arena-960.avif"
-    ],
-    [
-      960,
-      "80-conjunto-obra-gris-rampa-acceso-arena.avif"
-    ]
-  ],
-  "02-el-bicho/81-andamios-laterales-muro-blanco-palmera": [
-    [
-      270,
-      "81-andamios-laterales-muro-blanco-palmera-480.avif"
-    ],
-    [
-      540,
-      "81-andamios-laterales-muro-blanco-palmera-960.avif"
-    ],
-    [
-      720,
-      "81-andamios-laterales-muro-blanco-palmera.avif"
-    ]
-  ],
-  "02-el-bicho/82-avance-obra-fachada-blanca-patio-arena": [
-    [
-      360,
-      "82-avance-obra-fachada-blanca-patio-arena-480.avif"
-    ],
-    [
-      720,
-      "82-avance-obra-fachada-blanca-patio-arena-960.avif"
-    ],
-    [
-      960,
-      "82-avance-obra-fachada-blanca-patio-arena.avif"
-    ]
-  ],
-  "02-el-bicho/83-maniobra-montaje-prefabricado-concreto-obra": [
-    [
-      480,
-      "83-maniobra-montaje-prefabricado-concreto-obra-480.avif"
-    ],
-    [
-      960,
-      "83-maniobra-montaje-prefabricado-concreto-obra-960.avif"
-    ],
-    [
-      1280,
-      "83-maniobra-montaje-prefabricado-concreto-obra.avif"
-    ]
-  ],
-  "02-el-bicho/84-nivelacion-laser-estructura-metalica-interior": [
-    [
-      480,
-      "84-nivelacion-laser-estructura-metalica-interior-480.avif"
-    ],
-    [
-      960,
-      "84-nivelacion-laser-estructura-metalica-interior-960.avif"
-    ],
-    [
-      1280,
-      "84-nivelacion-laser-estructura-metalica-interior.avif"
-    ]
-  ],
-  "02-el-bicho/85-ajuste-plomo-laser-columna-revestimiento": [
-    [
-      360,
-      "85-ajuste-plomo-laser-columna-revestimiento-480.avif"
-    ],
-    [
-      720,
-      "85-ajuste-plomo-laser-columna-revestimiento-960.avif"
-    ],
-    [
-      960,
-      "85-ajuste-plomo-laser-columna-revestimiento.avif"
-    ]
-  ],
-  "02-el-bicho/86-supervision-trazo-laser-pasillo-obra": [
-    [
-      360,
-      "86-supervision-trazo-laser-pasillo-obra-480.avif"
-    ],
-    [
-      720,
-      "86-supervision-trazo-laser-pasillo-obra-960.avif"
-    ],
-    [
-      960,
-      "86-supervision-trazo-laser-pasillo-obra.avif"
-    ]
-  ],
-  "02-el-bicho/87-instalacion-paneles-estructura-metalica-laser": [
-    [
-      480,
-      "87-instalacion-paneles-estructura-metalica-laser-480.avif"
-    ],
-    [
-      960,
-      "87-instalacion-paneles-estructura-metalica-laser-960.avif"
-    ],
-    [
-      1280,
-      "87-instalacion-paneles-estructura-metalica-laser.avif"
-    ]
-  ],
   "02-el-bicho/88-render-interior-nave-industrial-camioneta": [
     [
       348,
@@ -1791,46 +1791,18 @@
       "02-porton-negro-pilares-ladrillo.avif"
     ]
   ],
-  "03-casa-blake-tlalixtac/03-muro-concreto-andamio-naranja": [
+  "03-casa-blake-tlalixtac/08-fachada-frontal-dos-plantas": [
     [
       360,
-      "03-muro-concreto-andamio-naranja-480.avif"
+      "08-fachada-frontal-dos-plantas-480.avif"
     ],
     [
       720,
-      "03-muro-concreto-andamio-naranja-960.avif"
+      "08-fachada-frontal-dos-plantas-960.avif"
     ],
     [
       1200,
-      "03-muro-concreto-andamio-naranja.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/04-albanil-muro-concreto-contraluz": [
-    [
-      360,
-      "04-albanil-muro-concreto-contraluz-480.avif"
-    ],
-    [
-      720,
-      "04-albanil-muro-concreto-contraluz-960.avif"
-    ],
-    [
-      1200,
-      "04-albanil-muro-concreto-contraluz.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/05-muro-ladrillo-perspectiva-farol": [
-    [
-      360,
-      "05-muro-ladrillo-perspectiva-farol-480.avif"
-    ],
-    [
-      720,
-      "05-muro-ladrillo-perspectiva-farol-960.avif"
-    ],
-    [
-      1200,
-      "05-muro-ladrillo-perspectiva-farol.avif"
+      "08-fachada-frontal-dos-plantas.avif"
     ]
   ],
   "03-casa-blake-tlalixtac/06-fachada-camino-losas-jardin": [
@@ -1847,62 +1819,6 @@
       "06-fachada-camino-losas-jardin.avif"
     ]
   ],
-  "03-casa-blake-tlalixtac/07-corredor-vigas-madera-lamparas": [
-    [
-      360,
-      "07-corredor-vigas-madera-lamparas-480.avif"
-    ],
-    [
-      720,
-      "07-corredor-vigas-madera-lamparas-960.avif"
-    ],
-    [
-      960,
-      "07-corredor-vigas-madera-lamparas.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/08-fachada-frontal-dos-plantas": [
-    [
-      360,
-      "08-fachada-frontal-dos-plantas-480.avif"
-    ],
-    [
-      720,
-      "08-fachada-frontal-dos-plantas-960.avif"
-    ],
-    [
-      1200,
-      "08-fachada-frontal-dos-plantas.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/09-esquina-ventanal-farol-terraza": [
-    [
-      360,
-      "09-esquina-ventanal-farol-terraza-480.avif"
-    ],
-    [
-      720,
-      "09-esquina-ventanal-farol-terraza-960.avif"
-    ],
-    [
-      1200,
-      "09-esquina-ventanal-farol-terraza.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/10-ventanal-reja-geometrica": [
-    [
-      360,
-      "10-ventanal-reja-geometrica-480.avif"
-    ],
-    [
-      720,
-      "10-ventanal-reja-geometrica-960.avif"
-    ],
-    [
-      1200,
-      "10-ventanal-reja-geometrica.avif"
-    ]
-  ],
   "03-casa-blake-tlalixtac/11-casa-blanca-esquina-terraza": [
     [
       360,
@@ -1915,48 +1831,6 @@
     [
       1200,
       "11-casa-blanca-esquina-terraza.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/12-puerta-corrediza-reja-geometrica": [
-    [
-      360,
-      "12-puerta-corrediza-reja-geometrica-480.avif"
-    ],
-    [
-      720,
-      "12-puerta-corrediza-reja-geometrica-960.avif"
-    ],
-    [
-      1200,
-      "12-puerta-corrediza-reja-geometrica.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/13-brocal-pozo-ladrillo-polea": [
-    [
-      270,
-      "13-brocal-pozo-ladrillo-polea-480.avif"
-    ],
-    [
-      540,
-      "13-brocal-pozo-ladrillo-polea-960.avif"
-    ],
-    [
-      900,
-      "13-brocal-pozo-ladrillo-polea.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/14-interior-obra-ventana-escalera": [
-    [
-      360,
-      "14-interior-obra-ventana-escalera-480.avif"
-    ],
-    [
-      720,
-      "14-interior-obra-ventana-escalera-960.avif"
-    ],
-    [
-      1200,
-      "14-interior-obra-ventana-escalera.avif"
     ]
   ],
   "03-casa-blake-tlalixtac/15-terraza-pavimento-cuadricula": [
@@ -2001,18 +1875,144 @@
       "17-pilar-ladrillo-concreto-porton.avif"
     ]
   ],
-  "03-casa-blake-tlalixtac/18-brazo-bomba-concreto-obra": [
+  "03-casa-blake-tlalixtac/36-vista-superior-alberca-mosaico-negro-sol": [
     [
-      361,
-      "18-brazo-bomba-concreto-obra-480.avif"
+      360,
+      "36-vista-superior-alberca-mosaico-negro-sol-480.avif"
     ],
     [
-      722,
-      "18-brazo-bomba-concreto-obra-960.avif"
+      720,
+      "36-vista-superior-alberca-mosaico-negro-sol-960.avif"
     ],
     [
-      963,
-      "18-brazo-bomba-concreto-obra.avif"
+      960,
+      "36-vista-superior-alberca-mosaico-negro-sol.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/37-perspectiva-alberca-revestimiento-oscuro-sombra": [
+    [
+      360,
+      "37-perspectiva-alberca-revestimiento-oscuro-sombra-480.avif"
+    ],
+    [
+      720,
+      "37-perspectiva-alberca-revestimiento-oscuro-sombra-960.avif"
+    ],
+    [
+      960,
+      "37-perspectiva-alberca-revestimiento-oscuro-sombra.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/38-alberca-curva-terminada-mosaico-gris-jardin": [
+    [
+      360,
+      "38-alberca-curva-terminada-mosaico-gris-jardin-480.avif"
+    ],
+    [
+      720,
+      "38-alberca-curva-terminada-mosaico-gris-jardin-960.avif"
+    ],
+    [
+      960,
+      "38-alberca-curva-terminada-mosaico-gris-jardin.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/39-sombra-palmeras-sobre-alberca-revestida": [
+    [
+      480,
+      "39-sombra-palmeras-sobre-alberca-revestida-480.avif"
+    ],
+    [
+      960,
+      "39-sombra-palmeras-sobre-alberca-revestida-960.avif"
+    ],
+    [
+      1280,
+      "39-sombra-palmeras-sobre-alberca-revestida.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/47-detalle-canal-desborde-alberca-mosaico": [
+    [
+      360,
+      "47-detalle-canal-desborde-alberca-mosaico-480.avif"
+    ],
+    [
+      720,
+      "47-detalle-canal-desborde-alberca-mosaico-960.avif"
+    ],
+    [
+      960,
+      "47-detalle-canal-desborde-alberca-mosaico.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/07-corredor-vigas-madera-lamparas": [
+    [
+      360,
+      "07-corredor-vigas-madera-lamparas-480.avif"
+    ],
+    [
+      720,
+      "07-corredor-vigas-madera-lamparas-960.avif"
+    ],
+    [
+      960,
+      "07-corredor-vigas-madera-lamparas.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/05-muro-ladrillo-perspectiva-farol": [
+    [
+      360,
+      "05-muro-ladrillo-perspectiva-farol-480.avif"
+    ],
+    [
+      720,
+      "05-muro-ladrillo-perspectiva-farol-960.avif"
+    ],
+    [
+      1200,
+      "05-muro-ladrillo-perspectiva-farol.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/09-esquina-ventanal-farol-terraza": [
+    [
+      360,
+      "09-esquina-ventanal-farol-terraza-480.avif"
+    ],
+    [
+      720,
+      "09-esquina-ventanal-farol-terraza-960.avif"
+    ],
+    [
+      1200,
+      "09-esquina-ventanal-farol-terraza.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/12-puerta-corrediza-reja-geometrica": [
+    [
+      360,
+      "12-puerta-corrediza-reja-geometrica-480.avif"
+    ],
+    [
+      720,
+      "12-puerta-corrediza-reja-geometrica-960.avif"
+    ],
+    [
+      1200,
+      "12-puerta-corrediza-reja-geometrica.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/13-brocal-pozo-ladrillo-polea": [
+    [
+      270,
+      "13-brocal-pozo-ladrillo-polea-480.avif"
+    ],
+    [
+      540,
+      "13-brocal-pozo-ladrillo-polea-960.avif"
+    ],
+    [
+      900,
+      "13-brocal-pozo-ladrillo-polea.avif"
     ]
   ],
   "03-casa-blake-tlalixtac/19-escalera-interior-barandal-metal": [
@@ -2027,6 +2027,258 @@
     [
       1200,
       "19-escalera-interior-barandal-metal.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/32-bomba-concreto-colado-estructura-dos-niveles": [
+    [
+      480,
+      "32-bomba-concreto-colado-estructura-dos-niveles-480.avif"
+    ],
+    [
+      960,
+      "32-bomba-concreto-colado-estructura-dos-niveles-960.avif"
+    ],
+    [
+      1280,
+      "32-bomba-concreto-colado-estructura-dos-niveles.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/33-cuadrilla-colado-losa-nervada-caseton": [
+    [
+      480,
+      "33-cuadrilla-colado-losa-nervada-caseton-480.avif"
+    ],
+    [
+      960,
+      "33-cuadrilla-colado-losa-nervada-caseton-960.avif"
+    ],
+    [
+      1280,
+      "33-cuadrilla-colado-losa-nervada-caseton.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/34-vaciado-concreto-losa-azotea-montanas": [
+    [
+      480,
+      "34-vaciado-concreto-losa-azotea-montanas-480.avif"
+    ],
+    [
+      960,
+      "34-vaciado-concreto-losa-azotea-montanas-960.avif"
+    ],
+    [
+      1280,
+      "34-vaciado-concreto-losa-azotea-montanas.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/35-tendido-concreto-malla-electrosoldada-losa": [
+    [
+      480,
+      "35-tendido-concreto-malla-electrosoldada-losa-480.avif"
+    ],
+    [
+      960,
+      "35-tendido-concreto-malla-electrosoldada-losa-960.avif"
+    ],
+    [
+      1280,
+      "35-tendido-concreto-malla-electrosoldada-losa.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/40-camion-revolvedora-bomba-concreto-terreno": [
+    [
+      480,
+      "40-camion-revolvedora-bomba-concreto-terreno-480.avif"
+    ],
+    [
+      960,
+      "40-camion-revolvedora-bomba-concreto-terreno-960.avif"
+    ],
+    [
+      1280,
+      "40-camion-revolvedora-bomba-concreto-terreno.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/41-pluma-bomba-concreto-sobre-segundo-nivel": [
+    [
+      480,
+      "41-pluma-bomba-concreto-sobre-segundo-nivel-480.avif"
+    ],
+    [
+      960,
+      "41-pluma-bomba-concreto-sobre-segundo-nivel-960.avif"
+    ],
+    [
+      1280,
+      "41-pluma-bomba-concreto-sobre-segundo-nivel.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/42-estabilizadores-camion-bomba-concreto-obra": [
+    [
+      480,
+      "42-estabilizadores-camion-bomba-concreto-obra-480.avif"
+    ],
+    [
+      960,
+      "42-estabilizadores-camion-bomba-concreto-obra-960.avif"
+    ],
+    [
+      1280,
+      "42-estabilizadores-camion-bomba-concreto-obra.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/43-panoramica-obra-colado-camiones-concreto": [
+    [
+      480,
+      "43-panoramica-obra-colado-camiones-concreto-480.avif"
+    ],
+    [
+      960,
+      "43-panoramica-obra-colado-camiones-concreto-960.avif"
+    ],
+    [
+      1280,
+      "43-panoramica-obra-colado-camiones-concreto.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/44-revestimiento-mosaico-escalones-alberca": [
+    [
+      480,
+      "44-revestimiento-mosaico-escalones-alberca-480.avif"
+    ],
+    [
+      960,
+      "44-revestimiento-mosaico-escalones-alberca-960.avif"
+    ],
+    [
+      1280,
+      "44-revestimiento-mosaico-escalones-alberca.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/45-limpieza-juntas-mosaico-fondo-alberca": [
+    [
+      480,
+      "45-limpieza-juntas-mosaico-fondo-alberca-480.avif"
+    ],
+    [
+      960,
+      "45-limpieza-juntas-mosaico-fondo-alberca-960.avif"
+    ],
+    [
+      1280,
+      "45-limpieza-juntas-mosaico-fondo-alberca.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/46-colocacion-veneciano-banca-interior-alberca": [
+    [
+      480,
+      "46-colocacion-veneciano-banca-interior-alberca-480.avif"
+    ],
+    [
+      960,
+      "46-colocacion-veneciano-banca-interior-alberca-960.avif"
+    ],
+    [
+      1280,
+      "46-colocacion-veneciano-banca-interior-alberca.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/48-emboquillado-paredes-alberca-mosaico-negro": [
+    [
+      480,
+      "48-emboquillado-paredes-alberca-mosaico-negro-480.avif"
+    ],
+    [
+      960,
+      "48-emboquillado-paredes-alberca-mosaico-negro-960.avif"
+    ],
+    [
+      1280,
+      "48-emboquillado-paredes-alberca-mosaico-negro.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/49-iluminacion-subacuatica-nocturna-alberca-obra": [
+    [
+      360,
+      "49-iluminacion-subacuatica-nocturna-alberca-obra-480.avif"
+    ],
+    [
+      720,
+      "49-iluminacion-subacuatica-nocturna-alberca-obra-960.avif"
+    ],
+    [
+      960,
+      "49-iluminacion-subacuatica-nocturna-alberca-obra.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/18-brazo-bomba-concreto-obra": [
+    [
+      361,
+      "18-brazo-bomba-concreto-obra-480.avif"
+    ],
+    [
+      722,
+      "18-brazo-bomba-concreto-obra-960.avif"
+    ],
+    [
+      963,
+      "18-brazo-bomba-concreto-obra.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/03-muro-concreto-andamio-naranja": [
+    [
+      360,
+      "03-muro-concreto-andamio-naranja-480.avif"
+    ],
+    [
+      720,
+      "03-muro-concreto-andamio-naranja-960.avif"
+    ],
+    [
+      1200,
+      "03-muro-concreto-andamio-naranja.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/04-albanil-muro-concreto-contraluz": [
+    [
+      360,
+      "04-albanil-muro-concreto-contraluz-480.avif"
+    ],
+    [
+      720,
+      "04-albanil-muro-concreto-contraluz-960.avif"
+    ],
+    [
+      1200,
+      "04-albanil-muro-concreto-contraluz.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/14-interior-obra-ventana-escalera": [
+    [
+      360,
+      "14-interior-obra-ventana-escalera-480.avif"
+    ],
+    [
+      720,
+      "14-interior-obra-ventana-escalera-960.avif"
+    ],
+    [
+      1200,
+      "14-interior-obra-ventana-escalera.avif"
+    ]
+  ],
+  "03-casa-blake-tlalixtac/10-ventanal-reja-geometrica": [
+    [
+      360,
+      "10-ventanal-reja-geometrica-480.avif"
+    ],
+    [
+      720,
+      "10-ventanal-reja-geometrica-960.avif"
+    ],
+    [
+      1200,
+      "10-ventanal-reja-geometrica.avif"
     ]
   ],
   "03-casa-blake-tlalixtac/20-estructura-en-obra-segundo-nivel": [
@@ -2197,258 +2449,6 @@
       "31-porton-negro-pilares-ladrillo-variante.avif"
     ]
   ],
-  "03-casa-blake-tlalixtac/32-bomba-concreto-colado-estructura-dos-niveles": [
-    [
-      480,
-      "32-bomba-concreto-colado-estructura-dos-niveles-480.avif"
-    ],
-    [
-      960,
-      "32-bomba-concreto-colado-estructura-dos-niveles-960.avif"
-    ],
-    [
-      1280,
-      "32-bomba-concreto-colado-estructura-dos-niveles.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/33-cuadrilla-colado-losa-nervada-caseton": [
-    [
-      480,
-      "33-cuadrilla-colado-losa-nervada-caseton-480.avif"
-    ],
-    [
-      960,
-      "33-cuadrilla-colado-losa-nervada-caseton-960.avif"
-    ],
-    [
-      1280,
-      "33-cuadrilla-colado-losa-nervada-caseton.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/34-vaciado-concreto-losa-azotea-montanas": [
-    [
-      480,
-      "34-vaciado-concreto-losa-azotea-montanas-480.avif"
-    ],
-    [
-      960,
-      "34-vaciado-concreto-losa-azotea-montanas-960.avif"
-    ],
-    [
-      1280,
-      "34-vaciado-concreto-losa-azotea-montanas.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/35-tendido-concreto-malla-electrosoldada-losa": [
-    [
-      480,
-      "35-tendido-concreto-malla-electrosoldada-losa-480.avif"
-    ],
-    [
-      960,
-      "35-tendido-concreto-malla-electrosoldada-losa-960.avif"
-    ],
-    [
-      1280,
-      "35-tendido-concreto-malla-electrosoldada-losa.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/36-vista-superior-alberca-mosaico-negro-sol": [
-    [
-      360,
-      "36-vista-superior-alberca-mosaico-negro-sol-480.avif"
-    ],
-    [
-      720,
-      "36-vista-superior-alberca-mosaico-negro-sol-960.avif"
-    ],
-    [
-      960,
-      "36-vista-superior-alberca-mosaico-negro-sol.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/37-perspectiva-alberca-revestimiento-oscuro-sombra": [
-    [
-      360,
-      "37-perspectiva-alberca-revestimiento-oscuro-sombra-480.avif"
-    ],
-    [
-      720,
-      "37-perspectiva-alberca-revestimiento-oscuro-sombra-960.avif"
-    ],
-    [
-      960,
-      "37-perspectiva-alberca-revestimiento-oscuro-sombra.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/38-alberca-curva-terminada-mosaico-gris-jardin": [
-    [
-      360,
-      "38-alberca-curva-terminada-mosaico-gris-jardin-480.avif"
-    ],
-    [
-      720,
-      "38-alberca-curva-terminada-mosaico-gris-jardin-960.avif"
-    ],
-    [
-      960,
-      "38-alberca-curva-terminada-mosaico-gris-jardin.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/39-sombra-palmeras-sobre-alberca-revestida": [
-    [
-      480,
-      "39-sombra-palmeras-sobre-alberca-revestida-480.avif"
-    ],
-    [
-      960,
-      "39-sombra-palmeras-sobre-alberca-revestida-960.avif"
-    ],
-    [
-      1280,
-      "39-sombra-palmeras-sobre-alberca-revestida.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/40-camion-revolvedora-bomba-concreto-terreno": [
-    [
-      480,
-      "40-camion-revolvedora-bomba-concreto-terreno-480.avif"
-    ],
-    [
-      960,
-      "40-camion-revolvedora-bomba-concreto-terreno-960.avif"
-    ],
-    [
-      1280,
-      "40-camion-revolvedora-bomba-concreto-terreno.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/41-pluma-bomba-concreto-sobre-segundo-nivel": [
-    [
-      480,
-      "41-pluma-bomba-concreto-sobre-segundo-nivel-480.avif"
-    ],
-    [
-      960,
-      "41-pluma-bomba-concreto-sobre-segundo-nivel-960.avif"
-    ],
-    [
-      1280,
-      "41-pluma-bomba-concreto-sobre-segundo-nivel.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/42-estabilizadores-camion-bomba-concreto-obra": [
-    [
-      480,
-      "42-estabilizadores-camion-bomba-concreto-obra-480.avif"
-    ],
-    [
-      960,
-      "42-estabilizadores-camion-bomba-concreto-obra-960.avif"
-    ],
-    [
-      1280,
-      "42-estabilizadores-camion-bomba-concreto-obra.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/43-panoramica-obra-colado-camiones-concreto": [
-    [
-      480,
-      "43-panoramica-obra-colado-camiones-concreto-480.avif"
-    ],
-    [
-      960,
-      "43-panoramica-obra-colado-camiones-concreto-960.avif"
-    ],
-    [
-      1280,
-      "43-panoramica-obra-colado-camiones-concreto.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/44-revestimiento-mosaico-escalones-alberca": [
-    [
-      480,
-      "44-revestimiento-mosaico-escalones-alberca-480.avif"
-    ],
-    [
-      960,
-      "44-revestimiento-mosaico-escalones-alberca-960.avif"
-    ],
-    [
-      1280,
-      "44-revestimiento-mosaico-escalones-alberca.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/45-limpieza-juntas-mosaico-fondo-alberca": [
-    [
-      480,
-      "45-limpieza-juntas-mosaico-fondo-alberca-480.avif"
-    ],
-    [
-      960,
-      "45-limpieza-juntas-mosaico-fondo-alberca-960.avif"
-    ],
-    [
-      1280,
-      "45-limpieza-juntas-mosaico-fondo-alberca.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/46-colocacion-veneciano-banca-interior-alberca": [
-    [
-      480,
-      "46-colocacion-veneciano-banca-interior-alberca-480.avif"
-    ],
-    [
-      960,
-      "46-colocacion-veneciano-banca-interior-alberca-960.avif"
-    ],
-    [
-      1280,
-      "46-colocacion-veneciano-banca-interior-alberca.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/47-detalle-canal-desborde-alberca-mosaico": [
-    [
-      360,
-      "47-detalle-canal-desborde-alberca-mosaico-480.avif"
-    ],
-    [
-      720,
-      "47-detalle-canal-desborde-alberca-mosaico-960.avif"
-    ],
-    [
-      960,
-      "47-detalle-canal-desborde-alberca-mosaico.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/48-emboquillado-paredes-alberca-mosaico-negro": [
-    [
-      480,
-      "48-emboquillado-paredes-alberca-mosaico-negro-480.avif"
-    ],
-    [
-      960,
-      "48-emboquillado-paredes-alberca-mosaico-negro-960.avif"
-    ],
-    [
-      1280,
-      "48-emboquillado-paredes-alberca-mosaico-negro.avif"
-    ]
-  ],
-  "03-casa-blake-tlalixtac/49-iluminacion-subacuatica-nocturna-alberca-obra": [
-    [
-      360,
-      "49-iluminacion-subacuatica-nocturna-alberca-obra-480.avif"
-    ],
-    [
-      720,
-      "49-iluminacion-subacuatica-nocturna-alberca-obra-960.avif"
-    ],
-    [
-      960,
-      "49-iluminacion-subacuatica-nocturna-alberca-obra.avif"
-    ]
-  ],
   "04-casa-melchor-ocampo/01-calle-pendiente-fachada-colonial": [
     [
       480,
@@ -2461,6 +2461,48 @@
     [
       1280,
       "01-calle-pendiente-fachada-colonial.avif"
+    ]
+  ],
+  "04-casa-melchor-ocampo/13-banqueta-muro-blanco-fachada": [
+    [
+      480,
+      "13-banqueta-muro-blanco-fachada-480.avif"
+    ],
+    [
+      960,
+      "13-banqueta-muro-blanco-fachada-960.avif"
+    ],
+    [
+      1280,
+      "13-banqueta-muro-blanco-fachada.avif"
+    ]
+  ],
+  "04-casa-melchor-ocampo/14-ventana-marco-blanco-follaje": [
+    [
+      480,
+      "14-ventana-marco-blanco-follaje-480.avif"
+    ],
+    [
+      960,
+      "14-ventana-marco-blanco-follaje-960.avif"
+    ],
+    [
+      1280,
+      "14-ventana-marco-blanco-follaje.avif"
+    ]
+  ],
+  "04-casa-melchor-ocampo/04-fachada-amarilla-balcones-celosia": [
+    [
+      480,
+      "04-fachada-amarilla-balcones-celosia-480.avif"
+    ],
+    [
+      960,
+      "04-fachada-amarilla-balcones-celosia-960.avif"
+    ],
+    [
+      1280,
+      "04-fachada-amarilla-balcones-celosia.avif"
     ]
   ],
   "04-casa-melchor-ocampo/02-puerta-acero-oxidado-relieve": [
@@ -2489,34 +2531,6 @@
     [
       854,
       "03-herreria-balcon-cielo.avif"
-    ]
-  ],
-  "04-casa-melchor-ocampo/04-fachada-amarilla-balcones-celosia": [
-    [
-      480,
-      "04-fachada-amarilla-balcones-celosia-480.avif"
-    ],
-    [
-      960,
-      "04-fachada-amarilla-balcones-celosia-960.avif"
-    ],
-    [
-      1280,
-      "04-fachada-amarilla-balcones-celosia.avif"
-    ]
-  ],
-  "04-casa-melchor-ocampo/05-celosia-ladrillo-ventana-protegida": [
-    [
-      320,
-      "05-celosia-ladrillo-ventana-protegida-480.avif"
-    ],
-    [
-      641,
-      "05-celosia-ladrillo-ventana-protegida-960.avif"
-    ],
-    [
-      854,
-      "05-celosia-ladrillo-ventana-protegida.avif"
     ]
   ],
   "04-casa-melchor-ocampo/06-balcon-esquinero-herreria": [
@@ -2559,6 +2573,20 @@
     [
       1280,
       "08-balcon-forjado-cielo-nubes.avif"
+    ]
+  ],
+  "04-casa-melchor-ocampo/05-celosia-ladrillo-ventana-protegida": [
+    [
+      320,
+      "05-celosia-ladrillo-ventana-protegida-480.avif"
+    ],
+    [
+      641,
+      "05-celosia-ladrillo-ventana-protegida-960.avif"
+    ],
+    [
+      854,
+      "05-celosia-ladrillo-ventana-protegida.avif"
     ]
   ],
   "04-casa-melchor-ocampo/09-fachada-farol-arbol-esquina": [
@@ -2617,34 +2645,6 @@
       "12-balcon-farol-contrapicado.avif"
     ]
   ],
-  "04-casa-melchor-ocampo/13-banqueta-muro-blanco-fachada": [
-    [
-      480,
-      "13-banqueta-muro-blanco-fachada-480.avif"
-    ],
-    [
-      960,
-      "13-banqueta-muro-blanco-fachada-960.avif"
-    ],
-    [
-      1280,
-      "13-banqueta-muro-blanco-fachada.avif"
-    ]
-  ],
-  "04-casa-melchor-ocampo/14-ventana-marco-blanco-follaje": [
-    [
-      480,
-      "14-ventana-marco-blanco-follaje-480.avif"
-    ],
-    [
-      960,
-      "14-ventana-marco-blanco-follaje-960.avif"
-    ],
-    [
-      1280,
-      "14-ventana-marco-blanco-follaje.avif"
-    ]
-  ],
   "04-casa-melchor-ocampo/15-ventana-follaje-ramas": [
     [
       480,
@@ -2657,20 +2657,6 @@
     [
       1280,
       "15-ventana-follaje-ramas.avif"
-    ]
-  ],
-  "05-cafe-malagua/01-barra-tabique-lamparas-calidas": [
-    [
-      480,
-      "01-barra-tabique-lamparas-calidas-480.avif"
-    ],
-    [
-      960,
-      "01-barra-tabique-lamparas-calidas-960.avif"
-    ],
-    [
-      1280,
-      "01-barra-tabique-lamparas-calidas.avif"
     ]
   ],
   "05-cafe-malagua/02-barra-central-lamparas-encendidas": [
@@ -2687,20 +2673,6 @@
       "02-barra-central-lamparas-encendidas.avif"
     ]
   ],
-  "05-cafe-malagua/03-barra-tabique-celosia-madera": [
-    [
-      480,
-      "03-barra-tabique-celosia-madera-480.avif"
-    ],
-    [
-      960,
-      "03-barra-tabique-celosia-madera-960.avif"
-    ],
-    [
-      1280,
-      "03-barra-tabique-celosia-madera.avif"
-    ]
-  ],
   "05-cafe-malagua/04-interior-palapa-lamparas-colgantes": [
     [
       360,
@@ -2713,6 +2685,34 @@
     [
       960,
       "04-interior-palapa-lamparas-colgantes.avif"
+    ]
+  ],
+  "05-cafe-malagua/01-barra-tabique-lamparas-calidas": [
+    [
+      480,
+      "01-barra-tabique-lamparas-calidas-480.avif"
+    ],
+    [
+      960,
+      "01-barra-tabique-lamparas-calidas-960.avif"
+    ],
+    [
+      1280,
+      "01-barra-tabique-lamparas-calidas.avif"
+    ]
+  ],
+  "05-cafe-malagua/03-barra-tabique-celosia-madera": [
+    [
+      480,
+      "03-barra-tabique-celosia-madera-480.avif"
+    ],
+    [
+      960,
+      "03-barra-tabique-celosia-madera-960.avif"
+    ],
+    [
+      1280,
+      "03-barra-tabique-celosia-madera.avif"
     ]
   ],
   "05-cafe-malagua/05-barra-madera-lamparas-techo": [
@@ -2883,34 +2883,6 @@
       "01-capilla-cantera-jacaranda-flor.avif"
     ]
   ],
-  "06-capilla-el-tule/02-cornisa-cantera-contrapicado": [
-    [
-      361,
-      "02-cornisa-cantera-contrapicado-480.avif"
-    ],
-    [
-      722,
-      "02-cornisa-cantera-contrapicado-960.avif"
-    ],
-    [
-      1204,
-      "02-cornisa-cantera-contrapicado.avif"
-    ]
-  ],
-  "06-capilla-el-tule/03-esquina-cantera-detalle-bajo": [
-    [
-      480,
-      "03-esquina-cantera-detalle-bajo-480.avif"
-    ],
-    [
-      960,
-      "03-esquina-cantera-detalle-bajo-960.avif"
-    ],
-    [
-      1600,
-      "03-esquina-cantera-detalle-bajo.avif"
-    ]
-  ],
   "06-capilla-el-tule/04-capilla-bajo-jacaranda": [
     [
       361,
@@ -2967,6 +2939,34 @@
       "07-interior-esquina-ventanas-cantera.avif"
     ]
   ],
+  "06-capilla-el-tule/02-cornisa-cantera-contrapicado": [
+    [
+      361,
+      "02-cornisa-cantera-contrapicado-480.avif"
+    ],
+    [
+      722,
+      "02-cornisa-cantera-contrapicado-960.avif"
+    ],
+    [
+      1204,
+      "02-cornisa-cantera-contrapicado.avif"
+    ]
+  ],
+  "06-capilla-el-tule/03-esquina-cantera-detalle-bajo": [
+    [
+      480,
+      "03-esquina-cantera-detalle-bajo-480.avif"
+    ],
+    [
+      960,
+      "03-esquina-cantera-detalle-bajo-960.avif"
+    ],
+    [
+      1600,
+      "03-esquina-cantera-detalle-bajo.avif"
+    ]
+  ],
   "06-capilla-el-tule/08-interior-detalle-ventana-cantera": [
     [
       480,
@@ -2981,6 +2981,34 @@
       "08-interior-detalle-ventana-cantera.avif"
     ]
   ],
+  "07-casa-tarrastro/06-fachada-principal-dos-niveles-pergola-piedra": [
+    [
+      480,
+      "06-fachada-principal-dos-niveles-pergola-piedra-480.avif"
+    ],
+    [
+      960,
+      "06-fachada-principal-dos-niveles-pergola-piedra-960.avif"
+    ],
+    [
+      1280,
+      "06-fachada-principal-dos-niveles-pergola-piedra.avif"
+    ]
+  ],
+  "07-casa-tarrastro/10-fachada-frontal-pergola-superior-ventanales": [
+    [
+      480,
+      "10-fachada-frontal-pergola-superior-ventanales-480.avif"
+    ],
+    [
+      960,
+      "10-fachada-frontal-pergola-superior-ventanales-960.avif"
+    ],
+    [
+      1280,
+      "10-fachada-frontal-pergola-superior-ventanales.avif"
+    ]
+  ],
   "07-casa-tarrastro/01-fachada-piedra-pergola-jardin": [
     [
       480,
@@ -2989,6 +3017,58 @@
     [
       960,
       "01-fachada-piedra-pergola-jardin.avif"
+    ]
+  ],
+  "07-casa-tarrastro/08-terraza-techada-pergola-madera-muro-cantera": [
+    [
+      360,
+      "08-terraza-techada-pergola-madera-muro-cantera-480.avif"
+    ],
+    [
+      720,
+      "08-terraza-techada-pergola-madera-muro-cantera-960.avif"
+    ],
+    [
+      960,
+      "08-terraza-techada-pergola-madera-muro-cantera.avif"
+    ]
+  ],
+  "07-casa-tarrastro/03-sombra-pergola-pasto-muro": [
+    [
+      360,
+      "03-sombra-pergola-pasto-muro-480.avif"
+    ],
+    [
+      720,
+      "03-sombra-pergola-pasto-muro.avif"
+    ]
+  ],
+  "07-casa-tarrastro/11-pasillo-lateral-muro-blanco-colindancia": [
+    [
+      360,
+      "11-pasillo-lateral-muro-blanco-colindancia-480.avif"
+    ],
+    [
+      720,
+      "11-pasillo-lateral-muro-blanco-colindancia-960.avif"
+    ],
+    [
+      960,
+      "11-pasillo-lateral-muro-blanco-colindancia.avif"
+    ]
+  ],
+  "07-casa-tarrastro/09-escalera-interior-barandal-geometrico-doble-altura": [
+    [
+      360,
+      "09-escalera-interior-barandal-geometrico-doble-altura-480.avif"
+    ],
+    [
+      720,
+      "09-escalera-interior-barandal-geometrico-doble-altura-960.avif"
+    ],
+    [
+      960,
+      "09-escalera-interior-barandal-geometrico-doble-altura.avif"
     ]
   ],
   "07-casa-tarrastro/02-terraza-celosia-madera-encino": [
@@ -3005,14 +3085,18 @@
       "02-terraza-celosia-madera-encino.avif"
     ]
   ],
-  "07-casa-tarrastro/03-sombra-pergola-pasto-muro": [
+  "07-casa-tarrastro/07-volumen-blanco-barandal-celosia-metalica-cielo": [
     [
-      360,
-      "03-sombra-pergola-pasto-muro-480.avif"
+      480,
+      "07-volumen-blanco-barandal-celosia-metalica-cielo-480.avif"
     ],
     [
-      720,
-      "03-sombra-pergola-pasto-muro.avif"
+      960,
+      "07-volumen-blanco-barandal-celosia-metalica-cielo-960.avif"
+    ],
+    [
+      1280,
+      "07-volumen-blanco-barandal-celosia-metalica-cielo.avif"
     ]
   ],
   "07-casa-tarrastro/04-celosia-madera-contrapicado": [
@@ -3037,104 +3121,6 @@
     [
       1600,
       "05-cochera-porton-negro-acceso.avif"
-    ]
-  ],
-  "07-casa-tarrastro/06-fachada-principal-dos-niveles-pergola-piedra": [
-    [
-      480,
-      "06-fachada-principal-dos-niveles-pergola-piedra-480.avif"
-    ],
-    [
-      960,
-      "06-fachada-principal-dos-niveles-pergola-piedra-960.avif"
-    ],
-    [
-      1280,
-      "06-fachada-principal-dos-niveles-pergola-piedra.avif"
-    ]
-  ],
-  "07-casa-tarrastro/07-volumen-blanco-barandal-celosia-metalica-cielo": [
-    [
-      480,
-      "07-volumen-blanco-barandal-celosia-metalica-cielo-480.avif"
-    ],
-    [
-      960,
-      "07-volumen-blanco-barandal-celosia-metalica-cielo-960.avif"
-    ],
-    [
-      1280,
-      "07-volumen-blanco-barandal-celosia-metalica-cielo.avif"
-    ]
-  ],
-  "07-casa-tarrastro/08-terraza-techada-pergola-madera-muro-cantera": [
-    [
-      360,
-      "08-terraza-techada-pergola-madera-muro-cantera-480.avif"
-    ],
-    [
-      720,
-      "08-terraza-techada-pergola-madera-muro-cantera-960.avif"
-    ],
-    [
-      960,
-      "08-terraza-techada-pergola-madera-muro-cantera.avif"
-    ]
-  ],
-  "07-casa-tarrastro/09-escalera-interior-barandal-geometrico-doble-altura": [
-    [
-      360,
-      "09-escalera-interior-barandal-geometrico-doble-altura-480.avif"
-    ],
-    [
-      720,
-      "09-escalera-interior-barandal-geometrico-doble-altura-960.avif"
-    ],
-    [
-      960,
-      "09-escalera-interior-barandal-geometrico-doble-altura.avif"
-    ]
-  ],
-  "07-casa-tarrastro/10-fachada-frontal-pergola-superior-ventanales": [
-    [
-      480,
-      "10-fachada-frontal-pergola-superior-ventanales-480.avif"
-    ],
-    [
-      960,
-      "10-fachada-frontal-pergola-superior-ventanales-960.avif"
-    ],
-    [
-      1280,
-      "10-fachada-frontal-pergola-superior-ventanales.avif"
-    ]
-  ],
-  "07-casa-tarrastro/11-pasillo-lateral-muro-blanco-colindancia": [
-    [
-      360,
-      "11-pasillo-lateral-muro-blanco-colindancia-480.avif"
-    ],
-    [
-      720,
-      "11-pasillo-lateral-muro-blanco-colindancia-960.avif"
-    ],
-    [
-      960,
-      "11-pasillo-lateral-muro-blanco-colindancia.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/01-trabajadores-barra-techo-palapa": [
-    [
-      360,
-      "01-trabajadores-barra-techo-palapa-480.avif"
-    ],
-    [
-      720,
-      "01-trabajadores-barra-techo-palapa-960.avif"
-    ],
-    [
-      1500,
-      "01-trabajadores-barra-techo-palapa.avif"
     ]
   ],
   "08-rbnb-palmarito/02-cielo-palapa-barra-mar": [
@@ -3179,44 +3165,6 @@
       "04-postes-madera-vista-mar.avif"
     ]
   ],
-  "08-rbnb-palmarito/05-torre-concreto-cristal-carretilla": [
-    [
-      360,
-      "05-torre-concreto-cristal-carretilla-480.avif"
-    ],
-    [
-      720,
-      "05-torre-concreto-cristal-carretilla-960.avif"
-    ],
-    [
-      1500,
-      "05-torre-concreto-cristal-carretilla.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/06-torre-obra-palapa-cilindros": [
-    [
-      360,
-      "06-torre-obra-palapa-cilindros-480.avif"
-    ],
-    [
-      720,
-      "06-torre-obra-palapa-cilindros.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/07-atardecer-bajo-losa-escombros": [
-    [
-      360,
-      "07-atardecer-bajo-losa-escombros-480.avif"
-    ],
-    [
-      720,
-      "07-atardecer-bajo-losa-escombros-960.avif"
-    ],
-    [
-      1200,
-      "07-atardecer-bajo-losa-escombros.avif"
-    ]
-  ],
   "08-rbnb-palmarito/08-atardecer-dunas-nubes": [
     [
       360,
@@ -3231,48 +3179,6 @@
       "08-atardecer-dunas-nubes.avif"
     ]
   ],
-  "08-rbnb-palmarito/09-atardecer-maquinaria-silueta": [
-    [
-      480,
-      "09-atardecer-maquinaria-silueta-480.avif"
-    ],
-    [
-      960,
-      "09-atardecer-maquinaria-silueta-960.avif"
-    ],
-    [
-      1280,
-      "09-atardecer-maquinaria-silueta.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/10-muro-cimbra-horizonte-playa": [
-    [
-      360,
-      "10-muro-cimbra-horizonte-playa-480.avif"
-    ],
-    [
-      720,
-      "10-muro-cimbra-horizonte-playa-960.avif"
-    ],
-    [
-      1200,
-      "10-muro-cimbra-horizonte-playa.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/11-cimbra-madera-muro-concreto": [
-    [
-      360,
-      "11-cimbra-madera-muro-concreto-480.avif"
-    ],
-    [
-      720,
-      "11-cimbra-madera-muro-concreto-960.avif"
-    ],
-    [
-      1200,
-      "11-cimbra-madera-muro-concreto.avif"
-    ]
-  ],
   "08-rbnb-palmarito/12-muros-concreto-horizonte-mar": [
     [
       360,
@@ -3285,20 +3191,6 @@
     [
       1200,
       "12-muros-concreto-horizonte-mar.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/13-interior-concreto-vista-mar": [
-    [
-      360,
-      "13-interior-concreto-vista-mar-480.avif"
-    ],
-    [
-      720,
-      "13-interior-concreto-vista-mar-960.avif"
-    ],
-    [
-      1200,
-      "13-interior-concreto-vista-mar.avif"
     ]
   ],
   "08-rbnb-palmarito/14-interior-postes-madera-luz": [
@@ -3329,32 +3221,186 @@
       "15-muro-ladrillo-castillos-vista.avif"
     ]
   ],
-  "08-rbnb-palmarito/16-obra-muros-ladrillo-cimbra": [
+  "08-rbnb-palmarito/09-atardecer-maquinaria-silueta": [
     [
-      360,
-      "16-obra-muros-ladrillo-cimbra-480.avif"
-    ],
-    [
-      720,
-      "16-obra-muros-ladrillo-cimbra-960.avif"
-    ],
-    [
-      1200,
-      "16-obra-muros-ladrillo-cimbra.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/17-armado-madera-interior-trabajadores": [
-    [
-      360,
-      "17-armado-madera-interior-trabajadores-480.avif"
-    ],
-    [
-      720,
-      "17-armado-madera-interior-trabajadores-960.avif"
+      480,
+      "09-atardecer-maquinaria-silueta-480.avif"
     ],
     [
       960,
-      "17-armado-madera-interior-trabajadores.avif"
+      "09-atardecer-maquinaria-silueta-960.avif"
+    ],
+    [
+      1280,
+      "09-atardecer-maquinaria-silueta.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/33-retroexcavadora-excavacion-profunda-atardecer": [
+    [
+      480,
+      "33-retroexcavadora-excavacion-profunda-atardecer-480.avif"
+    ],
+    [
+      960,
+      "33-retroexcavadora-excavacion-profunda-atardecer-960.avif"
+    ],
+    [
+      1280,
+      "33-retroexcavadora-excavacion-profunda-atardecer.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/34-maquinaria-pesada-trabajando-noche-arena": [
+    [
+      480,
+      "34-maquinaria-pesada-trabajando-noche-arena-480.avif"
+    ],
+    [
+      960,
+      "34-maquinaria-pesada-trabajando-noche-arena-960.avif"
+    ],
+    [
+      1280,
+      "34-maquinaria-pesada-trabajando-noche-arena.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/35-contraluz-atardecer-monticulo-arena-maquinaria": [
+    [
+      480,
+      "35-contraluz-atardecer-monticulo-arena-maquinaria-480.avif"
+    ],
+    [
+      960,
+      "35-contraluz-atardecer-monticulo-arena-maquinaria-960.avif"
+    ],
+    [
+      1280,
+      "35-contraluz-atardecer-monticulo-arena-maquinaria.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/36-rodillo-compactador-terraceria-arena-costa": [
+    [
+      480,
+      "36-rodillo-compactador-terraceria-arena-costa-480.avif"
+    ],
+    [
+      960,
+      "36-rodillo-compactador-terraceria-arena-costa-960.avif"
+    ],
+    [
+      1280,
+      "36-rodillo-compactador-terraceria-arena-costa.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/37-retroexcavadora-movimiento-arena-terreno": [
+    [
+      480,
+      "37-retroexcavadora-movimiento-arena-terreno-480.avif"
+    ],
+    [
+      960,
+      "37-retroexcavadora-movimiento-arena-terreno-960.avif"
+    ],
+    [
+      1280,
+      "37-retroexcavadora-movimiento-arena-terreno.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/38-compactacion-camino-acceso-rodillo-vibratorio": [
+    [
+      480,
+      "38-compactacion-camino-acceso-rodillo-vibratorio-480.avif"
+    ],
+    [
+      960,
+      "38-compactacion-camino-acceso-rodillo-vibratorio-960.avif"
+    ],
+    [
+      1280,
+      "38-compactacion-camino-acceso-rodillo-vibratorio.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/39-riego-agua-manguera-compactacion-arena": [
+    [
+      480,
+      "39-riego-agua-manguera-compactacion-arena-480.avif"
+    ],
+    [
+      960,
+      "39-riego-agua-manguera-compactacion-arena-960.avif"
+    ],
+    [
+      1280,
+      "39-riego-agua-manguera-compactacion-arena.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/40-retroexcavadora-case-perfilado-terreno-playa": [
+    [
+      480,
+      "40-retroexcavadora-case-perfilado-terreno-playa-480.avif"
+    ],
+    [
+      960,
+      "40-retroexcavadora-case-perfilado-terreno-playa-960.avif"
+    ],
+    [
+      1280,
+      "40-retroexcavadora-case-perfilado-terreno-playa.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/41-supervision-compactacion-terraceria-rodillo": [
+    [
+      480,
+      "41-supervision-compactacion-terraceria-rodillo-480.avif"
+    ],
+    [
+      960,
+      "41-supervision-compactacion-terraceria-rodillo-960.avif"
+    ],
+    [
+      1280,
+      "41-supervision-compactacion-terraceria-rodillo.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/20-cimentacion-varilla-caseta-madera": [
+    [
+      480,
+      "20-cimentacion-varilla-caseta-madera-480.avif"
+    ],
+    [
+      960,
+      "20-cimentacion-varilla-caseta-madera-960.avif"
+    ],
+    [
+      1280,
+      "20-cimentacion-varilla-caseta-madera.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/10-muro-cimbra-horizonte-playa": [
+    [
+      360,
+      "10-muro-cimbra-horizonte-playa-480.avif"
+    ],
+    [
+      720,
+      "10-muro-cimbra-horizonte-playa-960.avif"
+    ],
+    [
+      1200,
+      "10-muro-cimbra-horizonte-playa.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/11-cimbra-madera-muro-concreto": [
+    [
+      360,
+      "11-cimbra-madera-muro-concreto-480.avif"
+    ],
+    [
+      720,
+      "11-cimbra-madera-muro-concreto-960.avif"
+    ],
+    [
+      1200,
+      "11-cimbra-madera-muro-concreto.avif"
     ]
   ],
   "08-rbnb-palmarito/18-colado-losa-concretera-obreros": [
@@ -3385,18 +3431,98 @@
       "19-colado-concretera-vista-mar.avif"
     ]
   ],
-  "08-rbnb-palmarito/20-cimentacion-varilla-caseta-madera": [
+  "08-rbnb-palmarito/07-atardecer-bajo-losa-escombros": [
     [
-      480,
-      "20-cimentacion-varilla-caseta-madera-480.avif"
+      360,
+      "07-atardecer-bajo-losa-escombros-480.avif"
+    ],
+    [
+      720,
+      "07-atardecer-bajo-losa-escombros-960.avif"
+    ],
+    [
+      1200,
+      "07-atardecer-bajo-losa-escombros.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/13-interior-concreto-vista-mar": [
+    [
+      360,
+      "13-interior-concreto-vista-mar-480.avif"
+    ],
+    [
+      720,
+      "13-interior-concreto-vista-mar-960.avif"
+    ],
+    [
+      1200,
+      "13-interior-concreto-vista-mar.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/16-obra-muros-ladrillo-cimbra": [
+    [
+      360,
+      "16-obra-muros-ladrillo-cimbra-480.avif"
+    ],
+    [
+      720,
+      "16-obra-muros-ladrillo-cimbra-960.avif"
+    ],
+    [
+      1200,
+      "16-obra-muros-ladrillo-cimbra.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/17-armado-madera-interior-trabajadores": [
+    [
+      360,
+      "17-armado-madera-interior-trabajadores-480.avif"
+    ],
+    [
+      720,
+      "17-armado-madera-interior-trabajadores-960.avif"
     ],
     [
       960,
-      "20-cimentacion-varilla-caseta-madera-960.avif"
+      "17-armado-madera-interior-trabajadores.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/05-torre-concreto-cristal-carretilla": [
+    [
+      360,
+      "05-torre-concreto-cristal-carretilla-480.avif"
     ],
     [
-      1280,
-      "20-cimentacion-varilla-caseta-madera.avif"
+      720,
+      "05-torre-concreto-cristal-carretilla-960.avif"
+    ],
+    [
+      1500,
+      "05-torre-concreto-cristal-carretilla.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/06-torre-obra-palapa-cilindros": [
+    [
+      360,
+      "06-torre-obra-palapa-cilindros-480.avif"
+    ],
+    [
+      720,
+      "06-torre-obra-palapa-cilindros.avif"
+    ]
+  ],
+  "08-rbnb-palmarito/01-trabajadores-barra-techo-palapa": [
+    [
+      360,
+      "01-trabajadores-barra-techo-palapa-480.avif"
+    ],
+    [
+      720,
+      "01-trabajadores-barra-techo-palapa-960.avif"
+    ],
+    [
+      1500,
+      "01-trabajadores-barra-techo-palapa.avif"
     ]
   ],
   "08-rbnb-palmarito/21-bomba-concreto-obra-gris": [
@@ -3567,132 +3693,6 @@
       "32-castillos-varilla-cimentacion.avif"
     ]
   ],
-  "08-rbnb-palmarito/33-retroexcavadora-excavacion-profunda-atardecer": [
-    [
-      480,
-      "33-retroexcavadora-excavacion-profunda-atardecer-480.avif"
-    ],
-    [
-      960,
-      "33-retroexcavadora-excavacion-profunda-atardecer-960.avif"
-    ],
-    [
-      1280,
-      "33-retroexcavadora-excavacion-profunda-atardecer.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/34-maquinaria-pesada-trabajando-noche-arena": [
-    [
-      480,
-      "34-maquinaria-pesada-trabajando-noche-arena-480.avif"
-    ],
-    [
-      960,
-      "34-maquinaria-pesada-trabajando-noche-arena-960.avif"
-    ],
-    [
-      1280,
-      "34-maquinaria-pesada-trabajando-noche-arena.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/35-contraluz-atardecer-monticulo-arena-maquinaria": [
-    [
-      480,
-      "35-contraluz-atardecer-monticulo-arena-maquinaria-480.avif"
-    ],
-    [
-      960,
-      "35-contraluz-atardecer-monticulo-arena-maquinaria-960.avif"
-    ],
-    [
-      1280,
-      "35-contraluz-atardecer-monticulo-arena-maquinaria.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/36-rodillo-compactador-terraceria-arena-costa": [
-    [
-      480,
-      "36-rodillo-compactador-terraceria-arena-costa-480.avif"
-    ],
-    [
-      960,
-      "36-rodillo-compactador-terraceria-arena-costa-960.avif"
-    ],
-    [
-      1280,
-      "36-rodillo-compactador-terraceria-arena-costa.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/37-retroexcavadora-movimiento-arena-terreno": [
-    [
-      480,
-      "37-retroexcavadora-movimiento-arena-terreno-480.avif"
-    ],
-    [
-      960,
-      "37-retroexcavadora-movimiento-arena-terreno-960.avif"
-    ],
-    [
-      1280,
-      "37-retroexcavadora-movimiento-arena-terreno.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/38-compactacion-camino-acceso-rodillo-vibratorio": [
-    [
-      480,
-      "38-compactacion-camino-acceso-rodillo-vibratorio-480.avif"
-    ],
-    [
-      960,
-      "38-compactacion-camino-acceso-rodillo-vibratorio-960.avif"
-    ],
-    [
-      1280,
-      "38-compactacion-camino-acceso-rodillo-vibratorio.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/39-riego-agua-manguera-compactacion-arena": [
-    [
-      480,
-      "39-riego-agua-manguera-compactacion-arena-480.avif"
-    ],
-    [
-      960,
-      "39-riego-agua-manguera-compactacion-arena-960.avif"
-    ],
-    [
-      1280,
-      "39-riego-agua-manguera-compactacion-arena.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/40-retroexcavadora-case-perfilado-terreno-playa": [
-    [
-      480,
-      "40-retroexcavadora-case-perfilado-terreno-playa-480.avif"
-    ],
-    [
-      960,
-      "40-retroexcavadora-case-perfilado-terreno-playa-960.avif"
-    ],
-    [
-      1280,
-      "40-retroexcavadora-case-perfilado-terreno-playa.avif"
-    ]
-  ],
-  "08-rbnb-palmarito/41-supervision-compactacion-terraceria-rodillo": [
-    [
-      480,
-      "41-supervision-compactacion-terraceria-rodillo-480.avif"
-    ],
-    [
-      960,
-      "41-supervision-compactacion-terraceria-rodillo-960.avif"
-    ],
-    [
-      1280,
-      "41-supervision-compactacion-terraceria-rodillo.avif"
-    ]
-  ],
   "09-casa-santa-rosa/01-pergola-madera-terraza-piso": [
     [
       360,
@@ -3723,118 +3723,6 @@
       "03-puerta-madera-acceso-interior.avif"
     ]
   ],
-  "10-obra-punta-zicatela/01-ventana-circular-sombra-follaje": [
-    [
-      360,
-      "01-ventana-circular-sombra-follaje-480.avif"
-    ],
-    [
-      720,
-      "01-ventana-circular-sombra-follaje-960.avif"
-    ],
-    [
-      960,
-      "01-ventana-circular-sombra-follaje.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/02-banqueta-concreto-camino-grava": [
-    [
-      360,
-      "02-banqueta-concreto-camino-grava-480.avif"
-    ],
-    [
-      720,
-      "02-banqueta-concreto-camino-grava-960.avif"
-    ],
-    [
-      1500,
-      "02-banqueta-concreto-camino-grava.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/03-ventana-circular-celosia-bambu": [
-    [
-      360,
-      "03-ventana-circular-celosia-bambu-480.avif"
-    ],
-    [
-      720,
-      "03-ventana-circular-celosia-bambu-960.avif"
-    ],
-    [
-      960,
-      "03-ventana-circular-celosia-bambu.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/04-ventana-circular-pergola-obra": [
-    [
-      360,
-      "04-ventana-circular-pergola-obra-480.avif"
-    ],
-    [
-      720,
-      "04-ventana-circular-pergola-obra-960.avif"
-    ],
-    [
-      960,
-      "04-ventana-circular-pergola-obra.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/05-patio-arbol-madera-apilada": [
-    [
-      360,
-      "05-patio-arbol-madera-apilada-480.avif"
-    ],
-    [
-      720,
-      "05-patio-arbol-madera-apilada-960.avif"
-    ],
-    [
-      960,
-      "05-patio-arbol-madera-apilada.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/06-ventana-circular-celosia-pasillo": [
-    [
-      360,
-      "06-ventana-circular-celosia-pasillo-480.avif"
-    ],
-    [
-      720,
-      "06-ventana-circular-celosia-pasillo-960.avif"
-    ],
-    [
-      960,
-      "06-ventana-circular-celosia-pasillo.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/07-esquina-muro-curvo-palmeras": [
-    [
-      360,
-      "07-esquina-muro-curvo-palmeras-480.avif"
-    ],
-    [
-      720,
-      "07-esquina-muro-curvo-palmeras-960.avif"
-    ],
-    [
-      960,
-      "07-esquina-muro-curvo-palmeras.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/08-mesa-concreto-sombra-arbol": [
-    [
-      360,
-      "08-mesa-concreto-sombra-arbol-480.avif"
-    ],
-    [
-      720,
-      "08-mesa-concreto-sombra-arbol-960.avif"
-    ],
-    [
-      1500,
-      "08-mesa-concreto-sombra-arbol.avif"
-    ]
-  ],
   "10-obra-punta-zicatela/09-fachada-chukum-ventana-circular-barra-concreto": [
     [
       360,
@@ -3847,34 +3735,6 @@
     [
       960,
       "09-fachada-chukum-ventana-circular-barra-concreto.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/10-escalones-acceso-vano-trapezoidal-recamara": [
-    [
-      360,
-      "10-escalones-acceso-vano-trapezoidal-recamara-480.avif"
-    ],
-    [
-      720,
-      "10-escalones-acceso-vano-trapezoidal-recamara-960.avif"
-    ],
-    [
-      1500,
-      "10-escalones-acceso-vano-trapezoidal-recamara.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/11-barra-concreto-terminada-fachada-ventana-circular": [
-    [
-      360,
-      "11-barra-concreto-terminada-fachada-ventana-circular-480.avif"
-    ],
-    [
-      720,
-      "11-barra-concreto-terminada-fachada-ventana-circular-960.avif"
-    ],
-    [
-      1500,
-      "11-barra-concreto-terminada-fachada-ventana-circular.avif"
     ]
   ],
   "10-obra-punta-zicatela/12-modulo-terminado-bajo-sombra-arboles-zicatela": [
@@ -3891,46 +3751,18 @@
       "12-modulo-terminado-bajo-sombra-arboles-zicatela.avif"
     ]
   ],
-  "10-obra-punta-zicatela/13-recamara-muros-chukum-cama-madera-lampara-halo": [
+  "10-obra-punta-zicatela/11-barra-concreto-terminada-fachada-ventana-circular": [
     [
       360,
-      "13-recamara-muros-chukum-cama-madera-lampara-halo-480.avif"
+      "11-barra-concreto-terminada-fachada-ventana-circular-480.avif"
     ],
     [
       720,
-      "13-recamara-muros-chukum-cama-madera-lampara-halo-960.avif"
+      "11-barra-concreto-terminada-fachada-ventana-circular-960.avif"
     ],
     [
       1500,
-      "13-recamara-muros-chukum-cama-madera-lampara-halo.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/14-detalle-ventana-circular-madera-muro-chukum": [
-    [
-      360,
-      "14-detalle-ventana-circular-madera-muro-chukum-480.avif"
-    ],
-    [
-      720,
-      "14-detalle-ventana-circular-madera-muro-chukum-960.avif"
-    ],
-    [
-      1500,
-      "14-detalle-ventana-circular-madera-muro-chukum.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/15-acceso-curvo-ventana-circular-muro-tierra": [
-    [
-      360,
-      "15-acceso-curvo-ventana-circular-muro-tierra-480.avif"
-    ],
-    [
-      720,
-      "15-acceso-curvo-ventana-circular-muro-tierra-960.avif"
-    ],
-    [
-      960,
-      "15-acceso-curvo-ventana-circular-muro-tierra.avif"
+      "11-barra-concreto-terminada-fachada-ventana-circular.avif"
     ]
   ],
   "10-obra-punta-zicatela/16-patio-sombreado-barra-concreto-jardinera": [
@@ -3961,20 +3793,6 @@
       "17-conjunto-barra-exterior-acceso-departamento.avif"
     ]
   ],
-  "10-obra-punta-zicatela/18-perspectiva-lateral-muro-chukum-ojo-de-buey": [
-    [
-      360,
-      "18-perspectiva-lateral-muro-chukum-ojo-de-buey-480.avif"
-    ],
-    [
-      720,
-      "18-perspectiva-lateral-muro-chukum-ojo-de-buey-960.avif"
-    ],
-    [
-      960,
-      "18-perspectiva-lateral-muro-chukum-ojo-de-buey.avif"
-    ]
-  ],
   "10-obra-punta-zicatela/19-barra-comedor-exterior-concreto-sombra": [
     [
       360,
@@ -3987,104 +3805,6 @@
     [
       960,
       "19-barra-comedor-exterior-concreto-sombra.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/20-supervision-arquitectonica-obra-gris-patio": [
-    [
-      360,
-      "20-supervision-arquitectonica-obra-gris-patio-480.avif"
-    ],
-    [
-      720,
-      "20-supervision-arquitectonica-obra-gris-patio-960.avif"
-    ],
-    [
-      1500,
-      "20-supervision-arquitectonica-obra-gris-patio.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/21-muro-blanco-repisas-concreto-barra-exterior": [
-    [
-      360,
-      "21-muro-blanco-repisas-concreto-barra-exterior-480.avif"
-    ],
-    [
-      720,
-      "21-muro-blanco-repisas-concreto-barra-exterior-960.avif"
-    ],
-    [
-      1500,
-      "21-muro-blanco-repisas-concreto-barra-exterior.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/22-aplicacion-pasta-chukum-fachada-ventana-redonda": [
-    [
-      360,
-      "22-aplicacion-pasta-chukum-fachada-ventana-redonda-480.avif"
-    ],
-    [
-      720,
-      "22-aplicacion-pasta-chukum-fachada-ventana-redonda-960.avif"
-    ],
-    [
-      1500,
-      "22-aplicacion-pasta-chukum-fachada-ventana-redonda.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/23-mesa-monolitica-concreto-acceso-departamento": [
-    [
-      360,
-      "23-mesa-monolitica-concreto-acceso-departamento-480.avif"
-    ],
-    [
-      720,
-      "23-mesa-monolitica-concreto-acceso-departamento-960.avif"
-    ],
-    [
-      1500,
-      "23-mesa-monolitica-concreto-acceso-departamento.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/24-plafon-interior-chukum-lampara-circular-led": [
-    [
-      360,
-      "24-plafon-interior-chukum-lampara-circular-led-480.avif"
-    ],
-    [
-      720,
-      "24-plafon-interior-chukum-lampara-circular-led-960.avif"
-    ],
-    [
-      1500,
-      "24-plafon-interior-chukum-lampara-circular-led.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/25-area-exterior-cocina-comedor-concreto-chukum": [
-    [
-      360,
-      "25-area-exterior-cocina-comedor-concreto-chukum-480.avif"
-    ],
-    [
-      720,
-      "25-area-exterior-cocina-comedor-concreto-chukum-960.avif"
-    ],
-    [
-      1500,
-      "25-area-exterior-cocina-comedor-concreto-chukum.avif"
-    ]
-  ],
-  "10-obra-punta-zicatela/26-bano-exterior-puertas-celosia-bambu-sanitario": [
-    [
-      360,
-      "26-bano-exterior-puertas-celosia-bambu-sanitario-480.avif"
-    ],
-    [
-      720,
-      "26-bano-exterior-puertas-celosia-bambu-sanitario-960.avif"
-    ],
-    [
-      1500,
-      "26-bano-exterior-puertas-celosia-bambu-sanitario.avif"
     ]
   ],
   "10-obra-punta-zicatela/27-patio-central-sombra-arboles-barra-concreto": [
@@ -4115,6 +3835,76 @@
       "28-exterior-ventana-arco-redondeado-palmeras.avif"
     ]
   ],
+  "10-obra-punta-zicatela/25-area-exterior-cocina-comedor-concreto-chukum": [
+    [
+      360,
+      "25-area-exterior-cocina-comedor-concreto-chukum-480.avif"
+    ],
+    [
+      720,
+      "25-area-exterior-cocina-comedor-concreto-chukum-960.avif"
+    ],
+    [
+      1500,
+      "25-area-exterior-cocina-comedor-concreto-chukum.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/21-muro-blanco-repisas-concreto-barra-exterior": [
+    [
+      360,
+      "21-muro-blanco-repisas-concreto-barra-exterior-480.avif"
+    ],
+    [
+      720,
+      "21-muro-blanco-repisas-concreto-barra-exterior-960.avif"
+    ],
+    [
+      1500,
+      "21-muro-blanco-repisas-concreto-barra-exterior.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/23-mesa-monolitica-concreto-acceso-departamento": [
+    [
+      360,
+      "23-mesa-monolitica-concreto-acceso-departamento-480.avif"
+    ],
+    [
+      720,
+      "23-mesa-monolitica-concreto-acceso-departamento-960.avif"
+    ],
+    [
+      1500,
+      "23-mesa-monolitica-concreto-acceso-departamento.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/10-escalones-acceso-vano-trapezoidal-recamara": [
+    [
+      360,
+      "10-escalones-acceso-vano-trapezoidal-recamara-480.avif"
+    ],
+    [
+      720,
+      "10-escalones-acceso-vano-trapezoidal-recamara-960.avif"
+    ],
+    [
+      1500,
+      "10-escalones-acceso-vano-trapezoidal-recamara.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/13-recamara-muros-chukum-cama-madera-lampara-halo": [
+    [
+      360,
+      "13-recamara-muros-chukum-cama-madera-lampara-halo-480.avif"
+    ],
+    [
+      720,
+      "13-recamara-muros-chukum-cama-madera-lampara-halo-960.avif"
+    ],
+    [
+      1500,
+      "13-recamara-muros-chukum-cama-madera-lampara-halo.avif"
+    ]
+  ],
   "10-obra-punta-zicatela/29-interior-recamara-minimalista-chukum-iluminacion": [
     [
       360,
@@ -4127,6 +3917,118 @@
     [
       1500,
       "29-interior-recamara-minimalista-chukum-iluminacion.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/26-bano-exterior-puertas-celosia-bambu-sanitario": [
+    [
+      360,
+      "26-bano-exterior-puertas-celosia-bambu-sanitario-480.avif"
+    ],
+    [
+      720,
+      "26-bano-exterior-puertas-celosia-bambu-sanitario-960.avif"
+    ],
+    [
+      1500,
+      "26-bano-exterior-puertas-celosia-bambu-sanitario.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/01-ventana-circular-sombra-follaje": [
+    [
+      360,
+      "01-ventana-circular-sombra-follaje-480.avif"
+    ],
+    [
+      720,
+      "01-ventana-circular-sombra-follaje-960.avif"
+    ],
+    [
+      960,
+      "01-ventana-circular-sombra-follaje.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/14-detalle-ventana-circular-madera-muro-chukum": [
+    [
+      360,
+      "14-detalle-ventana-circular-madera-muro-chukum-480.avif"
+    ],
+    [
+      720,
+      "14-detalle-ventana-circular-madera-muro-chukum-960.avif"
+    ],
+    [
+      1500,
+      "14-detalle-ventana-circular-madera-muro-chukum.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/15-acceso-curvo-ventana-circular-muro-tierra": [
+    [
+      360,
+      "15-acceso-curvo-ventana-circular-muro-tierra-480.avif"
+    ],
+    [
+      720,
+      "15-acceso-curvo-ventana-circular-muro-tierra-960.avif"
+    ],
+    [
+      960,
+      "15-acceso-curvo-ventana-circular-muro-tierra.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/18-perspectiva-lateral-muro-chukum-ojo-de-buey": [
+    [
+      360,
+      "18-perspectiva-lateral-muro-chukum-ojo-de-buey-480.avif"
+    ],
+    [
+      720,
+      "18-perspectiva-lateral-muro-chukum-ojo-de-buey-960.avif"
+    ],
+    [
+      960,
+      "18-perspectiva-lateral-muro-chukum-ojo-de-buey.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/24-plafon-interior-chukum-lampara-circular-led": [
+    [
+      360,
+      "24-plafon-interior-chukum-lampara-circular-led-480.avif"
+    ],
+    [
+      720,
+      "24-plafon-interior-chukum-lampara-circular-led-960.avif"
+    ],
+    [
+      1500,
+      "24-plafon-interior-chukum-lampara-circular-led.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/20-supervision-arquitectonica-obra-gris-patio": [
+    [
+      360,
+      "20-supervision-arquitectonica-obra-gris-patio-480.avif"
+    ],
+    [
+      720,
+      "20-supervision-arquitectonica-obra-gris-patio-960.avif"
+    ],
+    [
+      1500,
+      "20-supervision-arquitectonica-obra-gris-patio.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/22-aplicacion-pasta-chukum-fachada-ventana-redonda": [
+    [
+      360,
+      "22-aplicacion-pasta-chukum-fachada-ventana-redonda-480.avif"
+    ],
+    [
+      720,
+      "22-aplicacion-pasta-chukum-fachada-ventana-redonda-960.avif"
+    ],
+    [
+      1500,
+      "22-aplicacion-pasta-chukum-fachada-ventana-redonda.avif"
     ]
   ],
   "10-obra-punta-zicatela/30-levantamiento-muro-block-hueco-albanileria": [
@@ -4311,6 +4213,118 @@
       "42-instalacion-mosaico-veneciano-alberca-trabajadores.avif"
     ]
   ],
+  "10-obra-punta-zicatela/02-banqueta-concreto-camino-grava": [
+    [
+      360,
+      "02-banqueta-concreto-camino-grava-480.avif"
+    ],
+    [
+      720,
+      "02-banqueta-concreto-camino-grava-960.avif"
+    ],
+    [
+      1500,
+      "02-banqueta-concreto-camino-grava.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/03-ventana-circular-celosia-bambu": [
+    [
+      360,
+      "03-ventana-circular-celosia-bambu-480.avif"
+    ],
+    [
+      720,
+      "03-ventana-circular-celosia-bambu-960.avif"
+    ],
+    [
+      960,
+      "03-ventana-circular-celosia-bambu.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/04-ventana-circular-pergola-obra": [
+    [
+      360,
+      "04-ventana-circular-pergola-obra-480.avif"
+    ],
+    [
+      720,
+      "04-ventana-circular-pergola-obra-960.avif"
+    ],
+    [
+      960,
+      "04-ventana-circular-pergola-obra.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/05-patio-arbol-madera-apilada": [
+    [
+      360,
+      "05-patio-arbol-madera-apilada-480.avif"
+    ],
+    [
+      720,
+      "05-patio-arbol-madera-apilada-960.avif"
+    ],
+    [
+      960,
+      "05-patio-arbol-madera-apilada.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/06-ventana-circular-celosia-pasillo": [
+    [
+      360,
+      "06-ventana-circular-celosia-pasillo-480.avif"
+    ],
+    [
+      720,
+      "06-ventana-circular-celosia-pasillo-960.avif"
+    ],
+    [
+      960,
+      "06-ventana-circular-celosia-pasillo.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/07-esquina-muro-curvo-palmeras": [
+    [
+      360,
+      "07-esquina-muro-curvo-palmeras-480.avif"
+    ],
+    [
+      720,
+      "07-esquina-muro-curvo-palmeras-960.avif"
+    ],
+    [
+      960,
+      "07-esquina-muro-curvo-palmeras.avif"
+    ]
+  ],
+  "10-obra-punta-zicatela/08-mesa-concreto-sombra-arbol": [
+    [
+      360,
+      "08-mesa-concreto-sombra-arbol-480.avif"
+    ],
+    [
+      720,
+      "08-mesa-concreto-sombra-arbol-960.avif"
+    ],
+    [
+      1500,
+      "08-mesa-concreto-sombra-arbol.avif"
+    ]
+  ],
+  "11-columnas-c1-c2/03-columna-prefabricada-terreno-jacaranda": [
+    [
+      480,
+      "03-columna-prefabricada-terreno-jacaranda-480.avif"
+    ],
+    [
+      960,
+      "03-columna-prefabricada-terreno-jacaranda-960.avif"
+    ],
+    [
+      1600,
+      "03-columna-prefabricada-terreno-jacaranda.avif"
+    ]
+  ],
   "11-columnas-c1-c2/01-izado-columna-grua-jacaranda": [
     [
       480,
@@ -4337,20 +4351,6 @@
     [
       1200,
       "02-columna-suspendida-plataforma.avif"
-    ]
-  ],
-  "11-columnas-c1-c2/03-columna-prefabricada-terreno-jacaranda": [
-    [
-      480,
-      "03-columna-prefabricada-terreno-jacaranda-480.avif"
-    ],
-    [
-      960,
-      "03-columna-prefabricada-terreno-jacaranda-960.avif"
-    ],
-    [
-      1600,
-      "03-columna-prefabricada-terreno-jacaranda.avif"
     ]
   ],
   "11-columnas-c1-c2/04-columna-prefabricada-cuadrilla-grua": [
@@ -4381,6 +4381,92 @@
       "05-maniobra-grua-tablones-material.avif"
     ]
   ],
+  "12-vilas-cavan/10-fachada-frontal-chimenea-ladrillo-techo-teja": [
+    [
+      480,
+      "10-fachada-frontal-chimenea-ladrillo-techo-teja-480.avif"
+    ],
+    [
+      720,
+      "10-fachada-frontal-chimenea-ladrillo-techo-teja.avif"
+    ]
+  ],
+  "12-vilas-cavan/07-pasillo-acceso-fachada-blanca-teja-cantera": [
+    [
+      360,
+      "07-pasillo-acceso-fachada-blanca-teja-cantera-480.avif"
+    ],
+    [
+      720,
+      "07-pasillo-acceso-fachada-blanca-teja-cantera-960.avif"
+    ],
+    [
+      960,
+      "07-pasillo-acceso-fachada-blanca-teja-cantera.avif"
+    ]
+  ],
+  "12-vilas-cavan/09-portico-acceso-columnas-cantera-ventanal": [
+    [
+      480,
+      "09-portico-acceso-columnas-cantera-ventanal-480.avif"
+    ],
+    [
+      720,
+      "09-portico-acceso-columnas-cantera-ventanal.avif"
+    ]
+  ],
+  "12-vilas-cavan/14-cancel-corredizo-negro-terraza-vista-montana": [
+    [
+      360,
+      "14-cancel-corredizo-negro-terraza-vista-montana-480.avif"
+    ],
+    [
+      720,
+      "14-cancel-corredizo-negro-terraza-vista-montana-960.avif"
+    ],
+    [
+      960,
+      "14-cancel-corredizo-negro-terraza-vista-montana.avif"
+    ]
+  ],
+  "12-vilas-cavan/02-fachada-chimenea-tabique-teja": [
+    [
+      480,
+      "02-fachada-chimenea-tabique-teja-480.avif"
+    ],
+    [
+      720,
+      "02-fachada-chimenea-tabique-teja.avif"
+    ]
+  ],
+  "12-vilas-cavan/15-porton-acceso-herreria-negra-reticular": [
+    [
+      480,
+      "15-porton-acceso-herreria-negra-reticular-480.avif"
+    ],
+    [
+      960,
+      "15-porton-acceso-herreria-negra-reticular-960.avif"
+    ],
+    [
+      1280,
+      "15-porton-acceso-herreria-negra-reticular.avif"
+    ]
+  ],
+  "12-vilas-cavan/11-estancia-chimenea-ladrillo-barra-cocina": [
+    [
+      480,
+      "11-estancia-chimenea-ladrillo-barra-cocina-480.avif"
+    ],
+    [
+      960,
+      "11-estancia-chimenea-ladrillo-barra-cocina-960.avif"
+    ],
+    [
+      1280,
+      "11-estancia-chimenea-ladrillo-barra-cocina.avif"
+    ]
+  ],
   "12-vilas-cavan/01-interior-sala-cocina-chimenea": [
     [
       480,
@@ -4395,16 +4481,6 @@
       "01-interior-sala-cocina-chimenea.avif"
     ]
   ],
-  "12-vilas-cavan/02-fachada-chimenea-tabique-teja": [
-    [
-      480,
-      "02-fachada-chimenea-tabique-teja-480.avif"
-    ],
-    [
-      720,
-      "02-fachada-chimenea-tabique-teja.avif"
-    ]
-  ],
   "12-vilas-cavan/03-sala-ventanal-montana": [
     [
       480,
@@ -4417,6 +4493,62 @@
     [
       1600,
       "03-sala-ventanal-montana.avif"
+    ]
+  ],
+  "12-vilas-cavan/08-cocina-integral-madera-barra-desayunadora-azulejo": [
+    [
+      480,
+      "08-cocina-integral-madera-barra-desayunadora-azulejo-480.avif"
+    ],
+    [
+      960,
+      "08-cocina-integral-madera-barra-desayunadora-azulejo-960.avif"
+    ],
+    [
+      1280,
+      "08-cocina-integral-madera-barra-desayunadora-azulejo.avif"
+    ]
+  ],
+  "12-vilas-cavan/13-vista-frontal-cocina-integral-barra-bancos": [
+    [
+      480,
+      "13-vista-frontal-cocina-integral-barra-bancos-480.avif"
+    ],
+    [
+      960,
+      "13-vista-frontal-cocina-integral-barra-bancos-960.avif"
+    ],
+    [
+      1280,
+      "13-vista-frontal-cocina-integral-barra-bancos.avif"
+    ]
+  ],
+  "12-vilas-cavan/12-detalle-chimenea-ladrillo-espejo-circular-comedor": [
+    [
+      480,
+      "12-detalle-chimenea-ladrillo-espejo-circular-comedor-480.avif"
+    ],
+    [
+      960,
+      "12-detalle-chimenea-ladrillo-espejo-circular-comedor-960.avif"
+    ],
+    [
+      1280,
+      "12-detalle-chimenea-ladrillo-espejo-circular-comedor.avif"
+    ]
+  ],
+  "12-vilas-cavan/16-repisa-madera-muro-piedra-decoracion-interior": [
+    [
+      480,
+      "16-repisa-madera-muro-piedra-decoracion-interior-480.avif"
+    ],
+    [
+      960,
+      "16-repisa-madera-muro-piedra-decoracion-interior-960.avif"
+    ],
+    [
+      1280,
+      "16-repisa-madera-muro-piedra-decoracion-interior.avif"
     ]
   ],
   "12-vilas-cavan/04-fachada-blanca-cantera-tinaco": [
@@ -4461,136 +4593,18 @@
       "06-bano-lavabo-sobre-mueble.avif"
     ]
   ],
-  "12-vilas-cavan/07-pasillo-acceso-fachada-blanca-teja-cantera": [
+  "13-puente-cd-administrativa/02-puente-peatonal-avenida-rampas": [
     [
-      360,
-      "07-pasillo-acceso-fachada-blanca-teja-cantera-480.avif"
-    ],
-    [
-      720,
-      "07-pasillo-acceso-fachada-blanca-teja-cantera-960.avif"
+      480,
+      "02-puente-peatonal-avenida-rampas-480.avif"
     ],
     [
       960,
-      "07-pasillo-acceso-fachada-blanca-teja-cantera.avif"
-    ]
-  ],
-  "12-vilas-cavan/08-cocina-integral-madera-barra-desayunadora-azulejo": [
-    [
-      480,
-      "08-cocina-integral-madera-barra-desayunadora-azulejo-480.avif"
+      "02-puente-peatonal-avenida-rampas-960.avif"
     ],
     [
-      960,
-      "08-cocina-integral-madera-barra-desayunadora-azulejo-960.avif"
-    ],
-    [
-      1280,
-      "08-cocina-integral-madera-barra-desayunadora-azulejo.avif"
-    ]
-  ],
-  "12-vilas-cavan/09-portico-acceso-columnas-cantera-ventanal": [
-    [
-      480,
-      "09-portico-acceso-columnas-cantera-ventanal-480.avif"
-    ],
-    [
-      720,
-      "09-portico-acceso-columnas-cantera-ventanal.avif"
-    ]
-  ],
-  "12-vilas-cavan/10-fachada-frontal-chimenea-ladrillo-techo-teja": [
-    [
-      480,
-      "10-fachada-frontal-chimenea-ladrillo-techo-teja-480.avif"
-    ],
-    [
-      720,
-      "10-fachada-frontal-chimenea-ladrillo-techo-teja.avif"
-    ]
-  ],
-  "12-vilas-cavan/11-estancia-chimenea-ladrillo-barra-cocina": [
-    [
-      480,
-      "11-estancia-chimenea-ladrillo-barra-cocina-480.avif"
-    ],
-    [
-      960,
-      "11-estancia-chimenea-ladrillo-barra-cocina-960.avif"
-    ],
-    [
-      1280,
-      "11-estancia-chimenea-ladrillo-barra-cocina.avif"
-    ]
-  ],
-  "12-vilas-cavan/12-detalle-chimenea-ladrillo-espejo-circular-comedor": [
-    [
-      480,
-      "12-detalle-chimenea-ladrillo-espejo-circular-comedor-480.avif"
-    ],
-    [
-      960,
-      "12-detalle-chimenea-ladrillo-espejo-circular-comedor-960.avif"
-    ],
-    [
-      1280,
-      "12-detalle-chimenea-ladrillo-espejo-circular-comedor.avif"
-    ]
-  ],
-  "12-vilas-cavan/13-vista-frontal-cocina-integral-barra-bancos": [
-    [
-      480,
-      "13-vista-frontal-cocina-integral-barra-bancos-480.avif"
-    ],
-    [
-      960,
-      "13-vista-frontal-cocina-integral-barra-bancos-960.avif"
-    ],
-    [
-      1280,
-      "13-vista-frontal-cocina-integral-barra-bancos.avif"
-    ]
-  ],
-  "12-vilas-cavan/14-cancel-corredizo-negro-terraza-vista-montana": [
-    [
-      360,
-      "14-cancel-corredizo-negro-terraza-vista-montana-480.avif"
-    ],
-    [
-      720,
-      "14-cancel-corredizo-negro-terraza-vista-montana-960.avif"
-    ],
-    [
-      960,
-      "14-cancel-corredizo-negro-terraza-vista-montana.avif"
-    ]
-  ],
-  "12-vilas-cavan/15-porton-acceso-herreria-negra-reticular": [
-    [
-      480,
-      "15-porton-acceso-herreria-negra-reticular-480.avif"
-    ],
-    [
-      960,
-      "15-porton-acceso-herreria-negra-reticular-960.avif"
-    ],
-    [
-      1280,
-      "15-porton-acceso-herreria-negra-reticular.avif"
-    ]
-  ],
-  "12-vilas-cavan/16-repisa-madera-muro-piedra-decoracion-interior": [
-    [
-      480,
-      "16-repisa-madera-muro-piedra-decoracion-interior-480.avif"
-    ],
-    [
-      960,
-      "16-repisa-madera-muro-piedra-decoracion-interior-960.avif"
-    ],
-    [
-      1280,
-      "16-repisa-madera-muro-piedra-decoracion-interior.avif"
+      1600,
+      "02-puente-peatonal-avenida-rampas.avif"
     ]
   ],
   "13-puente-cd-administrativa/01-puente-peatonal-crucero-malla": [
@@ -4605,20 +4619,6 @@
     [
       1600,
       "01-puente-peatonal-crucero-malla.avif"
-    ]
-  ],
-  "13-puente-cd-administrativa/02-puente-peatonal-avenida-rampas": [
-    [
-      480,
-      "02-puente-peatonal-avenida-rampas-480.avif"
-    ],
-    [
-      960,
-      "02-puente-peatonal-avenida-rampas-960.avif"
-    ],
-    [
-      1600,
-      "02-puente-peatonal-avenida-rampas.avif"
     ]
   ],
   "13-puente-cd-administrativa/03-puente-peatonal-desde-auto": [
@@ -4677,48 +4677,6 @@
       "03-tendido-pavimento-cuadrilla-boyas.avif"
     ]
   ],
-  "15-casa-charco-seco/01-sillon-lectura-bajo-escalera-celosia-iluminada": [
-    [
-      288,
-      "01-sillon-lectura-bajo-escalera-celosia-iluminada-480.avif"
-    ],
-    [
-      576,
-      "01-sillon-lectura-bajo-escalera-celosia-iluminada-960.avif"
-    ],
-    [
-      960,
-      "01-sillon-lectura-bajo-escalera-celosia-iluminada.avif"
-    ]
-  ],
-  "15-casa-charco-seco/02-recamara-luminosa-cama-blanca-ventilador-madera": [
-    [
-      288,
-      "02-recamara-luminosa-cama-blanca-ventilador-madera-480.avif"
-    ],
-    [
-      576,
-      "02-recamara-luminosa-cama-blanca-ventilador-madera-960.avif"
-    ],
-    [
-      960,
-      "02-recamara-luminosa-cama-blanca-ventilador-madera.avif"
-    ]
-  ],
-  "15-casa-charco-seco/03-planta-baja-abierta-cocina-comedor-estancia": [
-    [
-      288,
-      "03-planta-baja-abierta-cocina-comedor-estancia-480.avif"
-    ],
-    [
-      576,
-      "03-planta-baja-abierta-cocina-comedor-estancia-960.avif"
-    ],
-    [
-      960,
-      "03-planta-baja-abierta-cocina-comedor-estancia.avif"
-    ]
-  ],
   "15-casa-charco-seco/04-fachada-exterior-terracota-portones-madera-vegetacion": [
     [
       288,
@@ -4731,6 +4689,48 @@
     [
       960,
       "04-fachada-exterior-terracota-portones-madera-vegetacion.avif"
+    ]
+  ],
+  "15-casa-charco-seco/08-perspectiva-fachada-terracota-vegetacion-cielo": [
+    [
+      288,
+      "08-perspectiva-fachada-terracota-vegetacion-cielo-480.avif"
+    ],
+    [
+      576,
+      "08-perspectiva-fachada-terracota-vegetacion-cielo-960.avif"
+    ],
+    [
+      960,
+      "08-perspectiva-fachada-terracota-vegetacion-cielo.avif"
+    ]
+  ],
+  "15-casa-charco-seco/22-cochera-acceso-huellas-concreto-balcon-terracota": [
+    [
+      288,
+      "22-cochera-acceso-huellas-concreto-balcon-terracota-480.avif"
+    ],
+    [
+      576,
+      "22-cochera-acceso-huellas-concreto-balcon-terracota-960.avif"
+    ],
+    [
+      960,
+      "22-cochera-acceso-huellas-concreto-balcon-terracota.avif"
+    ]
+  ],
+  "15-casa-charco-seco/16-terraza-muros-terracota-sillas-acapulco-jardin": [
+    [
+      288,
+      "16-terraza-muros-terracota-sillas-acapulco-jardin-480.avif"
+    ],
+    [
+      576,
+      "16-terraza-muros-terracota-sillas-acapulco-jardin-960.avif"
+    ],
+    [
+      960,
+      "16-terraza-muros-terracota-sillas-acapulco-jardin.avif"
     ]
   ],
   "15-casa-charco-seco/05-vista-cenital-patio-alberca-muro-celosia-barro": [
@@ -4747,20 +4747,6 @@
       "05-vista-cenital-patio-alberca-muro-celosia-barro.avif"
     ]
   ],
-  "15-casa-charco-seco/06-sala-interior-conectada-patio-terracota-alberca": [
-    [
-      288,
-      "06-sala-interior-conectada-patio-terracota-alberca-480.avif"
-    ],
-    [
-      576,
-      "06-sala-interior-conectada-patio-terracota-alberca-960.avif"
-    ],
-    [
-      960,
-      "06-sala-interior-conectada-patio-terracota-alberca.avif"
-    ]
-  ],
   "15-casa-charco-seco/07-patio-interior-alberca-celosia-monumental-vegetacion": [
     [
       288,
@@ -4775,18 +4761,158 @@
       "07-patio-interior-alberca-celosia-monumental-vegetacion.avif"
     ]
   ],
-  "15-casa-charco-seco/08-perspectiva-fachada-terracota-vegetacion-cielo": [
+  "15-casa-charco-seco/03-planta-baja-abierta-cocina-comedor-estancia": [
     [
       288,
-      "08-perspectiva-fachada-terracota-vegetacion-cielo-480.avif"
+      "03-planta-baja-abierta-cocina-comedor-estancia-480.avif"
     ],
     [
       576,
-      "08-perspectiva-fachada-terracota-vegetacion-cielo-960.avif"
+      "03-planta-baja-abierta-cocina-comedor-estancia-960.avif"
     ],
     [
       960,
-      "08-perspectiva-fachada-terracota-vegetacion-cielo.avif"
+      "03-planta-baja-abierta-cocina-comedor-estancia.avif"
+    ]
+  ],
+  "15-casa-charco-seco/06-sala-interior-conectada-patio-terracota-alberca": [
+    [
+      288,
+      "06-sala-interior-conectada-patio-terracota-alberca-480.avif"
+    ],
+    [
+      576,
+      "06-sala-interior-conectada-patio-terracota-alberca-960.avif"
+    ],
+    [
+      960,
+      "06-sala-interior-conectada-patio-terracota-alberca.avif"
+    ]
+  ],
+  "15-casa-charco-seco/12-vista-comedor-escalera-concreto-patio-fondo": [
+    [
+      288,
+      "12-vista-comedor-escalera-concreto-patio-fondo-480.avif"
+    ],
+    [
+      576,
+      "12-vista-comedor-escalera-concreto-patio-fondo-960.avif"
+    ],
+    [
+      960,
+      "12-vista-comedor-escalera-concreto-patio-fondo.avif"
+    ]
+  ],
+  "15-casa-charco-seco/13-sala-mueble-flotante-madera-puerta-listones": [
+    [
+      288,
+      "13-sala-mueble-flotante-madera-puerta-listones-480.avif"
+    ],
+    [
+      576,
+      "13-sala-mueble-flotante-madera-puerta-listones-960.avif"
+    ],
+    [
+      960,
+      "13-sala-mueble-flotante-madera-puerta-listones.avif"
+    ]
+  ],
+  "15-casa-charco-seco/15-cocina-lineal-madera-comedor-circular": [
+    [
+      288,
+      "15-cocina-lineal-madera-comedor-circular-480.avif"
+    ],
+    [
+      576,
+      "15-cocina-lineal-madera-comedor-circular-960.avif"
+    ],
+    [
+      960,
+      "15-cocina-lineal-madera-comedor-circular.avif"
+    ]
+  ],
+  "15-casa-charco-seco/17-perspectiva-estancia-hacia-cocina-madera": [
+    [
+      288,
+      "17-perspectiva-estancia-hacia-cocina-madera-480.avif"
+    ],
+    [
+      576,
+      "17-perspectiva-estancia-hacia-cocina-madera-960.avif"
+    ],
+    [
+      960,
+      "17-perspectiva-estancia-hacia-cocina-madera.avif"
+    ]
+  ],
+  "15-casa-charco-seco/02-recamara-luminosa-cama-blanca-ventilador-madera": [
+    [
+      288,
+      "02-recamara-luminosa-cama-blanca-ventilador-madera-480.avif"
+    ],
+    [
+      576,
+      "02-recamara-luminosa-cama-blanca-ventilador-madera-960.avif"
+    ],
+    [
+      960,
+      "02-recamara-luminosa-cama-blanca-ventilador-madera.avif"
+    ]
+  ],
+  "15-casa-charco-seco/14-recamara-descanso-cabecera-texturizada-lampara-colgante": [
+    [
+      320,
+      "14-recamara-descanso-cabecera-texturizada-lampara-colgante-480.avif"
+    ],
+    [
+      640,
+      "14-recamara-descanso-cabecera-texturizada-lampara-colgante-960.avif"
+    ],
+    [
+      1066,
+      "14-recamara-descanso-cabecera-texturizada-lampara-colgante.avif"
+    ]
+  ],
+  "15-casa-charco-seco/19-pasillo-recamara-balcon-vista-arboles": [
+    [
+      288,
+      "19-pasillo-recamara-balcon-vista-arboles-480.avif"
+    ],
+    [
+      576,
+      "19-pasillo-recamara-balcon-vista-arboles-960.avif"
+    ],
+    [
+      960,
+      "19-pasillo-recamara-balcon-vista-arboles.avif"
+    ]
+  ],
+  "15-casa-charco-seco/21-recamara-principal-espejo-fibras-terraza": [
+    [
+      288,
+      "21-recamara-principal-espejo-fibras-terraza-480.avif"
+    ],
+    [
+      576,
+      "21-recamara-principal-espejo-fibras-terraza-960.avif"
+    ],
+    [
+      960,
+      "21-recamara-principal-espejo-fibras-terraza.avif"
+    ]
+  ],
+  "15-casa-charco-seco/01-sillon-lectura-bajo-escalera-celosia-iluminada": [
+    [
+      288,
+      "01-sillon-lectura-bajo-escalera-celosia-iluminada-480.avif"
+    ],
+    [
+      576,
+      "01-sillon-lectura-bajo-escalera-celosia-iluminada-960.avif"
+    ],
+    [
+      960,
+      "01-sillon-lectura-bajo-escalera-celosia-iluminada.avif"
     ]
   ],
   "15-casa-charco-seco/09-comedor-cocina-madera-celosia-metalica": [
@@ -4831,90 +4957,6 @@
       "11-estancia-doble-altura-escalera-barandal-vertical.avif"
     ]
   ],
-  "15-casa-charco-seco/12-vista-comedor-escalera-concreto-patio-fondo": [
-    [
-      288,
-      "12-vista-comedor-escalera-concreto-patio-fondo-480.avif"
-    ],
-    [
-      576,
-      "12-vista-comedor-escalera-concreto-patio-fondo-960.avif"
-    ],
-    [
-      960,
-      "12-vista-comedor-escalera-concreto-patio-fondo.avif"
-    ]
-  ],
-  "15-casa-charco-seco/13-sala-mueble-flotante-madera-puerta-listones": [
-    [
-      288,
-      "13-sala-mueble-flotante-madera-puerta-listones-480.avif"
-    ],
-    [
-      576,
-      "13-sala-mueble-flotante-madera-puerta-listones-960.avif"
-    ],
-    [
-      960,
-      "13-sala-mueble-flotante-madera-puerta-listones.avif"
-    ]
-  ],
-  "15-casa-charco-seco/14-recamara-descanso-cabecera-texturizada-lampara-colgante": [
-    [
-      320,
-      "14-recamara-descanso-cabecera-texturizada-lampara-colgante-480.avif"
-    ],
-    [
-      640,
-      "14-recamara-descanso-cabecera-texturizada-lampara-colgante-960.avif"
-    ],
-    [
-      1066,
-      "14-recamara-descanso-cabecera-texturizada-lampara-colgante.avif"
-    ]
-  ],
-  "15-casa-charco-seco/15-cocina-lineal-madera-comedor-circular": [
-    [
-      288,
-      "15-cocina-lineal-madera-comedor-circular-480.avif"
-    ],
-    [
-      576,
-      "15-cocina-lineal-madera-comedor-circular-960.avif"
-    ],
-    [
-      960,
-      "15-cocina-lineal-madera-comedor-circular.avif"
-    ]
-  ],
-  "15-casa-charco-seco/16-terraza-muros-terracota-sillas-acapulco-jardin": [
-    [
-      288,
-      "16-terraza-muros-terracota-sillas-acapulco-jardin-480.avif"
-    ],
-    [
-      576,
-      "16-terraza-muros-terracota-sillas-acapulco-jardin-960.avif"
-    ],
-    [
-      960,
-      "16-terraza-muros-terracota-sillas-acapulco-jardin.avif"
-    ]
-  ],
-  "15-casa-charco-seco/17-perspectiva-estancia-hacia-cocina-madera": [
-    [
-      288,
-      "17-perspectiva-estancia-hacia-cocina-madera-480.avif"
-    ],
-    [
-      576,
-      "17-perspectiva-estancia-hacia-cocina-madera-960.avif"
-    ],
-    [
-      960,
-      "17-perspectiva-estancia-hacia-cocina-madera.avif"
-    ]
-  ],
   "15-casa-charco-seco/18-detalle-acceso-peatonal-madera-muro-terracota": [
     [
       288,
@@ -4927,20 +4969,6 @@
     [
       960,
       "18-detalle-acceso-peatonal-madera-muro-terracota.avif"
-    ]
-  ],
-  "15-casa-charco-seco/19-pasillo-recamara-balcon-vista-arboles": [
-    [
-      288,
-      "19-pasillo-recamara-balcon-vista-arboles-480.avif"
-    ],
-    [
-      576,
-      "19-pasillo-recamara-balcon-vista-arboles-960.avif"
-    ],
-    [
-      960,
-      "19-pasillo-recamara-balcon-vista-arboles.avif"
     ]
   ],
   "15-casa-charco-seco/20-detalle-buro-flotante-lampara-colgante-recamara": [
@@ -4957,34 +4985,6 @@
       "20-detalle-buro-flotante-lampara-colgante-recamara.avif"
     ]
   ],
-  "15-casa-charco-seco/21-recamara-principal-espejo-fibras-terraza": [
-    [
-      288,
-      "21-recamara-principal-espejo-fibras-terraza-480.avif"
-    ],
-    [
-      576,
-      "21-recamara-principal-espejo-fibras-terraza-960.avif"
-    ],
-    [
-      960,
-      "21-recamara-principal-espejo-fibras-terraza.avif"
-    ]
-  ],
-  "15-casa-charco-seco/22-cochera-acceso-huellas-concreto-balcon-terracota": [
-    [
-      288,
-      "22-cochera-acceso-huellas-concreto-balcon-terracota-480.avif"
-    ],
-    [
-      576,
-      "22-cochera-acceso-huellas-concreto-balcon-terracota-960.avif"
-    ],
-    [
-      960,
-      "22-cochera-acceso-huellas-concreto-balcon-terracota.avif"
-    ]
-  ],
   "15-casa-charco-seco/23-tocador-flotante-madera-espejo-planta-interior": [
     [
       288,
@@ -4997,6 +4997,20 @@
     [
       960,
       "23-tocador-flotante-madera-espejo-planta-interior.avif"
+    ]
+  ],
+  "16-casa-la-barra/02-fachada-horizontal-chukum-palapa-porton": [
+    [
+      480,
+      "02-fachada-horizontal-chukum-palapa-porton-480.avif"
+    ],
+    [
+      960,
+      "02-fachada-horizontal-chukum-palapa-porton-960.avif"
+    ],
+    [
+      2000,
+      "02-fachada-horizontal-chukum-palapa-porton.avif"
     ]
   ],
   "16-casa-la-barra/01-fachada-chukum-celosia-barro-techo-palapa-porton-madera": [
@@ -5013,18 +5027,18 @@
       "01-fachada-chukum-celosia-barro-techo-palapa-porton-madera.avif"
     ]
   ],
-  "17-el-tomatal/01-detalle-celosia-vertical-macetas-monstera-helecho": [
+  "16-casa-la-barra/03-perspectiva-casa-chukum-terraza-palapa-jardin": [
     [
-      322,
-      "01-detalle-celosia-vertical-macetas-monstera-helecho-480.avif"
+      311,
+      "03-perspectiva-casa-chukum-terraza-palapa-jardin-480.avif"
     ],
     [
-      644,
-      "01-detalle-celosia-vertical-macetas-monstera-helecho-960.avif"
+      622,
+      "03-perspectiva-casa-chukum-terraza-palapa-jardin-960.avif"
     ],
     [
-      858,
-      "01-detalle-celosia-vertical-macetas-monstera-helecho.avif"
+      829,
+      "03-perspectiva-casa-chukum-terraza-palapa-jardin.avif"
     ]
   ],
   "17-el-tomatal/02-fachada-principal-chukum-celosia-ladrillo-palmeras": [
@@ -5053,6 +5067,20 @@
     [
       858,
       "03-acceso-vehicular-adoquin-barro-fachada-celosia.avif"
+    ]
+  ],
+  "17-el-tomatal/01-detalle-celosia-vertical-macetas-monstera-helecho": [
+    [
+      322,
+      "01-detalle-celosia-vertical-macetas-monstera-helecho-480.avif"
+    ],
+    [
+      644,
+      "01-detalle-celosia-vertical-macetas-monstera-helecho-960.avif"
+    ],
+    [
+      858,
+      "01-detalle-celosia-vertical-macetas-monstera-helecho.avif"
     ]
   ],
   "arquitectura-interiores/01-isla-cocina-piedra-parrilla-horno-muro-terracota": [
@@ -6545,18 +6573,18 @@
       "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal.avif"
     ]
   ],
-  "remodelacion/03-proceso-colado-acceso-vehicular-revolvedora-obra": [
+  "remodelacion/06-patio-frontal-pavimentado-fachada-blanca-remodelada": [
     [
       480,
-      "03-proceso-colado-acceso-vehicular-revolvedora-obra-480.avif"
+      "06-patio-frontal-pavimentado-fachada-blanca-remodelada-480.avif"
     ],
     [
       960,
-      "03-proceso-colado-acceso-vehicular-revolvedora-obra-960.avif"
+      "06-patio-frontal-pavimentado-fachada-blanca-remodelada-960.avif"
     ],
     [
       1600,
-      "03-proceso-colado-acceso-vehicular-revolvedora-obra.avif"
+      "06-patio-frontal-pavimentado-fachada-blanca-remodelada.avif"
     ]
   ],
   "remodelacion/04-demolicion-adecuacion-fachada-albaniles-andamio": [
@@ -6573,34 +6601,6 @@
       "04-demolicion-adecuacion-fachada-albaniles-andamio.avif"
     ]
   ],
-  "remodelacion/05-etapa-acabados-nocturna-colado-firme-cochera": [
-    [
-      480,
-      "05-etapa-acabados-nocturna-colado-firme-cochera-480.avif"
-    ],
-    [
-      960,
-      "05-etapa-acabados-nocturna-colado-firme-cochera-960.avif"
-    ],
-    [
-      1600,
-      "05-etapa-acabados-nocturna-colado-firme-cochera.avif"
-    ]
-  ],
-  "remodelacion/06-patio-frontal-pavimentado-fachada-blanca-remodelada": [
-    [
-      480,
-      "06-patio-frontal-pavimentado-fachada-blanca-remodelada-480.avif"
-    ],
-    [
-      960,
-      "06-patio-frontal-pavimentado-fachada-blanca-remodelada-960.avif"
-    ],
-    [
-      1600,
-      "06-patio-frontal-pavimentado-fachada-blanca-remodelada.avif"
-    ]
-  ],
   "remodelacion/07-demolicion-porton-acceso-estructura-existente": [
     [
       270,
@@ -6613,6 +6613,34 @@
     [
       900,
       "07-demolicion-porton-acceso-estructura-existente.avif"
+    ]
+  ],
+  "remodelacion/03-proceso-colado-acceso-vehicular-revolvedora-obra": [
+    [
+      480,
+      "03-proceso-colado-acceso-vehicular-revolvedora-obra-480.avif"
+    ],
+    [
+      960,
+      "03-proceso-colado-acceso-vehicular-revolvedora-obra-960.avif"
+    ],
+    [
+      1600,
+      "03-proceso-colado-acceso-vehicular-revolvedora-obra.avif"
+    ]
+  ],
+  "remodelacion/05-etapa-acabados-nocturna-colado-firme-cochera": [
+    [
+      480,
+      "05-etapa-acabados-nocturna-colado-firme-cochera-480.avif"
+    ],
+    [
+      960,
+      "05-etapa-acabados-nocturna-colado-firme-cochera-960.avif"
+    ],
+    [
+      1600,
+      "05-etapa-acabados-nocturna-colado-firme-cochera.avif"
     ]
   ],
   "hero/casa-blake-fachada-dos-niveles-herreria-negra": [

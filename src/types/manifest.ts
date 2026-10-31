@@ -35,6 +35,10 @@ export interface ManifestPhoto {
   variants: ManifestVariant[];
   /** Authoritative responsive string. Parse or pass through; never rebuild. */
   srcset: string;
+  /** True when photo is excluded from active presentation (e.g. duplicate). */
+  excluded?: boolean;
+  /** Reason for exclusion (e.g. "visual_duplicate"). */
+  exclusion_reason?: string;
 }
 
 export interface ManifestProject {

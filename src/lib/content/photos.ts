@@ -51,7 +51,7 @@ function orderedProjects(): ManifestProject[] {
 /** A project's publishable photographs, best first. */
 function rankedPhotos(project: ManifestProject): ManifestPhoto[] {
   return project.photos
-    .filter((photo) => photo.score >= SCORE_FLOOR)
+    .filter((photo) => photo.score >= SCORE_FLOOR && !photo.excluded)
     .sort((a, b) => a.order.localeCompare(b.order));
 }
 
@@ -124,7 +124,7 @@ export function findPhotoByBase(
 ): Photo | null {
   const project = findManifestProject(dir);
   const entry = project?.photos.find((photo) => photo.base === base);
-  if (!project || !entry || entry.score < SCORE_FLOOR) return null;
+  if (!project || !entry || entry.score < SCORE_FLOOR || entry.excluded) return null;
   const resolved = toPhoto(dir, entry, projectTitle);
   return customAlt ? { ...resolved, alt: customAlt } : resolved;
 }
@@ -137,7 +137,15 @@ export function findPhotoByBase(
  */
 function isObraGris(photo: ManifestPhoto): boolean {
   const text = `${photo.slug} ${photo.note}`.toLowerCase();
-  if (text.includes("terminad") || text.includes("acabado final")) return false;
+  if (
+    text.includes("terminad") ||
+    text.includes("acabado final") ||
+    text.includes("casa terminada") ||
+    text.includes("residencia modernizada") ||
+    text.includes("de dia con")
+  ) {
+    return false;
+  }
   return [
     "obra",
     "cimentacion",
@@ -170,6 +178,16 @@ function isObraGris(photo: ManifestPhoto): boolean {
     "nivel-laser",
     "bastidor-metalico",
     "prefabricado",
+    "prefabricada",
+    "carretilla",
+    "excavacion",
+    "terraceria",
+    "colocando",
+    "soldadura",
+    "demolicion",
+    "maquinaria",
+    "compactador",
+    "compactacion",
   ].some((term) => text.includes(term));
 }
 
@@ -194,7 +212,9 @@ export function getProjectPhotos(dir: string, projectTitle = ""): Photo[] {
       "08-escalera-blanca-cielo-nublado", // CAS-040: duplicada
       "13-fachada-alberca-palmeras", // CAS-040: duplicada
       "16-fachada-palapas-obra-piscina", // CAS-040: duplicada
+      "20-balcon-madera-palapa-blanco", // duplicada
       "21-escalera-blanca-palma-adoquin", // CAS-040: duplicada
+      "33-trabajadores-terraza-mar", // duplicada
       "36-colado-con-manguera-playa", // CAS-040: bomba concreto pertenece a Palmarito
       "77-bomba-concreto-colado-torre-costa", // CAS-040: bomba concreto pertenece a Palmarito
       "78-colado-losa-superior-estructura-concreto", // CAS-040: bomba concreto pertenece a Palmarito
@@ -281,7 +301,7 @@ export function getProjectGallery(
     if (!targetProject) continue;
 
     const photo = targetProject.photos.find(
-      (p) => p.base === targetBase && p.score >= SCORE_FLOOR,
+      (p) => p.base === targetBase && p.score >= SCORE_FLOOR && !p.excluded,
     );
     if (!photo) continue;
 
@@ -354,9 +374,7 @@ export function getProjectCover(
   const project = findManifestProject(dir);
   if (!project?.photos.length) return null;
 
-  const ranked = [...project.photos].sort((a, b) =>
-    a.order.localeCompare(b.order),
-  );
+  const ranked = rankedPhotos(project);
   const candidates =
     orientation === "landscape"
       ? ranked.filter((photo) => photo.full.width > photo.full.height)
