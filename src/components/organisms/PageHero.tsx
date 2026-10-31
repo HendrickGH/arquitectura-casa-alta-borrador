@@ -100,6 +100,7 @@ export function PageHero({
   }, []);
 
   const hasSubheadline = Boolean(subheadline && subheadline.trim().length > 0);
+  const hasRightColumn = hasSubheadline || Boolean(actions) || totalSlides > 1;
 
   return (
     <section
@@ -150,7 +151,7 @@ export function PageHero({
 
         {/* Monumental typography grid */}
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
-          <div className={hasSubheadline ? "lg:col-span-8" : "lg:col-span-12"}>
+          <div className={hasRightColumn ? "lg:col-span-8" : "lg:col-span-12"}>
             <h1
               className={cx(
                 "voice text-white",
@@ -162,20 +163,39 @@ export function PageHero({
             </h1>
           </div>
 
-          {hasSubheadline ? (
-            <div className="flex flex-col justify-end lg:col-span-4">
-              <p className="max-w-[42ch] text-sm leading-relaxed text-white/85 md:text-base">
-                {subheadline}
-              </p>
+          {hasRightColumn ? (
+            <div className="flex flex-col items-start justify-end gap-5 lg:col-span-4 lg:items-end">
+              {hasSubheadline ? (
+                <p className="max-w-[42ch] text-sm leading-relaxed text-white/85 md:text-base lg:text-right">
+                  {subheadline}
+                </p>
+              ) : null}
+
               {actions ? (
-                <div className="mt-6 flex flex-wrap items-center gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                   {actions}
                 </div>
               ) : null}
-            </div>
-          ) : actions ? (
-            <div className="mt-6 flex flex-wrap items-center gap-4">
-              {actions}
+
+              {totalSlides > 1 ? (
+                <div
+                  aria-hidden="true"
+                  className="flex w-full max-w-[14rem] items-center gap-1.5"
+                >
+                  {allSlides.map((slideItem, index) => {
+                    const isActive = index === activeSlide;
+                    return (
+                      <span
+                        key={`${slideItem.photo.src}-${index}`}
+                        className={cx(
+                          "h-[2px] flex-1 transition-colors duration-500",
+                          isActive ? "bg-white" : "bg-white/25"
+                        )}
+                      />
+                    );
+                  })}
+                </div>
+              ) : null}
             </div>
           ) : null}
         </div>
