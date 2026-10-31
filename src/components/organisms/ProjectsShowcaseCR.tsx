@@ -128,11 +128,6 @@ export function ProjectsShowcaseCR({
                   Ver expediente completo
                 </span>
               </div>
-
-              {/* Slide Counter Badge in Bottom Right */}
-              <div className="absolute bottom-4 right-4 z-10 bg-ink/85 px-3 py-1.5 backdrop-blur-sm text-white label tabular-nums text-xs tracking-widest">
-                {String(activeIndex + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-              </div>
             </button>
           </div>
 
@@ -158,31 +153,31 @@ export function ProjectsShowcaseCR({
                 {activeProject.summary}
               </p>
 
-              {/* Architectural Technical Specs Box (Zero Border, pure bone-50 surface) */}
-              <div className="grid grid-cols-3 gap-4 bg-bone-50 p-5 mt-8">
-                <div>
-                  <span className="label text-[11px] text-ink-muted block uppercase tracking-wider">
+              {/* Architectural Technical Specs List (Stacked vertically, no background box) */}
+              <div className="flex flex-col gap-3 mt-8">
+                <div className="flex items-baseline gap-4">
+                  <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
                     Ubicación
                   </span>
-                  <span className="text-xs sm:text-sm font-semibold text-ink mt-1.5 block leading-snug">
+                  <span className="text-xs sm:text-sm font-semibold text-ink leading-snug">
                     {activeProject.location || "Oaxaca, México"}
                   </span>
                 </div>
 
-                <div>
-                  <span className="label text-[11px] text-ink-muted block uppercase tracking-wider">
+                <div className="flex items-baseline gap-4">
+                  <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
                     Año
                   </span>
-                  <span className="text-xs sm:text-sm font-semibold text-ink mt-1.5 block tabular-nums">
+                  <span className="text-xs sm:text-sm font-semibold text-ink tabular-nums">
                     {activeProject.year || "2024–2025"}
                   </span>
                 </div>
 
-                <div>
-                  <span className="label text-[11px] text-ink-muted block uppercase tracking-wider">
+                <div className="flex items-baseline gap-4">
+                  <span className="label text-[11px] text-ink-muted w-24 flex-shrink-0 uppercase tracking-wider">
                     Tipología
                   </span>
-                  <span className="text-xs sm:text-sm font-semibold text-ink mt-1.5 block truncate">
+                  <span className="text-xs sm:text-sm font-semibold text-ink truncate">
                     {activeProject.categoryLabel || "Arquitectura"}
                   </span>
                 </div>
@@ -233,22 +228,13 @@ export function ProjectsShowcaseCR({
         </div>
 
         {/* Bottom Horizontal Snap Track Selector */}
-        <div className="mt-14 pt-8">
-          <div className="flex items-center justify-between pb-4">
-            <span className="label text-ink-muted tabular-nums text-xs tracking-wider">
-              ÍNDICE GENERAL ({String(total).padStart(2, "0")} OBRAS)
-            </span>
-            <span className="label text-ink-muted hidden sm:inline text-xs tracking-wider">
-              Deslizá para explorar todas las obras
-            </span>
-          </div>
-
+        <div className="mt-14 pt-4">
           <div
             ref={trackRef}
             tabIndex={0}
             role="region"
             aria-label="Selector de obras del portafolio"
-            className="flex gap-2 sm:gap-3 overflow-x-auto scroll-smooth snap-x snap-mandatory py-2 scrollbar-none focus-visible:outline-2 focus-visible:outline-brand-800"
+            className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory py-2 scrollbar-none focus-visible:outline-2 focus-visible:outline-brand-800"
           >
             {projects.map((project, idx) => {
               const isActive = idx === activeIndex;
@@ -263,35 +249,26 @@ export function ProjectsShowcaseCR({
                   type="button"
                   onClick={() => setActiveIndex(idx)}
                   className={cx(
-                    "snap-start flex-shrink-0 w-[260px] sm:w-[310px] p-2.5 sm:p-3 flex items-center gap-3.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
+                    "snap-start flex-shrink-0 w-[240px] sm:w-[280px] p-3 flex flex-col gap-3 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
                     isActive
                       ? "bg-ink text-white"
                       : "bg-bone-50 text-ink hover:bg-bone-100"
                   )}
                   aria-current={isActive ? "true" : undefined}
                 >
-                  <span
-                    className={cx(
-                      "label tabular-nums text-xs font-semibold flex-shrink-0 w-5 text-right",
-                      isActive ? "text-white/60" : "text-ink-muted"
-                    )}
-                  >
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-
-                  <div className="relative h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 overflow-hidden bg-bone-200">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-bone-200">
                     <Photo
                       photo={thumb}
                       fit="cover"
-                      sizes="64px"
+                      sizes="(min-width: 640px) 280px, 240px"
                       className="h-full w-full object-cover"
                     />
                   </div>
 
-                  <div className="min-w-0 flex-1">
+                  <div className="min-w-0 w-full">
                     <h4
                       className={cx(
-                        "text-xs sm:text-sm font-semibold truncate leading-snug",
+                        "text-sm font-semibold truncate leading-snug",
                         isActive ? "text-white" : "text-ink"
                       )}
                     >
@@ -299,7 +276,7 @@ export function ProjectsShowcaseCR({
                     </h4>
                     <p
                       className={cx(
-                        "text-[11px] truncate mt-0.5",
+                        "text-xs truncate mt-0.5",
                         isActive ? "text-white/70" : "text-ink-muted"
                       )}
                     >

@@ -67,9 +67,7 @@ export function ProjectsIndexTemplate({
       <main id="main">
         {heroPhotos.length > 0 ? (
           <PageHero
-            eyebrow={intro.eyebrow}
-            heading={intro.heading}
-            subheadline={intro.body}
+            heading="Proyectos"
             photos={heroPhotos}
           />
         ) : null}
