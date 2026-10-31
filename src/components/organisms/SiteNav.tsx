@@ -124,7 +124,7 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
             ))}
           </div>
 
-          <ul className="flex items-center gap-5">
+          <ul className="flex items-center gap-2">
             {social.map((link) => (
               <li key={link.label}>
                 <SocialLinkItem link={link} />

@@ -5,6 +5,7 @@ import type { SocialLink } from "@/types/content";
 interface SocialLinkItemProps {
   link: SocialLink;
   className?: string;
+  iconClassName?: string;
 }
 
 /**
@@ -14,7 +15,11 @@ interface SocialLinkItemProps {
  * never supplied, and those entries stay in the content so the layout is
  * already correct when they arrive. A dead link is worse than no link.
  */
-export function SocialLinkItem({ link, className }: SocialLinkItemProps) {
+export function SocialLinkItem({
+  link,
+  className,
+  iconClassName = "h-6 w-6",
+}: SocialLinkItemProps) {
   if (!link.href) return null;
 
   return (
@@ -28,7 +33,7 @@ export function SocialLinkItem({ link, className }: SocialLinkItemProps) {
         className,
       )}
     >
-      <Icon name={link.icon} />
+      <Icon name={link.icon} className={iconClassName} />
     </a>
   );
 }
