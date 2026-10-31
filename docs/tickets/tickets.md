@@ -23,10 +23,10 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 | **Página Obra Civil** | [`obra-civil.md`](./obra-civil.md) | Nueva página y sección dedicada a infraestructura pública, puentes, pavimentaciones, muros de contención y naves. | 2 | 1 | 1 |
 | **Página Sostenible** | [`sostenible.md`](./sostenible.md) | Depuración de marcas registradas ajenas, enfoque en arquitectura bioclimática, sistemas pasivos y materiales regionales. | 4 | 0 | 4 |
 | **Página Nosotros** | [`nosotros.md`](./nosotros.md) | Narrativa del despacho, arraigo en Oaxaca, capacidad de ejecución a nivel nacional, equipo profesional y respaldo contractual. | 2 | 2 | 0 |
-| **Página de Contacto y Formularios** | [`contacto.md`](./contacto.md) | Reingeniería del formulario guiado paso a paso, eliminación de campos de presupuesto intrusivos, WhatsApp y mapa de ubicación. | 4 | 4 | 0 |
+| **Página de Contacto y Formularios** | [`contacto.md`](./contacto.md) | Reingeniería del formulario guiado paso a paso, eliminación de campos de presupuesto intrusivos, WhatsApp y mapa de ubicación. | 4 | 3 | 1 |
 | **Dominios, Correos y Lanzamiento** | [`lanzamiento.md`](./lanzamiento.md) | Gestión del dominio arquitecturacasalta.com (10 años), DNS, configuración de 5 correos corporativos y despliegue final. | 5 | 5 | 0 |
 | **Post-Lanzamiento (Fase 2 - CMS y SEO)** | [`post-lanzamiento.md`](./post-lanzamiento.md) | Implementación futura de Payload CMS para gestión autónoma del cliente y auditoría continua de posicionamiento SEO. | 2 | 2 | 0 |
-| **TOTALES** | | | **68** | **20** | **48** |
+| **TOTALES** | | | **68** | **19** | **49** |
 
 ## Insumos y Entregables del Cliente
 
@@ -43,7 +43,7 @@ Este documento es el índice maestro operativo del proyecto web de **Arquitectur
 - [ ] **[Página Obra Civil](./obra-civil.md)** (1 pendientes / 2 totales) — Nueva página y sección dedicada a infraestructura pública, puentes, pavimentaciones, muros de contención y naves.
 - [x] **[Página Sostenible](./sostenible.md)** (0 pendientes / 4 totales) — Depuración de marcas registradas ajenas, enfoque en arquitectura bioclimática, sistemas pasivos y materiales regionales.
 - [ ] **[Página Nosotros](./nosotros.md)** (2 pendientes / 2 totales) — Narrativa del despacho, arraigo en Oaxaca, capacidad de ejecución a nivel nacional, equipo profesional y respaldo contractual.
-- [ ] **[Página de Contacto y Formularios](./contacto.md)** (4 pendientes / 4 totales) — Reingeniería del formulario guiado paso a paso, eliminación de campos de presupuesto intrusivos, WhatsApp y mapa de ubicación.
+- [ ] **[Página de Contacto y Formularios](./contacto.md)** (3 pendientes / 4 totales) — Reingeniería del formulario guiado paso a paso, eliminación de campos de presupuesto intrusivos, WhatsApp y mapa de ubicación.
 - [ ] **[Dominios, Correos y Lanzamiento](./lanzamiento.md)** (5 pendientes / 5 totales) — Gestión del dominio arquitecturacasalta.com (10 años), DNS, configuración de 5 correos corporativos y despliegue final.
 - [ ] **[Post-Lanzamiento (Fase 2 - CMS y SEO)](./post-lanzamiento.md)** (2 pendientes / 2 totales) — Implementación futura de Payload CMS para gestión autónoma del cliente y auditoría continua de posicionamiento SEO.
 - [ ] **[Insumos del Cliente](./entregables-cliente.md)** (16 insumos requeridos)

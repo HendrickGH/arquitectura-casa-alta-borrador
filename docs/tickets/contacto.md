@@ -4,7 +4,7 @@ Reingeniería del formulario guiado paso a paso, eliminación de campos de presu
 
 > **Índice general**: Volver a [tickets.md](./tickets.md) | **Insumos del cliente**: [entregables-cliente.md](./entregables-cliente.md)
 
-**Métricas de la épica**: Total tickets: **4** | Pendientes/Bloqueados: **4** | Resueltos/Descartados: **0**
+**Métricas de la épica**: Total tickets: **4** | Pendientes/Bloqueados: **3** | Resueltos/Descartados: **1**
 
 ---
 
@@ -17,14 +17,6 @@ Reingeniería del formulario guiado paso a paso, eliminación de campos de presu
   - **Descripción y Criterios de Aceptación**: En el encabezado de la página de Contacto, actualizar el texto para que mencione explícitamente las 3 sedes: "Gabinete de proyectos y residencia de obra con sedes en Puerto Escondido, Salina Cruz y Oaxaca de Juárez, y capacidad de ejecución en todo México".
   - **Dependencias / Bloqueos**: Ninguna
   - **Referencia**: [Llamada 4 (09:44 - 10:50)](https://fathom.video/share/sLxWUiL_hzDkkwwyKGAossLKRjcRYGS2)
-
-<a id="cas-059"></a>
-- [ ] **`CAS-059` Reparar el botón "Cotizar proyecto" y verificar botones "Agendar primera reunión" (WhatsApp) e "Iniciar consulta" (Formulario)**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🟠 Alta | **Tipo**: Funcionalidad / CTA
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: 1) Reparar el botón "Cotizar proyecto" (que tenía un fallo y no abría el modal o redirigía mal) para que despliegue correctamente el formulario de contacto desde cualquier parte de la página; 2) Confirmar que "Agendar primera reunión" envíe directo a WhatsApp y "Iniciar consulta" abra el formulario.
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 1 (32:14 - 33:25) y Llamada 4 (12:10 - 13:15)](https://fathom.video/share/sLxWUiL_hzDkkwwyKGAossLKRjcRYGS2)
 
 <a id="cas-060"></a>
 - [ ] **`CAS-060` Reestructurar el Formulario de Contacto (encabezado generalizado, sin precios y con nuevas preguntas clave)**
@@ -46,5 +38,9 @@ Reingeniería del formulario guiado paso a paso, eliminación de campos de presu
 
 ## Descartados, Aprobados y Resueltos
 
-*No hay tareas cerradas o descartadas en esta sección.*
+<a id="cas-059"></a>
+- [x] **`CAS-059` Reparar el botón "Cotizar proyecto" y verificar botones "Agendar primera reunión" (WhatsApp) e "Iniciar consulta" (Formulario)** — `Terminado / Resuelto`
+  - **Estado**: `Terminado` | **Prioridad**: 🟠 Alta | **Tipo**: Funcionalidad / CTA | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se eliminó la supresión del modal (`disableContactModal`) en `ContactPageTemplate.tsx` y `SiteChrome.tsx`, permitiendo que `ContactModalProvider` esté activo en todas las rutas del sitio, incluyendo `/contacto`. Se desacopló el botón "Cotizar proyecto" del Header en `SiteNav.tsx` de un enlace `href="/contacto"` para ser un `<button type="button">` que siempre ejecuta `contactModal.openContactModal()` (cerrando el drawer móvil si estuviera abierto). Se añadió el disparador en el overlay móvil, se sincronizó la etiqueta "Agendar primera reunión" en `home.ts` apuntando a WhatsApp, y se verificó que "Iniciar consulta" despliegue el modal o ancle al formulario en todo el sitio.
+  - **Referencia**: [Llamada 1 (32:14 - 33:25) y Llamada 4 (12:10 - 13:15)](https://fathom.video/share/sLxWUiL_hzDkkwwyKGAossLKRjcRYGS2)
 
