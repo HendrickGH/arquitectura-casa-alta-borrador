@@ -372,7 +372,7 @@ export const sustainabilityPageContent = {
       {
         slug: "materiales-locales",
         number: "02",
-        title: "Materiales Locales",
+        title: "Materiales locales, naturales de la zona y artesanales",
         shortTitle: "Materialidad",
         subtitle: "Materialidad",
         description:
@@ -414,7 +414,7 @@ export const sustainabilityPageContent = {
         deliverables: [
           "Cálculo sísmico en suelo de playa y roca",
           "Cimentaciones protegidas contra corrosión marina",
-          "Supervisión pericial directa con firma DRO",
+          "Supervisión directa con firma DRO",
           "Estructuras mixtas de concreto, acero y madera",
         ],
         dir: "arquitectura-sostenible",
@@ -469,10 +469,10 @@ export const sustainabilityPageContent = {
         base: "04-fachada-celosia-proteccion-solar-vegetacion",
       },
       {
-        title: "Masa térmica de concreto",
+        title: "Masa térmica de concreto y recubrimientos de tierra",
         tag: "HIGROTÉRMICA Y TRANSPIRABILIDAD",
         description:
-          "Muros masivos que absorben el calor diurno y lo liberan durante la noche fresca, revestidos con pastas de cal que absorben y expulsan la humedad ambiental sin degradarse.",
+          "Muros masivos que absorben el calor diurno y lo liberan durante la noche fresca, revestidos con pasta de cal y pigmento que absorben y expulsan la humedad ambiental sin degradarse.",
         points: [
           "Inercia higrotérmica que estabiliza la temperatura interior",
           "Fungicida e hidrófugo natural impermeable a la brisa marina",
@@ -482,14 +482,14 @@ export const sustainabilityPageContent = {
         base: "08-terrazas-abiertas-orientacion-solar-alberca",
       },
       {
-        title: "Cubiertas ventiladas de palma natural y carrizo",
+        title: "Cubiertas ventiladas de palma natural",
         tag: "DISIPACIÓN TÉRMICA SUPERIOR",
         description:
           "Techumbres tradicionales tejidas por maestros artesanos sobre estructuras de madera curada. El aire caliente asciende y escapa libremente entre el tejido vegetal.",
         points: [
-          "Estructuras de madera tropical tratada en autoclave al vacío",
+          "Estructuras de madera tropical tratada",
           "Cero acumulación de calor bajo techo en las horas pico de sol",
-          "Mantenimiento programado y vida útil extendida con herrajes marinos",
+          "Mantenimiento programado y vida útil",
         ],
         dir: "arquitectura-sostenible",
         base: "02-jardines-nativos-alberca-cubiertas-palma-natural",
