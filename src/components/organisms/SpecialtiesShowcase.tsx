@@ -260,7 +260,7 @@ export function SpecialtiesShowcase({
         <div
           role="region"
           aria-label="Carrusel de especialidades"
-          className="relative flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-6 px-6 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="relative flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mr-6 pr-6 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {sections.map((section) => (
             <article
