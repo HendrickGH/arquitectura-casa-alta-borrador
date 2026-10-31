@@ -46,6 +46,7 @@ export function ServicesPageTemplate({
           subheadline={page.hero.subheadline}
           photo={page.hero.photo}
           photos={page.hero.photos}
+          slides={page.hero.slides}
           headingClassName="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.12]"
         />
 

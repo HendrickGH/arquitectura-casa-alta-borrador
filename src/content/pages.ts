@@ -605,12 +605,55 @@ export const servicesPageContent = {
     subheadline: "",
     dir: "obra-civil",
     base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
-    carouselBases: [
-      "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
-      "01-grua-izando-parrilla-acero-cimentacion-vialidad",
-      "02-montaje-columna-prefabricada-en-candelero-cimentacion",
-      "10-montaje-trabes-cajon-puente-sobre-pilas-concreto",
-      "25-grua-telescopica-armado-acero-zapata-puente-peatonal",
+    carouselItems: [
+      {
+        dir: "obra-civil",
+        base: "06-construccion-puente-vehicular-sobre-rio-dos-gruas",
+        caption: "Construcción de puente vehicular sobre río con dos grúas telescópicas",
+        niche: "Infraestructura & Obra Civil",
+      },
+      {
+        dir: "02-el-bicho",
+        base: "01-fachada-tres-palapas-alberca",
+        caption: "Residencia El Bicho con alberca y tres niveles de palapas",
+        niche: "Construcción Habitacional",
+      },
+      {
+        dir: "arquitectura-sostenible",
+        base: "01-asoleadero-alberca-ventilacion-cruzada-arquitectura-tierra",
+        caption: "Arquitectura bioclimática en tonos tierra y ventilación cruzada",
+        niche: "Arquitectura Sostenible",
+      },
+      {
+        dir: "obra-civil",
+        base: "01-grua-izando-parrilla-acero-cimentacion-vialidad",
+        caption: "Cimentaciones profundas y maniobras pesadas con grúas",
+        niche: "Ingeniería Pesada",
+      },
+      {
+        dir: "arquitectura-interiores",
+        base: "01-isla-cocina-piedra-parrilla-horno-muro-terracota",
+        caption: "Superficies monolíticas sinterizadas y acabados de importación",
+        niche: "Arquitectura de Interiores",
+      },
+      {
+        dir: "03-casa-blake-tlalixtac",
+        base: "01-contrapicado-porton-ladrillo-nubes",
+        caption: "Construcción residencial contemporánea en Tlalixtac",
+        niche: "Construcción Residencial",
+      },
+      {
+        dir: "naves-industriales",
+        base: "01-maniobra-gruas-izado-muros-prefabricados-concreto",
+        caption: "Izado de muros prefabricados de concreto para naves industriales",
+        niche: "Edificación Comercial e Industrial",
+      },
+      {
+        dir: "15-casa-charco-seco",
+        base: "01-sillon-lectura-bajo-escalera-celosia-iluminada",
+        caption: "Captación de luz natural y celosías artesanales de barro",
+        niche: "Sistemas Pasivos",
+      },
     ],
   },
   intro: {

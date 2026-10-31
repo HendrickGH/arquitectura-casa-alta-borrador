@@ -572,6 +572,12 @@ export interface SpecialtySection {
   photos: Photo[];
 }
 
+export interface ServiceHeroSlide {
+  photo: Photo;
+  niche?: string;
+  caption?: string;
+}
+
 export interface ServicesPageContent {
   hero: {
     eyebrow: string;
@@ -579,6 +585,7 @@ export interface ServicesPageContent {
     subheadline?: string;
     photo: Photo;
     photos?: Photo[];
+    slides?: ServiceHeroSlide[];
   };
   intro: SectionIntro;
   catalog: SectionIntro;

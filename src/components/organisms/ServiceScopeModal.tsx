@@ -51,13 +51,10 @@ export function ServiceScopeModal({
 
   if (!service) return null;
 
-  const numStr = String(partidaIndex + 1).padStart(2, "0");
-  const totalStr = String(totalPartidas).padStart(2, "0");
-
   const whatsappMessageHref = (() => {
     if (!whatsappHref) return "";
     const text = encodeURIComponent(
-      `Hola Casa Alta, deseo consultar los alcances y cotización de la Partida ${numStr}: ${service.title}.`,
+      `Hola Casa Alta, deseo consultar los alcances de: ${service.title}.`,
     );
     const separator = whatsappHref.includes("?") ? "&" : "?";
     return `${whatsappHref}${separator}text=${text}`;
@@ -98,19 +95,13 @@ export function ServiceScopeModal({
         onClick={(e) => e.stopPropagation()}
         className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto bg-canvas p-6 text-ink shadow-2xl sm:p-8 md:p-10"
       >
-        {/* Top Header bar: Technical Partida Identifier and 0px Close Button */}
-        <div className="flex items-start justify-between gap-4 pb-5">
-          <div className="flex flex-col gap-1">
-            <span className="label text-brand-800 tabular-nums">
-              {`Partida ${numStr} / ${totalStr} · ${service.items.length} alcances`}
-            </span>
-          </div>
-
+        {/* Top Header bar: 0px Close Button */}
+        <div className="flex items-center justify-end pb-2">
           <button
             ref={closeButtonRef}
             type="button"
             onClick={onClose}
-            aria-label="Cerrar detalle de partida"
+            aria-label="Cerrar detalle del servicio"
             className="group inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center bg-bone-100 text-ink transition-colors hover:bg-bone-200 focus-visible:outline-2 focus-visible:outline-brand-800"
           >
             <Icon name="close" className="h-4 w-4 transition-transform group-hover:scale-110" />
@@ -118,7 +109,7 @@ export function ServiceScopeModal({
         </div>
 
         {/* Service Title in Editorial Voice */}
-        <div className="mt-6">
+        <div className="mt-2">
           <Heading
             id="modal-service-title"
             as="h3"
@@ -136,8 +127,8 @@ export function ServiceScopeModal({
 
         {/* Technical Deliverables Checklist */}
         <div className="mt-8 pt-6">
-          <span className="label mb-4 block text-ink">
-            Alcances y entregables ejecutivos:
+          <span className="label mb-4 block text-xs uppercase tracking-wider text-ink font-semibold">
+            Alcances y entregables:
           </span>
 
           <ul className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
@@ -154,26 +145,26 @@ export function ServiceScopeModal({
         </div>
 
         {/* Dual Conversion Actions Footer */}
-        <div className="mt-10 flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-10 flex flex-col gap-4 pt-6 sm:flex-row sm:items-center sm:justify-start">
           <Button
             variant="primary"
             onClick={handleConsultarPresupuesto}
             arrow
             className="w-full sm:w-auto"
           >
-            Consultar alcances y presupuesto de esta partida
+            Consultar alcance
           </Button>
 
           {whatsappMessageHref ? (
-            <Button
+            <a
               href={whatsappMessageHref}
-              external
-              variant="secondary"
-              arrow
-              className="w-full sm:w-auto justify-center"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[48px] items-center justify-center gap-2.5 bg-bone-100 px-7 py-3.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-ink transition-colors hover:bg-bone-200 hover:text-brand-800 border-0 no-underline cursor-pointer"
             >
-              Consultar por WhatsApp
-            </Button>
+              <Icon name="whatsapp" className="h-4 w-4 text-[#25D366]" />
+              <span>Consultar por WhatsApp</span>
+            </a>
           ) : null}
         </div>
       </div>

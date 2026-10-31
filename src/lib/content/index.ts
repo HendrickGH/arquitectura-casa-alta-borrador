@@ -49,6 +49,7 @@ import type {
   Project,
   SectionIntro,
   ServiceGroup,
+  ServiceHeroSlide,
   ServicePillar,
   ServicesPageContent,
   SiteConfig,
@@ -780,29 +781,48 @@ export function getMethodologyPhases(): MethodologyPhase[] {
 }
 
 export function getServicesPage(): ServicesPageContent {
-  const carouselBases =
-    (servicesPageContent.hero as { carouselBases?: string[] }).carouselBases ?? [
-      servicesPageContent.hero.base,
-    ];
+  const heroContent = servicesPageContent.hero as {
+    dir: string;
+    base: string;
+    eyebrow: string;
+    heading: string;
+    subheadline?: string;
+    carouselItems?: Array<{
+      dir: string;
+      base: string;
+      caption?: string;
+      niche?: string;
+    }>;
+  };
 
-  const heroPhotos = carouselBases
-    .map((base) =>
-      findPhotoByBase(
-        servicesPageContent.hero.dir,
-        base,
-        "Ingeniería civil y construcción Casa Alta",
-      ),
-    )
-    .filter((p): p is Photo => Boolean(p));
+  const slides: ServiceHeroSlide[] = (heroContent.carouselItems ?? []).flatMap(
+    (item) => {
+      const photo = findPhotoByBase(
+        item.dir,
+        item.base,
+        item.caption ?? "Servicio técnico Casa Alta",
+      );
+      if (!photo) return [];
+      return [
+        {
+          photo,
+          niche: item.niche,
+          caption: item.caption,
+        },
+      ];
+    },
+  );
+
+  const heroPhotos = slides.map((s) => s.photo);
 
   const heroPhoto =
     heroPhotos[0] ??
     findPhotoByBase(
-      servicesPageContent.hero.dir,
-      servicesPageContent.hero.base,
+      heroContent.dir,
+      heroContent.base,
       "Ingeniería civil y construcción",
     ) ??
-    getProjectCover(servicesPageContent.hero.dir, "Ingeniería civil Casa Alta")!;
+    getProjectCover(heroContent.dir, "Ingeniería civil Casa Alta")!;
 
   const introPhoto =
     findPhotoByBase(
@@ -824,11 +844,12 @@ export function getServicesPage(): ServicesPageContent {
 
   return {
     hero: {
-      eyebrow: servicesPageContent.hero.eyebrow,
-      heading: servicesPageContent.hero.heading,
-      subheadline: servicesPageContent.hero.subheadline,
+      eyebrow: heroContent.eyebrow,
+      heading: heroContent.heading,
+      subheadline: heroContent.subheadline,
       photo: heroPhoto,
       photos: heroPhotos,
+      slides,
     },
     intro: {
       eyebrow: servicesPageContent.intro.eyebrow,
