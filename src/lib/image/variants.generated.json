@@ -1085,34 +1085,6 @@
       "68-estructura-prefabricada-columnas-trabes-concreto.avif"
     ]
   ],
-  "02-el-bicho/70-grua-telescopica-maniobra-obra-vial": [
-    [
-      480,
-      "70-grua-telescopica-maniobra-obra-vial-480.avif"
-    ],
-    [
-      960,
-      "70-grua-telescopica-maniobra-obra-vial-960.avif"
-    ],
-    [
-      1280,
-      "70-grua-telescopica-maniobra-obra-vial.avif"
-    ]
-  ],
-  "02-el-bicho/83-maniobra-montaje-prefabricado-concreto-obra": [
-    [
-      480,
-      "83-maniobra-montaje-prefabricado-concreto-obra-480.avif"
-    ],
-    [
-      960,
-      "83-maniobra-montaje-prefabricado-concreto-obra-960.avif"
-    ],
-    [
-      1280,
-      "83-maniobra-montaje-prefabricado-concreto-obra.avif"
-    ]
-  ],
   "02-el-bicho/79-trabajador-andamio-madera-armado-trabe": [
     [
       360,
@@ -6501,6 +6473,34 @@
     [
       1280,
       "25-grua-telescopica-armado-acero-zapata-puente-peatonal.avif"
+    ]
+  ],
+  "obra-civil/26-maniobra-montaje-prefabricado-concreto-obra": [
+    [
+      480,
+      "26-maniobra-montaje-prefabricado-concreto-obra-480.avif"
+    ],
+    [
+      960,
+      "26-maniobra-montaje-prefabricado-concreto-obra-960.avif"
+    ],
+    [
+      1024,
+      "26-maniobra-montaje-prefabricado-concreto-obra.avif"
+    ]
+  ],
+  "obra-civil/27-grua-telescopica-maniobra-obra-vial": [
+    [
+      480,
+      "27-grua-telescopica-maniobra-obra-vial-480.avif"
+    ],
+    [
+      960,
+      "27-grua-telescopica-maniobra-obra-vial-960.avif"
+    ],
+    [
+      1024,
+      "27-grua-telescopica-maniobra-obra-vial.avif"
     ]
   ],
   "proyectos-integrales/01-arquitectos-revisando-planos-estructurales-mesa-madera": [
