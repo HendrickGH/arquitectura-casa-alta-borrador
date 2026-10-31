@@ -3,15 +3,18 @@
 Automated Verification Script for Casa Alta Web Galleries:
 1. Perceptual Uniqueness: Asserts zero visual duplicates across active portfolio photos
    using 256-bit dHash, 64-bit dHash, and pixel-level comparison.
-2. Architectural Spatial Sequence: Asserts that finished works strictly precede
-   construction photos ("obra en construcción / proceso") with 0 sequence inversions.
-3. Casa La Barra Completeness: Asserts that Casa La Barra contains > 1 photo in its active gallery.
+2. Casa La Barra Completeness: Asserts that Casa La Barra contains > 1 photo in its active gallery.
+3. Runtime Seam Audit: Executes getProjectPhotos() via Node bridge to audit actual rendered galleries.
+4. Architectural Spatial Sequence: Asserts that finished works strictly precede
+   construction photos ("obra en construcción / proceso") with 0 sequence inversions across all 17 projects.
+5. Semantic Regression Canaries: Validates critical classification boundaries in is_construction().
 """
 
 import os
 import sys
 import json
 import re
+import subprocess
 import numpy as np
 from PIL import Image, ImageChops
 
@@ -35,7 +38,7 @@ PORTFOLIO_DIRS = [
     "14-pavimentacion",
     "16-casa-la-barra",
     "17-el-tomatal",
-    "remodelacion"
+    "remodelacion",
 ]
 
 def dhash(image: Image.Image, hash_size: int = 8) -> np.ndarray:
@@ -59,62 +62,90 @@ def rms_diff(im1: Image.Image, im2: Image.Image) -> float:
 def is_construction(photo: dict) -> bool:
     """
     Detects if a photograph documents construction process / structural work ("obra gris").
+    Synchronized with src/lib/content/photos.ts:isObraGris.
     """
-    text = (photo["base"] + " " + photo.get("note", "")).lower().replace("-", " ")
-    
+    text = (
+        photo.get("base", "")
+        + " "
+        + photo.get("slug", "")
+        + " "
+        + photo.get("note", "")
+    ).lower().replace("-", " ")
+
     # Priority construction triggers
-    if any(t in text for t in ["obra", "en proceso", "recien colada", "en construccion", "cimentacion", "demolicion"]):
-        return True
-        
-    # Finished state exceptions
-    if any(t in text for t in [
-        "terminad", "acabado final", "casa terminada", "residencia modernizada",
-        "de dia con", "modernizada", "hierro forjado", "concreto pulido", "azoteas ajardinadas"
-    ]):
-        return False
-        
-    construction_patterns = [
-        r"\bobra\b", r"\bcimentaci[oó]n\b", r"\bcolado\b", r"\barmado\b",
-        r"\btrabajador(es)?\b", r"\balbañil(es)?\b", r"\balbanil(es)?\b",
-        r"\bconstrucci[oó]n\b", r"\bcimbra\b", r"\bvaciado\b", r"\bandamio(s)?\b",
-        r"\b(retro)?excavadora(s)?\b", r"\bexcavaci[oó]n\b", r"\bmezcladora\b",
-        r"\bmanguera\b", r"\bvarilla(s)?\b", r"\bgrua\b", r"\bgrúa\b", r"\bizado\b",
-        r"\brevolvedora\b", r"\bcuadrilla\b", r"\bmateriales\b", r"\bfirme\b",
-        r"\bemboquillado\b", r"\blimpieza juntas\b", r"\bcolocaci[oó]n\b", r"\bcolocando\b",
-        r"\bfrente obra\b", r"\bbomba concreto\b", r"\bpluma bomba\b", r"\bestabilizadores\b",
-        r"\btrazo laser\b", r"\bnivel laser\b", r"\blaser\b", r"\bbastidor\b",
-        r"\bprefabricad[oa](s)?\b", r"\bcarretilla\b", r"\bterracer[ií]a\b",
-        r"\bsoldadura\b", r"\bdemolici[oó]n\b", r"\bmaquinaria\b",
-        r"\bcompactaci[oó]n\b", r"\bcompactador(a)?\b",
-        r"\bencofrado\b", r"\bescombro(s)?\b", r"\bforjado de\b", r"\ben proceso\b",
-        r"\breci[eé]n colada\b", r"\baplicaci[oó]n de acabado\b", r"\bobra gris\b"
+    priority_triggers = [
+        "obra",
+        "en proceso",
+        "proceso de",
+        "recien colad",
+        "en construccion",
+        "cimentacion",
+        "demolicion",
     ]
-    
-    for pattern in construction_patterns:
-        if re.search(pattern, text):
-            # Guard: do not match "izado" inside "texturizado"
-            if "izado" in pattern and "texturizado" in text and not re.search(r"\bizado\b", text.replace("texturizado", "")):
-                continue
-            return True
-            
-    return False
+    if any(t in text for t in priority_triggers):
+        return True
+
+    # Finished state exceptions
+    finished_exceptions = [
+        "terminad",
+        "acabado final",
+        "casa terminada",
+        "residencia modernizada",
+        "de dia con",
+        "modernizada",
+        "hierro forjado",
+        "balcon forjado",
+        "concreto pulido",
+        "azoteas ajardinadas",
+    ]
+    if any(t in text for t in finished_exceptions):
+        return False
+
+    # Guard: do not match "izado" inside "texturizado"
+    if re.search(r"\bizado\b", text) and "texturizado" not in text:
+        return True
+
+    construction_regex = (
+        r"\b(obra|cimentaci[oó]n|colado|armado|trabajador(es)?|albañil(es)?|albanil(es)?|"
+        r"construcci[oó]n|cimbra|vaciado|andamio(s)?|(retro)?excavadora(s)?|excavaci[oó]n|"
+        r"mezcladora|manguera|varilla(s)?|gr[uú]a|revolvedora|cuadrilla|materiales|firme|"
+        r"emboquillado|limpieza juntas|colocaci[oó]n|colocando|frente obra|bomba concreto|"
+        r"pluma bomba|estabilizadores|trazo laser|nivel laser|laser|bastidor|bastidor metalico|"
+        r"prefabricad[oa](s)?|carretilla|terracer[ií]a|soldadura|demolici[oó]n|maquinaria|"
+        r"compactaci[oó]n|compactador(a)?|encofrado|escombro(s)?|forjado de|en proceso|"
+        r"reci[eé]n colad[ao]|aplicaci[oó]n de acabado|mortero|obra gris)\b"
+    )
+    return bool(re.search(construction_regex, text))
+
+def extract_base_from_src(src: str) -> str:
+    """Extracts photo base slug from a /images/<dir>/<base>.avif path."""
+    filename = os.path.basename(src)
+    return re.sub(r"\.avif$", "", filename)
 
 def verify_galleries() -> int:
     if not os.path.exists(MANIFEST_PATH):
         print(f"Error: manifest file '{MANIFEST_PATH}' not found.")
         return 1
 
-    with open(MANIFEST_PATH, "r") as f:
+    with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
         manifest = json.load(f)
 
     print("=================================================================")
     print("VERIFICATION: Programmatic Gallery Uniqueness & Spatial Sequence")
     print("=================================================================")
 
-    total_photos_checked = 0
+    has_error = False
+    completeness_errors = []
     duplicate_errors = []
     sequence_errors = []
-    completeness_errors = []
+    canary_errors = []
+
+    # Build photo metadata lookup map
+    photo_map = {}
+    for proj in manifest["projects"]:
+        for p in proj["photos"]:
+            photo_map[f"{proj['dir']}/{p['base']}"] = p
+            photo_map[p["base"]] = p
 
     # 1. Verify Casa La Barra multi-photo completeness
     barra_proj = next((p for p in manifest["projects"] if p["dir"] == "16-casa-la-barra"), None)
@@ -127,22 +158,19 @@ def verify_galleries() -> int:
         else:
             print(f"[OK] Casa La Barra completeness: {len(active_barra)} active photos found.")
 
-    # 2. Iterate each portfolio project
+    # 2. Perceptual Uniqueness across all active manifest photos
+    print("\nAuditing visual uniqueness across active photos in manifest...")
+    total_manifest_photos = 0
     for pdir in PORTFOLIO_DIRS:
         proj = next((p for p in manifest["projects"] if p["dir"] == pdir), None)
         if not proj:
-            print(f"[WARN] Project {pdir} not in manifest")
             continue
-
-        # Active photos: score >= 3 and not excluded
         active_photos = [
             p for p in proj["photos"]
             if p.get("score", 0) >= 3 and not p.get("excluded", False)
         ]
-        active_photos.sort(key=lambda x: x["order"])
-        total_photos_checked += len(active_photos)
+        total_manifest_photos += len(active_photos)
 
-        # A. Visual Hash Uniqueness Check
         loaded = []
         for p in active_photos:
             jpg = os.path.join(BASE_DIR, pdir, p["fallback"])
@@ -158,7 +186,7 @@ def verify_galleries() -> int:
                     "note": p.get("note", ""),
                     "h8": h8,
                     "h16": h16,
-                    "im": im
+                    "im": im,
                 })
             except Exception as e:
                 print(f"  [ERROR] Failed loading {path}: {e}")
@@ -179,10 +207,49 @@ def verify_galleries() -> int:
                         "rms": rms,
                     })
 
-        # B. Spatial Sequence Invariant Check (0 inversions)
+    # 3. Runtime Seam Execution via Node Bridge
+    print("\nAuditing live application runtime getProjectPhotos() via Node bridge...")
+    bridge_proc = subprocess.run(
+        ["node", "--no-warnings", "--loader", "./tools/ts-loader.mjs", "./tools/dump-rendered-galleries.mjs"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if bridge_proc.returncode != 0:
+        print(f"[FAIL] Runtime Seam Execution Error:\n{bridge_proc.stderr}")
+        return 1
+
+    try:
+        rendered_galleries = json.loads(bridge_proc.stdout)
+    except Exception as e:
+        print(f"[FAIL] Failed parsing rendered galleries JSON: {e}")
+        return 1
+
+    total_rendered_photos = sum(len(photos) for photos in rendered_galleries.values())
+    print(f"[OK] Successfully rendered {len(rendered_galleries)} galleries ({total_rendered_photos} photos total).")
+
+    # 4. Spatial Sequence & Construction-at-End Invariants on Rendered Output
+    for pdir in PORTFOLIO_DIRS:
+        rendered = rendered_galleries.get(pdir, [])
+        if not rendered:
+            sequence_errors.append({
+                "proj": pdir,
+                "detail": "No photos returned by getProjectPhotos()",
+            })
+            continue
+
+        rendered_meta = []
+        for photo_item in rendered:
+            base = extract_base_from_src(photo_item["src"])
+            meta = photo_map.get(base)
+            if not meta:
+                meta = {"base": base, "order": "99", "note": photo_item.get("alt", "")}
+            rendered_meta.append(meta)
+
+        # Invariant 4A: Finished works strictly precede construction works (0 inversions)
         seen_construction = False
         first_construction = None
-        for p in active_photos:
+        for p in rendered_meta:
             c = is_construction(p)
             if c:
                 seen_construction = True
@@ -193,14 +260,84 @@ def verify_galleries() -> int:
                     sequence_errors.append({
                         "proj": pdir,
                         "finished_photo": p["base"],
-                        "finished_order": p["order"],
+                        "finished_order": p.get("order", "??"),
                         "after_construction": first_construction["base"],
-                        "construction_order": first_construction["order"],
+                        "construction_order": first_construction.get("order", "??"),
                     })
 
-    print(f"\nTotal active photos audited across {len(PORTFOLIO_DIRS)} projects: {total_photos_checked}")
+        # Invariant 4B: Monotonic order for all standard projects
+        if pdir != "02-el-bicho":
+            orders = [int(p["order"]) for p in rendered_meta if "order" in p]
+            for i in range(len(orders) - 1):
+                if orders[i] > orders[i + 1]:
+                    sequence_errors.append({
+                        "proj": pdir,
+                        "finished_photo": rendered_meta[i + 1]["base"],
+                        "finished_order": str(orders[i + 1]),
+                        "after_construction": rendered_meta[i]["base"],
+                        "construction_order": str(orders[i]),
+                    })
+        else:
+            # Invariant 4C: Project-specific checks for 02-el-bicho
+            excluded_bicho_bases = {
+                "05-bano-espejo-redondo-lavabo",
+                "08-escalera-blanca-cielo-nublado",
+                "13-fachada-alberca-palmeras",
+                "16-fachada-palapas-obra-piscina",
+                "20-balcon-madera-palapa-blanco",
+                "21-escalera-blanca-palma-adoquin",
+                "33-trabajadores-terraza-mar",
+                "36-colado-con-manguera-playa",
+                "77-bomba-concreto-colado-torre-costa",
+                "78-colado-losa-superior-estructura-concreto",
+            }
+            rendered_bases = {p["base"] for p in rendered_meta}
+            leaked_exclusions = rendered_bases.intersection(excluded_bicho_bases)
+            if leaked_exclusions:
+                sequence_errors.append({
+                    "proj": pdir,
+                    "detail": f"Excluded duplicate bases leaked into rendered gallery: {leaked_exclusions}",
+                })
 
-    has_error = False
+            bicho_fin = [p for p in rendered_meta if not is_construction(p)]
+            bicho_obr = [p for p in rendered_meta if is_construction(p)]
+            if len(bicho_fin) != 33:
+                sequence_errors.append({
+                    "proj": pdir,
+                    "detail": f"Expected 33 finished photos in El Bicho gallery, got {len(bicho_fin)}",
+                })
+            if len(bicho_obr) != 42:
+                sequence_errors.append({
+                    "proj": pdir,
+                    "detail": f"Expected 42 construction photos in El Bicho gallery, got {len(bicho_obr)}",
+                })
+
+    # 5. Semantic Regression Canaries
+    print("\nAuditing semantic regression canaries...")
+    canaries = [
+        ("01-plaza-esmeralda-puerto-escondido", "12-cristal-madera-noche-ciudad", False, "texturizado not matching izado"),
+        ("10-obra-punta-zicatela", "23-mesa-monolitica-concreto-acceso-departamento", False, "concreto pulido finished table"),
+        ("04-casa-melchor-ocampo", "08-balcon-forjado-cielo-nubes", False, "balcon forjado ironwork finished balcony"),
+        ("10-obra-punta-zicatela", "36-forjado-barra-concreto-muros-tabique", True, "forjado slab casting construction"),
+        ("10-obra-punta-zicatela", "38-vista-superior-barra-concreto-recien-colada", True, "recien colada slab casting construction"),
+        ("02-el-bicho", "87-instalacion-paneles-estructura-metalica-laser", True, "nivel laser metal frame construction"),
+        ("08-rbnb-palmarito", "07-atardecer-bajo-losa-escombros", True, "escombros structural slab construction"),
+    ]
+    for c_proj, c_base, c_expected, c_desc in canaries:
+        photo = photo_map.get(f"{c_proj}/{c_base}") or photo_map.get(c_base)
+        if not photo:
+            canary_errors.append(f"Canary photo '{c_proj}/{c_base}' not found in manifest")
+            continue
+        c_actual = is_construction(photo)
+        if c_actual != c_expected:
+            canary_errors.append(
+                f"Canary failed: '{c_proj}/{c_base}' ({c_desc}) expected construction={c_expected}, got {c_actual}"
+            )
+
+    # Summary Output
+    print("\n-----------------------------------------------------------------")
+    print("VERIFICATION RESULTS SUMMARY")
+    print("-----------------------------------------------------------------")
 
     if completeness_errors:
         has_error = True
@@ -222,9 +359,23 @@ def verify_galleries() -> int:
         has_error = True
         print(f"\n[FAIL] Sequence Ordering Invariant Violated ({len(sequence_errors)} inversions):")
         for s in sequence_errors:
-            print(f"  - [{s['proj']}] Finished photo '{s['finished_photo']}' (order {s['finished_order']}) appears after construction photo '{s['after_construction']}' (order {s['construction_order']})")
+            if "detail" in s:
+                print(f"  - [{s['proj']}] {s['detail']}")
+            else:
+                print(
+                    f"  - [{s['proj']}] Finished photo '{s['finished_photo']}' (order {s['finished_order']}) "
+                    f"appears after construction photo '{s['after_construction']}' (order {s['construction_order']})"
+                )
     else:
-        print("[PASS] Spatial sequence check passed: 0 construction order inversions detected.")
+        print(f"[PASS] Spatial sequence check passed: 0 construction order inversions detected across {total_rendered_photos} rendered photos.")
+
+    if canary_errors:
+        has_error = True
+        print(f"\n[FAIL] Semantic Regression Canaries Violated ({len(canary_errors)} errors):")
+        for err in canary_errors:
+            print(f"  - {err}")
+    else:
+        print("[PASS] All semantic regression canaries passed.")
 
     if has_error:
         print("\n>>> Verification FAILED.")

@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Empirical Adversarial Test Harness — Challenger 2
+Empirical Adversarial Test Harness — Challenger 2 / Iteration 2
 Evaluates:
 1. Level 1: Manifest sequence ordering.
 2. Level 2: Web runtime getProjectPhotos() sequence ordering (as rendered on /proyectos).
-3. Level 3: Classification divergence between photos.ts (isObraGris) and verify-galleries.py (is_construction).
-4. Level 4: Mutation testing of tools/verify-galleries.py.
+3. Level 3: Classification correctness of isObraGris() across critical boundaries.
+4. Level 4: tools/verify-galleries.py execution and runtime parity.
 """
 
 import copy
@@ -43,22 +43,40 @@ def load_manifest():
 
 # Replicates isObraGris from src/lib/content/photos.ts:138-192 exactly
 def is_obra_gris_web(photo):
+    base = photo.get("base", "")
     slug = photo.get("slug", "")
     note = photo.get("note", "")
-    text = f"{slug} {note}".lower()
-    if any(t in text for t in ["terminad", "acabado final", "casa terminada", "residencia modernizada", "de dia con"]):
-        return False
-    terms = [
-        "obra", "cimentacion", "colado", "armado", "trabajador", "albanil",
-        "construccion", "cimbra", "vaciado", "andamio", "excavadora", "mezcladora",
-        "manguera", "varilla", "grua", "izado", "revolvedora", "cuadrilla",
-        "materiales-obra", "firme", "emboquillado", "limpieza-juntas", "colocacion",
-        "frente-obra", "bomba-concreto", "pluma-bomba", "estabilizadores", "trazo-laser",
-        "nivel-laser", "bastidor-metalico", "prefabricado", "prefabricada", "carretilla",
-        "excavacion", "terraceria", "colocando", "soldadura", "demolicion", "maquinaria",
-        "compactador", "compactacion",
+    text = f"{base} {slug} {note}".lower().replace("-", " ")
+
+    priority_triggers = [
+        "obra", "en proceso", "proceso de", "recien colad",
+        "en construccion", "cimentacion", "demolicion"
     ]
-    return any(t in text for t in terms)
+    if any(t in text for t in priority_triggers):
+        return True
+
+    finished_exceptions = [
+        "terminad", "acabado final", "casa terminada", "residencia modernizada",
+        "de dia con", "modernizada", "hierro forjado", "balcon forjado",
+        "concreto pulido", "azoteas ajardinadas"
+    ]
+    if any(t in text for t in finished_exceptions):
+        return False
+
+    if re.search(r"\bizado\b", text) and "texturizado" not in text:
+        return True
+
+    construction_regex = (
+        r"\b(obra|cimentaci[oó]n|colado|armado|trabajador(es)?|albañil(es)?|albanil(es)?|"
+        r"construcci[oó]n|cimbra|vaciado|andamio(s)?|(retro)?excavadora(s)?|excavaci[oó]n|"
+        r"mezcladora|manguera|varilla(s)?|gr[uú]a|revolvedora|cuadrilla|materiales|firme|"
+        r"emboquillado|limpieza juntas|colocaci[oó]n|colocando|frente obra|bomba concreto|"
+        r"pluma bomba|estabilizadores|trazo laser|nivel laser|laser|bastidor|bastidor metalico|"
+        r"prefabricad[oa](s)?|carretilla|terracer[ií]a|soldadura|demolici[oó]n|maquinaria|"
+        r"compactaci[oó]n|compactador(a)?|encofrado|escombro(s)?|forjado de|en proceso|"
+        r"reci[eé]n colad[ao]|aplicaci[oó]n de acabado|mortero|obra gris)\b"
+    )
+    return bool(re.search(construction_regex, text))
 
 # Replicates getProjectPhotos from src/lib/content/photos.ts:202-268
 def get_rendered_project_photos(manifest, pdir):
@@ -81,21 +99,21 @@ def get_rendered_project_photos(manifest, pdir):
         }
         active = [p for p in active if p["base"] not in excluded_bases]
 
+        blake = next(p for p in manifest["projects"] if p["dir"] == "03-casa-blake-tlalixtac")
+        blake_active = [p for p in blake["photos"] if p.get("score", 0) >= 3 and not p.get("excluded", False)]
+        blake_active.sort(key=lambda x: x["order"])
+        blake_pool = [p for p in blake_active if "alberca" in p["base"]]
+
+        bicho_fin = [p for p in active if not is_obra_gris_web(p)]
+        bicho_obr = [p for p in active if is_obra_gris_web(p)]
+        pool_fin = [p for p in blake_pool if not is_obra_gris_web(p)]
+        pool_obr = [p for p in blake_pool if is_obra_gris_web(p)]
+        return bicho_fin + pool_fin + bicho_obr + pool_obr
+
     if pdir == "03-casa-blake-tlalixtac":
         active = [p for p in active if "alberca" not in p["base"]]
 
-    finished = [p for p in active if not is_obra_gris_web(p)]
-    obra = [p for p in active if is_obra_gris_web(p)]
-
-    if pdir == "02-el-bicho":
-        blake = next(p for p in manifest["projects"] if p["dir"] == "03-casa-blake-tlalixtac")
-        blake_active = [p for p in blake["photos"] if p.get("score", 0) >= 3 and not p.get("excluded", False)]
-        blake_pool = [p for p in blake_active if "alberca" in p["base"]]
-        pool_fin = [p for p in blake_pool if not is_obra_gris_web(p)]
-        pool_obr = [p for p in blake_pool if is_obra_gris_web(p)]
-        return finished + pool_fin + obra + pool_obr
-
-    return finished + obra
+    return active
 
 def run_adversarial_checks():
     manifest = load_manifest()
@@ -111,13 +129,52 @@ def run_adversarial_checks():
 
     for pdir in PORTFOLIO_DIRS:
         rendered = get_rendered_project_photos(manifest, pdir)
-        orders = [int(p["order"]) for p in rendered]
-        for i in range(len(orders) - 1):
-            if orders[i] > orders[i + 1]:
+
+        # Invariant 1A: Finished works must strictly precede construction works (0 inversions)
+        seen_construction = False
+        first_construction = None
+        for p in rendered:
+            if is_obra_gris_web(p):
+                seen_construction = True
+                if first_construction is None:
+                    first_construction = p
+            else:
+                if seen_construction:
+                    runtime_inversions.append({
+                        "project": pdir,
+                        "first": first_construction,
+                        "second": p,
+                        "reason": f"Finished photo '{p['base']}' rendered after construction photo '{first_construction['base']}'",
+                    })
+
+        # Invariant 1B: Monotonic order for all standard projects
+        if pdir != "02-el-bicho":
+            orders = [int(p["order"]) for p in rendered]
+            for i in range(len(orders) - 1):
+                if orders[i] > orders[i + 1]:
+                    runtime_inversions.append({
+                        "project": pdir,
+                        "first": rendered[i],
+                        "second": rendered[i + 1],
+                        "reason": f"Order {orders[i]} appears before Order {orders[i + 1]}",
+                    })
+        else:
+            # Invariant 1C: Partition counts for 02-el-bicho
+            fin_photos = [p for p in rendered if not is_obra_gris_web(p)]
+            obr_photos = [p for p in rendered if is_obra_gris_web(p)]
+            if len(fin_photos) != 33:
                 runtime_inversions.append({
                     "project": pdir,
-                    "first": rendered[i],
-                    "second": rendered[i + 1],
+                    "first": rendered[0],
+                    "second": rendered[-1],
+                    "reason": f"Expected 33 finished photos in El Bicho, got {len(fin_photos)}",
+                })
+            if len(obr_photos) != 42:
+                runtime_inversions.append({
+                    "project": pdir,
+                    "first": rendered[0],
+                    "second": rendered[-1],
+                    "reason": f"Expected 42 construction photos in El Bicho, got {len(obr_photos)}",
                 })
 
     if runtime_inversions:
@@ -126,7 +183,7 @@ def run_adversarial_checks():
         for inv in runtime_inversions:
             p1 = inv["first"]
             p2 = inv["second"]
-            print(f"  - [{inv['project']}] Order {p1['order']} ('{p1['base']}') appears BEFORE Order {p2['order']} ('{p2['base']}')")
+            print(f"  - [{inv['project']}] {inv['reason']}")
     else:
         print("PASSED [CHECK 1]: Zero runtime sequence inversions found.")
 
@@ -200,20 +257,20 @@ def run_adversarial_checks():
     else:
         print("PASSED [CHECK 2]: No semantic misclassifications found.")
 
-    # CHECK 3: Verify tools/verify-galleries.py scope blindness
-    print("\n[CHECK 3] Verifying tools/verify-galleries.py blind spot...")
+    # CHECK 3: Verify tools/verify-galleries.py execution and runtime parity
+    print("\n[CHECK 3] Verifying tools/verify-galleries.py execution and runtime parity...")
     vg_proc = subprocess.run(["python3", "tools/verify-galleries.py"], capture_output=True, text=True)
     if vg_proc.returncode == 0:
-        print("CONFIRMED [CHECK 3]: tools/verify-galleries.py exits with 0 (PASS) on manifest.json")
-        print("  while the runtime seam (src/lib/content/photos.ts) fails with sequence inversions.")
-        print("  Root cause: tools/verify-galleries.py only inspects manifest.json sorted by order,")
-        print("  completely bypassing the application code getProjectPhotos().")
+        print("CONFIRMED [CHECK 3]: tools/verify-galleries.py exits with 0 (PASS).")
     else:
-        print("verify-galleries.py failed independently.")
+        all_passed = False
+        print(f"FAILED [CHECK 3]: tools/verify-galleries.py failed with returncode {vg_proc.returncode}:")
+        print(vg_proc.stdout)
+        print(vg_proc.stderr)
 
     print("\n=================================================================")
     if not all_passed:
-        print("OVERALL VERDICT: CHALLENGE_FAILED (Bugs Reproduced Empirically)")
+        print("OVERALL VERDICT: CHALLENGE_FAILED")
         return 1
     else:
         print("OVERALL VERDICT: APPROVE")

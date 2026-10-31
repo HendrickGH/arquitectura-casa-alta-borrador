@@ -136,59 +136,50 @@ export function findPhotoByBase(
  * and construction process photos must appear at the end.
  */
 function isObraGris(photo: ManifestPhoto): boolean {
-  const text = `${photo.slug} ${photo.note}`.toLowerCase();
-  if (
-    text.includes("terminad") ||
-    text.includes("acabado final") ||
-    text.includes("casa terminada") ||
-    text.includes("residencia modernizada") ||
-    text.includes("de dia con")
-  ) {
+  const text = `${photo.base} ${photo.slug} ${photo.note}`
+    .toLowerCase()
+    .replace(/-/g, " ");
+
+  // Priority construction triggers
+  const priorityTriggers = [
+    "obra",
+    "en proceso",
+    "proceso de",
+    "recien colad",
+    "en construccion",
+    "cimentacion",
+    "demolicion",
+  ];
+  if (priorityTriggers.some((t) => text.includes(t))) {
+    return true;
+  }
+
+  // Finished state exceptions
+  const finishedExceptions = [
+    "terminad",
+    "acabado final",
+    "casa terminada",
+    "residencia modernizada",
+    "de dia con",
+    "modernizada",
+    "hierro forjado",
+    "balcon forjado",
+    "concreto pulido",
+    "azoteas ajardinadas",
+  ];
+  if (finishedExceptions.some((t) => text.includes(t))) {
     return false;
   }
-  return [
-    "obra",
-    "cimentacion",
-    "colado",
-    "armado",
-    "trabajador",
-    "albanil",
-    "construccion",
-    "cimbra",
-    "vaciado",
-    "andamio",
-    "excavadora",
-    "mezcladora",
-    "manguera",
-    "varilla",
-    "grua",
-    "izado",
-    "revolvedora",
-    "cuadrilla",
-    "materiales-obra",
-    "firme",
-    "emboquillado",
-    "limpieza-juntas",
-    "colocacion",
-    "frente-obra",
-    "bomba-concreto",
-    "pluma-bomba",
-    "estabilizadores",
-    "trazo-laser",
-    "nivel-laser",
-    "bastidor-metalico",
-    "prefabricado",
-    "prefabricada",
-    "carretilla",
-    "excavacion",
-    "terraceria",
-    "colocando",
-    "soldadura",
-    "demolicion",
-    "maquinaria",
-    "compactador",
-    "compactacion",
-  ].some((term) => text.includes(term));
+
+  // Guard: do not match "izado" inside "texturizado"
+  if (/\bizado\b/.test(text) && !text.includes("texturizado")) {
+    return true;
+  }
+
+  const constructionRegex =
+    /\b(obra|cimentaci[oó]n|colado|armado|trabajador(es)?|albañil(es)?|albanil(es)?|construcci[oó]n|cimbra|vaciado|andamio(s)?|(retro)?excavadora(s)?|excavaci[oó]n|mezcladora|manguera|varilla(s)?|gr[uú]a|revolvedora|cuadrilla|materiales|firme|emboquillado|limpieza juntas|colocaci[oó]n|colocando|frente obra|bomba concreto|pluma bomba|estabilizadores|trazo laser|nivel laser|laser|bastidor|bastidor metalico|prefabricad[oa](s)?|carretilla|terracer[ií]a|soldadura|demolici[oó]n|maquinaria|compactaci[oó]n|compactador(a)?|encofrado|escombro(s)?|forjado de|en proceso|reci[eé]n colad[ao]|aplicaci[oó]n de acabado|mortero|obra gris)\b/;
+
+  return constructionRegex.test(text);
 }
 
 /**
@@ -227,13 +218,6 @@ export function getProjectPhotos(dir: string, projectTitle = ""): Photo[] {
     photos = photos.filter((p) => !p.base.includes("alberca"));
   }
 
-  const finished = photos.filter((p) => !isObraGris(p));
-  const obraGris = photos.filter((p) => isObraGris(p));
-
-  const resolved = [...finished, ...obraGris].map((photo) =>
-    toPhoto(dir, photo, projectTitle),
-  );
-
   // CAS-040: Integrar en El Bicho las fotos de alberca provenientes de Casa Blake
   if (dir === "02-el-bicho") {
     const blake = findManifestProject("03-casa-blake-tlalixtac");
@@ -241,20 +225,20 @@ export function getProjectPhotos(dir: string, projectTitle = ""): Photo[] {
       const blakePool = rankedPhotos(blake).filter((p) =>
         p.base.includes("alberca"),
       );
+      const bichoFinished = photos
+        .filter((p) => !isObraGris(p))
+        .map((p) => toPhoto(dir, p, projectTitle));
       const poolFinished = blakePool
         .filter((p) => !isObraGris(p))
         .map((p) => toPhoto("03-casa-blake-tlalixtac", p, projectTitle));
+      const bichoObraGris = photos
+        .filter((p) => isObraGris(p))
+        .map((p) => toPhoto(dir, p, projectTitle));
       const poolObraGris = blakePool
         .filter((p) => isObraGris(p))
         .map((p) => toPhoto("03-casa-blake-tlalixtac", p, projectTitle));
 
-      // Insert finished pool photos right after initial finished photos, and obra gris pool at the end
-      const bichoFinished = finished.map((p) =>
-        toPhoto(dir, p, projectTitle),
-      );
-      const bichoObraGris = obraGris.map((p) =>
-        toPhoto(dir, p, projectTitle),
-      );
+      // Splicing: Finished El Bicho -> Finished Pool -> Obra Gris El Bicho -> Obra Gris Pool
       return [
         ...bichoFinished,
         ...poolFinished,
@@ -264,7 +248,9 @@ export function getProjectPhotos(dir: string, projectTitle = ""): Photo[] {
     }
   }
 
-  return resolved;
+  // manifest.json is already authoritative and ordered with finished first -> construction at end (R2).
+  // Return directly without destructive re-filtering.
+  return photos.map((photo) => toPhoto(dir, photo, projectTitle));
 }
 
 /**
