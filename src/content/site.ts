@@ -35,7 +35,6 @@ export const site = {
     { label: "Proyectos", href: "/proyectos" },
     { label: "Servicios", href: "/servicios" },
     { label: "Obra Civil", href: "/obra-civil" },
-    { label: "Interiores", href: "/arquitectura-interiores" },
     { label: "Sostenible", href: "/construccion-sostenible" },
     { label: "Nosotros", href: "/nosotros" },
     { label: "Contacto", href: "/contacto" },
