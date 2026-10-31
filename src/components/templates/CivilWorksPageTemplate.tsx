@@ -18,9 +18,8 @@ interface CivilWorksPageTemplateProps {
  * Implements the canonical Cosentino Architectural Editorial contract:
  * - Layer 1: PageHero (bg-ink) with Dual CTAs (#especialidades and WhatsApp consultation)
  * - Layer 2: SpecialtiesShowcase (tone="canvas") — 4 heavy civil specialties with zero-CLS hover expansion
- * - Layer 3: ManifestoLine (bg-concha-nacar) — signature engineering quote and portrait
- * - Layer 4: CredibilityGallery (tone="canvas") — dynamic ribbon of 5-star heavy civil & infrastructure records
- * - Layer 5: WhyCasaAltaEditorial (tone="bone") — 4 structural rigor & DRO engineering pillars with harmonic overlap
+ * - Layer 3: CredibilityGallery (tone="bone") — dynamic ribbon of 5-star heavy civil & infrastructure records
+ * - Layer 4: WhyCasaAltaEditorial (tone="canvas") — 4 structural rigor & DRO engineering pillars with harmonic overlap
  * - Closing: ClosingCTA (bg-concha-nacar)
  */
 export function CivilWorksPageTemplate({
@@ -58,7 +57,6 @@ export function CivilWorksPageTemplate({
         deliverablesLabel: "Capacidad de maniobra y especificaciones técnicas:",
         ctaLabel: "Solicitar cotización técnica",
       }}
-      manifesto={page.manifesto}
       gallery={{
         id: "infraestructura",
         intro: page.gallery.intro,

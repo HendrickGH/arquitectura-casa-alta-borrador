@@ -4,7 +4,6 @@ import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
-import { ManifestoLine } from "@/components/organisms/ManifestoLine";
 import { PageHero } from "@/components/organisms/PageHero";
 import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
 import { WhyCasaAltaEditorial } from "@/components/organisms/WhyCasaAltaEditorial";
@@ -43,7 +42,6 @@ export interface ThematicPillarPageTemplateProps {
     deliverablesLabel: string;
     ctaLabel: string;
   };
-  manifesto?: { text: string; photo?: Photo };
   gallery: { id: string; intro: SectionIntro; photos: Photo[] };
   pillars: { id: string; intro: SectionIntro; items: PillarItems };
 }
@@ -59,7 +57,6 @@ export function ThematicPillarPageTemplate({
   closing,
   hero,
   specialties,
-  manifesto,
   gallery,
   pillars,
 }: ThematicPillarPageTemplateProps) {
@@ -114,29 +111,20 @@ export function ThematicPillarPageTemplate({
           </Container>
         </Section>
 
-        {/* Layer 3: Manifesto */}
-        {manifesto ? (
-          <ManifestoLine
-            line={manifesto.text}
-            architect={site.architect}
-            photo={manifesto.photo}
-          />
-        ) : null}
-
-        {/* Layer 4: Ribbon gallery */}
+        {/* Layer 3: Ribbon gallery */}
         <CredibilityGallery
           id={gallery.id}
           intro={gallery.intro}
           photos={gallery.photos}
-          tone="canvas"
+          tone="bone"
         />
 
-        {/* Layer 5: Editorial pillars */}
+        {/* Layer 4: Editorial pillars */}
         <WhyCasaAltaEditorial
           id={pillars.id}
           intro={pillars.intro}
           items={pillars.items}
-          tone="bone"
+          tone="canvas"
         />
 
         {/* Closing CTA */}

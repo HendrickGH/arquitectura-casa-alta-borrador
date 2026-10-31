@@ -18,9 +18,8 @@ interface SustainabilityPageTemplateProps {
  * Implements the canonical Cosentino Architectural Editorial contract:
  * - Layer 1: PageHero (bg-ink) with Dual CTAs (#pilares and WhatsApp consultation)
  * - Layer 2: SpecialtiesShowcase (tone="canvas") — 4 bioclimatic pillars with zero-CLS hover expansion
- * - Layer 3: ManifestoLine (bg-concha-nacar) — client's verbatim tropical architecture statement
- * - Layer 4: CredibilityGallery (tone="canvas") — dual-row continuous ribbon of bioclimatic & durable records
- * - Layer 5: WhyCasaAltaEditorial (tone="bone") — 4 field construction strategies in the tropics with harmonic overlap
+ * - Layer 3: CredibilityGallery (tone="bone") — dual-row continuous ribbon of bioclimatic & durable records
+ * - Layer 4: WhyCasaAltaEditorial (tone="canvas") — 4 field construction strategies in the tropics with harmonic overlap
  * - Closing: ClosingCTA (bg-concha-nacar)
  */
 export function SustainabilityPageTemplate({
@@ -58,7 +57,6 @@ export function SustainabilityPageTemplate({
         deliverablesLabel: "Estrategias y especificaciones técnicas:",
         ctaLabel: "Consultar viabilidad de terreno",
       }}
-      manifesto={page.manifesto}
       gallery={{
         id: "galeria",
         intro: page.gallery.intro,

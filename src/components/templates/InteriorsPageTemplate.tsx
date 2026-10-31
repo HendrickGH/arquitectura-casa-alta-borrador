@@ -18,9 +18,8 @@ interface InteriorsPageTemplateProps {
  * Implements the canonical Cosentino Architectural Editorial contract:
  * - Layer 1: PageHero (bg-ink) with Dual CTAs (#materiales and WhatsApp consultation)
  * - Layer 2: SpecialtiesShowcase (tone="canvas") — 4 tactile materials with zero-CLS hover expansion
- * - Layer 3: ManifestoLine (bg-concha-nacar) — signature architect quote and portrait
- * - Layer 4: FeaturedPortfolio (tone="canvas") — dynamic 2-3 row cadence of executed interior works
- * - Layer 5: WhyCasaAltaEditorial (tone="bone") — 4 DRO engineering & craftsmanship pillars with harmonic overlap
+ * - Layer 3: FeaturedPortfolio (tone="bone") — dynamic 2-3 row cadence of executed interior works
+ * - Layer 4: WhyCasaAltaEditorial (tone="canvas") — 4 DRO engineering & craftsmanship pillars with harmonic overlap
  * - Closing: ClosingCTA (bg-concha-nacar)
  */
 export function InteriorsPageTemplate({
@@ -57,7 +56,6 @@ export function InteriorsPageTemplate({
         deliverablesLabel: "Propiedades y tolerancias técnicas:",
         ctaLabel: "Consultar especificación en taller",
       }}
-      manifesto={page.manifesto}
       gallery={{
         id: "espacios",
         intro: page.gallery.intro,
