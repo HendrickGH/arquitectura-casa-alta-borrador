@@ -158,12 +158,12 @@ export const interiorsPageContent = {
         base: "06-pasillo-galeria-muro-terracota-aplique-luz",
       },
       {
-        title: "Garantía contractual y firma pericial DRO",
+        title: "Garantía contractual y firma DRO",
         tag: "RESPALDO TÉCNICO FORMAL",
         description:
-          "Toda intervención de arquitectura de interiores cuenta con firma pericial de Director Responsable de Obra (DRO), póliza de vicios ocultos y entrega de memorias de cálculo por escrito.",
+          "Toda intervención de arquitectura de interiores cuenta con firma de Director Responsable de Obra (DRO), póliza de vicios ocultos y entrega de memorias de cálculo por escrito.",
         points: [
-          "Firma pericial DRO certificada ante colegios oficiales",
+          "Firma DRO certificada ante colegios oficiales",
           "Póliza de garantía por escrito contra vicios ocultos",
           "Bitácora técnica de obra y manual de conservación de acabados",
         ],
@@ -188,7 +188,7 @@ export const civilWorksPageContent = {
   specialties: {
     eyebrow: "Capacidad de maniobra",
     heading: "Infraestructura mayor, preesforzados y montaje pesado",
-    body: "Soluciones de ingeniería civil pesada desarrolladas con equipo propio, maquinaria pesada y supervisión pericial continua en cada maniobra.",
+    body: "Soluciones de ingeniería civil pesada desarrolladas con equipo propio, maquinaria pesada y supervisión técnica continua en cada maniobra.",
     sections: [
       {
         slug: "columnas-y-porticos-prefabricados",
@@ -261,7 +261,7 @@ export const civilWorksPageContent = {
     ],
   },
   manifesto: {
-    text: "La infraestructura civil no se improvisa: se proyecta con rigor de gabinete, cálculo de sismicidad severa y control pericial en cada frente de obra.",
+    text: "La infraestructura civil no se improvisa: se proyecta con rigor de gabinete, cálculo de sismicidad severa y control técnico en cada frente de obra.",
     dir: "obra-civil",
     base: "04-izado-cabezal-columna-puente-grua-cielo-azul",
   },
@@ -275,7 +275,7 @@ export const civilWorksPageContent = {
   engineering: {
     intro: {
       eyebrow: "Rigor estructural y certificación DRO",
-      heading: "Seguridad estructural, cálculo sísmico y supervisión pericial",
+      heading: "Seguridad estructural, cálculo sísmico y supervisión técnica",
       body: "En zonas de alta sismicidad y terrenos de orografía compleja, la obra civil exige cumplimiento estricto de normativas SCT, ACI y normatividad estatal con respaldo formal de Director Responsable de Obra.",
     },
     items: [
@@ -285,7 +285,7 @@ export const civilWorksPageContent = {
         description:
           "Modelamos cada estructura civil mediante software especializado de elementos finitos para garantizar resiliencia ante sismos de alta intensidad y cargas dinámicas de tránsito pesado.",
         points: [
-          "Memorias de cálculo estructural firmadas por peritos colegiados",
+          "Memorias de cálculo estructural firmadas por ingenieros colegiados",
           "Modelado tridimensional de esfuerzos y deformaciones críticas",
           "Cumplimiento con normas técnicas complementarias y estándares SCT",
         ],
@@ -319,7 +319,7 @@ export const civilWorksPageContent = {
         base: "09-rodillo-compactador-caterpillar-base-columnas-prefabricadas",
       },
       {
-        title: "Firma pericial DRO y supervisión de armados en cimentación",
+        title: "Firma DRO y supervisión de armados en cimentación",
         tag: "RESPALDO TÉCNICO Y LEGAL",
         description:
           "Entregamos expedientes técnicos completos: bitácora electrónica de obra pública o privada, planos as-built, estimaciones por conceptos ejecutados y finiquito sin partidas ocultas.",
