@@ -105,7 +105,7 @@ export function PageHero({
   return (
     <section
       ref={sectionRef}
-      className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-ink text-white"
+      className="relative -mt-[var(--chrome-h)] h-[80svh] min-h-[80svh] w-full overflow-hidden bg-ink text-white md:h-svh md:min-h-[100svh]"
     >
       {/* Full-bleed background photo(s) with crossfade and subtle parallax */}
       <div ref={bgRef} className="absolute inset-0 z-0 h-full w-full">
@@ -141,10 +141,10 @@ export function PageHero({
       />
 
       {/* Content Container */}
-      <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
+      <Container className="relative z-20 flex h-full flex-col justify-end pb-8 pt-[var(--chrome-h)] text-white md:pb-12">
         {/* Top metadata strip */}
         {eyebrow && eyebrow.trim().length > 0 ? (
-          <div className="mb-6 pb-4">
+          <div className="mb-3 pb-2 md:mb-6 md:pb-4">
             <p className="eyebrow !text-white/85">{eyebrow}</p>
           </div>
         ) : null}

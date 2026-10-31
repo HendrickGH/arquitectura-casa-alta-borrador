@@ -65,7 +65,7 @@ export function Hero({ hero }: HeroProps) {
       id="hero"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative -mt-[var(--chrome-h)] h-svh min-h-[100svh] w-full overflow-hidden bg-ink text-white"
+      className="relative -mt-[var(--chrome-h)] h-[85svh] min-h-[85svh] w-full overflow-hidden bg-ink text-white md:h-svh md:min-h-[100svh]"
     >
       {/* Full-bleed photographic background carousel */}
       <div className="absolute inset-0 z-0 h-full w-full">
@@ -101,7 +101,7 @@ export function Hero({ hero }: HeroProps) {
       </div>
 
       {/* Content Container */}
-      <Container className="relative z-20 flex h-full flex-col justify-end pb-12 pt-[var(--chrome-h)] text-white">
+      <Container className="relative z-20 flex h-full flex-col justify-end pb-8 pt-[var(--chrome-h)] text-white md:pb-12">
         <div className="grid grid-cols-1 items-end gap-8 lg:grid-cols-12">
           {/* Left Column: Architectural Display Lockup (matching Footer styling) */}
           <div className="flex flex-col items-start lg:col-span-8">
