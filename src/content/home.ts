@@ -347,6 +347,23 @@ export const home: HomePage = {
     photoCaption: "Punta Zicatela · Puerto Escondido, Oaxaca",
   },
 
+  territoryShowcase: {
+    heading: "El nuevo lujo no se ve, se siente",
+    title: "Arquitectura nativa",
+    lede: "Una nueva forma de habitar la naturaleza.",
+    paragraphs: [
+      "En Casa Alta Arquitectura hemos creado Arquitectura Nativa, un lenguaje arquitectónico propio que nace de la conexión entre el ser humano, la naturaleza y el espacio habitable.",
+      "Nuestra filosofía fusiona el diseño contemporáneo con la sabiduría constructiva tradicional, dando vida a espacios sostenibles y bioclimáticos que dialogan con el paisaje, respetan su esencia y se integran armónicamente al entorno.",
+      "Arquitectura Nativa representa nuestra visión del nuevo lujo: una arquitectura que no se impone a la naturaleza, sino que nace de ella.",
+    ],
+    closing: "Casa Alta Arquitectura | Arquitectura que perdura.",
+    photo: puntaZicatelaIntroPhoto,
+    cta: {
+      label: "Conoce todos nuestros proyectos",
+      href: "/proyectos",
+    },
+  },
+
   virtualTour: {
     eyebrow: "Recorrido virtual",
     heading: "Casa Charco Seco",

@@ -5,11 +5,15 @@ import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
 import { Text } from "@/components/atoms/Text";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
-import type { Photo as PhotoModel } from "@/types/content";
+import type {
+  Photo as PhotoModel,
+  TerritoryShowcaseContent,
+} from "@/types/content";
 
 interface TerritoryShowcaseProps {
   id?: string;
-  photo: PhotoModel;
+  showcase?: TerritoryShowcaseContent;
+  photo?: PhotoModel;
   tone?: "canvas" | "bone";
 }
 
@@ -24,15 +28,31 @@ interface TerritoryShowcaseProps {
  */
 export function TerritoryShowcase({
   id = "arquitectura-nativa",
+  showcase,
   photo,
   tone = "bone",
 }: TerritoryShowcaseProps) {
+  const activePhoto = showcase?.photo ?? photo;
+  if (!activePhoto) return null;
+
+  const heading = showcase?.heading ?? "El nuevo lujo no se ve, se siente";
+  const title = showcase?.title ?? "Arquitectura nativa";
+  const lede = showcase?.lede;
+  const paragraphs = showcase?.paragraphs ?? [
+    "Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.",
+  ];
+  const closing = showcase?.closing;
+  const cta = showcase?.cta ?? {
+    label: "Conoce todos nuestros proyectos",
+    href: "/proyectos",
+  };
+
   return (
     <Section id={id} tone={tone} density="default">
       <Container>
         {/* Canonical Section Header without eyebrow */}
         <SectionHeading
-          heading="El nuevo lujo no se ve, se siente"
+          heading={heading}
           className="mb-8 md:mb-12"
         />
 
@@ -40,7 +60,7 @@ export function TerritoryShowcase({
         <div className="overflow-hidden bg-bone-100">
           <div className="relative aspect-[16/9] w-full overflow-hidden sm:aspect-[16/8.5]">
             <Photo
-              photo={photo}
+              photo={activePhoto}
               sizes="(min-width: 1440px) 1400px, 100vw"
               fit="cover"
               className="h-full w-full object-cover"
@@ -48,33 +68,57 @@ export function TerritoryShowcase({
           </div>
         </div>
 
-        {/* Architectural Caption & CTA: Side-by-Side on Desktop/Tablet, Vertically Centered */}
-        <div className="mt-8 flex flex-col justify-between gap-6 md:flex-row md:items-center md:gap-10 lg:gap-16">
-          <div className="flex max-w-[64ch] flex-col gap-3">
+        {/* Architectural Caption & CTA: Side-by-Side on Desktop/Tablet, Aligned at Top */}
+        <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-start md:gap-10 lg:gap-16">
+          <div className="flex max-w-[68ch] flex-col gap-4">
             <Heading
               voice="serif"
               as="h3"
               sizeClassName="text-2xl md:text-3xl text-ink"
             >
-              Arquitectura nativa
+              {title}
             </Heading>
-            <Text
-              size="lede"
-              className="text-ink-muted leading-relaxed text-justify"
-            >
-              Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.
-            </Text>
+
+            {lede ? (
+              <Text
+                size="lede"
+                className="font-normal text-ink leading-relaxed"
+              >
+                {lede}
+              </Text>
+            ) : null}
+
+            <div className="flex flex-col gap-3">
+              {paragraphs.map((para, idx) => (
+                <Text
+                  key={idx}
+                  size="base"
+                  className="text-ink-muted leading-relaxed text-justify"
+                >
+                  {para}
+                </Text>
+              ))}
+            </div>
+
+            {closing ? (
+              <Text
+                size="base"
+                className="pt-1 font-medium text-brand-800 leading-relaxed text-left"
+              >
+                {closing}
+              </Text>
+            ) : null}
           </div>
 
-          <div className="shrink-0 self-start md:self-center">
+          <div className="shrink-0 self-start pt-1 md:self-start">
             <Button
-              href="/proyectos"
+              href={cta.href}
               variant="primary"
               size="md"
               arrow
               className="w-full justify-center sm:w-auto"
             >
-              Conoce todos nuestros proyectos
+              {cta.label}
             </Button>
           </div>
         </div>

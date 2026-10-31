@@ -387,6 +387,17 @@ export interface VirtualTourContent {
   cta: CallToAction;
 }
 
+export interface TerritoryShowcaseContent {
+  eyebrow?: string;
+  heading: string;
+  title: string;
+  lede?: string;
+  paragraphs: string[];
+  closing?: string;
+  photo: Photo;
+  cta: CallToAction;
+}
+
 export interface HomePage {
   hero: HeroContent;
   stats: Stat[];
@@ -400,6 +411,7 @@ export interface HomePage {
   divisionsIntro: SectionIntro;
   divisions: DivisionCardContent[];
   intro: SectionIntro;
+  territoryShowcase?: TerritoryShowcaseContent;
   virtualTour?: VirtualTourContent;
   services: SectionIntro;
   servicePillars?: ServicePillar[];

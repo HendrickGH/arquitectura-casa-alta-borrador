@@ -306,6 +306,7 @@ function landingSources(): Set<string> {
   return new Set([
     ...home.hero.slides.map((slide) => slide.photo.src),
     ...(home.intro.photo ? [home.intro.photo.src] : []),
+    ...(home.territoryShowcase?.photo ? [home.territoryShowcase.photo.src] : []),
     ...(home.intro.secondaryPhoto ? [home.intro.secondaryPhoto.src] : []),
     ...(home.manifestoPhoto ? [home.manifestoPhoto.src] : []),
     ...(home.contactPhoto ? [home.contactPhoto.src] : []),

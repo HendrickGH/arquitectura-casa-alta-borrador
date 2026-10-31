@@ -59,9 +59,10 @@ export function LandingTemplate({
         <StatsBand stats={home.stats} />
 
         {/* 03. Sección Arquitectura nativa: "El nuevo lujo no se ve, se siente" */}
-        {home.intro.photo ? (
+        {home.territoryShowcase || home.intro.photo ? (
           <TerritoryShowcase
             id="arquitectura-nativa"
+            showcase={home.territoryShowcase}
             photo={home.intro.photo}
             tone="bone"
           />
