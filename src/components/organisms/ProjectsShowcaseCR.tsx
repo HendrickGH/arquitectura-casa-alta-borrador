@@ -234,7 +234,7 @@ export function ProjectsShowcaseCR({
             tabIndex={0}
             role="region"
             aria-label="Selector de obras del portafolio"
-            className="flex gap-3 sm:gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory py-2 scrollbar-none focus-visible:outline-2 focus-visible:outline-brand-800"
+            className="flex gap-4 sm:gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory py-2 scrollbar-none focus-visible:outline-2 focus-visible:outline-brand-800"
           >
             {projects.map((project, idx) => {
               const isActive = idx === activeIndex;
@@ -249,7 +249,7 @@ export function ProjectsShowcaseCR({
                   type="button"
                   onClick={() => setActiveIndex(idx)}
                   className={cx(
-                    "snap-start flex-shrink-0 w-[240px] sm:w-[280px] p-3 flex flex-col gap-3 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
+                    "snap-start flex-shrink-0 w-[360px] sm:w-[420px] p-3.5 sm:p-4 flex flex-col gap-3.5 text-left transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-800",
                     isActive
                       ? "bg-ink text-white"
                       : "bg-bone-50 text-ink hover:bg-bone-100"
@@ -260,7 +260,7 @@ export function ProjectsShowcaseCR({
                     <Photo
                       photo={thumb}
                       fit="cover"
-                      sizes="(min-width: 640px) 280px, 240px"
+                      sizes="(min-width: 640px) 420px, 360px"
                       className="h-full w-full object-cover"
                     />
                   </div>
@@ -268,7 +268,7 @@ export function ProjectsShowcaseCR({
                   <div className="min-w-0 w-full">
                     <h4
                       className={cx(
-                        "text-sm font-semibold truncate leading-snug",
+                        "text-base font-semibold truncate leading-snug",
                         isActive ? "text-white" : "text-ink"
                       )}
                     >
@@ -276,7 +276,7 @@ export function ProjectsShowcaseCR({
                     </h4>
                     <p
                       className={cx(
-                        "text-xs truncate mt-0.5",
+                        "text-xs sm:text-sm truncate mt-1",
                         isActive ? "text-white/70" : "text-ink-muted"
                       )}
                     >
