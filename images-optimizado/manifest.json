@@ -2145,33 +2145,6 @@
           ]
         },
         {
-          "base": "69-izado-columnas-prefabricadas-grua-cielo-azul",
-          "fallback": "69-izado-columnas-prefabricadas-grua-cielo-azul.jpg",
-          "full": {
-            "file": "69-izado-columnas-prefabricadas-grua-cielo-azul.avif",
-            "height": 960,
-            "width": 1280
-          },
-          "note": "Montaje con grua de columnas y trabes prefabricadas de concreto de gran escala",
-          "order": "42",
-          "score": 4,
-          "slug": "izado-columnas-prefabricadas-grua-cielo-azul",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.51 (1).jpeg",
-          "srcset": "69-izado-columnas-prefabricadas-grua-cielo-azul-480.avif 480w, 69-izado-columnas-prefabricadas-grua-cielo-azul-960.avif 960w, 69-izado-columnas-prefabricadas-grua-cielo-azul.avif 1280w",
-          "variants": [
-            {
-              "file": "69-izado-columnas-prefabricadas-grua-cielo-azul-480.avif",
-              "height": 360,
-              "width": 480
-            },
-            {
-              "file": "69-izado-columnas-prefabricadas-grua-cielo-azul-960.avif",
-              "height": 720,
-              "width": 960
-            }
-          ]
-        },
-        {
           "base": "70-grua-telescopica-maniobra-obra-vial",
           "fallback": "70-grua-telescopica-maniobra-obra-vial.jpg",
           "full": {
@@ -8599,6 +8572,33 @@
             },
             {
               "file": "05-maniobra-grua-tablones-material-960.avif",
+              "height": 720,
+              "width": 960
+            }
+          ]
+        },
+        {
+          "base": "06-izado-columnas-prefabricadas-grua-cielo-azul",
+          "fallback": "06-izado-columnas-prefabricadas-grua-cielo-azul.jpg",
+          "full": {
+            "file": "06-izado-columnas-prefabricadas-grua-cielo-azul.avif",
+            "height": 960,
+            "width": 1280
+          },
+          "note": "Montaje con grúa de columnas y trabes prefabricadas de concreto de gran escala.",
+          "order": "06",
+          "score": 4,
+          "slug": "izado-columnas-prefabricadas-grua-cielo-azul",
+          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.51 (1).jpeg",
+          "srcset": "06-izado-columnas-prefabricadas-grua-cielo-azul-480.avif 480w, 06-izado-columnas-prefabricadas-grua-cielo-azul-960.avif 960w, 06-izado-columnas-prefabricadas-grua-cielo-azul.avif 1280w",
+          "variants": [
+            {
+              "file": "06-izado-columnas-prefabricadas-grua-cielo-azul-480.avif",
+              "height": 360,
+              "width": 480
+            },
+            {
+              "file": "06-izado-columnas-prefabricadas-grua-cielo-azul-960.avif",
               "height": 720,
               "width": 960
             }
