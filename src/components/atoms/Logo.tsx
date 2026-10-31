@@ -14,7 +14,9 @@ interface LogoProps {
  */
 export function Logo({ className, size = "default" }: LogoProps) {
   const sizeClasses =
-    size === "header" ? "h-[72px] md:h-[88px]" : "h-9 md:h-11";
+    size === "header"
+      ? "h-10 sm:h-12 md:h-14 lg:h-16"
+      : "h-8 md:h-9";
 
   return (
     <Image

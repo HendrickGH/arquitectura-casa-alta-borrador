@@ -100,12 +100,12 @@ export function ProcessEntry({
     >
       <div className="grid grid-cols-1 md:grid-cols-12 md:items-center md:gap-8 lg:gap-10">
         <div className={step.photo ? "md:col-span-7" : "md:col-span-12"}>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
             <span className="flex h-7 w-7 items-center justify-center bg-bone-200 text-xs font-semibold tabular-nums text-brand-800">
               {marker}
             </span>
             <span className="label tabular-nums text-ink-muted">
-              {`Etapa ${marker} de ${String(total).padStart(2, "0")}`}
+              {`de ${String(total).padStart(2, "0")} · Etapa de obra`}
             </span>
           </div>
 

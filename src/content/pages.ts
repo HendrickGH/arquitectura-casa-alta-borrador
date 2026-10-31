@@ -556,7 +556,7 @@ export const aboutPageContent = {
   methodology: [
     {
       number: "01",
-      kicker: "Gabinete técnico · Cálculo estructural",
+      kicker: "Gabinete técnico · Ingeniería sismorresistente",
       title: "Proyecto ejecutivo y cálculo estructural",
       description:
         "Desarrollamos la arquitectura integral y la memoria de cálculo sismorresistente antes de iniciar faena en el terreno. Cada detalle constructivo e hidrosanitario queda resuelto en plano.",
@@ -585,7 +585,7 @@ export const aboutPageContent = {
       title: "Acabados de autor y garantía patrimonial",
       description:
         "Integramos maderas tropicales curadas, cantera local y herrería artesanal. Entregamos la obra sin sobrecostos y con póliza de garantía post-entrega por escrito.",
-      deliverable: "Póliza de garantía por escrito",
+      deliverable: "Expediente finiquito y póliza de vicios ocultos",
       dir: "arquitectura-que-perdura",
       base: "01-comedor-exterior-madera-bajo-palapa-lamparas-tejidas",
       photoAlt:

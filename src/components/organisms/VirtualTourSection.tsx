@@ -73,6 +73,7 @@ export function VirtualTourSection({
                 variant="primary"
                 size="md"
                 arrow
+                className="hidden md:inline-flex"
               >
                 {tour.cta.label || "Conoce nuestros servicios"}
               </Button>

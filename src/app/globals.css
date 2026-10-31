@@ -54,10 +54,10 @@
 @layer base {
 	:root {
 		/* The floating chrome's height. MotionShell overwrites it with the measured
-       value once the header is laid out; 9.625rem (~154px) is the pre-hydration
-       default for the two-row chrome (contact strip + navigation with 2x logo),
-       close enough that the hero's overlap does not visibly settle on first paint. */
-		--chrome-h: 9.625rem;
+       value once the header is laid out; 7rem (~112px) is the pre-hydration default
+       for the two-row chrome (contact strip + navigation with logo), close enough
+       that the hero's overlap does not visibly settle on first paint. */
+		--chrome-h: 7rem;
 	}
 
 	html {
