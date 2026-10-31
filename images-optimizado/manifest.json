@@ -1034,6 +1034,141 @@
               "width": 960
             }
           ]
+        },
+        {
+          "base": "41-estructura-prefabricada-columnas-trabes-concreto",
+          "fallback": "41-estructura-prefabricada-columnas-trabes-concreto.jpg",
+          "full": {
+            "file": "41-estructura-prefabricada-columnas-trabes-concreto.avif",
+            "height": 960,
+            "width": 1280
+          },
+          "note": "Estructura de dos niveles resuelta con columnas y trabes prefabricadas de concreto",
+          "order": "41",
+          "score": 4,
+          "slug": "estructura-prefabricada-columnas-trabes-concreto",
+          "source": "Plaza Esmeralda Puerto Escondido/WhatsApp Image 2026-10-13 at 23.51.50 (2).jpeg",
+          "srcset": "41-estructura-prefabricada-columnas-trabes-concreto-480.avif 480w, 41-estructura-prefabricada-columnas-trabes-concreto-960.avif 960w, 41-estructura-prefabricada-columnas-trabes-concreto.avif 1280w",
+          "variants": [
+            {
+              "file": "41-estructura-prefabricada-columnas-trabes-concreto-480.avif",
+              "height": 360,
+              "width": 480
+            },
+            {
+              "file": "41-estructura-prefabricada-columnas-trabes-concreto-960.avif",
+              "height": 720,
+              "width": 960
+            }
+          ]
+        },
+        {
+          "base": "42-nivelacion-laser-estructura-metalica-interior",
+          "fallback": "42-nivelacion-laser-estructura-metalica-interior.jpg",
+          "full": {
+            "file": "42-nivelacion-laser-estructura-metalica-interior.avif",
+            "height": 960,
+            "width": 1280
+          },
+          "note": "Trabajadores verificando plomo y nivel con laser rojo en estructura metalica interior",
+          "order": "42",
+          "score": 3,
+          "slug": "nivelacion-laser-estructura-metalica-interior",
+          "source": "Plaza Esmeralda Puerto Escondido/WhatsApp Image 2026-10-13 at 23.51.50 (4).jpeg",
+          "srcset": "42-nivelacion-laser-estructura-metalica-interior-480.avif 480w, 42-nivelacion-laser-estructura-metalica-interior-960.avif 960w, 42-nivelacion-laser-estructura-metalica-interior.avif 1280w",
+          "variants": [
+            {
+              "file": "42-nivelacion-laser-estructura-metalica-interior-480.avif",
+              "height": 360,
+              "width": 480
+            },
+            {
+              "file": "42-nivelacion-laser-estructura-metalica-interior-960.avif",
+              "height": 720,
+              "width": 960
+            }
+          ]
+        },
+        {
+          "base": "43-ajuste-plomo-laser-columna-revestimiento",
+          "fallback": "43-ajuste-plomo-laser-columna-revestimiento.jpg",
+          "full": {
+            "file": "43-ajuste-plomo-laser-columna-revestimiento.avif",
+            "height": 1280,
+            "width": 960
+          },
+          "note": "Cuadrilla con chalecos de seguridad alineando estructura vertical mediante nivel laser",
+          "order": "43",
+          "score": 3,
+          "slug": "ajuste-plomo-laser-columna-revestimiento",
+          "source": "Plaza Esmeralda Puerto Escondido/WhatsApp Image 2026-10-13 at 23.51.50 (5).jpeg",
+          "srcset": "43-ajuste-plomo-laser-columna-revestimiento-480.avif 360w, 43-ajuste-plomo-laser-columna-revestimiento-960.avif 720w, 43-ajuste-plomo-laser-columna-revestimiento.avif 960w",
+          "variants": [
+            {
+              "file": "43-ajuste-plomo-laser-columna-revestimiento-480.avif",
+              "height": 480,
+              "width": 360
+            },
+            {
+              "file": "43-ajuste-plomo-laser-columna-revestimiento-960.avif",
+              "height": 960,
+              "width": 720
+            }
+          ]
+        },
+        {
+          "base": "44-supervision-trazo-laser-pasillo-obra",
+          "fallback": "44-supervision-trazo-laser-pasillo-obra.jpg",
+          "full": {
+            "file": "44-supervision-trazo-laser-pasillo-obra.avif",
+            "height": 1280,
+            "width": 960
+          },
+          "note": "Supervision tecnica con nivel laser en pasillo interior de obra en construccion",
+          "order": "44",
+          "score": 3,
+          "slug": "supervision-trazo-laser-pasillo-obra",
+          "source": "Plaza Esmeralda Puerto Escondido/WhatsApp Image 2026-10-13 at 23.51.50 (6).jpeg",
+          "srcset": "44-supervision-trazo-laser-pasillo-obra-480.avif 360w, 44-supervision-trazo-laser-pasillo-obra-960.avif 720w, 44-supervision-trazo-laser-pasillo-obra.avif 960w",
+          "variants": [
+            {
+              "file": "44-supervision-trazo-laser-pasillo-obra-480.avif",
+              "height": 480,
+              "width": 360
+            },
+            {
+              "file": "44-supervision-trazo-laser-pasillo-obra-960.avif",
+              "height": 960,
+              "width": 720
+            }
+          ]
+        },
+        {
+          "base": "45-instalacion-paneles-estructura-metalica-laser",
+          "fallback": "45-instalacion-paneles-estructura-metalica-laser.jpg",
+          "full": {
+            "file": "45-instalacion-paneles-estructura-metalica-laser.avif",
+            "height": 960,
+            "width": 1280
+          },
+          "note": "Montaje de paneles sobre bastidor metalico interior guiado por lineas de nivel laser",
+          "order": "45",
+          "score": 3,
+          "slug": "instalacion-paneles-estructura-metalica-laser",
+          "source": "Plaza Esmeralda Puerto Escondido/WhatsApp Image 2026-10-13 at 23.51.50.jpeg",
+          "srcset": "45-instalacion-paneles-estructura-metalica-laser-480.avif 480w, 45-instalacion-paneles-estructura-metalica-laser-960.avif 960w, 45-instalacion-paneles-estructura-metalica-laser.avif 1280w",
+          "variants": [
+            {
+              "file": "45-instalacion-paneles-estructura-metalica-laser-480.avif",
+              "height": 360,
+              "width": 480
+            },
+            {
+              "file": "45-instalacion-paneles-estructura-metalica-laser-960.avif",
+              "height": 720,
+              "width": 960
+            }
+          ]
         }
       ],
       "slug": "plaza-esmeralda-puerto-escondido"
@@ -2118,33 +2253,6 @@
           ]
         },
         {
-          "base": "68-estructura-prefabricada-columnas-trabes-concreto",
-          "fallback": "68-estructura-prefabricada-columnas-trabes-concreto.jpg",
-          "full": {
-            "file": "68-estructura-prefabricada-columnas-trabes-concreto.avif",
-            "height": 960,
-            "width": 1280
-          },
-          "note": "Estructura de dos niveles resuelta con columnas y trabes prefabricadas de concreto",
-          "order": "41",
-          "score": 4,
-          "slug": "estructura-prefabricada-columnas-trabes-concreto",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.50 (2).jpeg",
-          "srcset": "68-estructura-prefabricada-columnas-trabes-concreto-480.avif 480w, 68-estructura-prefabricada-columnas-trabes-concreto-960.avif 960w, 68-estructura-prefabricada-columnas-trabes-concreto.avif 1280w",
-          "variants": [
-            {
-              "file": "68-estructura-prefabricada-columnas-trabes-concreto-480.avif",
-              "height": 360,
-              "width": 480
-            },
-            {
-              "file": "68-estructura-prefabricada-columnas-trabes-concreto-960.avif",
-              "height": 720,
-              "width": 960
-            }
-          ]
-        },
-        {
           "base": "79-trabajador-andamio-madera-armado-trabe",
           "fallback": "79-trabajador-andamio-madera-armado-trabe.jpg",
           "full": {
@@ -2595,114 +2703,6 @@
               "file": "82-avance-obra-fachada-blanca-patio-arena-960.avif",
               "height": 960,
               "width": 720
-            }
-          ]
-        },
-        {
-          "base": "84-nivelacion-laser-estructura-metalica-interior",
-          "fallback": "84-nivelacion-laser-estructura-metalica-interior.jpg",
-          "full": {
-            "file": "84-nivelacion-laser-estructura-metalica-interior.avif",
-            "height": 960,
-            "width": 1280
-          },
-          "note": "Trabajadores verificando plomo y nivel con laser rojo en estructura metalica interior",
-          "order": "62",
-          "score": 3,
-          "slug": "nivelacion-laser-estructura-metalica-interior",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.50 (4).jpeg",
-          "srcset": "84-nivelacion-laser-estructura-metalica-interior-480.avif 480w, 84-nivelacion-laser-estructura-metalica-interior-960.avif 960w, 84-nivelacion-laser-estructura-metalica-interior.avif 1280w",
-          "variants": [
-            {
-              "file": "84-nivelacion-laser-estructura-metalica-interior-480.avif",
-              "height": 360,
-              "width": 480
-            },
-            {
-              "file": "84-nivelacion-laser-estructura-metalica-interior-960.avif",
-              "height": 720,
-              "width": 960
-            }
-          ]
-        },
-        {
-          "base": "85-ajuste-plomo-laser-columna-revestimiento",
-          "fallback": "85-ajuste-plomo-laser-columna-revestimiento.jpg",
-          "full": {
-            "file": "85-ajuste-plomo-laser-columna-revestimiento.avif",
-            "height": 1280,
-            "width": 960
-          },
-          "note": "Cuadrilla con chalecos de seguridad alineando estructura vertical mediante nivel laser",
-          "order": "63",
-          "score": 3,
-          "slug": "ajuste-plomo-laser-columna-revestimiento",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.50 (5).jpeg",
-          "srcset": "85-ajuste-plomo-laser-columna-revestimiento-480.avif 360w, 85-ajuste-plomo-laser-columna-revestimiento-960.avif 720w, 85-ajuste-plomo-laser-columna-revestimiento.avif 960w",
-          "variants": [
-            {
-              "file": "85-ajuste-plomo-laser-columna-revestimiento-480.avif",
-              "height": 480,
-              "width": 360
-            },
-            {
-              "file": "85-ajuste-plomo-laser-columna-revestimiento-960.avif",
-              "height": 960,
-              "width": 720
-            }
-          ]
-        },
-        {
-          "base": "86-supervision-trazo-laser-pasillo-obra",
-          "fallback": "86-supervision-trazo-laser-pasillo-obra.jpg",
-          "full": {
-            "file": "86-supervision-trazo-laser-pasillo-obra.avif",
-            "height": 1280,
-            "width": 960
-          },
-          "note": "Supervision tecnica con nivel laser en pasillo interior de obra en construccion",
-          "order": "64",
-          "score": 3,
-          "slug": "supervision-trazo-laser-pasillo-obra",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.50 (6).jpeg",
-          "srcset": "86-supervision-trazo-laser-pasillo-obra-480.avif 360w, 86-supervision-trazo-laser-pasillo-obra-960.avif 720w, 86-supervision-trazo-laser-pasillo-obra.avif 960w",
-          "variants": [
-            {
-              "file": "86-supervision-trazo-laser-pasillo-obra-480.avif",
-              "height": 480,
-              "width": 360
-            },
-            {
-              "file": "86-supervision-trazo-laser-pasillo-obra-960.avif",
-              "height": 960,
-              "width": 720
-            }
-          ]
-        },
-        {
-          "base": "87-instalacion-paneles-estructura-metalica-laser",
-          "fallback": "87-instalacion-paneles-estructura-metalica-laser.jpg",
-          "full": {
-            "file": "87-instalacion-paneles-estructura-metalica-laser.avif",
-            "height": 960,
-            "width": 1280
-          },
-          "note": "Montaje de paneles sobre bastidor metalico interior guiado por lineas de nivel laser",
-          "order": "65",
-          "score": 3,
-          "slug": "instalacion-paneles-estructura-metalica-laser",
-          "source": "imagenes-nuevas/el-bicho/WhatsApp Image 2026-10-13 at 23.51.50.jpeg",
-          "srcset": "87-instalacion-paneles-estructura-metalica-laser-480.avif 480w, 87-instalacion-paneles-estructura-metalica-laser-960.avif 960w, 87-instalacion-paneles-estructura-metalica-laser.avif 1280w",
-          "variants": [
-            {
-              "file": "87-instalacion-paneles-estructura-metalica-laser-480.avif",
-              "height": 360,
-              "width": 480
-            },
-            {
-              "file": "87-instalacion-paneles-estructura-metalica-laser-960.avif",
-              "height": 720,
-              "width": 960
             }
           ]
         },
