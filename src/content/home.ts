@@ -213,7 +213,7 @@ const divisions: DivisionCardContent[] = [
   {
     number: "01",
     title: "Arquitectura Residencial y Turística",
-    subtitle: "Vivienda · Hotelería · Airbnb",
+    subtitle: "Vivienda · Hotelería · Hospitalidad",
     description:
       "Proyectos ejecutivos y construcción integral de casas de descanso, villas costeras y desarrollos multifamiliares pensados para la plusvalía y climas de alta exigencia.",
     href: "/proyectos",
