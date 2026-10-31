@@ -29,9 +29,12 @@ export function CivilWorksPageTemplate({
   closing,
   whatsappHref,
 }: CivilWorksPageTemplateProps) {
-  const heroWhatsappHref = `${whatsappHref.split("?")[0]}?text=${encodeURIComponent(
-    "Hola Casa Alta, me interesa cotizar un proyecto de ingeniería civil y obra pesada.",
-  )}`;
+  const heroWhatsappHref =
+    whatsappHref && page.hero.consultationCtaLabel
+      ? `${whatsappHref.split("?")[0]}?text=${encodeURIComponent(
+          "Hola Casa Alta, me interesa cotizar un proyecto de ingeniería civil y obra pesada.",
+        )}`
+      : undefined;
 
   return (
     <ThematicPillarPageTemplate
@@ -42,10 +45,8 @@ export function CivilWorksPageTemplate({
         heading: page.hero.heading,
         subheadline: page.hero.subheadline,
         photo: page.hero.photo,
-        catalogCtaLabel:
-          page.hero.catalogCtaLabel ?? "Explorar especialidades de obra",
-        consultationCtaLabel:
-          page.hero.consultationCtaLabel ?? "Solicitar cotización técnica",
+        catalogCtaLabel: page.hero.catalogCtaLabel,
+        consultationCtaLabel: page.hero.consultationCtaLabel,
         whatsappHref: heroWhatsappHref,
       }}
       specialties={{

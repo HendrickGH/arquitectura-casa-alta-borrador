@@ -154,7 +154,7 @@ export function PageHero({
           <div className={hasRightColumn ? "lg:col-span-8" : "lg:col-span-12"}>
             <h1
               className={cx(
-                "voice text-white",
+                "voice text-white whitespace-pre-line",
                 headingClassName ||
                   "text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.12]"
               )}

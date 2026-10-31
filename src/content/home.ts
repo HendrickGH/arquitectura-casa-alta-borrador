@@ -246,7 +246,7 @@ const divisions: DivisionCardContent[] = [
     subtitle: "Bioclimática · Confort Térmico",
     description:
       "Arquitectura en armonía con el entorno: diseño contemporáneo e innovación bioclimática que optimiza el confort térmico, la ventilación natural y la eficiencia energética.",
-    href: "/construccion-sustentable",
+    href: "/construccion-sostenible",
     dir: "arquitectura-sostenible",
     base: "04-fachada-celosia-proteccion-solar-vegetacion",
   },
@@ -284,7 +284,7 @@ export const servicePillarSources: ServicePillarSource[] = [
     title: "Construcción sustentable",
     description:
       "Soluciones que consideran el clima, la innovación, los recursos y las condiciones propias de cada sitio.",
-    href: "/construccion-sustentable",
+    href: "/construccion-sostenible",
     dir: "arquitectura-sostenible",
     base: "04-fachada-celosia-proteccion-solar-vegetacion",
     alt: "Construcción sustentable con celosía bioclimática y protección solar pasiva",

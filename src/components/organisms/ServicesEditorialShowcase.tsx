@@ -30,7 +30,7 @@ const defaultPillars: ServicePillar[] = [
     title: "Construcción sustentable",
     description:
       "Soluciones que consideran el clima, la innovación, los recursos y las condiciones propias de cada sitio.",
-    href: "/construccion-sustentable",
+    href: "/construccion-sostenible",
   },
 ];
 

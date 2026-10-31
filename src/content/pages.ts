@@ -176,15 +176,14 @@ export const interiorsPageContent = {
 
 export const civilWorksPageContent = {
   hero: {
-    eyebrow: "Infraestructura pesada · Puentes y prefabricados",
+    eyebrow: "",
     heading:
       "Ingeniería civil, puentes vehiculares y montaje de prefabricados de concreto",
-    subheadline:
-      "Capacidad técnica integral para obras de gran tonelaje: cimentaciones profundas, izado con grúas telescópicas, trabes cajón y cálculo sismorresistente bajo normativa nacional.",
+    subheadline: "",
     dir: "obra-civil",
     base: "25-grua-telescopica-armado-acero-zapata-puente-peatonal",
-    catalogCtaLabel: "Explorar frentes de obra civil",
-    consultationCtaLabel: "Solicitar cotización técnica",
+    catalogCtaLabel: "",
+    consultationCtaLabel: "",
   },
   specialties: {
     eyebrow: "Capacidad de maniobra",
@@ -339,7 +338,7 @@ export const civilWorksPageContent = {
 export const sustainabilityPageContent = {
   hero: {
     eyebrow: "",
-    heading: "Construcción sustentable y arquitectura bioclimática",
+    heading: "Construcción sustentable\ny arquitectura bioclimática",
     subheadline: "",
     dir: "arquitectura-sostenible",
     base: "14-residencia-bioclimatica-palapa-celosia-chukum",
@@ -599,7 +598,7 @@ export const aboutPage = aboutPageContent;
 
 export const servicesPageContent = {
   hero: {
-    eyebrow: "Ingeniería civil · Proyecto ejecutivo · Construcción",
+    eyebrow: "",
     heading: "Capacidad técnica para obras de cualquier escala",
     subheadline: "",
     dir: "obra-civil",

@@ -37,6 +37,15 @@ const nextConfig: NextConfig = {
     // so these exist only to keep the scale valid and ordered below deviceSizes.
     imageSizes: [240, 384],
   },
+  async redirects() {
+    return [
+      {
+        source: "/construccion-sustentable",
+        destination: "/construccion-sostenible",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
