@@ -76,13 +76,17 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "construccion-habitacional",
         title: "Construcción habitacional",
+        eyebrow: "Construcción Habitacional | Casa Alta",
         summary:
-          "Casa unifamiliar y multifamiliar, desde la cimentación hasta los acabados finales, con sistemas aligerados para losas de entrepiso y azotea.",
+          "Construimos espacios para vivir, diseñados para trascender.\n\nEn Casa Alta desarrollamos proyectos habitacionales que integran arquitectura, ingeniería y construcción de alta calidad. Desde residencias exclusivas hasta desarrollos multifamiliares, combinamos sistemas constructivos tradicionales y tecnologías modernas para optimizar recursos, tiempos de ejecución y calidad estructural.\n\nCada obra refleja nuestro compromiso con el diseño, la funcionalidad, la innovación y el valor patrimonial de nuestros clientes.",
         items: [
-          "Casa habitación unifamiliar",
-          "Vivienda multifamiliar y departamentos",
-          "Remodelación y ampliación",
-          "Sistemas aligerados para losas de entrepiso y azotea",
+          "Residencias unifamiliares: Viviendas personalizadas, residencias de lujo y casas de descanso.",
+          "Desarrollos multifamiliares: Edificios de departamentos, condominios y conjuntos residenciales.",
+          "Desarrollos inmobiliarios: Villas, complejos habitacionales y proyectos residenciales para inversión.",
+          "Construcción tradicional: Sistemas de concreto armado, mampostería y estructuras convencionales.",
+          "Sistemas constructivos modernos: Steel Framing, estructuras metálicas y sistemas de losas aligeradas.",
+          "Remodelaciones y ampliaciones: Modernización, rehabilitación y transformación de espacios habitacionales.",
+          "Construcción integral: Ejecución de obra desde cimentación y estructura hasta instalaciones y acabados finales.",
         ],
       },
       {
@@ -183,14 +187,17 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "landscape",
         title: "Landscape",
+        eyebrow: "Arquitectura del Paisaje",
         summary:
-          "Áreas verdes que se mantienen verdes: riego, iluminación y mobiliario resueltos desde el proyecto, no después.",
+          "Diseñamos paisajes que conectan la arquitectura con la naturaleza.\n\nEn Casa Alta concebimos el paisajismo como una extensión esencial de la arquitectura, integrando naturaleza, diseño y sostenibilidad para crear espacios exteriores que transmiten armonía, bienestar e identidad.\n\nDesarrollamos proyectos de arquitectura del paisaje que combinan vegetación, materiales naturales, iluminación y elementos arquitectónicos, privilegiando especies adaptadas al entorno, eficiencia hídrica y soluciones de bajo mantenimiento.",
         items: [
-          "Áreas verdes y jardines",
-          "Diseño de senderos, andadores y plazas",
-          "Sistema de riego",
-          "Iluminación exterior paisajística",
-          "Mobiliario urbano y espacios decorativos",
+          "Diseño paisajístico: Jardines residenciales, comerciales y espacios naturales.",
+          "Arquitectura exterior: Terrazas, patios, plazas, senderos y áreas de convivencia.",
+          "Paisajismo sostenible: Vegetación nativa, jardines de bajo consumo hídrico y conservación ambiental.",
+          "Sistemas de riego: Soluciones automatizadas y eficientes para el aprovechamiento del agua.",
+          "Iluminación paisajística: Diseño de iluminación arquitectónica y ambiental para exteriores.",
+          "Mobiliario y elementos decorativos: Jardineras, pérgolas, fuentes y elementos escultóricos.",
+          "Integración arquitectónica: Diseño de espacios exteriores en armonía con la arquitectura y el entorno natural.",
         ],
       },
       {

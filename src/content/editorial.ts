@@ -58,9 +58,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "construccion-habitacional",
     slug: "servicios-construccion-estructura-gruas",
-    dir: "07-casa-tarrastro",
-    base: "10-fachada-frontal-pergola-superior-ventanales",
-    alt: "Residencia unifamiliar contemporánea con terraza techada, cancelería de piso a techo y pérgola superior en Oaxaca",
+    dir: "04-casa-melchor-ocampo",
+    base: "04-fachada-amarilla-balcones-celosia",
+    alt: "Fachada colonial contemporánea en amarillo con balcones de herrería, celosía de ladrillo y farol en Casa Melchor Ocampo",
   },
   {
     service: "construccion-comercial-industrial",
@@ -107,9 +107,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "landscape",
     slug: "servicios-landscape-sendero-jardin",
-    dir: "arquitectura-sostenible",
-    base: "02-jardines-nativos-alberca-cubiertas-palma-natural",
-    alt: "Integración de vegetación nativa, espejo de agua y cubiertas de palma natural en jardín costero",
+    dir: "landscape",
+    base: "01-masterplan-arquitectura-paisaje-parque-corredor-verde",
+    alt: "Masterplan isométrico de arquitectura del paisaje con parque lineal, corredor biológico fluvial y senderos",
   },
   {
     service: "albercas-y-espacios-exteriores",
