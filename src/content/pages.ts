@@ -695,9 +695,9 @@ export const servicesPageContent = {
     photoCaption: "Ingeniería y proyecto ejecutivo en gabinete",
   },
   catalog: {
-    eyebrow: "Nuestros servicios",
-    heading: "Alcances por etapa de proyecto y construcción.",
-    body: "Contrate el desarrollo integral llave en mano o la especialidad técnica que su obra requiera.",
+    eyebrow: "CASA ALTA | Arquitectura & Construcción",
+    heading: "Diseñamos espacios, construimos confianza y creamos obras que trascienden.",
+    body: "En Constructora Casa Alta transformamos ideas en proyectos extraordinarios, integrando arquitectura, ingeniería y construcción con excelencia, innovación y atención a cada detalle.\n\nNuestra experiencia, compromiso y visión arquitectónica nos permiten ofrecer soluciones integrales a través de nuestros servicios:",
   },
   specialties: {
     eyebrow: "Evidencia técnica en sitio",

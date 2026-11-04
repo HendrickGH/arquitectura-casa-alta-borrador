@@ -62,7 +62,7 @@ export function SectionHeading({
 
       {body ? (
         <div {...revealStep(2)}>
-          <Text size="lede" className={cx("mt-1", centered && "mx-auto text-center")}>
+          <Text size="lede" className={cx("mt-1 whitespace-pre-line", centered && "mx-auto text-center")}>
             {body}
           </Text>
         </div>
