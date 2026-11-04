@@ -98,7 +98,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "skateparks",
     slug: "servicios-exterior-pista-skate",
-    alt: "Rampa, transiciones de concreto pulido y barandales en pista de skate al aire libre",
+    dir: "skateparks",
+    base: "01-armado-acero-cimbra-curva-bowl-skatepark",
+    alt: "Construcción de bowl y transiciones para skatepark con armado de acero estructural y cimbra curva de madera",
   },
   {
     service: "landscape",

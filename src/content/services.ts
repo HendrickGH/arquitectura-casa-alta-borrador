@@ -167,15 +167,17 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "skateparks",
         title: "Skateparks",
+        eyebrow: "Diseño y Construcción Especializada",
         summary:
-          "Especialistas en diseño y construcción de skateparks. Geometría y durabilidad para el uso real, dentro y fuera de la ciudad.",
+          "Arquitectura, ingeniería y creatividad al servicio de la cultura urbana.\n\nEn Casa Alta somos especialistas en el diseño, desarrollo y construcción de skateparks y espacios deportivos urbanos, integrando ingeniería especializada, geometrías de precisión y sistemas constructivos de alta resistencia.\n\nCreamos espacios innovadores, seguros y funcionales que responden a las exigencias técnicas del skateboarding, incorporando arquitectura contemporánea, paisajismo y arte urbano para transformar el espacio público en lugares de identidad, convivencia y expresión cultural.",
         items: [
-          "Diseño de skateparks, índoor y outdoor",
-          "Instalaciones artísticas urbanas para uso de skate y escultóricas",
-          "Spots urbanos para eventos de skate y de arte",
-          "Remodelación y restauración de skateparks",
-          "Landscaping integrado",
-          "Supervisión de construcción de skateparks",
+          "Diseño especializado: Skateparks profesionales, recreativos, interiores y exteriores.",
+          "Ingeniería y construcción: Superficies de concreto, rampas, bowls, transiciones y obstáculos técnicos.",
+          "Arquitectura urbana: Integración de skateplazas, paisajismo y espacios de convivencia.",
+          "Infraestructura para competencias: Instalaciones deportivas para entrenamiento, exhibiciones y eventos.",
+          "Arte e intervención urbana: Integración de elementos escultóricos, mobiliario y expresiones artísticas.",
+          "Rehabilitación y modernización: Remodelación, restauración y ampliación de skateparks existentes.",
+          "Supervisión especializada: Control de geometrías, acabados, calidad constructiva y seguridad de las instalaciones.",
         ],
       },
       {
