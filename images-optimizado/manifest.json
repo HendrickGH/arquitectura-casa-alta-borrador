@@ -13386,11 +13386,47 @@
           ]
         }
       ]
+    },
+    {
+      "dir": "instalaciones-hidrosanitarias",
+      "folder": "instalaciones-hidrosanitarias",
+      "name": "Instalaciones Hidrosanitarias",
+      "order": "31",
+      "slug": "instalaciones-hidrosanitarias",
+      "photos": [
+        {
+          "base": "01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales",
+          "fallback": "01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales.jpg",
+          "full": {
+            "file": "01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales.avif",
+            "height": 1024,
+            "width": 768
+          },
+          "note": "Instalacion de sistema de biodigestores, cisternas y tratamiento de aguas residuales en obra residencial costera",
+          "order": "01",
+          "score": 5,
+          "slug": "sistema-biodigestor-cisterna-tratamiento-aguas-residuales",
+          "source": "images/instalaciones-hidrosanitarias/01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales.jpg",
+          "srcset": "01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales-480.avif 360w, 01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales-960.avif 720w, 01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales.avif 768w",
+          "variants": [
+            {
+              "file": "01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales-480.avif",
+              "height": 480,
+              "width": 360
+            },
+            {
+              "file": "01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales-960.avif",
+              "height": 960,
+              "width": 720
+            }
+          ]
+        }
+      ]
     }
   ],
   "stats": {
-    "photos": 494,
-    "projects": 30
+    "photos": 495,
+    "projects": 31
   },
   "tiers": [
     480,
