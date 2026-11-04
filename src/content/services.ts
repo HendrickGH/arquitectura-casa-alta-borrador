@@ -203,14 +203,17 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "albercas-y-espacios-exteriores",
         title: "Albercas y espacios exteriores",
+        eyebrow: "Albercas y Espacios Exteriores | Casa Alta",
         summary:
-          "Albercas, asadores y áreas de descanso en un mismo lenguaje. El exterior como una habitación más de la casa.",
+          "Creamos espacios donde la arquitectura, el confort y la naturaleza se convierten en una experiencia de vida.\n\nEn Casa Alta diseñamos y construimos albercas y espacios exteriores que integran estética, funcionalidad e innovación. Transformamos áreas al aire libre en ambientes exclusivos de descanso, recreación y convivencia, mediante soluciones arquitectónicas que armonizan con el entorno y elevan el valor de cada propiedad.",
         items: [
-          "Albercas",
-          "Asadores",
-          "Estacionamientos y zonas vehiculares",
-          "Áreas de descanso complementarias",
-          "Baños y regaderas de exterior",
+          "Albercas residenciales y comerciales: Diseño, ingeniería, construcción y equipamiento.",
+          "Espacios de relajación: Jacuzzis, spas, terrazas húmedas y áreas de descanso.",
+          "Arquitectura exterior: Terrazas, pérgolas, palapas y zonas de convivencia.",
+          "Áreas recreativas: Asadores, cocinas exteriores, bares y comedores al aire libre.",
+          "Instalaciones especializadas: Sistemas hidráulicos, filtración, climatización e iluminación de albercas.",
+          "Espacios complementarios: Baños, vestidores, regaderas exteriores y áreas de servicio.",
+          "Urbanización exterior: Estacionamientos, accesos vehiculares, andadores y pavimentos arquitectónicos.",
         ],
       },
     ],
