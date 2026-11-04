@@ -11187,29 +11187,24 @@
           ]
         },
         {
-          "base": "15-villas-caban-arquitectura-modular-sustentable-fachada",
-          "fallback": "15-villas-caban-arquitectura-modular-sustentable-fachada.jpg",
+          "base": "15-paneles-sips-arquitectura-modular-sustentable-fachada",
+          "fallback": "15-paneles-sips-arquitectura-modular-sustentable-fachada.jpg",
           "full": {
-            "file": "15-villas-caban-arquitectura-modular-sustentable-fachada.avif",
-            "height": 1747,
-            "width": 1290
+            "file": "15-paneles-sips-arquitectura-modular-sustentable-fachada.avif",
+            "height": 800,
+            "width": 449
           },
-          "note": "Villas Caban: arquitectura modular bioclimatica con paneles blancos, terrazas con celosias de madera y jardineria tropical",
+          "note": "Construccion sustentable con paneles SIP: residencia modular blanca con terrazas y celosias de madera en entorno tropical",
           "order": "15",
           "score": 5,
-          "slug": "villas-caban-arquitectura-modular-sustentable-fachada",
-          "source": "images/arquitectura-sostenible/15-villas-caban-arquitectura-modular-sustentable-fachada.jpeg",
-          "srcset": "15-villas-caban-arquitectura-modular-sustentable-fachada-480.avif 354w, 15-villas-caban-arquitectura-modular-sustentable-fachada-960.avif 709w, 15-villas-caban-arquitectura-modular-sustentable-fachada.avif 1290w",
+          "slug": "paneles-sips-arquitectura-modular-sustentable-fachada",
+          "source": "images/arquitectura-sostenible/15-paneles-sips-arquitectura-modular-sustentable-fachada.png",
+          "srcset": "15-paneles-sips-arquitectura-modular-sustentable-fachada-480.avif 269w, 15-paneles-sips-arquitectura-modular-sustentable-fachada.avif 449w",
           "variants": [
             {
-              "file": "15-villas-caban-arquitectura-modular-sustentable-fachada-480.avif",
+              "file": "15-paneles-sips-arquitectura-modular-sustentable-fachada-480.avif",
               "height": 480,
-              "width": 354
-            },
-            {
-              "file": "15-villas-caban-arquitectura-modular-sustentable-fachada-960.avif",
-              "height": 960,
-              "width": 709
+              "width": 269
             }
           ]
         }
