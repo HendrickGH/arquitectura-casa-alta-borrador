@@ -13292,11 +13292,47 @@
           ]
         }
       ]
+    },
+    {
+      "dir": "landscape",
+      "folder": "landscape",
+      "name": "Landscape",
+      "order": "28",
+      "slug": "landscape",
+      "photos": [
+        {
+          "base": "01-masterplan-arquitectura-paisaje-parque-corredor-verde",
+          "fallback": "01-masterplan-arquitectura-paisaje-parque-corredor-verde.jpg",
+          "full": {
+            "file": "01-masterplan-arquitectura-paisaje-parque-corredor-verde.avif",
+            "height": 768,
+            "width": 1024
+          },
+          "note": "Masterplan isometrico de arquitectura del paisaje con parque lineal, corredor biologico fluvial y senderos",
+          "order": "01",
+          "score": 5,
+          "slug": "masterplan-arquitectura-paisaje-parque-corredor-verde",
+          "source": "images/landscape/01-masterplan-arquitectura-paisaje-parque-corredor-verde.png",
+          "srcset": "01-masterplan-arquitectura-paisaje-parque-corredor-verde-480.avif 480w, 01-masterplan-arquitectura-paisaje-parque-corredor-verde-960.avif 960w, 01-masterplan-arquitectura-paisaje-parque-corredor-verde.avif 1024w",
+          "variants": [
+            {
+              "file": "01-masterplan-arquitectura-paisaje-parque-corredor-verde-480.avif",
+              "height": 360,
+              "width": 480
+            },
+            {
+              "file": "01-masterplan-arquitectura-paisaje-parque-corredor-verde-960.avif",
+              "height": 720,
+              "width": 960
+            }
+          ]
+        }
+      ]
     }
   ],
   "stats": {
-    "photos": 491,
-    "projects": 28
+    "photos": 492,
+    "projects": 29
   },
   "tiers": [
     480,
