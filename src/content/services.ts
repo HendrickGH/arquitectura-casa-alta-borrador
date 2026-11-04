@@ -123,9 +123,9 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "presforzado-y-estructura-metalica",
         title: "Concreto presforzado y estructuras metálicas",
-        eyebrow: "Ingeniería estructural de alto desempeño | Casa Alta",
+        eyebrow: "Concreto Presforzado y Estructuras Metálicas | Casa Alta",
         summary:
-          "En Casa Alta desarrollamos soluciones constructivas mediante sistemas de concreto presforzado, estructuras metálicas y sistemas mixtos, que permiten alcanzar grandes claros, optimizar los tiempos de ejecución y mejorar la eficiencia estructural.\n\nIntegramos ingeniería, innovación y tecnología constructiva para crear estructuras resistentes, funcionales y duraderas, adaptadas a las exigencias arquitectónicas de cada proyecto.",
+          "Ingeniería estructural de alto desempeño para proyectos que exigen grandes soluciones.\n\nEn Casa Alta desarrollamos soluciones constructivas mediante sistemas de concreto presforzado, estructuras metálicas y sistemas mixtos, que permiten alcanzar grandes claros, optimizar los tiempos de ejecución y mejorar la eficiencia estructural.\n\nIntegramos ingeniería, innovación y tecnología constructiva para crear estructuras resistentes, funcionales y duraderas, adaptadas a las exigencias arquitectónicas de cada proyecto.",
         items: [
           "Concreto presforzado: Elementos pretensados y postensados para estructuras de alto desempeño.",
           "Estructuras metálicas: Diseño, fabricación y montaje de sistemas estructurales de acero.",
