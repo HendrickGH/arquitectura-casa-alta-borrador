@@ -178,7 +178,7 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "skateparks",
         title: "Skateparks",
-        eyebrow: "Diseño y Construcción Especializada",
+        eyebrow: "Skateparks | Diseño y Construcción Especializada",
         summary:
           "Arquitectura, ingeniería y creatividad al servicio de la cultura urbana.\n\nEn Casa Alta somos especialistas en el diseño, desarrollo y construcción de skateparks y espacios deportivos urbanos, integrando ingeniería especializada, geometrías de precisión y sistemas constructivos de alta resistencia.\n\nCreamos espacios innovadores, seguros y funcionales que responden a las exigencias técnicas del skateboarding, incorporando arquitectura contemporánea, paisajismo y arte urbano para transformar el espacio público en lugares de identidad, convivencia y expresión cultural.",
         items: [
