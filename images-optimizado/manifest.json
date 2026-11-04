@@ -12222,6 +12222,28 @@
               "width": 960
             }
           ]
+        },
+        {
+          "base": "02-estacionamiento-comercial-estructura-metalica-losacero",
+          "fallback": "02-estacionamiento-comercial-estructura-metalica-losacero.jpg",
+          "full": {
+            "file": "02-estacionamiento-comercial-estructura-metalica-losacero.avif",
+            "height": 558,
+            "width": 992
+          },
+          "note": "Estacionamiento techado comercial con sistema de entrepiso losacero, vigas de acero y piso de concreto",
+          "order": "02",
+          "score": 5,
+          "slug": "estacionamiento-comercial-estructura-metalica-losacero",
+          "source": "images/naves-industriales/02-estacionamiento-comercial-estructura-metalica-losacero.jpg",
+          "srcset": "02-estacionamiento-comercial-estructura-metalica-losacero-480.avif 480w, 02-estacionamiento-comercial-estructura-metalica-losacero.avif 992w",
+          "variants": [
+            {
+              "file": "02-estacionamiento-comercial-estructura-metalica-losacero-480.avif",
+              "height": 270,
+              "width": 480
+            }
+          ]
         }
       ]
     },
@@ -13328,11 +13350,47 @@
           ]
         }
       ]
+    },
+    {
+      "dir": "instalaciones-electricas",
+      "folder": "instalaciones-electricas",
+      "name": "Instalaciones Eléctricas",
+      "order": "30",
+      "slug": "instalaciones-electricas",
+      "photos": [
+        {
+          "base": "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension",
+          "fallback": "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension.jpg",
+          "full": {
+            "file": "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension.avif",
+            "height": 576,
+            "width": 1024
+          },
+          "note": "Maniobras de mantenimiento en red de distribucion electrica de media y alta tension con linieros en canastilla",
+          "order": "01",
+          "score": 5,
+          "slug": "linieros-canastilla-mantenimiento-lineas-media-alta-tension",
+          "source": "images/instalaciones-electricas/01-linieros-canastilla-mantenimiento-lineas-media-alta-tension.png",
+          "srcset": "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-480.avif 480w, 01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-960.avif 960w, 01-linieros-canastilla-mantenimiento-lineas-media-alta-tension.avif 1024w",
+          "variants": [
+            {
+              "file": "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-480.avif",
+              "height": 270,
+              "width": 480
+            },
+            {
+              "file": "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-960.avif",
+              "height": 540,
+              "width": 960
+            }
+          ]
+        }
+      ]
     }
   ],
   "stats": {
-    "photos": 492,
-    "projects": 29
+    "photos": 494,
+    "projects": 30
   },
   "tiers": [
     480,

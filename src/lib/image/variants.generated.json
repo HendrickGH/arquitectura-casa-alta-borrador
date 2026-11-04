@@ -6205,6 +6205,16 @@
       "01-maniobra-gruas-izado-muros-prefabricados-concreto.avif"
     ]
   ],
+  "naves-industriales/02-estacionamiento-comercial-estructura-metalica-losacero": [
+    [
+      480,
+      "02-estacionamiento-comercial-estructura-metalica-losacero-480.avif"
+    ],
+    [
+      992,
+      "02-estacionamiento-comercial-estructura-metalica-losacero.avif"
+    ]
+  ],
   "obra-civil/01-grua-izando-parrilla-acero-cimentacion-vialidad": [
     [
       480,
@@ -6737,6 +6747,20 @@
     [
       1024,
       "01-masterplan-arquitectura-paisaje-parque-corredor-verde.avif"
+    ]
+  ],
+  "instalaciones-electricas/01-linieros-canastilla-mantenimiento-lineas-media-alta-tension": [
+    [
+      480,
+      "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-480.avif"
+    ],
+    [
+      960,
+      "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-960.avif"
+    ],
+    [
+      1024,
+      "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension.avif"
     ]
   ],
   "hero/arquitectura-costa-natura-patio-alberca-tropical": [
