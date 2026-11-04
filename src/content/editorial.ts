@@ -66,8 +66,8 @@ export const editorialRefs: EditorialRef[] = [
     service: "construccion-comercial-industrial",
     slug: "servicios-construccion-comercial-nave-industrial",
     dir: "naves-industriales",
-    base: "01-maniobra-gruas-izado-muros-prefabricados-concreto",
-    alt: "Dos grúas realizando maniobra de izado y montaje de muros prefabricados de concreto de gran altura para nave industrial",
+    base: "02-estacionamiento-comercial-estructura-metalica-losacero",
+    alt: "Estacionamiento comercial techado con sistema estructural de losacero, vigas de acero y piso de concreto",
   },
   {
     service: "construccion-y-obra-civil",
@@ -121,7 +121,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "instalaciones-electricas",
     slug: "servicios-instalaciones-electricas-subestacion",
-    alt: "Transformador y subestación eléctrica de media y alta tensión al aire libre",
+    dir: "instalaciones-electricas",
+    base: "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension",
+    alt: "Maniobras de mantenimiento en red de distribución eléctrica de media y alta tensión con linieros en canastilla",
   },
   {
     service: "instalaciones-hidrosanitarias",

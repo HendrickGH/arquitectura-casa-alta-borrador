@@ -92,13 +92,17 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "construccion-comercial-industrial",
         title: "Construcción comercial e industrial",
+        eyebrow: "Construcción Comercial e Industrial | Casa Alta",
         summary:
-          "Naves, bodegas y locales pensados para operar: claros amplios, plazos firmes y mantenimiento bajo. También hoteles, restaurantes y proyectos de salud.",
+          "Diseñamos y construimos espacios que impulsan el crecimiento empresarial.\n\nEn Casa Alta desarrollamos proyectos comerciales, industriales y de servicios, integrando arquitectura, ingeniería y sistemas constructivos modernos que priorizan la funcionalidad, la seguridad estructural y la eficiencia operativa.\n\nOfrecemos soluciones integrales que optimizan los tiempos de construcción, los recursos y la inversión, creando infraestructura de alto valor, adaptable a las necesidades de cada actividad empresarial.",
         items: [
-          "Centros comerciales y locales",
-          "Bodegas y oficinas con bodega",
-          "Naves industriales",
-          "Hoteles, restaurantes y proyectos de salud",
+          "Infraestructura comercial: Centros comerciales, locales, plazas y espacios corporativos.",
+          "Construcción industrial: Naves industriales, plantas de producción y centros logísticos.",
+          "Bodegas y almacenamiento: Bodegas industriales, centros de distribución y oficinas con almacén.",
+          "Infraestructura turística: Hoteles, desarrollos de hospedaje, restaurantes y complejos turísticos.",
+          "Infraestructura de salud: Clínicas, consultorios y centros de atención médica.",
+          "Sistemas constructivos especializados: Estructuras metálicas, concreto armado, sistemas prefabricados y soluciones de construcción ligera.",
+          "Construcción integral: Desarrollo y ejecución de obra civil, instalaciones especializadas y acabados arquitectónicos.",
         ],
       },
       {
@@ -227,9 +231,18 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "instalaciones-electricas",
         title: "Instalaciones eléctricas de media y alta tensión",
+        eyebrow: "Instalaciones Eléctricas de Media y Alta Tensión | Casa Alta",
         summary:
-          "Suministro y distribución para proyectos que ya no se resuelven con una acometida doméstica: transformadores y subestaciones.",
-        items: ["Transformadores", "Subestaciones eléctricas"],
+          "Ingeniería eléctrica especializada para impulsar infraestructura segura, eficiente y de alto rendimiento.\n\nEn Casa Alta desarrollamos soluciones integrales de ingeniería eléctrica para proyectos industriales, comerciales y de infraestructura. Integramos tecnología, seguridad y eficiencia energética mediante el diseño, instalación y modernización de sistemas de distribución eléctrica, transformadores y subestaciones, garantizando confiabilidad operativa y cumplimiento de las normativas aplicables.",
+        items: [
+          "Subestaciones eléctricas: Diseño, construcción, instalación y equipamiento.",
+          "Transformadores: Suministro, instalación y puesta en operación.",
+          "Redes de distribución: Infraestructura eléctrica aérea y subterránea de media y alta tensión.",
+          "Ingeniería eléctrica: Proyectos ejecutivos, cálculos de carga, diagramas unifilares y estudios técnicos.",
+          "Sistemas de protección: Tableros eléctricos, sistemas de puesta a tierra y protecciones eléctricas.",
+          "Infraestructura industrial y comercial: Sistemas de alimentación y distribución para desarrollos de gran demanda energética.",
+          "Mantenimiento y modernización: Rehabilitación, actualización y pruebas de instalaciones eléctricas.",
+        ],
       },
       {
         slug: "instalaciones-hidrosanitarias",
