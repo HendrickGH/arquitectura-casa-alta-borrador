@@ -108,13 +108,16 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "construccion-y-obra-civil",
         title: "Construcción y obra civil",
+        eyebrow: "Construcción y Obra Civil | Casa Alta",
         summary:
-          "Concreto armado, pavimentos, asfaltos y puentes. Obra pesada con control de calidad en cada etapa y cada colado.",
+          "Construimos infraestructura sólida que impulsa el desarrollo y transforma nuestro entorno.\n\nEn Casa Alta ejecutamos proyectos de obra civil e infraestructura mediante soluciones de ingeniería, tecnología constructiva y altos estándares de calidad, garantizando seguridad estructural, eficiencia y durabilidad.",
         items: [
-          "Concreto armado en todo tipo de construcción",
-          "Pavimentación de concreto hidráulico",
-          "Asfaltos y carreteras",
-          "Puentes vehiculares y peatonales",
+          "Construcción de estructuras de concreto armado.",
+          "Pavimentación de concreto hidráulico y asfáltico.",
+          "Construcción y rehabilitación de carreteras y vialidades.",
+          "Puentes vehiculares y peatonales.",
+          "Obras de urbanización e infraestructura hidráulica y sanitaria.",
+          "Cimentaciones y obras de infraestructura pesada.",
         ],
       },
       {

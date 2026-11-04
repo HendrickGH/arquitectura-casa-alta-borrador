@@ -73,8 +73,8 @@ export const editorialRefs: EditorialRef[] = [
     service: "construccion-y-obra-civil",
     slug: "servicios-obra-civil-asfalto",
     dir: "obra-civil",
-    base: "10-montaje-trabes-cajon-puente-sobre-pilas-concreto",
-    alt: "Colocación y montaje de trabes cajón de concreto sobre pilas estructurales durante la construcción de un puente vehicular",
+    base: "02-montaje-columna-prefabricada-en-candelero-cimentacion",
+    alt: "Cuadrilla guiando la inserción y montaje de columna prefabricada de concreto en dado de cimentación para obra civil",
   },
   {
     service: "presforzado-y-estructura-metalica",
