@@ -40,7 +40,7 @@ export const processSteps: ProcessStep[] = [
     description:
       "La experiencia y la tecnología se combinan en el proceso permanente de la obra, logrando con ello una supervisión paso a paso en el control de calidad de cada etapa; esta parte define la estructura fundamental de la construcción y el carácter arquitectónico de cada obra.",
     dir: "credibilidad",
-    base: "06-armado-acero-estructural-zapata-trabajador-casa-alta",
+    base: "05-director-obra-chaleco-casa-alta-bajo-palapa",
   },
   {
     order: 5,
