@@ -250,9 +250,19 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "instalaciones-hidrosanitarias",
         title: "Instalaciones hidrosanitarias",
+        eyebrow: "Instalaciones Hidrosanitarias | Casa Alta",
         summary:
-          "Drenaje y tratamiento resueltos en sitio, clave donde la red municipal no llega: plantas de tratamiento y biodigestores.",
-        items: ["Drenajes", "Plantas de tratamiento", "Biodigestores"],
+          "Ingeniería hidráulica y sanitaria para un desarrollo eficiente, sostenible y responsable con el agua.\n\nEn Casa Alta desarrollamos soluciones integrales para el abastecimiento, distribución, aprovechamiento y tratamiento del agua en proyectos residenciales, comerciales, industriales y urbanos.\n\nIntegramos ingeniería especializada, tecnologías modernas y sistemas sostenibles que optimizan el consumo de agua, garantizan el funcionamiento de las instalaciones y contribuyen a la protección del medio ambiente.",
+        items: [
+          "Instalaciones hidráulicas: Redes de abastecimiento, distribución y almacenamiento de agua potable.",
+          "Instalaciones sanitarias: Sistemas de drenaje, alcantarillado y conducción de aguas residuales.",
+          "Plantas de tratamiento: Diseño e instalación de sistemas de tratamiento y reutilización de aguas residuales.",
+          "Biodigestores: Soluciones de saneamiento para desarrollos sin conexión a redes municipales.",
+          "Captación pluvial: Sistemas de recolección, almacenamiento y aprovechamiento de agua de lluvia.",
+          "Sistemas de bombeo: Equipos hidroneumáticos, presurización, cisternas y cárcamos.",
+          "Infraestructura hidráulica: Redes exteriores, drenaje pluvial y sanitario para desarrollos habitacionales y comerciales.",
+          "Ingeniería y proyectos ejecutivos: Cálculos hidráulicos, planos, especificaciones técnicas y diseño de instalaciones.",
+        ],
       },
     ],
   },

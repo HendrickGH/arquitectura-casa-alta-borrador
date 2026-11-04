@@ -128,7 +128,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "instalaciones-hidrosanitarias",
     slug: "servicios-instalaciones-tratamiento-agua",
-    alt: "Tanques de sedimentación y sistemas de tratamiento de agua e infraestructura hidrosanitaria",
+    dir: "instalaciones-hidrosanitarias",
+    base: "01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales",
+    alt: "Instalación de sistema de biodigestores, cisternas y tratamiento de aguas residuales en obra residencial costera",
   },
 ];
 
