@@ -120,7 +120,7 @@ export function ServiceScopeModal({
           </Heading>
 
           {/* Summary */}
-          <Text className="mt-4 text-ink-muted leading-relaxed">
+          <Text className="mt-4 text-ink-muted leading-relaxed whitespace-pre-line">
             {service.summary}
           </Text>
         </div>

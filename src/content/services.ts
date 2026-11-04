@@ -24,12 +24,14 @@ export const serviceGroups: ServiceGroup[] = [
         slug: "proyectos-arquitectonicos-integrales",
         title: "Proyectos arquitectónicos integrales",
         summary:
-          "Del concepto al proyecto ejecutivo. Planos, memorias y especificaciones para que cualquier constructora pueda levantarlo sin adivinar, más renders y cálculo estructural.",
+          "Transformamos ideas en proyectos arquitectónicos de alto valor estético, funcional y constructivo.\n\nDesarrollamos soluciones integrales que abarcan desde la conceptualización y el diseño arquitectónico hasta la elaboración del proyecto ejecutivo, integrando ingeniería estructural, criterios técnicos y visualización arquitectónica.\n\nCada proyecto se desarrolla con precisión, innovación y atención al detalle, garantizando una propuesta arquitectónica viable, eficiente y preparada para su correcta ejecución.",
         items: [
-          "Anteproyecto y diseño arquitectónico",
-          "Proyecto ejecutivo y detalle constructivo",
-          "Cálculo estructural y validación de sistemas",
-          "Renders y visualización de alta calidad",
+          "Conceptualización, anteproyecto y diseño arquitectónico.",
+          "Proyecto ejecutivo y planos constructivos.",
+          "Ingeniería estructural y memorias de cálculo.",
+          "Diseño y coordinación de instalaciones.",
+          "Detalles arquitectónicos y especificaciones técnicas.",
+          "Renders y visualización arquitectónica de alta calidad.",
         ],
       },
       {

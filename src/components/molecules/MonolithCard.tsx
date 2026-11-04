@@ -97,7 +97,7 @@ export function MonolithCard({
         {description ? (
           <Text
             size="sm"
-            className="leading-relaxed text-white/90 drop-shadow-sm font-normal max-w-[42ch]"
+            className="leading-relaxed text-white/90 drop-shadow-sm font-normal max-w-[42ch] whitespace-pre-line"
           >
             {description}
           </Text>
