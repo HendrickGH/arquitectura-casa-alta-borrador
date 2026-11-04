@@ -31,6 +31,38 @@ const heroCasaCharcoSecoHorizontalPhoto: Photo = {
   height: 1116,
 };
 
+/** The landing hero fourth photo: Punta Zicatela - Alberca triangular al atardecer frente al mar (2000x1116 max capped, original 2752x1536). */
+const heroPuntaZicatelaAtardecerPhoto: Photo = {
+  src: "/images/hero/punta-zicatela-alberca-triangular-atardecer-playa.avif",
+  alt: "Alberca triangular de Punta Zicatela con palmeras al atardecer y vista panorámica a la costa",
+  width: 2000,
+  height: 1116,
+};
+
+/** The landing hero fifth photo: Casa Blake - Fachada horizontal contemporánea con terraza y cantera (2000x1116 max capped, original 2752x1536). */
+const heroCasaBlakeHorizontalPhoto: Photo = {
+  src: "/images/hero/casa-blake-fachada-horizontal-terraza-cantera.avif",
+  alt: "Fachada contemporánea de dos niveles Casa Blake con pérgola de acero, terraza y acabados en cantera",
+  width: 2000,
+  height: 1116,
+};
+
+/** The landing hero sixth photo: Villas Cavan - Pórtico horizontal de acceso en cantera (2000x1116 max capped, original 2752x1536). */
+const heroVillasCavanHorizontalPhoto: Photo = {
+  src: "/images/hero/villas-cavan-portico-horizontal-cantera-escalones.avif",
+  alt: "Pórtico de acceso en cantera clara con escalinata y jardinería exterior en Villas Cavan",
+  width: 2000,
+  height: 1116,
+};
+
+/** The landing hero seventh photo: Arquitectura Costa Natura - Patio central con alberca y vegetación tropical (2000x1116 max capped, original 2752x1536). */
+const heroCostaNaturaPatioPhoto: Photo = {
+  src: "/images/hero/arquitectura-costa-natura-patio-alberca-tropical.avif",
+  alt: "Patio central con alberca, vegetación tropical y arquitectura costera COSTA NATURA con cubiertas de palapa",
+  width: 2000,
+  height: 1116,
+};
+
 const columnasCivilPhoto: Photo = {
   src: "/images/hero/columnas-prefabricadas-grua-obra-civil.avif",
   alt: "Montaje con grúa de columnas prefabricadas de concreto con ménsulas para obra vial",
@@ -308,6 +340,22 @@ export const home: HomePage = {
         title: "Casa Alta",
         photo: heroCasaCharcoSecoHorizontalPhoto,
       },
+      {
+        title: "Casa Alta",
+        photo: heroPuntaZicatelaAtardecerPhoto,
+      },
+      {
+        title: "Casa Alta",
+        photo: heroCasaBlakeHorizontalPhoto,
+      },
+      {
+        title: "Casa Alta",
+        photo: heroVillasCavanHorizontalPhoto,
+      },
+      {
+        title: "Casa Alta",
+        photo: heroCostaNaturaPatioPhoto,
+      },
     ],
     subheadline:
       "Proyectos ejecutivos de arquitectura residencial e ingeniería civil.",
@@ -349,14 +397,14 @@ export const home: HomePage = {
 
   territoryShowcase: {
     heading: "El nuevo lujo no se ve, se siente",
-    title: "Arquitectura nativa",
+    title: "Arquitectura COSTA NATURA",
     lede: "Una nueva forma de habitar la naturaleza.",
     paragraphs: [
-      "En Casa Alta Arquitectura hemos creado Arquitectura Nativa, un lenguaje arquitectónico propio que nace de la conexión entre el ser humano, la naturaleza y el espacio habitable.",
+      "En Arquitectura Casa Alta hemos creado Arquitectura de Playa autodenominada como COSTA NATURA, un lenguaje arquitectónico propio que nace de la conexión entre el ser humano, la naturaleza y el espacio habitable.",
       "Nuestra filosofía fusiona el diseño contemporáneo con la sabiduría constructiva tradicional, dando vida a espacios sostenibles y bioclimáticos que dialogan con el paisaje, respetan su esencia y se integran armónicamente al entorno.",
-      "Arquitectura Nativa representa nuestra visión del nuevo lujo: una arquitectura que no se impone a la naturaleza, sino que nace de ella.",
+      "Arquitectura COSTA NATURA representa nuestra visión del nuevo lujo: una arquitectura que no se impone a la naturaleza, sino que nace de ella.",
     ],
-    closing: "Casa Alta Arquitectura | Arquitectura que perdura.",
+    closing: "Arquitectura Casa Alta | Arquitectura que perdura",
     photo: puntaZicatelaIntroPhoto,
     cta: {
       label: "Conoce todos nuestros proyectos",
@@ -365,9 +413,15 @@ export const home: HomePage = {
   },
 
   virtualTour: {
-    eyebrow: "Recorrido virtual",
+    eyebrow: "Charco Seco · Frente a Playa Cumaná, Puerto Escondido, Oaxaca",
     heading: "Casa Charco Seco",
-    hook: "Un recorrido inmersivo por la arquitectura, materiales y espacialidad de Casa Charco Seco.",
+    hook: "Arquitectura que nace de la tierra y encuentra su horizonte en el mar.",
+    paragraphs: [
+      "Emplazada en el paisaje costero de Charco Seco, frente a Playa Cumaná, esta residencia representa la esencia de Arquitectura Costa Natura, una propuesta que fusiona la elegancia contemporánea con la autenticidad del entorno natural.",
+      "Su concepción arquitectónica privilegia la integración con el paisaje, la nobleza de los materiales, la luz natural y el confort bioclimático, creando una experiencia de vida donde los espacios dialogan con la brisa marina, la vegetación y la serenidad del océano.",
+    ],
+    closing:
+      "No concebimos únicamente espacios para habitar; creamos arquitectura que pertenece al lugar y permanece en el tiempo.",
     poster: heroCasaCharcoSecoHorizontalPhoto,
     videoSrc: "/videos/casa-charco-seco-recorrido-virtual.mp4",
     cta: {

@@ -382,6 +382,10 @@ export interface VirtualTourContent {
   eyebrow?: string;
   heading: string;
   hook?: string;
+  /** Optional architectural narrative paragraphs displayed below the video card. */
+  paragraphs?: string[];
+  /** Optional closing manifesto or studio philosophical statement. */
+  closing?: string;
   videoSrc?: string;
   poster: Photo;
   cta: CallToAction;

@@ -6,6 +6,7 @@ import { Container } from "@/components/atoms/Container";
 import { Icon } from "@/components/atoms/Icon";
 import { Photo } from "@/components/atoms/Photo";
 import { Section } from "@/components/atoms/Section";
+import { Text } from "@/components/atoms/Text";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import type { VirtualTourContent } from "@/types/content";
 
@@ -129,6 +130,37 @@ export function VirtualTourSection({
               </p>
             </div>
           </div>
+
+          {/* Architectural Narrative Caption */}
+          {(tour.paragraphs && tour.paragraphs.length > 0) || tour.closing ? (
+            <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-start md:gap-10 lg:gap-16">
+              <div className="flex max-w-[68ch] flex-col gap-4">
+                {tour.paragraphs?.map((para, idx) => (
+                  <Text
+                    key={idx}
+                    size="base"
+                    className="text-ink-muted leading-relaxed text-justify"
+                  >
+                    {para}
+                  </Text>
+                ))}
+
+                {tour.closing ? (
+                  <div className="pt-2">
+                    <span className="label text-brand-800">
+                      CASA ALTA | Arquitectura Costa Natura
+                    </span>
+                    <Text
+                      size="base"
+                      className="mt-1 font-medium text-ink leading-relaxed"
+                    >
+                      {tour.closing}
+                    </Text>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
 
           {/* Mobile Action Bar */}
           <div className="mt-8 flex justify-center md:hidden">

@@ -18,7 +18,7 @@ interface TerritoryShowcaseProps {
 }
 
 /**
- * Editorial Territory Showcase Section (`Arquitectura nativa`).
+ * Editorial Territory Showcase Section (`Arquitectura COSTA NATURA`).
  * Adheres strictly to DESIGN.md:
  * - Uses canonical Section and SectionHeading molecular hierarchy.
  * - Standard editorial serif scale (`text-[2.25rem] md:text-[3rem] lg:text-[3.75rem]`).
@@ -27,7 +27,7 @@ interface TerritoryShowcaseProps {
  * - Orthogonal 0px geometry.
  */
 export function TerritoryShowcase({
-  id = "arquitectura-nativa",
+  id = "arquitectura-costa-natura",
   showcase,
   photo,
   tone = "bone",
@@ -36,7 +36,7 @@ export function TerritoryShowcase({
   if (!activePhoto) return null;
 
   const heading = showcase?.heading ?? "El nuevo lujo no se ve, se siente";
-  const title = showcase?.title ?? "Arquitectura nativa";
+  const title = showcase?.title ?? "Arquitectura COSTA NATURA";
   const lede = showcase?.lede;
   const paragraphs = showcase?.paragraphs ?? [
     "Integración armónica entre arquitectura contemporánea, sistemas tradicionales de palapa y paisaje natural costero, priorizando confort térmico y materiales nobles de la región.",

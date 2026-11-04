@@ -49,7 +49,7 @@ export function LandingTemplate({
   return (
     <SiteChrome site={site} chrome="canvas">
       <main id="main">
-        {/* 01. Hero Carrusel de 3 slides seleccionados con "Casa Alta" y eslogan "Arquitectura que perdura" */}
+        {/* 01. Hero Carrusel de slides con "Casa Alta" y eslogan "Arquitectura que perdura" */}
         <Hero hero={home.hero} />
 
         {/* 02. Quiénes somos: Despacho y estudio de arquitectura (40px) */}
@@ -58,10 +58,10 @@ export function LandingTemplate({
         {/* Cifras clave reducidas en escala discreta y elegante */}
         <StatsBand stats={home.stats} />
 
-        {/* 03. Sección Arquitectura nativa: "El nuevo lujo no se ve, se siente" */}
+        {/* 03. Sección Arquitectura COSTA NATURA: "El nuevo lujo no se ve, se siente" */}
         {home.territoryShowcase || home.intro.photo ? (
           <TerritoryShowcase
-            id="arquitectura-nativa"
+            id="arquitectura-costa-natura"
             showcase={home.territoryShowcase}
             photo={home.intro.photo}
             tone="bone"
