@@ -80,8 +80,8 @@ export const editorialRefs: EditorialRef[] = [
     service: "presforzado-y-estructura-metalica",
     slug: "servicios-estructura-metalica-trabes",
     dir: "obra-civil",
-    base: "11-conjunto-porticos-columnas-trabes-prefabricadas-obra",
-    alt: "Vista general de pórticos estructurales armados con columnas y trabes prefabricadas de concreto presforzado",
+    base: "28-estructura-edificio-concreto-presforzado-claros-andamios",
+    alt: "Estructura multinivel de ingeniería civil en concreto presforzado y marcos estructurales con claros amplios durante obra",
   },
   {
     service: "remodelacion-y-modernizacion",

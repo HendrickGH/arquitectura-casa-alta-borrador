@@ -111,14 +111,17 @@ export const serviceGroups: ServiceGroup[] = [
       },
       {
         slug: "presforzado-y-estructura-metalica",
-        title: "Concreto presforzado y estructura metálica",
+        title: "Concreto presforzado y estructuras metálicas",
+        eyebrow: "Ingeniería estructural de alto desempeño | Casa Alta",
         summary:
-          "Cuando el claro es grande o el plazo aprieta. Concreto presforzado y estructura metálica --incluso sistemas mixtos--, según lo que más convenga al proyecto.",
+          "En Casa Alta desarrollamos soluciones constructivas mediante sistemas de concreto presforzado, estructuras metálicas y sistemas mixtos, que permiten alcanzar grandes claros, optimizar los tiempos de ejecución y mejorar la eficiencia estructural.\n\nIntegramos ingeniería, innovación y tecnología constructiva para crear estructuras resistentes, funcionales y duraderas, adaptadas a las exigencias arquitectónicas de cada proyecto.",
         items: [
-          "Soluciones de concreto presforzado",
-          "Estructura metálica",
-          "Naves de gran claro",
-          "Sistemas mixtos, según lo que más convenga al proyecto",
+          "Concreto presforzado: Elementos pretensados y postensados para estructuras de alto desempeño.",
+          "Estructuras metálicas: Diseño, fabricación y montaje de sistemas estructurales de acero.",
+          "Grandes claros: Soluciones estructurales para naves industriales, espacios comerciales y edificios.",
+          "Sistemas constructivos mixtos: Integración de acero y concreto para optimizar resistencia y eficiencia.",
+          "Ingeniería estructural: Análisis, diseño, cálculo y desarrollo de soluciones estructurales.",
+          "Sistemas prefabricados: Elementos estructurales industrializados que permiten optimizar tiempos de construcción.",
         ],
       },
       {
