@@ -162,9 +162,9 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "espacios-publicos-y-deportivos",
         title: "Espacios públicos y deportivos",
-        eyebrow: "Espacios que transforman comunidades | Casa Alta",
+        eyebrow: "Espacios Públicos y Deportivos | Casa Alta",
         summary:
-          "En Casa Alta desarrollamos proyectos de infraestructura urbana, recreativa y deportiva que integran arquitectura, ingeniería y funcionalidad. Creamos espacios seguros, accesibles y sostenibles que promueven la convivencia, el deporte y el desarrollo social, contribuyendo al mejoramiento de la imagen urbana y la calidad de vida.",
+          "Diseñamos y construimos espacios que transforman comunidades y generan bienestar colectivo.\n\nEn Casa Alta desarrollamos proyectos de infraestructura urbana, recreativa y deportiva que integran arquitectura, ingeniería y funcionalidad. Creamos espacios seguros, accesibles y sostenibles que promueven la convivencia, el deporte y el desarrollo social, contribuyendo al mejoramiento de la imagen urbana y la calidad de vida.",
         items: [
           "Infraestructura deportiva: Estadios, graderías, gimnasios y unidades deportivas.",
           "Canchas deportivas: Fútbol, básquetbol, pádel y espacios multideportivos.",
