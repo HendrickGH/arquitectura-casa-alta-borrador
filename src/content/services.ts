@@ -127,14 +127,17 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "remodelacion-y-modernizacion",
         title: "Remodelación y ampliación",
+        eyebrow: "Transformamos espacios existentes | Casa Alta",
         summary:
-          "Transformamos inmuebles existentes mediante refuerzo estructural, rediseño de volumetría y fachadas, renovación de instalaciones y acabados contemporáneos sin demoler el patrimonio previo.",
+          "En Casa Alta reinventamos el valor de los inmuebles mediante soluciones de arquitectura, ingeniería y diseño contemporáneo. Desarrollamos proyectos de remodelación, ampliación y rehabilitación que optimizan la funcionalidad, modernizan los espacios y elevan su valor estético y patrimonial, respetando la esencia de cada edificación.",
         items: [
-          "Diagnóstico estructural y demolición controlada",
-          "Modernización de fachadas, balcones, herrería y cancelería",
-          "Colado de accesos vehiculares, cocheras y firmes de concreto",
-          "Renovación integral de interiores, baños, cocinas e iluminación",
-          "Refuerzo de elementos estructurales y redistribución de claros",
+          "Remodelación arquitectónica: Transformación de espacios residenciales, comerciales y corporativos.",
+          "Ampliaciones: Crecimiento de superficies construidas y nuevas áreas funcionales.",
+          "Rehabilitación estructural: Diagnóstico, reforzamiento y adecuación de estructuras existentes.",
+          "Modernización de fachadas: Rediseño arquitectónico, acabados, herrería y cancelería.",
+          "Renovación de interiores: Cocinas, baños, iluminación y acabados de alta calidad.",
+          "Actualización de instalaciones: Modernización de sistemas eléctricos, hidráulicos y sanitarios.",
+          "Revalorización inmobiliaria: Intervenciones arquitectónicas orientadas a mejorar la funcionalidad y el valor comercial del inmueble.",
         ],
       },
     ],
