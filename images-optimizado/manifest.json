@@ -13261,11 +13261,42 @@
           ]
         }
       ]
+    },
+    {
+      "dir": "espacios-publicos",
+      "folder": "espacios-publicos",
+      "name": "Espacios Públicos y Deportivos",
+      "order": "28",
+      "slug": "espacios-publicos",
+      "photos": [
+        {
+          "base": "01-estadio-atletismo-pista-azul-graderio-techado",
+          "fallback": "01-estadio-atletismo-pista-azul-graderio-techado.jpg",
+          "full": {
+            "file": "01-estadio-atletismo-pista-azul-graderio-techado.avif",
+            "height": 466,
+            "width": 746
+          },
+          "note": "Estadio deportivo con pista de atletismo azul, campo de futbol y graderio techado con luminarias",
+          "order": "01",
+          "score": 5,
+          "slug": "estadio-atletismo-pista-azul-graderio-techado",
+          "source": "images/espacios-publicos/01-estadio-atletismo-pista-azul-graderio-techado.jpg",
+          "srcset": "01-estadio-atletismo-pista-azul-graderio-techado-480.avif 480w, 01-estadio-atletismo-pista-azul-graderio-techado.avif 746w",
+          "variants": [
+            {
+              "file": "01-estadio-atletismo-pista-azul-graderio-techado-480.avif",
+              "height": 300,
+              "width": 480
+            }
+          ]
+        }
+      ]
     }
   ],
   "stats": {
-    "photos": 490,
-    "projects": 27
+    "photos": 491,
+    "projects": 28
   },
   "tiers": [
     480,
