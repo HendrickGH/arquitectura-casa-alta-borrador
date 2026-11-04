@@ -93,7 +93,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "espacios-publicos-y-deportivos",
     slug: "servicios-espacios-publicos-estadio",
-    alt: "Graderío de un estadio y equipamiento deportivo para eventos de gran concurrencia",
+    dir: "espacios-publicos",
+    base: "01-estadio-atletismo-pista-azul-graderio-techado",
+    alt: "Estadio deportivo con pista de atletismo azul, campo de fútbol y graderío techado con iluminación",
   },
   {
     service: "skateparks",

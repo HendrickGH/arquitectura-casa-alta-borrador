@@ -151,17 +151,17 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "espacios-publicos-y-deportivos",
         title: "Espacios públicos y deportivos",
+        eyebrow: "Espacios que transforman comunidades | Casa Alta",
         summary:
-          "Equipamiento urbano y deportivo, de la cancha de barrio al auditorio. Estadios, gradas, parques y espacios recuperados para que la gente los use.",
+          "En Casa Alta desarrollamos proyectos de infraestructura urbana, recreativa y deportiva que integran arquitectura, ingeniería y funcionalidad. Creamos espacios seguros, accesibles y sostenibles que promueven la convivencia, el deporte y el desarrollo social, contribuyendo al mejoramiento de la imagen urbana y la calidad de vida.",
         items: [
-          "Estadios y gradas",
-          "Centros de convenciones",
-          "Canchas de basket",
-          "Canchas de pádel",
-          "Parques públicos",
-          "Recuperación de espacios públicos",
-          "Cines al aire libre y explanadas",
-          "Auditorios con isóptica vertical y horizontal",
+          "Infraestructura deportiva: Estadios, graderías, gimnasios y unidades deportivas.",
+          "Canchas deportivas: Fútbol, básquetbol, pádel y espacios multideportivos.",
+          "Espacios públicos: Parques, plazas, jardines y áreas recreativas.",
+          "Infraestructura cultural: Auditorios, foros, teatros al aire libre y centros de convenciones.",
+          "Equipamiento urbano: Andadores, explanadas, mobiliario urbano e iluminación pública.",
+          "Rehabilitación urbana: Recuperación, modernización y ampliación de espacios públicos.",
+          "Ingeniería especializada: Diseño estructural, cubiertas de grandes claros y soluciones constructivas para infraestructura deportiva.",
         ],
       },
       {
