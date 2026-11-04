@@ -137,10 +137,10 @@ export const serviceGroups: ServiceGroup[] = [
       },
       {
         slug: "remodelacion-y-modernizacion",
-        title: "Remodelación y ampliación",
-        eyebrow: "Transformamos espacios existentes | Casa Alta",
+        title: "Remodelación y ampliaciones",
+        eyebrow: "Remodelación y Ampliación | Casa Alta",
         summary:
-          "En Casa Alta reinventamos el valor de los inmuebles mediante soluciones de arquitectura, ingeniería y diseño contemporáneo. Desarrollamos proyectos de remodelación, ampliación y rehabilitación que optimizan la funcionalidad, modernizan los espacios y elevan su valor estético y patrimonial, respetando la esencia de cada edificación.",
+          "Transformamos espacios existentes en nuevas experiencias arquitectónicas.\n\nEn Casa Alta reinventamos el valor de los inmuebles mediante soluciones de arquitectura, ingeniería y diseño contemporáneo. Desarrollamos proyectos de remodelación, ampliación y rehabilitación que optimizan la funcionalidad, modernizan los espacios y elevan su valor estético y patrimonial, respetando la esencia de cada edificación.",
         items: [
           "Remodelación arquitectónica: Transformación de espacios residenciales, comerciales y corporativos.",
           "Ampliaciones: Crecimiento de superficies construidas y nuevas áreas funcionales.",
