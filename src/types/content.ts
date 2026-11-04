@@ -89,6 +89,7 @@ export interface SiteConfig {
 export interface Service {
   slug: string;
   title: string;
+  eyebrow?: string;
   summary: string;
   /** Concrete deliverables listed under the title. */
   items: string[];

@@ -110,6 +110,11 @@ export function ServiceScopeModal({
 
         {/* Service Title in Editorial Voice */}
         <div className="mt-2">
+          {service.eyebrow ? (
+            <span className="label mb-2 block text-xs tracking-wider text-brand-800 font-semibold">
+              {service.eyebrow}
+            </span>
+          ) : null}
           <Heading
             id="modal-service-title"
             as="h3"

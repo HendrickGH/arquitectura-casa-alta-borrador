@@ -53,8 +53,9 @@ export const serviceGroups: ServiceGroup[] = [
       {
         slug: "proyectos-sostenibles",
         title: "Proyectos sostenibles",
+        eyebrow: "Arquitectura Sostenible | El nuevo estilo de hábitat",
         summary:
-          "Diseñamos con el clima, no contra él. Aprovechamos ventilación e iluminación natural y sumamos captación de agua y energía para bajar el consumo durante toda la vida del edificio.",
+          "En Casa Alta concebimos una arquitectura donde el confort, la innovación y la sostenibilidad convergen. Integramos sistemas constructivos modernos y estrategias bioclimáticas que optimizan los tiempos de ejecución, mejoran la eficiencia energética y reducen el impacto ambiental.\n\nConstruimos espacios más inteligentes, eficientes y responsables con el entorno, donde la sostenibilidad se convierte en una nueva forma de lujo.",
         items: [
           "Diseños bioclimáticos, con aprovechamiento de ventilación e iluminación natural",
           "Uso de materiales de bajo impacto ambiental",

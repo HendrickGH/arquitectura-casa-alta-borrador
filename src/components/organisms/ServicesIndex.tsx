@@ -172,7 +172,7 @@ export function ServicesIndex({
               variant="carousel"
               title={item.service.title}
               description={item.service.summary}
-              kicker={item.groupTitle}
+              kicker={item.service.eyebrow || item.groupTitle}
               photo={item.service.image}
               sizes={CARD_SIZES}
               ctaLabel="Ver alcances y entregables"
