@@ -12917,6 +12917,28 @@
               "width": 960
             }
           ]
+        },
+        {
+          "base": "28-estructura-edificio-concreto-presforzado-claros-andamios",
+          "fallback": "28-estructura-edificio-concreto-presforzado-claros-andamios.jpg",
+          "full": {
+            "file": "28-estructura-edificio-concreto-presforzado-claros-andamios.avif",
+            "height": 612,
+            "width": 856
+          },
+          "note": "Estructura multinivel de concreto presforzado y marcos estructurales con andamios en proceso de obra",
+          "order": "28",
+          "score": 5,
+          "slug": "estructura-edificio-concreto-presforzado-claros-andamios",
+          "source": "images/obra-civil/28-estructura-edificio-concreto-presforzado-claros-andamios.jpg",
+          "srcset": "28-estructura-edificio-concreto-presforzado-claros-andamios-480.avif 480w, 28-estructura-edificio-concreto-presforzado-claros-andamios.avif 856w",
+          "variants": [
+            {
+              "file": "28-estructura-edificio-concreto-presforzado-claros-andamios-480.avif",
+              "height": 343,
+              "width": 480
+            }
+          ]
         }
       ]
     },
@@ -13206,7 +13228,7 @@
     }
   ],
   "stats": {
-    "photos": 488,
+    "photos": 489,
     "projects": 26
   },
   "tiers": [
