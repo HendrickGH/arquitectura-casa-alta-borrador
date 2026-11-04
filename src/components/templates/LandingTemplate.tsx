@@ -68,21 +68,21 @@ export function LandingTemplate({
           />
         ) : null}
 
-        {/* 04. Recorrido virtual guiado ("Charco Seco") con botón a Servicios */}
+        {/* 04. Cita del Arquitecto Felipe Humberto Hernández Bejarano */}
+        <ArchitectQuote
+          quote={home.manifesto}
+          architect={site.architect}
+        />
+
+        {/* 05. Recorrido virtual guiado ("Charco Seco") con botón a Servicios */}
         <VirtualTourSection tour={home.virtualTour} tone="canvas" />
 
-        {/* 05. Metodología Casa Alta: Proceso secuencial con split-screen anclado */}
+        {/* 06. Metodología Casa Alta: Proceso secuencial con split-screen anclado */}
         <ProcessList
           intro={home.process}
           steps={steps}
           tone="bone"
           id="proceso"
-        />
-
-        {/* 06. Cita del Arquitecto Felipe Humberto Hernández Bejarano */}
-        <ArchitectQuote
-          quote={home.manifesto}
-          architect={site.architect}
         />
 
         {/* 07. Cierre monumental (150vh) con imagen arquitectónica destacada y llamada a la acción */}
