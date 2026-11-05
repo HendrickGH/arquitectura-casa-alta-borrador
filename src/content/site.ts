@@ -84,7 +84,7 @@ export const site = {
     },
     {
       label: "TikTok",
-      href: "https://www.tiktok.com/@arquitecturacasaalta",
+      href: "https://www.tiktok.com/@constructoracasaalta",
       icon: "tiktok",
     },
     { label: "WhatsApp", href: whatsappHref, icon: "whatsapp" },
