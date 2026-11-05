@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { ArchitectQuote } from "@/components/organisms/ArchitectQuote";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { PageHero } from "@/components/organisms/PageHero";
 import { ProjectCaseStudyModal } from "@/components/organisms/ProjectCaseStudyModal";
 import { ProjectsShowcaseCR } from "@/components/organisms/ProjectsShowcaseCR";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
+  EditorialQuote,
   HomePage,
   Project,
   SectionIntro,
@@ -19,6 +21,8 @@ interface ProjectsIndexTemplateProps {
   intro: SectionIntro;
   /** Every project the seam publishes, in canonical portfolio order. */
   projects: Project[];
+  /** Optional editorial quote rendered after the selected portfolio. */
+  quote?: EditorialQuote;
   /** The closing block that ends the page. */
   closing: HomePage["closing"];
 }
@@ -47,6 +51,7 @@ export function ProjectsIndexTemplate({
   site,
   intro,
   projects,
+  quote,
   closing,
 }: ProjectsIndexTemplateProps) {
   const [selected, setSelected] = useState<Project | null>(null);
@@ -77,6 +82,14 @@ export function ProjectsIndexTemplate({
           intro={intro}
           onSelectProject={handleOpenProject}
         />
+
+        {quote ? (
+          <ArchitectQuote
+            quote={quote.text}
+            author={quote.author}
+            eyebrow={quote.eyebrow}
+          />
+        ) : null}
 
         <ClosingCTA closing={closing} />
 

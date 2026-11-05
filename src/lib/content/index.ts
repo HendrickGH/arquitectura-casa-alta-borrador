@@ -13,6 +13,7 @@ import {
   civilWorksPageContent,
   contactPageContent,
   interiorsPageContent,
+  projectsPageContent,
   servicesPageContent,
   sustainabilityPageContent,
 } from "@/content/pages";
@@ -41,6 +42,7 @@ import type {
   ContactPageContent,
   Differentiator,
   DivisionCard,
+  EditorialQuote,
   HomePage,
   InteriorsPageContent,
   SpecialtySection,
@@ -340,6 +342,11 @@ export function getMomentPhoto(): Photo | null {
  */
 export function getProjectsIntro(): SectionIntro {
   return home.projects;
+}
+
+/** The editorial quote rendered after the selected portfolio on the projects page. */
+export function getProjectsQuote(): EditorialQuote {
+  return projectsPageContent.quote;
 }
 
 /** The closing call to action, shared by the landing and the projects index. */

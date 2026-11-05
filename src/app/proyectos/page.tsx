@@ -4,11 +4,13 @@ import {
   getClosing,
   getProjects,
   getProjectsIntro,
+  getProjectsQuote,
   getSiteConfig,
 } from "@/lib/content";
 
 const site = getSiteConfig();
 const intro = getProjectsIntro();
+const quote = getProjectsQuote();
 
 /** The index is the portfolio's own landing page, so it says what it holds. */
 export const metadata: Metadata = {
@@ -27,6 +29,7 @@ export default function ProjectsIndexPage() {
       site={site}
       intro={intro}
       projects={getProjects()}
+      quote={quote}
       closing={getClosing()}
     />
   );

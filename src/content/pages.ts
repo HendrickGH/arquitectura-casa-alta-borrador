@@ -965,3 +965,11 @@ export const contactPageContent = {
   heading: "Atención técnica directa y localización en campo",
   body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
 };
+
+export const projectsPageContent = {
+  quote: {
+    eyebrow: "Una visión de la arquitectura",
+    text: "Una obra exitosa se construye con una administración responsable, decisiones sólidas basadas en el profesionalismo, actitud positiva, trabajo en equipo, liderazgo y con un plan firme de ejecución.",
+    author: "Lic. Gerardo Bejarano",
+  },
+};

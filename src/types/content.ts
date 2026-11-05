@@ -449,6 +449,12 @@ export interface HomePage {
 
 /* ---------- dedicated pages ---------- */
 
+export interface EditorialQuote {
+  eyebrow?: string;
+  text: string;
+  author: string;
+}
+
 export interface ThematicPillar {
   number: string;
   title: string;
@@ -479,11 +485,7 @@ export interface InteriorsPageContent {
     intro: SectionIntro;
     photos: Photo[];
   };
-  quote?: {
-    eyebrow?: string;
-    text: string;
-    author: string;
-  };
+  quote?: EditorialQuote;
   engineering: {
     intro: SectionIntro;
     items: Differentiator[];
@@ -545,11 +547,7 @@ export interface CivilWorksPageContent {
     intro: SectionIntro;
     photos: Photo[];
   };
-  quote?: {
-    eyebrow?: string;
-    text: string;
-    author: string;
-  };
+  quote?: EditorialQuote;
   engineering: {
     intro: SectionIntro;
     items: Differentiator[];
