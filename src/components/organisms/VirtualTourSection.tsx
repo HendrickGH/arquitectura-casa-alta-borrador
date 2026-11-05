@@ -137,13 +137,13 @@ export function VirtualTourSection({
 
               <div className="mt-2 flex flex-col justify-between gap-6 pt-1 md:flex-row md:items-center">
                 {tour.closing ? (
-                  <div className="pt-2">
+                  <div className="pt-2 max-w-[512px]">
                     <span className="label text-brand-800">
                       CASA ALTA | Arquitectura Costa Natura
                     </span>
                     <Text
                       size="base"
-                      className="mt-1 font-medium text-ink leading-relaxed"
+                      className="mt-1 max-w-[512px] font-medium text-ink leading-relaxed"
                     >
                       {tour.closing}
                     </Text>
