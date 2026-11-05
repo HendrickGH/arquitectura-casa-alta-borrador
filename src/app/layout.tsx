@@ -33,9 +33,38 @@ const site = getSiteConfig();
  */
 const description = `${site.claim}. ${site.tagline}. ${site.coverage}.`;
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+  (process.env.URL ? process.env.URL : undefined) ||
+  "https://arquitecturacasaalta.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: `${site.name} — ${site.tagline}`,
   description,
+  openGraph: {
+    title: `${site.name} — ${site.tagline}`,
+    description,
+    url: "/",
+    siteName: site.name,
+    locale: "es_MX",
+    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.tagline}`,
+    description,
+    images: ["/og-image.jpg"],
+  },
 };
 
 /** Matches the brand strip at the top of the page, for the mobile browser chrome. */
