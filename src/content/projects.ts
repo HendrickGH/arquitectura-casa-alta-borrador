@@ -131,6 +131,7 @@ const curatedGalleries: Record<string, string[]> = {
     "02-terraza-celosia-madera-encino",
   ],
   "08-rbnb-palmarito": [
+    "42-fachada-dos-niveles-palapa-balcon-escalera",
     "02-cielo-palapa-barra-mar",
     "03-marco-concreto-vista-playa",
     "04-postes-madera-vista-mar",
@@ -140,6 +141,7 @@ const curatedGalleries: Record<string, string[]> = {
     "02-el-bicho/36-colado-con-manguera-playa",
   ],
   "10-obra-punta-zicatela": [
+    "43-modulo-chukum-ventana-circular-mesa-concreto",
     "09-fachada-chukum-ventana-circular-barra-concreto",
     "12-modulo-terminado-bajo-sombra-arboles-zicatela",
     "13-recamara-muros-chukum-cama-madera-lampara-halo",
