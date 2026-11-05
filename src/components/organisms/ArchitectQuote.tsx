@@ -12,7 +12,7 @@ export function ArchitectQuote({
   quote,
   architect,
   author,
-  eyebrow = "Una visión de la arquitectura",
+  eyebrow,
 }: ArchitectQuoteProps) {
   const authorName = author ?? (architect ? `Arq. ${architect.name}` : undefined);
 

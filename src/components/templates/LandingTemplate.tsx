@@ -72,6 +72,7 @@ export function LandingTemplate({
         <ArchitectQuote
           quote={home.manifesto}
           architect={site.architect}
+          eyebrow="Una visión de la arquitectura"
         />
 
         {/* 05. Recorrido virtual guiado ("Charco Seco") con botón a Servicios */}

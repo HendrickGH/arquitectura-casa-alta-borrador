@@ -20,7 +20,7 @@ interface CivilWorksPageTemplateProps {
  * - Layer 1.5: IntroSection (tone="canvas", hideAction) — Editorial introduction to heavy civil works
  * - Layer 2: SpecialtiesShowcase (tone="canvas") — 4 heavy civil specialties with zero-CLS hover expansion
  * - Layer 3: CredibilityGallery (tone="bone") — dynamic ribbon of 5-star heavy civil & infrastructure records
- * - Layer 3.5: ArchitectQuote (bg-bone-100/70) — "Una visión de la arquitectura" quote by Ing. Alberto Estrada Montaño
+ * - Layer 3.5: ArchitectQuote (bg-bone-100/70) — quote by Ing. Alberto Estrada Montaño
  * - Layer 4: WhyCasaAltaEditorial (tone="canvas") — 4 structural rigor & DRO engineering pillars with harmonic overlap
  * - Closing: ClosingCTA (bg-concha-nacar)
  */
