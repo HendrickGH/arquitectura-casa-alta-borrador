@@ -6235,16 +6235,6 @@
       "01-maniobra-gruas-izado-muros-prefabricados-concreto.avif"
     ]
   ],
-  "naves-industriales/02-estacionamiento-comercial-estructura-metalica-losacero": [
-    [
-      480,
-      "02-estacionamiento-comercial-estructura-metalica-losacero-480.avif"
-    ],
-    [
-      992,
-      "02-estacionamiento-comercial-estructura-metalica-losacero.avif"
-    ]
-  ],
   "naves-industriales/03-estacionamiento-comercial-losacero-columnas-acero-rampa": [
     [
       358,
@@ -6605,16 +6595,6 @@
       "27-grua-telescopica-maniobra-obra-vial.avif"
     ]
   ],
-  "obra-civil/28-estructura-edificio-concreto-presforzado-claros-andamios": [
-    [
-      480,
-      "28-estructura-edificio-concreto-presforzado-claros-andamios-480.avif"
-    ],
-    [
-      856,
-      "28-estructura-edificio-concreto-presforzado-claros-andamios.avif"
-    ]
-  ],
   "obra-civil/29-edificio-concreto-presforzado-marcos-estructurales-andamiaje": [
     [
       358,
@@ -6769,20 +6749,6 @@
       "05-etapa-acabados-nocturna-colado-firme-cochera.avif"
     ]
   ],
-  "skateparks/01-armado-acero-cimbra-curva-bowl-skatepark": [
-    [
-      480,
-      "01-armado-acero-cimbra-curva-bowl-skatepark-480.avif"
-    ],
-    [
-      960,
-      "01-armado-acero-cimbra-curva-bowl-skatepark-960.avif"
-    ],
-    [
-      1024,
-      "01-armado-acero-cimbra-curva-bowl-skatepark.avif"
-    ]
-  ],
   "skateparks/02-construccion-bowl-skatepark-cimbra-curva-armado-acero": [
     [
       358,
@@ -6795,16 +6761,6 @@
     [
       1493,
       "02-construccion-bowl-skatepark-cimbra-curva-armado-acero.avif"
-    ]
-  ],
-  "espacios-publicos/01-estadio-atletismo-pista-azul-graderio-techado": [
-    [
-      480,
-      "01-estadio-atletismo-pista-azul-graderio-techado-480.avif"
-    ],
-    [
-      746,
-      "01-estadio-atletismo-pista-azul-graderio-techado.avif"
     ]
   ],
   "espacios-publicos/02-estadio-deportivo-pista-atletismo-azul-graderio": [
@@ -6821,20 +6777,6 @@
       "02-estadio-deportivo-pista-atletismo-azul-graderio.avif"
     ]
   ],
-  "landscape/01-masterplan-arquitectura-paisaje-parque-corredor-verde": [
-    [
-      480,
-      "01-masterplan-arquitectura-paisaje-parque-corredor-verde-480.avif"
-    ],
-    [
-      960,
-      "01-masterplan-arquitectura-paisaje-parque-corredor-verde-960.avif"
-    ],
-    [
-      1024,
-      "01-masterplan-arquitectura-paisaje-parque-corredor-verde.avif"
-    ]
-  ],
   "landscape/02-masterplan-paisajismo-parque-lineal-corredor-fluvial": [
     [
       358,
@@ -6847,20 +6789,6 @@
     [
       1493,
       "02-masterplan-paisajismo-parque-lineal-corredor-fluvial.avif"
-    ]
-  ],
-  "instalaciones-electricas/01-linieros-canastilla-mantenimiento-lineas-media-alta-tension": [
-    [
-      480,
-      "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-480.avif"
-    ],
-    [
-      960,
-      "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-960.avif"
-    ],
-    [
-      1024,
-      "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension.avif"
     ]
   ],
   "instalaciones-electricas/02-linieros-canastilla-mantenimiento-red-electrica-media-tension": [
@@ -6905,20 +6833,6 @@
       "arquitectura-costa-natura-patio-alberca-tropical.avif"
     ]
   ],
-  "hero/casa-blake-fachada-dos-niveles-herreria-negra": [
-    [
-      360,
-      "casa-blake-fachada-dos-niveles-herreria-negra-480.avif"
-    ],
-    [
-      720,
-      "casa-blake-fachada-dos-niveles-herreria-negra-960.avif"
-    ],
-    [
-      1200,
-      "casa-blake-fachada-dos-niveles-herreria-negra.avif"
-    ]
-  ],
   "hero/casa-blake-fachada-horizontal-terraza-cantera": [
     [
       480,
@@ -6947,48 +6861,6 @@
       "casa-charco-seco-fachada-horizontal-terracota.avif"
     ]
   ],
-  "hero/casa-charco-seco-fachada-terracota-enredadera": [
-    [
-      288,
-      "casa-charco-seco-fachada-terracota-enredadera-480.avif"
-    ],
-    [
-      576,
-      "casa-charco-seco-fachada-terracota-enredadera-960.avif"
-    ],
-    [
-      768,
-      "casa-charco-seco-fachada-terracota-enredadera.avif"
-    ]
-  ],
-  "hero/casa-charco-seco-patio-alberca-cenital": [
-    [
-      288,
-      "casa-charco-seco-patio-alberca-cenital-480.avif"
-    ],
-    [
-      576,
-      "casa-charco-seco-patio-alberca-cenital-960.avif"
-    ],
-    [
-      960,
-      "casa-charco-seco-patio-alberca-cenital.avif"
-    ]
-  ],
-  "hero/casa-la-barra-fachada-chukum-porton-palapa": [
-    [
-      311,
-      "casa-la-barra-fachada-chukum-porton-palapa-480.avif"
-    ],
-    [
-      622,
-      "casa-la-barra-fachada-chukum-porton-palapa-960.avif"
-    ],
-    [
-      829,
-      "casa-la-barra-fachada-chukum-porton-palapa.avif"
-    ]
-  ],
   "hero/casa-la-barra-fachada-horizontal-chukum": [
     [
       480,
@@ -7001,90 +6873,6 @@
     [
       2000,
       "casa-la-barra-fachada-horizontal-chukum.avif"
-    ]
-  ],
-  "hero/casa-melchor-ocampo-balcon-herreria-celosia": [
-    [
-      480,
-      "casa-melchor-ocampo-balcon-herreria-celosia-480.avif"
-    ],
-    [
-      960,
-      "casa-melchor-ocampo-balcon-herreria-celosia-960.avif"
-    ],
-    [
-      1280,
-      "casa-melchor-ocampo-balcon-herreria-celosia.avif"
-    ]
-  ],
-  "hero/columnas-prefabricadas-grua-obra-civil": [
-    [
-      480,
-      "columnas-prefabricadas-grua-obra-civil-480.avif"
-    ],
-    [
-      960,
-      "columnas-prefabricadas-grua-obra-civil-960.avif"
-    ],
-    [
-      1600,
-      "columnas-prefabricadas-grua-obra-civil.avif"
-    ]
-  ],
-  "hero/el-bicho-fachada-palapas-atardecer": [
-    [
-      480,
-      "el-bicho-fachada-palapas-atardecer-480.avif"
-    ],
-    [
-      960,
-      "el-bicho-fachada-palapas-atardecer-960.avif"
-    ],
-    [
-      1280,
-      "el-bicho-fachada-palapas-atardecer.avif"
-    ]
-  ],
-  "hero/el-bicho-terraza-hamaca-jardin-costero": [
-    [
-      480,
-      "el-bicho-terraza-hamaca-jardin-costero-480.avif"
-    ],
-    [
-      960,
-      "el-bicho-terraza-hamaca-jardin-costero-960.avif"
-    ],
-    [
-      1280,
-      "el-bicho-terraza-hamaca-jardin-costero.avif"
-    ]
-  ],
-  "hero/maniobra-gruas-nave-industrial-prefabricados": [
-    [
-      480,
-      "maniobra-gruas-nave-industrial-prefabricados-480.avif"
-    ],
-    [
-      960,
-      "maniobra-gruas-nave-industrial-prefabricados-960.avif"
-    ],
-    [
-      1280,
-      "maniobra-gruas-nave-industrial-prefabricados.avif"
-    ]
-  ],
-  "hero/montaje-estructura-puente-grua-obra-civil": [
-    [
-      480,
-      "montaje-estructura-puente-grua-obra-civil-480.avif"
-    ],
-    [
-      960,
-      "montaje-estructura-puente-grua-obra-civil-960.avif"
-    ],
-    [
-      1280,
-      "montaje-estructura-puente-grua-obra-civil.avif"
     ]
   ],
   "hero/punta-zicatela-alberca-cenital-palapas": [
@@ -7125,48 +6913,6 @@
       "punta-zicatela-villas-palapas-alberca-playa.avif"
     ]
   ],
-  "hero/supervision-residencia-obra-chaleco-casa-alta": [
-    [
-      360,
-      "supervision-residencia-obra-chaleco-casa-alta-480.avif"
-    ],
-    [
-      720,
-      "supervision-residencia-obra-chaleco-casa-alta-960.avif"
-    ],
-    [
-      960,
-      "supervision-residencia-obra-chaleco-casa-alta.avif"
-    ]
-  ],
-  "hero/villas-cavan-fachada-cantera-letreros": [
-    [
-      413,
-      "villas-cavan-fachada-cantera-letreros-480.avif"
-    ],
-    [
-      825,
-      "villas-cavan-fachada-cantera-letreros-960.avif"
-    ],
-    [
-      1719,
-      "villas-cavan-fachada-cantera-letreros.avif"
-    ]
-  ],
-  "hero/villas-cavan-portico-cantera-escalones": [
-    [
-      354,
-      "villas-cavan-portico-cantera-escalones-480.avif"
-    ],
-    [
-      709,
-      "villas-cavan-portico-cantera-escalones-960.avif"
-    ],
-    [
-      1290,
-      "villas-cavan-portico-cantera-escalones.avif"
-    ]
-  ],
   "hero/villas-cavan-portico-horizontal-cantera-escalones": [
     [
       480,
@@ -7179,202 +6925,6 @@
     [
       2000,
       "villas-cavan-portico-horizontal-cantera-escalones.avif"
-    ]
-  ],
-  "hero/vista-aerea-palapas-alberca-playa": [
-    [
-      480,
-      "vista-aerea-palapas-alberca-playa-480.avif"
-    ],
-    [
-      960,
-      "vista-aerea-palapas-alberca-playa-960.avif"
-    ],
-    [
-      1600,
-      "vista-aerea-palapas-alberca-playa.avif"
-    ]
-  ],
-  "editorial/servicios-albercas-villa-exterior": [
-    [
-      480,
-      "servicios-albercas-villa-exterior-480.avif"
-    ],
-    [
-      960,
-      "servicios-albercas-villa-exterior-960.avif"
-    ],
-    [
-      2000,
-      "servicios-albercas-villa-exterior.avif"
-    ]
-  ],
-  "editorial/servicios-arquitectura-interior-cocina": [
-    [
-      480,
-      "servicios-arquitectura-interior-cocina-480.avif"
-    ],
-    [
-      960,
-      "servicios-arquitectura-interior-cocina-960.avif"
-    ],
-    [
-      2000,
-      "servicios-arquitectura-interior-cocina.avif"
-    ]
-  ],
-  "editorial/servicios-construccion-comercial-nave-industrial": [
-    [
-      480,
-      "servicios-construccion-comercial-nave-industrial-480.avif"
-    ],
-    [
-      960,
-      "servicios-construccion-comercial-nave-industrial-960.avif"
-    ],
-    [
-      2000,
-      "servicios-construccion-comercial-nave-industrial.avif"
-    ]
-  ],
-  "editorial/servicios-construccion-estructura-gruas": [
-    [
-      480,
-      "servicios-construccion-estructura-gruas-480.avif"
-    ],
-    [
-      960,
-      "servicios-construccion-estructura-gruas-960.avif"
-    ],
-    [
-      2000,
-      "servicios-construccion-estructura-gruas.avif"
-    ]
-  ],
-  "editorial/servicios-eco-sustentables-paneles-solares": [
-    [
-      480,
-      "servicios-eco-sustentables-paneles-solares-480.avif"
-    ],
-    [
-      960,
-      "servicios-eco-sustentables-paneles-solares-960.avif"
-    ],
-    [
-      2000,
-      "servicios-eco-sustentables-paneles-solares.avif"
-    ]
-  ],
-  "editorial/servicios-espacios-publicos-estadio": [
-    [
-      480,
-      "servicios-espacios-publicos-estadio-480.avif"
-    ],
-    [
-      960,
-      "servicios-espacios-publicos-estadio-960.avif"
-    ],
-    [
-      2000,
-      "servicios-espacios-publicos-estadio.avif"
-    ]
-  ],
-  "editorial/servicios-estructura-metalica-trabes": [
-    [
-      480,
-      "servicios-estructura-metalica-trabes-480.avif"
-    ],
-    [
-      960,
-      "servicios-estructura-metalica-trabes-960.avif"
-    ],
-    [
-      2000,
-      "servicios-estructura-metalica-trabes.avif"
-    ]
-  ],
-  "editorial/servicios-exterior-pista-skate": [
-    [
-      480,
-      "servicios-exterior-pista-skate-480.avif"
-    ],
-    [
-      960,
-      "servicios-exterior-pista-skate-960.avif"
-    ],
-    [
-      2000,
-      "servicios-exterior-pista-skate.avif"
-    ]
-  ],
-  "editorial/servicios-instalaciones-electricas-subestacion": [
-    [
-      480,
-      "servicios-instalaciones-electricas-subestacion-480.avif"
-    ],
-    [
-      960,
-      "servicios-instalaciones-electricas-subestacion-960.avif"
-    ],
-    [
-      2000,
-      "servicios-instalaciones-electricas-subestacion.avif"
-    ]
-  ],
-  "editorial/servicios-instalaciones-tratamiento-agua": [
-    [
-      480,
-      "servicios-instalaciones-tratamiento-agua-480.avif"
-    ],
-    [
-      960,
-      "servicios-instalaciones-tratamiento-agua-960.avif"
-    ],
-    [
-      2000,
-      "servicios-instalaciones-tratamiento-agua.avif"
-    ]
-  ],
-  "editorial/servicios-landscape-sendero-jardin": [
-    [
-      480,
-      "servicios-landscape-sendero-jardin-480.avif"
-    ],
-    [
-      960,
-      "servicios-landscape-sendero-jardin-960.avif"
-    ],
-    [
-      2000,
-      "servicios-landscape-sendero-jardin.avif"
-    ]
-  ],
-  "editorial/servicios-obra-civil-asfalto": [
-    [
-      480,
-      "servicios-obra-civil-asfalto-480.avif"
-    ],
-    [
-      960,
-      "servicios-obra-civil-asfalto-960.avif"
-    ],
-    [
-      2000,
-      "servicios-obra-civil-asfalto.avif"
-    ]
-  ],
-  "editorial/servicios-proyecto-planos-arquitectonicos": [
-    [
-      480,
-      "servicios-proyecto-planos-arquitectonicos-480.avif"
-    ],
-    [
-      960,
-      "servicios-proyecto-planos-arquitectonicos-960.avif"
-    ],
-    [
-      2000,
-      "servicios-proyecto-planos-arquitectonicos.avif"
     ]
   ]
 }
