@@ -8669,6 +8669,28 @@
               "width": 960
             }
           ]
+        },
+        {
+          "base": "07-posicionamiento-columna-prefabricada-cuadrilla-zapata",
+          "fallback": "07-posicionamiento-columna-prefabricada-cuadrilla-zapata.jpg",
+          "full": {
+            "file": "07-posicionamiento-columna-prefabricada-cuadrilla-zapata.avif",
+            "height": 768,
+            "width": 1024
+          },
+          "note": "Cuadrilla guiando el posicionamiento de columna prefabricada de concreto suspendida con grúa sobre zapata",
+          "order": "00",
+          "score": 5,
+          "slug": "posicionamiento-columna-prefabricada-cuadrilla-zapata",
+          "source": "Columnas C1 - C2/posicionamiento-columna-prefabricada-cuadrilla-zapata.jpg",
+          "srcset": "07-posicionamiento-columna-prefabricada-cuadrilla-zapata-480.avif 480w, 07-posicionamiento-columna-prefabricada-cuadrilla-zapata.avif 1024w",
+          "variants": [
+            {
+              "file": "07-posicionamiento-columna-prefabricada-cuadrilla-zapata-480.avif",
+              "height": 360,
+              "width": 480
+            }
+          ]
         }
       ],
       "slug": "columnas-c1-c2"
@@ -13469,7 +13491,7 @@
     }
   ],
   "stats": {
-    "photos": 497,
+    "photos": 498,
     "projects": 31
   },
   "tiers": [
