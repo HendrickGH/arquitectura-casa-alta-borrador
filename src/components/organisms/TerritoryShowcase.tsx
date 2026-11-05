@@ -68,58 +68,58 @@ export function TerritoryShowcase({
           </div>
         </div>
 
-        {/* Architectural Caption & CTA: Side-by-Side on Desktop/Tablet, Aligned at Top */}
-        <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-start md:gap-10 lg:gap-16">
-          <div className="flex max-w-[68ch] flex-col gap-4">
-            <Heading
-              voice="serif"
-              as="h3"
-              sizeClassName="text-2xl md:text-3xl text-ink"
+        {/* Architectural Caption & CTA */}
+        <div className="mt-8 flex w-full flex-col gap-4">
+          <Heading
+            voice="serif"
+            as="h3"
+            sizeClassName="text-2xl md:text-3xl text-ink"
+          >
+            {title}
+          </Heading>
+
+          {lede ? (
+            <Text
+              size="lg"
+              className="font-normal text-ink leading-relaxed md:text-xl"
             >
-              {title}
-            </Heading>
+              {lede}
+            </Text>
+          ) : null}
 
-            {lede ? (
+          <div className="flex flex-col gap-3">
+            {paragraphs.map((para, idx) => (
               <Text
-                size="lede"
-                className="font-normal text-ink leading-relaxed"
+                key={idx}
+                size="base"
+                className="text-ink-muted leading-relaxed text-justify"
               >
-                {lede}
+                {para}
               </Text>
-            ) : null}
+            ))}
+          </div>
 
-            <div className="flex flex-col gap-3">
-              {paragraphs.map((para, idx) => (
-                <Text
-                  key={idx}
-                  size="base"
-                  className="text-ink-muted leading-relaxed text-justify"
-                >
-                  {para}
-                </Text>
-              ))}
-            </div>
-
+          <div className="mt-2 flex flex-col justify-between gap-6 pt-1 md:flex-row md:items-center">
             {closing ? (
               <Text
                 size="base"
-                className="pt-1 font-medium text-brand-800 leading-relaxed text-left"
+                className="font-medium text-brand-800 leading-relaxed text-left"
               >
                 {closing}
               </Text>
-            ) : null}
-          </div>
+            ) : <div />}
 
-          <div className="shrink-0 self-start pt-1 md:self-start">
-            <Button
-              href={cta.href}
-              variant="primary"
-              size="md"
-              arrow
-              className="w-full justify-center sm:w-auto"
-            >
-              {cta.label}
-            </Button>
+            <div className="shrink-0">
+              <Button
+                href={cta.href}
+                variant="primary"
+                size="md"
+                arrow
+                className="w-full justify-center sm:w-auto"
+              >
+                {cta.label}
+              </Button>
+            </div>
           </div>
         </div>
       </Container>

@@ -68,17 +68,6 @@ export function VirtualTourSection({
             eyebrow={tour.eyebrow ?? "Recorrido virtual"}
             heading={tour.heading}
             body={tour.hook}
-            action={
-              <Button
-                href={tour.cta.href || "/servicios"}
-                variant="primary"
-                size="md"
-                arrow
-                className="hidden md:inline-flex"
-              >
-                {tour.cta.label || "Conoce nuestros servicios"}
-              </Button>
-            }
             className="mb-8 md:mb-12"
           />
 
@@ -131,10 +120,10 @@ export function VirtualTourSection({
             </div>
           </div>
 
-          {/* Architectural Narrative Caption */}
+          {/* Architectural Narrative Caption & CTA */}
           {(tour.paragraphs && tour.paragraphs.length > 0) || tour.closing ? (
-            <div className="mt-8 flex flex-col justify-between gap-8 md:flex-row md:items-start md:gap-10 lg:gap-16">
-              <div className="flex max-w-[68ch] flex-col gap-4">
+            <div className="mt-8 flex w-full flex-col gap-4">
+              <div className="flex flex-col gap-3">
                 {tour.paragraphs?.map((para, idx) => (
                   <Text
                     key={idx}
@@ -144,7 +133,9 @@ export function VirtualTourSection({
                     {para}
                   </Text>
                 ))}
+              </div>
 
+              <div className="mt-2 flex flex-col justify-between gap-6 pt-1 md:flex-row md:items-center">
                 {tour.closing ? (
                   <div className="pt-2">
                     <span className="label text-brand-800">
@@ -157,23 +148,22 @@ export function VirtualTourSection({
                       {tour.closing}
                     </Text>
                   </div>
-                ) : null}
+                ) : <div />}
+
+                <div className="shrink-0">
+                  <Button
+                    href={tour.cta.href || "/servicios"}
+                    variant="primary"
+                    size="md"
+                    arrow
+                    className="w-full justify-center sm:w-auto"
+                  >
+                    {tour.cta.label || "Conoce nuestros servicios"}
+                  </Button>
+                </div>
               </div>
             </div>
           ) : null}
-
-          {/* Mobile Action Bar */}
-          <div className="mt-8 flex justify-center md:hidden">
-            <Button
-              href={tour.cta.href || "/servicios"}
-              variant="primary"
-              size="md"
-              arrow
-              className="w-full justify-center"
-            >
-              {tour.cta.label || "Conoce nuestros servicios"}
-            </Button>
-          </div>
         </Container>
       </Section>
 
