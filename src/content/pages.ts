@@ -582,7 +582,7 @@ export const aboutPageContent = {
     body: "Cuando la cimentación, la estructura y los acabados se supervisan sin atajos, la arquitectura conserva su belleza y su valor patrimonial año tras año.",
   } satisfies SectionIntro,
   methodologyIntro: {
-    eyebrow: "Metodología de obra",
+    eyebrow: "CASA ALTA | Nuestro compromiso está presente en cada obra.",
     heading: "Cómo transformamos el terreno en arquitectura",
     body: "Tres fases maestras de rigor técnico sin intermediarios, desde el cálculo inicial hasta la entrega final.",
   } satisfies SectionIntro,
