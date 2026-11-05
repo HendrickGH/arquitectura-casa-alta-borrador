@@ -148,6 +148,7 @@ const curatedGalleries: Record<string, string[]> = {
     "01-ventana-circular-sombra-follaje",
   ],
   "11-columnas-c1-c2": [
+    "07-posicionamiento-columna-prefabricada-cuadrilla-zapata",
     "03-columna-prefabricada-terreno-jacaranda",
     "01-izado-columna-grua-jacaranda",
     "04-columna-prefabricada-cuadrilla-grua",
