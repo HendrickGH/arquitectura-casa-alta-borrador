@@ -12310,6 +12310,33 @@
               "width": 480
             }
           ]
+        },
+        {
+          "base": "03-estacionamiento-comercial-losacero-columnas-acero-rampa",
+          "fallback": "03-estacionamiento-comercial-losacero-columnas-acero-rampa.jpg",
+          "full": {
+            "file": "03-estacionamiento-comercial-losacero-columnas-acero-rampa.avif",
+            "height": 2000,
+            "width": 1493
+          },
+          "note": "Estacionamiento techado comercial con sistema de entrepiso losacero, columnas de acero y rampa de acceso",
+          "order": "03",
+          "score": 5,
+          "slug": "estacionamiento-comercial-losacero-columnas-acero-rampa",
+          "source": "images/naves-industriales/03-estacionamiento-comercial-losacero-columnas-acero-rampa.jpeg",
+          "srcset": "03-estacionamiento-comercial-losacero-columnas-acero-rampa-480.avif 358w, 03-estacionamiento-comercial-losacero-columnas-acero-rampa-960.avif 717w, 03-estacionamiento-comercial-losacero-columnas-acero-rampa.avif 1493w",
+          "variants": [
+            {
+              "file": "03-estacionamiento-comercial-losacero-columnas-acero-rampa-480.avif",
+              "height": 480,
+              "width": 358
+            },
+            {
+              "file": "03-estacionamiento-comercial-losacero-columnas-acero-rampa-960.avif",
+              "height": 960,
+              "width": 717
+            }
+          ]
         }
       ]
     },
@@ -13027,6 +13054,33 @@
               "width": 480
             }
           ]
+        },
+        {
+          "base": "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje",
+          "fallback": "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje.jpg",
+          "full": {
+            "file": "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje.avif",
+            "height": 2000,
+            "width": 1493
+          },
+          "note": "Estructura multinivel de ingenieria civil en concreto presforzado y marcos estructurales con andamios durante obra",
+          "order": "29",
+          "score": 5,
+          "slug": "edificio-concreto-presforzado-marcos-estructurales-andamiaje",
+          "source": "images/obra-civil/29-edificio-concreto-presforzado-marcos-estructurales-andamiaje.jpeg",
+          "srcset": "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje-480.avif 358w, 29-edificio-concreto-presforzado-marcos-estructurales-andamiaje-960.avif 717w, 29-edificio-concreto-presforzado-marcos-estructurales-andamiaje.avif 1493w",
+          "variants": [
+            {
+              "file": "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje-480.avif",
+              "height": 480,
+              "width": 358
+            },
+            {
+              "file": "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje-960.avif",
+              "height": 960,
+              "width": 717
+            }
+          ]
         }
       ]
     },
@@ -13347,6 +13401,33 @@
               "width": 960
             }
           ]
+        },
+        {
+          "base": "02-construccion-bowl-skatepark-cimbra-curva-armado-acero",
+          "fallback": "02-construccion-bowl-skatepark-cimbra-curva-armado-acero.jpg",
+          "full": {
+            "file": "02-construccion-bowl-skatepark-cimbra-curva-armado-acero.avif",
+            "height": 2000,
+            "width": 1493
+          },
+          "note": "Construccion de bowl y transiciones para skatepark con armado de acero estructural y cimbra curva de madera",
+          "order": "02",
+          "score": 5,
+          "slug": "construccion-bowl-skatepark-cimbra-curva-armado-acero",
+          "source": "images/skateparks/02-construccion-bowl-skatepark-cimbra-curva-armado-acero.jpeg",
+          "srcset": "02-construccion-bowl-skatepark-cimbra-curva-armado-acero-480.avif 358w, 02-construccion-bowl-skatepark-cimbra-curva-armado-acero-960.avif 717w, 02-construccion-bowl-skatepark-cimbra-curva-armado-acero.avif 1493w",
+          "variants": [
+            {
+              "file": "02-construccion-bowl-skatepark-cimbra-curva-armado-acero-480.avif",
+              "height": 480,
+              "width": 358
+            },
+            {
+              "file": "02-construccion-bowl-skatepark-cimbra-curva-armado-acero-960.avif",
+              "height": 960,
+              "width": 717
+            }
+          ]
         }
       ]
     },
@@ -13376,6 +13457,33 @@
               "file": "01-estadio-atletismo-pista-azul-graderio-techado-480.avif",
               "height": 300,
               "width": 480
+            }
+          ]
+        },
+        {
+          "base": "02-estadio-deportivo-pista-atletismo-azul-graderio",
+          "fallback": "02-estadio-deportivo-pista-atletismo-azul-graderio.jpg",
+          "full": {
+            "file": "02-estadio-deportivo-pista-atletismo-azul-graderio.avif",
+            "height": 2000,
+            "width": 1493
+          },
+          "note": "Estadio deportivo con pista de tartan azul de atletismo, cancha de futbol y graderio techado",
+          "order": "02",
+          "score": 5,
+          "slug": "estadio-deportivo-pista-atletismo-azul-graderio",
+          "source": "images/espacios-publicos/02-estadio-deportivo-pista-atletismo-azul-graderio.jpeg",
+          "srcset": "02-estadio-deportivo-pista-atletismo-azul-graderio-480.avif 358w, 02-estadio-deportivo-pista-atletismo-azul-graderio-960.avif 717w, 02-estadio-deportivo-pista-atletismo-azul-graderio.avif 1493w",
+          "variants": [
+            {
+              "file": "02-estadio-deportivo-pista-atletismo-azul-graderio-480.avif",
+              "height": 480,
+              "width": 358
+            },
+            {
+              "file": "02-estadio-deportivo-pista-atletismo-azul-graderio-960.avif",
+              "height": 960,
+              "width": 717
             }
           ]
         }
@@ -13414,6 +13522,33 @@
               "width": 960
             }
           ]
+        },
+        {
+          "base": "02-masterplan-paisajismo-parque-lineal-corredor-fluvial",
+          "fallback": "02-masterplan-paisajismo-parque-lineal-corredor-fluvial.jpg",
+          "full": {
+            "file": "02-masterplan-paisajismo-parque-lineal-corredor-fluvial.avif",
+            "height": 2000,
+            "width": 1493
+          },
+          "note": "Masterplan isometrico de arquitectura de paisaje con parque lineal, corredor biologico fluvial y senderos",
+          "order": "02",
+          "score": 5,
+          "slug": "masterplan-paisajismo-parque-lineal-corredor-fluvial",
+          "source": "images/landscape/02-masterplan-paisajismo-parque-lineal-corredor-fluvial.jpeg",
+          "srcset": "02-masterplan-paisajismo-parque-lineal-corredor-fluvial-480.avif 358w, 02-masterplan-paisajismo-parque-lineal-corredor-fluvial-960.avif 717w, 02-masterplan-paisajismo-parque-lineal-corredor-fluvial.avif 1493w",
+          "variants": [
+            {
+              "file": "02-masterplan-paisajismo-parque-lineal-corredor-fluvial-480.avif",
+              "height": 480,
+              "width": 358
+            },
+            {
+              "file": "02-masterplan-paisajismo-parque-lineal-corredor-fluvial-960.avif",
+              "height": 960,
+              "width": 717
+            }
+          ]
         }
       ]
     },
@@ -13448,6 +13583,33 @@
               "file": "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension-960.avif",
               "height": 540,
               "width": 960
+            }
+          ]
+        },
+        {
+          "base": "02-linieros-canastilla-mantenimiento-red-electrica-media-tension",
+          "fallback": "02-linieros-canastilla-mantenimiento-red-electrica-media-tension.jpg",
+          "full": {
+            "file": "02-linieros-canastilla-mantenimiento-red-electrica-media-tension.avif",
+            "height": 2000,
+            "width": 1493
+          },
+          "note": "Maniobras de mantenimiento en red de distribucion electrica de media y alta tension con linieros en canastilla",
+          "order": "02",
+          "score": 5,
+          "slug": "linieros-canastilla-mantenimiento-red-electrica-media-tension",
+          "source": "images/instalaciones-electricas/02-linieros-canastilla-mantenimiento-red-electrica-media-tension.jpeg",
+          "srcset": "02-linieros-canastilla-mantenimiento-red-electrica-media-tension-480.avif 358w, 02-linieros-canastilla-mantenimiento-red-electrica-media-tension-960.avif 717w, 02-linieros-canastilla-mantenimiento-red-electrica-media-tension.avif 1493w",
+          "variants": [
+            {
+              "file": "02-linieros-canastilla-mantenimiento-red-electrica-media-tension-480.avif",
+              "height": 480,
+              "width": 358
+            },
+            {
+              "file": "02-linieros-canastilla-mantenimiento-red-electrica-media-tension-960.avif",
+              "height": 960,
+              "width": 717
             }
           ]
         }
@@ -13491,7 +13653,7 @@
     }
   ],
   "stats": {
-    "photos": 498,
+    "photos": 504,
     "projects": 31
   },
   "tiers": [

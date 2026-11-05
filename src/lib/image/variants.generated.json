@@ -6245,6 +6245,20 @@
       "02-estacionamiento-comercial-estructura-metalica-losacero.avif"
     ]
   ],
+  "naves-industriales/03-estacionamiento-comercial-losacero-columnas-acero-rampa": [
+    [
+      358,
+      "03-estacionamiento-comercial-losacero-columnas-acero-rampa-480.avif"
+    ],
+    [
+      717,
+      "03-estacionamiento-comercial-losacero-columnas-acero-rampa-960.avif"
+    ],
+    [
+      1493,
+      "03-estacionamiento-comercial-losacero-columnas-acero-rampa.avif"
+    ]
+  ],
   "obra-civil/01-grua-izando-parrilla-acero-cimentacion-vialidad": [
     [
       480,
@@ -6601,6 +6615,20 @@
       "28-estructura-edificio-concreto-presforzado-claros-andamios.avif"
     ]
   ],
+  "obra-civil/29-edificio-concreto-presforzado-marcos-estructurales-andamiaje": [
+    [
+      358,
+      "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje-480.avif"
+    ],
+    [
+      717,
+      "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje-960.avif"
+    ],
+    [
+      1493,
+      "29-edificio-concreto-presforzado-marcos-estructurales-andamiaje.avif"
+    ]
+  ],
   "proyectos-integrales/01-arquitectos-revisando-planos-estructurales-mesa-madera": [
     [
       360,
@@ -6755,6 +6783,20 @@
       "01-armado-acero-cimbra-curva-bowl-skatepark.avif"
     ]
   ],
+  "skateparks/02-construccion-bowl-skatepark-cimbra-curva-armado-acero": [
+    [
+      358,
+      "02-construccion-bowl-skatepark-cimbra-curva-armado-acero-480.avif"
+    ],
+    [
+      717,
+      "02-construccion-bowl-skatepark-cimbra-curva-armado-acero-960.avif"
+    ],
+    [
+      1493,
+      "02-construccion-bowl-skatepark-cimbra-curva-armado-acero.avif"
+    ]
+  ],
   "espacios-publicos/01-estadio-atletismo-pista-azul-graderio-techado": [
     [
       480,
@@ -6763,6 +6805,20 @@
     [
       746,
       "01-estadio-atletismo-pista-azul-graderio-techado.avif"
+    ]
+  ],
+  "espacios-publicos/02-estadio-deportivo-pista-atletismo-azul-graderio": [
+    [
+      358,
+      "02-estadio-deportivo-pista-atletismo-azul-graderio-480.avif"
+    ],
+    [
+      717,
+      "02-estadio-deportivo-pista-atletismo-azul-graderio-960.avif"
+    ],
+    [
+      1493,
+      "02-estadio-deportivo-pista-atletismo-azul-graderio.avif"
     ]
   ],
   "landscape/01-masterplan-arquitectura-paisaje-parque-corredor-verde": [
@@ -6779,6 +6835,20 @@
       "01-masterplan-arquitectura-paisaje-parque-corredor-verde.avif"
     ]
   ],
+  "landscape/02-masterplan-paisajismo-parque-lineal-corredor-fluvial": [
+    [
+      358,
+      "02-masterplan-paisajismo-parque-lineal-corredor-fluvial-480.avif"
+    ],
+    [
+      717,
+      "02-masterplan-paisajismo-parque-lineal-corredor-fluvial-960.avif"
+    ],
+    [
+      1493,
+      "02-masterplan-paisajismo-parque-lineal-corredor-fluvial.avif"
+    ]
+  ],
   "instalaciones-electricas/01-linieros-canastilla-mantenimiento-lineas-media-alta-tension": [
     [
       480,
@@ -6791,6 +6861,20 @@
     [
       1024,
       "01-linieros-canastilla-mantenimiento-lineas-media-alta-tension.avif"
+    ]
+  ],
+  "instalaciones-electricas/02-linieros-canastilla-mantenimiento-red-electrica-media-tension": [
+    [
+      358,
+      "02-linieros-canastilla-mantenimiento-red-electrica-media-tension-480.avif"
+    ],
+    [
+      717,
+      "02-linieros-canastilla-mantenimiento-red-electrica-media-tension-960.avif"
+    ],
+    [
+      1493,
+      "02-linieros-canastilla-mantenimiento-red-electrica-media-tension.avif"
     ]
   ],
   "instalaciones-hidrosanitarias/01-sistema-biodigestor-cisterna-tratamiento-aguas-residuales": [
