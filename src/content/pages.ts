@@ -375,7 +375,7 @@ export const civilWorksPageContent = {
 export const sustainabilityPageContent = {
   hero: {
     eyebrow: "",
-    heading: "Construcción sustentable\ny arquitectura bioclimática",
+    heading: "Construcción sostenible\ny arquitectura bioclimática",
     subheadline: "",
     dir: "arquitectura-sostenible",
     base: "14-residencia-bioclimatica-palapa-celosia-chukum",
