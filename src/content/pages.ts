@@ -551,9 +551,10 @@ export const aboutPageContent = {
       "La arquitectura es el medio de expresión en donde se combina la proporción, el diseño y la línea para lograr construir obras que edifiquen la vida del ser humano.",
   },
   credibilityIntro: {
-    eyebrow: "Credibilidad en campo",
-    heading: "Nuestro equipo y supervisión directa en obra",
-    body: "No subcontratamos la responsabilidad de su proyecto. Nuestro personal técnico, residentes y cuadrillas portan el uniforme de Casa Alta en cada frente de obra.",
+    eyebrow: "Nuestro Equipo | Supervisión Directa en Obra",
+    heading:
+      "La confianza se construye con experiencia, compromiso y presencia en cada etapa.",
+    body: "En Casa Alta creemos que la excelencia constructiva comienza con el talento humano. Contamos con un equipo de profesionales en arquitectura, ingeniería y construcción que participa directamente en la planeación, ejecución y supervisión de nuestros proyectos.\n\nNuestra presencia constante en obra nos permite mantener un control riguroso de la calidad, los procesos constructivos, los recursos y los tiempos de ejecución, ofreciendo a nuestros clientes transparencia, responsabilidad y confianza en cada proyecto.",
   } satisfies SectionIntro,
   credibilityHighlights: [
     {
