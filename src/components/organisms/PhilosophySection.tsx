@@ -15,11 +15,12 @@ export interface PhilosophySectionProps {
  * Editorial Architecture Monograph: Misión, Visión y Valores (`PhilosophySection`).
  *
  * Implements the Cosentino Architectural Editorial contract:
- * - Pure typographic hierarchy on quiet open ground — zero boxes, zero card borders.
- * - Zero decorative number pills or sequence markers on non-sequential values.
- * - Asymmetric two-stage monograph layout:
- *   1. Monumental Misión & Visión typographic spread.
- *   2. Two-column editorial ledger for studio values anchored by an editorial header.
+ * - Pure typographic hierarchy on open quiet ground — zero boxes, zero borders.
+ * - Zero decorative numbering on foundational values.
+ * - Full-width expansive titular scale for the studio vocation.
+ * - Dedicated full-width row for "Nuestros valores" header.
+ * - Centered auto-wrapping typographic ledger where principles span the full row
+ *   and wrap cleanly to the next row when full, horizontally centered.
  */
 export function PhilosophySection({
   philosophy,
@@ -32,27 +33,27 @@ export function PhilosophySection({
     <Section id={id} tone={tone} density="default" reveal="stagger">
       <Container>
         {/* ====================================================================
-            01. ENCABEZADO DE SECCIÓN
+            01. ENCABEZADO DE SECCIÓN — EXPANSIÓN COMPLETA DE TITULAR
             ==================================================================== */}
-        <div className="max-w-[40ch]">
+        <div className="w-full">
           {philosophy.eyebrow ? (
             <div {...revealStep(0)}>
-              <p className="eyebrow mb-3">{philosophy.eyebrow}</p>
+              <p className="eyebrow mb-3 sm:mb-4">{philosophy.eyebrow}</p>
             </div>
           ) : null}
           <div {...revealStep(1)}>
             <Heading
               as="h2"
               voice="serif"
-              sizeClassName="text-3xl sm:text-4xl lg:text-[44px] leading-[1.14]"
-              className="text-ink"
+              sizeClassName="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[56px] leading-[1.12]"
+              className="text-ink w-full max-w-none"
             >
               {philosophy.heading ?? "Nuestra vocación: construir con propósito y trascendencia"}
             </Heading>
           </div>
           {philosophy.lead ? (
             <div {...revealStep(1)}>
-              <Text size="lede" className="mt-4 text-ink-muted leading-relaxed">
+              <Text size="lede" className="mt-5 text-ink-muted leading-relaxed max-w-[64ch]">
                 {philosophy.lead}
               </Text>
             </div>
@@ -64,7 +65,7 @@ export function PhilosophySection({
             ==================================================================== */}
         <div
           {...revealStep(2)}
-          className="mt-14 grid grid-cols-1 items-start gap-12 sm:mt-16 lg:mt-20 lg:grid-cols-12 lg:gap-16 xl:gap-20"
+          className="mt-14 grid grid-cols-1 items-start gap-12 sm:mt-18 lg:mt-24 lg:grid-cols-12 lg:gap-16 xl:gap-20"
         >
           {/* Misión: Declaración monumental en Marcellus */}
           <div className="flex flex-col justify-start lg:col-span-6">
@@ -88,48 +89,39 @@ export function PhilosophySection({
         </div>
 
         {/* ====================================================================
-            03. VALORES — RETÍCULA EDITORIAL ASIMÉTRICA (SIN CAJAS, SIN NÚMEROS)
+            03. VALORES — FILA DEDICADA Y PRINCIPIOS FLUIDOS CENTRADOS
             ==================================================================== */}
-        <div
-          {...revealStep(3)}
-          className="mt-20 grid grid-cols-1 items-start gap-12 sm:mt-28 lg:mt-36 lg:grid-cols-12 lg:gap-16 xl:gap-20"
-        >
-          {/* Columna Izquierda: Encabezado contextual anclado */}
-          <div className="flex flex-col justify-start lg:sticky lg:top-32 lg:col-span-4 lg:self-start">
+        <div {...revealStep(3)} className="mt-20 sm:mt-28 lg:mt-36">
+          {/* Fila propia completa para el encabezado de valores */}
+          <div className="w-full text-center mb-12 sm:mb-16 lg:mb-20">
             {philosophy.values.eyebrow ? (
               <p className="eyebrow mb-3">{philosophy.values.eyebrow}</p>
             ) : null}
             <Heading
               as="h3"
               voice="serif"
-              sizeClassName="text-2xl sm:text-3xl lg:text-[34px] leading-[1.18]"
-              className="max-w-[16ch] text-ink"
+              sizeClassName="text-3xl sm:text-4xl lg:text-[44px] leading-[1.14]"
+              className="text-ink mx-auto"
             >
               {philosophy.values.heading ?? "Los principios que rigen cada obra"}
             </Heading>
-            <Text size="sm" className="mt-4 max-w-[32ch] leading-relaxed text-ink-muted">
-              Convicciones humanas y de oficio que orientan cada decisión en el taller y en cada frente de faena.
-            </Text>
           </div>
 
-          {/* Columna Derecha: Los 7 valores en ritmo tipográfico fluido de dos columnas */}
-          <div className="grid grid-cols-1 items-start gap-x-10 gap-y-10 sm:grid-cols-2 lg:col-span-8 lg:gap-x-14 lg:gap-y-12">
-            {values.map((item, idx) => {
-              const isLast = idx === values.length - 1 && values.length % 2 === 1;
-              return (
-                <div
-                  key={item.name}
-                  className={`flex flex-col gap-2 ${isLast ? "sm:col-span-2 sm:pt-2" : ""}`}
-                >
-                  <h4 className="font-serif text-xl tracking-[0.01em] text-ink sm:text-2xl">
-                    {item.name}
-                  </h4>
-                  <p className="max-w-[44ch] text-sm leading-relaxed text-ink-muted sm:text-[15px]">
-                    {item.description}
-                  </p>
-                </div>
-              );
-            })}
+          {/* Principios: ocupan la fila completa, envuelven cuando no caben, centrados horizontalmente */}
+          <div className="flex flex-wrap justify-center items-start gap-x-10 sm:gap-x-12 lg:gap-x-16 gap-y-10 sm:gap-y-12 lg:gap-y-14 w-full">
+            {values.map((item) => (
+              <div
+                key={item.name}
+                className="flex flex-col items-center text-center flex-1 min-w-[240px] max-w-[320px] w-full sm:w-auto"
+              >
+                <h4 className="font-serif text-2xl sm:text-[26px] text-ink tracking-[0.01em] mb-2 sm:mb-2.5">
+                  {item.name}
+                </h4>
+                <p className="text-sm sm:text-[15px] leading-relaxed text-ink-muted">
+                  {item.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </Container>
