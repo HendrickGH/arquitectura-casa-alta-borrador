@@ -58,9 +58,9 @@ export const editorialRefs: EditorialRef[] = [
   {
     service: "construccion-habitacional",
     slug: "servicios-construccion-estructura-gruas",
-    dir: "04-casa-melchor-ocampo",
-    base: "04-fachada-amarilla-balcones-celosia",
-    alt: "Fachada colonial contemporánea en amarillo con balcones de herrería, celosía de ladrillo y farol en Casa Melchor Ocampo",
+    dir: "07-casa-tarrastro",
+    base: "12-fachada-principal-dos-niveles-pergola-jardin",
+    alt: "Fachada principal contemporánea de Casa Tarrastro con muros de cantera, pérgolas metálicas y jardín terminado",
   },
   {
     service: "construccion-comercial-industrial",
