@@ -455,20 +455,20 @@ export const projectContent: Record<string, ProjectContent> = {
   },
 
   remodelacion: {
-    slug: "remodelacion-residencial",
-    title: "Remodelación Residencial",
-    category: "habitacional",
-    categoryLabel: categoryLabels.habitacional,
-    location: "Oaxaca",
+    slug: "remodelacion-consultorios-reforma",
+    title: "Remodelación Consultorios Reforma",
+    category: "comercial",
+    categoryLabel: categoryLabels.comercial,
+    location: "Colonia Reforma, Oaxaca",
     year: "",
     summary:
-      "Modernización integral de residencia de dos niveles: ampliación de áreas sociales, balcones con cancelería contemporánea y fachada en acabado blanco minimalista.",
+      "Modernización y reconversión de inmueble a consultorios en Colonia Reforma: redistribución espacial, balcones con cancelería contemporánea y fachada en acabado blanco minimalista.",
     story:
-      "Transformación volumétrica y funcional de una residencia unifamiliar existente, incorporando nueva cochera techada, cancelería de cristal, balcones contemporáneos y acabados de alta durabilidad.",
+      "Transformación integral y adecuación de inmueble para consultorios en la Colonia Reforma, incorporando accesos pavimentados, cancelería de cristal, balcones contemporáneos y acabados de alta durabilidad.",
     outcome: "",
     specs: [
-      { label: "Tipología", value: "Remodelación y ampliación habitacional" },
-      { label: "Ubicación", value: "Oaxaca" },
+      { label: "Tipología", value: "Remodelación comercial / consultorios" },
+      { label: "Ubicación", value: "Colonia Reforma, Oaxaca" },
       { label: "Materialidad", value: "Estructura de concreto, herrería y cancelería contemporánea" },
     ],
     images: curatedGalleries.remodelacion,

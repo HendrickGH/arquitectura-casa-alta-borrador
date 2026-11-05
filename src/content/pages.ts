@@ -716,7 +716,7 @@ export const servicesPageContent = {
       {
         dir: "remodelacion",
         base: "02-fachada-remodelada-blanca-dos-niveles-balcones-cristal",
-        caption: "Remodelación residencial de gran escala con fachada minimalista y balcones",
+        caption: "Remodelación de consultorios en Colonia Reforma con fachada minimalista y balcones",
         niche: "Remodelación & Ampliación",
       },
       {
