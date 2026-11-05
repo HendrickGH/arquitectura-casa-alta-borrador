@@ -4,6 +4,7 @@ import { EditorialSplitSection } from "@/components/organisms/EditorialSplitSect
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { MethodologyZigzag } from "@/components/organisms/MethodologyZigzag";
 import { PageHero } from "@/components/organisms/PageHero";
+import { PhilosophySection } from "@/components/organisms/PhilosophySection";
 import { StatsBand } from "@/components/organisms/StatsBand";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
@@ -63,6 +64,15 @@ export function AboutPageTemplate({
 
         {/* Quiet Numerical Ground */}
         <StatsBand stats={stats} />
+
+        {/* 02. Filosofía: Misión, Visión y Valores */}
+        {page.philosophy ? (
+          <PhilosophySection
+            id="filosofia"
+            philosophy={page.philosophy}
+            tone="canvas"
+          />
+        ) : null}
 
         {/* Section: Nuestra Identidad (Text on Left, Image on Right) */}
         <EditorialSplitSection

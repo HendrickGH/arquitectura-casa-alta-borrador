@@ -1,4 +1,4 @@
-import type { SectionIntro, ThematicPillar } from "@/types/content";
+import type { PhilosophyContent, SectionIntro, ThematicPillar } from "@/types/content";
 
 /**
  * Authored content for the dedicated interior routes:
@@ -531,12 +531,62 @@ export const aboutPageContent = {
   intro: {
     eyebrow: "Quiénes somos",
     heading: "Ingeniería que sostiene. Arquitectura que trasciende.",
-    body: "En Casa Alta Arquitectura concebimos cada obra desde la precisión de la ingeniería y la sensibilidad del diseño arquitectónico.",
+    body: "Somos una marca de arquitectura que nació de la creatividad de un grupo de jóvenes profesionales que detecta la necesidad en el mercado de ofrecer por medio de la innovación un estilo de vida diferente, fusionando lo más relevante de la arquitectura moderna, la administración, la experiencia de la ingeniería civil y el diseño vanguardista.",
     paragraphs: [
-      "Integramos ingeniería estructural, cálculo y soluciones constructivas para transformar ideas en estructuras sólidas, seguras y perdurables, donde cada elemento responde a un equilibrio entre resistencia, funcionalidad y belleza.",
-      "Porque la verdadera arquitectura no solo se admira por su forma, sino por la ingeniería que la hace posible.",
+      "Priorizando los sueños y necesidades de nuestros clientes para construirlos en una realidad que perdure.",
     ],
   } satisfies SectionIntro,
+  philosophy: {
+    eyebrow: "Filosofía y valores",
+    heading: "Nuestra vocación: construir con propósito y trascendencia",
+    mission: {
+      title: "Misión",
+      statement:
+        "Trascender en el corazón de nuestros clientes desde la conceptualización de su proyecto hasta llevarlo a la realidad.",
+    },
+    vision: {
+      title: "Visión",
+      statement:
+        "Posicionarnos como una marca constructora mexicana, desarrollando tendencia y un estilo de vida único, mediante la adecuada optimización de los recursos, sistemas administrativos y personal altamente capacitado para superar las expectativas de nuestros clientes.",
+    },
+    values: {
+      eyebrow: "Nuestros valores",
+      heading: "Los 7 principios que rigen cada obra",
+      items: [
+        {
+          name: "Honestidad",
+          description: "La manera en la que dirigimos cada proyecto.",
+        },
+        {
+          name: "Fe",
+          description: "Creemos que cada proyecto es una bendición.",
+        },
+        {
+          name: "Amor",
+          description:
+            "El sentimiento que desarrollamos cada vez que iniciamos un proyecto y lo finalizamos con éxito.",
+        },
+        {
+          name: "Unión",
+          description: "La fuerza que construye perdurando a través del tiempo.",
+        },
+        {
+          name: "Compromiso",
+          description:
+            "El enfoque y la presencia todos los días hasta en el más mínimo detalle.",
+        },
+        {
+          name: "Respeto",
+          description:
+            "El valor que construye cada piedra sobre piedra con nuestros clientes y equipo de trabajo.",
+        },
+        {
+          name: "Pasión",
+          description: "Amor por lo que hacemos.",
+        },
+      ],
+    },
+  } satisfies PhilosophyContent,
   story: {
     eyebrow: "Nuestra identidad",
     heading: "Construir con dignidad lo que se proyecta con sensibilidad",
@@ -545,10 +595,10 @@ export const aboutPageContent = {
     ],
     missionTitle: "Misión",
     mission:
-      "Dar certeza técnica, legal y estética a cada espacio que construimos, respaldando su patrimonio desde el primer trazo.",
-    visionTitle: "Filosofía",
+      "Trascender en el corazón de nuestros clientes desde la conceptualización de su proyecto hasta llevarlo a la realidad.",
+    visionTitle: "Visión",
     vision:
-      "La arquitectura es el medio de expresión en donde se combina la proporción, el diseño y la línea para lograr construir obras que edifiquen la vida del ser humano.",
+      "Posicionarnos como una marca constructora mexicana, desarrollando tendencia y un estilo de vida único, mediante la adecuada optimización de los recursos, sistemas administrativos y personal altamente capacitado para superar las expectativas de nuestros clientes.",
   },
   credibilityIntro: {
     eyebrow: "Nuestro Equipo | Supervisión Directa en Obra",

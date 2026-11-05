@@ -814,6 +814,7 @@ export function getAboutPage(): AboutPageContent {
       photo: heroPhoto,
     },
     intro: aboutPageContent.intro,
+    philosophy: aboutPageContent.philosophy,
     story: aboutPageContent.story,
     credibilityIntro: aboutPageContent.credibilityIntro,
     credibilityHighlights: aboutPageContent.credibilityHighlights,

@@ -554,6 +554,30 @@ export interface MethodologyPhase {
   photo: Photo;
 }
 
+export interface ValueItem {
+  name: string;
+  description: string;
+}
+
+export interface PhilosophyContent {
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  mission: {
+    title: string;
+    statement: string;
+  };
+  vision: {
+    title: string;
+    statement: string;
+  };
+  values: {
+    eyebrow?: string;
+    heading?: string;
+    items: ValueItem[];
+  };
+}
+
 export interface AboutPageContent {
   hero: {
     eyebrow: string;
@@ -562,6 +586,7 @@ export interface AboutPageContent {
     photo: Photo;
   };
   intro?: SectionIntro;
+  philosophy: PhilosophyContent;
   story: {
     eyebrow: string;
     heading: string;
