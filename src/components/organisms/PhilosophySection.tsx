@@ -67,18 +67,18 @@ export function PhilosophySection({
           {...revealStep(2)}
           className="mt-14 grid grid-cols-1 items-start gap-12 sm:mt-18 lg:mt-24 lg:grid-cols-12 lg:gap-16 xl:gap-20"
         >
-          {/* Misión: Declaración monumental en Marcellus */}
+          {/* Misión */}
           <div className="flex flex-col justify-start lg:col-span-6">
             <span className="label mb-4 block tracking-[0.16em] text-brand-800 sm:mb-5">
               {philosophy.mission.title}
             </span>
-            <blockquote className="font-serif text-2xl font-normal leading-[1.2] text-ink sm:text-3xl lg:text-[32px] xl:text-[36px]">
+            <Text size="lede" className="leading-relaxed text-ink/90">
               {philosophy.mission.statement}
-            </blockquote>
+            </Text>
           </div>
 
-          {/* Visión: Proyección estratégica y rigor de marca */}
-          <div className="flex flex-col justify-start lg:col-span-6 lg:pt-1">
+          {/* Visión */}
+          <div className="flex flex-col justify-start lg:col-span-6">
             <span className="label mb-4 block tracking-[0.16em] text-brand-800 sm:mb-5">
               {philosophy.vision.title}
             </span>
