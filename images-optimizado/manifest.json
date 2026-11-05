@@ -7242,6 +7242,28 @@
               "width": 960
             }
           ]
+        },
+        {
+          "base": "42-fachada-dos-niveles-palapa-balcon-escalera",
+          "fallback": "42-fachada-dos-niveles-palapa-balcon-escalera.jpg",
+          "full": {
+            "file": "42-fachada-dos-niveles-palapa-balcon-escalera.avif",
+            "height": 572,
+            "width": 1024
+          },
+          "note": "Fachada terminada de dos niveles con cancelería de cristal, balcón de madera con cubierta de palapa y escalera exterior",
+          "order": "00",
+          "score": 5,
+          "slug": "fachada-dos-niveles-palapa-balcon-escalera",
+          "source": "rbnb Palmarito/fachada-dos-niveles-palapa-balcon-escalera.jpg",
+          "srcset": "42-fachada-dos-niveles-palapa-balcon-escalera-480.avif 480w, 42-fachada-dos-niveles-palapa-balcon-escalera.avif 1024w",
+          "variants": [
+            {
+              "file": "42-fachada-dos-niveles-palapa-balcon-escalera-480.avif",
+              "height": 268,
+              "width": 480
+            }
+          ]
         }
       ],
       "slug": "rbnb-palmarito"
@@ -8454,6 +8476,28 @@
               "file": "08-mesa-concreto-sombra-arbol-960.avif",
               "height": 960,
               "width": 720
+            }
+          ]
+        },
+        {
+          "base": "43-modulo-chukum-ventana-circular-mesa-concreto",
+          "fallback": "43-modulo-chukum-ventana-circular-mesa-concreto.jpg",
+          "full": {
+            "file": "43-modulo-chukum-ventana-circular-mesa-concreto.avif",
+            "height": 572,
+            "width": 1024
+          },
+          "note": "Módulo terminado en pasta chukum con ventana circular, vano trapezoidal de acceso y mesa de concreto bajo árboles",
+          "order": "00",
+          "score": 5,
+          "slug": "modulo-chukum-ventana-circular-mesa-concreto",
+          "source": "obra Punta Zicatela/modulo-chukum-ventana-circular-mesa-concreto.jpg",
+          "srcset": "43-modulo-chukum-ventana-circular-mesa-concreto-480.avif 480w, 43-modulo-chukum-ventana-circular-mesa-concreto.avif 1024w",
+          "variants": [
+            {
+              "file": "43-modulo-chukum-ventana-circular-mesa-concreto-480.avif",
+              "height": 268,
+              "width": 480
             }
           ]
         }
@@ -13425,7 +13469,7 @@
     }
   ],
   "stats": {
-    "photos": 495,
+    "photos": 497,
     "projects": 31
   },
   "tiers": [
