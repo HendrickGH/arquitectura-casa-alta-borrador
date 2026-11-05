@@ -208,6 +208,15 @@ export const civilWorksPageContent = {
       },
     ],
   },
+  intro: {
+    eyebrow: "Ingeniería Civil, Obra Mayor y Construcción Pesada",
+    heading:
+      "Construimos infraestructura de gran escala con ingeniería, precisión y capacidad técnica.",
+    body: "En Casa Alta desarrollamos proyectos de obra civil mayor y construcción pesada, integrando movimientos de tierra, cimentaciones especiales, estructuras de concreto armado y presforzado, montaje de elementos prefabricados y estructuras metálicas.",
+    paragraphs: [
+      "Aplicamos ingeniería especializada, maquinaria pesada y procesos constructivos de alto desempeño para ejecutar obras de gran magnitud con eficiencia, seguridad y calidad estructural.",
+    ],
+  },
   specialties: {
     eyebrow: "Capacidad de maniobra",
     heading: "Infraestructura mayor, preesforzados y montaje pesado",

@@ -665,6 +665,7 @@ export function getCivilWorksPage(): CivilWorksPageContent {
       catalogCtaLabel: civilWorksPageContent.hero.catalogCtaLabel,
       consultationCtaLabel: civilWorksPageContent.hero.consultationCtaLabel,
     },
+    intro: civilWorksPageContent.intro,
     specialties: {
       eyebrow: civilWorksPageContent.specialties.eyebrow,
       heading: civilWorksPageContent.specialties.heading,

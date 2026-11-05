@@ -4,6 +4,7 @@ import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
+import { IntroSection } from "@/components/organisms/IntroSection";
 import { PageHero } from "@/components/organisms/PageHero";
 import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase";
 import { WhyCasaAltaEditorial } from "@/components/organisms/WhyCasaAltaEditorial";
@@ -36,6 +37,7 @@ export interface ThematicPillarPageTemplateProps {
     /** Resolved WhatsApp URL with prefill. When absent, the consultation CTA is omitted. */
     whatsappHref?: string;
   };
+  intro?: SectionIntro;
   specialties: {
     id: string;
     eyebrow: string;
@@ -59,6 +61,7 @@ export function ThematicPillarPageTemplate({
   site,
   closing,
   hero,
+  intro,
   specialties,
   gallery,
   pillars,
@@ -96,6 +99,15 @@ export function ThematicPillarPageTemplate({
             ) : null
           }
         />
+
+        {/* Editorial Introduction */}
+        {intro ? (
+          <IntroSection
+            intro={intro}
+            tone="canvas"
+            hideAction
+          />
+        ) : null}
 
         {/* Layer 2: Specialties showcase */}
         <Section id={specialties.id} tone="canvas" density="default">

@@ -525,6 +525,7 @@ export interface CivilWorksPageContent {
     catalogCtaLabel?: string;
     consultationCtaLabel?: string;
   };
+  intro?: SectionIntro;
   specialties: {
     eyebrow: string;
     heading: string;

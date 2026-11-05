@@ -17,6 +17,7 @@ interface CivilWorksPageTemplateProps {
  *
  * Implements the canonical Cosentino Architectural Editorial contract:
  * - Layer 1: PageHero (bg-ink) with Dual CTAs (#especialidades and WhatsApp consultation)
+ * - Layer 1.5: IntroSection (tone="canvas", hideAction) — Editorial introduction to heavy civil works
  * - Layer 2: SpecialtiesShowcase (tone="canvas") — 4 heavy civil specialties with zero-CLS hover expansion
  * - Layer 3: CredibilityGallery (tone="bone") — dynamic ribbon of 5-star heavy civil & infrastructure records
  * - Layer 4: WhyCasaAltaEditorial (tone="canvas") — 4 structural rigor & DRO engineering pillars with harmonic overlap
@@ -50,6 +51,7 @@ export function CivilWorksPageTemplate({
         consultationCtaLabel: page.hero.consultationCtaLabel,
         whatsappHref: heroWhatsappHref,
       }}
+      intro={page.intro}
       specialties={{
         id: "especialidades",
         eyebrow: page.specialties.eyebrow,
