@@ -171,7 +171,6 @@ export function ServicesIndex({
               key={item.service.slug}
               variant="carousel"
               title={item.service.title}
-              description={item.service.summary}
               kicker={item.service.eyebrow || item.groupTitle}
               photo={item.service.image}
               sizes={CARD_SIZES}
