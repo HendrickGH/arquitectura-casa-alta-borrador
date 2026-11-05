@@ -242,8 +242,6 @@ export interface ContactFormContent {
   specialties: string[];
   localitiesLabel: string;
   localities: string[];
-  budgetRangesLabel?: string;
-  budgetRanges?: string[];
   timeframesLabel?: string;
   timeframes?: string[];
   consultationTitle?: string;

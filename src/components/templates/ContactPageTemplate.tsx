@@ -16,7 +16,7 @@ export interface ContactPageTemplateProps {
  * 1. Section 1: PageHero (100vh / 100svh) — Canonical full-bleed dark hero
  *    with authentic office/gabinete photography (`proyectos-integrales/03-...`).
  * 2. Section 2: ContactForm — Tactile surface (`tone="bone"`), consultation checklist,
- *    specialty, locality, budget, and timeframe chip selectors, dedicated authentic
+ *    service type, locality, and timeframe chip selectors, dedicated authentic
  *    photography (`proyectos-integrales/01-...`), and seamless EmailJS / WhatsApp integration.
  * 3. Section 3: Monumental Direct Contact & Maps Stage (150svh) — El Bicho Score 5★
  *    with continuous GSAP parallax scrub, dark gradient scrim, Google Maps iframe embed,

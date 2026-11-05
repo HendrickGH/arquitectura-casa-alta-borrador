@@ -20,7 +20,7 @@ type Status = "idle" | "sending" | "success" | "error";
 /**
  * Architectural Consultation Hub (`ContactFormFields`).
  *
- * - 0px rectangular specialty, locality, budget, and timeframe selector chips.
+ * - 0px rectangular service type, locality, and timeframe selector chips.
  * - Dynamic WhatsApp synchronization: updates the prefilled WhatsApp message in real-time.
  */
 export function ContactFormFields({
@@ -31,7 +31,6 @@ export function ContactFormFields({
   const prefix = idPrefix;
   const specialties = contact.specialties ?? [];
   const localities = contact.localities ?? [];
-  const budgetRanges = contact.budgetRanges ?? [];
   const timeframes = contact.timeframes ?? [];
 
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>(
@@ -39,9 +38,6 @@ export function ContactFormFields({
   );
   const [selectedLocality, setSelectedLocality] = useState<string>(
     localities[0] ?? "",
-  );
-  const [selectedBudget, setSelectedBudget] = useState<string>(
-    budgetRanges[0] ?? "",
   );
   const [selectedTimeframe, setSelectedTimeframe] = useState<string>(
     timeframes[0] ?? "",
@@ -52,9 +48,8 @@ export function ContactFormFields({
   const dynamicWhatsappHref = (() => {
     if (!whatsappHref) return "";
     const details = [
-      selectedSpecialty ? `un proyecto de ${selectedSpecialty}` : "",
+      selectedSpecialty ? selectedSpecialty.toLowerCase() : "",
       selectedLocality ? `en ${selectedLocality}` : "",
-      selectedBudget ? `inversión de ${selectedBudget}` : "",
       selectedTimeframe ? `plazo: ${selectedTimeframe}` : "",
     ]
       .filter(Boolean)
@@ -89,9 +84,8 @@ export function ContactFormFields({
 
     const rawMessage = String(data.get("message") ?? "");
     const contextParts = [
-      selectedSpecialty ? `[Especialidad: ${selectedSpecialty}]` : "",
-      selectedLocality ? `[Ubicación: ${selectedLocality}]` : "",
-      selectedBudget ? `[Presupuesto: ${selectedBudget}]` : "",
+      selectedSpecialty ? `[Servicio: ${selectedSpecialty}]` : "",
+      selectedLocality ? `[Lugar: ${selectedLocality}]` : "",
       selectedTimeframe ? `[Plazo: ${selectedTimeframe}]` : "",
     ]
       .filter(Boolean)
@@ -108,7 +102,6 @@ export function ContactFormFields({
       form.reset();
       setSelectedSpecialty(specialties[0] ?? "");
       setSelectedLocality(localities[0] ?? "");
-      setSelectedBudget(budgetRanges[0] ?? "");
       setSelectedTimeframe(timeframes[0] ?? "");
       setStatus("success");
     } catch {
@@ -122,18 +115,16 @@ export function ContactFormFields({
     <form onSubmit={handleSubmit} className="flex flex-col gap-8">
       <input type="hidden" name="specialty" value={selectedSpecialty} />
       <input type="hidden" name="locality" value={selectedLocality} />
-      {selectedBudget ? (
-        <input type="hidden" name="budget" value={selectedBudget} />
-      ) : null}
       {selectedTimeframe ? (
         <input type="hidden" name="timeframe" value={selectedTimeframe} />
       ) : null}
 
-      {/* 1. Specialty Selection Chips (0px rectangular) */}
+      {/* 1. Service Type Selection Chips (0px rectangular) */}
       {specialties.length > 0 ? (
         <div>
-          <label className="label mb-2.5 block text-ink-muted">
-            {contact.specialtiesLabel || "1. Especialidad de su proyecto"}
+          <label className="mb-2.5 block text-xs font-medium tracking-wide text-ink-muted">
+            {contact.specialtiesLabel ||
+              "Tipo de servicio en el que está interesado"}
           </label>
           <div className="flex flex-wrap gap-2">
             {specialties.map((spec) => {
@@ -145,10 +136,10 @@ export function ContactFormFields({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedSpecialty(spec)}
                   className={cx(
-                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
+                    "min-h-[44px] cursor-pointer px-4 py-2.5 text-xs tracking-wide transition-colors duration-200",
                     isSelected
                       ? "bg-brand-50 text-brand-900 font-semibold"
-                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
+                      : "bg-bone-100 text-ink-muted font-medium hover:bg-bone-200 hover:text-ink",
                   )}
                 >
                   {spec}
@@ -162,8 +153,8 @@ export function ContactFormFields({
       {/* 2. Locality Selection Chips (0px rectangular) */}
       {localities.length > 0 ? (
         <div>
-          <label className="label mb-2.5 block text-ink-muted">
-            {contact.localitiesLabel || "2. Ubicación o plaza de ejecución"}
+          <label className="mb-2.5 block text-xs font-medium tracking-wide text-ink-muted">
+            {contact.localitiesLabel || "Lugar del proyecto"}
           </label>
           <div className="flex flex-wrap gap-2">
             {localities.map((loc) => {
@@ -175,10 +166,10 @@ export function ContactFormFields({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedLocality(loc)}
                   className={cx(
-                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
+                    "min-h-[44px] cursor-pointer px-4 py-2.5 text-xs tracking-wide transition-colors duration-200",
                     isSelected
                       ? "bg-brand-50 text-brand-900 font-semibold"
-                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
+                      : "bg-bone-100 text-ink-muted font-medium hover:bg-bone-200 hover:text-ink",
                   )}
                 >
                   {loc}
@@ -189,41 +180,11 @@ export function ContactFormFields({
         </div>
       ) : null}
 
-      {/* 3. Budget Range Selection Chips (0px rectangular) */}
-      {budgetRanges.length > 0 ? (
-        <div>
-          <label className="label mb-2.5 block text-ink-muted">
-            {contact.budgetRangesLabel || "3. Rango de inversión estimada"}
-          </label>
-          <div className="flex flex-wrap gap-2">
-            {budgetRanges.map((range) => {
-              const isSelected = selectedBudget === range;
-              return (
-                <button
-                  key={range}
-                  type="button"
-                  aria-pressed={isSelected}
-                  onClick={() => setSelectedBudget(range)}
-                  className={cx(
-                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
-                    isSelected
-                      ? "bg-brand-50 text-brand-900 font-semibold"
-                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
-                  )}
-                >
-                  {range}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ) : null}
-
-      {/* 4. Timeframe Selection Chips (0px rectangular) */}
+      {/* 3. Timeframe Selection Chips (0px rectangular) */}
       {timeframes.length > 0 ? (
         <div>
-          <label className="label mb-2.5 block text-ink-muted">
-            {contact.timeframesLabel || "4. Plazo proyectado de inicio"}
+          <label className="mb-2.5 block text-xs font-medium tracking-wide text-ink-muted">
+            {contact.timeframesLabel || "Plazo proyectado de inicio"}
           </label>
           <div className="flex flex-wrap gap-2">
             {timeframes.map((timeframe) => {
@@ -235,10 +196,10 @@ export function ContactFormFields({
                   aria-pressed={isSelected}
                   onClick={() => setSelectedTimeframe(timeframe)}
                   className={cx(
-                    "label min-h-[44px] cursor-pointer px-4 py-2.5 transition-colors duration-200",
+                    "min-h-[44px] cursor-pointer px-4 py-2.5 text-xs tracking-wide transition-colors duration-200",
                     isSelected
                       ? "bg-brand-50 text-brand-900 font-semibold"
-                      : "bg-bone-100 text-ink-muted hover:bg-bone-200 hover:text-ink",
+                      : "bg-bone-100 text-ink-muted font-medium hover:bg-bone-200 hover:text-ink",
                   )}
                 >
                   {timeframe}
