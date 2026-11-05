@@ -320,18 +320,18 @@ export const projectContent: Record<string, ProjectContent> = {
   // Partly confirmed: the client named this one as apartamentos in Punta Zicatela.
   "10-obra-punta-zicatela": {
     slug: "obra-punta-zicatela",
-    title: "Departamentos Punta Zicatela",
-    category: "multifamiliar",
-    categoryLabel: "Multifamiliar",
+    title: "Casita en la punta Zicatela",
+    category: "habitacional",
+    categoryLabel: "Habitacional",
     location: "Punta Zicatela, Puerto Escondido, Oaxaca",
     year: "",
     summary:
-      "Desarrollo multifamiliar en Punta Zicatela con vanos circulares, celosías de bambú y concreto aparente.",
+      "Vivienda en Punta Zicatela con vanos circulares, celosías de bambú y concreto aparente.",
     story:
       "Pensado para el clima costero de Zicatela, combinando muros blancos y concreto aparente con filtros solares de bambú y aberturas circulares que enmarcan la vegetación tropical.",
     outcome: "",
     specs: [
-      { label: "Tipología", value: "Vivienda multifamiliar" },
+      { label: "Tipología", value: "Vivienda unifamiliar" },
       { label: "Ubicación", value: "Punta Zicatela, Puerto Escondido" },
       { label: "Sistema", value: "Concreto armado y celosías naturales" },
     ],
@@ -489,7 +489,6 @@ export const portfolioOrder: string[] = [
   "06-capilla-el-tule",
   "07-casa-tarrastro",
   "08-rbnb-palmarito",
-  "10-obra-punta-zicatela",
   "11-columnas-c1-c2",
   "12-vilas-cavan",
   "13-puente-cd-administrativa",
@@ -497,6 +496,7 @@ export const portfolioOrder: string[] = [
   "16-casa-la-barra",
   "17-el-tomatal",
   "remodelacion",
+  "10-obra-punta-zicatela",
 ];
 
 /**
