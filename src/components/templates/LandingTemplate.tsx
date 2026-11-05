@@ -68,7 +68,7 @@ export function LandingTemplate({
           />
         ) : null}
 
-        {/* 04. Cita del Arquitecto Felipe Humberto Hernández Bejarano */}
+        {/* 04. Cita del Arquitecto Felipe Humberto H. Bejarano */}
         <ArchitectQuote
           quote={home.manifesto}
           architect={site.architect}

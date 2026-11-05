@@ -22,7 +22,7 @@ export const site = {
   // by the client; held here rather than in home.ts because it is a company fact,
   // not a section's copy.
   architect: {
-    name: "Felipe Humberto Hernández Bejarano",
+    name: "Felipe Humberto H. Bejarano",
     role: "Arquitecto",
   },
 
