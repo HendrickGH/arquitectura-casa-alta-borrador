@@ -2,6 +2,7 @@ import { Button } from "@/components/atoms/Button";
 import { Container } from "@/components/atoms/Container";
 import { Section } from "@/components/atoms/Section";
 import { SectionHeading } from "@/components/molecules/SectionHeading";
+import { ArchitectQuote } from "@/components/organisms/ArchitectQuote";
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
 import { IntroSection } from "@/components/organisms/IntroSection";
@@ -10,6 +11,7 @@ import { SpecialtiesShowcase } from "@/components/organisms/SpecialtiesShowcase"
 import { WhyCasaAltaEditorial } from "@/components/organisms/WhyCasaAltaEditorial";
 import { SiteChrome } from "@/components/templates/SiteChrome";
 import type {
+  Architect,
   HomePage,
   Photo,
   SectionIntro,
@@ -48,6 +50,12 @@ export interface ThematicPillarPageTemplateProps {
     ctaLabel: string;
   };
   gallery: { id: string; intro: SectionIntro; photos: Photo[] };
+  quote?: {
+    eyebrow?: string;
+    text: string;
+    author?: string;
+    architect?: Architect;
+  };
   pillars: { id: string; intro: SectionIntro; items: PillarItems };
 }
 
@@ -64,6 +72,7 @@ export function ThematicPillarPageTemplate({
   intro,
   specialties,
   gallery,
+  quote,
   pillars,
 }: ThematicPillarPageTemplateProps) {
   return (
@@ -135,6 +144,16 @@ export function ThematicPillarPageTemplate({
           photos={gallery.photos}
           tone="bone"
         />
+
+        {/* Quote: Editorial vision */}
+        {quote ? (
+          <ArchitectQuote
+            quote={quote.text}
+            author={quote.author}
+            architect={quote.architect}
+            eyebrow={quote.eyebrow}
+          />
+        ) : null}
 
         {/* Layer 4: Editorial pillars */}
         <WhyCasaAltaEditorial

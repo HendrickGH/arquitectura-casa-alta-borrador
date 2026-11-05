@@ -304,6 +304,11 @@ export const civilWorksPageContent = {
       body: "Inspección fotográfica de frentes de obra civil ejecutados: izado de cabezales, transporte de trabes especiales, compactación de terracerías y montaje de superestructuras viales.",
     },
   },
+  quote: {
+    eyebrow: "Una visión de la arquitectura",
+    text: "La Construcción es una actividad sobre la que todo el mundo tiene alguna experiencia, como Contratante, como Contratista, como Maestro o como Ayudante. Es por ello que todo el mundo se siente calificado para opinar sobre ella, y lo que es peor, toman decisiones personas sin una mayor visión del conjunto del sistema, y sin aplicar los esquemas científicos y técnicos que reclaman estas decisiones. Así ocurre que en muchas ocasiones se acaba defendiendo planteamientos anticuados, basados en las propias experiencias, que no resisten los mínimos análisis sobre el estado de la Construcción y no consienten nuevos enfoques científicos y técnicos que permitan mejorarla.",
+    author: "Ing. Alberto Estrada Montaño",
+  },
   engineering: {
     intro: {
       eyebrow: "Rigor estructural y certificación DRO",

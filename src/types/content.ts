@@ -479,6 +479,11 @@ export interface InteriorsPageContent {
     intro: SectionIntro;
     photos: Photo[];
   };
+  quote?: {
+    eyebrow?: string;
+    text: string;
+    author: string;
+  };
   engineering: {
     intro: SectionIntro;
     items: Differentiator[];
@@ -539,6 +544,11 @@ export interface CivilWorksPageContent {
   gallery: {
     intro: SectionIntro;
     photos: Photo[];
+  };
+  quote?: {
+    eyebrow?: string;
+    text: string;
+    author: string;
   };
   engineering: {
     intro: SectionIntro;

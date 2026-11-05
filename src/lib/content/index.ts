@@ -682,6 +682,7 @@ export function getCivilWorksPage(): CivilWorksPageContent {
       intro: civilWorksPageContent.gallery.intro,
       photos: galleryPhotos,
     },
+    quote: civilWorksPageContent.quote,
     engineering: {
       intro: civilWorksPageContent.engineering.intro,
       items: engineeringItems,
