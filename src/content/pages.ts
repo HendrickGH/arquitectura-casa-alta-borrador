@@ -873,7 +873,7 @@ export const contactPageContent = {
   contactForm: {
     eyebrow: "Sesión técnica",
     heading: "Cuéntenos sobre su proyecto",
-    body: "Reciba un diagnóstico preliminar de viabilidad, estimación paramétrica y ruta crítica con nuestro equipo técnico.",
+    body: "En Casa Alta creemos que cada gran proyecto comienza con una visión y se hace realidad con pasión, compromiso y atención a cada detalle.",
     specialtiesLabel: "Tipo de servicio en el que está interesado",
     specialties: [
       "Diseñar un proyecto",
