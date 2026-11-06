@@ -138,9 +138,9 @@ export function SiteNav({ nav, cta, phones, social }: SiteNavProps) {
 
   return (
     <>
-      <div className="flex items-center gap-2 xl:gap-4 2xl:gap-7">
+      <div className="flex items-center gap-2 xl:gap-[0.8rem] 2xl:gap-7">
         <nav className="hidden xl:block" aria-label="Principal">
-          <ul className="flex items-center gap-4 2xl:gap-7">
+          <ul className="flex items-center gap-[0.8rem] 2xl:gap-7">
             {nav.map((link) => (
               <li key={link.href}>
                 <NavItem link={link} />
