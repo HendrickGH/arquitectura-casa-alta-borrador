@@ -22,7 +22,6 @@ export default function AboutRoutePage() {
     <AboutPageTemplate
       site={site}
       page={page}
-      phases={page.methodology}
       stats={home.stats}
       closing={getClosing()}
     />
