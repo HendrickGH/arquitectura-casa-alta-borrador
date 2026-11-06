@@ -4,6 +4,7 @@ import {
   getAboutPage,
   getClosing,
   getHomePage,
+  getProcessSteps,
   getSiteConfig,
 } from "@/lib/content";
 
@@ -17,12 +18,15 @@ export const metadata: Metadata = {
 
 export default function AboutRoutePage() {
   const home = getHomePage();
+  const processSteps = getProcessSteps();
 
   return (
     <AboutPageTemplate
       site={site}
       page={page}
       stats={home.stats}
+      processIntro={home.process}
+      processSteps={processSteps}
       closing={getClosing()}
     />
   );
