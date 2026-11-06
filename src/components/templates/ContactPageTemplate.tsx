@@ -18,9 +18,9 @@ export interface ContactPageTemplateProps {
  * 2. Section 2: ContactForm — Tactile surface (`tone="bone"`), consultation checklist,
  *    service type, locality, and timeframe chip selectors, dedicated authentic
  *    photography (`proyectos-integrales/01-...`), and seamless EmailJS / WhatsApp integration.
- * 3. Section 3: Monumental Direct Contact & Maps Stage (150svh) — El Bicho Score 5★
- *    with continuous GSAP parallax scrub, dark gradient scrim, Google Maps iframe embed,
- *    direct telephone lines with technical roles, and operating hours.
+ * 3. Section 3: Monumental Direct Contact Stage (150svh) — El Bicho Score 5★
+ *    with continuous GSAP parallax scrub, dark gradient scrim,
+ *    direct telephone lines with technical roles, operating hours, and location.
  */
 export function ContactPageTemplate({
   site,

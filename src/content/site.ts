@@ -55,8 +55,8 @@ export const site = {
     },
     {
       label: "Salina Cruz",
-      value: "951 165 0678",
-      href: "tel:+529511650678",
+      value: "971 716 2275",
+      href: "tel:+529717162275",
     },
     {
       label: "Correo",

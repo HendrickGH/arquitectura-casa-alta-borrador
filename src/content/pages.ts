@@ -858,14 +858,14 @@ export const contactPageContent = {
   },
   stage: {
     heading: "Atención técnica directa y localización en campo",
-    body: "Reunión técnica presencial en Puerto Escondido o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
+    body: "Reunión técnica presencial o por videollamada para revisar viabilidad de terreno, programa arquitectónico y presupuesto de obra.",
     dir: "02-el-bicho",
     base: "01-fachada-tres-palapas-alberca",
     photoAlt:
       "Fachada de tres palapas y alberca en El Bicho, proyecto residencial en la costa de Oaxaca por Constructora Casa Alta",
     phonesLabel: "Líneas directas de atención",
     scheduleLabel: "Horarios de atención",
-    mapNote: "Colonia Brisas de Zicatela · Atención presencial con cita previa.",
+    mapNote: "Atención presencial con cita previa.",
     whatsappCta: "Escribir por WhatsApp",
     consultationCta: "Iniciar consulta",
     mapsCta: "Abrir en Google Maps",
@@ -873,7 +873,7 @@ export const contactPageContent = {
   contactForm: {
     eyebrow: "Sesión técnica",
     heading: "Cuéntenos sobre su proyecto",
-    body: "En Casa Alta creemos que cada gran proyecto comienza con una visión y se hace realidad con pasión, compromiso y atención a cada detalle.",
+    body: "Nos encantaría conocer tu proyecto, escuchar tus ideas y acompañarte en cada etapa para hacerlas realidad. En Casa Alta creemos que cada gran proyecto comienza con una visión y se hace realidad con pasión, compromiso y atención a cada detalle.",
     specialtiesLabel: "Tipo de servicio en el que está interesado",
     specialties: [
       "Diseñar un proyecto",
@@ -910,15 +910,15 @@ export const contactPageContent = {
     whatsapp: "Escribir por WhatsApp",
   },
   address: {
-    label: "Ubicación del estudio",
-    street: "Guerrero s/n, entre Justo Salvador e Hidalgo",
-    neighborhood: "Colonia Brisas de Zicatela",
-    city: "70934 Puerto Escondido, Oax.",
-    full: "Guerrero s/n, entre Justo Salvador e Hidalgo, Colonia Brisas de Zicatela, 70934 Puerto Escondido, Oax.",
+    label: "Ubicación de la oficina",
+    street: "Carretera Transístmica km 5, Puerto del aire",
+    neighborhood: "Col. Aviación, C.P. 70610",
+    city: "Salina Cruz, Oaxaca",
+    full: "Carretera Transístmica km 5, Puerto del aire, Col. Aviación, C.P. 70610, Salina Cruz, Oaxaca",
     mapsUrl:
-      "https://www.google.com/maps/search/?api=1&query=Guerrero+s%2Fn%2C+entre+Justo+Salvador+e+Hidalgo%2C+Colonia+Brisas+de+Zicatela%2C+70934+Puerto+Escondido%2C+Oax.",
+      "https://www.google.com/maps/search/?api=1&query=Carretera+Transismica+km+5%2C+Puerto+del+aire%2C+Col.+Aviacion%2C+70610+Salina+Cruz%2C+Oax.",
     embedUrl:
-      "https://maps.google.com/maps?q=Guerrero+s%2Fn%2C+entre+Justo+Salvador+e+Hidalgo%2C+Colonia+Brisas+de+Zicatela%2C+70934+Puerto+Escondido%2C+Oax.&t=&z=16&ie=UTF8&iwloc=&output=embed",
+      "https://maps.google.com/maps?q=Carretera+Transismica+km+5%2C+Puerto+del+aire%2C+Col.+Aviacion%2C+70610+Salina+Cruz%2C+Oax.&t=&z=16&ie=UTF8&iwloc=&output=embed",
   },
   phones: [
     {
@@ -928,8 +928,8 @@ export const contactPageContent = {
     },
     {
       role: "Gabinete de Proyectos y Presupuestos",
-      number: "951 165 0678",
-      href: "tel:+529511650678",
+      number: "971 716 2275",
+      href: "tel:+529717162275",
     },
   ],
   schedule: [

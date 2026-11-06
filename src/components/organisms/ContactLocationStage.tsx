@@ -15,8 +15,8 @@ export interface ContactLocationStageProps {
 }
 
 /**
- * Monumental Direct Contact & Maps Stage (150svh) with continuous GSAP
- * parallax scrub, telephone lines, operating hours, and Google Maps embed.
+ * Monumental Direct Contact Stage (150svh) with continuous GSAP
+ * parallax scrub, telephone lines, operating hours, and physical location.
  */
 export function ContactLocationStage({
   page,
@@ -127,13 +127,13 @@ export function ContactLocationStage({
           </div>
         </div>
 
-        {/* Information Grid: Channels, Hours, Location & Google Maps Widget */}
+        {/* Information Grid: Channels, Hours & Location */}
         <div
           {...revealStep(1)}
-          className="mt-14 grid grid-cols-1 gap-12 sm:mt-16 lg:mt-20 lg:grid-cols-12 lg:gap-14 items-start"
+          className="mt-14 grid grid-cols-1 gap-12 sm:mt-16 lg:mt-20 lg:grid-cols-2 lg:gap-16 items-start"
         >
-          {/* Left Column: Direct telephone lines, operating hours & address */}
-          <div className="flex flex-col gap-10 lg:col-span-6 xl:col-span-6">
+          {/* Left Column: Direct telephone lines & Email */}
+          <div className="flex flex-col gap-10">
             {/* Telephone lines with roles */}
             <div>
               <span className="label text-white/70 block mb-4">
@@ -161,43 +161,26 @@ export function ContactLocationStage({
               </div>
             </div>
 
-            {/* Operating hours & email */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div>
-                <span className="label text-white/70 block mb-3">
-                  {stageData.scheduleLabel ?? "Horarios de atención"}
-                </span>
-                <ul className="flex flex-col gap-2.5">
-                  {page.schedule.map((slot) => (
-                    <li key={slot.label} className="text-sm leading-snug">
-                      <span className="block font-medium text-white">
-                        {slot.label}
-                      </span>
-                      <span className="text-white/75 text-xs sm:text-sm">
-                        {slot.hours}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <span className="label text-white/70 block mb-3">
-                  {page.email.label}
-                </span>
-                <a
-                  href={page.email.href}
-                  className="group inline-flex items-center gap-2.5 text-sm sm:text-base font-medium text-white hover:text-concha-nacar transition-colors py-1.5 min-h-[44px]"
-                >
-                  <Icon
-                    name="mail"
-                    className="h-4 w-4 text-brand-500 shrink-0"
-                  />
-                  <span className="break-all">{page.email.value}</span>
-                </a>
-              </div>
+            {/* Email */}
+            <div>
+              <span className="label text-white/70 block mb-3">
+                {page.email.label}
+              </span>
+              <a
+                href={page.email.href}
+                className="group inline-flex items-center gap-2.5 text-sm sm:text-base font-medium text-white hover:text-concha-nacar transition-colors py-1.5 min-h-[44px]"
+              >
+                <Icon
+                  name="mail"
+                  className="h-4 w-4 text-brand-500 shrink-0"
+                />
+                <span className="break-all">{page.email.value}</span>
+              </a>
             </div>
+          </div>
 
+          {/* Right Column: Physical address & Operating hours */}
+          <div className="flex flex-col gap-10">
             {/* Physical address */}
             <div>
               <span className="label text-white/70 block mb-2">
@@ -206,8 +189,15 @@ export function ContactLocationStage({
               <p className="text-base text-white/90 leading-relaxed">
                 {page.address.street}
                 <br />
-                {page.address.neighborhood}, {page.address.city}
+                {page.address.neighborhood}
+                <br />
+                {page.address.city}
               </p>
+              {stageData.mapNote ? (
+                <p className="mt-2 text-xs text-white/60">
+                  {stageData.mapNote}
+                </p>
+              ) : null}
               <div className="mt-4">
                 <Button
                   href={page.address.mapsUrl}
@@ -220,32 +210,25 @@ export function ContactLocationStage({
                 </Button>
               </div>
             </div>
-          </div>
 
-          {/* Right Column: Google Maps Widget Embed */}
-          <div className="flex flex-col gap-4 lg:col-span-6 xl:col-span-6">
-            {stageData.mapLabel ? (
-              <span className="label text-white/70 block">
-                {stageData.mapLabel}
+            {/* Operating hours */}
+            <div>
+              <span className="label text-white/70 block mb-3">
+                {stageData.scheduleLabel ?? "Horarios de atención"}
               </span>
-            ) : null}
-            <div className="relative w-full overflow-hidden bg-white/5 aspect-[16/10] sm:aspect-[4/3] lg:aspect-[16/10]">
-              <iframe
-                src={page.address.embedUrl}
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Ubicación de Constructora Casa Alta en Google Maps"
-                className="h-full w-full border-0 pointer-events-none md:pointer-events-auto"
-              />
+              <ul className="flex flex-col gap-2.5">
+                {page.schedule.map((slot) => (
+                  <li key={slot.label} className="text-sm leading-snug">
+                    <span className="block font-medium text-white">
+                      {slot.label}
+                    </span>
+                    <span className="text-white/75 text-xs sm:text-sm">
+                      {slot.hours}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <p className="text-xs text-white/60">
-              {stageData.mapNote ??
-                "Colonia Brisas de Zicatela · Atención presencial con cita previa."}
-            </p>
           </div>
         </div>
       </Container>
