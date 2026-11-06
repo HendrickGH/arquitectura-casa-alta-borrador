@@ -52,6 +52,12 @@ export interface Architect {
   role: string;
 }
 
+export interface DeveloperCredit {
+  label: string;
+  name: string;
+  href: string;
+}
+
 export interface SiteConfig {
   name: string;
   /** Registered company name, used in the footer's legal row. */
@@ -82,6 +88,8 @@ export interface SiteConfig {
   footerPhoto: Photo;
   /** Global consultation form content, rendered in ContactModal across views. */
   contactForm?: ContactFormContent;
+  /** Optional developer attribution watermark rendered in the footer colophon. */
+  developer?: DeveloperCredit;
 }
 
 /* ---------- services ---------- */

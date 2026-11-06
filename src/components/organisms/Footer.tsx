@@ -142,6 +142,19 @@ export function Footer({ site }: FooterProps) {
                 {`© ${year} ${site.legalName}`}
               </p>
               <p className="text-xs text-concha-nacar/45">{site.claim}</p>
+              {site.developer && (
+                <p className="text-xs text-concha-nacar/35">
+                  {site.developer.label}{" "}
+                  <a
+                    href={site.developer.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline decoration-concha-nacar/20 underline-offset-2 transition-colors hover:text-concha-nacar/75 hover:decoration-concha-nacar/50"
+                  >
+                    {site.developer.name}
+                  </a>
+                </p>
+              )}
             </div>
           </div>
         </div>

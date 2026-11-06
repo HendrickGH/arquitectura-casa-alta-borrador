@@ -96,4 +96,10 @@ export const site = {
     width: 829,
     height: 1280,
   },
+
+  developer: {
+    label: "Desarrollado por",
+    name: "Koda Studio",
+    href: "https://kodastudio.com.mx",
+  },
 } satisfies SiteConfig;
