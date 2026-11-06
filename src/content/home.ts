@@ -410,8 +410,8 @@ export const home: HomePage = {
 
   closing: {
     eyebrow: "Contacto",
-    heading: "La experiencia de construir con Casa Alta",
-    body: "Hacer valer el esfuerzo de su trabajo requiere construir con calidad y cuidar los detalles de una buena ejecución. De eso nos ocupamos nosotros. Cuéntenos su idea y le ayudamos a desarrollarla.",
+    heading: "Arquitectura que conecta con su entorno",
+    body: "En Casa Alta creemos que cada proyecto debe integrarse con la esencia del lugar donde nace. Diseñamos y construimos respetando la identidad de cada comunidad, sus tradiciones y su entorno natural, creando espacios que combinan arquitectura, funcionalidad y armonía con el paisaje.",
     cta: { label: "Agendar primera reunión", href: whatsappHref },
     photo: closingStudioPhoto,
   },
