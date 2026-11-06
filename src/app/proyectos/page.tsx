@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ProjectsIndexTemplate } from "@/components/templates/ProjectsIndexTemplate";
 import {
-  getClosing,
   getProjects,
+  getProjectsClosing,
   getProjectsIntro,
   getProjectsQuote,
   getSiteConfig,
@@ -30,7 +30,7 @@ export default function ProjectsIndexPage() {
       intro={intro}
       projects={getProjects()}
       quote={quote}
-      closing={getClosing()}
+      closing={getProjectsClosing()}
     />
   );
 }

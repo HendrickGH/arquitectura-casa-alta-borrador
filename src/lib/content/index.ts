@@ -326,9 +326,41 @@ export function getProjectsQuote(): EditorialQuote {
   return projectsPageContent.quote;
 }
 
-/** The closing call to action, shared by the landing and the projects index. */
+/** The closing call to action, shared by the landing and the default closing sections. */
 export function getClosing(): HomePage["closing"] {
   return home.closing;
+}
+
+/** Closing CTA for the projects portfolio index. */
+export function getProjectsClosing(): HomePage["closing"] {
+  const baseClosing = getClosing();
+  const photo =
+    findPhotoByBase(
+      "02-el-bicho",
+      "93-edificio-tres-palapas-alberca-camastros",
+      "El Bicho",
+      "Edificio terminado de El Bicho con tres niveles de palapas, alberca, camastros y jardín en Puerto Escondido por Casa Alta",
+    ) ?? baseClosing.photo;
+  return {
+    ...baseClosing,
+    photo,
+  };
+}
+
+/** Closing CTA for the about / credibility page. */
+export function getAboutClosing(): HomePage["closing"] {
+  const baseClosing = getClosing();
+  const photo =
+    findPhotoByBase(
+      "02-el-bicho",
+      "93-edificio-tres-palapas-alberca-camastros",
+      "El Bicho",
+      "Edificio terminado de El Bicho con tres niveles de palapas, alberca, camastros y jardín en Puerto Escondido por Casa Alta",
+    ) ?? baseClosing.photo;
+  return {
+    ...baseClosing,
+    photo,
+  };
 }
 
 /** Closing CTA for the sustainability page, customized with an arquitectura-sostenible photo. */

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { AboutPageTemplate } from "@/components/templates/AboutPageTemplate";
 import {
+  getAboutClosing,
   getAboutPage,
-  getClosing,
   getHomePage,
   getProcessSteps,
   getSiteConfig,
@@ -27,7 +27,7 @@ export default function AboutRoutePage() {
       stats={home.stats}
       processIntro={home.process}
       processSteps={processSteps}
-      closing={getClosing()}
+      closing={getAboutClosing()}
     />
   );
 }
