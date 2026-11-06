@@ -1,6 +1,5 @@
 import { ClosingCTA } from "@/components/organisms/ClosingCTA";
 import { CredibilityGallery } from "@/components/organisms/CredibilityGallery";
-import { EditorialSplitSection } from "@/components/organisms/EditorialSplitSection";
 import { IntroSection } from "@/components/organisms/IntroSection";
 import { MethodologyZigzag } from "@/components/organisms/MethodologyZigzag";
 import { PageHero } from "@/components/organisms/PageHero";
@@ -28,10 +27,9 @@ interface AboutPageTemplateProps {
  *
  * Monograph layout:
  * 1. Entry: Full-bleed Hero (eyebrow omitted) + Numerical stats ground
- * 2. Identity: Text on Left, Architectural Photograph on Right
- * 3. On-Site Supervision: Aligned dual-row continuous horizontal scroll gallery with lightbox
- * 4. Methodology: Three master phases in alternating editorial zigzag with large photography
- * 5. Closing: Direct contact CTA
+ * 2. On-Site Supervision: Aligned dual-row continuous horizontal scroll gallery with lightbox
+ * 3. Methodology: Three master phases in alternating editorial zigzag with large photography
+ * 4. Closing: Direct contact CTA
  */
 export function AboutPageTemplate({
   site,
@@ -73,16 +71,6 @@ export function AboutPageTemplate({
             tone="canvas"
           />
         ) : null}
-
-        {/* Section: Nuestra Identidad (Text on Left, Image on Right) */}
-        <EditorialSplitSection
-          variant="monograph"
-          eyebrow={page.story.eyebrow}
-          heading={page.story.heading}
-          paragraphs={page.story.paragraphs}
-          photo={page.credibilityPhotos[0]}
-          tone="bone"
-        />
 
         {/* Section: Credibility & On-site Supervision Ribbon Gallery */}
         <CredibilityGallery
