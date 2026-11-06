@@ -3438,6 +3438,28 @@
               "width": 691
             }
           ]
+        },
+        {
+          "base": "93-edificio-tres-palapas-alberca-camastros",
+          "fallback": "93-edificio-tres-palapas-alberca-camastros.jpg",
+          "full": {
+            "file": "93-edificio-tres-palapas-alberca-camastros.avif",
+            "height": 576,
+            "width": 1024
+          },
+          "note": "Elevacion exterior con tres niveles de palapas, alberca, camastros y jardin en Puerto Escondido",
+          "order": "93",
+          "score": 5,
+          "slug": "edificio-tres-palapas-alberca-camastros",
+          "source": "El Bicho/edificio-tres-palapas-alberca-camastros.jpeg",
+          "srcset": "93-edificio-tres-palapas-alberca-camastros-480.avif 480w, 93-edificio-tres-palapas-alberca-camastros.avif 1024w",
+          "variants": [
+            {
+              "file": "93-edificio-tres-palapas-alberca-camastros-480.avif",
+              "height": 270,
+              "width": 480
+            }
+          ]
         }
       ],
       "slug": "el-bicho"
@@ -13506,7 +13528,7 @@
     }
   ],
   "stats": {
-    "photos": 498,
+    "photos": 499,
     "projects": 31
   },
   "tiers": [
