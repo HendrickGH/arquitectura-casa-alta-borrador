@@ -618,7 +618,7 @@ export const aboutPageContent = {
     eyebrow: "Nuestro Equipo | Supervisión Directa en Obra",
     heading:
       "La confianza se construye con experiencia, compromiso y presencia en cada etapa.",
-    body: "En Casa Alta creemos que la excelencia constructiva comienza con el talento humano. Contamos con un equipo de profesionales en arquitectura, ingeniería y construcción que participa directamente en la planeación, ejecución y supervisión de nuestros proyectos.\n\nNuestra presencia constante en obra nos permite mantener un control riguroso de la calidad, los procesos constructivos, los recursos y los tiempos de ejecución, ofreciendo a nuestros clientes transparencia, responsabilidad y confianza en cada proyecto.",
+    body: "En Casa Alta creemos que la excelencia constructiva comienza con el talento humano. Contamos con un equipo de profesionales en arquitectura, ingeniería, administración y construcción que participa directamente en la planeación, ejecución y supervisión de nuestros proyectos.\n\nNuestra presencia constante en obra nos permite mantener un control riguroso de la calidad, los procesos constructivos, los recursos y los tiempos de ejecución, ofreciendo a nuestros clientes transparencia, responsabilidad y confianza en cada proyecto.",
   } satisfies SectionIntro,
   credibilityHighlights: [
     {
