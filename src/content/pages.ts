@@ -850,7 +850,7 @@ export const contactPageContent = {
     eyebrow: "Contacto directo · Estudio y Obra",
     heading: "Iniciemos la conversación sobre su proyecto arquitectónico",
     subheadline:
-      "Gabinete de proyectos y residencia de obra con sedes en Puerto Escondido y Salina Cruz, y capacidad de ejecución en todo México.",
+      "Despacho de arquitectura, ingeniería y construcción con presencia en Oaxaca de Juárez, Puerto Escondido, la Costa de Oaxaca y Salina Cruz. Desarrollamos y ejecutamos proyectos con profesionalismo, calidad y compromiso en cada etapa.",
     dir: "proyectos-integrales",
     base: "03-sesion-trabajo-revision-proyecto-ejecutivo-oficina",
     photoAlt:
