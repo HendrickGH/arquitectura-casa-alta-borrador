@@ -4,19 +4,11 @@ Reingeniería del formulario guiado paso a paso, eliminación de campos de presu
 
 > **Índice general**: Volver a [tickets.md](./tickets.md) | **Insumos del cliente**: [entregables-cliente.md](./entregables-cliente.md)
 
-**Métricas de la épica**: Total tickets: **4** | Pendientes/Bloqueados: **3** | Resueltos/Descartados: **1**
+**Métricas de la épica**: Total tickets: **4** | Pendientes/Bloqueados: **2** | Resueltos/Descartados: **2**
 
 ---
 
 ## Tareas Activas y Bloqueadas
-
-<a id="cas-058"></a>
-- [ ] **`CAS-058` Actualizar sedes en Contacto a "Puerto Escondido, Salina Cruz y Oaxaca de Juárez, y capacidad de ejecución en todo México"**
-  - **Estado**: `Por Hacer` | **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy
-  - **Responsable**: Hendrick Galarza | **Fecha / Sprint**: Lunes/Martes (Pre-Lanzamiento 7 Nov)
-  - **Descripción y Criterios de Aceptación**: En el encabezado de la página de Contacto, actualizar el texto para que mencione explícitamente las 3 sedes: "Gabinete de proyectos y residencia de obra con sedes en Puerto Escondido, Salina Cruz y Oaxaca de Juárez, y capacidad de ejecución en todo México".
-  - **Dependencias / Bloqueos**: Ninguna
-  - **Referencia**: [Llamada 4 (09:44 - 10:50)](https://fathom.video/share/sLxWUiL_hzDkkwwyKGAossLKRjcRYGS2)
 
 <a id="cas-060"></a>
 - [ ] **`CAS-060` Reestructurar el Formulario de Contacto (encabezado generalizado, sin precios y con nuevas preguntas clave)**
@@ -37,6 +29,12 @@ Reingeniería del formulario guiado paso a paso, eliminación de campos de presu
 ---
 
 ## Descartados, Aprobados y Resueltos
+
+<a id="cas-058"></a>
+- [x] **`CAS-058` Actualizar descripción y sedes en Contacto** — `Terminado / Resuelto`
+  - **Estado**: `Terminado` | **Prioridad**: 🟠 Alta | **Tipo**: Contenido / Copy | **Responsable**: Hendrick Galarza
+  - **Motivo / Resolución**: Se actualizó el subheadline del hero de `/contacto` en `src/content/pages.ts` a: "Despacho de arquitectura, ingeniería y construcción con presencia en Oaxaca de Juárez, Puerto Escondido, la Costa de Oaxaca y Salina Cruz. Desarrollamos y ejecutamos proyectos con profesionalismo, calidad y compromiso en cada etapa."
+  - **Referencia**: [Llamada 4 (09:44 - 10:50)](https://fathom.video/share/sLxWUiL_hzDkkwwyKGAossLKRjcRYGS2)
 
 <a id="cas-059"></a>
 - [x] **`CAS-059` Reparar el botón "Cotizar proyecto" y verificar botones "Agendar primera reunión" (WhatsApp) e "Iniciar consulta" (Formulario)** — `Terminado / Resuelto`
