@@ -102,7 +102,7 @@ export function ClosingCTA({
       {/* Architectural gradient scrim ensuring deep contrast matching the contact page */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/90 via-55% to-ink/20"
+        className="scrim-cta-gradient pointer-events-none absolute inset-0 z-10"
       />
 
       {/* Bottom-anchored monumental editorial CTA */}

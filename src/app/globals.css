@@ -399,6 +399,52 @@ header[data-surface="hero"] .chrome-cta:hover {
 	transform: none;
 }
 
+/*
+ * Architectural scrim gradients with universal cross-browser fallback.
+ * Tailwind v4 emits `to top in oklab` by default, which causes browsers released
+ * before early 2023 (e.g. Chrome < 111, Safari < 16.2) to drop `background-image`
+ * as invalid syntax. These classes provide standard sRGB linear-gradient fallbacks
+ * and progressively enhance to `oklab` when supported.
+ */
+.scrim-cta-gradient {
+	background-image: linear-gradient(
+		to top,
+		#151515 0%,
+		rgba(21, 21, 21, 0.92) 55%,
+		rgba(21, 21, 21, 0.2) 100%
+	);
+}
+
+@supports (background-image: linear-gradient(to top in oklab, red, blue)) {
+	.scrim-cta-gradient {
+		background-image: linear-gradient(
+			to top in oklab,
+			var(--color-ink) 0%,
+			color-mix(in oklab, var(--color-ink) 90%, transparent) 55%,
+			color-mix(in oklab, var(--color-ink) 20%, transparent) 100%
+		);
+	}
+}
+
+.scrim-contact-stage-gradient {
+	background-image: linear-gradient(
+		to top,
+		#151515 0%,
+		rgba(21, 21, 21, 0.85) 65%,
+		transparent 100%
+	);
+}
+
+@supports (background-image: linear-gradient(to top in oklab, red, blue)) {
+	.scrim-contact-stage-gradient {
+		background-image: linear-gradient(
+			to top in oklab,
+			var(--color-ink) 0%,
+			color-mix(in oklab, var(--color-ink) 85%, transparent) 65%,
+			transparent 100%
+		);
+	}
+}
 
 @media (prefers-reduced-motion: reduce) {
 	html {

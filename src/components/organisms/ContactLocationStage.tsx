@@ -80,10 +80,10 @@ export function ContactLocationStage({
         <Photo photo={stageData.photo} sizes="100vw" fit="cover" />
       </div>
 
-      {/* Architectural gradient scrim ensuring WCAG AAA text contrast */}
+      {/* Architectural gradient scrim ensuring WCAG AAA text contrast with universal browser fallback */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-ink via-ink/85 to-transparent via-65%"
+        className="scrim-contact-stage-gradient pointer-events-none absolute inset-0 z-10"
       />
 
       {/* Bottom-anchored monumental direct contact stage */}
