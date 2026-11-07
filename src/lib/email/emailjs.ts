@@ -12,7 +12,7 @@
  *
  * The template parameter names below (`from_name`, `reply_to`, `phone`,
  * `whatsapp_url`, `specialty`, `locality`, `timeframe`, `message`, `source`,
- * `submitted_at`) are the contract with the EmailJS template (`template_hbcofgv`).
+ * `submitted_at`) are the contract with the EmailJS template (`template_2lu0phi`).
  * They are not authored content and must match the template's variables exactly;
  * rename both sides together or not at all.
  */
