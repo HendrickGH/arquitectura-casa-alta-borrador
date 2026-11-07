@@ -82,22 +82,24 @@ export function ContactFormFields({
 
     setStatus("sending");
 
-    const rawMessage = String(data.get("message") ?? "");
-    const contextParts = [
-      selectedSpecialty ? `[Servicio: ${selectedSpecialty}]` : "",
-      selectedLocality ? `[Lugar: ${selectedLocality}]` : "",
-      selectedTimeframe ? `[Plazo: ${selectedTimeframe}]` : "",
-    ]
-      .filter(Boolean)
-      .join(" ");
-    const formattedMessage = `${contextParts}\n\n${rawMessage}`;
+    const pathname =
+      typeof window !== "undefined" ? window.location.pathname : "/";
+    const source =
+      prefix === "modal"
+        ? `Modal de cotización (${pathname})`
+        : `Formulario directo (${pathname})`;
 
     try {
       await sendContactMessage({
         name: String(data.get("name") ?? ""),
         email: String(data.get("email") ?? ""),
         phone: String(data.get("phone") ?? ""),
-        message: formattedMessage,
+        specialty: selectedSpecialty,
+        locality: selectedLocality,
+        timeframe: selectedTimeframe,
+        message: String(data.get("message") ?? ""),
+        source,
+        website: String(data.get("website") ?? ""),
       });
       form.reset();
       setSelectedSpecialty(specialties[0] ?? "");
@@ -118,6 +120,14 @@ export function ContactFormFields({
       {selectedTimeframe ? (
         <input type="hidden" name="timeframe" value={selectedTimeframe} />
       ) : null}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+      />
 
       {/* 1. Service Type Selection Chips (0px rectangular) */}
       {specialties.length > 0 ? (
